@@ -7,25 +7,25 @@ Companion to `/gsd-sketch-wrap-up`.
 <required_reading>
 Read all files referenced by the invoking prompt's execution_context before starting.
 
-@~/.claude/get-shit-done/references/sketch-theme-system.md
-@~/.claude/get-shit-done/references/sketch-variant-patterns.md
-@~/.claude/get-shit-done/references/sketch-interactivity.md
-@~/.claude/get-shit-done/references/sketch-tooling.md
+@~/.codex/get-shit-done/references/sketch-theme-system.md
+@~/.codex/get-shit-done/references/sketch-variant-patterns.md
+@~/.codex/get-shit-done/references/sketch-interactivity.md
+@~/.codex/get-shit-done/references/sketch-tooling.md
 </required_reading>
 
 <process>
 
 <step name="banner">
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► SKETCHING
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
+ GSD �?SKETCHING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
 ```
 
 Parse `$ARGUMENTS` for:
-- `--quick` flag → set `QUICK_MODE=true`
-- `--text` flag → set `TEXT_MODE=true`
-- Remaining text → the design idea to sketch
+- `--quick` flag �?set `QUICK_MODE=true`
+- `--text` flag �?set `TEXT_MODE=true`
+- Remaining text �?the design idea to sketch
 
 **Text mode (`workflow.text_mode: true` in config or `--text` flag):** Set `TEXT_MODE=true` if `--text` is present in `$ARGUMENTS` OR `text_mode` from init JSON is `true`. When TEXT_MODE is active, replace every `AskUserQuestion` call with a plain-text numbered list and ask the user to type their choice number. This is required for non-Claude runtimes (OpenAI Codex, Gemini CLI, etc.) where `AskUserQuestion` is not available.
 </step>
@@ -53,9 +53,9 @@ COMMIT_DOCS=$(gsd-sdk query config-get commit_docs 2>/dev/null || echo "true")
 
 **Otherwise:**
 
-**Text mode:** If TEXT_MODE is enabled (set in the banner step), replace AskUserQuestion calls with plain-text numbered lists — emit the options and ask the user to type the number of their choice.
+**Text mode:** If TEXT_MODE is enabled (set in the banner step), replace AskUserQuestion calls with plain-text numbered lists �?emit the options and ask the user to type the number of their choice.
 
-Before sketching anything, explore the design intent through conversation. Ask one question at a time — using AskUserQuestion in normal mode, or a plain-text numbered list if TEXT_MODE is active — with a paragraph of context and reasoning for each.
+Before sketching anything, explore the design intent through conversation. Ask one question at a time �?using AskUserQuestion in normal mode, or a plain-text numbered list if TEXT_MODE is active �?with a paragraph of context and reasoning for each.
 
 **Questions to cover (adapt to what the user has already shared):**
 
@@ -75,19 +75,19 @@ Break the idea into 2-5 design questions. Present as a table:
 
 | Sketch | Design question | Approach | Risk |
 |--------|----------------|----------|------|
-| 001 | Does a two-panel layout feel right? | Sidebar + main, variants: fixed/collapsible/floating | **High** — sets page structure |
+| 001 | Does a two-panel layout feel right? | Sidebar + main, variants: fixed/collapsible/floating | **High** �?sets page structure |
 | 002 | How should the form controls look? | Grouped cards, variants: stacked/inline/floating labels | Medium |
 
 Each sketch answers one specific visual question. Good sketches:
-- "Does this layout feel right?" — build with real-ish content
-- "How should these controls be grouped?" — build with actual labels and inputs
-- "What does this interaction feel like?" — build the hover/click/transition
-- "Does this color palette work?" — apply to actual UI, not a swatch grid
+- "Does this layout feel right?" �?build with real-ish content
+- "How should these controls be grouped?" �?build with actual labels and inputs
+- "What does this interaction feel like?" �?build the hover/click/transition
+- "Does this color palette work?" �?apply to actual UI, not a swatch grid
 
 Bad sketches:
-- "Design the whole app" — too broad
-- "Set up the component library" — that's implementation
-- "Pick a color palette" — apply it to UI instead
+- "Design the whole app" �?too broad
+- "Set up the component library" �?that's implementation
+- "Pick a color palette" �?apply it to UI instead
 
 Present the table and get alignment before building.
 </step>
@@ -116,7 +116,7 @@ If MANIFEST.md already exists, append new sketches to the existing table.
 <step name="create_theme">
 If no theme exists yet at `.planning/sketches/themes/default.css`, create one based on the mood/direction from the intake step. See `sketch-theme-system.md` for the full template.
 
-Adapt colors, fonts, spacing, and shapes to match the agreed aesthetic — don't use the defaults verbatim unless they match the mood.
+Adapt colors, fonts, spacing, and shapes to match the agreed aesthetic �?don't use the defaults verbatim unless they match the mood.
 </step>
 
 <step name="build_sketches">
@@ -131,9 +131,9 @@ Format: three-digit zero-padded + hyphenated descriptive name.
 
 **c.** Build `index.html` with 2-3 variants:
 
-**First round — dramatic differences:** Build 2-3 meaningfully different approaches to the design question. Different layouts, different visual structures, different interaction models.
+**First round �?dramatic differences:** Build 2-3 meaningfully different approaches to the design question. Different layouts, different visual structures, different interaction models.
 
-**Subsequent rounds — refinements:** Once the user has picked a direction or cherry-picked elements, build subtler variations within that direction.
+**Subsequent rounds �?refinements:** Once the user has picked a direction or cherry-picked elements, build subtler variations within that direction.
 
 Each variant is a page/tab in the same HTML file. Include:
 - Tab navigation to switch between variants (see `sketch-variant-patterns.md`)
@@ -165,9 +165,9 @@ tags: [layout, dashboard]
 open .planning/sketches/NNN-descriptive-name/index.html
 
 ## Variants
-- **A: [name]** — [one-line description of this approach]
-- **B: [name]** — [one-line description]
-- **C: [name]** — [one-line description]
+- **A: [name]** �?[one-line description of this approach]
+- **B: [name]** �?[one-line description]
+- **C: [name]** �?[one-line description]
 
 ## What to Look For
 [Specific things to pay attention to when comparing variants]
@@ -176,7 +176,7 @@ open .planning/sketches/NNN-descriptive-name/index.html
 **e.** Present to the user with a checkpoint:
 
 ╔══════════════════════════════════════════════════════════════╗
-║  CHECKPOINT: Verification Required                           ║
+�? CHECKPOINT: Verification Required                           �?
 ╚══════════════════════════════════════════════════════════════╝
 
 **Sketch {NNN}: {name}**
@@ -186,30 +186,30 @@ Open: `open .planning/sketches/NNN-name/index.html`
 Compare: {what to look for between variants}
 
 ──────────────────────────────────────────────────────────────
-→ Which variant feels right? Or cherry-pick elements across variants.
+�?Which variant feels right? Or cherry-pick elements across variants.
 ──────────────────────────────────────────────────────────────
 
 **f.** Handle feedback:
-- **Pick a direction:** "I like variant B" → mark winner in README, move to next sketch
-- **Cherry-pick elements:** "Rounded edges from A, color treatment from C" → build a synthesis as a new variant, show again
-- **Want more exploration:** "None of these feel right, try X instead" → build new variants
+- **Pick a direction:** "I like variant B" �?mark winner in README, move to next sketch
+- **Cherry-pick elements:** "Rounded edges from A, color treatment from C" �?build a synthesis as a new variant, show again
+- **Want more exploration:** "None of these feel right, try X instead" �?build new variants
 
 Iterate until the user is satisfied with a direction for this sketch.
 
 **g.** Finalize:
 1. Mark the winning variant in the README frontmatter (`winner: "B"`)
-2. Add ★ indicator to the winning tab in the HTML
+2. Add �?indicator to the winning tab in the HTML
 3. Update `.planning/sketches/MANIFEST.md` with the sketch row
 
 **h.** Commit (if `COMMIT_DOCS` is true):
 ```bash
-gsd-sdk query commit "docs(sketch-NNN): [winning direction] — [key visual insight]" .planning/sketches/NNN-descriptive-name/ .planning/sketches/MANIFEST.md
+gsd-sdk query commit "docs(sketch-NNN): [winning direction] �?[key visual insight]" .planning/sketches/NNN-descriptive-name/ .planning/sketches/MANIFEST.md
 ```
 
 **i.** Report:
 ```
-◆ Sketch NNN: {name}
-  Winner: Variant {X} — {description}
+�?Sketch NNN: {name}
+  Winner: Variant {X} �?{description}
   Insight: {key visual decision made}
 ```
 </step>
@@ -218,9 +218,9 @@ gsd-sdk query commit "docs(sketch-NNN): [winning direction] — [key visual insi
 After all sketches complete, present the summary:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► SKETCH COMPLETE ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
+ GSD �?SKETCH COMPLETE �?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
 
 ## Design Direction
 {what we landed on overall}
@@ -234,18 +234,18 @@ After all sketches complete, present the summary:
 
 ───────────────────────────────────────────────────────────────
 
-## ▶ Next Up
+## �?Next Up
 
-**Package findings** — wrap design decisions into a reusable skill
+**Package findings** �?wrap design decisions into a reusable skill
 
 `/gsd-sketch-wrap-up`
 
 ───────────────────────────────────────────────────────────────
 
 **Also available:**
-- `/gsd-plan-phase` — start building the real UI
-- `/gsd-explore` — continue exploring the concept
-- `/gsd-spike` — spike technical feasibility of a design pattern
+- `/gsd-plan-phase` �?start building the real UI
+- `/gsd-explore` �?continue exploring the concept
+- `/gsd-spike` �?spike technical feasibility of a design pattern
 
 ───────────────────────────────────────────────────────────────
 </step>

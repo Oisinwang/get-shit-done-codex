@@ -3,8 +3,8 @@ Safe git revert workflow. Rolls back GSD phase or plan commits using the phase m
 </purpose>
 
 <required_reading>
-@~/.claude/get-shit-done/references/ui-brand.md
-@~/.claude/get-shit-done/references/gate-prompts.md
+@~/.codex/get-shit-done/references/ui-brand.md
+@~/.codex/get-shit-done/references/gate-prompts.md
 </required_reading>
 
 <process>
@@ -13,18 +13,18 @@ Safe git revert workflow. Rolls back GSD phase or plan commits using the phase m
 Display the stage banner:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► UNDO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
+ GSD �?UNDO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
 ```
 </step>
 
 <step name="parse_arguments">
 Parse $ARGUMENTS for the undo mode:
 
-- `--last N` → MODE=last, COUNT=N (integer, default 10 if N missing)
-- `--phase NN` → MODE=phase, TARGET_PHASE=NN (two-digit phase number)
-- `--plan NN-MM` → MODE=plan, TARGET_PLAN=NN-MM (phase-plan ID)
+- `--last N` �?MODE=last, COUNT=N (integer, default 10 if N missing)
+- `--phase NN` �?MODE=phase, TARGET_PHASE=NN (two-digit phase number)
+- `--plan NN-MM` �?MODE=plan, TARGET_PLAN=NN-MM (phase-plan ID)
 
 If no valid argument is provided, display usage and exit:
 
@@ -132,7 +132,7 @@ For each dependent phase N found:
 
 If any downstream phase has started work, collect warnings:
 ```
-⚠  Downstream dependency detected:
+�? Downstream dependency detected:
    Phase ${N} depends on Phase ${TARGET_PHASE} and has started work.
 ```
 
@@ -148,7 +148,7 @@ Look for later plans in the same phase directory (`.planning/phases/${NN}-*/`). 
 
 If any later plan references the target plan's outputs, collect warnings:
 ```
-⚠  Intra-phase dependency detected:
+�? Intra-phase dependency detected:
    Plan ${LATER_PLAN} in phase ${NN} references outputs from plan ${TARGET_PLAN}.
 ```
 
@@ -171,8 +171,8 @@ Show:
 ```
 The following commits will be reverted (in reverse chronological order):
 
-  {hash} — {message}
-  {hash} — {message}
+  {hash} �?{message}
+  {hash} �?{message}
   ...
 
 Total: {N} commit(s) to revert
@@ -206,7 +206,7 @@ Run `git status --porcelain`. If the output is non-empty, display the dirty file
 ```
 Working tree has uncommitted changes. Commit or stash them before running /gsd-undo.
 ```
-Exit immediately — do not proceed to any revert operations.
+Exit immediately �?do not proceed to any revert operations.
 
 ---
 
@@ -219,7 +219,7 @@ git revert --no-commit ${HASH}
 
 If any revert fails (merge conflict or error):
 1. Display the error message
-2. Run cleanup — handle both first-call and mid-sequence cases:
+2. Run cleanup �?handle both first-call and mid-sequence cases:
    ```bash
    # Try git revert --abort first (works if this is the first failed revert)
    git revert --abort 2>/dev/null
@@ -231,14 +231,14 @@ If any revert fails (merge conflict or error):
 3. Display:
    ```
    ╔══════════════════════════════════════════════════════════════╗
-   ║  ERROR                                                       ║
+   �? ERROR                                                       �?
    ╚══════════════════════════════════════════════════════════════╝
 
    Revert failed on commit ${HASH}.
    Likely cause: merge conflict with subsequent changes.
 
    **To fix:** Resolve the conflict manually or revert commits individually.
-   All pending reverts have been aborted — working tree is clean.
+   All pending reverts have been aborted �?working tree is clean.
    ```
 4. Exit with error.
 
@@ -246,17 +246,17 @@ After all reverts are staged successfully, create a single commit:
 
 For MODE=phase:
 ```bash
-git commit -m "revert(${TARGET_PHASE}): undo phase ${TARGET_PHASE} — ${REVERT_REASON}"
+git commit -m "revert(${TARGET_PHASE}): undo phase ${TARGET_PHASE} �?${REVERT_REASON}"
 ```
 
 For MODE=plan:
 ```bash
-git commit -m "revert(${TARGET_PLAN}): undo plan ${TARGET_PLAN} — ${REVERT_REASON}"
+git commit -m "revert(${TARGET_PLAN}): undo plan ${TARGET_PLAN} �?${REVERT_REASON}"
 ```
 
 For MODE=last:
 ```bash
-git commit -m "revert: undo ${N} selected commits — ${REVERT_REASON}"
+git commit -m "revert: undo ${N} selected commits �?${REVERT_REASON}"
 ```
 </step>
 
@@ -264,24 +264,24 @@ git commit -m "revert: undo ${N} selected commits — ${REVERT_REASON}"
 Display the completion banner:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► UNDO COMPLETE ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
+ GSD �?UNDO COMPLETE �?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
 ```
 
 Show summary:
 ```
-  ✓ ${N} commit(s) reverted
-  ✓ Single revert commit created: ${REVERT_HASH}
+  �?${N} commit(s) reverted
+  �?Single revert commit created: ${REVERT_HASH}
 ```
 
 Show next steps:
 ```
 ───────────────────────────────────────────────────────────────
 
-## ▶ Next Up — [${PROJECT_CODE}] ${PROJECT_TITLE}
+## �?Next Up �?[${PROJECT_CODE}] ${PROJECT_TITLE}
 
-**Review state** — verify project is in expected state after revert
+**Review state** �?verify project is in expected state after revert
 
 /clear then:
 
@@ -290,8 +290,8 @@ Show next steps:
 ───────────────────────────────────────────────────────────────
 
 **Also available:**
-- `/gsd-execute-phase ${PHASE}` — re-execute if needed
-- `/gsd-undo --last 1` — undo the revert itself if something went wrong
+- `/gsd-execute-phase ${PHASE}` �?re-execute if needed
+- `/gsd-undo --last 1` �?undo the revert itself if something went wrong
 
 ───────────────────────────────────────────────────────────────
 ```

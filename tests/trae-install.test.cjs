@@ -37,9 +37,12 @@ describe('Trae runtime directory mapping', () => {
 
 describe('getGlobalDir (Trae)', () => {
   let originalTraeConfigDir;
+  let originalClaudeConfigDir;
 
   beforeEach(() => {
     originalTraeConfigDir = process.env.TRAE_CONFIG_DIR;
+    originalClaudeConfigDir = process.env.CLAUDE_CONFIG_DIR;
+    delete process.env.CLAUDE_CONFIG_DIR;
   });
 
   afterEach(() => {
@@ -47,6 +50,12 @@ describe('getGlobalDir (Trae)', () => {
       process.env.TRAE_CONFIG_DIR = originalTraeConfigDir;
     } else {
       delete process.env.TRAE_CONFIG_DIR;
+    }
+
+    if (originalClaudeConfigDir !== undefined) {
+      process.env.CLAUDE_CONFIG_DIR = originalClaudeConfigDir;
+    } else {
+      delete process.env.CLAUDE_CONFIG_DIR;
     }
   });
 

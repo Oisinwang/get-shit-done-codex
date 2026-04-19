@@ -1,7 +1,7 @@
 # Milestone Summary Workflow
 
 Generate a comprehensive, human-friendly project summary from completed milestone artifacts.
-Designed for team onboarding — a new contributor can read the output and understand the entire project.
+Designed for team onboarding 鈥?a new contributor can read the output and understand the entire project.
 
 ---
 
@@ -46,7 +46,7 @@ RETRO_PATH=".planning/RETROSPECTIVE.md"
 STATE_PATH=".planning/STATE.md"
 ```
 
-Read all files that exist. Missing files are fine — the summary adapts to what's available.
+Read all files that exist. Missing files are fine 鈥?the summary adapts to what's available.
 
 ## Step 3: Discover Phase Artifacts
 
@@ -58,20 +58,20 @@ gsd-sdk query init.progress
 
 This returns phase metadata. For each phase in the milestone scope:
 
-- Read `{phase_dir}/{padded}-SUMMARY.md` if it exists — extract `one_liner`, `accomplishments`, `decisions`
-- Read `{phase_dir}/{padded}-VERIFICATION.md` if it exists — extract status, gaps, deferred items
-- Read `{phase_dir}/{padded}-CONTEXT.md` if it exists — extract key decisions from `<decisions>` section
-- Read `{phase_dir}/{padded}-RESEARCH.md` if it exists — note what was researched
+- Read `{phase_dir}/{padded}-SUMMARY.md` if it exists 鈥?extract `one_liner`, `accomplishments`, `decisions`
+- Read `{phase_dir}/{padded}-VERIFICATION.md` if it exists 鈥?extract status, gaps, deferred items
+- Read `{phase_dir}/{padded}-CONTEXT.md` if it exists 鈥?extract key decisions from `<decisions>` section
+- Read `{phase_dir}/{padded}-RESEARCH.md` if it exists 鈥?note what was researched
 
 Track which phases have which artifacts.
 
-**If no phase directories exist** (empty milestone or pre-build state): skip to Step 5 and generate a minimal summary noting "No phases have been executed yet." Do not error — the summary should still capture PROJECT.md and ROADMAP.md content.
+**If no phase directories exist** (empty milestone or pre-build state): skip to Step 5 and generate a minimal summary noting "No phases have been executed yet." Do not error 鈥?the summary should still capture PROJECT.md and ROADMAP.md content.
 
 ## Step 4: Gather Git Statistics
 
 Try each method in order until one succeeds:
 
-**Method 1 — Tagged milestone** (check first):
+**Method 1 鈥?Tagged milestone** (check first):
 ```bash
 git tag -l "v${VERSION}" | head -1
 ```
@@ -81,26 +81,26 @@ git log v${VERSION} --oneline | wc -l
 git diff --stat $(git log --format=%H --reverse v${VERSION} | head -1)..v${VERSION}
 ```
 
-**Method 2 — STATE.md date range** (if no tag):
+**Method 2 鈥?STATE.md date range** (if no tag):
 Read STATE.md and extract the `started_at` or earliest session date. Use it as the `--since` boundary:
 ```bash
 git log --oneline --since="<started_at_date>" | wc -l
 ```
 
-**Method 3 — Earliest phase commit** (if STATE.md has no date):
+**Method 3 鈥?Earliest phase commit** (if STATE.md has no date):
 Find the earliest `.planning/phases/` commit:
 ```bash
 git log --oneline --diff-filter=A -- ".planning/phases/" | tail -1
 ```
 Use that commit's date as the start boundary.
 
-**Method 4 — Skip stats** (if none of the above work):
-Report "Git statistics unavailable — no tag or date range could be determined." This is not an error — the summary continues without the Stats section.
+**Method 4 鈥?Skip stats** (if none of the above work):
+Report "Git statistics unavailable 鈥?no tag or date range could be determined." This is not an error 鈥?the summary continues without the Stats section.
 
 Extract (when available):
 - Total commits in milestone
 - Files changed, insertions, deletions
-- Timeline (start date → end date)
+- Timeline (start date 鈫?end date)
 - Contributors (from git log authors)
 
 ## Step 5: Generate Summary Document
@@ -108,7 +108,7 @@ Extract (when available):
 Write to `.planning/reports/MILESTONE_SUMMARY-v${VERSION}.md`:
 
 ```markdown
-# Milestone v{VERSION} — Project Summary
+# Milestone v{VERSION} 鈥?Project Summary
 
 **Generated:** {date}
 **Purpose:** Team onboarding and project review
@@ -140,9 +140,9 @@ Present as a bulleted list of decisions with brief rationale:
 ## 4. Requirements Coverage
 
 {From REQUIREMENTS.md: list each requirement with status}
-- ✅ {Requirement met}
-- ⚠️ {Requirement partially met — note gap}
-- ❌ {Requirement not met — note reason}
+- 鉁?{Requirement met}
+- 鈿狅笍 {Requirement partially met 鈥?note gap}
+- 鉂?{Requirement not met 鈥?note reason}
 
 {If MILESTONE-AUDIT.md exists: include audit verdict}
 
@@ -162,14 +162,14 @@ Present as a bulleted list of decisions with brief rationale:
 {Entry points for new contributors:}
 - **Run the project:** {from PROJECT.md or SUMMARY.md}
 - **Key directories:** {from codebase structure}
-- **Tests:** {test command from PROJECT.md or CLAUDE.md}
+- **Tests:** {test command from PROJECT.md or AGENTS.md; use legacy CLAUDE.md only if the project is still migrating}
 - **Where to look first:** {main entry points, core modules}
 
 ---
 
 ## Stats
 
-- **Timeline:** {start} → {end} ({duration})
+- **Timeline:** {start} 鈫?{end} ({duration})
 - **Phases:** {count complete} / {count total}
 - **Commits:** {count}
 - **Files changed:** {count} (+{insertions} / -{deletions})
@@ -204,7 +204,7 @@ After presenting the summary:
 > "Summary written to `.planning/reports/MILESTONE_SUMMARY-v{VERSION}.md`.
 >
 > I have full context from the build artifacts. Want to ask anything about the project?
-> Architecture decisions, specific phases, requirements, tech debt — ask away."
+> Architecture decisions, specific phases, requirements, tech debt 鈥?ask away."
 
 If the user asks questions:
 - Answer from the artifacts already loaded (CONTEXT.md, SUMMARY.md, VERIFICATION.md, etc.)

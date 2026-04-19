@@ -300,15 +300,17 @@ export class GSDTools {
 
 /**
  * Resolve gsd-tools.cjs path.
- * Probe order: SDK-bundled repo copy → `project/.claude/get-shit-done/` →
- * `~/.claude/get-shit-done/`.
+ * Probe order: SDK-bundled repo copy → Codex runtime roots →
+ * Claude compatibility roots.
  */
 export function resolveGsdToolsPath(projectDir: string): string {
   const candidates = [
     BUNDLED_GSD_TOOLS_PATH,
+    join(projectDir, '.codex', 'get-shit-done', 'bin', 'gsd-tools.cjs'),
+    join(homedir(), '.codex', 'get-shit-done', 'bin', 'gsd-tools.cjs'),
     join(projectDir, '.claude', 'get-shit-done', 'bin', 'gsd-tools.cjs'),
     join(homedir(), '.claude', 'get-shit-done', 'bin', 'gsd-tools.cjs'),
   ];
 
-  return candidates.find(candidate => existsSync(candidate)) ?? candidates[candidates.length - 1]!;
+  return candidates.find(candidate => existsSync(candidate)) ?? candidates[2]!;
 }

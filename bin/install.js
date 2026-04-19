@@ -278,6 +278,17 @@ function getGlobalDir(runtime, explicitDir = null) {
     return path.join(os.homedir(), '.gemini');
   }
 
+  if (runtime === 'claude') {
+    // Claude Code: --config-dir > CLAUDE_CONFIG_DIR > ~/.claude
+    if (explicitDir) {
+      return expandTilde(explicitDir);
+    }
+    if (process.env.CLAUDE_CONFIG_DIR) {
+      return expandTilde(process.env.CLAUDE_CONFIG_DIR);
+    }
+    return path.join(os.homedir(), '.claude');
+  }
+
   if (runtime === 'codex') {
     // Codex: --config-dir > CODEX_HOME > ~/.codex
     if (explicitDir) {

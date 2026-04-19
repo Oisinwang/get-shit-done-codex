@@ -96,7 +96,7 @@ describe('bug #2136 part 1: bash hook sources carry gsd-hook-version placeholder
     // Placing the header immediately after #!/bin/bash ensures it is always
     // found regardless of how much of the file is read.
     for (const sh of SH_HOOKS) {
-      const lines = fs.readFileSync(path.join(HOOKS_DIR, sh), 'utf8').split('\n');
+      const lines = fs.readFileSync(path.join(HOOKS_DIR, sh), 'utf8').split(/\r?\n/);
       assert.strictEqual(lines[0], '#!/bin/bash', `${sh} line 1 must be #!/bin/bash`);
       assert.ok(
         lines[1].startsWith('# gsd-hook-version:'),

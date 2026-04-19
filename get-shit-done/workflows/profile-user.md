@@ -8,9 +8,9 @@ This workflow wires Phase 1 (session pipeline) and Phase 2 (profiling engine) in
 Read all files referenced by the invoking prompt's execution_context before starting.
 
 Key references:
-- @$HOME/.claude/get-shit-done/references/ui-brand.md (display patterns)
-- @$HOME/.claude/get-shit-done/agents/gsd-user-profiler.md (profiler agent definition)
-- @$HOME/.claude/get-shit-done/references/user-profiling.md (profiling reference doc)
+- @$HOME/.codex/get-shit-done/references/ui-brand.md (display patterns)
+- @$HOME/.codex/get-shit-done/agents/gsd-user-profiler.md (profiler agent definition)
+- @$HOME/.codex/get-shit-done/references/user-profiling.md (profiling reference doc)
 </required_reading>
 
 <process>
@@ -24,7 +24,7 @@ Parse flags from $ARGUMENTS:
 Check for existing profile:
 
 ```bash
-PROFILE_PATH="$HOME/.claude/get-shit-done/USER-PROFILE.md"
+PROFILE_PATH="$HOME/.codex/get-shit-done/USER-PROFILE.md"
 [ -f "$PROFILE_PATH" ] && echo "EXISTS" || echo "NOT_FOUND"
 ```
 
@@ -48,7 +48,7 @@ If "Cancel": Display "No changes made." and exit.
 
 Backup existing profile:
 ```bash
-cp "$HOME/.claude/get-shit-done/USER-PROFILE.md" "$HOME/.claude/USER-PROFILE.backup.md"
+cp "$HOME/.codex/get-shit-done/USER-PROFILE.md" "$HOME/.codex/USER-PROFILE.backup.md"
 ```
 
 Display: "Re-analyzing your sessions to update your profile."
@@ -65,9 +65,9 @@ Continue to step 2.
 Display consent screen:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
  GSD > PROFILE YOUR CODING STYLE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
 Claude starts every conversation generic. A profile teaches Claude
 how YOU actually work -- not how you think you work.
@@ -90,11 +90,11 @@ Your recent Claude Code sessions, looking for patterns in these
 
 ## Data Handling
 
-✓ Reads session files locally (read-only, nothing modified)
-✓ Analyzes message patterns (not content meaning)
-✓ Stores profile at $HOME/.claude/get-shit-done/USER-PROFILE.md
-✗ Nothing is sent to external services
-✗ Sensitive content (API keys, passwords) is automatically excluded
+鉁?Reads session files locally (read-only, nothing modified)
+鉁?Analyzes message patterns (not content meaning)
+鉁?Stores profile at $HOME/.codex/get-shit-done/USER-PROFILE.md
+鉁?Nothing is sent to external services
+鉁?Sensitive content (API keys, passwords) is automatically excluded
 ```
 
 **If --refresh path:**
@@ -126,7 +126,7 @@ Use AskUserQuestion:
 
 ## 3. Session Scan
 
-Display: "◆ Scanning sessions..."
+Display: "鈼?Scanning sessions..."
 
 Run session scan:
 ```bash
@@ -135,7 +135,7 @@ SCAN_RESULT=$(gsd-sdk query scan-sessions --json 2>/dev/null)
 
 Parse the JSON output to get session count and project count.
 
-Display: "✓ Found N sessions across M projects"
+Display: "鉁?Found N sessions across M projects"
 
 **Determine data sufficiency:**
 - Count total messages available from the scan result (sum sessions across projects)
@@ -146,7 +146,7 @@ Display: "✓ Found N sessions across M projects"
 
 ## 4a. Session Analysis Path
 
-Display: "◆ Sampling messages..."
+Display: "鈼?Sampling messages..."
 
 Run profile sampling:
 ```bash
@@ -155,21 +155,21 @@ SAMPLE_RESULT=$(gsd-sdk query profile-sample --json 2>/dev/null)
 
 Parse the JSON output to get the temp directory path and message count.
 
-Display: "✓ Sampled N messages from M projects"
+Display: "鉁?Sampled N messages from M projects"
 
-Display: "◆ Analyzing patterns..."
+Display: "鈼?Analyzing patterns..."
 
 **Spawn gsd-user-profiler agent using Task tool:**
 
 Use the Task tool to spawn the `gsd-user-profiler` agent. Provide it with:
 - The sampled JSONL file path from profile-sample output
-- The user-profiling reference doc at `$HOME/.claude/get-shit-done/references/user-profiling.md`
+- The user-profiling reference doc at `$HOME/.codex/get-shit-done/references/user-profiling.md`
 
 The agent prompt should follow this structure:
 ```
 Read the profiling reference document and the sampled session messages, then analyze the developer's behavioral patterns across all 8 dimensions.
 
-Reference: @$HOME/.claude/get-shit-done/references/user-profiling.md
+Reference: @$HOME/.codex/get-shit-done/references/user-profiling.md
 Session data: @{temp_dir}/profile-sample.jsonl
 
 Analyze these messages and return your analysis in the <analysis> JSON format specified in the reference document.
@@ -185,7 +185,7 @@ ANALYSIS_PATH="{temp_dir}/analysis.json"
 
 Write the analysis JSON to `$ANALYSIS_PATH`.
 
-Display: "✓ Analysis complete (N dimensions scored)"
+Display: "鉁?Analysis complete (N dimensions scored)"
 
 **Check for thin data:**
 - Read the analysis JSON and check the total message count
@@ -268,13 +268,13 @@ Write updated analysis JSON back to `$ANALYSIS_PATH`.
 
 ## 6. Profile Write
 
-Display: "◆ Writing profile..."
+Display: "鈼?Writing profile..."
 
 ```bash
 gsd-sdk query write-profile --input "$ANALYSIS_PATH" --json 2>/dev/null
 ```
 
-Display: "✓ Profile written to $HOME/.claude/get-shit-done/USER-PROFILE.md"
+Display: "鉁?Profile written to $HOME/.codex/get-shit-done/USER-PROFILE.md"
 
 ---
 
@@ -336,10 +336,10 @@ Use AskUserQuestion with multiSelect:
 - question: "Which artifacts should I generate?"
 - options (ALL pre-selected by default):
   - "/gsd-dev-preferences command file" -- "Load your preferences in any session"
-  - "CLAUDE.md profile section" -- "Add profile to this project's CLAUDE.md"
-  - "Global CLAUDE.md" -- "Add profile to $HOME/.claude/CLAUDE.md for all projects"
+  - "AGENTS.md profile section" -- "Add profile to this project's AGENTS.md"
+  - "Global AGENTS.md" -- "Add profile to $HOME/.codex/AGENTS.md for all projects"
 
-**If no artifacts selected:** Display "No artifacts generated. Your profile is saved at $HOME/.claude/get-shit-done/USER-PROFILE.md" and jump to step 10.
+**If no artifacts selected:** Display "No artifacts generated. Your profile is saved at $HOME/.codex/get-shit-done/USER-PROFILE.md" and jump to step 10.
 
 ---
 
@@ -353,23 +353,23 @@ Generate selected artifacts sequentially (file I/O is fast, no benefit from para
 gsd-sdk query generate-dev-preferences --analysis "$ANALYSIS_PATH" --json 2>/dev/null
 ```
 
-Display: "✓ Generated /gsd-dev-preferences at $HOME/.claude/commands/gsd/dev-preferences.md"
+Display: "鉁?Generated /gsd-dev-preferences at $HOME/.codex/commands/gsd/dev-preferences.md"
 
-**For CLAUDE.md profile section (if selected):**
-
-```bash
-gsd-sdk query generate-claude-profile --analysis "$ANALYSIS_PATH" --json 2>/dev/null
-```
-
-Display: "✓ Added profile section to CLAUDE.md"
-
-**For Global CLAUDE.md (if selected):**
+**For AGENTS.md profile section (if selected):**
 
 ```bash
-gsd-sdk query generate-claude-profile --analysis "$ANALYSIS_PATH" --global --json 2>/dev/null
+gsd-sdk query generate-agents-profile --analysis "$ANALYSIS_PATH" --json 2>/dev/null
 ```
 
-Display: "✓ Added profile section to $HOME/.claude/CLAUDE.md"
+Display: "鉁?Added profile section to AGENTS.md"
+
+**For Global AGENTS.md (if selected):**
+
+```bash
+gsd-sdk query generate-agents-profile --analysis "$ANALYSIS_PATH" --global --json 2>/dev/null
+```
+
+Display: "鉁?Added profile section to $HOME/.codex/AGENTS.md"
 
 **Error handling:** If any `gsd-sdk query` or gsd-tools.cjs call fails, display the error message and use AskUserQuestion to offer "Retry" or "Skip this artifact". On retry, re-run the command. On skip, continue to next artifact.
 
@@ -383,7 +383,7 @@ Read both old backup and new analysis to compare dimension ratings/confidence.
 
 Read the backed-up profile:
 ```bash
-BACKUP_PATH="$HOME/.claude/USER-PROFILE.backup.md"
+BACKUP_PATH="$HOME/.codex/USER-PROFILE.backup.md"
 ```
 
 Compare each dimension's rating and confidence between old and new. Display diff table showing only changed dimensions:
@@ -402,19 +402,19 @@ If nothing changed: Display "No changes detected -- your profile is already up t
 **Display final summary:**
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD > PROFILE COMPLETE ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD > PROFILE COMPLETE 鉁?
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
-Your profile:    $HOME/.claude/get-shit-done/USER-PROFILE.md
+Your profile:    $HOME/.codex/get-shit-done/USER-PROFILE.md
 ```
 
 Then list paths for each generated artifact:
 ```
 Artifacts:
-  ✓ /gsd-dev-preferences   $HOME/.claude/commands/gsd/dev-preferences.md
-  ✓ CLAUDE.md section       ./CLAUDE.md
-  ✓ Global CLAUDE.md        $HOME/.claude/CLAUDE.md
+  鉁?/gsd-dev-preferences   $HOME/.codex/commands/gsd/dev-preferences.md
+  鉁?AGENTS.md section       ./AGENTS.md
+  鉁?Global AGENTS.md        $HOME/.codex/AGENTS.md
 ```
 
 (Only show artifacts that were actually generated.)

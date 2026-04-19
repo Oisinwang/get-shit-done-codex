@@ -119,7 +119,7 @@ npx get-shit-done-codex@latest
 <summary><strong>非交互式安装（Docker、CI、脚本）</strong></summary>
 
 ```bash
-# Claude Code
+# Claude Code 兼容/运行时
 npx get-shit-done-codex --claude --global   # 安装到 ~/.claude/
 npx get-shit-done-codex --claude --local    # 安装到 ./.claude/
 
@@ -186,7 +186,7 @@ npm run build:hooks
 node bin/install.js --codex --local
 ```
 
-这样会安装到 `./.claude/`，方便你在贡献代码前测试自己的改动。
+这样会安装到 `./.codex/`，方便你在贡献代码前测试自己的改动。
 
 </details>
 
@@ -204,7 +204,7 @@ claude --dangerously-skip-permissions
 <details>
 <summary><strong>替代方案：细粒度权限</strong></summary>
 
-如果你不想使用这个 flag，可以在项目的 `.claude/settings.json` 中加入：
+如果你使用 Claude Code 兼容/运行时，可以在项目的 `.claude/settings.json` 中加入：
 
 ```json
 {
@@ -718,7 +718,7 @@ GSD 将项目设置保存在 `.planning/config.json`。你可以在 `/gsd-new-pr
 
 GSD 的代码库映射和分析命令会读取文件来理解你的项目。**包含机密信息的文件应当加入 Claude Code 的 deny list**：
 
-1. 打开 Claude Code 设置（项目级 `.claude/settings.json` 或全局设置）
+1. 打开 Claude Code 兼容/运行时设置（项目级 `.claude/settings.json` 或全局设置）
 2. 把敏感文件模式加入 deny list：
 
 ```json

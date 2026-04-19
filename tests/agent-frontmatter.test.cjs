@@ -29,7 +29,7 @@ const FILE_WRITING_AGENTS = ALL_AGENTS.filter(name => {
 
 const READ_ONLY_AGENTS = ALL_AGENTS.filter(name => !FILE_WRITING_AGENTS.includes(name));
 
-// ─── Anti-Heredoc Instruction ────────────────────────────────────────────────
+// 閳光偓閳光偓閳光偓 Anti-Heredoc Instruction 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
 
 describe('HDOC: anti-heredoc instruction', () => {
   for (const agent of FILE_WRITING_AGENTS) {
@@ -60,7 +60,7 @@ describe('HDOC: anti-heredoc instruction', () => {
   });
 });
 
-// ─── Skills Frontmatter ──────────────────────────────────────────────────────
+// 閳光偓閳光偓閳光偓 Skills Frontmatter 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
 
 describe('SKILL: skills frontmatter absent', () => {
   for (const agent of ALL_AGENTS) {
@@ -69,13 +69,13 @@ describe('SKILL: skills frontmatter absent', () => {
       const frontmatter = content.split('---')[1] || '';
       assert.ok(
         !frontmatter.includes('skills:'),
-        `${agent} has skills: in frontmatter — skills: breaks Gemini CLI and must be removed`
+        `${agent} has skills: in frontmatter 閳?skills: breaks Gemini CLI and must be removed`
       );
     });
   }
 });
 
-// ─── Hooks Frontmatter ───────────────────────────────────────────────────────
+// 閳光偓閳光偓閳光偓 Hooks Frontmatter 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
 
 describe('HOOK: hooks frontmatter pattern', () => {
   for (const agent of FILE_WRITING_AGENTS) {
@@ -93,13 +93,13 @@ describe('HOOK: hooks frontmatter pattern', () => {
     test(`${agent} (read-only) does not need hooks`, () => {
       const content = fs.readFileSync(path.join(AGENTS_DIR, agent + '.md'), 'utf-8');
       const frontmatter = content.split('---')[1] || '';
-      // Read-only agents may or may not have hooks — just verify they parse
+      // Read-only agents may or may not have hooks 閳?just verify they parse
       assert.ok(frontmatter.includes('name:'), `${agent} has valid frontmatter`);
     });
   }
 });
 
-// ─── Spawn Type Consistency ──────────────────────────────────────────────────
+// 閳光偓閳光偓閳光偓 Spawn Type Consistency 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
 
 describe('SPAWN: spawn type consistency', () => {
   test('no "First, read agent .md" workaround pattern remains', () => {
@@ -109,10 +109,10 @@ describe('SPAWN: spawn type consistency', () => {
       const files = fs.readdirSync(dir).filter(f => f.endsWith('.md'));
       for (const file of files) {
         const content = fs.readFileSync(path.join(dir, file), 'utf-8');
-        const hasWorkaround = content.includes('First, read ~/.claude/agents/gsd-');
+        const hasWorkaround = /First, read ~\/\.(codex|claude)\/agents\/gsd-/.test(content);
         assert.ok(
           !hasWorkaround,
-          `${file} still has "First, read agent .md" workaround — use named subagent_type instead`
+          `${file} still has "First, read agent .md" workaround 閳?use named subagent_type instead`
         );
       }
     }
@@ -172,11 +172,11 @@ describe('SPAWN: spawn type consistency', () => {
 
         if (namedAgents.length === 0) continue;
 
-        // Workflow spawns named agents — must have <available_agent_types>
+        // Workflow spawns named agents 閳?must have <available_agent_types>
         assert.ok(
           content.includes('<available_agent_types>'),
           `${file} spawns named agents (${[...new Set(namedAgents)].join(', ')}) ` +
-          `but has no <available_agent_types> section — after /clear, the ` +
+          `but has no <available_agent_types> section 閳?after /clear, the ` +
           `orchestrator may fall back to general-purpose (#1357)`
         );
 
@@ -213,7 +213,7 @@ describe('SPAWN: spawn type consistency', () => {
   });
 });
 
-// ─── Required Frontmatter Fields ─────────────────────────────────────────────
+// 閳光偓閳光偓閳光偓 Required Frontmatter Fields 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
 
 describe('AGENT: required frontmatter fields', () => {
   for (const agent of ALL_AGENTS) {
@@ -228,58 +228,58 @@ describe('AGENT: required frontmatter fields', () => {
   }
 });
 
-// ─── CLAUDE.md Compliance ───────────────────────────────────────────────────
+// 閳光偓閳光偓閳光偓 AGENTS.md Compliance 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
 
-describe('CLAUDEMD: CLAUDE.md compliance enforcement', () => {
-  test('gsd-plan-checker has Dimension 10: CLAUDE.md Compliance', () => {
+describe('AGENTSMD: AGENTS.md compliance enforcement', () => {
+  test('gsd-plan-checker has Dimension 10: AGENTS.md Compliance', () => {
     const content = fs.readFileSync(path.join(AGENTS_DIR, 'gsd-plan-checker.md'), 'utf-8');
     assert.ok(
-      content.includes('Dimension 10: CLAUDE.md Compliance'),
-      'gsd-plan-checker must have Dimension 10 for CLAUDE.md compliance checking'
+      content.includes('Dimension 10: AGENTS.md Compliance'),
+      'gsd-plan-checker must have Dimension 10 for AGENTS.md compliance checking'
     );
     assert.ok(
-      content.includes('claude_md_compliance'),
-      'gsd-plan-checker must use claude_md_compliance as dimension identifier'
+      content.includes('agents_md_compliance'),
+      'gsd-plan-checker must use agents_md_compliance as dimension identifier'
     );
   });
 
-  test('gsd-phase-researcher has CLAUDE.md enforcement directive', () => {
+  test('gsd-phase-researcher has AGENTS.md enforcement directive', () => {
     const content = fs.readFileSync(path.join(AGENTS_DIR, 'gsd-phase-researcher.md'), 'utf-8');
     assert.ok(
-      content.includes('CLAUDE.md enforcement'),
-      'gsd-phase-researcher must enforce CLAUDE.md directives during research'
+      content.includes('AGENTS.md enforcement'),
+      'gsd-phase-researcher must enforce AGENTS.md directives during research'
     );
     assert.ok(
-      content.includes('Project Constraints (from CLAUDE.md)'),
-      'gsd-phase-researcher must output a Project Constraints section from CLAUDE.md'
+      content.includes('Project Constraints (from AGENTS.md)'),
+      'gsd-phase-researcher must output a Project Constraints section from AGENTS.md'
     );
   });
 
-  test('gsd-executor has CLAUDE.md enforcement directive', () => {
+  test('gsd-executor has AGENTS.md enforcement directive', () => {
     const content = fs.readFileSync(path.join(AGENTS_DIR, 'gsd-executor.md'), 'utf-8');
     assert.ok(
-      content.includes('CLAUDE.md enforcement'),
-      'gsd-executor must enforce CLAUDE.md directives during execution'
+      content.includes('AGENTS.md enforcement'),
+      'gsd-executor must enforce AGENTS.md directives during execution'
     );
     assert.ok(
-      content.includes('CLAUDE.md rule — it takes precedence over plan instructions'),
-      'gsd-executor must specify CLAUDE.md precedence over plan instructions'
+      content.includes('project instructions - they take precedence over plan instructions'),
+      'gsd-executor must specify AGENTS.md precedence over plan instructions'
     );
   });
 
-  test('all three agents read CLAUDE.md in project_context', () => {
+  test('all three agents read AGENTS.md in project_context', () => {
     const agents = ['gsd-plan-checker', 'gsd-phase-researcher', 'gsd-executor'];
     for (const agent of agents) {
       const content = fs.readFileSync(path.join(AGENTS_DIR, agent + '.md'), 'utf-8');
       assert.ok(
-        content.includes('Read `./CLAUDE.md`'),
-        `${agent} must read ./CLAUDE.md in project_context section`
+        content.includes('Read `./AGENTS.md`'),
+        `${agent} must read ./AGENTS.md in project_context section`
       );
     }
   });
 });
 
-// ─── Verification Data-Flow and Environment Audit (#1245) ────────────────────
+// 閳光偓閳光偓閳光偓 Verification Data-Flow and Environment Audit (#1245) 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
 
 describe('VERIFY: data-flow trace, environment audit, and behavioral spot-checks', () => {
   test('gsd-verifier has Step 4b: Data-Flow Trace', () => {
@@ -355,7 +355,7 @@ describe('VERIFY: data-flow trace, environment audit, and behavioral spot-checks
   });
 });
 
-// ─── Discussion Log ──────────────────────────────────────────────────────────
+// 閳光偓閳光偓閳光偓 Discussion Log 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
 
 describe('DISCUSS: discussion log generation', () => {
   test('discuss-phase workflow references DISCUSSION-LOG.md generation', () => {
@@ -386,7 +386,7 @@ describe('DISCUSS: discussion log generation', () => {
   });
 });
 
-// ─── Cross-runtime agent compatibility (#1522) ──────────────────────────────
+// 閳光偓閳光偓閳光偓 Cross-runtime agent compatibility (#1522) 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
 
 describe('COMPAT: agents must not use runtime-specific frontmatter keys', () => {
   // permissionMode is Claude Code-specific and breaks Gemini CLI agent loading.
@@ -400,7 +400,7 @@ describe('COMPAT: agents must not use runtime-specific frontmatter keys', () => 
       const frontmatter = content.split('---')[1] || '';
       assert.ok(
         !frontmatter.includes('permissionMode'),
-        `${agent} must not have permissionMode — it breaks Gemini CLI agent loading (#1522) ` +
+        `${agent} must not have permissionMode 閳?it breaks Gemini CLI agent loading (#1522) ` +
         `and has no effect in Claude Code (#1387)`
       );
     });

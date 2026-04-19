@@ -33,9 +33,12 @@ describe('Qwen Code runtime directory mapping', () => {
 
 describe('getGlobalDir (Qwen Code)', () => {
   let originalQwenConfigDir;
+  let originalClaudeConfigDir;
 
   beforeEach(() => {
     originalQwenConfigDir = process.env.QWEN_CONFIG_DIR;
+    originalClaudeConfigDir = process.env.CLAUDE_CONFIG_DIR;
+    delete process.env.CLAUDE_CONFIG_DIR;
   });
 
   afterEach(() => {
@@ -43,6 +46,12 @@ describe('getGlobalDir (Qwen Code)', () => {
       process.env.QWEN_CONFIG_DIR = originalQwenConfigDir;
     } else {
       delete process.env.QWEN_CONFIG_DIR;
+    }
+
+    if (originalClaudeConfigDir !== undefined) {
+      process.env.CLAUDE_CONFIG_DIR = originalClaudeConfigDir;
+    } else {
+      delete process.env.CLAUDE_CONFIG_DIR;
     }
   });
 
@@ -67,6 +76,12 @@ describe('getGlobalDir (Qwen Code)', () => {
     process.env.QWEN_CONFIG_DIR = '~/from-env';
     const result = getGlobalDir('qwen', '/explicit/path');
     assert.strictEqual(result, '/explicit/path');
+  });
+
+  test('respects CLAUDE_CONFIG_DIR for Claude runtime', () => {
+    process.env.CLAUDE_CONFIG_DIR = '~/custom-claude';
+    const result = getGlobalDir('claude');
+    assert.strictEqual(result, path.join(os.homedir(), 'custom-claude'));
   });
 
   test('does not break other runtimes', () => {

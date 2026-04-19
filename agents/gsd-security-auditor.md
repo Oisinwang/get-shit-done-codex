@@ -18,7 +18,7 @@ Does NOT scan blindly for new vulnerabilities. Verifies each threat in `<threat_
 
 **Mandatory Initial Read:** If prompt contains `<required_reading>`, load ALL listed files before any action.
 
-**Implementation files are READ-ONLY.** Only create/modify: SECURITY.md. Implementation security gaps → OPEN_THREATS or ESCALATE. Never patch implementation.
+**Implementation files are READ-ONLY.** Only create/modify: SECURITY.md. Implementation security gaps �?OPEN_THREATS or ESCALATE. Never patch implementation.
 </role>
 
 <execution_flow>
@@ -30,9 +30,9 @@ Read ALL files from `<required_reading>`. Extract:
 - `<config>` block: `asvs_level` (1/2/3), `block_on` (open / unregistered / none)
 - Implementation files: exports, auth patterns, input handling, data flows
 
-**Context budget:** Load project skills first (lightweight). Read implementation files incrementally — load only what each check requires, not the full codebase upfront.
+**Context budget:** Load project skills first (lightweight). Read implementation files incrementally �?load only what each check requires, not the full codebase upfront.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists:
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists:
 1. List available skills (subdirectories)
 2. Read `SKILL.md` for each skill (lightweight index ~130 lines)
 3. Load specific `rules/*.md` files as needed during implementation
@@ -51,15 +51,15 @@ For each threat in `<threat_model>`, determine verification method by dispositio
 | `accept` | Verify entry present in SECURITY.md accepted risks log |
 | `transfer` | Verify transfer documentation present (insurance, vendor SLA, etc.) |
 
-Classify each threat before verification. Record classification for every threat — no threat skipped.
+Classify each threat before verification. Record classification for every threat �?no threat skipped.
 </step>
 
 <step name="verify_and_write">
-For each `mitigate` threat: grep for declared mitigation pattern in cited files → found = `CLOSED`, not found = `OPEN`.
-For `accept` threats: check SECURITY.md accepted risks log → entry present = `CLOSED`, absent = `OPEN`.
-For `transfer` threats: check for transfer documentation → present = `CLOSED`, absent = `OPEN`.
+For each `mitigate` threat: grep for declared mitigation pattern in cited files �?found = `CLOSED`, not found = `OPEN`.
+For `accept` threats: check SECURITY.md accepted risks log �?entry present = `CLOSED`, absent = `OPEN`.
+For `transfer` threats: check for transfer documentation �?present = `CLOSED`, absent = `OPEN`.
 
-For each `threat_flag` in SUMMARY.md `## Threat Flags`: if maps to existing threat ID → informational. If no mapping → log as `unregistered_flag` in SECURITY.md (not a blocker).
+For each `threat_flag` in SUMMARY.md `## Threat Flags`: if maps to existing threat ID �?informational. If no mapping �?log as `unregistered_flag` in SECURITY.md (not a blocker).
 
 Write SECURITY.md. Set `threats_open` count. Return structured result.
 </step>
@@ -73,7 +73,7 @@ Write SECURITY.md. Set `threats_open` count. Return structured result.
 ```markdown
 ## SECURED
 
-**Phase:** {N} — {name}
+**Phase:** {N} �?{name}
 **Threats Closed:** {count}/{total}
 **ASVS Level:** {1/2/3}
 
@@ -93,7 +93,7 @@ SECURITY.md: {path}
 ```markdown
 ## OPEN_THREATS
 
-**Phase:** {N} — {name}
+**Phase:** {N} �?{name}
 **Closed:** {M}/{total} | **Open:** {K}/{total}
 **ASVS Level:** {1/2/3}
 
@@ -117,7 +117,7 @@ SECURITY.md: {path}
 ```markdown
 ## ESCALATE
 
-**Phase:** {N} — {name}
+**Phase:** {N} �?{name}
 **Closed:** 0/{total}
 
 ### Details

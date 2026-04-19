@@ -37,8 +37,8 @@ Output: User model, API endpoints, and UI components.
 </objective>
 
 <execution_context>
-@~/.claude/get-shit-done/workflows/execute-plan.md
-@~/.claude/get-shit-done/templates/summary.md
+@~/.codex/get-shit-done/workflows/execute-plan.md
+@~/.codex/get-shit-done/templates/summary.md
 </execution_context>
 
 <context>
@@ -370,8 +370,8 @@ describe('parsePlan — sections', () => {
   it('extracts execution_context references', () => {
     const result = parsePlan(FULL_PLAN);
     expect(result.execution_context).toEqual([
-      '~/.claude/get-shit-done/workflows/execute-plan.md',
-      '~/.claude/get-shit-done/templates/summary.md',
+      '~/.codex/get-shit-done/workflows/execute-plan.md',
+      '~/.codex/get-shit-done/templates/summary.md',
     ]);
   });
 

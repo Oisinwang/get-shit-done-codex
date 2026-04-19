@@ -12,9 +12,9 @@ you MUST Read every listed file BEFORE any other action.
 Skipping this causes hallucinated context and broken output.
 </required_reading>
 
-**Context budget:** Load project skills first (lightweight). Read implementation files incrementally — load only what each check requires, not the full codebase upfront.
+**Context budget:** Load project skills first (lightweight). Read implementation files incrementally 鈥?load only what each check requires, not the full codebase upfront.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists:
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists:
 1. List available skills (subdirectories)
 2. Read `SKILL.md` for each skill (lightweight index ~130 lines)
 3. Load specific `rules/*.md` files as needed during implementation
@@ -38,7 +38,7 @@ Write machine-parseable, evidence-based intelligence. Every claim references act
 - **Write current state only.** No temporal language ("recently added", "will be changed").
 - **Evidence-based.** Read the actual files. Do not guess from file names or directory structures.
 - **Cross-platform.** Use Glob, Read, and Grep tools -- not Bash `ls`, `find`, or `cat`. Bash file commands fail on Windows. Only use Bash for `gsd-sdk query intel` CLI calls.
-- **ALWAYS use the Write tool to create files** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
+- **ALWAYS use the Write tool to create files** 鈥?never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
 </role>
 
 <upstream_input>
@@ -59,13 +59,13 @@ The /gsd-intel command has already confirmed that intel.enabled is true before s
 
 **Runtime layout detection (do this first):** Check which runtime root exists by running:
 ```bash
-ls -d .kilo 2>/dev/null && echo "kilo" || (ls -d .claude/get-shit-done 2>/dev/null && echo "claude") || echo "unknown"
+ls -d .kilo 2>/dev/null && echo "kilo" || (ls -d .codex/get-shit-done 2>/dev/null && echo "codex") || (ls -d .claude/get-shit-done 2>/dev/null && echo "claude-legacy") || echo "standard"
 ```
 
 Use the detected root to resolve all canonical paths below:
 
-| Source type | Standard `.claude` layout | `.kilo` layout |
-|-------------|--------------------------|----------------|
+| Source type | Standard source / Codex-first layout | `.kilo` layout |
+|-------------|--------------------------------------|----------------|
 | Agent files | `agents/*.md` | `.kilo/agents/*.md` |
 | Command files | `commands/gsd/*.md` | `.kilo/command/*.md` |
 | CLI tooling | `get-shit-done/bin/` | `.kilo/get-shit-done/bin/` |
@@ -73,7 +73,7 @@ Use the detected root to resolve all canonical paths below:
 | Reference docs | `get-shit-done/references/` | `.kilo/get-shit-done/references/` |
 | Hook files | `hooks/*.js` | `.kilo/hooks/*.js` |
 
-When analyzing this project, use ONLY the canonical source locations matching the detected layout. Do not fall back to the standard layout paths if the `.kilo` root is detected — those paths will be empty and produce semantically empty intel.
+When analyzing this project, use ONLY the canonical source locations matching the detected layout. Do not fall back to the standard layout paths if the `.kilo` root is detected 鈥?those paths will be empty and produce semantically empty intel.
 
 EXCLUDE from counts and analysis:
 
@@ -81,7 +81,7 @@ EXCLUDE from counts and analysis:
 - `node_modules/`, `dist/`, `build/`, `.git/`
 
 **Count accuracy:** When reporting component counts in stack.json or arch.md, always derive
-counts by running Glob on the layout-resolved canonical locations above, not from memory or CLAUDE.md.
+counts by running Glob on the layout-resolved canonical locations above, not from memory or AGENTS.md. If the project still uses legacy `CLAUDE.md`, treat it as migration context only.
 Example (standard layout): `Glob("agents/*.md")`. Example (kilo): `Glob(".kilo/agents/*.md")`.
 
 ## Forbidden Files

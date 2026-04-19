@@ -36,8 +36,14 @@ import { sanitizePrompt } from './prompt-sanitizer.js';
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
-const GSD_TEMPLATES_DIR = join(homedir(), '.claude', 'get-shit-done', 'templates');
-const GSD_AGENTS_DIR = join(homedir(), '.claude', 'agents');
+const GSD_INSTALL_DIRS = [
+  join(homedir(), '.codex', 'get-shit-done'),
+  join(homedir(), '.claude', 'get-shit-done'),
+];
+const GSD_AGENT_DIRS = [
+  join(homedir(), '.codex', 'agents'),
+  join(homedir(), '.claude', 'agents'),
+];
 
 const RESEARCH_TYPES = ['STACK', 'FEATURES', 'ARCHITECTURE', 'PITFALLS'] as const;
 type ResearchType = (typeof RESEARCH_TYPES)[number];
@@ -621,7 +627,7 @@ export class InitRunner {
   /**
    * Read a file from the GSD templates directory.
    * Tries sdk/prompts/{relativePath} first (headless versions), then
-   * falls back to GSD-1 originals (~/.claude/get-shit-done/).
+   * falls back to installed runtime copies with Codex-first precedence.
    */
   private async readGSDFile(relativePath: string): Promise<string> {
     // Try SDK prompts dir first (headless versions)
@@ -632,20 +638,21 @@ export class InitRunner {
       // Not in sdk/prompts/, fall through to GSD-1 originals
     }
 
-    // Fall back to GSD-1 originals
-    const fullPath = join(GSD_TEMPLATES_DIR, '..', relativePath);
-    try {
-      return await readFile(fullPath, 'utf-8');
-    } catch {
-      // If the template doesn't exist, return a placeholder
-      return `(Template not found: ${relativePath})`;
+    for (const installDir of GSD_INSTALL_DIRS) {
+      try {
+        return await readFile(join(installDir, relativePath), 'utf-8');
+      } catch {
+        // Not in this runtime root, try the next one.
+      }
     }
+
+    return `(Template not found: ${relativePath})`;
   }
 
   /**
    * Read an agent definition.
    * Tries sdk/prompts/agents/{filename} first (headless versions), then
-   * falls back to GSD-1 originals (~/.claude/agents/).
+   * falls back to installed runtime copies with Codex-first precedence.
    */
   private async readAgentFile(filename: string): Promise<string> {
     // Try SDK prompts dir first (headless versions)
@@ -656,13 +663,15 @@ export class InitRunner {
       // Not in sdk/prompts/, fall through to GSD-1 originals
     }
 
-    // Fall back to GSD-1 originals
-    const fullPath = join(GSD_AGENTS_DIR, filename);
-    try {
-      return await readFile(fullPath, 'utf-8');
-    } catch {
-      return `(Agent definition not found: ${filename})`;
+    for (const agentsDir of GSD_AGENT_DIRS) {
+      try {
+        return await readFile(join(agentsDir, filename), 'utf-8');
+      } catch {
+        // Not in this runtime root, try the next one.
+      }
     }
+
+    return `(Agent definition not found: ${filename})`;
   }
 
   // ─── Git helper ────────────────────────────────────────────────────────────

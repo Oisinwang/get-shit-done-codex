@@ -197,7 +197,7 @@ export interface PlanResult {
 export interface GSDOptions {
   /** Root directory of the project. */
   projectDir: string;
-  /** Path to gsd-tools.cjs. Falls back to <projectDir>/.claude/, then the bundled repo path, then ~/.claude/. */
+  /** Path to gsd-tools.cjs. Falls back to the bundled repo copy, then Codex runtime roots, then Claude compatibility roots. */
   gsdToolsPath?: string;
   /** Model to use for execution sessions. */
   model?: string;

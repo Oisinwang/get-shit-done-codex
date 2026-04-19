@@ -15,7 +15,17 @@ The fork treats the following as the canonical interface:
 - `~/.codex/sessions`
 
 These are the defaults used by project bootstrap, profile generation, session analysis, and generated agent guidance.
-`AGENTS.md` is the release-facing contract; Claude-era names remain compatibility shims only.
+`AGENTS.md`, `.codex/`, `agents_md_path`, and `generate-agents-*` are the release-facing contract; Claude-era names remain compatibility shims only.
+
+## Compatibility Matrix
+
+| Canonical | Legacy alias | Status |
+|-----------|--------------|--------|
+| `AGENTS.md` | `CLAUDE.md` | compatibility only |
+| `agents_md_path` | `claude_md_path` | compatibility only |
+| `generate-agents-md` | `generate-claude-md` | compatibility only |
+| `generate-agents-profile` | `generate-claude-profile` | compatibility only |
+| `./.codex/skills/` | `./.claude/skills/` | compatibility / migration |
 
 ## Compatibility Shims
 
@@ -27,6 +37,16 @@ The fork still accepts a minimal compatibility layer so existing installs can mi
 - Legacy Claude skill and command locations are still recognized when present during migration
 
 These shims exist to keep older projects usable while the Codex-first naming becomes the only public contract.
+
+## Allowed Legacy-Reference Zones
+
+Legacy Claude wording is acceptable only when it is explicitly scoped to:
+
+- runtime-specific Claude install instructions
+- migration notes
+- compatibility registry code and alias tests
+- historical changelog entries
+- upstream-reference docs that explicitly say "upstream"
 
 ## Migration From Installed Artifacts
 
@@ -46,7 +66,7 @@ The fork is close to open-source-ready when these items are true:
 1. Source and SDK tests cover the Codex-first paths.
 2. Top-level docs describe the fork as independent rather than as an upstream patch set.
 3. Package metadata and remote URLs point to the final fork repository.
-4. Any remaining `.claude` references are either compatibility-only or intentionally documented as legacy.
+4. Any remaining `.claude` references are either compatibility-only, runtime-specific, or intentionally documented as legacy.
 5. `AGENTS.md`, `.codex/`, and `$gsd-*` are described as the primary contract in release docs.
 
 ## Release Status

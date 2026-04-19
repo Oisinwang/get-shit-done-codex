@@ -1,6 +1,6 @@
 <purpose>
 Curate spike experiment findings and package them into a persistent project skill for future
-build conversations. Reads from `.planning/spikes/`, writes skill to `./.claude/skills/spike-findings-[project]/`
+build conversations. Reads from `.planning/spikes/`, writes skill to `./.codex/skills/spike-findings-[project]/`
 (project-local) and summary to `.planning/spikes/WRAP-UP-SUMMARY.md`.
 Companion to `/gsd-spike`.
 </purpose>
@@ -13,9 +13,9 @@ Read all files referenced by the invoking prompt's execution_context before star
 
 <step name="banner">
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► SPIKE WRAP-UP
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?SPIKE WRAP-UP
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 ```
 </step>
 
@@ -24,7 +24,8 @@ Read all files referenced by the invoking prompt's execution_context before star
 
 1. Read `.planning/spikes/MANIFEST.md` for the overall idea context
 2. Glob `.planning/spikes/*/README.md` and parse YAML frontmatter from each
-3. Check if `./.claude/skills/spike-findings-*/SKILL.md` exists for this project
+3. Check if `./.codex/skills/spike-findings-*/SKILL.md` exists for this project
+   - If no Codex-first skill exists, also check legacy `./.claude/skills/spike-findings-*/SKILL.md` as migration input
    - If yes: read its `processed_spikes` list from the metadata section and filter those out
    - If no: all spikes are candidates
 
@@ -55,17 +56,17 @@ Present each unprocessed spike in ascending order. For each spike, show:
 
 Then ask the user:
 
-╔══════════════════════════════════════════════════════════════╗
-║  CHECKPOINT: Decision Required                               ║
-╚══════════════════════════════════════════════════════════════╝
+鈺斺晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晽
+鈺? CHECKPOINT: Decision Required                               鈺?
+鈺氣晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨暆
 
-Spike {NNN}: {name} — {verdict}
+Spike {NNN}: {name} 鈥?{verdict}
 
 {key findings summary}
 
-──────────────────────────────────────────────────────────────
-→ Include / Exclude / Partial / Help me UAT this
-──────────────────────────────────────────────────────────────
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+鈫?Include / Exclude / Partial / Help me UAT this
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 **If "Help me UAT this":**
 1. Read the spike's README "How to Run" and "What to Expect" sections
@@ -84,10 +85,10 @@ After all spikes are curated:
 
 1. Read all included spikes' tags, names, `related` fields, and content
 2. Propose feature-area groupings, e.g.:
-   - "**WebSocket Streaming** — spikes 001, 004, 007"
-   - "**Foo API Integration** — spikes 002, 003"
-   - "**PDF Parsing** — spike 005"
-3. Present the grouping for approval — user may merge, split, rename, or rearrange
+   - "**WebSocket Streaming** 鈥?spikes 001, 004, 007"
+   - "**Foo API Integration** 鈥?spikes 002, 003"
+   - "**PDF Parsing** 鈥?spike 005"
+3. Present the grouping for approval 鈥?user may merge, split, rename, or rearrange
 
 Each group becomes one reference file in the generated skill.
 </step>
@@ -98,7 +99,7 @@ Each group becomes one reference file in the generated skill.
 Derive the skill name from the project directory:
 
 1. Get the project root directory name (e.g., `solana-tracker`)
-2. The skill will be created at `./.claude/skills/spike-findings-[project-dir-name]/`
+2. The skill will be created at `./.codex/skills/spike-findings-[project-dir-name]/`
 
 If a skill already exists at that path (append mode), update in place.
 </step>
@@ -108,7 +109,7 @@ If a skill already exists at that path (append mode), update in place.
 
 For each included spike:
 
-1. Identify the core source files — the actual scripts, main files, and config that make the spike work. Exclude:
+1. Identify the core source files 鈥?the actual scripts, main files, and config that make the spike work. Exclude:
    - `node_modules/`, `__pycache__/`, `.venv/`, build artifacts
    - Lock files (`package-lock.json`, `yarn.lock`, etc.)
    - `.git/`, `.DS_Store`
@@ -191,7 +192,7 @@ Write `.planning/spikes/WRAP-UP-SUMMARY.md` for project history:
 **Date:** [date]
 **Spikes processed:** [count]
 **Feature areas:** [list]
-**Skill output:** `./.claude/skills/spike-findings-[project]/`
+**Skill output:** `./.codex/skills/spike-findings-[project]/`
 
 ## Included Spikes
 | # | Name | Verdict | Feature Area |
@@ -206,16 +207,16 @@ Write `.planning/spikes/WRAP-UP-SUMMARY.md` for project history:
 ```
 </step>
 
-<step name="update_claude_md">
-## Update Project CLAUDE.md
+<step name="update_agents_md">
+## Update Project AGENTS.md
 
-Add an auto-load routing line to the project's CLAUDE.md (create the file if it doesn't exist):
+Add an auto-load routing line to the project's AGENTS.md (create the file if it doesn't exist):
 
 ```
-- **Spike findings for [project]** (implementation patterns, constraints, gotchas) → `Skill("spike-findings-[project-dir-name]")`
+- **Spike findings for [project]** (implementation patterns, constraints, gotchas) 鈫?`Skill("spike-findings-[project-dir-name]")`
 ```
 
-If this routing line already exists (append mode), leave it as-is.
+If this routing line already exists (append mode), leave it as-is. If the project still carries a legacy `CLAUDE.md` during migration, mirror the same routing line there only as a compatibility shim.
 </step>
 
 <step name="commit">
@@ -228,35 +229,35 @@ gsd-sdk query commit "docs(spike-wrap-up): package [N] spike findings into proje
 
 <step name="report">
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► SPIKE WRAP-UP COMPLETE ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?SPIKE WRAP-UP COMPLETE 鉁?
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
 **Curated:** {N} spikes ({included} included, {excluded} excluded)
 **Feature areas:** {list}
-**Skill:** `./.claude/skills/spike-findings-[project]/`
+**Skill:** `./.codex/skills/spike-findings-[project]/`
 **Summary:** `.planning/spikes/WRAP-UP-SUMMARY.md`
-**CLAUDE.md:** routing line added
+**AGENTS.md:** routing line added
 
 The spike-findings skill will auto-load in future build conversations.
 ```
 
-───────────────────────────────────────────────────────────────
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
-## ▶ Next Up
+## 鈻?Next Up
 
-**Start building** — plan the real implementation
+**Start building** 鈥?plan the real implementation
 
 `/gsd-plan-phase`
 
-───────────────────────────────────────────────────────────────
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 **Also available:**
-- `/gsd-add-phase` — add a phase based on spike findings
-- `/gsd-spike` — spike additional ideas
-- `/gsd-explore` — continue exploring
+- `/gsd-add-phase` 鈥?add a phase based on spike findings
+- `/gsd-spike` 鈥?spike additional ideas
+- `/gsd-explore` 鈥?continue exploring
 
-───────────────────────────────────────────────────────────────
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 </step>
 
 </process>
@@ -264,10 +265,10 @@ The spike-findings skill will auto-load in future build conversations.
 <success_criteria>
 - [ ] Every unprocessed spike presented for individual curation
 - [ ] Feature-area grouping proposed and approved
-- [ ] Spike-findings skill exists at `./.claude/skills/` with SKILL.md, references/, sources/
+- [ ] Spike-findings skill exists at `./.codex/skills/` with SKILL.md, references/, sources/
 - [ ] Core source files from included spikes copied into sources/
 - [ ] Reference files contain validated patterns, code snippets, landmines, constraints
 - [ ] `.planning/spikes/WRAP-UP-SUMMARY.md` written for project history
-- [ ] Project CLAUDE.md has auto-load routing line
+- [ ] Project AGENTS.md has auto-load routing line
 - [ ] Summary presented with next-step routing
 </success_criteria>

@@ -1,14 +1,14 @@
 <purpose>
-Retroactive 6-pillar visual audit of implemented frontend code. Standalone command that works on any project — GSD-managed or not. Produces scored UI-REVIEW.md with actionable findings.
+Retroactive 6-pillar visual audit of implemented frontend code. Standalone command that works on any project 鈥?GSD-managed or not. Produces scored UI-REVIEW.md with actionable findings.
 </purpose>
 
 <required_reading>
-@~/.claude/get-shit-done/references/ui-brand.md
+@~/.codex/get-shit-done/references/ui-brand.md
 </required_reading>
 
 <available_agent_types>
-Valid GSD subagent types (use exact names — do not fall back to 'general-purpose'):
-- gsd-ui-auditor — Audits UI against design requirements
+Valid GSD subagent types (use exact names 鈥?do not fall back to 'general-purpose'):
+- gsd-ui-auditor 鈥?Audits UI against design requirements
 </available_agent_types>
 
 <process>
@@ -29,9 +29,9 @@ UI_AUDITOR_MODEL=$(gsd-sdk query resolve-model gsd-ui-auditor --raw)
 
 Display banner:
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► UI AUDIT — PHASE {N}: {name}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?UI AUDIT 鈥?PHASE {N}: {name}
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 ```
 
 ## 1. Detect Input State
@@ -42,7 +42,7 @@ UI_SPEC_FILE=$(ls "${PHASE_DIR}"/*-UI-SPEC.md 2>/dev/null | head -1)
 UI_REVIEW_FILE=$(ls "${PHASE_DIR}"/*-UI-REVIEW.md 2>/dev/null | head -1)
 ```
 
-**If `SUMMARY_FILES` empty:** Exit — "Phase {N} not executed. Run /gsd-execute-phase {N} first."
+**If `SUMMARY_FILES` empty:** Exit 鈥?"Phase {N} not executed. Run /gsd-execute-phase {N} first."
 
 
 **Text mode (`workflow.text_mode: true` in config or `--text` flag):** Set `TEXT_MODE=true` if `--text` is present in `$ARGUMENTS` OR `text_mode` from init JSON is `true`. When TEXT_MODE is active, replace every `AskUserQuestion` call with a plain-text numbered list and ask the user to type their choice number. This is required for non-Claude runtimes (OpenAI Codex, Gemini CLI, etc.) where `AskUserQuestion` is not available.
@@ -50,8 +50,8 @@ UI_REVIEW_FILE=$(ls "${PHASE_DIR}"/*-UI-REVIEW.md 2>/dev/null | head -1)
 - header: "Existing UI Review"
 - question: "UI-REVIEW.md already exists for Phase {N}."
 - options:
-  - "Re-audit — run fresh audit"
-  - "View — display current review and exit"
+  - "Re-audit 鈥?run fresh audit"
+  - "View 鈥?display current review and exit"
 
 If "View": display file, exit.
 If "Re-audit": continue.
@@ -61,19 +61,19 @@ If "Re-audit": continue.
 Build file list for auditor:
 - All SUMMARY.md files in phase dir
 - All PLAN.md files in phase dir
-- UI-SPEC.md (if exists — audit baseline)
-- CONTEXT.md (if exists — locked decisions)
+- UI-SPEC.md (if exists 鈥?audit baseline)
+- CONTEXT.md (if exists 鈥?locked decisions)
 
 ## 3. Spawn gsd-ui-auditor
 
 ```
-◆ Spawning UI auditor...
+鈼?Spawning UI auditor...
 ```
 
 Build prompt:
 
 ```markdown
-Read ~/.claude/agents/gsd-ui-auditor.md for instructions.
+Read ~/.codex/get-shit-done/agents/gsd-ui-auditor.md for instructions.
 
 <objective>
 Conduct 6-pillar visual audit of Phase {phase_number}: {phase_name}
@@ -83,8 +83,8 @@ Conduct 6-pillar visual audit of Phase {phase_number}: {phase_name}
 
 <files_to_read>
 - {summary_paths} (Execution summaries)
-- {plan_paths} (Execution plans — what was intended)
-- {ui_spec_path} (UI Design Contract — audit baseline, if exists)
+- {plan_paths} (Execution plans 鈥?what was intended)
+- {ui_spec_path} (UI Design Contract 鈥?audit baseline, if exists)
 - {context_path} (User decisions, if exists)
 </files_to_read>
 
@@ -114,11 +114,11 @@ Task(
 Display score summary:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► UI AUDIT COMPLETE ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?UI AUDIT COMPLETE 鉁?
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
-**Phase {N}: {Name}** — Overall: {score}/24
+**Phase {N}: {Name}** 鈥?Overall: {score}/24
 
 | Pillar | Score |
 |--------|-------|
@@ -136,19 +136,19 @@ Top fixes:
 
 Full review: {path to UI-REVIEW.md}
 
-───────────────────────────────────────────────────────────────
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
-## ▶ Next
+## 鈻?Next
 
 `/clear` then one of:
 
-- `/gsd-verify-work {N}` — UAT testing
-- `/gsd-plan-phase {N+1}` — plan next phase
+- `/gsd-verify-work {N}` 鈥?UAT testing
+- `/gsd-plan-phase {N+1}` 鈥?plan next phase
 
-- `/gsd-verify-work {N}` — UAT testing
-- `/gsd-plan-phase {N+1}` — plan next phase
+- `/gsd-verify-work {N}` 鈥?UAT testing
+- `/gsd-plan-phase {N+1}` 鈥?plan next phase
 
-───────────────────────────────────────────────────────────────
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 ```
 
 ## Automated UI Verification (when Playwright-MCP is available)
@@ -158,17 +158,17 @@ If `mcp__playwright__*` tools are accessible in this session:
 1. Navigate to each UI component described in the phase's UI-SPEC.md using
    `mcp__playwright__navigate` (or equivalent Playwright-MCP tool).
 2. Take a screenshot of each component using `mcp__playwright__screenshot`.
-3. Compare against the spec's visual requirements — dimensions, color palette,
+3. Compare against the spec's visual requirements 鈥?dimensions, color palette,
    layout, spacing scale, and typography.
 4. Report any dimension, color, or layout discrepancies automatically as
    additional findings within the relevant pillar section of UI-REVIEW.md.
 5. Flag items that require human judgment (brand feel, content tone) as
-   `needs_human_review: true` in the findings — these are surfaced to the user
+   `needs_human_review: true` in the findings 鈥?these are surfaced to the user
    separately after the automated pass completes.
 
 If Playwright-MCP is not available in this session, this section is skipped
 entirely. The audit falls back to the standard code-only review described above.
-No configuration change is required — the availability of `mcp__playwright__*`
+No configuration change is required 鈥?the availability of `mcp__playwright__*`
 tools is detected at runtime.
 
 ## 5. Commit (if configured)

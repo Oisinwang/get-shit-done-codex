@@ -121,7 +121,7 @@ npx get-shit-done-codex@latest
 <summary><strong>비대화형 설치 (Docker, CI, 스크립트)</strong></summary>
 
 ```bash
-# Claude Code
+# Claude Code 호환/런타임
 npx get-shit-done-codex --claude --global   # ~/.claude/에 설치
 npx get-shit-done-codex --claude --local    # ./.claude/에 설치
 
@@ -184,7 +184,7 @@ npm run build:hooks
 node bin/install.js --codex --local
 ```
 
-기여 전 수정사항 테스트를 위해 `./.claude/`에 설치됩니다.
+기여 전 수정사항 테스트를 위해 `./.codex/`에 설치됩니다.
 
 </details>
 
@@ -202,7 +202,7 @@ claude --dangerously-skip-permissions
 <details>
 <summary><strong>대안: 세분화된 권한</strong></summary>
 
-해당 플래그를 쓰지 않으려면 프로젝트의 `.claude/settings.json`에 다음을 추가하세요:
+해당 플래그를 쓰지 않으려면 Claude Code 호환/런타임용으로 프로젝트의 `.claude/settings.json`에 다음을 추가하세요:
 
 ```json
 {
@@ -741,7 +741,7 @@ GSD는 v1.27부터 심층 방어 보안을 포함합니다:
 
 GSD의 코드베이스 매핑 및 분석 명령어는 프로젝트를 이해하기 위해 파일을 읽습니다. **비밀이 담긴 파일**을 Claude Code의 거부 목록에 추가해 보호하세요:
 
-1. Claude Code 설정 열기 (`.claude/settings.json` 또는 전역)
+1. Claude Code 호환/런타임 설정 열기 (`.claude/settings.json` 또는 전역)
 2. 민감한 파일 패턴을 거부 목록에 추가:
 
 ```json

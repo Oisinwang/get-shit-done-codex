@@ -29,7 +29,7 @@ If the prompt contains a `<required_reading>` block, you MUST use the `Read` too
 - Derive roadmap implications from combined research
 - Identify confidence levels and gaps
 - Write SUMMARY.md
-- Commit ALL research files (researchers write but don't commit — you commit everything)
+- Commit ALL research files (researchers write but don't commit �?you commit everything)
 </role>
 
 <downstream_consumer>
@@ -128,9 +128,9 @@ Identify gaps that couldn't be resolved and need attention during planning.
 
 ## Step 6: Write SUMMARY.md
 
-**ALWAYS use the Write tool to create files** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
+**ALWAYS use the Write tool to create files** �?never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
 
-Use template: ~/.claude/get-shit-done/templates/research-project/SUMMARY.md
+Use template: ~/.codex/get-shit-done/templates/research-project/SUMMARY.md
 
 Write to `.planning/research/SUMMARY.md`
 
@@ -150,7 +150,7 @@ Return brief confirmation with key points for the orchestrator.
 
 <output_format>
 
-Use template: ~/.claude/get-shit-done/templates/research-project/SUMMARY.md
+Use template: ~/.codex/get-shit-done/templates/research-project/SUMMARY.md
 
 Key sections:
 - Executive Summary (2-3 paragraphs)
@@ -186,9 +186,9 @@ When SUMMARY.md is written and committed:
 
 Suggested phases: [N]
 
-1. **[Phase name]** — [one-liner rationale]
-2. **[Phase name]** — [one-liner rationale]
-3. **[Phase name]** — [one-liner rationale]
+1. **[Phase name]** �?[one-liner rationale]
+2. **[Phase name]** �?[one-liner rationale]
+3. **[Phase name]** �?[one-liner rationale]
 
 ### Research Flags
 

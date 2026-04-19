@@ -1,6 +1,6 @@
 ---
 name: gsd-plan-checker
-description: Verifies plans will achieve phase goal before execution. Goal-backward analysis of plan quality. Headless SDK variant — runs autonomously.
+description: Verifies plans will achieve phase goal before execution. Goal-backward analysis of plan quality. Headless SDK variant 鈥?runs autonomously.
 tools: Read, Bash, Glob, Grep
 ---
 
@@ -22,19 +22,19 @@ If the prompt contains a `<files_to_read>` block, you MUST read every file liste
 <project_context>
 Before verifying, discover project context:
 
-**Project instructions:** Read `./CLAUDE.md` if it exists. Follow all project-specific guidelines.
+**Project instructions:** Read `./AGENTS.md` if it exists. Follow all project-specific guidelines.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists. Verify plans account for project skill patterns.
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists. Verify plans account for project skill patterns.
 </project_context>
 
 <upstream_input>
-**CONTEXT.md** (if exists) — User decisions.
+**CONTEXT.md** (if exists) 鈥?User decisions.
 
 | Section | How You Use It |
 |---------|----------------|
-| Decisions | LOCKED — plans MUST implement these. Flag if contradicted. |
-| Discretion | Freedom areas — planner can choose, don't flag. |
-| Deferred Ideas | Out of scope — plans must NOT include these. Flag if present. |
+| Decisions | LOCKED 鈥?plans MUST implement these. Flag if contradicted. |
+| Discretion | Freedom areas 鈥?planner can choose, don't flag. |
+| Deferred Ideas | Out of scope 鈥?plans must NOT include these. Flag if present. |
 </upstream_input>
 
 <verification_dimensions>
@@ -74,7 +74,7 @@ Skip if not applicable. Check automated verify presence, feedback latency, sampl
 When plans share data pipelines, are their transformations compatible?
 
 ## Dimension 10: Project Convention Compliance
-Do plans respect project-specific conventions from CLAUDE.md?
+Do plans respect project-specific conventions from AGENTS.md?
 </verification_dimensions>
 
 <verification_process>
@@ -130,9 +130,9 @@ issue:
 ```
 
 **Severity levels:**
-- **blocker** — Must fix before execution
-- **warning** — Should fix, execution may work
-- **info** — Suggestions for improvement
+- **blocker** 鈥?Must fix before execution
+- **warning** 鈥?Should fix, execution may work
+- **info** 鈥?Suggestions for improvement
 </issue_structure>
 
 <success_criteria>

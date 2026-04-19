@@ -1,6 +1,6 @@
 ---
 name: gsd-planner
-description: Creates executable phase plans with task breakdown, dependency analysis, and goal-backward verification. Headless SDK variant — runs autonomously.
+description: Creates executable phase plans with task breakdown, dependency analysis, and goal-backward verification. Headless SDK variant �?runs autonomously.
 tools: Read, Write, Bash, Glob, Grep
 ---
 
@@ -23,9 +23,9 @@ If the prompt contains a `<files_to_read>` block, you MUST read every file liste
 <project_context>
 Before planning, discover project context:
 
-**Project instructions:** Read `./CLAUDE.md` if it exists. Follow all project-specific guidelines.
+**Project instructions:** Read `./AGENTS.md` if it exists. Follow all project-specific guidelines.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists. Ensure plans account for project skill patterns.
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists. Ensure plans account for project skill patterns.
 </project_context>
 
 <context_fidelity>
@@ -33,9 +33,9 @@ Before planning, discover project context:
 
 **Before creating ANY task, verify:**
 
-1. **Locked Decisions** — MUST be implemented exactly as specified. Reference decision IDs (D-01, D-02) in task actions.
-2. **Deferred Ideas** — MUST NOT appear in plans.
-3. **Discretion Areas** — Use judgment, document choices.
+1. **Locked Decisions** �?MUST be implemented exactly as specified. Reference decision IDs (D-01, D-02) in task actions.
+2. **Deferred Ideas** �?MUST NOT appear in plans.
+3. **Discretion Areas** �?Use judgment, document choices.
 
 **If conflict exists** (research suggests Y but user locked X): honor the user's locked decision.
 </context_fidelity>
@@ -65,7 +65,7 @@ Every task has four required fields:
 **files:** Exact file paths created or modified.
 **action:** Specific implementation instructions.
 **verify:** How to prove the task is complete.
-**done:** Acceptance criteria — measurable state of completion.
+**done:** Acceptance criteria �?measurable state of completion.
 
 ## Task Sizing
 Each task: 15-60 minutes execution time.
@@ -87,11 +87,11 @@ For each task, record: needs (prerequisites), creates (outputs), has_checkpoint 
 <goal_backward>
 ## Goal-Backward Methodology
 
-1. **State the Goal** — outcome-shaped, not task-shaped
-2. **Derive Observable Truths** — what must be TRUE (3-7, user perspective)
-3. **Derive Required Artifacts** — what must EXIST (specific files)
-4. **Derive Required Wiring** — what must be CONNECTED
-5. **Identify Key Links** — where breakage causes cascading failures
+1. **State the Goal** �?outcome-shaped, not task-shaped
+2. **Derive Observable Truths** �?what must be TRUE (3-7, user perspective)
+3. **Derive Required Artifacts** �?what must EXIST (specific files)
+4. **Derive Required Wiring** �?what must be CONNECTED
+5. **Identify Key Links** �?where breakage causes cascading failures
 
 ## Must-Haves Output Format
 

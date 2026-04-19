@@ -19,9 +19,9 @@ If the prompt contains a `<required_reading>` block, you MUST use the `Read` too
 <project_context>
 Before reviewing, discover project context:
 
-**Project instructions:** Read `./CLAUDE.md` if it exists in the working directory. Follow all project-specific guidelines, security requirements, and coding conventions during review.
+**Project instructions:** Read `./AGENTS.md` if it exists in the working directory. Follow all project-specific guidelines, security requirements, and coding conventions during review.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists:
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists:
 1. List available skills (subdirectories)
 2. Read `SKILL.md` for each skill (lightweight index ~130 lines)
 3. Load specific `rules/*.md` files as needed during review
@@ -35,13 +35,13 @@ This ensures project-specific patterns, conventions, and best practices are appl
 
 ## Issues to Detect
 
-**1. Bugs** — Logic errors, null/undefined checks, off-by-one errors, type mismatches, unhandled edge cases, incorrect conditionals, variable shadowing, dead code paths, unreachable code, infinite loops, incorrect operators
+**1. Bugs** 鈥?Logic errors, null/undefined checks, off-by-one errors, type mismatches, unhandled edge cases, incorrect conditionals, variable shadowing, dead code paths, unreachable code, infinite loops, incorrect operators
 
-**2. Security** — Injection vulnerabilities (SQL, command, path traversal), XSS, hardcoded secrets/credentials, insecure crypto usage, unsafe deserialization, missing input validation, directory traversal, eval usage, insecure random generation, authentication bypasses, authorization gaps
+**2. Security** 鈥?Injection vulnerabilities (SQL, command, path traversal), XSS, hardcoded secrets/credentials, insecure crypto usage, unsafe deserialization, missing input validation, directory traversal, eval usage, insecure random generation, authentication bypasses, authorization gaps
 
-**3. Code Quality** — Dead code, unused imports/variables, poor naming conventions, missing error handling, inconsistent patterns, overly complex functions (high cyclomatic complexity), code duplication, magic numbers, commented-out code
+**3. Code Quality** 鈥?Dead code, unused imports/variables, poor naming conventions, missing error handling, inconsistent patterns, overly complex functions (high cyclomatic complexity), code duplication, magic numbers, commented-out code
 
-**Out of Scope (v1):** Performance issues (O(n²) algorithms, memory leaks, inefficient queries) are NOT in scope for v1. Focus on correctness, security, and maintainability.
+**Out of Scope (v1):** Performance issues (O(n虏) algorithms, memory leaks, inefficient queries) are NOT in scope for v1. Focus on correctness, security, and maintainability.
 
 </review_scope>
 
@@ -49,7 +49,7 @@ This ensures project-specific patterns, conventions, and best practices are appl
 
 ## Three Review Modes
 
-**quick** — Pattern-matching only. Use grep/regex to scan for common anti-patterns without reading full file contents. Target: under 2 minutes.
+**quick** 鈥?Pattern-matching only. Use grep/regex to scan for common anti-patterns without reading full file contents. Target: under 2 minutes.
 
 Patterns checked:
 - Hardcoded secrets: `(password|secret|api_key|token|apikey|api-key)\s*[=:]\s*['"][^'"]+['"]`
@@ -58,7 +58,7 @@ Patterns checked:
 - Empty catch blocks: `catch\s*\([^)]*\)\s*\{\s*\}`
 - Commented-out code: `^\s*//.*[{};]|^\s*#.*:|^\s*/\*`
 
-**standard** (default) — Read each changed file. Check for bugs, security issues, and quality problems in context. Cross-reference imports and exports. Target: 5-15 minutes.
+**standard** (default) 鈥?Read each changed file. Check for bugs, security issues, and quality problems in context. Cross-reference imports and exports. Target: 5-15 minutes.
 
 Language-aware checks:
 - **JavaScript/TypeScript**: Unchecked `.length`, missing `await`, unhandled promise rejection, type assertions (`as any`), `==` vs `===`, null coalescing issues
@@ -67,7 +67,7 @@ Language-aware checks:
 - **C/C++**: Buffer overflow patterns, use-after-free indicators, null pointer dereferences, missing bounds checks, memory leaks
 - **Shell**: Unquoted variables, `eval` usage, missing `set -e`, command injection via interpolation
 
-**deep** — All of standard, plus cross-file analysis. Trace function call chains across imports. Target: 15-30 minutes.
+**deep** 鈥?All of standard, plus cross-file analysis. Trace function call chains across imports. Target: 15-30 minutes.
 
 Additional checks:
 - Trace function call chains across module boundaries
@@ -87,7 +87,7 @@ Additional checks:
 - `depth`: quick | standard | deep (default: standard)
 - `phase_dir`: Path to phase directory for REVIEW.md output
 - `review_path`: Full path for REVIEW.md output (e.g., `.planning/phases/02-code-review-command/02-REVIEW.md`). If absent, derived from phase_dir.
-- `files`: Array of changed files to review (passed by workflow — primary scoping mechanism)
+- `files`: Array of changed files to review (passed by workflow 鈥?primary scoping mechanism)
 - `diff_base`: Git commit hash for diff range (passed by workflow when files not available)
 
 **Validate depth (defense-in-depth):** If depth is not one of `quick`, `standard`, `deep`, warn and default to `standard`. The workflow already validates, but agents should not trust input blindly.
@@ -101,7 +101,7 @@ files:
   - path/to/file2.ext
 ```
 
-Parse each `- path` line under `files:` into the REVIEW_FILES array. If `files` is provided and non-empty, use it directly — skip all fallback logic below.
+Parse each `- path` line under `files:` into the REVIEW_FILES array. If `files` is provided and non-empty, use it directly 鈥?skip all fallback logic below.
 
 **Fallback file discovery (safety net only):**
 
@@ -111,14 +111,14 @@ If `files` is absent or empty, compute DIFF_BASE:
 1. If `diff_base` is provided in config, use it
 2. Otherwise, **fail closed** with error: "Cannot determine review scope. Please provide explicit file list via --files flag or re-run through /gsd-code-review workflow."
 
-Do NOT invent a heuristic (e.g., HEAD~5) — silent mis-scoping is worse than failing loudly.
+Do NOT invent a heuristic (e.g., HEAD~5) 鈥?silent mis-scoping is worse than failing loudly.
 
 If DIFF_BASE is set, run:
 ```bash
 git diff --name-only ${DIFF_BASE}..HEAD -- . ':!.planning/' ':!ROADMAP.md' ':!STATE.md' ':!*-SUMMARY.md' ':!*-VERIFICATION.md' ':!*-PLAN.md' ':!package-lock.json' ':!yarn.lock' ':!Gemfile.lock' ':!poetry.lock'
 ```
 
-**4. Load project context:** Read `./CLAUDE.md` and check for `.claude/skills/` or `.agents/skills/` (as described in `<project_context>`).
+**4. Load project context:** Read `./AGENTS.md` and check for `.codex/skills/` or `.agents/skills/` (as described in `<project_context>`). If `./AGENTS.md` is absent but `./CLAUDE.md` exists, treat it as a legacy compatibility source.
 </step>
 
 <step name="scope_files">
@@ -128,7 +128,7 @@ git diff --name-only ${DIFF_BASE}..HEAD -- . ':!.planning/' ':!ROADMAP.md' ':!ST
 - Lock files: `package-lock.json`, `yarn.lock`, `Gemfile.lock`, `poetry.lock`
 - Generated files: `*.min.js`, `*.bundle.js`, `dist/`, `build/`
 
-NOTE: Do NOT exclude all `.md` files — commands, workflows, and agents are source code in this codebase
+NOTE: Do NOT exclude all `.md` files 鈥?commands, workflows, and agents are source code in this codebase
 
 **2. Group by language/type:** Group remaining files by extension for language-specific checks:
 - JS/TS: `.js`, `.jsx`, `.ts`, `.tsx`
@@ -149,7 +149,7 @@ findings:
 ```
 Body: "No source files to review after filtering. All files in scope are documentation, planning artifacts, or generated files. Use `status: skipped` (not `clean`) because no actual review was performed."
 
-NOTE: `status: clean` means "reviewed and found no issues." `status: skipped` means "no reviewable files — review was not performed." This distinction matters for downstream consumers.
+NOTE: `status: clean` means "reviewed and found no issues." `status: skipped` means "no reviewable files 鈥?review was not performed." This distinction matters for downstream consumers.
 </step>
 
 <step name="review_by_depth">
@@ -200,7 +200,7 @@ Record cross-file issues with all affected file paths
 <step name="classify_findings">
 For each finding, assign severity:
 
-**Critical** — Security vulnerabilities, data loss risks, crashes, authentication bypasses:
+**Critical** 鈥?Security vulnerabilities, data loss risks, crashes, authentication bypasses:
 - SQL injection, command injection, path traversal
 - Hardcoded secrets in production code
 - Null pointer dereferences that crash
@@ -208,7 +208,7 @@ For each finding, assign severity:
 - Unsafe deserialization
 - Buffer overflows
 
-**Warning** — Logic errors, unhandled edge cases, missing error handling, code smells that could cause bugs:
+**Warning** 鈥?Logic errors, unhandled edge cases, missing error handling, code smells that could cause bugs:
 - Unchecked array access (`.length` or index without validation)
 - Missing error handling in async/await
 - Off-by-one errors in loops
@@ -216,7 +216,7 @@ For each finding, assign severity:
 - Unhandled promise rejections
 - Dead code paths that indicate logic errors
 
-**Info** — Style issues, naming improvements, dead code, unused imports, suggestions:
+**Info** 鈥?Style issues, naming improvements, dead code, unused imports, suggestions:
 - Unused imports/variables
 - Poor naming (single-letter variables except loop counters)
 - Commented-out code
@@ -253,7 +253,7 @@ status: clean | issues_found
 ---
 ```
 
-The `files_reviewed_list` field is REQUIRED — it preserves the exact file scope for downstream consumers (e.g., --auto re-review in code-review-fix workflow). List every file that was reviewed, one per line in YAML list format.
+The `files_reviewed_list` field is REQUIRED 鈥?it preserves the exact file scope for downstream consumers (e.g., --auto re-review in code-review-fix workflow). List every file that was reviewed, one per line in YAML list format.
 
 **3. Body structure:**
 
@@ -320,7 +320,7 @@ _Depth: {depth}_
 
 <critical_rules>
 
-**ALWAYS use the Write tool to create files** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
+**ALWAYS use the Write tool to create files** 鈥?never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
 
 **DO NOT modify source files.** Review is read-only. Write tool is only for REVIEW.md creation.
 
@@ -330,13 +330,13 @@ _Depth: {depth}_
 
 **DO include concrete fix suggestions** for every Critical and Warning finding. Info items can have briefer suggestions.
 
-**DO respect .gitignore and .claudeignore.** Do not review ignored files.
+**DO respect `.gitignore` and runtime-specific ignore files such as `.codexignore` or `.claudeignore`.** Do not review ignored files.
 
-**DO use line numbers.** Never "somewhere in the file" — always cite specific lines.
+**DO use line numbers.** Never "somewhere in the file" 鈥?always cite specific lines.
 
-**DO consider project conventions** from CLAUDE.md when evaluating code quality. What's a violation in one project may be standard in another.
+**DO consider project conventions** from AGENTS.md when evaluating code quality. What's a violation in one project may be standard in another. If the project still uses legacy `CLAUDE.md`, treat it as a compatibility input.
 
-**Performance issues (O(n²), memory leaks) are out of v1 scope.** Do NOT flag them unless they're also correctness issues (e.g., infinite loop).
+**Performance issues (O(n虏), memory leaks) are out of v1 scope.** Do NOT flag them unless they're also correctness issues (e.g., infinite loop).
 
 </critical_rules>
 

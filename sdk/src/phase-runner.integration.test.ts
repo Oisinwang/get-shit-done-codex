@@ -64,6 +64,32 @@ async function createTempPlanningDir(): Promise<string> {
   return tmpDir;
 }
 
+async function removeTempDir(tmpDir: string | undefined): Promise<void> {
+  if (!tmpDir) return;
+
+  const retryableCodes = new Set(['EBUSY', 'EPERM', 'ENOTEMPTY']);
+  let lastError: unknown;
+
+  for (let attempt = 0; attempt < 5; attempt++) {
+    try {
+      await rm(tmpDir, { recursive: true, force: true });
+      return;
+    } catch (err) {
+      lastError = err;
+      const code = err instanceof Error ? (err as NodeJS.ErrnoException).code : undefined;
+      if (!code || !retryableCodes.has(code)) {
+        break;
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 50 * (attempt + 1)));
+    }
+  }
+
+  if (lastError) {
+    throw lastError;
+  }
+}
+
 // ─── Test suite ──────────────────────────────────────────────────────────────
 
 describe.skipIf(!gsdToolsAvailable)('Integration: PhaseRunner against real gsd-tools.cjs', () => {
@@ -80,9 +106,7 @@ describe.skipIf(!gsdToolsAvailable)('Integration: PhaseRunner against real gsd-t
   });
 
   afterAll(async () => {
-    if (tmpDir) {
-      await rm(tmpDir, { recursive: true, force: true });
-    }
+    await removeTempDir(tmpDir);
   });
 
   // ── Test 1: initPhaseOp returns valid PhaseOpInfo ──
@@ -318,9 +342,7 @@ describe.skipIf(!gsdToolsAvailable)('Integration: phasePlanIndex and wave execut
   });
 
   afterAll(async () => {
-    if (tmpDir) {
-      await rm(tmpDir, { recursive: true, force: true });
-    }
+    await removeTempDir(tmpDir);
   });
 
   it('phasePlanIndex returns typed PhasePlanIndex with correct wave grouping', async () => {

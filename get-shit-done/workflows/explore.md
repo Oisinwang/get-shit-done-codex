@@ -6,13 +6,13 @@ offers mid-conversation research when useful, then routes crystallized outputs t
 <required_reading>
 Read all files referenced by the invoking prompt's execution_context before starting.
 
-@~/.claude/get-shit-done/references/questioning.md
-@~/.claude/get-shit-done/references/domain-probes.md
+@~/.codex/get-shit-done/references/questioning.md
+@~/.codex/get-shit-done/references/domain-probes.md
 </required_reading>
 
 <available_agent_types>
-Valid GSD subagent types (use exact names — do not fall back to 'general-purpose'):
-- gsd-phase-researcher — Researches specific questions and returns concise findings
+Valid GSD subagent types (use exact names �?do not fall back to 'general-purpose'):
+- gsd-phase-researcher �?Researches specific questions and returns concise findings
 </available_agent_types>
 
 <process>
@@ -45,7 +45,7 @@ Guide the conversation using principles from `questioning.md` and `domain-probes
 - Listen for signals: "or" / "versus" / "tradeoff" indicate competing priorities worth exploring
 - Reflect back what you hear to confirm understanding before moving forward
 
-**Conversation should feel natural, not formulaic.** Avoid rigid sequences. Follow the developer's energy — if they're excited about one aspect, go deeper there.
+**Conversation should feel natural, not formulaic.** Avoid rigid sequences. Follow the developer's energy �?if they're excited about one aspect, go deeper there.
 
 ## Step 3: Mid-conversation research offer (after 2-3 exchanges)
 
@@ -82,20 +82,20 @@ When the conversation reaches natural conclusions or the developer signals readi
 | Research question | `.planning/research/questions.md` (append) | Open questions that need deeper investigation |
 | Requirement | `REQUIREMENTS.md` (append) | Clear requirements that emerged from discussion |
 | New phase | `ROADMAP.md` (append) | Scope large enough to warrant its own phase |
-| Spike | `/gsd-spike` (invoke) | Feasibility uncertainty surfaced — "will this API work?", "can we do X?" |
-| Sketch | `/gsd-sketch` (invoke) | Design direction unclear — "what should this look like?", "how should this feel?" |
+| Spike | `/gsd-spike` (invoke) | Feasibility uncertainty surfaced �?"will this API work?", "can we do X?" |
+| Sketch | `/gsd-sketch` (invoke) | Design direction unclear �?"what should this look like?", "how should this feel?" |
 
 Present suggestions:
 ```
 Based on our conversation, I'd suggest capturing:
 
-1. **Note:** "Authentication strategy decisions" — your reasoning about JWT vs sessions
-2. **Todo:** "Evaluate Passport.js vs custom middleware" — the comparison you want to do
-3. **Seed:** "OAuth2 provider support" — trigger: when user management phase starts
+1. **Note:** "Authentication strategy decisions" �?your reasoning about JWT vs sessions
+2. **Todo:** "Evaluate Passport.js vs custom middleware" �?the comparison you want to do
+3. **Seed:** "OAuth2 provider support" �?trigger: when user management phase starts
 
 Create these? You can select specific ones or modify them.
 
-[Create all] / [Let me pick] / [Skip — just exploring]
+[Create all] / [Let me pick] / [Skip �?just exploring]
 ```
 
 **Never write artifacts without explicit user selection.**
@@ -113,7 +113,7 @@ For each selected output, write the file:
 
 Commit if `commit_docs` is enabled:
 ```bash
-gsd-sdk query commit "docs: capture exploration — {topic_slug}" {file_list}
+gsd-sdk query commit "docs: capture exploration �?{topic_slug}" {file_list}
 ```
 
 ## Step 6: Close

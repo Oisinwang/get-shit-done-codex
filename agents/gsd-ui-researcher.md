@@ -37,25 +37,25 @@ When you need library or framework documentation, check in this order:
 2. If Context7 MCP is not available (upstream bug anthropics/claude-code#13898 strips MCP
    tools from agents with a `tools:` frontmatter restriction), use the CLI fallback via Bash:
 
-   Step 1 — Resolve library ID:
+   Step 1 �?Resolve library ID:
    ```bash
    npx --yes ctx7@latest library <name> "<query>"
    ```
-   Step 2 — Fetch documentation:
+   Step 2 �?Fetch documentation:
    ```bash
    npx --yes ctx7@latest docs <libraryId> "<query>"
    ```
 
-Do not skip documentation lookups because MCP tools are unavailable — the CLI fallback
+Do not skip documentation lookups because MCP tools are unavailable �?the CLI fallback
 works via Bash and produces equivalent output.
 </documentation_lookup>
 
 <project_context>
 Before researching, discover project context:
 
-**Project instructions:** Read `./CLAUDE.md` if it exists in the working directory. Follow all project-specific guidelines, security requirements, and coding conventions.
+**Project instructions:** Read `./AGENTS.md` if it exists in the working directory. Follow all project-specific guidelines, security requirements, and coding conventions.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists:
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists:
 1. List available skills (subdirectories)
 2. Read `SKILL.md` for each skill (lightweight index ~130 lines)
 3. Load specific `rules/*.md` files as needed during research
@@ -66,22 +66,22 @@ This ensures the design contract aligns with project-specific conventions and li
 </project_context>
 
 <upstream_input>
-**CONTEXT.md** (if exists) — User decisions from `/gsd-discuss-phase`
+**CONTEXT.md** (if exists) �?User decisions from `/gsd-discuss-phase`
 
 | Section | How You Use It |
 |---------|----------------|
-| `## Decisions` | Locked choices — use these as design contract defaults |
-| `## Claude's Discretion` | Your freedom areas — research and recommend |
-| `## Deferred Ideas` | Out of scope — ignore completely |
+| `## Decisions` | Locked choices �?use these as design contract defaults |
+| `## Claude's Discretion` | Your freedom areas �?research and recommend |
+| `## Deferred Ideas` | Out of scope �?ignore completely |
 
-**RESEARCH.md** (if exists) — Technical findings from `/gsd-plan-phase`
+**RESEARCH.md** (if exists) �?Technical findings from `/gsd-plan-phase`
 
 | Section | How You Use It |
 |---------|----------------|
 | `## Standard Stack` | Component library, styling approach, icon library |
 | `## Architecture Patterns` | Layout patterns, state management approach |
 
-**REQUIREMENTS.md** — Project requirements
+**REQUIREMENTS.md** �?Project requirements
 
 | Section | How You Use It |
 |---------|----------------|
@@ -178,7 +178,7 @@ Ask ONLY what REQUIREMENTS.md, CONTEXT.md, and RESEARCH.md did not already answe
 ### Color
 - Confirm 60% dominant surface color
 - Confirm 30% secondary (cards, sidebar, nav)
-- Confirm 10% accent — list the SPECIFIC elements accent is reserved for
+- Confirm 10% accent �?list the SPECIFIC elements accent is reserved for
 - Second semantic color if needed (destructive actions only)
 
 ### Copywriting
@@ -201,20 +201,20 @@ npx shadcn view {block} --registry {registry_url} 2>/dev/null
 ```
 
 Scan the output for suspicious patterns:
-- `fetch(`, `XMLHttpRequest`, `navigator.sendBeacon` — network access
-- `process.env` — environment variable access
-- `eval(`, `Function(`, `new Function` — dynamic code execution
+- `fetch(`, `XMLHttpRequest`, `navigator.sendBeacon` �?network access
+- `process.env` �?environment variable access
+- `eval(`, `Function(`, `new Function` �?dynamic code execution
 - Dynamic imports from external URLs
 - Obfuscated variable names (single-char variables in non-minified source)
 
 **If ANY flags found:**
 - Display flagged lines to the developer with file:line references
 - Ask: "Third-party block `{block}` from `{registry}` contains flagged patterns. Confirm you've reviewed these and approve inclusion? [Y/n]"
-- **If N or no response:** Do NOT include this block in UI-SPEC.md. Mark registry entry as `BLOCKED — developer declined after review`.
-- **If Y:** Record in Safety Gate column: `developer-approved after view — {date}`
+- **If N or no response:** Do NOT include this block in UI-SPEC.md. Mark registry entry as `BLOCKED �?developer declined after review`.
+- **If Y:** Record in Safety Gate column: `developer-approved after view �?{date}`
 
 **If NO flags found:**
-- Record in Safety Gate column: `view passed — no flags — {date}`
+- Record in Safety Gate column: `view passed �?no flags �?{date}`
 
 **If user lists third-party registry but refuses the vetting gate entirely:**
 - Do NOT write the registry entry to UI-SPEC.md
@@ -226,18 +226,18 @@ Scan the output for suspicious patterns:
 
 ## Output: UI-SPEC.md
 
-Use template from `~/.claude/get-shit-done/templates/UI-SPEC.md`.
+Use template from `~/.codex/get-shit-done/templates/UI-SPEC.md`.
 
 Write to: `$PHASE_DIR/$PADDED_PHASE-UI-SPEC.md`
 
 Fill all sections from the template. For each field:
-1. If answered by upstream artifacts → pre-populate, note source
-2. If answered by user during this session → use user's answer
-3. If unanswered and has a sensible default → use default, note as default
+1. If answered by upstream artifacts �?pre-populate, note source
+2. If answered by user during this session �?use user's answer
+3. If unanswered and has a sensible default �?use default, note as default
 
 Set frontmatter `status: draft` (checker will upgrade to `approved`).
 
-**ALWAYS use the Write tool to create files** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation. Mandatory regardless of `commit_docs` setting.
+**ALWAYS use the Write tool to create files** �?never use `Bash(cat << 'EOF')` or heredoc commands for file creation. Mandatory regardless of `commit_docs` setting.
 
 ⚠️ `commit_docs` controls git only, NOT file writing. Always write first.
 
@@ -248,9 +248,9 @@ Set frontmatter `status: draft` (checker will upgrade to `approved`).
 ## Step 1: Load Context
 
 Read all files from `<required_reading>` block. Parse:
-- CONTEXT.md → locked decisions, discretion areas, deferred ideas
-- RESEARCH.md → standard stack, architecture patterns
-- REQUIREMENTS.md → requirement descriptions, success criteria
+- CONTEXT.md �?locked decisions, discretion areas, deferred ideas
+- RESEARCH.md �?standard stack, architecture patterns
+- REQUIREMENTS.md �?requirement descriptions, success criteria
 
 ## Step 2: Scout Existing UI
 
@@ -285,7 +285,7 @@ Batch questions into a single interaction where possible.
 
 ## Step 5: Compile UI-SPEC.md
 
-Read template: `~/.claude/get-shit-done/templates/UI-SPEC.md`
+Read template: `~/.codex/get-shit-done/templates/UI-SPEC.md`
 
 Fill all sections. Write to `$PHASE_DIR/$PADDED_PHASE-UI-SPEC.md`.
 

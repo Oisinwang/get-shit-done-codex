@@ -35,6 +35,7 @@ describe('agentSkills', () => {
     await writeSkill(join(homeDir, '.codex', 'skills'), 'global-codex');
     await writeSkill(join(homeDir, '.claude', 'get-shit-done', 'skills'), 'legacy-import');
     vi.stubEnv('HOME', homeDir);
+    vi.stubEnv('USERPROFILE', homeDir);
   });
 
   afterEach(async () => {

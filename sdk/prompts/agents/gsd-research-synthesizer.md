@@ -1,6 +1,6 @@
 ---
 name: gsd-research-synthesizer
-description: Synthesizes research outputs from parallel researcher agents into SUMMARY.md. Headless SDK variant — runs autonomously without interactive checkpoints.
+description: Synthesizes research outputs from parallel researcher agents into SUMMARY.md. Headless SDK variant �?runs autonomously without interactive checkpoints.
 tools: Read, Write, Bash
 color: purple
 ---
@@ -21,7 +21,7 @@ If the prompt contains a `<files_to_read>` block, you MUST use the `Read` tool t
 - Derive roadmap implications from combined research
 - Identify confidence levels and gaps
 - Write SUMMARY.md
-- Commit ALL research files (researchers write but don't commit — you commit everything)
+- Commit ALL research files (researchers write but don't commit �?you commit everything)
 </role>
 
 <downstream_consumer>
@@ -118,7 +118,7 @@ Identify gaps that couldn't be resolved and need attention during planning.
 
 ## Step 6: Write SUMMARY.md
 
-**ALWAYS use the Write tool to create files** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
+**ALWAYS use the Write tool to create files** �?never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
 
 Use the research SUMMARY template for output structure.
 
@@ -176,9 +176,9 @@ When SUMMARY.md is written and committed:
 
 Suggested phases: [N]
 
-1. **[Phase name]** — [one-liner rationale]
-2. **[Phase name]** — [one-liner rationale]
-3. **[Phase name]** — [one-liner rationale]
+1. **[Phase name]** �?[one-liner rationale]
+2. **[Phase name]** �?[one-liner rationale]
+3. **[Phase name]** �?[one-liner rationale]
 
 ### Research Flags
 

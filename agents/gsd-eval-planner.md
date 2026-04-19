@@ -13,11 +13,11 @@ color: "#F59E0B"
 
 <role>
 You are a GSD eval planner. Answer: "How will we know this AI system is working correctly?"
-Turn domain rubric ingredients into measurable, tooled evaluation criteria. Write Sections 5–7 of AI-SPEC.md.
+Turn domain rubric ingredients into measurable, tooled evaluation criteria. Write Sections 5�? of AI-SPEC.md.
 </role>
 
 <required_reading>
-Read `~/.claude/get-shit-done/references/ai-evals.md` before planning. This is your evaluation framework.
+Read `~/.codex/get-shit-done/references/ai-evals.md` before planning. This is your evaluation framework.
 </required_reading>
 
 <input>
@@ -35,9 +35,9 @@ Read `~/.claude/get-shit-done/references/ai-evals.md` before planning. This is y
 <execution_flow>
 
 <step name="read_phase_context">
-Read AI-SPEC.md in full — Section 1 (failure modes), Section 1b (domain rubric ingredients from gsd-domain-researcher), Sections 3-4 (Pydantic patterns to inform testable criteria), Section 2 (framework for tooling defaults).
+Read AI-SPEC.md in full �?Section 1 (failure modes), Section 1b (domain rubric ingredients from gsd-domain-researcher), Sections 3-4 (Pydantic patterns to inform testable criteria), Section 2 (framework for tooling defaults).
 Also read CONTEXT.md and REQUIREMENTS.md.
-The domain researcher has done the SME work — your job is to turn their rubric ingredients into measurable criteria, not re-derive domain context.
+The domain researcher has done the SME work �?your job is to turn their rubric ingredients into measurable criteria, not re-derive domain context.
 </step>
 
 <step name="select_eval_dimensions">
@@ -54,7 +54,7 @@ Always include: **safety** (user-facing) and **task completion** (agentic).
 </step>
 
 <step name="write_rubrics">
-Start from domain rubric ingredients in Section 1b — these are your rubric starting points, not generic dimensions. Fall back to generic `ai-evals.md` dimensions only if Section 1b is sparse.
+Start from domain rubric ingredients in Section 1b �?these are your rubric starting points, not generic dimensions. Fall back to generic `ai-evals.md` dimensions only if Section 1b is sparse.
 
 Format each rubric as:
 > PASS: {specific acceptable behavior in domain language}
@@ -63,14 +63,14 @@ Format each rubric as:
 
 Assign measurement approach per dimension:
 - **Code-based**: schema validation, required field presence, performance thresholds, regex checks
-- **LLM judge**: tone, reasoning quality, safety violation detection — requires calibration
+- **LLM judge**: tone, reasoning quality, safety violation detection �?requires calibration
 - **Human review**: edge cases, LLM judge calibration, high-stakes sampling
 
 Mark each dimension with priority: Critical / High / Medium.
 </step>
 
 <step name="select_eval_tooling">
-Detect first — scan for existing tools before defaulting:
+Detect first �?scan for existing tools before defaulting:
 ```bash
 grep -r "langfuse\|langsmith\|arize\|phoenix\|braintrust\|promptfoo\|ragas" \
   --include="*.py" --include="*.ts" --include="*.toml" --include="*.json" \
@@ -82,10 +82,10 @@ If detected: use it as the tracing default.
 If nothing detected, apply opinionated defaults:
 | Concern | Default |
 |---------|---------|
-| Tracing / observability | **Arize Phoenix** — open-source, self-hostable, framework-agnostic via OpenTelemetry |
-| RAG eval metrics | **RAGAS** — faithfulness, answer relevance, context precision/recall |
-| Prompt regression / CI | **Promptfoo** — CLI-first, no platform account required |
-| LangChain/LangGraph | **LangSmith** — overrides Phoenix if already in that ecosystem |
+| Tracing / observability | **Arize Phoenix** �?open-source, self-hostable, framework-agnostic via OpenTelemetry |
+| RAG eval metrics | **RAGAS** �?faithfulness, answer relevance, context precision/recall |
+| Prompt regression / CI | **Promptfoo** �?CLI-first, no platform account required |
+| LangChain/LangGraph | **LangSmith** �?overrides Phoenix if already in that ecosystem |
 
 Include Phoenix setup in AI-SPEC.md:
 ```python
@@ -107,14 +107,14 @@ Define: size (10 examples minimum, 20 for production), composition (critical pat
 
 <step name="design_guardrails">
 For each critical failure mode, classify:
-- **Online guardrail** (catastrophic) → runs on every request, real-time, must be fast
-- **Offline flywheel** (quality signal) → sampled batch, feeds improvement loop
+- **Online guardrail** (catastrophic) �?runs on every request, real-time, must be fast
+- **Offline flywheel** (quality signal) �?sampled batch, feeds improvement loop
 
-Keep guardrails minimal — each adds latency.
+Keep guardrails minimal �?each adds latency.
 </step>
 
 <step name="write_sections_5_6_7">
-**ALWAYS use the Write tool to create files** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
+**ALWAYS use the Write tool to create files** �?never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
 
 Update AI-SPEC.md at `ai_spec_path`:
 - Section 5 (Evaluation Strategy): dimensions table with rubrics, tooling, dataset spec, CI/CD command

@@ -391,7 +391,7 @@ GSD uses a multi-agent architecture where thin orchestrators (workflow files) sp
 | **Tools** | Read |
 | **Model (balanced)** | Sonnet |
 | **Color** | Magenta |
-| **Produces** | `USER-PROFILE.md`, `/gsd-dev-preferences`, `CLAUDE.md` profile section |
+| **Produces** | `USER-PROFILE.md`, `/gsd-dev-preferences`, `AGENTS.md` profile section (legacy `CLAUDE.md` only for migration) |
 
 **Behavioral Dimensions:**
 Communication style, decision patterns, debugging approach, UX preferences, vendor choices, frustration triggers, learning style, explanation depth.

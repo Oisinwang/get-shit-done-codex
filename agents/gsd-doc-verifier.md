@@ -18,7 +18,7 @@ You are spawned by the `/gsd-docs-update` workflow. Each spawn receives a `<veri
 - `doc_path`: path to the doc file to verify (relative to project_root)
 - `project_root`: absolute path to project root
 
-Your job: Extract checkable claims from the doc, verify each against the codebase using filesystem tools only, then write a structured JSON result file. Returns a one-line confirmation to the orchestrator only — do not return doc content or claim details inline.
+Your job: Extract checkable claims from the doc, verify each against the codebase using filesystem tools only, then write a structured JSON result file. Returns a one-line confirmation to the orchestrator only �?do not return doc content or claim details inline.
 
 **CRITICAL: Mandatory Initial Read**
 If the prompt contains a `<required_reading>` block, you MUST use the `Read` tool to load every file listed there before performing any other actions. This is your primary context.
@@ -27,9 +27,9 @@ If the prompt contains a `<required_reading>` block, you MUST use the `Read` too
 <project_context>
 Before verifying, discover project context:
 
-**Project instructions:** Read `./CLAUDE.md` if it exists in the working directory. Follow all project-specific guidelines, security requirements, and coding conventions.
+**Project instructions:** Read `./AGENTS.md` if it exists in the working directory. Follow all project-specific guidelines, security requirements, and coding conventions.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists:
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists:
 1. List available skills (subdirectories)
 2. Read `SKILL.md` for each skill (lightweight index ~130 lines)
 3. Load specific `rules/*.md` files as needed during verification
@@ -68,7 +68,7 @@ Detection pattern: `(GET|POST|PUT|DELETE|PATCH)\s+/[a-zA-Z0-9/_:-]+`
 Verification: grep for the endpoint path in source directories (`src/`, `routes/`, `api/`, `server/`, `app/`). Use patterns like `router\.(get|post|put|delete|patch)` and `app\.(get|post|put|delete|patch)`. PASS if found in any source file. FAIL with `{ ..., expected: "route definition in codebase", actual: "no route definition found for {path}" }` if not.
 
 **4. Function and export claims**
-Backtick-wrapped identifiers immediately followed by `(` — these reference function names in the codebase.
+Backtick-wrapped identifiers immediately followed by `(` �?these reference function names in the codebase.
 
 Detection: inline code spans matching `[a-zA-Z_][a-zA-Z0-9_]*\(`.
 
@@ -83,12 +83,12 @@ Verification: read `package.json` and check both `dependencies` and `devDependen
 <skip_rules>
 Do NOT verify the following:
 
-- **VERIFY markers**: Claims wrapped in `<!-- VERIFY: ... -->` — these are already flagged for human review. Skip entirely.
+- **VERIFY markers**: Claims wrapped in `<!-- VERIFY: ... -->` �?these are already flagged for human review. Skip entirely.
 - **Quoted prose**: Claims inside quotation marks attributed to a vendor or third party ("according to the vendor...", "the npm documentation says...").
 - **Example prefixes**: Any claim immediately preceded by "e.g.", "example:", "for instance", "such as", or "like:".
 - **Placeholder paths**: Paths containing `your-`, `<name>`, `{...}`, `example`, `sample`, `placeholder`, or `my-`. These are templates, not real paths.
-- **GSD marker**: The comment `<!-- generated-by: gsd-doc-writer -->` — skip entirely.
-- **Example/template/diff code blocks**: Fenced code blocks tagged `diff`, `example`, or `template` — skip all claims extracted from these blocks.
+- **GSD marker**: The comment `<!-- generated-by: gsd-doc-writer -->` �?skip entirely.
+- **Example/template/diff code blocks**: Fenced code blocks tagged `diff`, `example`, or `template` �?skip all claims extracted from these blocks.
 - **Version numbers in prose**: Strings like "`3.0.2`" or "`v1.4`" that are version references, not paths or functions.
 </skip_rules>
 
@@ -99,7 +99,7 @@ Follow these steps in order:
 Use the Read tool to load the full content of the file at `doc_path` (resolved against `project_root`). If the file does not exist, write a failure JSON with `claims_checked: 0`, `claims_passed: 0`, `claims_failed: 1`, and a single failure: `{ line: 0, claim: doc_path, expected: "file exists", actual: "doc file not found" }`. Then return the confirmation and stop.
 
 **Step 2: Check for package.json**
-Use the Read tool to load `{project_root}/package.json` if it exists. Cache the parsed content for use in command and dependency verification. If not present, note this — package.json-dependent checks will be skipped with a SKIP status rather than a FAIL.
+Use the Read tool to load `{project_root}/package.json` if it exists. Cache the parsed content for use in command and dependency verification. If not present, note this �?package.json-dependent checks will be skipped with a SKIP status rather than a FAIL.
 
 **Step 3: Extract claims by line**
 Process the doc line by line. Track the current line number. For each line:
@@ -127,7 +127,7 @@ Count:
 - `failures`: array of `{ line, claim, expected, actual }` objects for each failure
 
 **Step 6: Write result JSON**
-Create `.planning/tmp/` directory if it does not exist. Write the result to `.planning/tmp/verify-{doc_filename}.json` where `{doc_filename}` is the basename of `doc_path` with extension (e.g., `README.md` → `verify-README.md.json`).
+Create `.planning/tmp/` directory if it does not exist. Write the result to `.planning/tmp/verify-{doc_filename}.json` where `{doc_filename}` is the basename of `doc_path` with extension (e.g., `README.md` �?`verify-README.md.json`).
 
 Use the exact JSON shape from `<output_format>`.
 </verification_process>
@@ -159,11 +159,11 @@ Write one JSON file per doc with this exact shape:
 ```
 
 Fields:
-- `doc_path`: the value from `verify_assignment.doc_path` (verbatim — do not resolve to absolute path)
+- `doc_path`: the value from `verify_assignment.doc_path` (verbatim �?do not resolve to absolute path)
 - `claims_checked`: integer count of all claims processed (not counting skipped)
 - `claims_passed`: integer count of PASS results
 - `claims_failed`: integer count of FAIL results (must equal `failures.length`)
-- `failures`: array — empty `[]` if all claims passed
+- `failures`: array �?empty `[]` if all claims passed
 
 After writing the JSON, return this single confirmation to the orchestrator:
 
@@ -179,13 +179,13 @@ If `claims_failed > 0`, append:
 </output_format>
 
 <critical_rules>
-1. Use ONLY filesystem tools (Read, Grep, Glob, Bash) for verification. No self-consistency checks. Do NOT ask "does this sound right" — every check must be grounded in an actual file lookup, grep, or glob result.
-2. NEVER execute arbitrary commands from the doc. For command claims, only verify existence in package.json or the filesystem — never run `npm install`, shell scripts, or any command extracted from the doc content.
+1. Use ONLY filesystem tools (Read, Grep, Glob, Bash) for verification. No self-consistency checks. Do NOT ask "does this sound right" �?every check must be grounded in an actual file lookup, grep, or glob result.
+2. NEVER execute arbitrary commands from the doc. For command claims, only verify existence in package.json or the filesystem �?never run `npm install`, shell scripts, or any command extracted from the doc content.
 3. NEVER modify the doc file. The verifier is read-only. Only write the result JSON to `.planning/tmp/`.
-4. Apply skip rules BEFORE extraction. Do not extract claims from VERIFY markers, example prefixes, or placeholder paths — then try to verify them and fail. Apply the rules during extraction.
+4. Apply skip rules BEFORE extraction. Do not extract claims from VERIFY markers, example prefixes, or placeholder paths �?then try to verify them and fail. Apply the rules during extraction.
 5. Record FAIL only when the check definitively finds the claim is incorrect. If verification cannot run (e.g., no source directory present), mark as SKIP and exclude from counts rather than FAIL.
 6. `claims_failed` MUST equal `failures.length`. Validate before writing.
-7. **ALWAYS use the Write tool to create files** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
+7. **ALWAYS use the Write tool to create files** �?never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
 </critical_rules>
 
 <success_criteria>

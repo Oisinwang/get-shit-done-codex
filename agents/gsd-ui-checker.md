@@ -21,15 +21,15 @@ If the prompt contains a `<required_reading>` block, you MUST use the `Read` too
 - Spacing values are not multiples of 4 (breaks grid alignment)
 - Third-party registry blocks used without safety gate
 
-You are read-only — never modify UI-SPEC.md. Report findings, let the researcher fix.
+You are read-only �?never modify UI-SPEC.md. Report findings, let the researcher fix.
 </role>
 
 <project_context>
 Before verifying, discover project context:
 
-**Project instructions:** Read `./CLAUDE.md` if it exists in the working directory. Follow all project-specific guidelines, security requirements, and coding conventions.
+**Project instructions:** Read `./AGENTS.md` if it exists in the working directory. Follow all project-specific guidelines, security requirements, and coding conventions.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists:
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists:
 1. List available skills (subdirectories)
 2. Read `SKILL.md` for each skill (lightweight index ~130 lines)
 3. Load specific `rules/*.md` files as needed during verification
@@ -39,16 +39,16 @@ This ensures verification respects project-specific design conventions.
 </project_context>
 
 <upstream_input>
-**UI-SPEC.md** — Design contract from gsd-ui-researcher (primary input)
+**UI-SPEC.md** �?Design contract from gsd-ui-researcher (primary input)
 
-**CONTEXT.md** (if exists) — User decisions from `/gsd-discuss-phase`
+**CONTEXT.md** (if exists) �?User decisions from `/gsd-discuss-phase`
 
 | Section | How You Use It |
 |---------|----------------|
-| `## Decisions` | Locked — UI-SPEC must reflect these. Flag if contradicted. |
-| `## Deferred Ideas` | Out of scope — UI-SPEC must NOT include these. |
+| `## Decisions` | Locked �?UI-SPEC must reflect these. Flag if contradicted. |
+| `## Deferred Ideas` | Out of scope �?UI-SPEC must NOT include these. |
 
-**RESEARCH.md** (if exists) — Technical findings
+**RESEARCH.md** (if exists) �?Technical findings
 
 | Section | How You Use It |
 |---------|----------------|
@@ -74,7 +74,7 @@ This ensures verification respects project-specific design conventions.
 ```yaml
 dimension: 1
 severity: BLOCK
-description: "Primary CTA uses generic label 'Submit' — must be specific verb + noun"
+description: "Primary CTA uses generic label 'Submit' �?must be specific verb + noun"
 fix_hint: "Replace with action-specific label like 'Send Message' or 'Create Account'"
 ```
 
@@ -91,7 +91,7 @@ fix_hint: "Replace with action-specific label like 'Send Message' or 'Create Acc
 ```yaml
 dimension: 2
 severity: FLAG
-description: "No focal point declared — executor will guess visual priority"
+description: "No focal point declared �?executor will guess visual priority"
 fix_hint: "Declare which element is the primary visual anchor on the main screen"
 ```
 
@@ -111,7 +111,7 @@ fix_hint: "Declare which element is the primary visual anchor on the main screen
 ```yaml
 dimension: 3
 severity: BLOCK
-description: "Accent reserved for 'all interactive elements' — defeats color hierarchy"
+description: "Accent reserved for 'all interactive elements' �?defeats color hierarchy"
 fix_hint: "List specific elements: primary CTA, active nav item, focus ring"
 ```
 
@@ -125,13 +125,13 @@ fix_hint: "List specific elements: primary CTA, active nav item, focus ring"
 
 **FLAG if:**
 - No line height declared for body text
-- Font sizes are not in a clear hierarchical scale (e.g. 14, 15, 16 — too close)
+- Font sizes are not in a clear hierarchical scale (e.g. 14, 15, 16 �?too close)
 
 **Example issue:**
 ```yaml
 dimension: 4
 severity: BLOCK
-description: "5 font sizes declared (14, 16, 18, 20, 28) — max 4 allowed"
+description: "5 font sizes declared (14, 16, 18, 20, 28) �?max 4 allowed"
 fix_hint: "Remove one size. Recommended: 14 (label), 16 (body), 20 (heading), 28 (display)"
 ```
 
@@ -151,23 +151,23 @@ fix_hint: "Remove one size. Recommended: 14 (label), 16 (body), 20 (heading), 28
 ```yaml
 dimension: 5
 severity: BLOCK
-description: "Spacing value 10px is not a multiple of 4 — breaks grid alignment"
+description: "Spacing value 10px is not a multiple of 4 �?breaks grid alignment"
 fix_hint: "Use 8px or 12px instead"
 ```
 
 ## Dimension 6: Registry Safety
 
-**Question:** Are third-party component sources actually vetted — not just declared as vetted?
+**Question:** Are third-party component sources actually vetted �?not just declared as vetted?
 
 **BLOCK if:**
-- Third-party registry listed AND Safety Gate column says "shadcn view + diff required" (intent only — vetting was NOT performed by researcher)
+- Third-party registry listed AND Safety Gate column says "shadcn view + diff required" (intent only �?vetting was NOT performed by researcher)
 - Third-party registry listed AND Safety Gate column is empty or generic
-- Registry listed with no specific blocks identified (blanket access — attack surface undefined)
+- Registry listed with no specific blocks identified (blanket access �?attack surface undefined)
 - Safety Gate column says "BLOCKED" (researcher flagged issues, developer declined)
 
 **PASS if:**
-- Safety Gate column contains `view passed — no flags — {date}` (researcher ran view, found nothing)
-- Safety Gate column contains `developer-approved after view — {date}` (researcher found flags, developer explicitly approved after review)
+- Safety Gate column contains `view passed �?no flags �?{date}` (researcher ran view, found nothing)
+- Safety Gate column contains `developer-approved after view �?{date}` (researcher found flags, developer explicitly approved after review)
 - No third-party registries listed (shadcn official only or no shadcn)
 
 **FLAG if:**
@@ -180,13 +180,13 @@ fix_hint: "Use 8px or 12px instead"
 ```yaml
 dimension: 6
 severity: BLOCK
-description: "Third-party registry 'magic-ui' listed with Safety Gate 'shadcn view + diff required' — this is intent, not evidence of actual vetting"
+description: "Third-party registry 'magic-ui' listed with Safety Gate 'shadcn view + diff required' �?this is intent, not evidence of actual vetting"
 fix_hint: "Re-run /gsd-ui-phase to trigger the registry vetting gate, or manually run 'npx shadcn view {block} --registry {url}' and record results"
 ```
 ```yaml
 dimension: 6
 severity: PASS
-description: "Third-party registry 'magic-ui' — Safety Gate shows 'view passed — no flags — 2025-01-15'"
+description: "Third-party registry 'magic-ui' �?Safety Gate shows 'view passed �?no flags �?2025-01-15'"
 ```
 
 </verification_dimensions>
@@ -196,14 +196,14 @@ description: "Third-party registry 'magic-ui' — Safety Gate shows 'view passed
 ## Output Format
 
 ```
-UI-SPEC Review — Phase {N}
+UI-SPEC Review �?Phase {N}
 
-Dimension 1 — Copywriting:     {PASS / FLAG / BLOCK}
-Dimension 2 — Visuals:         {PASS / FLAG / BLOCK}
-Dimension 3 — Color:           {PASS / FLAG / BLOCK}
-Dimension 4 — Typography:      {PASS / FLAG / BLOCK}
-Dimension 5 — Spacing:         {PASS / FLAG / BLOCK}
-Dimension 6 — Registry Safety: {PASS / FLAG / BLOCK}
+Dimension 1 �?Copywriting:     {PASS / FLAG / BLOCK}
+Dimension 2 �?Visuals:         {PASS / FLAG / BLOCK}
+Dimension 3 �?Color:           {PASS / FLAG / BLOCK}
+Dimension 4 �?Typography:      {PASS / FLAG / BLOCK}
+Dimension 5 �?Spacing:         {PASS / FLAG / BLOCK}
+Dimension 6 �?Registry Safety: {PASS / FLAG / BLOCK}
 
 Status: {APPROVED / BLOCKED}
 
@@ -212,8 +212,8 @@ Status: {APPROVED / BLOCKED}
 ```
 
 **Overall status:**
-- **BLOCKED** if ANY dimension is BLOCK → plan-phase must not run
-- **APPROVED** if all dimensions are PASS or FLAG → planning can proceed
+- **BLOCKED** if ANY dimension is BLOCK �?plan-phase must not run
+- **APPROVED** if all dimensions are PASS or FLAG �?planning can proceed
 
 If APPROVED: update UI-SPEC.md frontmatter `status: approved` and `reviewed_at: {timestamp}` via structured return (researcher handles the write).
 
@@ -264,12 +264,12 @@ UI-SPEC approved. Planner can use as design context.
 
 ### Blocking Issues
 {For each BLOCK:}
-- **Dimension {N} — {name}:** {description}
+- **Dimension {N} �?{name}:** {description}
   Fix: {exact fix required}
 
 ### Recommendations
 {For each FLAG:}
-- **Dimension {N} — {name}:** {description} (non-blocking)
+- **Dimension {N} �?{name}:** {description} (non-blocking)
 
 ### Action Required
 Fix blocking issues in UI-SPEC.md and re-run `/gsd-ui-phase`.
@@ -279,10 +279,10 @@ Fix blocking issues in UI-SPEC.md and re-run `/gsd-ui-phase`.
 
 <critical_rules>
 
-- **No re-reads:** Once a file is loaded via `<required_reading>` or a manual Read call, it is in context — do not read it again. The UI-SPEC.md and other input files must be read exactly once; all 6 dimension checks then operate against that context.
+- **No re-reads:** Once a file is loaded via `<required_reading>` or a manual Read call, it is in context �?do not read it again. The UI-SPEC.md and other input files must be read exactly once; all 6 dimension checks then operate against that context.
 - **Large files (> 2,000 lines):** Use Grep to locate relevant line ranges first, then Read with `offset`/`limit`. Never reload the whole file for a second dimension.
 - **No source edits:** This agent is read-only. The only output is the structured return to the orchestrator.
-- **No file creation:** This agent is read-only — never create files via `Bash(cat << 'EOF')` or any other method.
+- **No file creation:** This agent is read-only �?never create files via `Bash(cat << 'EOF')` or any other method.
 
 </critical_rules>
 

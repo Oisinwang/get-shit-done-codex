@@ -13,13 +13,13 @@ Ensure config exists and load current state:
 
 ```bash
 gsd-sdk query config-ensure-section
-GSD_CONFIG_PATH=$(node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" config-path)
+GSD_CONFIG_PATH=$(node "$HOME/.codex/get-shit-done/bin/gsd-tools.cjs" config-path)
 INIT=$(gsd-sdk query state.load)
 if [[ "$INIT" == @file:* ]]; then INIT=$(cat "${INIT#@file:}"); fi
 ```
 
 Creates config.json (at the workstream-aware path) with defaults if missing and loads current config values.
-Store `$GSD_CONFIG_PATH` — all subsequent reads and writes use this path, not the hardcoded `.planning/config.json`, so active-workstream installs write to the correct location (#2282).
+Store `$GSD_CONFIG_PATH` 鈥?all subsequent reads and writes use this path, not the hardcoded `.planning/config.json`, so active-workstream installs write to the correct location (#2282).
 </step>
 
 <step name="read_current">
@@ -28,16 +28,16 @@ cat "$GSD_CONFIG_PATH"
 ```
 
 Parse current values (default to `true` if not present):
-- `workflow.research` — spawn researcher during plan-phase
-- `workflow.plan_check` — spawn plan checker during plan-phase
-- `workflow.verifier` — spawn verifier during execute-phase
-- `workflow.nyquist_validation` — validation architecture research during plan-phase (default: true if absent)
-- `workflow.ui_phase` — generate UI-SPEC.md design contracts for frontend phases (default: true if absent)
-- `workflow.ui_safety_gate` — prompt to run /gsd-ui-phase before planning frontend phases (default: true if absent)
-- `workflow.ai_integration_phase` — framework selection + eval strategy for AI phases (default: true if absent)
-- `model_profile` — which model each agent uses (default: `balanced`)
-- `git.branching_strategy` — branching approach (default: `"none"`)
-- `workflow.use_worktrees` — whether parallel executor agents run in worktree isolation (default: `true`)
+- `workflow.research` 鈥?spawn researcher during plan-phase
+- `workflow.plan_check` 鈥?spawn plan checker during plan-phase
+- `workflow.verifier` 鈥?spawn verifier during execute-phase
+- `workflow.nyquist_validation` 鈥?validation architecture research during plan-phase (default: true if absent)
+- `workflow.ui_phase` 鈥?generate UI-SPEC.md design contracts for frontend phases (default: true if absent)
+- `workflow.ui_safety_gate` 鈥?prompt to run /gsd-ui-phase before planning frontend phases (default: true if absent)
+- `workflow.ai_integration_phase` 鈥?framework selection + eval strategy for AI phases (default: true if absent)
+- `model_profile` 鈥?which model each agent uses (default: `balanced`)
+- `git.branching_strategy` 鈥?branching approach (default: `"none"`)
+- `workflow.use_worktrees` 鈥?whether parallel executor agents run in worktree isolation (default: `true`)
 </step>
 
 <step name="present_settings">
@@ -86,7 +86,7 @@ AskUserQuestion([
     ]
   },
   {
-    question: "Auto-advance pipeline? (discuss → plan → execute automatically)",
+    question: "Auto-advance pipeline? (discuss 鈫?plan 鈫?execute automatically)",
     header: "Auto",
     multiSelect: false,
     options: [
@@ -120,7 +120,7 @@ AskUserQuestion([
     multiSelect: false,
     options: [
       { label: "Yes (Recommended)", description: "plan-phase asks to run /gsd-ui-phase first when frontend indicators detected." },
-      { label: "No", description: "No prompt — plan-phase proceeds without UI-SPEC check." }
+      { label: "No", description: "No prompt 鈥?plan-phase proceeds without UI-SPEC check." }
     ]
   },
   {
@@ -165,8 +165,8 @@ AskUserQuestion([
     header: "Skip Discuss",
     multiSelect: false,
     options: [
-      { label: "No (Recommended)", description: "Run smart discuss before each phase — surfaces gray areas and captures decisions." },
-      { label: "Yes", description: "Skip discuss in /gsd-autonomous — chain directly to plan. Best for backend/pipeline work where phase descriptions are the spec." }
+      { label: "No (Recommended)", description: "Run smart discuss before each phase 鈥?surfaces gray areas and captures decisions." },
+      { label: "Yes", description: "Skip discuss in /gsd-autonomous 鈥?chain directly to plan. Best for backend/pipeline work where phase descriptions are the spec." }
     ]
   },
   {
@@ -174,7 +174,7 @@ AskUserQuestion([
     header: "Worktrees",
     multiSelect: false,
     options: [
-      { label: "Yes (Recommended)", description: "Each parallel executor runs in its own worktree branch — no conflicts between agents." },
+      { label: "Yes (Recommended)", description: "Each parallel executor runs in its own worktree branch 鈥?no conflicts between agents." },
       { label: "No", description: "Disable worktree isolation. Agents run sequentially on the main working tree. Use if EnterWorktree creates branches from wrong base (known cross-platform issue)." }
     ]
   }
@@ -215,7 +215,7 @@ Merge new settings into existing config.json:
 }
 ```
 
-Write updated config to `$GSD_CONFIG_PATH` (the workstream-aware path resolved in `ensure_and_load_config`). Never hardcode `.planning/config.json` — workstream installs route to `.planning/workstreams/<slug>/config.json`.
+Write updated config to `$GSD_CONFIG_PATH` (the workstream-aware path resolved in `ensure_and_load_config`). Never hardcode `.planning/config.json` 鈥?workstream installs route to `.planning/workstreams/<slug>/config.json`.
 </step>
 
 <step name="save_as_defaults">
@@ -270,9 +270,9 @@ Write `~/.gsd/defaults.json` with:
 Display:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► SETTINGS UPDATED
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?SETTINGS UPDATED
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
 | Setting              | Value |
 |----------------------|-------|
@@ -293,10 +293,10 @@ Display:
 These settings apply to future /gsd-plan-phase and /gsd-execute-phase runs.
 
 Quick commands:
-- /gsd-set-profile <profile> — switch model profile
-- /gsd-plan-phase --research — force research
-- /gsd-plan-phase --skip-research — skip research
-- /gsd-plan-phase --skip-verify — skip plan check
+- /gsd-set-profile <profile> 鈥?switch model profile
+- /gsd-plan-phase --research 鈥?force research
+- /gsd-plan-phase --skip-research 鈥?skip research
+- /gsd-plan-phase --skip-verify 鈥?skip plan check
 ```
 </step>
 

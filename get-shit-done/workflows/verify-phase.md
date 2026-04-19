@@ -5,9 +5,9 @@ Executed by a verification subagent spawned from execute-phase.md.
 </purpose>
 
 <core_principle>
-**Task completion ≠ Goal achievement**
+**Task completion �?Goal achievement**
 
-A task "create chat component" can be marked complete when the component is a placeholder. The task was done — but the goal "working chat interface" was not achieved.
+A task "create chat component" can be marked complete when the component is a placeholder. The task was done �?but the goal "working chat interface" was not achieved.
 
 Goal-backward verification:
 1. What must be TRUE for the goal to be achieved?
@@ -19,8 +19,8 @@ Then verify each level against the actual codebase.
 </core_principle>
 
 <required_reading>
-@~/.claude/get-shit-done/references/verification-patterns.md
-@~/.claude/get-shit-done/templates/verification-report.md
+@~/.codex/get-shit-done/references/verification-patterns.md
+@~/.codex/get-shit-done/templates/verification-report.md
 </required_reading>
 
 <process>
@@ -80,7 +80,7 @@ Parse the `success_criteria` array from the JSON output. If non-empty:
 3. Derive **key links** (critical wiring where stubs hide)
 4. Document the must-haves before proceeding
 
-Success Criteria from ROADMAP.md are the contract — they override PLAN-level must_haves when both exist.
+Success Criteria from ROADMAP.md are the contract �?they override PLAN-level must_haves when both exist.
 
 **Option C: Derive from phase goal (fallback)**
 
@@ -95,11 +95,11 @@ If no must_haves in frontmatter AND no Success Criteria in ROADMAP:
 <step name="verify_truths">
 For each observable truth, determine if the codebase enables it.
 
-**Status:** ✓ VERIFIED (all supporting artifacts pass) | ✗ FAILED (artifact missing/stub/unwired) | ? UNCERTAIN (needs human)
+**Status:** �?VERIFIED (all supporting artifacts pass) | �?FAILED (artifact missing/stub/unwired) | ? UNCERTAIN (needs human)
 
-For each truth: identify supporting artifacts → check artifact status → check wiring → determine truth status.
+For each truth: identify supporting artifacts �?check artifact status �?check wiring �?determine truth status.
 
-**Example:** Truth "User can see existing messages" depends on Chat.tsx (renders), /api/chat GET (provides), Message model (schema). If Chat.tsx is a stub or API returns hardcoded [] → FAILED. If all exist, are substantive, and connected → VERIFIED.
+**Example:** Truth "User can see existing messages" depends on Chat.tsx (renders), /api/chat GET (provides), Message model (schema). If Chat.tsx is a stub or API returns hardcoded [] �?FAILED. If all exist, are substantive, and connected �?VERIFIED.
 </step>
 
 <step name="verify_artifacts">
@@ -115,11 +115,11 @@ done
 Parse JSON result: `{ all_passed, passed, total, artifacts: [{path, exists, issues, passed}] }`
 
 **Artifact status from result:**
-- `exists=false` → MISSING
-- `issues` not empty → STUB (check issues for "Only N lines" or "Missing pattern")
-- `passed=true` → VERIFIED (Levels 1-2 pass)
+- `exists=false` �?MISSING
+- `issues` not empty �?STUB (check issues for "Only N lines" or "Missing pattern")
+- `passed=true` �?VERIFIED (Levels 1-2 pass)
 
-**Level 3 — Wired (manual check for artifacts that pass Levels 1-2):**
+**Level 3 �?Wired (manual check for artifacts that pass Levels 1-2):**
 ```bash
 grep -r "import.*$artifact_name" src/ --include="*.ts" --include="*.tsx"  # IMPORTED
 grep -r "$artifact_name" src/ --include="*.ts" --include="*.tsx" | grep -v "import"  # USED
@@ -128,20 +128,20 @@ WIRED = imported AND used. ORPHANED = exists but not imported/used.
 
 | Exists | Substantive | Wired | Status |
 |--------|-------------|-------|--------|
-| ✓ | ✓ | ✓ | ✓ VERIFIED |
-| ✓ | ✓ | ✗ | ⚠️ ORPHANED |
-| ✓ | ✗ | - | ✗ STUB |
-| ✗ | - | - | ✗ MISSING |
+| �?| �?| �?| �?VERIFIED |
+| �?| �?| �?| ⚠️ ORPHANED |
+| �?| �?| - | �?STUB |
+| �?| - | - | �?MISSING |
 
 **Export-level spot check (WARNING severity):**
 
 For artifacts that pass Level 3, spot-check individual exports:
-- Extract key exported symbols (functions, constants, classes — skip types/interfaces)
+- Extract key exported symbols (functions, constants, classes �?skip types/interfaces)
 - For each, grep for usage outside the defining file
 - Flag exports with zero external call sites as "exported but unused"
 
 This catches dead stores like `setPlan()` that exist in a wired file but are
-never actually called. Report as WARNING — may indicate incomplete cross-plan
+never actually called. Report as WARNING �?may indicate incomplete cross-plan
 wiring or leftover code from plan revisions.
 </step>
 
@@ -158,18 +158,18 @@ done
 Parse JSON result: `{ all_verified, verified, total, links: [{from, to, via, verified, detail}] }`
 
 **Link status from result:**
-- `verified=true` → WIRED
-- `verified=false` with "not found" → NOT_WIRED
-- `verified=false` with "Pattern not found" → PARTIAL
+- `verified=true` �?WIRED
+- `verified=false` with "not found" �?NOT_WIRED
+- `verified=false` with "Pattern not found" �?PARTIAL
 
 **Fallback patterns (if key_links not in must_haves):**
 
 | Pattern | Check | Status |
 |---------|-------|--------|
-| Component → API | fetch/axios call to API path, response used (await/.then/setState) | WIRED / PARTIAL (call but unused response) / NOT_WIRED |
-| API → Database | Prisma/DB query on model, result returned via res.json() | WIRED / PARTIAL (query but not returned) / NOT_WIRED |
-| Form → Handler | onSubmit with real implementation (fetch/axios/mutate/dispatch), not console.log/empty | WIRED / STUB (log-only/empty) / NOT_WIRED |
-| State → Render | useState variable appears in JSX (`{stateVar}` or `{stateVar.property}`) | WIRED / NOT_WIRED |
+| Component �?API | fetch/axios call to API path, response used (await/.then/setState) | WIRED / PARTIAL (call but unused response) / NOT_WIRED |
+| API �?Database | Prisma/DB query on model, result returned via res.json() | WIRED / PARTIAL (query but not returned) / NOT_WIRED |
+| Form �?Handler | onSubmit with real implementation (fetch/axios/mutate/dispatch), not console.log/empty | WIRED / STUB (log-only/empty) / NOT_WIRED |
+| State �?Render | useState variable appears in JSX (`{stateVar}` or `{stateVar.property}`) | WIRED / NOT_WIRED |
 
 Record status and evidence for each key link.
 </step>
@@ -180,7 +180,7 @@ If REQUIREMENTS.md exists:
 grep -E "Phase ${PHASE_NUM}" .planning/REQUIREMENTS.md 2>/dev/null || true
 ```
 
-For each requirement: parse description → identify supporting truths/artifacts → status: ✓ SATISFIED / ✗ BLOCKED / ? NEEDS HUMAN.
+For each requirement: parse description �?identify supporting truths/artifacts �?status: �?SATISFIED / �?BLOCKED / ? NEEDS HUMAN.
 </step>
 
 <step name="behavioral_verification">
@@ -209,23 +209,23 @@ elif [ -f "go.mod" ]; then
 elif [ -f "pyproject.toml" ] || [ -f "requirements.txt" ]; then
   python -m pytest -q --tb=short 2>&1 || uv run python -m pytest -q --tb=short 2>&1
 else
-  echo "⚠ No test runner detected — skipping test suite"
+  echo "�?No test runner detected �?skipping test suite"
   exit 1
 fi
 '
 TEST_EXIT=$?
 if [ "${TEST_EXIT}" -eq 0 ]; then
-  echo "✓ Test suite passed"
+  echo "�?Test suite passed"
 elif [ "${TEST_EXIT}" -eq 124 ]; then
-  echo "⚠ Test suite timed out after 5 minutes"
+  echo "�?Test suite timed out after 5 minutes"
 else
-  echo "✗ Test suite failed (exit code ${TEST_EXIT})"
+  echo "�?Test suite failed (exit code ${TEST_EXIT})"
 fi
 ```
 
 Record: total tests, passed, failed, coverage (if available).
 
-**If any tests fail:** Mark as `behavioral_failures` — these are BLOCKER severity
+**If any tests fail:** Mark as `behavioral_failures` �?these are BLOCKER severity
 regardless of whether static checks passed. A phase cannot be verified if tests fail.
 
 **Step 2: Run project CLI/commands from success criteria (if testable)**
@@ -237,7 +237,7 @@ For each success criterion that describes a user command (e.g., "User can run
    - Look for example files in `templates/`, `fixtures/`, `test/`, `examples/`, or `testdata/`
    - Check if the CLI binary/script exists on PATH or in the project
 2. **If no suitable inputs or fixtures exist:** Mark as `? NEEDS HUMAN` with reason
-   "No test fixtures available — requires manual verification" and move on.
+   "No test fixtures available �?requires manual verification" and move on.
    Do NOT invent example inputs.
 3. If inputs are available: run the command and verify it exits successfully.
 
@@ -258,8 +258,8 @@ Record: command, exit code, output summary, pass/fail (or SKIPPED if no fixtures
 | Check | Result | Detail |
 |-------|--------|--------|
 | Test suite | {N} passed, {M} failed | {first failure if any} |
-| {CLI command 1} | ✓ / ✗ | {output summary} |
-| {CLI command 2} | ✓ / ✗ | {output summary} |
+| {CLI command 1} | �?/ �?| {output summary} |
+| {CLI command 2} | �?/ �?| {output summary} |
 ```
 
 **If all behavioral checks pass:** Continue to scan_antipatterns.
@@ -282,7 +282,7 @@ Categorize: 🛑 Blocker (prevents goal) | ⚠️ Warning (incomplete) | ℹ️ 
 <step name="audit_test_quality">
 **Verify that tests PROVE what they claim to prove.**
 
-This step catches test-level deceptions that pass all prior checks: files exist, are substantive, are wired, and tests pass — but the tests don't actually validate the requirement.
+This step catches test-level deceptions that pass all prior checks: files exist, are substantive, are wired, and tests pass �?but the tests don't actually validate the requirement.
 
 **1. Identify requirement-linked test files**
 
@@ -308,7 +308,7 @@ Search for scripts/utilities that generate expected values by running the system
 grep -rn -E "writeFileSync|writeFile|fs\.write|open\(.*w\)" "$TEST_DIRS"
 ```
 
-For each match, check if it also imports the system/service/module being tested. If a script both imports the system-under-test AND writes expected output values → CIRCULAR.
+For each match, check if it also imports the system/service/module being tested. If a script both imports the system-under-test AND writes expected output values �?CIRCULAR.
 
 **Circular test indicators:**
 - Script imports a service AND writes to fixture files
@@ -330,7 +330,7 @@ When a requirement demands comparison with an external source ("identical to X",
 - VALID: Expected value from external/legacy system output, manual capture, or independent oracle
 - PARTIAL: Expected value from mathematical derivation (proves formula, not system match)
 - CIRCULAR: Expected value from the system being tested
-- UNKNOWN: No provenance information — treat as SUSPECT
+- UNKNOWN: No provenance information �?treat as SUSPECT
 
 **5. Assertion strength**
 
@@ -344,13 +344,13 @@ For each test linked to a requirement, classify the strongest assertion:
 | Value | `toEqual(expected)`, `toBeCloseTo(x)` | Specific value |
 | Behavioral | Multi-step workflow assertions | End-to-end correctness |
 
-If a requirement demands value-level or behavioral-level proof and the test only has existence/type/status assertions → INSUFFICIENT.
+If a requirement demands value-level or behavioral-level proof and the test only has existence/type/status assertions �?INSUFFICIENT.
 
 **6. Coverage quantity**
 
 If a requirement specifies a quantity of test cases (e.g., "30 calculations"), check if the actual number of active (non-skipped) test cases meets the requirement.
 
-**Reporting — add to VERIFICATION.md:**
+**Reporting �?add to VERIFICATION.md:**
 
 ```markdown
 ### Test Quality Audit
@@ -358,12 +358,12 @@ If a requirement specifies a quantity of test cases (e.g., "30 calculations"), c
 | Test File | Linked Req | Active | Skipped | Circular | Assertion Level | Verdict |
 |-----------|-----------|--------|---------|----------|----------------|---------|
 
-**Disabled tests on requirements:** {N} → {BLOCKER if any req has ONLY disabled tests}
-**Circular patterns detected:** {N} → {BLOCKER if any}
-**Insufficient assertions:** {N} → {WARNING}
+**Disabled tests on requirements:** {N} �?{BLOCKER if any req has ONLY disabled tests}
+**Circular patterns detected:** {N} �?{BLOCKER if any}
+**Insufficient assertions:** {N} �?{WARNING}
 ```
 
-**Impact on status:** Any BLOCKER from test quality audit ��� overall status = `gaps_found`, regardless of other checks passing.
+**Impact on status:** Any BLOCKER from test quality audit ���?overall status = `gaps_found`, regardless of other checks passing.
 </step>
 
 <step name="identify_human_verification">
@@ -371,20 +371,20 @@ If a requirement specifies a quantity of test cases (e.g., "30 calculations"), c
 
 **Needs human if uncertain:** Complex wiring grep can't trace, dynamic state-dependent behavior, edge cases.
 
-Format each as: Test Name → What to do → Expected result → Why can't verify programmatically.
+Format each as: Test Name �?What to do �?Expected result �?Why can't verify programmatically.
 </step>
 
 <step name="determine_status">
 Classify status using this decision tree IN ORDER (most restrictive first):
 
 1. IF any truth FAILED, artifact MISSING/STUB, key link NOT_WIRED, blocker found, **or test quality audit found blockers (disabled requirement tests, circular tests)**:
-   → **gaps_found**
+   �?**gaps_found**
 
 2. IF the previous step produced ANY human verification items:
-   → **human_needed** (even if all truths VERIFIED and score is N/N)
+   �?**human_needed** (even if all truths VERIFIED and score is N/N)
 
 3. IF all checks pass AND no human verification items:
-   → **passed**
+   �?**passed**
 
 **passed is ONLY valid when no human verification items exist.**
 
@@ -397,15 +397,15 @@ Before reporting gaps, cross-reference each gap against later phases in the mile
 For each potential gap identified in determine_status:
 1. Check if the gap's failed truth or missing item is covered by a later phase's goal or success criteria
 2. **Match criteria:** The gap's concern appears in a later phase's goal text, success criteria text, or the later phase's name clearly suggests it covers this area
-3. If a clear match is found → move the gap to a `deferred` list with the matching phase reference and evidence text
-4. If no match in any later phase → keep as a real `gap`
+3. If a clear match is found �?move the gap to a `deferred` list with the matching phase reference and evidence text
+4. If no match in any later phase �?keep as a real `gap`
 
-**Important:** Be conservative. Only defer a gap when there is clear, specific evidence in a later phase. Vague or tangential matches should NOT cause deferral — when in doubt, keep it as a real gap.
+**Important:** Be conservative. Only defer a gap when there is clear, specific evidence in a later phase. Vague or tangential matches should NOT cause deferral �?when in doubt, keep it as a real gap.
 
 **Deferred items do NOT affect the status determination.** Recalculate after filtering:
-- If gaps list is now empty and no human items exist → `passed`
-- If gaps list is now empty but human items exist → `human_needed`
-- If gaps list still has items → `gaps_found`
+- If gaps list is now empty and no human items exist �?`passed`
+- If gaps list is now empty but human items exist �?`human_needed`
+- If gaps list still has items �?`gaps_found`
 
 Include deferred items in VERIFICATION.md frontmatter (`deferred:` section) and body (Deferred Items table) for transparency. If no deferred items exist, omit these sections.
 </step>
@@ -413,11 +413,11 @@ Include deferred items in VERIFICATION.md frontmatter (`deferred:` section) and 
 <step name="generate_fix_plans">
 If gaps_found:
 
-1. **Cluster related gaps:** API stub + component unwired → "Wire frontend to backend". Multiple missing → "Complete core implementation". Wiring only → "Connect existing components".
+1. **Cluster related gaps:** API stub + component unwired �?"Wire frontend to backend". Multiple missing �?"Complete core implementation". Wiring only �?"Connect existing components".
 
 2. **Generate plan per cluster:** Objective, 2-3 tasks (files/action/verify each), re-verify step. Keep focused: single concern per plan.
 
-3. **Order by dependency:** Fix missing → fix stubs → fix wiring → **fix test evidence** → verify.
+3. **Order by dependency:** Fix missing �?fix stubs �?fix wiring �?**fix test evidence** �?verify.
 </step>
 
 <step name="create_report">
@@ -427,7 +427,7 @@ REPORT_PATH="$PHASE_DIR/${PHASE_NUM}-VERIFICATION.md"
 
 Fill template sections: frontmatter (phase/timestamp/status/score), goal achievement, artifact table, wiring table, requirements coverage, anti-patterns, human verification, gaps summary, fix plans (if gaps_found), metadata.
 
-See ~/.claude/get-shit-done/templates/verification-report.md for complete template.
+See ~/.codex/get-shit-done/templates/verification-report.md for complete template.
 </step>
 
 <step name="return_to_orchestrator">
@@ -436,7 +436,7 @@ Return status (`passed` | `gaps_found` | `human_needed`), score (N/M must-haves)
 If gaps_found: list gaps + recommended fix plan names.
 If human_needed: list items requiring human testing.
 
-Orchestrator routes: `passed` → update_roadmap | `gaps_found` → create/execute fixes, re-verify | `human_needed` → present to user.
+Orchestrator routes: `passed` �?update_roadmap | `gaps_found` �?create/execute fixes, re-verify | `human_needed` �?present to user.
 </step>
 
 </process>

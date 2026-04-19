@@ -327,8 +327,8 @@ describe('GSDTools', () => {
   // ─── resolveGsdToolsPath() tests ────────────────────────────────────────
 
   describe('resolveGsdToolsPath()', () => {
-    it('prefers bundled gsd-tools over project .claude when the bundled file exists', async () => {
-      const localBinDir = join(tmpDir, '.claude', 'get-shit-done', 'bin');
+    it('prefers bundled gsd-tools over project .codex when the bundled file exists', async () => {
+      const localBinDir = join(tmpDir, '.codex', 'get-shit-done', 'bin');
       await mkdir(localBinDir, { recursive: true });
       await writeFile(join(localBinDir, 'gsd-tools.cjs'), '// stub');
 
@@ -344,13 +344,13 @@ describe('GSDTools', () => {
       const result = resolveGsdToolsPath(tmpDir);
       const expected = existsSync(BUNDLED_GSD_TOOLS_PATH)
         ? BUNDLED_GSD_TOOLS_PATH
-        : join(homedir(), '.claude', 'get-shit-done', 'bin', 'gsd-tools.cjs');
+        : join(homedir(), '.codex', 'get-shit-done', 'bin', 'gsd-tools.cjs');
 
       expect(result).toBe(expected);
     });
 
-    it('uses explicit gsdToolsPath when provided (overrides bundled / .claude resolution)', async () => {
-      const localBinDir = join(tmpDir, '.claude', 'get-shit-done', 'bin');
+    it('uses explicit gsdToolsPath when provided (overrides bundled / runtime-root resolution)', async () => {
+      const localBinDir = join(tmpDir, '.codex', 'get-shit-done', 'bin');
       await mkdir(localBinDir, { recursive: true });
       const scriptPath = join(localBinDir, 'gsd-tools.cjs');
       await writeFile(

@@ -5,7 +5,7 @@ Use after /gsd-execute-phase to verify that the evaluation strategy from AI-SPEC
 </purpose>
 
 <required_reading>
-@~/.claude/get-shit-done/references/ai-evals.md
+@~/.codex/get-shit-done/references/ai-evals.md
 </required_reading>
 
 <process>
@@ -25,9 +25,9 @@ AUDITOR_MODEL=$(gsd-sdk query resolve-model gsd-eval-auditor 2>/dev/null | jq -r
 
 Display banner:
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► EVAL AUDIT — PHASE {N}: {name}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?EVAL AUDIT 鈥?PHASE {N}: {name}
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 ```
 
 ## 1. Detect Input State
@@ -38,9 +38,9 @@ AI_SPEC_FILE=$(ls "${PHASE_DIR}"/*-AI-SPEC.md 2>/dev/null | head -1)
 EVAL_REVIEW_FILE=$(ls "${PHASE_DIR}"/*-EVAL-REVIEW.md 2>/dev/null | head -1)
 ```
 
-**State A** — AI-SPEC.md + SUMMARY.md exist: Full audit against spec
-**State B** — SUMMARY.md exists, no AI-SPEC.md: Audit against general best practices
-**State C** — No SUMMARY.md: Exit — "Phase {N} not executed. Run /gsd-execute-phase {N} first."
+**State A** 鈥?AI-SPEC.md + SUMMARY.md exist: Full audit against spec
+**State B** 鈥?SUMMARY.md exists, no AI-SPEC.md: Audit against general best practices
+**State C** 鈥?No SUMMARY.md: Exit 鈥?"Phase {N} not executed. Run /gsd-execute-phase {N} first."
 
 
 **Text mode (`workflow.text_mode: true` in config or `--text` flag):** Set `TEXT_MODE=true` if `--text` is present in `$ARGUMENTS` OR `text_mode` from init JSON is `true`. When TEXT_MODE is active, replace every `AskUserQuestion` call with a plain-text numbered list and ask the user to type their choice number. This is required for non-Claude runtimes (OpenAI Codex, Gemini CLI, etc.) where `AskUserQuestion` is not available.
@@ -48,8 +48,8 @@ EVAL_REVIEW_FILE=$(ls "${PHASE_DIR}"/*-EVAL-REVIEW.md 2>/dev/null | head -1)
 - header: "Existing Eval Review"
 - question: "EVAL-REVIEW.md already exists for Phase {N}."
 - options:
-  - "Re-audit — run fresh audit"
-  - "View — display current review and exit"
+  - "Re-audit 鈥?run fresh audit"
+  - "View 鈥?display current review and exit"
 
 If "View": display file, exit.
 If "Re-audit": continue.
@@ -65,20 +65,20 @@ Continue (non-blocking).
 ## 2. Gather Context Paths
 
 Build file list for auditor:
-- AI-SPEC.md (if exists — the planned eval strategy)
+- AI-SPEC.md (if exists 鈥?the planned eval strategy)
 - All SUMMARY.md files in phase dir
 - All PLAN.md files in phase dir
 
 ## 3. Spawn gsd-eval-auditor
 
 ```
-◆ Spawning eval auditor...
+鈼?Spawning eval auditor...
 ```
 
 Build prompt:
 
 ```markdown
-Read ~/.claude/agents/gsd-eval-auditor.md for instructions.
+Read ~/.codex/get-shit-done/agents/gsd-eval-auditor.md for instructions.
 
 <objective>
 Conduct evaluation coverage audit of Phase {phase_number}: {phase_name}
@@ -114,14 +114,14 @@ Read the written EVAL-REVIEW.md. Extract:
 ## 5. Display Summary
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► EVAL AUDIT COMPLETE — PHASE {N}: {name}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?EVAL AUDIT COMPLETE 鈥?PHASE {N}: {name}
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
-◆ Score: {overall_score}/100
-◆ Verdict: {verdict}
-◆ Critical Gaps: {critical_gap_count}
-◆ Output: {eval_review_path}
+鈼?Score: {overall_score}/100
+鈼?Verdict: {verdict}
+鈼?Critical Gaps: {critical_gap_count}
+鈼?Output: {eval_review_path}
 
 {If PRODUCTION READY:}
   Next step: /gsd-plan-phase (next phase) or deploy
@@ -139,7 +139,7 @@ Read the written EVAL-REVIEW.md. Extract:
 **If `commit_docs` is true:**
 ```bash
 git add "${EVAL_REVIEW_FILE}"
-git commit -m "docs({phase_slug}): add EVAL-REVIEW.md — score {overall_score}/100 ({verdict})"
+git commit -m "docs({phase_slug}): add EVAL-REVIEW.md 鈥?score {overall_score}/100 ({verdict})"
 ```
 
 </process>

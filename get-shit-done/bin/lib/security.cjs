@@ -163,7 +163,7 @@ const OBFUSCATION_PATTERN_ENTRIES = [
   },
   {
     pattern: /<\/?(system|human|assistant|user)\s*>/i,
-    message: 'Delimiter injection pattern: <system>/<assistant>/<user> tag detected',
+    message: 'Delimiter injection pattern: system/assistant/user boundary tag detected',
   },
   {
     pattern: /0x[0-9a-fA-F]{16,}/,

@@ -1,6 +1,6 @@
 <purpose>
 
-Drive milestone phases autonomously — all remaining phases, a range via `--from N`/`--to N`, or a single phase via `--only N`. For each incomplete phase: discuss → plan → execute using Skill() flat invocations. Pauses only for explicit user decisions (grey area acceptance, blockers, validation requests). Re-reads ROADMAP.md after each phase to catch dynamically inserted phases.
+Drive milestone phases autonomously 鈥?all remaining phases, a range via `--from N`/`--to N`, or a single phase via `--only N`. For each incomplete phase: discuss 鈫?plan 鈫?execute using Skill() flat invocations. Pauses only for explicit user decisions (grey area acceptance, blockers, validation requests). Re-reads ROADMAP.md after each phase to catch dynamically inserted phases.
 
 </purpose>
 
@@ -43,7 +43,7 @@ fi
 
 When `--only` is set, also set `FROM_PHASE` to the same value so existing filter logic applies.
 
-When `--interactive` is set, discuss runs inline with questions (not auto-answered), while plan and execute are dispatched as background agents. This keeps the main context lean — only discuss conversations accumulate — while preserving user input on all design decisions.
+When `--interactive` is set, discuss runs inline with questions (not auto-answered), while plan and execute are dispatched as background agents. This keeps the main context lean 鈥?only discuss conversations accumulate 鈥?while preserving user input on all design decisions.
 
 Bootstrap via milestone-level init:
 
@@ -54,17 +54,17 @@ if [[ "$INIT" == @file:* ]]; then INIT=$(cat "${INIT#@file:}"); fi
 
 Parse JSON for: `milestone_version`, `milestone_name`, `phase_count`, `completed_phases`, `roadmap_exists`, `state_exists`, `commit_docs`.
 
-**If `roadmap_exists` is false:** Error — "No ROADMAP.md found. Run `/gsd-new-milestone` first."
-**If `state_exists` is false:** Error — "No STATE.md found. Run `/gsd-new-milestone` first."
+**If `roadmap_exists` is false:** Error 鈥?"No ROADMAP.md found. Run `/gsd-new-milestone` first."
+**If `state_exists` is false:** Error 鈥?"No STATE.md found. Run `/gsd-new-milestone` first."
 
 Display startup banner:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► AUTONOMOUS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?AUTONOMOUS
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
- Milestone: {milestone_version} — {milestone_name}
+ Milestone: {milestone_version} 鈥?{milestone_name}
  Phases: {phase_count} total, {completed_phases} complete
 ```
 
@@ -89,7 +89,7 @@ Parse the JSON `phases` array.
 
 **Filter to incomplete phases:** Keep only phases where `disk_status !== "complete"` OR `roadmap_complete === false`.
 
-**Apply `--from N` filter:** If `FROM_PHASE` was provided, additionally filter out phases where `number < FROM_PHASE` (use numeric comparison — handles decimal phases like "5.1").
+**Apply `--from N` filter:** If `FROM_PHASE` was provided, additionally filter out phases where `number < FROM_PHASE` (use numeric comparison 鈥?handles decimal phases like "5.1").
 
 **Apply `--to N` filter:** If `TO_PHASE` was provided, additionally filter out phases where `number > TO_PHASE` (use numeric comparison). This limits execution to phases up through the target phase.
 
@@ -116,9 +116,9 @@ Exit cleanly.
 **If no incomplete phases remain:**
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► AUTONOMOUS ▸ COMPLETE 🎉
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?AUTONOMOUS 鈻?COMPLETE 馃帀
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
  All phases complete! Nothing left to do.
 ```
@@ -155,12 +155,12 @@ Extract `phase_name`, `goal`, `success_criteria` from each. Store for use in exe
 For the current phase, display the progress banner:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► AUTONOMOUS ▸ Phase {N}/{T}: {Name} [████░░░░] {P}%
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?AUTONOMOUS 鈻?Phase {N}/{T}: {Name} [鈻堚枅鈻堚枅鈻戔枒鈻戔枒] {P}%
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 ```
 
-Where N = current phase number (from the ROADMAP, e.g., 63), T = total milestone phases (from `phase_count` parsed in initialize step, e.g., 67). **Important:** T must be `phase_count` (the total number of phases in this milestone), NOT the count of remaining/incomplete phases. When phases are numbered 61-67, T=7 and the banner should read `Phase 63/7` (phase 63, 7 total in milestone), not `Phase 63/3` (which would confuse 3 remaining with 3 total). P = percentage of all milestone phases completed so far. Calculate P as: (number of phases with `disk_status` "complete" from the latest `roadmap analyze` / T × 100). Use █ for filled and ░ for empty segments in the progress bar (8 characters wide).
+Where N = current phase number (from the ROADMAP, e.g., 63), T = total milestone phases (from `phase_count` parsed in initialize step, e.g., 67). **Important:** T must be `phase_count` (the total number of phases in this milestone), NOT the count of remaining/incomplete phases. When phases are numbered 61-67, T=7 and the banner should read `Phase 63/7` (phase 63, 7 total in milestone), not `Phase 63/3` (which would confuse 3 remaining with 3 total). P = percentage of all milestone phases completed so far. Calculate P as: (number of phases with `disk_status` "complete" from the latest `roadmap analyze` / T 脳 100). Use 鈻?for filled and 鈻?for empty segments in the progress bar (8 characters wide).
 
 **Alternative display when phase numbers exceed total** (e.g., multi-milestone projects where phases are numbered globally): If N > T (phase number exceeds milestone phase count), use the format `Phase {N} ({position}/{T})` where `position` is the 1-based index of this phase among incomplete phases being processed. This prevents confusing displays like "Phase 63/5".
 
@@ -174,10 +174,10 @@ PHASE_STATE=$(gsd-sdk query init.phase-op ${PHASE_NUM})
 
 Parse `has_context` from JSON.
 
-**If has_context is true:** Skip discuss — context already gathered. Display:
+**If has_context is true:** Skip discuss 鈥?context already gathered. Display:
 
 ```
-Phase ${PHASE_NUM}: Context exists — skipping discuss.
+Phase ${PHASE_NUM}: Context exists 鈥?skipping discuss.
 ```
 
 Proceed to 3b.
@@ -188,10 +188,10 @@ Proceed to 3b.
 SKIP_DISCUSS=$(gsd-sdk query config-get workflow.skip_discuss 2>/dev/null || echo "false")
 ```
 
-**If SKIP_DISCUSS is `true`:** Skip discuss entirely — the ROADMAP phase description is the spec. Display:
+**If SKIP_DISCUSS is `true`:** Skip discuss entirely 鈥?the ROADMAP phase description is the spec. Display:
 
 ```
-Phase ${PHASE_NUM}: Discuss skipped (workflow.skip_discuss=true) — using ROADMAP phase goal as spec.
+Phase ${PHASE_NUM}: Discuss skipped (workflow.skip_discuss=true) 鈥?using ROADMAP phase goal as spec.
 ```
 
 Write a minimal CONTEXT.md so downstream plan-phase has valid input. Get phase details:
@@ -220,7 +220,7 @@ Extract `goal` and `requirements` from JSON. Write `${phase_dir}/${padded_phase}
 ## Implementation Decisions
 
 ### Claude's Discretion
-All implementation choices are at Claude's discretion — discuss phase was skipped per user setting. Use ROADMAP phase goal, success criteria, and codebase conventions to guide decisions.
+All implementation choices are at Claude's discretion 鈥?discuss phase was skipped per user setting. Use ROADMAP phase goal, success criteria, and codebase conventions to guide decisions.
 
 </decisions>
 
@@ -234,14 +234,14 @@ Codebase context will be gathered during plan-phase research.
 <specifics>
 ## Specific Ideas
 
-No specific requirements — discuss phase skipped. Refer to ROADMAP phase description and success criteria.
+No specific requirements 鈥?discuss phase skipped. Refer to ROADMAP phase description and success criteria.
 
 </specifics>
 
 <deferred>
 ## Deferred Ideas
 
-None — discuss phase skipped.
+None 鈥?discuss phase skipped.
 
 </deferred>
 ```
@@ -256,8 +256,8 @@ Proceed to 3b.
 
 **If SKIP_DISCUSS is `false` (or unset):**
 
-**IMPORTANT — Discuss must be single-pass in autonomous mode.**
-The discuss step in `--auto` mode MUST NOT loop. If CONTEXT.md already exists after discuss completes, do NOT re-invoke discuss for the same phase. The `has_context` check below is authoritative — once true, discuss is done for this phase regardless of perceived "gaps" in the context file.
+**IMPORTANT 鈥?Discuss must be single-pass in autonomous mode.**
+The discuss step in `--auto` mode MUST NOT loop. If CONTEXT.md already exists after discuss completes, do NOT re-invoke discuss for the same phase. The `has_context` check below is authoritative 鈥?once true, discuss is done for this phase regardless of perceived "gaps" in the context file.
 
 **If `INTERACTIVE` is set:** Run the standard discuss-phase skill inline (asks interactive questions, waits for user answers). This preserves user input on all design decisions while keeping plan+execute out of the main context:
 
@@ -273,7 +273,7 @@ After discuss completes (either mode), verify context was written:
 PHASE_STATE=$(gsd-sdk query init.phase-op ${PHASE_NUM})
 ```
 
-Check `has_context`. If false → go to handle_blocker: "Discuss for phase ${PHASE_NUM} did not produce CONTEXT.md."
+Check `has_context`. If false 鈫?go to handle_blocker: "Discuss for phase ${PHASE_NUM} did not produce CONTEXT.md."
 
 **3a.5. UI Design Contract (Frontend Phases)**
 
@@ -297,7 +297,7 @@ UI_PHASE_CFG=$(gsd-sdk query config-get workflow.ui_phase 2>/dev/null || echo "t
 Display:
 
 ```
-Phase ${PHASE_NUM}: Frontend phase detected — generating UI design contract...
+Phase ${PHASE_NUM}: Frontend phase detected 鈥?generating UI design contract...
 ```
 
 ```
@@ -310,7 +310,7 @@ Verify UI-SPEC was created:
 UI_SPEC_FILE=$(ls "${PHASE_DIR}"/*-UI-SPEC.md 2>/dev/null | head -1)
 ```
 
-**If `UI_SPEC_FILE` is still empty after ui-phase:** Display warning `Phase ${PHASE_NUM}: UI-SPEC generation did not produce output — continuing without design contract.` and proceed to 3b.
+**If `UI_SPEC_FILE` is still empty after ui-phase:** Display warning `Phase ${PHASE_NUM}: UI-SPEC generation did not produce output 鈥?continuing without design contract.` and proceed to 3b.
 
 **If `HAS_UI` is 1 (no frontend indicators) OR `UI_SPEC_FILE` is not empty (UI-SPEC already exists) OR `UI_PHASE_CFG` is `false`:** Skip silently to 3b.
 
@@ -334,7 +334,7 @@ Store the agent task_id. After discuss for the next phase completes (or if no ne
 Skill(skill="gsd-plan-phase", args="${PHASE_NUM}")
 ```
 
-Verify plan produced output — re-run `init phase-op` and check `has_plans`. If false → go to handle_blocker: "Plan phase ${PHASE_NUM} did not produce any plans."
+Verify plan produced output 鈥?re-run `init phase-op` and check `has_plans`. If false 鈫?go to handle_blocker: "Plan phase ${PHASE_NUM} did not produce any plans."
 
 **3c. Execute**
 
@@ -403,7 +403,7 @@ Go to handle_blocker: "Execute phase ${PHASE_NUM} did not produce verification r
 
 Display:
 ```
-Phase ${PHASE_NUM} ✅ ${PHASE_NAME} — Verification passed
+Phase ${PHASE_NUM} 鉁?${PHASE_NAME} 鈥?Verification passed
 ```
 
 Proceed to iterate step.
@@ -420,19 +420,19 @@ Display the items, then ask user via AskUserQuestion:
 
 On **"Validate now"**: Present the specific items from VERIFICATION.md's human_verification section. After user reviews, ask:
 - **question:** "Validation result?"
-- **options:** "All good — continue" / "Found issues"
+- **options:** "All good 鈥?continue" / "Found issues"
 
-On "All good — continue": Display `Phase ${PHASE_NUM} ✅ Human validation passed` and proceed to iterate step.
+On "All good 鈥?continue": Display `Phase ${PHASE_NUM} 鉁?Human validation passed` and proceed to iterate step.
 
 On "Found issues": Go to handle_blocker with the user's reported issues as the description.
 
-On **"Continue without validation"**: Display `Phase ${PHASE_NUM} ⏭ Human validation deferred` and proceed to iterate step.
+On **"Continue without validation"**: Display `Phase ${PHASE_NUM} 鈴?Human validation deferred` and proceed to iterate step.
 
 **If `gaps_found`:**
 
 Read gap summary from VERIFICATION.md (score and missing items). Display:
 ```
-⚠ Phase ${PHASE_NUM}: ${PHASE_NAME} — Gaps Found
+鈿?Phase ${PHASE_NUM}: ${PHASE_NAME} 鈥?Gaps Found
 Score: {N}/{M} must-haves verified
 ```
 
@@ -446,7 +446,7 @@ On **"Run gap closure"**: Execute gap closure cycle (limit: 1 attempt):
 Skill(skill="gsd-plan-phase", args="${PHASE_NUM} --gaps")
 ```
 
-Verify gap plans were created — re-run `init phase-op ${PHASE_NUM}` and check `has_plans`. If no new gap plans → go to handle_blocker: "Gap closure planning for phase ${PHASE_NUM} did not produce plans."
+Verify gap plans were created 鈥?re-run `init phase-op ${PHASE_NUM}` and check `has_plans`. If no new gap plans 鈫?go to handle_blocker: "Gap closure planning for phase ${PHASE_NUM} did not produce plans."
 
 Re-execute:
 ```
@@ -469,13 +469,13 @@ On "Stop autonomous mode": Go to handle_blocker.
 
 This limits gap closure to 1 automatic retry to prevent infinite loops.
 
-On **"Continue without fixing"**: Display `Phase ${PHASE_NUM} ⏭ Gaps deferred` and proceed to iterate step.
+On **"Continue without fixing"**: Display `Phase ${PHASE_NUM} 鈴?Gaps deferred` and proceed to iterate step.
 
-On **"Stop autonomous mode"**: Go to handle_blocker with "User stopped — gaps remain in phase ${PHASE_NUM}".
+On **"Stop autonomous mode"**: Go to handle_blocker with "User stopped 鈥?gaps remain in phase ${PHASE_NUM}".
 
 **3d.5. UI Review (Frontend Phases)**
 
-> Run after any successful execution routing (passed, human_needed accepted, or gaps deferred/accepted) — before proceeding to the iterate step.
+> Run after any successful execution routing (passed, human_needed accepted, or gaps deferred/accepted) 鈥?before proceeding to the iterate step.
 
 Check if this phase had a UI-SPEC (created in step 3a.5 or pre-existing):
 
@@ -494,14 +494,14 @@ UI_REVIEW_CFG=$(gsd-sdk query config-get workflow.ui_review 2>/dev/null || echo 
 Display:
 
 ```
-Phase ${PHASE_NUM}: Frontend phase with UI-SPEC — running UI review audit...
+Phase ${PHASE_NUM}: Frontend phase with UI-SPEC 鈥?running UI review audit...
 ```
 
 ```
 Skill(skill="gsd-ui-review", args="${PHASE_NUM}")
 ```
 
-Display the review result summary (score from UI-REVIEW.md if produced). Continue to iterate step regardless of score — UI review is advisory, not blocking.
+Display the review result summary (score from UI-REVIEW.md if produced). Continue to iterate step regardless of score 鈥?UI review is advisory, not blocking.
 
 **If `UI_SPEC_FILE` is empty OR `UI_REVIEW_CFG` is `false`:** Skip silently to iterate step.
 
@@ -513,11 +513,11 @@ Display the review result summary (score from UI-REVIEW.md if produced). Continu
 
 > Full instructions are in `get-shit-done/references/autonomous-smart-discuss.md`. Read that file now and follow it exactly.
 
-Smart discuss is an autonomous-optimized variant of `gsd-discuss-phase`. It proposes grey area answers in batch tables — the user accepts or overrides per area — and writes an identical CONTEXT.md to what discuss-phase produces.
+Smart discuss is an autonomous-optimized variant of `gsd-discuss-phase`. It proposes grey area answers in batch tables 鈥?the user accepts or overrides per area 鈥?and writes an identical CONTEXT.md to what discuss-phase produces.
 
 **Inputs:** `PHASE_NUM` from execute_phase.
 
-Read and execute: `$HOME/.claude/get-shit-done/references/autonomous-smart-discuss.md`
+Read and execute: `$HOME/.codex/get-shit-done/references/autonomous-smart-discuss.md`
 
 </step>
 
@@ -530,9 +530,9 @@ Read and execute: `$HOME/.claude/get-shit-done/references/autonomous-smart-discu
 **If `TO_PHASE` is set and current phase number >= `TO_PHASE`:** The target phase has been reached. Do not iterate further. Display:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► AUTONOMOUS ▸ --to ${TO_PHASE} REACHED
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?AUTONOMOUS 鈻?--to ${TO_PHASE} REACHED
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
  Completed through phase ${TO_PHASE} as requested.
  Remaining phases were not executed.
@@ -540,7 +540,7 @@ Read and execute: `$HOME/.claude/get-shit-done/references/autonomous-smart-discu
  Resume with: /gsd-autonomous --from ${next_incomplete_phase}
 ```
 
-Proceed directly to lifecycle step (which handles partial completion — skips audit/complete/cleanup since not all phases are done). Exit cleanly.
+Proceed directly to lifecycle step (which handles partial completion 鈥?skips audit/complete/cleanup since not all phases are done). Exit cleanly.
 
 **Otherwise:** After each phase completes, re-read ROADMAP.md to catch phases inserted mid-execution (decimal phases like 5.1):
 
@@ -569,7 +569,7 @@ If incomplete phases remain: proceed to next phase, loop back to execute_phase.
 2. Immediately start discuss for Phase N+1 (the next incomplete phase) while Phase N builds
 3. Before starting plan for Phase N+1, wait for Phase N's execute agent to complete and handle its post-execution routing (verification, gap closure, etc.)
 
-This means the user is always answering discuss questions (lightweight, interactive) while the heavy work (planning, code generation) runs in the background. The main context only accumulates discuss conversations — plan and execute contexts are isolated in their agents.
+This means the user is always answering discuss questions (lightweight, interactive) while the heavy work (planning, code generation) runs in the background. The main context only accumulates discuss conversations 鈥?plan and execute contexts are isolated in their agents.
 
 If all phases complete, proceed to lifecycle step.
 
@@ -582,30 +582,30 @@ If all phases complete, proceed to lifecycle step.
 **If `ONLY_PHASE` is set:** Skip lifecycle. A single phase does not trigger audit/complete/cleanup. Display:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► AUTONOMOUS ▸ PHASE ${ONLY_PHASE} COMPLETE ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?AUTONOMOUS 鈻?PHASE ${ONLY_PHASE} COMPLETE 鉁?
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
- Phase ${ONLY_PHASE}: ${PHASE_NAME} — Done
+ Phase ${ONLY_PHASE}: ${PHASE_NAME} 鈥?Done
  Mode: Single phase (--only)
 
- Lifecycle skipped — run /gsd-autonomous without --only
+ Lifecycle skipped 鈥?run /gsd-autonomous without --only
  after all phases complete to trigger audit/complete/cleanup.
 ```
 
 Exit cleanly.
 
-**Otherwise:** After all phases complete, run the milestone lifecycle sequence: audit → complete → cleanup.
+**Otherwise:** After all phases complete, run the milestone lifecycle sequence: audit 鈫?complete 鈫?cleanup.
 
 Display lifecycle transition banner:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► AUTONOMOUS ▸ LIFECYCLE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?AUTONOMOUS 鈻?LIFECYCLE
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
- All phases complete → Starting lifecycle: audit → complete → cleanup
- Milestone: {milestone_version} — {milestone_name}
+ All phases complete 鈫?Starting lifecycle: audit 鈫?complete 鈫?cleanup
+ Milestone: {milestone_version} 鈥?{milestone_name}
 ```
 
 **5a. Audit**
@@ -623,46 +623,46 @@ AUDIT_STATUS=$(grep "^status:" "${AUDIT_FILE}" 2>/dev/null | head -1 | cut -d: -
 
 **If AUDIT_STATUS is empty** (no audit file or no status field):
 
-Go to handle_blocker: "Audit did not produce results — audit file missing or malformed."
+Go to handle_blocker: "Audit did not produce results 鈥?audit file missing or malformed."
 
 **If `passed`:**
 
 Display:
 ```
-Audit ✅ passed — proceeding to complete milestone
+Audit 鉁?passed 鈥?proceeding to complete milestone
 ```
 
-Proceed to 5b (no user pause — per CTRL-01).
+Proceed to 5b (no user pause 鈥?per CTRL-01).
 
 **If `gaps_found`:**
 
 Read the gaps summary from the audit file. Display:
 ```
-⚠ Audit: Gaps Found
+鈿?Audit: Gaps Found
 ```
 
 Ask user via AskUserQuestion:
 - **question:** "Milestone audit found gaps. How to proceed?"
-- **options:** "Continue anyway — accept gaps" / "Stop — fix gaps manually"
+- **options:** "Continue anyway 鈥?accept gaps" / "Stop 鈥?fix gaps manually"
 
-On **"Continue anyway"**: Display `Audit ⏭ Gaps accepted — proceeding to complete milestone` and proceed to 5b.
+On **"Continue anyway"**: Display `Audit 鈴?Gaps accepted 鈥?proceeding to complete milestone` and proceed to 5b.
 
-On **"Stop"**: Go to handle_blocker with "User stopped — audit gaps remain. Run /gsd-audit-milestone to review, then /gsd-complete-milestone when ready."
+On **"Stop"**: Go to handle_blocker with "User stopped 鈥?audit gaps remain. Run /gsd-audit-milestone to review, then /gsd-complete-milestone when ready."
 
 **If `tech_debt`:**
 
 Read the tech debt summary from the audit file. Display:
 ```
-⚠ Audit: Tech Debt Identified
+鈿?Audit: Tech Debt Identified
 ```
 
 Show the summary, then ask user via AskUserQuestion:
 - **question:** "Milestone audit found tech debt. How to proceed?"
-- **options:** "Continue with tech debt" / "Stop — address debt first"
+- **options:** "Continue with tech debt" / "Stop 鈥?address debt first"
 
-On **"Continue with tech debt"**: Display `Audit ⏭ Tech debt acknowledged — proceeding to complete milestone` and proceed to 5b.
+On **"Continue with tech debt"**: Display `Audit 鈴?Tech debt acknowledged 鈥?proceeding to complete milestone` and proceed to 5b.
 
-On **"Stop"**: Go to handle_blocker with "User stopped — tech debt to address. Run /gsd-audit-milestone to review details."
+On **"Stop"**: Go to handle_blocker with "User stopped 鈥?tech debt to address. Run /gsd-audit-milestone to review details."
 
 **5b. Complete Milestone**
 
@@ -684,22 +684,22 @@ If the archive file does not exist, go to handle_blocker: "Complete milestone di
 Skill(skill="gsd-cleanup")
 ```
 
-Cleanup shows its own dry-run and asks user for approval internally — this is an acceptable pause per CTRL-01 since it's an explicit decision about file deletion.
+Cleanup shows its own dry-run and asks user for approval internally 鈥?this is an acceptable pause per CTRL-01 since it's an explicit decision about file deletion.
 
 **5d. Final Completion**
 
 Display final completion banner:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► AUTONOMOUS ▸ COMPLETE 🎉
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?AUTONOMOUS 鈻?COMPLETE 馃帀
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
- Milestone: {milestone_version} — {milestone_name}
- Status: Complete ✅
- Lifecycle: audit ✅ → complete ✅ → cleanup ✅
+ Milestone: {milestone_version} 鈥?{milestone_name}
+ Status: Complete 鉁?
+ Lifecycle: audit 鉁?鈫?complete 鉁?鈫?cleanup 鉁?
 
- Ship it! 🚀
+ Ship it! 馃殌
 ```
 
 </step>
@@ -713,20 +713,20 @@ When any phase operation fails or a blocker is detected, present 3 options via A
 **Prompt:** "Phase {N} ({Name}) encountered an issue: {description}"
 
 **Options:**
-1. **"Fix and retry"** — Re-run the failed step (discuss, plan, or execute) for this phase
-2. **"Skip this phase"** — Mark phase as skipped, continue to the next incomplete phase
-3. **"Stop autonomous mode"** — Display summary of progress so far and exit cleanly
+1. **"Fix and retry"** 鈥?Re-run the failed step (discuss, plan, or execute) for this phase
+2. **"Skip this phase"** 鈥?Mark phase as skipped, continue to the next incomplete phase
+3. **"Stop autonomous mode"** 鈥?Display summary of progress so far and exit cleanly
 
 **On "Fix and retry":** Loop back to the failed step within execute_phase. If the same step fails again after retry, re-present these options.
 
-**On "Skip this phase":** Log `Phase {N} ⏭ {Name} — Skipped by user` and proceed to iterate.
+**On "Skip this phase":** Log `Phase {N} 鈴?{Name} 鈥?Skipped by user` and proceed to iterate.
 
 **On "Stop autonomous mode":** Display progress summary:
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► AUTONOMOUS ▸ STOPPED
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?AUTONOMOUS 鈻?STOPPED
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
  Completed: {list of completed phases}
  Skipped: {list of skipped phases}
@@ -740,14 +740,14 @@ When any phase operation fails or a blocker is detected, present 3 options via A
 </process>
 
 <success_criteria>
-- [ ] All incomplete phases executed in order (smart discuss → ui-phase → plan → execute → ui-review each)
+- [ ] All incomplete phases executed in order (smart discuss 鈫?ui-phase 鈫?plan 鈫?execute 鈫?ui-review each)
 - [ ] Smart discuss proposes grey area answers in tables, user accepts or overrides per area
 - [ ] Progress banners displayed between phases
 - [ ] Execute-phase invoked with --no-transition (autonomous manages transitions)
 - [ ] Post-execution verification reads VERIFICATION.md and routes on status
-- [ ] Passed verification → automatic continue to next phase
-- [ ] Human-needed verification → user prompted to validate or skip
-- [ ] Gaps-found → user offered gap closure, continue, or stop
+- [ ] Passed verification 鈫?automatic continue to next phase
+- [ ] Human-needed verification 鈫?user prompted to validate or skip
+- [ ] Gaps-found 鈫?user offered gap closure, continue, or stop
 - [ ] Gap closure limited to 1 retry (prevents infinite loops)
 - [ ] Plan-phase and execute-phase failures route to handle_blocker
 - [ ] ROADMAP.md re-read after each phase (catches inserted phases)
@@ -757,17 +757,17 @@ When any phase operation fails or a blocker is detected, present 3 options via A
 - [ ] After all phases complete, lifecycle step is invoked (not manual suggestion)
 - [ ] Lifecycle transition banner displayed before audit
 - [ ] Audit invoked via Skill(skill="gsd-audit-milestone")
-- [ ] Audit result routing: passed → auto-continue, gaps_found → user decides, tech_debt → user decides
+- [ ] Audit result routing: passed 鈫?auto-continue, gaps_found 鈫?user decides, tech_debt 鈫?user decides
 - [ ] Audit technical failure (no file/no status) routes to handle_blocker
 - [ ] Complete-milestone invoked via Skill() with ${milestone_version} arg
-- [ ] Cleanup invoked via Skill() — internal confirmation is acceptable (CTRL-01)
+- [ ] Cleanup invoked via Skill() 鈥?internal confirmation is acceptable (CTRL-01)
 - [ ] Final completion banner displayed after lifecycle
 - [ ] Progress bar uses phase number / total milestone phases (not position among incomplete), with fallback display when phase numbers exceed total
 - [ ] Smart discuss documents relationship to discuss-phase with CTRL-03 note
 - [ ] Frontend phases get UI-SPEC generated before planning (step 3a.5) if not already present
 - [ ] Frontend phases get UI review audit after successful execution (step 3d.5) if UI-SPEC exists
 - [ ] UI phase and UI review respect workflow.ui_phase and workflow.ui_review config toggles
-- [ ] UI review is advisory (non-blocking) — phase proceeds to iterate regardless of score
+- [ ] UI review is advisory (non-blocking) 鈥?phase proceeds to iterate regardless of score
 - [ ] `--only N` restricts execution to exactly one phase
 - [ ] `--only N` skips lifecycle step (audit/complete/cleanup)
 - [ ] `--only N` exits cleanly after single phase completes

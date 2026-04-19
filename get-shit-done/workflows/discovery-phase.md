@@ -28,16 +28,16 @@ Claude's training data is 6-18 months stale. Always verify.
 2. **Official docs** - When Context7 lacks coverage
 3. **WebSearch LAST** - For comparisons and trends only
 
-See ~/.claude/get-shit-done/templates/discovery.md `<discovery_protocol>` for full protocol.
+See ~/.codex/get-shit-done/templates/discovery.md `<discovery_protocol>` for full protocol.
 </source_hierarchy>
 
 <process>
 
 <step name="determine_depth">
 Check the depth parameter passed from plan-phase.md:
-- `depth=verify` → Level 1 (Quick Verification)
-- `depth=standard` → Level 2 (Standard Discovery)
-- `depth=deep` → Level 3 (Deep Dive)
+- `depth=verify` 鈫?Level 1 (Quick Verification)
+- `depth=standard` 鈫?Level 2 (Standard Discovery)
+- `depth=deep` 鈫?Level 3 (Deep Dive)
 
 Route to appropriate level workflow below.
 </step>
@@ -105,9 +105,9 @@ For: Choosing between options, new external integration.
    - "[option] known issues"
    - "[option] with [our stack]"
 
-5. **Cross-verify:** Any WebSearch finding → confirm with Context7/official docs.
+5. **Cross-verify:** Any WebSearch finding 鈫?confirm with Context7/official docs.
 
-6. **Create DISCOVERY.md** using ~/.claude/get-shit-done/templates/discovery.md structure:
+6. **Create DISCOVERY.md** using ~/.codex/get-shit-done/templates/discovery.md structure:
 
    - Summary with recommendation
    - Key findings per option
@@ -126,7 +126,7 @@ For: Architectural decisions, novel problems, high-risk choices.
 
 **Process:**
 
-1. **Scope the discovery** using ~/.claude/get-shit-done/templates/discovery.md:
+1. **Scope the discovery** using ~/.codex/get-shit-done/templates/discovery.md:
 
    - Define clear scope
    - Define include/exclude boundaries
@@ -154,16 +154,16 @@ For: Architectural decisions, novel problems, high-risk choices.
 
 5. **Cross-verify ALL findings:**
 
-   - Every WebSearch claim → verify with authoritative source
+   - Every WebSearch claim 鈫?verify with authoritative source
    - Mark what's verified vs assumed
    - Flag contradictions
 
 6. **Create comprehensive DISCOVERY.md:**
 
-   - Full structure from ~/.claude/get-shit-done/templates/discovery.md
+   - Full structure from ~/.codex/get-shit-done/templates/discovery.md
    - Quality report with source attribution
    - Confidence by finding
-   - If LOW confidence on any critical finding → add validation checkpoints
+   - If LOW confidence on any critical finding 鈫?add validation checkpoints
 
 7. **Confidence gate:** If overall confidence is LOW, present options before proceeding.
 
@@ -184,7 +184,7 @@ Ask: What do we need to learn before we can plan this phase?
   </step>
 
 <step name="create_discovery_scope">
-Use ~/.claude/get-shit-done/templates/discovery.md.
+Use ~/.codex/get-shit-done/templates/discovery.md.
 
 Include:
 
@@ -285,7 +285,7 @@ NOTE: DISCOVERY.md is NOT committed separately. It will be committed with phase 
 - All WebSearch findings verified against authoritative sources
 - DISCOVERY.md created with comprehensive analysis
 - Quality report with source attribution
-- If LOW confidence findings → validation checkpoints defined
+- If LOW confidence findings 鈫?validation checkpoints defined
 - Confidence gate passed
 - Ready to inform PLAN.md creation
 </success_criteria>

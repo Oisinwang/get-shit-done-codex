@@ -5,13 +5,13 @@ UI-SPEC.md locks spacing, typography, color, copywriting, and design system deci
 </purpose>
 
 <required_reading>
-@~/.claude/get-shit-done/references/ui-brand.md
+@~/.codex/get-shit-done/references/ui-brand.md
 </required_reading>
 
 <available_agent_types>
-Valid GSD subagent types (use exact names — do not fall back to 'general-purpose'):
-- gsd-ui-researcher — Researches UI/UX approaches
-- gsd-ui-checker — Reviews UI implementation quality
+Valid GSD subagent types (use exact names 鈥?do not fall back to 'general-purpose'):
+- gsd-ui-researcher 鈥?Researches UI/UX approaches
+- gsd-ui-checker 鈥?Reviews UI implementation quality
 </available_agent_types>
 
 <process>
@@ -31,7 +31,8 @@ Parse JSON for: `phase_dir`, `phase_number`, `phase_name`, `phase_slug`, `padded
 
 Detect sketch findings:
 ```bash
-SKETCH_FINDINGS_PATH=$(ls ./.claude/skills/sketch-findings-*/SKILL.md 2>/dev/null | head -1)
+SKETCH_FINDINGS_PATH=$(ls ./.codex/skills/sketch-findings-*/SKILL.md 2>/dev/null | head -1)
+[ -n "$SKETCH_FINDINGS_PATH" ] || SKETCH_FINDINGS_PATH=$(ls ./.claude/skills/sketch-findings-*/SKILL.md 2>/dev/null | head -1)
 ```
 
 Resolve UI agent models:
@@ -53,7 +54,7 @@ UI phase is disabled in config. Enable via /gsd-settings.
 ```
 Exit workflow.
 
-**If `planning_exists` is false:** Error — run `/gsd-new-project` first.
+**If `planning_exists` is false:** Error 鈥?run `/gsd-new-project` first.
 
 ## 2. Parse and Validate Phase
 
@@ -71,7 +72,7 @@ PHASE_INFO=$(gsd-sdk query roadmap.get-phase "${PHASE}")
 ```
 No CONTEXT.md found for Phase {N}.
 Recommended: run /gsd-discuss-phase {N} first to capture design preferences.
-Continuing without user decisions — UI researcher will ask all questions.
+Continuing without user decisions 鈥?UI researcher will ask all questions.
 ```
 Continue (non-blocking).
 
@@ -84,9 +85,9 @@ Continue (non-blocking).
 
 **If `SKETCH_FINDINGS_PATH` is not empty:**
 ```
-⚡ Sketch findings detected: {SKETCH_FINDINGS_PATH}
+鈿?Sketch findings detected: {SKETCH_FINDINGS_PATH}
    Validated design decisions from /gsd-sketch will be loaded into the UI researcher.
-   Pre-validated decisions (layout, palette, typography, spacing) should be treated as locked — not re-asked.
+   Pre-validated decisions (layout, palette, typography, spacing) should be treated as locked 鈥?not re-asked.
 ```
 
 ## 4. Check Existing UI-SPEC
@@ -101,9 +102,9 @@ UI_SPEC_FILE=$(ls "${PHASE_DIR}"/*-UI-SPEC.md 2>/dev/null | head -1)
 - header: "Existing UI-SPEC"
 - question: "UI-SPEC.md already exists for Phase {N}. What would you like to do?"
 - options:
-  - "Update — re-run researcher with existing as baseline"
-  - "View — display current UI-SPEC and exit"
-  - "Skip — keep current UI-SPEC, proceed to verification"
+  - "Update 鈥?re-run researcher with existing as baseline"
+  - "View 鈥?display current UI-SPEC and exit"
+  - "Skip 鈥?keep current UI-SPEC, proceed to verification"
 
 If "View": display file contents, exit.
 If "Skip": proceed to step 7 (checker).
@@ -113,17 +114,17 @@ If "Update": continue to step 5.
 
 Display:
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► UI DESIGN CONTRACT — PHASE {N}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?UI DESIGN CONTRACT 鈥?PHASE {N}
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
-◆ Spawning UI researcher...
+鈼?Spawning UI researcher...
 ```
 
 Build prompt:
 
 ```markdown
-Read ~/.claude/agents/gsd-ui-researcher.md for instructions.
+Read ~/.codex/get-shit-done/agents/gsd-ui-researcher.md for instructions.
 
 <objective>
 Create UI design contract for Phase {phase_number}: {phase_name}
@@ -135,15 +136,15 @@ Answer: "What visual and interaction contracts does this phase need?"
 - {roadmap_path} (Roadmap)
 - {requirements_path} (Requirements)
 - {context_path} (USER DECISIONS from /gsd-discuss-phase)
-- {research_path} (Technical Research — stack decisions)
-- {SKETCH_FINDINGS_PATH} (Sketch Findings — validated design decisions, CSS patterns, visual direction from /gsd-sketch, if exists)
+- {research_path} (Technical Research 鈥?stack decisions)
+- {SKETCH_FINDINGS_PATH} (Sketch Findings 鈥?validated design decisions, CSS patterns, visual direction from /gsd-sketch, if exists)
 </files_to_read>
 
 ${AGENT_SKILLS_UI}
 
 <output>
 Write to: {phase_dir}/{padded_phase}-UI-SPEC.md
-Template: ~/.claude/get-shit-done/templates/UI-SPEC.md
+Template: ~/.codex/get-shit-done/templates/UI-SPEC.md
 </output>
 
 <config>
@@ -176,17 +177,17 @@ Display blocker details and options. Exit workflow.
 
 Display:
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► VERIFYING UI-SPEC
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?VERIFYING UI-SPEC
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
-◆ Spawning UI checker...
+鈼?Spawning UI checker...
 ```
 
 Build prompt:
 
 ```markdown
-Read ~/.claude/agents/gsd-ui-checker.md for instructions.
+Read ~/.codex/get-shit-done/agents/gsd-ui-checker.md for instructions.
 
 <objective>
 Validate UI design contract for Phase {phase_number}: {phase_name}
@@ -194,9 +195,9 @@ Check all 6 dimensions. Return APPROVED or BLOCKED.
 </objective>
 
 <files_to_read>
-- {phase_dir}/{padded_phase}-UI-SPEC.md (UI Design Contract — PRIMARY INPUT)
-- {context_path} (USER DECISIONS — check compliance)
-- {research_path} (Technical Research — check stack alignment)
+- {phase_dir}/{padded_phase}-UI-SPEC.md (UI Design Contract 鈥?PRIMARY INPUT)
+- {context_path} (USER DECISIONS 鈥?check compliance)
+- {research_path} (Technical Research 鈥?check stack alignment)
 </files_to_read>
 
 ${AGENT_SKILLS_UI_CHECKER}
@@ -243,7 +244,7 @@ Do NOT re-ask the user questions that are already answered.
 </revision>
 ```
 
-- After researcher returns → re-spawn checker (step 7)
+- After researcher returns 鈫?re-spawn checker (step 7)
 
 **If `revision_count` >= 2:**
 ```
@@ -252,9 +253,9 @@ Max revision iterations reached. Remaining issues:
 {list remaining issues}
 
 Options:
-1. Force approve — proceed with current UI-SPEC (FLAGs become accepted)
-2. Edit manually — open UI-SPEC.md in editor, re-run /gsd-ui-phase
-3. Abandon — exit without approving
+1. Force approve 鈥?proceed with current UI-SPEC (FLAGs become accepted)
+2. Edit manually 鈥?open UI-SPEC.md in editor, re-run /gsd-ui-phase
+3. Abandon 鈥?exit without approving
 ```
 
 Use AskUserQuestion for the choice.
@@ -263,32 +264,32 @@ Use AskUserQuestion for the choice.
 
 Display:
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► UI-SPEC READY ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?UI-SPEC READY 鉁?
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
-**Phase {N}: {Name}** — UI design contract approved
+**Phase {N}: {Name}** 鈥?UI design contract approved
 
 Dimensions: 6/6 passed
 {If any FLAGs: "Recommendations: {N} (non-blocking)"}
 
-───────────────────────────────────────────────────────────────
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
-## ▶ Next Up — [${PROJECT_CODE}] ${PROJECT_TITLE}
+## 鈻?Next Up 鈥?[${PROJECT_CODE}] ${PROJECT_TITLE}
 
 {If CONTEXT.md exists for this phase:}
-**Plan Phase {N}** — planner will use UI-SPEC.md as design context
+**Plan Phase {N}** 鈥?planner will use UI-SPEC.md as design context
 
 `/clear` then: `/gsd-plan-phase {N}`
 
 {If CONTEXT.md does NOT exist:}
-**Discuss Phase {N}** — gather implementation context before planning
+**Discuss Phase {N}** 鈥?gather implementation context before planning
 
 `/clear` then: `/gsd-discuss-phase {N}`
 
 (or `/gsd-plan-phase {N}` to skip discussion)
 
-───────────────────────────────────────────────────────────────
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 ```
 
 ## 11. Commit (if configured)
@@ -310,7 +311,7 @@ gsd-sdk query state.record-session \
 <success_criteria>
 - [ ] Config checked (exit if ui_phase disabled)
 - [ ] Phase validated against roadmap
-- [ ] Prerequisites checked (CONTEXT.md, RESEARCH.md — non-blocking warnings)
+- [ ] Prerequisites checked (CONTEXT.md, RESEARCH.md 鈥?non-blocking warnings)
 - [ ] Existing UI-SPEC handled (update/view/skip)
 - [ ] gsd-ui-researcher spawned with correct context and file paths
 - [ ] UI-SPEC.md created in correct location

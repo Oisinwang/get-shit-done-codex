@@ -1,9 +1,9 @@
 /**
- * Agent skills query handler — scan installed skill directories.
+ * Agent skills query handler – scan installed skill directories.
  *
- * Reads from project `.claude/skills/`, `.agents/skills/`, `.cursor/skills/`,
- * `.github/skills/`, `.codex/skills/`, plus managed global `~/.claude/skills/`
- * and `~/.codex/skills/` roots.
+ * Reads from project `.codex/skills/`, `.agents/skills/`, `.cursor/skills/`,
+ * `.github/skills/`, then Claude compatibility roots, plus managed global
+ * `~/.codex/skills/` and `~/.claude/skills/`.
  *
  * @example
  * ```typescript
@@ -20,16 +20,20 @@ import { homedir } from 'node:os';
 
 import type { QueryHandler } from './utils.js';
 
+function runtimeHomeDir(): string {
+  return process.env.HOME || homedir();
+}
+
 export const agentSkills: QueryHandler = async (args, projectDir) => {
   const agentType = args[0] || '';
   const skillDirs = [
-    join(projectDir, '.claude', 'skills'),
+    join(projectDir, '.codex', 'skills'),
     join(projectDir, '.agents', 'skills'),
     join(projectDir, '.cursor', 'skills'),
     join(projectDir, '.github', 'skills'),
-    join(projectDir, '.codex', 'skills'),
-    join(homedir(), '.claude', 'skills'),
-    join(homedir(), '.codex', 'skills'),
+    join(projectDir, '.claude', 'skills'),
+    join(runtimeHomeDir(), '.codex', 'skills'),
+    join(runtimeHomeDir(), '.claude', 'skills'),
   ];
 
   const skills: string[] = [];

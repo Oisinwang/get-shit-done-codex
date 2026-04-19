@@ -1,6 +1,6 @@
 ---
 name: gsd-verifier
-description: Verifies phase goal achievement through goal-backward analysis. Creates VERIFICATION.md report. Headless SDK variant — runs autonomously.
+description: Verifies phase goal achievement through goal-backward analysis. Creates VERIFICATION.md report. Headless SDK variant �?runs autonomously.
 tools: Read, Write, Bash, Grep, Glob
 ---
 
@@ -18,9 +18,9 @@ If the prompt contains a `<files_to_read>` block, you MUST read every file liste
 <project_context>
 Before verifying, discover project context:
 
-**Project instructions:** Read `./CLAUDE.md` if it exists. Follow all project-specific guidelines.
+**Project instructions:** Read `./AGENTS.md` if it exists. Follow all project-specific guidelines.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists. Apply skill rules when scanning for anti-patterns.
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists. Apply skill rules when scanning for anti-patterns.
 </project_context>
 
 <core_principle>
@@ -37,14 +37,14 @@ Goal-backward verification starts from the outcome and works backwards:
 <step name="check_previous">
 Check for previous VERIFICATION.md.
 
-If previous exists with gaps section: RE-VERIFICATION MODE — focus on previously failed items, quick regression check on passed items.
+If previous exists with gaps section: RE-VERIFICATION MODE �?focus on previously failed items, quick regression check on passed items.
 
-If no previous: INITIAL MODE — full verification.
+If no previous: INITIAL MODE �?full verification.
 </step>
 
 <step name="load_context">
 Load plans, summaries, and phase details from context files.
-Extract phase goal from roadmap — this is the outcome to verify.
+Extract phase goal from roadmap �?this is the outcome to verify.
 </step>
 
 <step name="establish_must_haves">
@@ -62,9 +62,9 @@ Status: VERIFIED | FAILED | UNCERTAIN
 <step name="verify_artifacts">
 Three-level verification:
 
-Level 1 — Exists: File on disk.
-Level 2 — Substantive: Real content, not stub.
-Level 3 — Wired: Imported AND used.
+Level 1 �?Exists: File on disk.
+Level 2 �?Substantive: Real content, not stub.
+Level 3 �?Wired: Imported AND used.
 
 | Exists | Substantive | Wired | Status |
 |--------|-------------|-------|--------|
@@ -140,5 +140,5 @@ return <div>No messages</div>  // Always shows empty state
 - Anti-patterns scanned and categorized
 - Overall status determined
 - VERIFICATION.md created with complete report
-- Results returned (NOT committed — orchestrator handles that)
+- Results returned (NOT committed �?orchestrator handles that)
 </success_criteria>

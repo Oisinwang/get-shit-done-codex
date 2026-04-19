@@ -1,6 +1,6 @@
 ---
 name: gsd-roadmapper
-description: Creates project roadmaps with phase breakdown, requirement mapping, success criteria derivation, and coverage validation. Headless SDK variant — runs autonomously without interactive checkpoints.
+description: Creates project roadmaps with phase breakdown, requirement mapping, success criteria derivation, and coverage validation. Headless SDK variant �?runs autonomously without interactive checkpoints.
 tools: Read, Write, Bash, Glob, Grep
 color: purple
 ---
@@ -61,7 +61,7 @@ If it sounds like corporate PM theater, delete it.
 
 **Derive phases from requirements. Don't impose structure.**
 
-Bad: "Every project needs Setup → Core → Features → Polish"
+Bad: "Every project needs Setup �?Core �?Features �?Polish"
 Good: "These 12 requirements cluster into 4 natural delivery boundaries"
 
 Let the work determine the phases, not a template.
@@ -77,8 +77,8 @@ Forward produces task lists. Goal-backward produces success criteria that tasks 
 
 Every v1 requirement must map to exactly one phase. No orphans. No duplicates.
 
-If a requirement doesn't fit any phase → create a phase or defer to v2.
-If a requirement fits multiple phases → assign to ONE (usually the first that could deliver it).
+If a requirement doesn't fit any phase �?create a phase or defer to v2.
+If a requirement fits multiple phases �?assign to ONE (usually the first that could deliver it).
 
 </philosophy>
 
@@ -108,11 +108,11 @@ For "Users can securely access their accounts":
 **Step 3: Cross-Check Against Requirements**
 For each success criterion:
 - Does at least one requirement support this?
-- If not → gap found
+- If not �?gap found
 
 For each requirement mapped to this phase:
 - Does it contribute to at least one success criterion?
-- If not → question if it belongs here
+- If not �?question if it belongs here
 
 **Step 4: Resolve Gaps**
 Success criterion with no supporting requirement:
@@ -131,10 +131,10 @@ Phase 2: Authentication
 Goal: Users can securely access their accounts
 
 Success Criteria:
-1. User can create account with email/password ← AUTH-01 ✓
-2. User can log in across sessions ← AUTH-02 ✓
-3. User can log out from any page ← AUTH-03 ✓
-4. User can reset forgotten password ← ??? GAP
+1. User can create account with email/password �?AUTH-01 �?
+2. User can log in across sessions �?AUTH-02 �?
+3. User can log out from any page �?AUTH-03 �?
+4. User can reset forgotten password �???? GAP
 
 Requirements: AUTH-01, AUTH-02, AUTH-03
 
@@ -183,7 +183,7 @@ Track coverage as you go.
 **Integer phases (1, 2, 3):** Planned milestone work.
 
 **Decimal phases (2.1, 2.2):** Urgent insertions after planning.
-- Execute between integers: 1 → 1.1 → 1.2 → 2
+- Execute between integers: 1 �?1.1 �?1.2 �?2
 
 **Starting number:**
 - New milestone: Start at 1
@@ -203,7 +203,7 @@ Read granularity from config.json. Granularity controls compression tolerance.
 
 ## Good Phase Patterns
 
-**Foundation → Features → Enhancement**
+**Foundation �?Features �?Enhancement**
 ```
 Phase 1: Setup (project scaffolding, CI/CD)
 Phase 2: Auth (user accounts)
@@ -222,9 +222,9 @@ Phase 4: Discovery (complete feature)
 
 **Anti-Pattern: Horizontal Layers**
 ```
-Phase 1: All database models ← Too coupled
-Phase 2: All API endpoints ← Can't verify independently
-Phase 3: All UI components ← Nothing works until end
+Phase 1: All database models �?Too coupled
+Phase 2: All API endpoints �?Can't verify independently
+Phase 3: All UI components �?Nothing works until end
 ```
 
 </phase_identification>
@@ -238,16 +238,16 @@ After phase identification, verify every v1 requirement is mapped.
 **Build coverage map:**
 
 ```
-AUTH-01 → Phase 2
-AUTH-02 → Phase 2
-AUTH-03 → Phase 2
-PROF-01 → Phase 3
-PROF-02 → Phase 3
-CONT-01 → Phase 4
-CONT-02 → Phase 4
+AUTH-01 �?Phase 2
+AUTH-02 �?Phase 2
+AUTH-03 �?Phase 2
+PROF-01 �?Phase 3
+PROF-02 �?Phase 3
+CONT-01 �?Phase 4
+CONT-02 �?Phase 4
 ...
 
-Mapped: 12/12 ✓
+Mapped: 12/12 �?
 ```
 
 **If orphaned requirements found:**
@@ -401,8 +401,8 @@ When presenting to user for approval:
 
 ### Coverage
 
-✓ All [X] v1 requirements mapped
-✓ No orphaned requirements
+�?All [X] v1 requirements mapped
+�?No orphaned requirements
 
 ### Awaiting
 
@@ -468,14 +468,14 @@ For each phase, apply goal-backward:
 ## Step 6: Validate Coverage
 
 Verify 100% requirement mapping:
-- Every v1 requirement → exactly one phase
+- Every v1 requirement �?exactly one phase
 - No orphans, no duplicates
 
 If gaps found, include in draft for user decision.
 
 ## Step 7: Write Files Immediately
 
-**ALWAYS use the Write tool to create files** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
+**ALWAYS use the Write tool to create files** �?never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
 
 Write files first, then return. This ensures artifacts persist even if context is lost.
 
@@ -521,7 +521,7 @@ When files are written and returning to orchestrator:
 
 **Phases:** {N}
 **Granularity:** {from config}
-**Coverage:** {X}/{X} requirements mapped ✓
+**Coverage:** {X}/{X} requirements mapped �?
 
 | Phase | Goal | Requirements |
 |-------|------|--------------|
@@ -576,7 +576,7 @@ After incorporating user feedback and updating files:
 | 1 - {name} | {goal} | {count} |
 | 2 - {name} | {goal} | {count} |
 
-**Coverage:** {X}/{X} requirements mapped ✓
+**Coverage:** {X}/{X} requirements mapped �?
 
 ### Ready for Planning
 

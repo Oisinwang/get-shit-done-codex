@@ -1,7 +1,7 @@
 /**
  * Tests for multi-runtime selection in the interactive installer prompt.
  * Verifies that promptRuntime accepts comma-separated, space-separated,
- * and single-choice inputs, deduplicates, and falls back to claude.
+ * and single-choice inputs, deduplicates, and falls back to codex.
  * See issue #1281.
  */
 
@@ -18,12 +18,12 @@ const installSrc = fs.readFileSync(
 
 // Extract runtimeMap from source for validation
 const runtimeMap = {
-  '1': 'claude',
-  '2': 'antigravity',
-  '3': 'augment',
-  '4': 'cline',
-  '5': 'codebuddy',
-  '6': 'codex',
+  '1': 'codex',
+  '2': 'claude',
+  '3': 'antigravity',
+  '4': 'augment',
+  '5': 'cline',
+  '6': 'codebuddy',
   '7': 'copilot',
   '8': 'cursor',
   '9': 'gemini',
@@ -33,7 +33,7 @@ const runtimeMap = {
   '13': 'trae',
   '14': 'windsurf'
 };
-const allRuntimes = ['claude', 'antigravity', 'augment', 'cline', 'codebuddy', 'codex', 'copilot', 'cursor', 'gemini', 'kilo', 'opencode', 'qwen', 'trae', 'windsurf'];
+const allRuntimes = ['codex', 'claude', 'antigravity', 'augment', 'cline', 'codebuddy', 'copilot', 'cursor', 'gemini', 'kilo', 'opencode', 'qwen', 'trae', 'windsurf'];
 
 /**
  * Simulate the parsing logic from promptRuntime without requiring readline.
@@ -55,35 +55,35 @@ function parseRuntimeInput(input) {
     }
   }
 
-  return selected.length > 0 ? selected : ['claude'];
+  return selected.length > 0 ? selected : ['codex'];
 }
 
 describe('multi-runtime selection parsing', () => {
   test('single choice returns single runtime', () => {
-    assert.deepStrictEqual(parseRuntimeInput('1'), ['claude']);
-    assert.deepStrictEqual(parseRuntimeInput('2'), ['antigravity']);
-    assert.deepStrictEqual(parseRuntimeInput('3'), ['augment']);
-    assert.deepStrictEqual(parseRuntimeInput('4'), ['cline']);
-    assert.deepStrictEqual(parseRuntimeInput('5'), ['codebuddy']);
-    assert.deepStrictEqual(parseRuntimeInput('6'), ['codex']);
+    assert.deepStrictEqual(parseRuntimeInput('1'), ['codex']);
+    assert.deepStrictEqual(parseRuntimeInput('2'), ['claude']);
+    assert.deepStrictEqual(parseRuntimeInput('3'), ['antigravity']);
+    assert.deepStrictEqual(parseRuntimeInput('4'), ['augment']);
+    assert.deepStrictEqual(parseRuntimeInput('5'), ['cline']);
+    assert.deepStrictEqual(parseRuntimeInput('6'), ['codebuddy']);
     assert.deepStrictEqual(parseRuntimeInput('7'), ['copilot']);
     assert.deepStrictEqual(parseRuntimeInput('8'), ['cursor']);
   });
 
   test('comma-separated choices return multiple runtimes', () => {
-    assert.deepStrictEqual(parseRuntimeInput('1,7,9'), ['claude', 'copilot', 'gemini']);
-    assert.deepStrictEqual(parseRuntimeInput('2,3'), ['antigravity', 'augment']);
-    assert.deepStrictEqual(parseRuntimeInput('3,6'), ['augment', 'codex']);
+    assert.deepStrictEqual(parseRuntimeInput('1,7,9'), ['codex', 'copilot', 'gemini']);
+    assert.deepStrictEqual(parseRuntimeInput('2,3'), ['claude', 'antigravity']);
+    assert.deepStrictEqual(parseRuntimeInput('3,6'), ['antigravity', 'codebuddy']);
   });
 
   test('space-separated choices return multiple runtimes', () => {
-    assert.deepStrictEqual(parseRuntimeInput('1 7 9'), ['claude', 'copilot', 'gemini']);
+    assert.deepStrictEqual(parseRuntimeInput('1 7 9'), ['codex', 'copilot', 'gemini']);
     assert.deepStrictEqual(parseRuntimeInput('8 10'), ['cursor', 'kilo']);
   });
 
   test('mixed comma and space separators work', () => {
-    assert.deepStrictEqual(parseRuntimeInput('1, 7, 9'), ['claude', 'copilot', 'gemini']);
-    assert.deepStrictEqual(parseRuntimeInput('2 , 8'), ['antigravity', 'cursor']);
+    assert.deepStrictEqual(parseRuntimeInput('1, 7, 9'), ['codex', 'copilot', 'gemini']);
+    assert.deepStrictEqual(parseRuntimeInput('2 , 8'), ['claude', 'cursor']);
   });
 
   test('single choice for opencode', () => {
@@ -106,30 +106,30 @@ describe('multi-runtime selection parsing', () => {
     assert.deepStrictEqual(parseRuntimeInput('15'), allRuntimes);
   });
 
-  test('empty input defaults to claude', () => {
-    assert.deepStrictEqual(parseRuntimeInput(''), ['claude']);
-    assert.deepStrictEqual(parseRuntimeInput('   '), ['claude']);
+  test('empty input defaults to codex', () => {
+    assert.deepStrictEqual(parseRuntimeInput(''), ['codex']);
+    assert.deepStrictEqual(parseRuntimeInput('   '), ['codex']);
   });
 
-  test('invalid choices are ignored, falls back to claude if all invalid', () => {
-    assert.deepStrictEqual(parseRuntimeInput('16'), ['claude']);
-    assert.deepStrictEqual(parseRuntimeInput('0'), ['claude']);
-    assert.deepStrictEqual(parseRuntimeInput('abc'), ['claude']);
+  test('invalid choices are ignored, falls back to codex if all invalid', () => {
+    assert.deepStrictEqual(parseRuntimeInput('16'), ['codex']);
+    assert.deepStrictEqual(parseRuntimeInput('0'), ['codex']);
+    assert.deepStrictEqual(parseRuntimeInput('abc'), ['codex']);
   });
 
   test('invalid choices mixed with valid are filtered out', () => {
-    assert.deepStrictEqual(parseRuntimeInput('1,16,7'), ['claude', 'copilot']);
-    assert.deepStrictEqual(parseRuntimeInput('abc 3 xyz'), ['augment']);
+    assert.deepStrictEqual(parseRuntimeInput('1,16,7'), ['codex', 'copilot']);
+    assert.deepStrictEqual(parseRuntimeInput('abc 3 xyz'), ['antigravity']);
   });
 
   test('duplicate choices are deduplicated', () => {
-    assert.deepStrictEqual(parseRuntimeInput('1,1,1'), ['claude']);
+    assert.deepStrictEqual(parseRuntimeInput('1,1,1'), ['codex']);
     assert.deepStrictEqual(parseRuntimeInput('7,7,9,9'), ['copilot', 'gemini']);
   });
 
   test('preserves selection order', () => {
-    assert.deepStrictEqual(parseRuntimeInput('9,1,7'), ['gemini', 'claude', 'copilot']);
-    assert.deepStrictEqual(parseRuntimeInput('10,2,8'), ['kilo', 'antigravity', 'cursor']);
+    assert.deepStrictEqual(parseRuntimeInput('9,1,7'), ['gemini', 'codex', 'copilot']);
+    assert.deepStrictEqual(parseRuntimeInput('10,2,8'), ['kilo', 'claude', 'cursor']);
   });
 });
 

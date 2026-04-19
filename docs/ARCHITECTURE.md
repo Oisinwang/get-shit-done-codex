@@ -21,7 +21,7 @@
 
 ## System Overview
 
-GSD is a **meta-prompting framework** that sits between the user and AI coding agents (Claude Code, Gemini CLI, OpenCode, Kilo, Codex, Copilot, Antigravity, Trae, Cline, Augment Code). It provides:
+GSD is a **meta-prompting framework** that sits between the user and AI coding agents (Codex, Claude Code compatibility/runtime, Gemini CLI, OpenCode, Kilo, Copilot, Antigravity, Trae, Cline, Augment Code). It provides:
 
 1. **Context engineering** — Structured artifacts that give the AI everything it needs per task
 2. **Multi-agent orchestration** — Thin orchestrators that spawn specialized agents with fresh context windows
@@ -37,7 +37,7 @@ GSD is a **meta-prompting framework** that sits between the user and AI coding a
 ┌─────────────────────▼────────────────────────────────┐
 │              COMMAND LAYER                            │
 │   commands/gsd/*.md — Prompt-based command files      │
-│   (Claude Code custom commands / Codex skills)        │
+│   (Codex skills / Claude Code custom commands)        │
 └─────────────────────┬────────────────────────────────┘
                       │
 ┌─────────────────────▼────────────────────────────────┐
@@ -107,9 +107,9 @@ Multiple layers prevent common failure modes:
 ### Commands (`commands/gsd/*.md`)
 
 User-facing entry points. Each file contains YAML frontmatter (name, description, allowed-tools) and a prompt body that bootstraps the workflow. Commands are installed as:
-- **Claude Code:** Custom slash commands (`/gsd-command-name`)
-- **OpenCode / Kilo:** Slash commands (`/gsd-command-name`)
 - **Codex:** Skills (`$gsd-command-name`)
+- **Claude Code (compatibility/runtime):** Custom slash commands (`/gsd-command-name`)
+- **OpenCode / Kilo:** Slash commands (`/gsd-command-name`)
 - **Copilot:** Slash commands (`/gsd-command-name`)
 - **Antigravity:** Skills
 
@@ -408,7 +408,8 @@ UI-SPEC.md (per phase) ───────────────────
 ### Installation Files
 
 ```
-~/.claude/                          # Claude Code (global install)
+~/.codex/                           # Codex (global install)
+~/.claude/                          # Claude Code compatibility/runtime
 ├── commands/gsd/*.md               # 81 slash commands
 ├── get-shit-done/
 │   ├── bin/gsd-tools.cjs           # CLI utility
@@ -495,7 +496,8 @@ The installer (`bin/install.js`, ~3,000 lines) handles:
 2. **Location selection** — Global (`--global`) or local (`--local`)
 3. **File deployment** — Copies commands, workflows, references, templates, agents, hooks
 4. **Runtime adaptation** — Transforms file content per runtime:
-   - Claude Code: Uses as-is
+   - Codex: Uses as-is
+   - Claude Code compatibility/runtime: Uses as-is
    - OpenCode: Converts commands/agents to OpenCode-compatible flat command + subagent format
    - Kilo: Reuses the OpenCode conversion pipeline with Kilo config paths
    - Codex: Generates TOML config + skills from commands
@@ -505,7 +507,7 @@ The installer (`bin/install.js`, ~3,000 lines) handles:
    - Trae: Skills-first install to `~/.trae` / `./.trae` with no `settings.json` or hook integration
    - Cline: Writes `.clinerules` for rule-based integration
    - Augment Code: Skills-first with full skill conversion and config management
-5. **Path normalization** — Replaces `~/.claude/` paths with runtime-specific paths
+5. **Path normalization** — Replaces `~/.codex/` paths with runtime-specific paths; `~/.claude/` is retained only for Claude compatibility/runtime
 6. **Settings integration** — Registers hooks in runtime's `settings.json`
 7. **Patch backup** — Since v1.17, backs up locally modified files to `gsd-local-patches/` for `/gsd-reapply-patches`
 8. **Manifest tracking** — Writes `gsd-file-manifest.json` for clean uninstall
@@ -536,7 +538,7 @@ Runtime Engine (Claude Code / Gemini CLI)
     │
     └── SessionStart event ──► gsd-check-update.js
         Reads: VERSION file
-        Writes: ~/.claude/cache/gsd-update-check.json (spawns background process)
+        Writes: ~/.claude/cache/gsd-update-check.json (Claude compatibility/runtime cache path)
 ```
 
 ### Context Monitor Thresholds
@@ -579,7 +581,8 @@ GSD supports multiple AI coding runtimes through a unified command/workflow arch
 
 | Runtime | Command Format | Agent System | Config Location |
 |---------|---------------|--------------|-----------------|
-| Claude Code | `/gsd-command` | Task spawning | `~/.claude/` |
+| Codex | `$gsd-command` | Skills | `~/.codex/` |
+| Claude Code compatibility/runtime | `/gsd-command` | Task spawning | `~/.claude/` |
 | OpenCode | `/gsd-command` | Subagent mode | `~/.config/opencode/` |
 | Kilo | `/gsd-command` | Subagent mode | `~/.config/kilo/` |
 | Gemini CLI | `/gsd-command` | Task spawning | `~/.gemini/` |
@@ -598,4 +601,4 @@ GSD supports multiple AI coding runtimes through a unified command/workflow arch
 4. **Path conventions** — Each runtime stores config in different directories
 5. **Model references** — `inherit` profile lets GSD defer to runtime's model selection
 
-The installer handles all translation at install time. Workflows and agents are written in Claude Code's native format and transformed during deployment.
+The installer handles all translation at install time. Workflows and agents are written in the fork's canonical format and transformed per runtime; Claude Code remains a compatibility/runtime target rather than the default narrative.

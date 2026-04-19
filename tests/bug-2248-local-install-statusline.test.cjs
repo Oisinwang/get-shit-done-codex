@@ -18,7 +18,7 @@
 
 process.env.GSD_TEST_MODE = '1';
 
-const { describe, test, before, beforeEach, afterEach } = require('node:test');
+const { describe, test, before, beforeEach } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('fs');
 const path = require('path');
@@ -46,13 +46,12 @@ describe('#2248: local Claude install does not clobber profile-level statusLine'
     tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'gsd-local-install-2248-'));
   });
 
-  afterEach(() => {
-    fs.rmSync(tmpDir, { recursive: true, force: true });
-  });
-
   test('local install does not write statusLine to .claude/settings.json', (t) => {
     const origCwd = process.cwd();
-    t.after(() => { process.chdir(origCwd); });
+    t.after(() => {
+      process.chdir(origCwd);
+      fs.rmSync(tmpDir, { recursive: true, force: true });
+    });
     process.chdir(tmpDir);
 
     // Phase 1: copy files (mirrors installAllRuntimes)
@@ -85,7 +84,10 @@ describe('#2248: local Claude install does not clobber profile-level statusLine'
 
   test('global install still writes statusLine to settings.json', (t) => {
     const origCwd = process.cwd();
-    t.after(() => { process.chdir(origCwd); });
+    t.after(() => {
+      process.chdir(origCwd);
+      fs.rmSync(tmpDir, { recursive: true, force: true });
+    });
 
     // Global install writes to CLAUDE_CONFIG_DIR; point it at our tmpDir
     const configDir = path.join(tmpDir, '.claude');

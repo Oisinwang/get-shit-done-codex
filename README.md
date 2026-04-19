@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 # GET SHIT DONE CODEX
 
@@ -131,6 +131,7 @@ Verify with:
 
 > [!NOTE]
 > Codex is the primary runtime in this fork. Managed installs write skills to `./.codex/skills/` or `~/.codex/skills/` and generate `AGENTS.md` by default. Legacy Claude compatibility still understands `.claude/skills/`, `~/.claude/skills/`, and `~/.claude/commands/gsd/` when present, but those paths are no longer the primary contract.
+> Read `AGENTS.md` first for project instructions. `CLAUDE.md` only remains as a migration alias.
 
 The canonical discovery contract is documented in [docs/skills/discovery-contract.md](docs/skills/discovery-contract.md).
 
@@ -150,8 +151,10 @@ node bin/install.js --codex --global
 <details>
 <summary><strong>Non-interactive Install (Docker, CI, Scripts)</strong></summary>
 
+The Claude Code entries below are runtime-specific compatibility instructions. Codex remains the default target in this fork.
+
 ```bash
-# Claude Code
+# Claude Code compatibility/runtime
 npx get-shit-done-codex --claude --global   # Install to ~/.claude/
 npx get-shit-done-codex --claude --local    # Install to ./.claude/
 
@@ -235,7 +238,7 @@ Installs to `./.codex/` for testing modifications before contributing.
 
 ### Recommended: Skip Permissions Mode
 
-GSD is designed for frictionless automation. Run Claude Code with:
+GSD is designed for frictionless automation. If you are using Claude Code, run it with:
 
 ```bash
 claude --dangerously-skip-permissions
@@ -247,7 +250,7 @@ claude --dangerously-skip-permissions
 <details>
 <summary><strong>Alternative: Granular Permissions</strong></summary>
 
-If you prefer not to use that flag, add this to your project's `.claude/settings.json`:
+If you prefer not to use that flag, Claude Code compatibility/runtime users can add this to their project's `.claude/settings.json`:
 
 ```json
 {
@@ -813,9 +816,9 @@ GSD includes defense-in-depth security since v1.27:
 
 ### Protecting Sensitive Files
 
-GSD's codebase mapping and analysis commands read files to understand your project. **Protect files containing secrets** by adding them to Claude Code's deny list:
+GSD's codebase mapping and analysis commands read files to understand your project. **Protect files containing secrets** by adding them to Claude Code compatibility/runtime deny lists:
 
-1. Open Claude Code settings (`.claude/settings.json` or global)
+1. Open Claude Code compatibility/runtime settings (`.claude/settings.json` or global)
 2. Add sensitive file patterns to the deny list:
 
 ```json

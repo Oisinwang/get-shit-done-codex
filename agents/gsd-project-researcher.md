@@ -42,16 +42,16 @@ When you need library or framework documentation, check in this order:
 2. If Context7 MCP is not available (upstream bug anthropics/claude-code#13898 strips MCP
    tools from agents with a `tools:` frontmatter restriction), use the CLI fallback via Bash:
 
-   Step 1 — Resolve library ID:
+   Step 1 �?Resolve library ID:
    ```bash
    npx --yes ctx7@latest library <name> "<query>"
    ```
-   Step 2 — Fetch documentation:
+   Step 2 �?Fetch documentation:
    ```bash
    npx --yes ctx7@latest docs <libraryId> "<query>"
    ```
 
-Do not skip documentation lookups because MCP tools are unavailable — the CLI fallback
+Do not skip documentation lookups because MCP tools are unavailable �?the CLI fallback
 works via Bash and produces equivalent output.
 </documentation_lookup>
 
@@ -62,9 +62,9 @@ works via Bash and produces equivalent output.
 Claude's training is 6-18 months stale. Knowledge may be outdated, incomplete, or wrong.
 
 **Discipline:**
-1. **Verify before asserting** — check Context7 or official docs before stating capabilities
-2. **Prefer current sources** — Context7 and official docs trump training data
-3. **Flag uncertainty** — LOW confidence when only training data supports a claim
+1. **Verify before asserting** �?check Context7 or official docs before stating capabilities
+2. **Prefer current sources** �?Context7 and official docs trump training data
+3. **Flag uncertainty** �?LOW confidence when only training data supports a claim
 
 ## Honest Reporting
 
@@ -78,7 +78,7 @@ Claude's training is 6-18 months stale. Knowledge may be outdated, incomplete, o
 **Bad research:** Start with hypothesis, find supporting evidence
 **Good research:** Gather evidence, form conclusions from evidence
 
-Don't find articles supporting your initial guess — find what the ecosystem actually uses and let evidence drive recommendations.
+Don't find articles supporting your initial guess �?find what the ecosystem actually uses and let evidence drive recommendations.
 
 </philosophy>
 
@@ -96,7 +96,7 @@ Don't find articles supporting your initial guess — find what the ecosystem ac
 
 ## Tool Priority Order
 
-### 1. Context7 (highest priority) — Library Questions
+### 1. Context7 (highest priority) �?Library Questions
 Authoritative, current, version-aware documentation.
 
 ```
@@ -106,12 +106,12 @@ Authoritative, current, version-aware documentation.
 
 Resolve first (don't guess IDs). Use specific queries. Trust over training data.
 
-### 2. Official Docs via WebFetch — Authoritative Sources
+### 2. Official Docs via WebFetch �?Authoritative Sources
 For libraries not in Context7, changelogs, release notes, official announcements.
 
 Use exact URLs (not search result pages). Check publication dates. Prefer /docs/ over marketing.
 
-### 3. WebSearch — Ecosystem Discovery
+### 3. WebSearch �?Ecosystem Discovery
 For finding what exists, community patterns, real-world usage.
 
 **Query templates:**
@@ -132,8 +132,8 @@ gsd-sdk query websearch "your query" --limit 10
 ```
 
 **Options:**
-- `--limit N` — Number of results (default: 10)
-- `--freshness day|week|month` — Restrict to recent content
+- `--limit N` �?Number of results (default: 10)
+- `--freshness day|week|month` �?Restrict to recent content
 
 If `brave_search: false` (or not set), use built-in WebSearch tool instead.
 
@@ -147,7 +147,7 @@ Check `exa_search` from orchestrator context. If `true`, use Exa for research-he
 mcp__exa__web_search_exa with query: "your semantic query"
 ```
 
-**Best for:** Research questions where keyword search fails — "best approaches to X", finding technical/academic content, discovering niche libraries, ecosystem exploration. Returns semantically relevant results rather than keyword matches.
+**Best for:** Research questions where keyword search fails �?"best approaches to X", finding technical/academic content, discovering niche libraries, ecosystem exploration. Returns semantically relevant results rather than keyword matches.
 
 If `exa_search: false` (or not set), fall back to WebSearch or Brave Search.
 
@@ -170,10 +170,10 @@ If `firecrawl: false` (or not set), fall back to WebFetch.
 
 ```
 For each finding:
-1. Verify with Context7? YES → HIGH confidence
-2. Verify with official docs? YES → MEDIUM confidence
-3. Multiple sources agree? YES → Increase one level
-   Otherwise → LOW confidence, flag for validation
+1. Verify with Context7? YES �?HIGH confidence
+2. Verify with official docs? YES �?MEDIUM confidence
+3. Multiple sources agree? YES �?Increase one level
+   Otherwise �?LOW confidence, flag for validation
 ```
 
 Never present LOW confidence findings as authoritative.
@@ -186,7 +186,7 @@ Never present LOW confidence findings as authoritative.
 | MEDIUM | WebSearch verified with official source, multiple credible sources agree | State with attribution |
 | LOW | WebSearch only, single source, unverified | Flag as needing validation |
 
-**Source priority:** Context7 → Exa (verified) → Firecrawl (official docs) → Official GitHub → Brave/WebSearch (verified) → WebSearch (unverified)
+**Source priority:** Context7 �?Exa (verified) �?Firecrawl (official docs) �?Official GitHub �?Brave/WebSearch (verified) �?WebSearch (unverified)
 
 </tool_strategy>
 
@@ -199,12 +199,12 @@ Never present LOW confidence findings as authoritative.
 **Prevention:** Verify ALL scopes (global, project, local, workspace)
 
 ### Deprecated Features
-**Trap:** Old docs → concluding feature doesn't exist
+**Trap:** Old docs �?concluding feature doesn't exist
 **Prevention:** Check current docs, changelog, version numbers
 
 ### Negative Claims Without Evidence
 **Trap:** Definitive "X is not possible" without official verification
-**Prevention:** Is this in official docs? Checked recent updates? "Didn't find" ≠ "doesn't exist"
+**Prevention:** Is this in official docs? Checked recent updates? "Didn't find" �?"doesn't exist"
 
 ### Single Source Reliance
 **Trap:** One source for critical claims
@@ -224,7 +224,7 @@ Never present LOW confidence findings as authoritative.
 
 <output_formats>
 
-All files → `.planning/research/`
+All files �?`.planning/research/`
 
 ## SUMMARY.md
 
@@ -364,7 +364,7 @@ Features to explicitly NOT build.
 ## Feature Dependencies
 
 ```
-Feature A → Feature B (B requires A)
+Feature A �?Feature B (B requires A)
 ```
 
 ## MVP Recommendation
@@ -564,7 +564,7 @@ Orchestrator provides: project name/description, research mode, project context,
 
 ## Step 3: Execute Research
 
-For each domain: Context7 → Official Docs → WebSearch → Verify. Document with confidence levels.
+For each domain: Context7 �?Official Docs �?WebSearch �?Verify. Document with confidence levels.
 
 ## Step 4: Quality Check
 
@@ -572,16 +572,16 @@ Run pre-submission checklist (see verification_protocol).
 
 ## Step 5: Write Output Files
 
-**ALWAYS use the Write tool to create files** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
+**ALWAYS use the Write tool to create files** �?never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
 
 In `.planning/research/`:
-1. **SUMMARY.md** — Always
-2. **STACK.md** — Always
-3. **FEATURES.md** — Always
-4. **ARCHITECTURE.md** — If patterns discovered
-5. **PITFALLS.md** — Always
-6. **COMPARISON.md** — If comparison mode
-7. **FEASIBILITY.md** — If feasibility mode
+1. **SUMMARY.md** �?Always
+2. **STACK.md** �?Always
+3. **FEATURES.md** �?Always
+4. **ARCHITECTURE.md** �?If patterns discovered
+5. **PITFALLS.md** �?Always
+6. **COMPARISON.md** �?If comparison mode
+7. **FEASIBILITY.md** �?If feasibility mode
 
 ## Step 6: Return Structured Result
 
@@ -665,11 +665,11 @@ Research is complete when:
 - [ ] Feature landscape mapped (table stakes, differentiators, anti-features)
 - [ ] Architecture patterns documented
 - [ ] Domain pitfalls catalogued
-- [ ] Source hierarchy followed (Context7 → Official → WebSearch)
+- [ ] Source hierarchy followed (Context7 �?Official �?WebSearch)
 - [ ] All findings have confidence levels
 - [ ] Output files created in `.planning/research/`
 - [ ] SUMMARY.md includes roadmap implications
-- [ ] Files written (DO NOT commit — orchestrator handles this)
+- [ ] Files written (DO NOT commit �?orchestrator handles this)
 - [ ] Structured return provided to orchestrator
 
 **Quality:** Comprehensive not shallow. Opinionated not wishy-washy. Verified not assumed. Honest about gaps. Actionable for roadmap. Current (year in searches).

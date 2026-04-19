@@ -24,7 +24,7 @@ npx get-shit-done-cc@latest
 ## Core Workflow
 
 ```
-/gsd-new-project → /gsd-plan-phase → /gsd-execute-phase → repeat
+/gsd-new-project 鈫?/gsd-plan-phase 鈫?/gsd-execute-phase 鈫?repeat
 ```
 
 ### Project Initialization
@@ -39,12 +39,12 @@ One command takes you from idea to ready-for-planning:
 - Roadmap creation with phase breakdown and success criteria
 
 Creates all `.planning/` artifacts:
-- `PROJECT.md` — vision and requirements
-- `config.json` — workflow mode (interactive/yolo)
-- `research/` — domain research (if selected)
-- `REQUIREMENTS.md` — scoped requirements with REQ-IDs
-- `ROADMAP.md` — phases mapped to requirements
-- `STATE.md` — project memory
+- `PROJECT.md` 鈥?vision and requirements
+- `config.json` 鈥?workflow mode (interactive/yolo)
+- `research/` 鈥?domain research (if selected)
+- `REQUIREMENTS.md` 鈥?scoped requirements with REQ-IDs
+- `ROADMAP.md` 鈥?phases mapped to requirements
+- `STATE.md` 鈥?project memory
 
 Usage: `/gsd-new-project`
 
@@ -124,7 +124,7 @@ Usage: `/gsd-execute-phase 5 --wave 2`
 Route freeform text to the right GSD command automatically.
 
 - Analyzes natural language input to find the best matching GSD command
-- Acts as a dispatcher — never does the work itself
+- Acts as a dispatcher 鈥?never does the work itself
 - Resolves ambiguity by asking you to pick between top matches
 - Use when you know what you want but don't know which `/gsd-*` command to run
 
@@ -143,10 +143,10 @@ Quick mode uses the same system with a shorter path:
 - Updates STATE.md tracking (not ROADMAP.md)
 
 Flags enable additional quality steps:
-- `--full` — Complete quality pipeline: discussion + research + plan-checking + verification
-- `--validate` — Plan-checking (max 2 iterations) and post-execution verification only
-- `--discuss` — Lightweight discussion to surface gray areas before planning
-- `--research` — Focused research agent investigates approaches before planning
+- `--full` 鈥?Complete quality pipeline: discussion + research + plan-checking + verification
+- `--validate` 鈥?Plan-checking (max 2 iterations) and post-execution verification only
+- `--discuss` 鈥?Lightweight discussion to surface gray areas before planning
+- `--research` 鈥?Focused research agent investigates approaches before planning
 
 Granular flags are composable: `--discuss --research --validate` gives the same as `--full`.
 
@@ -158,13 +158,13 @@ Result: Creates `.planning/quick/NNN-slug/PLAN.md`, `.planning/quick/NNN-slug/SU
 ---
 
 **`/gsd-fast [description]`**
-Execute a trivial task inline — no subagents, no planning files, no overhead.
+Execute a trivial task inline 鈥?no subagents, no planning files, no overhead.
 
 For tasks too small to justify planning: typo fixes, config changes, forgotten commits, simple additions. Runs in the current context, makes the change, commits, and logs to STATE.md.
 
 - No PLAN.md or SUMMARY.md created
 - No subagent spawned (runs inline)
-- ≤ 3 file edits — redirects to `/gsd-quick` if task is non-trivial
+- 鈮?3 file edits 鈥?redirects to `/gsd-quick` if task is non-trivial
 - Atomic commit with conventional message
 
 Usage: `/gsd-fast "fix the typo in README"`
@@ -269,8 +269,8 @@ Systematic debugging with persistent state across context resets.
 
 - Gathers symptoms through adaptive questioning
 - Creates `.planning/debug/[slug].md` to track investigation
-- Investigates using scientific method (evidence → hypothesis → test)
-- Survives `/clear` — run `/gsd-debug` with no args to resume
+- Investigates using scientific method (evidence 鈫?hypothesis 鈫?test)
+- Survives `/clear` 鈥?run `/gsd-debug` with no args to resume
 - Archives resolved issues to `.planning/debug/resolved/`
 
 Usage: `/gsd-debug "login button doesn't work"`
@@ -285,7 +285,7 @@ Rapidly spike an idea with throwaway experiments to validate feasibility.
 - Each spike answers one specific Given/When/Then question
 - Builds minimum code, runs it, captures verdict (VALIDATED/INVALIDATED/PARTIAL)
 - Saves to `.planning/spikes/` with MANIFEST.md tracking
-- Does not require `/gsd-new-project` — works in any repo
+- Does not require `/gsd-new-project` 鈥?works in any repo
 - `--quick` skips decomposition, builds immediately
 
 Usage: `/gsd-spike "can we stream LLM output over WebSockets?"`
@@ -299,7 +299,7 @@ Rapidly sketch UI/design ideas using throwaway HTML mockups with multi-variant e
 - User compares variants, cherry-picks elements, iterates
 - Shared CSS theme system compounds across sketches
 - Saves to `.planning/sketches/` with MANIFEST.md tracking
-- Does not require `/gsd-new-project` — works in any repo
+- Does not require `/gsd-new-project` 鈥?works in any repo
 - `--quick` skips mood intake, jumps to building
 
 Usage: `/gsd-sketch "dashboard layout for the admin panel"`
@@ -310,9 +310,9 @@ Package spike findings into a persistent project skill.
 
 - Curates each spike one-at-a-time (include/exclude/partial/UAT)
 - Groups findings by feature area
-- Generates `./.claude/skills/spike-findings-[project]/` with references and sources
+- Generates `./.codex/skills/spike-findings-[project]/` with references and sources
 - Writes summary to `.planning/spikes/WRAP-UP-SUMMARY.md`
-- Adds auto-load routing line to project CLAUDE.md
+- Adds auto-load routing line to project AGENTS.md
 
 Usage: `/gsd-spike-wrap-up`
 
@@ -321,18 +321,18 @@ Package sketch design findings into a persistent project skill.
 
 - Curates each sketch one-at-a-time (include/exclude/partial/revisit)
 - Groups findings by design area
-- Generates `./.claude/skills/sketch-findings-[project]/` with design decisions, CSS patterns, HTML structures
+- Generates `./.codex/skills/sketch-findings-[project]/` with design decisions, CSS patterns, HTML structures
 - Writes summary to `.planning/sketches/WRAP-UP-SUMMARY.md`
-- Adds auto-load routing line to project CLAUDE.md
+- Adds auto-load routing line to project AGENTS.md
 
 Usage: `/gsd-sketch-wrap-up`
 
 ### Quick Notes
 
 **`/gsd-note <text>`**
-Zero-friction idea capture — one command, instant save, no questions.
+Zero-friction idea capture 鈥?one command, instant save, no questions.
 
-- Saves timestamped note to `.planning/notes/` (or `~/.claude/notes/` globally)
+- Saves timestamped note to `.planning/notes/` (or `~/.codex/notes/` globally)
 - Three subcommands: append (default), list, promote
 - Promote converts a note into a structured todo
 - Works without a project (falls back to global scope)
@@ -397,11 +397,11 @@ Usage: `/gsd-ship 4` or `/gsd-ship 4 --draft`
 ---
 
 **`/gsd-review --phase N [--gemini] [--claude] [--codex] [--coderabbit] [--opencode] [--qwen] [--cursor] [--all]`**
-Cross-AI peer review — invoke external AI CLIs to independently review phase plans.
+Cross-AI peer review 鈥?invoke external AI CLIs to independently review phase plans.
 
 - Detects available CLIs (gemini, claude, codex, coderabbit)
 - Each CLI reviews plans independently with the same structured prompt
-- CodeRabbit reviews the current git diff (not a prompt) — may take up to 5 minutes
+- CodeRabbit reviews the current git diff (not a prompt) 鈥?may take up to 5 minutes
 - Produces REVIEWS.md with per-reviewer feedback and consensus summary
 - Feed reviews back into planning: `/gsd-plan-phase N --reviews`
 
@@ -425,7 +425,7 @@ Capture a forward-looking idea with trigger conditions for automatic surfacing.
 
 - Seeds preserve WHY, WHEN to surface, and breadcrumbs to related code
 - Auto-surfaces during `/gsd-new-milestone` when trigger conditions match
-- Better than deferred items — triggers are checked, not forgotten
+- Better than deferred items 鈥?triggers are checked, not forgotten
 
 Usage: `/gsd-plant-seed "add real-time notifications when we build the events system"`
 
@@ -476,10 +476,10 @@ Usage: `/gsd-settings`
 **`/gsd-set-profile <profile>`**
 Quick switch model profile for GSD agents.
 
-- `quality` — Opus everywhere except verification
-- `balanced` — Opus for planning, Sonnet for execution (default)
-- `budget` — Sonnet for writing, Haiku for research/verification
-- `inherit` — Use current session model for all agents (OpenCode `/model`)
+- `quality` 鈥?Opus everywhere except verification
+- `balanced` 鈥?Opus for planning, Sonnet for execution (default)
+- `budget` 鈥?Sonnet for writing, Haiku for research/verification
+- `inherit` 鈥?Use current session model for all agents (OpenCode `/model`)
 
 Usage: `/gsd-set-profile budget`
 
@@ -521,44 +521,44 @@ Usage: `/gsd-join-discord`
 
 ```
 .planning/
-├── PROJECT.md            # Project vision
-├── ROADMAP.md            # Current phase breakdown
-├── STATE.md              # Project memory & context
-├── RETROSPECTIVE.md      # Living retrospective (updated per milestone)
-├── config.json           # Workflow mode & gates
-├── todos/                # Captured ideas and tasks
-│   ├── pending/          # Todos waiting to be worked on
-│   └── done/             # Completed todos
-├── spikes/               # Spike experiments (/gsd-spike)
-│   ├── MANIFEST.md       # Spike inventory and verdicts
-│   └── NNN-name/         # Individual spike directories
-├── sketches/             # Design sketches (/gsd-sketch)
-│   ├── MANIFEST.md       # Sketch inventory and winners
-│   ├── themes/           # Shared CSS theme files
-│   └── NNN-name/         # Individual sketch directories (HTML + README)
-├── debug/                # Active debug sessions
-│   └── resolved/         # Archived resolved issues
-├── milestones/
-│   ├── v1.0-ROADMAP.md       # Archived roadmap snapshot
-│   ├── v1.0-REQUIREMENTS.md  # Archived requirements
-│   └── v1.0-phases/          # Archived phase dirs (via /gsd-cleanup or --archive-phases)
-│       ├── 01-foundation/
-│       └── 02-core-features/
-├── codebase/             # Codebase map (brownfield projects)
-│   ├── STACK.md          # Languages, frameworks, dependencies
-│   ├── ARCHITECTURE.md   # Patterns, layers, data flow
-│   ├── STRUCTURE.md      # Directory layout, key files
-│   ├── CONVENTIONS.md    # Coding standards, naming
-│   ├── TESTING.md        # Test setup, patterns
-│   ├── INTEGRATIONS.md   # External services, APIs
-│   └── CONCERNS.md       # Tech debt, known issues
-└── phases/
-    ├── 01-foundation/
-    │   ├── 01-01-PLAN.md
-    │   └── 01-01-SUMMARY.md
-    └── 02-core-features/
-        ├── 02-01-PLAN.md
-        └── 02-01-SUMMARY.md
+鈹溾攢鈹€ PROJECT.md            # Project vision
+鈹溾攢鈹€ ROADMAP.md            # Current phase breakdown
+鈹溾攢鈹€ STATE.md              # Project memory & context
+鈹溾攢鈹€ RETROSPECTIVE.md      # Living retrospective (updated per milestone)
+鈹溾攢鈹€ config.json           # Workflow mode & gates
+鈹溾攢鈹€ todos/                # Captured ideas and tasks
+鈹?  鈹溾攢鈹€ pending/          # Todos waiting to be worked on
+鈹?  鈹斺攢鈹€ done/             # Completed todos
+鈹溾攢鈹€ spikes/               # Spike experiments (/gsd-spike)
+鈹?  鈹溾攢鈹€ MANIFEST.md       # Spike inventory and verdicts
+鈹?  鈹斺攢鈹€ NNN-name/         # Individual spike directories
+鈹溾攢鈹€ sketches/             # Design sketches (/gsd-sketch)
+鈹?  鈹溾攢鈹€ MANIFEST.md       # Sketch inventory and winners
+鈹?  鈹溾攢鈹€ themes/           # Shared CSS theme files
+鈹?  鈹斺攢鈹€ NNN-name/         # Individual sketch directories (HTML + README)
+鈹溾攢鈹€ debug/                # Active debug sessions
+鈹?  鈹斺攢鈹€ resolved/         # Archived resolved issues
+鈹溾攢鈹€ milestones/
+鈹?  鈹溾攢鈹€ v1.0-ROADMAP.md       # Archived roadmap snapshot
+鈹?  鈹溾攢鈹€ v1.0-REQUIREMENTS.md  # Archived requirements
+鈹?  鈹斺攢鈹€ v1.0-phases/          # Archived phase dirs (via /gsd-cleanup or --archive-phases)
+鈹?      鈹溾攢鈹€ 01-foundation/
+鈹?      鈹斺攢鈹€ 02-core-features/
+鈹溾攢鈹€ codebase/             # Codebase map (brownfield projects)
+鈹?  鈹溾攢鈹€ STACK.md          # Languages, frameworks, dependencies
+鈹?  鈹溾攢鈹€ ARCHITECTURE.md   # Patterns, layers, data flow
+鈹?  鈹溾攢鈹€ STRUCTURE.md      # Directory layout, key files
+鈹?  鈹溾攢鈹€ CONVENTIONS.md    # Coding standards, naming
+鈹?  鈹溾攢鈹€ TESTING.md        # Test setup, patterns
+鈹?  鈹溾攢鈹€ INTEGRATIONS.md   # External services, APIs
+鈹?  鈹斺攢鈹€ CONCERNS.md       # Tech debt, known issues
+鈹斺攢鈹€ phases/
+    鈹溾攢鈹€ 01-foundation/
+    鈹?  鈹溾攢鈹€ 01-01-PLAN.md
+    鈹?  鈹斺攢鈹€ 01-01-SUMMARY.md
+    鈹斺攢鈹€ 02-core-features/
+        鈹溾攢鈹€ 02-01-PLAN.md
+        鈹斺攢鈹€ 02-01-SUMMARY.md
 ```
 
 ## Workflow Modes
@@ -611,7 +611,7 @@ Example config:
 **Starting a new project:**
 
 ```
-/gsd-new-project        # Unified flow: questioning → research → requirements → roadmap
+/gsd-new-project        # Unified flow: questioning 鈫?research 鈫?requirements 鈫?roadmap
 /clear
 /gsd-plan-phase 1       # Create plans for first phase
 /clear
@@ -637,7 +637,7 @@ Example config:
 ```
 /gsd-complete-milestone 1.0.0
 /clear
-/gsd-new-milestone  # Start next milestone (questioning → research → requirements → roadmap)
+/gsd-new-milestone  # Start next milestone (questioning 鈫?research 鈫?requirements 鈫?roadmap)
 ```
 
 **Capturing ideas during work:**

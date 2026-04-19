@@ -121,7 +121,7 @@ npx get-shit-done-codex@latest
 <summary><strong>非インタラクティブインストール（Docker、CI、スクリプト）</strong></summary>
 
 ```bash
-# Claude Code
+# Claude Code 互換/ランタイム
 npx get-shit-done-codex --claude --global   # ~/.claude/ にインストール
 npx get-shit-done-codex --claude --local    # ./.claude/ にインストール
 
@@ -184,7 +184,7 @@ npm run build:hooks
 node bin/install.js --codex --local
 ```
 
-コントリビュートする前に変更をテストするため、`./.claude/` にインストールされます。
+コントリビュートする前に変更をテストするため、`./.codex/` にインストールされます。
 
 </details>
 
@@ -202,7 +202,7 @@ claude --dangerously-skip-permissions
 <details>
 <summary><strong>代替案：詳細なパーミッション設定</strong></summary>
 
-このフラグを使いたくない場合は、プロジェクトの `.claude/settings.json` に以下を追加してください：
+このフラグを使いたくない場合は、Claude Code 互換/ランタイム向けとして、プロジェクトの `.claude/settings.json` に以下を追加してください：
 
 ```json
 {
@@ -750,7 +750,7 @@ GSDはv1.27以降、多層防御セキュリティを備えています：
 
 GSDのコードベースマッピングおよび分析コマンドは、プロジェクトを理解するためにファイルを読み取ります。**シークレットを含むファイルを保護する**には、Claude Codeの拒否リストに追加してください：
 
-1. Claude Code設定（`.claude/settings.json` またはグローバル）を開きます
+1. Claude Code 互換/ランタイム設定（`.claude/settings.json` またはグローバル）を開きます
 2. 機密ファイルパターンを拒否リストに追加します：
 
 ```json

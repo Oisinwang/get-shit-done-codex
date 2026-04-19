@@ -12,6 +12,10 @@ const fs = require('fs');
 const path = require('path');
 const { runGsdTools, createTempProject, cleanup } = require('./helpers.cjs');
 
+function toPosixPath(value) {
+  return value.split(path.sep).join('/');
+}
+
 // ─── helpers ──────────────────────────────────────────────────────────────────
 
 function writeConfig(tmpDir, obj) {
@@ -215,9 +219,9 @@ describe('agent-skills global: prefix', () => {
 
   beforeEach(() => {
     tmpDir = createTempProject();
-    // Create a fake HOME with ~/.claude/skills/ structure
+    // Create a fake HOME with ~/.codex/skills/ structure
     fakeHome = fs.mkdtempSync(path.join(require('os').tmpdir(), 'gsd-1992-home-'));
-    globalSkillsDir = path.join(fakeHome, '.claude', 'skills');
+    globalSkillsDir = path.join(fakeHome, '.codex', 'skills');
     fs.mkdirSync(globalSkillsDir, { recursive: true });
   });
 
@@ -233,14 +237,17 @@ describe('agent-skills global: prefix', () => {
     return skillDir;
   }
 
-  test('global:valid-skill resolves to $HOME/.claude/skills/valid-skill/SKILL.md', () => {
+  test('global:valid-skill resolves to $HOME/.codex/skills/valid-skill/SKILL.md', () => {
     createGlobalSkill('valid-skill');
     writeConfig(tmpDir, {
       agent_skills: { 'gsd-executor': ['global:valid-skill'] },
     });
 
     const result = runGsdTools(['agent-skills', 'gsd-executor'], tmpDir, { HOME: fakeHome, USERPROFILE: fakeHome });
-    assert.ok(result.output.includes('valid-skill/SKILL.md'), `should reference the global skill: ${result.output}`);
+    assert.ok(
+      toPosixPath(result.output).includes('valid-skill/SKILL.md'),
+      `should reference the global skill: ${result.output}`
+    );
     assert.ok(result.output.includes('<agent_skills>'), 'should emit agent_skills block');
   });
 
@@ -277,8 +284,9 @@ describe('agent-skills global: prefix', () => {
     });
 
     const result = runGsdTools(['agent-skills', 'gsd-executor'], tmpDir, { HOME: fakeHome, USERPROFILE: fakeHome });
-    assert.ok(result.output.includes('shadcn/SKILL.md'), 'should include global shadcn');
-    assert.ok(result.output.includes('skills/local-skill/SKILL.md'), 'should include project-relative skill');
+    const output = toPosixPath(result.output);
+    assert.ok(output.includes('shadcn/SKILL.md'), 'should include global shadcn');
+    assert.ok(output.includes('skills/local-skill/SKILL.md'), 'should include project-relative skill');
   });
 
   test('global: with empty name produces clear warning and skips', () => {

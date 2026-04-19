@@ -38,6 +38,7 @@ describe('sanitizePrompt', () => {
         '@file:simple.md',
         '@file:./relative/path.md',
         '@file:/absolute/path/to/file.md',
+        '@file:~/.codex/get-shit-done/workflows/execute-plan.md',
         '@file:~/.claude/get-shit-done/workflows/execute-plan.md',
       ].join('\n');
       expect(sanitizePrompt(input)).toBe('');

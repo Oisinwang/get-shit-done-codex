@@ -16,9 +16,9 @@ If the prompt contains a `<required_reading>` block, you MUST use the `Read` too
 **Critical mindset:** Individual phases can pass while the system fails. A component can exist without being imported. An API can exist without being called. Focus on connections, not existence.
 </role>
 
-**Context budget:** Load project skills first (lightweight). Read implementation files incrementally — load only what each check requires, not the full codebase upfront.
+**Context budget:** Load project skills first (lightweight). Read implementation files incrementally �?load only what each check requires, not the full codebase upfront.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists:
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists:
 1. List available skills (subdirectories)
 2. Read `SKILL.md` for each skill (lightweight index ~130 lines)
 3. Load specific `rules/*.md` files as needed during implementation
@@ -28,14 +28,14 @@ If the prompt contains a `<required_reading>` block, you MUST use the `Read` too
 This ensures project-specific patterns, conventions, and best practices are applied during execution.
 
 <core_principle>
-**Existence ≠ Integration**
+**Existence �?Integration**
 
 Integration verification checks connections:
 
-1. **Exports → Imports** — Phase 1 exports `getCurrentUser`, Phase 3 imports and calls it?
-2. **APIs → Consumers** — `/api/users` route exists, something fetches from it?
-3. **Forms → Handlers** — Form submits to API, API processes, result displays?
-4. **Data → Display** — Database has data, UI renders it?
+1. **Exports �?Imports** �?Phase 1 exports `getCurrentUser`, Phase 3 imports and calls it?
+2. **APIs �?Consumers** �?`/api/users` route exists, something fetches from it?
+3. **Forms �?Handlers** �?Form submits to API, API processes, result displays?
+4. **Data �?Display** �?Database has data, UI renders it?
 
 A "complete" codebase with broken wiring is a broken product.
 </core_principle>
@@ -233,22 +233,22 @@ verify_auth_flow() {
 
   # Step 1: Login form exists
   local login_form=$(grep -r -l "login\|Login" src/ --include="*.tsx" 2>/dev/null | head -1)
-  [ -n "$login_form" ] && echo "✓ Login form: $login_form" || echo "✗ Login form: MISSING"
+  [ -n "$login_form" ] && echo "�?Login form: $login_form" || echo "�?Login form: MISSING"
 
   # Step 2: Form submits to API
   if [ -n "$login_form" ]; then
     local submits=$(grep -E "fetch.*auth|axios.*auth|/api/auth" "$login_form" 2>/dev/null)
-    [ -n "$submits" ] && echo "✓ Submits to API" || echo "✗ Form doesn't submit to API"
+    [ -n "$submits" ] && echo "�?Submits to API" || echo "�?Form doesn't submit to API"
   fi
 
   # Step 3: API route exists
   local api_route=$(find src -path "*api/auth*" -name "*.ts" 2>/dev/null | head -1)
-  [ -n "$api_route" ] && echo "✓ API route: $api_route" || echo "✗ API route: MISSING"
+  [ -n "$api_route" ] && echo "�?API route: $api_route" || echo "�?API route: MISSING"
 
   # Step 4: Redirect after success
   if [ -n "$login_form" ]; then
     local redirect=$(grep -E "redirect|router.push|navigate" "$login_form" 2>/dev/null)
-    [ -n "$redirect" ] && echo "✓ Redirects after login" || echo "✗ No redirect after login"
+    [ -n "$redirect" ] && echo "�?Redirects after login" || echo "�?No redirect after login"
   fi
 }
 ```
@@ -261,33 +261,33 @@ verify_data_flow() {
   local api_route="$2"
   local data_var="$3"
 
-  echo "=== Data Flow: $component → $api_route ==="
+  echo "=== Data Flow: $component �?$api_route ==="
 
   # Step 1: Component exists
   local comp_file=$(find src -name "*$component*" -name "*.tsx" 2>/dev/null | head -1)
-  [ -n "$comp_file" ] && echo "✓ Component: $comp_file" || echo "✗ Component: MISSING"
+  [ -n "$comp_file" ] && echo "�?Component: $comp_file" || echo "�?Component: MISSING"
 
   if [ -n "$comp_file" ]; then
     # Step 2: Fetches data
     local fetches=$(grep -E "fetch|axios|useSWR|useQuery" "$comp_file" 2>/dev/null)
-    [ -n "$fetches" ] && echo "✓ Has fetch call" || echo "✗ No fetch call"
+    [ -n "$fetches" ] && echo "�?Has fetch call" || echo "�?No fetch call"
 
     # Step 3: Has state for data
     local has_state=$(grep -E "useState|useQuery|useSWR" "$comp_file" 2>/dev/null)
-    [ -n "$has_state" ] && echo "✓ Has state" || echo "✗ No state for data"
+    [ -n "$has_state" ] && echo "�?Has state" || echo "�?No state for data"
 
     # Step 4: Renders data
     local renders=$(grep -E "\{.*$data_var.*\}|\{$data_var\." "$comp_file" 2>/dev/null)
-    [ -n "$renders" ] && echo "✓ Renders data" || echo "✗ Doesn't render data"
+    [ -n "$renders" ] && echo "�?Renders data" || echo "�?Doesn't render data"
   fi
 
   # Step 5: API route exists and returns data
   local route_file=$(find src -path "*$api_route*" -name "*.ts" 2>/dev/null | head -1)
-  [ -n "$route_file" ] && echo "✓ API route: $route_file" || echo "✗ API route: MISSING"
+  [ -n "$route_file" ] && echo "�?API route: $route_file" || echo "�?API route: MISSING"
 
   if [ -n "$route_file" ]; then
     local returns_data=$(grep -E "return.*json|res.json" "$route_file" 2>/dev/null)
-    [ -n "$returns_data" ] && echo "✓ API returns data" || echo "✗ API doesn't return data"
+    [ -n "$returns_data" ] && echo "�?API returns data" || echo "�?API doesn't return data"
   fi
 }
 ```
@@ -299,26 +299,26 @@ verify_form_flow() {
   local form_component="$1"
   local api_route="$2"
 
-  echo "=== Form Flow: $form_component → $api_route ==="
+  echo "=== Form Flow: $form_component �?$api_route ==="
 
   local form_file=$(find src -name "*$form_component*" -name "*.tsx" 2>/dev/null | head -1)
 
   if [ -n "$form_file" ]; then
     # Step 1: Has form element
     local has_form=$(grep -E "<form|onSubmit" "$form_file" 2>/dev/null)
-    [ -n "$has_form" ] && echo "✓ Has form" || echo "✗ No form element"
+    [ -n "$has_form" ] && echo "�?Has form" || echo "�?No form element"
 
     # Step 2: Handler calls API
     local calls_api=$(grep -E "fetch.*$api_route|axios.*$api_route" "$form_file" 2>/dev/null)
-    [ -n "$calls_api" ] && echo "✓ Calls API" || echo "✗ Doesn't call API"
+    [ -n "$calls_api" ] && echo "�?Calls API" || echo "�?Doesn't call API"
 
     # Step 3: Handles response
     local handles_response=$(grep -E "\.then|await.*fetch|setError|setSuccess" "$form_file" 2>/dev/null)
-    [ -n "$handles_response" ] && echo "✓ Handles response" || echo "✗ Doesn't handle response"
+    [ -n "$handles_response" ] && echo "�?Handles response" || echo "�?Doesn't handle response"
 
     # Step 4: Shows feedback
     local shows_feedback=$(grep -E "error|success|loading|isLoading" "$form_file" 2>/dev/null)
-    [ -n "$shows_feedback" ] && echo "✓ Shows feedback" || echo "✗ No user feedback"
+    [ -n "$shows_feedback" ] && echo "�?Shows feedback" || echo "�?No user feedback"
   fi
 }
 ```
@@ -416,10 +416,10 @@ Return structured report to milestone auditor:
 
 | Requirement | Integration Path | Status | Issue |
 |-------------|-----------------|--------|-------|
-| {REQ-ID} | {Phase X export → Phase Y import → consumer} | WIRED / PARTIAL / UNWIRED | {specific issue or "—"} |
+| {REQ-ID} | {Phase X export �?Phase Y import �?consumer} | WIRED / PARTIAL / UNWIRED | {specific issue or "�?} |
 
 **Requirements with no cross-phase wiring:**
-{List REQ-IDs that exist in a single phase with no integration touchpoints — these may be self-contained or may indicate missing connections}
+{List REQ-IDs that exist in a single phase with no integration touchpoints �?these may be self-contained or may indicate missing connections}
 ```
 
 </output>
@@ -428,7 +428,7 @@ Return structured report to milestone auditor:
 
 **Check connections, not existence.** Files existing is phase-level. Files connecting is integration-level.
 
-**Trace full paths.** Component → API → DB → Response → Display. Break at any point = broken flow.
+**Trace full paths.** Component �?API �?DB �?Response �?Display. Break at any point = broken flow.
 
 **Check both directions.** Export exists AND import exists AND import is used AND used correctly.
 

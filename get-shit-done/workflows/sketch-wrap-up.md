@@ -1,6 +1,6 @@
 <purpose>
 Curate sketch design findings and package them into a persistent project skill for future
-UI implementation. Reads from `.planning/sketches/`, writes skill to `./.claude/skills/sketch-findings-[project]/`
+UI implementation. Reads from `.planning/sketches/`, writes skill to `./.codex/skills/sketch-findings-[project]/`
 (project-local) and summary to `.planning/sketches/WRAP-UP-SUMMARY.md`.
 Companion to `/gsd-sketch`.
 </purpose>
@@ -13,9 +13,9 @@ Read all files referenced by the invoking prompt's execution_context before star
 
 <step name="banner">
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► SKETCH WRAP-UP
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?SKETCH WRAP-UP
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 ```
 </step>
 
@@ -24,7 +24,8 @@ Read all files referenced by the invoking prompt's execution_context before star
 
 1. Read `.planning/sketches/MANIFEST.md` for the design direction and reference points
 2. Glob `.planning/sketches/*/README.md` and parse YAML frontmatter from each
-3. Check if `./.claude/skills/sketch-findings-*/SKILL.md` exists for this project
+3. Check if `./.codex/skills/sketch-findings-*/SKILL.md` exists for this project
+   - If no Codex-first skill exists, also check legacy `./.claude/skills/sketch-findings-*/SKILL.md` as migration input
    - If yes: read its `processed_sketches` list and filter those out
    - If no: all sketches are candidates
 
@@ -54,17 +55,17 @@ Present each unprocessed sketch in ascending order. For each sketch, show:
 
 Then ask the user:
 
-╔══════════════════════════════════════════════════════════════╗
-║  CHECKPOINT: Decision Required                               ║
-╚══════════════════════════════════════════════════════════════╝
+鈺斺晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晽
+鈺? CHECKPOINT: Decision Required                               鈺?
+鈺氣晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨暆
 
-Sketch {NNN}: {name} — Winner: Variant {X}
+Sketch {NNN}: {name} 鈥?Winner: Variant {X}
 
 {key design decisions summary}
 
-──────────────────────────────────────────────────────────────
-→ Include / Exclude / Partial / Let me look at it
-──────────────────────────────────────────────────────────────
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+鈫?Include / Exclude / Partial / Let me look at it
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 **If "Let me look at it":**
 1. Provide: `open .planning/sketches/NNN-name/index.html`
@@ -82,10 +83,10 @@ After all sketches are curated:
 
 1. Read all included sketches' tags, names, and content
 2. Propose design-area groupings, e.g.:
-   - "**Layout & Navigation** — sketches 001, 004"
-   - "**Form Controls** — sketches 002, 005"
-   - "**Color & Typography** — sketches 003"
-3. Present the grouping for approval — user may merge, split, rename, or rearrange
+   - "**Layout & Navigation** 鈥?sketches 001, 004"
+   - "**Form Controls** 鈥?sketches 002, 005"
+   - "**Color & Typography** 鈥?sketches 003"
+3. Present the grouping for approval 鈥?user may merge, split, rename, or rearrange
 
 Each group becomes one reference file in the generated skill.
 </step>
@@ -93,7 +94,7 @@ Each group becomes one reference file in the generated skill.
 <step name="skill_name">
 ## Determine Output Skill Name
 
-Derive from the project directory name: `./.claude/skills/sketch-findings-[project-dir-name]/`
+Derive from the project directory name: `./.codex/skills/sketch-findings-[project-dir-name]/`
 
 If a skill already exists at that path (append mode), update in place.
 </step>
@@ -120,10 +121,10 @@ For each design-area group, write a reference file at `references/[design-area-n
 [For each validated decision: what was chosen, why it won over alternatives, the key visual properties (colors, spacing, border radius, typography)]
 
 ## CSS Patterns
-[Key CSS snippets from winning variants — layout structures, component patterns, animation patterns. Extracted and cleaned up for reference.]
+[Key CSS snippets from winning variants 鈥?layout structures, component patterns, animation patterns. Extracted and cleaned up for reference.]
 
 ## HTML Structures
-[Key HTML patterns from winning variants — page layout, component markup, navigation structures.]
+[Key HTML patterns from winning variants 鈥?page layout, component markup, navigation structures.]
 
 ## What to Avoid
 [Design directions that were tried and rejected. Why they didn't work.]
@@ -198,7 +199,7 @@ Write `.planning/sketches/WRAP-UP-SUMMARY.md` for project history:
 **Date:** [date]
 **Sketches processed:** [count]
 **Design areas:** [list]
-**Skill output:** `./.claude/skills/sketch-findings-[project]/`
+**Skill output:** `./.codex/skills/sketch-findings-[project]/`
 
 ## Included Sketches
 | # | Name | Winner | Design Area |
@@ -216,16 +217,16 @@ Write `.planning/sketches/WRAP-UP-SUMMARY.md` for project history:
 ```
 </step>
 
-<step name="update_claude_md">
-## Update Project CLAUDE.md
+<step name="update_agents_md">
+## Update Project AGENTS.md
 
 Add an auto-load routing line:
 
 ```
-- **Sketch findings for [project]** (design decisions, CSS patterns, visual direction) → `Skill("sketch-findings-[project-dir-name]")`
+- **Sketch findings for [project]** (design decisions, CSS patterns, visual direction) 鈫?`Skill("sketch-findings-[project-dir-name]")`
 ```
 
-If this routing line already exists (append mode), leave it as-is.
+If this routing line already exists (append mode), leave it as-is. If the project still carries a legacy `CLAUDE.md` during migration, mirror the same routing line there only as a compatibility shim.
 </step>
 
 <step name="commit">
@@ -238,35 +239,35 @@ gsd-sdk query commit "docs(sketch-wrap-up): package [N] sketch findings into pro
 
 <step name="report">
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► SKETCH WRAP-UP COMPLETE ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?SKETCH WRAP-UP COMPLETE 鉁?
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
 **Curated:** {N} sketches ({included} included, {excluded} excluded)
 **Design areas:** {list}
-**Skill:** `./.claude/skills/sketch-findings-[project]/`
+**Skill:** `./.codex/skills/sketch-findings-[project]/`
 **Summary:** `.planning/sketches/WRAP-UP-SUMMARY.md`
-**CLAUDE.md:** routing line added
+**AGENTS.md:** routing line added
 
 The sketch-findings skill will auto-load when building the UI.
 ```
 
-───────────────────────────────────────────────────────────────
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
-## ▶ Next Up
+## 鈻?Next Up
 
-**Start building** — implement the validated design
+**Start building** 鈥?implement the validated design
 
 `/gsd-plan-phase`
 
-───────────────────────────────────────────────────────────────
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 
 **Also available:**
-- `/gsd-ui-phase` — generate a UI design contract for a frontend phase
-- `/gsd-sketch` — sketch additional design areas
-- `/gsd-explore` — continue exploring
+- `/gsd-ui-phase` 鈥?generate a UI design contract for a frontend phase
+- `/gsd-sketch` 鈥?sketch additional design areas
+- `/gsd-explore` 鈥?continue exploring
 
-───────────────────────────────────────────────────────────────
+鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
 </step>
 
 </process>
@@ -274,10 +275,10 @@ The sketch-findings skill will auto-load when building the UI.
 <success_criteria>
 - [ ] Every unprocessed sketch presented for individual curation
 - [ ] Design-area grouping proposed and approved
-- [ ] Sketch-findings skill exists at `./.claude/skills/` with SKILL.md, references/, sources/
+- [ ] Sketch-findings skill exists at `./.codex/skills/` with SKILL.md, references/, sources/
 - [ ] Winning theme.css copied into skill sources
 - [ ] Reference files contain design decisions, CSS patterns, HTML structures, anti-patterns
 - [ ] `.planning/sketches/WRAP-UP-SUMMARY.md` written for project history
-- [ ] Project CLAUDE.md has auto-load routing line
+- [ ] Project AGENTS.md has auto-load routing line
 - [ ] Summary presented with next-step routing
 </success_criteria>

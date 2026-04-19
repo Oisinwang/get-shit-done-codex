@@ -311,7 +311,7 @@ node gsd-tools.cjs requirements mark-complete <ids>
 Pre-compute and cache skill discovery for faster command loading.
 
 ```bash
-# Generate skill manifest (writes to .claude/skill-manifest.json)
+# Generate skill manifest (writes to .codex/skill-manifest.json)
 node gsd-tools.cjs skill-manifest
 
 # Generate with custom output path

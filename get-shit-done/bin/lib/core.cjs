@@ -625,7 +625,10 @@ function parseWorktreePorcelain(porcelain) {
   let current = null;
   for (const line of porcelain.split('\n')) {
     if (line.startsWith('worktree ')) {
-      current = { path: line.slice('worktree '.length).trim(), branch: null };
+      current = {
+        path: path.normalize(line.slice('worktree '.length).trim()),
+        branch: null,
+      };
     } else if (line.startsWith('branch refs/heads/') && current) {
       current.branch = line.slice('branch refs/heads/'.length).trim();
     } else if (line === '' && current) {
@@ -655,7 +658,7 @@ function parseWorktreePorcelain(porcelain) {
  */
 function pruneOrphanedWorktrees(repoRoot) {
   const pruned = [];
-  const cwd = process.cwd();
+  const cwd = path.normalize(process.cwd());
 
   try {
     // 1. Get all worktrees in porcelain format
@@ -676,7 +679,10 @@ function pruneOrphanedWorktrees(repoRoot) {
       const { path: wtPath, branch } = worktrees[i];
 
       // Never remove the worktree for the current process directory
-      if (wtPath === cwd || cwd.startsWith(wtPath + path.sep)) continue;
+      const relToWtdir = path.relative(wtPath, cwd);
+      if (relToWtdir === '' || (!relToWtdir.startsWith('..') && !path.isAbsolute(relToWtdir))) {
+        continue;
+      }
 
       // Check if the branch is fully merged into HEAD (main)
       // git merge-base --is-ancestor <branch> HEAD exits 0 when merged

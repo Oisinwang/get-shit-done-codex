@@ -9,9 +9,12 @@ const { getGlobalDir } = require('../bin/install.js');
 
 describe('getGlobalDir (Windsurf)', () => {
   let originalWindsurfConfigDir;
+  let originalClaudeConfigDir;
 
   beforeEach(() => {
     originalWindsurfConfigDir = process.env.WINDSURF_CONFIG_DIR;
+    originalClaudeConfigDir = process.env.CLAUDE_CONFIG_DIR;
+    delete process.env.CLAUDE_CONFIG_DIR;
     delete process.env.WINDSURF_CONFIG_DIR;
   });
 
@@ -20,6 +23,12 @@ describe('getGlobalDir (Windsurf)', () => {
       process.env.WINDSURF_CONFIG_DIR = originalWindsurfConfigDir;
     } else {
       delete process.env.WINDSURF_CONFIG_DIR;
+    }
+
+    if (originalClaudeConfigDir !== undefined) {
+      process.env.CLAUDE_CONFIG_DIR = originalClaudeConfigDir;
+    } else {
+      delete process.env.CLAUDE_CONFIG_DIR;
     }
   });
 

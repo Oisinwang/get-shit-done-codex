@@ -82,8 +82,15 @@ function getLatestCompletedMilestone(projectDir: string): { version: string; nam
  * Port of checkAgentsInstalled from core.cjs lines 1274-1306.
  */
 function checkAgentsInstalled(): { agents_installed: boolean; missing_agents: string[] } {
-  const agentsDir = process.env.GSD_AGENTS_DIR
-    || join(homedir(), '.claude', 'get-shit-done', 'agents');
+  const agentRoots = process.env.GSD_AGENTS_DIR
+    ? [process.env.GSD_AGENTS_DIR]
+    : [
+        join(homedir(), '.codex', 'agents'),
+        join(homedir(), '.codex', 'get-shit-done', 'agents'),
+        join(homedir(), '.claude', 'agents'),
+        join(homedir(), '.claude', 'get-shit-done', 'agents'),
+      ];
+  const agentsDir = agentRoots.find(root => existsSync(root)) ?? agentRoots[0]!;
   const expectedAgents = Object.keys(MODEL_PROFILES);
 
   if (!existsSync(agentsDir)) {

@@ -17,12 +17,12 @@ Scan the codebase, score each dimension COVERED/PARTIAL/MISSING, write EVAL-REVI
 </role>
 
 <required_reading>
-Read `~/.claude/get-shit-done/references/ai-evals.md` before auditing. This is your scoring framework.
+Read `~/.codex/get-shit-done/references/ai-evals.md` before auditing. This is your scoring framework.
 </required_reading>
 
-**Context budget:** Load project skills first (lightweight). Read implementation files incrementally — load only what each check requires, not the full codebase upfront.
+**Context budget:** Load project skills first (lightweight). Read implementation files incrementally �?load only what each check requires, not the full codebase upfront.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists:
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists:
 1. List available skills (subdirectories)
 2. Read `SKILL.md` for each skill (lightweight index ~130 lines)
 3. Load specific `rules/*.md` files as needed during implementation
@@ -77,7 +77,7 @@ For each dimension from AI-SPEC.md Section 5:
 | Status | Criteria |
 |--------|----------|
 | **COVERED** | Implementation exists, targets the rubric behavior, runs (automated or documented manual) |
-| **PARTIAL** | Exists but incomplete — missing rubric specificity, not automated, or has known gaps |
+| **PARTIAL** | Exists but incomplete �?missing rubric specificity, not automated, or has known gaps |
 | **MISSING** | No implementation found for this dimension |
 
 For PARTIAL and MISSING: record what was planned, what was found, and specific remediation to reach COVERED.
@@ -100,19 +100,19 @@ overall_score   = (coverage_score × 0.6) + (infra_score × 0.4)
 ```
 
 Verdict:
-- 80-100: **PRODUCTION READY** — deploy with monitoring
-- 60-79: **NEEDS WORK** — address CRITICAL gaps before production
-- 40-59: **SIGNIFICANT GAPS** — do not deploy
-- 0-39: **NOT IMPLEMENTED** — review AI-SPEC.md and implement
+- 80-100: **PRODUCTION READY** �?deploy with monitoring
+- 60-79: **NEEDS WORK** �?address CRITICAL gaps before production
+- 40-59: **SIGNIFICANT GAPS** �?do not deploy
+- 0-39: **NOT IMPLEMENTED** �?review AI-SPEC.md and implement
 </step>
 
 <step name="write_eval_review">
-**ALWAYS use the Write tool to create files** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
+**ALWAYS use the Write tool to create files** �?never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
 
 Write to `{phase_dir}/{padded_phase}-EVAL-REVIEW.md`:
 
 ```markdown
-# EVAL-REVIEW — Phase {N}: {name}
+# EVAL-REVIEW �?Phase {N}: {name}
 
 **Audit Date:** {date}
 **AI-SPEC Present:** Yes / No

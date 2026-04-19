@@ -1,5 +1,5 @@
 <purpose>
-Generate an AI design contract (AI-SPEC.md) for phases that involve building AI systems. Orchestrates gsd-framework-selector → gsd-ai-researcher → gsd-domain-researcher → gsd-eval-planner with a validation gate. Inserts between discuss-phase and plan-phase in the GSD lifecycle.
+Generate an AI design contract (AI-SPEC.md) for phases that involve building AI systems. Orchestrates gsd-framework-selector 鈫?gsd-ai-researcher 鈫?gsd-domain-researcher 鈫?gsd-eval-planner with a validation gate. Inserts between discuss-phase and plan-phase in the GSD lifecycle.
 
 AI-SPEC.md locks four things before the planner creates tasks:
 1. Framework selection (with rationale and alternatives)
@@ -11,8 +11,8 @@ This prevents the two most common AI development failures: choosing the wrong fr
 </purpose>
 
 <required_reading>
-@~/.claude/get-shit-done/references/ai-frameworks.md
-@~/.claude/get-shit-done/references/ai-evals.md
+@~/.codex/get-shit-done/references/ai-frameworks.md
+@~/.codex/get-shit-done/references/ai-evals.md
 </required_reading>
 
 <process>
@@ -47,7 +47,7 @@ AI phase is disabled in config. Enable via /gsd-settings.
 ```
 Exit workflow.
 
-**If `planning_exists` is false:** Error — run `/gsd-new-project` first.
+**If `planning_exists` is false:** Error 鈥?run `/gsd-new-project` first.
 
 ## 2. Parse and Validate Phase
 
@@ -65,7 +65,7 @@ PHASE_INFO=$(gsd-sdk query roadmap.get-phase "${PHASE}")
 ```
 No CONTEXT.md found for Phase {N}.
 Recommended: run /gsd-discuss-phase {N} first to capture framework preferences.
-Continuing without user decisions — framework selector will ask all questions.
+Continuing without user decisions 鈥?framework selector will ask all questions.
 ```
 Continue (non-blocking).
 
@@ -81,9 +81,9 @@ AI_SPEC_FILE=$(ls "${PHASE_DIR}"/*-AI-SPEC.md 2>/dev/null | head -1)
 - header: "Existing AI-SPEC"
 - question: "AI-SPEC.md already exists for Phase {N}. What would you like to do?"
 - options:
-  - "Update — re-run with existing as baseline"
-  - "View — display current AI-SPEC and exit"
-  - "Skip — keep current AI-SPEC and exit"
+  - "Update 鈥?re-run with existing as baseline"
+  - "View 鈥?display current AI-SPEC and exit"
+  - "Skip 鈥?keep current AI-SPEC and exit"
 
 If "View": display file contents, exit.
 If "Skip": exit.
@@ -93,16 +93,16 @@ If "Update": continue to step 5.
 
 Display:
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► AI DESIGN CONTRACT — PHASE {N}: {name}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?AI DESIGN CONTRACT 鈥?PHASE {N}: {name}
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
-◆ Step 1/4 — Framework Selection...
+鈼?Step 1/4 鈥?Framework Selection...
 ```
 
 Spawn `gsd-framework-selector` with:
 ```markdown
-Read ~/.claude/agents/gsd-framework-selector.md for instructions.
+Read ~/.codex/get-shit-done/agents/gsd-framework-selector.md for instructions.
 
 <objective>
 Select the right AI framework for Phase {phase_number}: {phase_name}
@@ -115,20 +115,20 @@ Goal: {phase_goal}
 </files_to_read>
 
 <phase_context>
-Phase: {phase_number} — {phase_name}
+Phase: {phase_number} 鈥?{phase_name}
 Goal: {phase_goal}
 </phase_context>
 ```
 
 Parse selector output for: `primary_framework`, `system_type`, `model_provider`, `eval_concerns`, `alternative_framework`.
 
-**If selector fails or returns empty:** Exit with error — "Framework selection failed. Re-run /gsd-ai-integration-phase {N} or answer the framework question in /gsd-discuss-phase {N} first."
+**If selector fails or returns empty:** Exit with error 鈥?"Framework selection failed. Re-run /gsd-ai-integration-phase {N} or answer the framework question in /gsd-discuss-phase {N} first."
 
 ## 6. Initialize AI-SPEC.md
 
 Copy template:
 ```bash
-cp "$HOME/.claude/get-shit-done/templates/AI-SPEC.md" "${PHASE_DIR}/${PADDED_PHASE}-AI-SPEC.md"
+cp "$HOME/.codex/get-shit-done/templates/AI-SPEC.md" "${PHASE_DIR}/${PADDED_PHASE}-AI-SPEC.md"
 ```
 
 Fill in header fields:
@@ -141,12 +141,12 @@ Fill in header fields:
 
 Display:
 ```
-◆ Step 2/4 — Researching {primary_framework} docs + AI systems best practices...
+鈼?Step 2/4 鈥?Researching {primary_framework} docs + AI systems best practices...
 ```
 
 Spawn `gsd-ai-researcher` with:
 ```markdown
-Read ~/.claude/agents/gsd-ai-researcher.md for instructions.
+Read ~/.codex/get-shit-done/agents/gsd-ai-researcher.md for instructions.
 
 <objective>
 Research {primary_framework} for Phase {phase_number}: {phase_name}
@@ -163,7 +163,7 @@ framework: {primary_framework}
 system_type: {system_type}
 model_provider: {model_provider}
 ai_spec_path: {ai_spec_path}
-phase_context: Phase {phase_number}: {phase_name} — {phase_goal}
+phase_context: Phase {phase_number}: {phase_name} 鈥?{phase_goal}
 </input>
 ```
 
@@ -171,12 +171,12 @@ phase_context: Phase {phase_number}: {phase_name} — {phase_goal}
 
 Display:
 ```
-◆ Step 3/4 — Researching domain context and expert evaluation criteria...
+鈼?Step 3/4 鈥?Researching domain context and expert evaluation criteria...
 ```
 
 Spawn `gsd-domain-researcher` with:
 ```markdown
-Read ~/.claude/agents/gsd-domain-researcher.md for instructions.
+Read ~/.codex/get-shit-done/agents/gsd-domain-researcher.md for instructions.
 
 <objective>
 Research the business domain and expert evaluation criteria for Phase {phase_number}: {phase_name}
@@ -201,17 +201,17 @@ ai_spec_path: {ai_spec_path}
 
 Display:
 ```
-◆ Step 4/4 — Designing evaluation strategy from domain + technical context...
+鈼?Step 4/4 鈥?Designing evaluation strategy from domain + technical context...
 ```
 
 Spawn `gsd-eval-planner` with:
 ```markdown
-Read ~/.claude/agents/gsd-eval-planner.md for instructions.
+Read ~/.codex/get-shit-done/agents/gsd-eval-planner.md for instructions.
 
 <objective>
 Design evaluation strategy for Phase {phase_number}: {phase_name}
 Write Sections 5, 6, and 7 of AI-SPEC.md
-AI-SPEC.md now contains domain context (Section 1b) — use it as your rubric starting point.
+AI-SPEC.md now contains domain context (Section 1b) 鈥?use it as your rubric starting point.
 </objective>
 
 <files_to_read>
@@ -248,25 +248,25 @@ Read the completed AI-SPEC.md. Check that:
 **If `commit_docs` is true:**
 ```bash
 git add "${AI_SPEC_FILE}"
-git commit -m "docs({phase_slug}): generate AI-SPEC.md — {primary_framework} + domain context + eval strategy"
+git commit -m "docs({phase_slug}): generate AI-SPEC.md 鈥?{primary_framework} + domain context + eval strategy"
 ```
 
 ## 12. Display Completion
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► AI-SPEC COMPLETE — PHASE {N}: {name}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?AI-SPEC COMPLETE 鈥?PHASE {N}: {name}
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
-◆ Framework: {primary_framework}
-◆ System Type: {system_type}
-◆ Domain: {domain_vertical from Section 1b}
-◆ Eval Dimensions: {eval_concerns}
-◆ Tracing Default: Arize Phoenix (or detected existing tool)
-◆ Output: {ai_spec_path}
+鈼?Framework: {primary_framework}
+鈼?System Type: {system_type}
+鈼?Domain: {domain_vertical from Section 1b}
+鈼?Eval Dimensions: {eval_concerns}
+鈼?Tracing Default: Arize Phoenix (or detected existing tool)
+鈼?Output: {ai_spec_path}
 
 Next step:
-  /gsd-plan-phase {N}   — planner will consume AI-SPEC.md
+  /gsd-plan-phase {N}   鈥?planner will consume AI-SPEC.md
 ```
 
 </process>

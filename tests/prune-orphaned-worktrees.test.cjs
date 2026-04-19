@@ -14,6 +14,10 @@ const path = require('path');
 const { execSync } = require('child_process');
 const { createTempDir, cleanup } = require('./helpers.cjs');
 
+function toGitPath(p) {
+  return p.split(path.sep).join('/');
+}
+
 // Lazy-loaded so tests can fail clearly when the export doesn't exist yet.
 function getPruneOrphanedWorktrees() {
   const { pruneOrphanedWorktrees } = require('../get-shit-done/bin/lib/core.cjs');
@@ -158,7 +162,10 @@ describe('pruneOrphanedWorktrees', () => {
 
     // Verify it appears in git worktree list
     const beforeList = execSync('git worktree list --porcelain', { cwd: repoDir, encoding: 'utf8' });
-    assert.ok(beforeList.includes(worktreeDir), 'worktree should appear in list before deletion');
+    assert.ok(
+      beforeList.includes(toGitPath(worktreeDir)),
+      'worktree should appear in list before deletion'
+    );
 
     // Manually delete the worktree directory (simulate orphan)
     fs.rmSync(worktreeDir, { recursive: true, force: true });
@@ -170,7 +177,7 @@ describe('pruneOrphanedWorktrees', () => {
     // Assert: git worktree list no longer shows the stale entry
     const afterList = execSync('git worktree list --porcelain', { cwd: repoDir, encoding: 'utf8' });
     assert.ok(
-      !afterList.includes(worktreeDir),
+      !afterList.includes(toGitPath(worktreeDir)),
       'git worktree list still shows stale entry after prune:\n' + afterList
     );
   });

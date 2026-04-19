@@ -259,17 +259,26 @@ export class GSD {
 
   /**
    * Load the gsd-executor agent definition if available.
-   * Falls back gracefully — returns undefined if not found.
+   * Falls back gracefully – returns undefined if not found.
    */
   private async loadAgentDefinition(): Promise<string | undefined> {
     const paths = [
+      // Source checkout is the canonical prompt surface for the fork.
+      join(this.projectDir, 'agents', 'gsd-executor.md'),
+      // Repo-local Codex installation
+      join(this.projectDir, '.codex', 'get-shit-done', 'agents', 'gsd-executor.md'),
+      // Repo-local Codex agents directory
+      join(this.projectDir, '.codex', 'agents', 'gsd-executor.md'),
+      // Global Codex home directories
+      join(homedir(), '.codex', 'agents', 'gsd-executor.md'),
+      join(homedir(), '.codex', 'get-shit-done', 'agents', 'gsd-executor.md'),
       // Repo-local GSD installation
       join(this.projectDir, '.claude', 'get-shit-done', 'agents', 'gsd-executor.md'),
       // Repo-local agents directory
       join(this.projectDir, '.claude', 'agents', 'gsd-executor.md'),
-      // Global home directory
+      // Global Claude compatibility directories
       join(homedir(), '.claude', 'agents', 'gsd-executor.md'),
-      join(this.projectDir, 'agents', 'gsd-executor.md'),
+      join(homedir(), '.claude', 'get-shit-done', 'agents', 'gsd-executor.md'),
     ];
 
     for (const p of paths) {

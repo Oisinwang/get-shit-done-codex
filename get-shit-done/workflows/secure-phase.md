@@ -3,12 +3,12 @@ Verify threat mitigations for a completed phase. Confirm PLAN.md threat register
 </purpose>
 
 <required_reading>
-@~/.claude/get-shit-done/references/ui-brand.md
+@~/.codex/get-shit-done/references/ui-brand.md
 </required_reading>
 
 <available_agent_types>
-Valid GSD subagent types (use exact names — do not fall back to 'general-purpose'):
-- gsd-security-auditor — Verifies threat mitigation coverage
+Valid GSD subagent types (use exact names 鈥?do not fall back to 'general-purpose'):
+- gsd-security-auditor 鈥?Verifies threat mitigation coverage
 </available_agent_types>
 
 <process>
@@ -42,17 +42,17 @@ SUMMARY_FILES=$(ls "${PHASE_DIR}"/*-SUMMARY.md 2>/dev/null)
 
 - **State A** (`SECURITY_FILE` non-empty): Audit existing
 - **State B** (`SECURITY_FILE` empty, `PLAN_FILES` and `SUMMARY_FILES` non-empty): Run from artifacts
-- **State C** (`SUMMARY_FILES` empty): Exit — "Phase {N} not executed. Run /gsd-execute-phase {N} first."
+- **State C** (`SUMMARY_FILES` empty): Exit 鈥?"Phase {N} not executed. Run /gsd-execute-phase {N} first."
 
 ## 2. Discovery
 
 ### 2a. Read Phase Artifacts
 
-Read PLAN.md — extract `<threat_model>` block: trust boundaries, STRIDE register (`threat_id`, `category`, `component`, `disposition`, `mitigation_plan`).
+Read PLAN.md 鈥?extract `<threat_model>` block: trust boundaries, STRIDE register (`threat_id`, `category`, `component`, `disposition`, `mitigation_plan`).
 
 ### 2b. Read Summary Threat Flags
 
-Read SUMMARY.md — extract `## Threat Flags` entries.
+Read SUMMARY.md 鈥?extract `## Threat Flags` entries.
 
 ### 2c. Build Threat Register
 
@@ -69,26 +69,26 @@ Classify each threat:
 
 Build: `{ threat_id, category, component, disposition, status, evidence }`
 
-If `threats_open: 0` → skip to Step 6 directly.
+If `threats_open: 0` 鈫?skip to Step 6 directly.
 
 ## 4. Present Threat Plan
 
 
 **Text mode (`workflow.text_mode: true` in config or `--text` flag):** Set `TEXT_MODE=true` if `--text` is present in `$ARGUMENTS` OR `text_mode` from init JSON is `true`. When TEXT_MODE is active, replace every `AskUserQuestion` call with a plain-text numbered list and ask the user to type their choice number. This is required for non-Claude runtimes (OpenAI Codex, Gemini CLI, etc.) where `AskUserQuestion` is not available.
 Call AskUserQuestion with threat table and options:
-1. "Verify all open threats" → Step 5
-2. "Accept all open — document in accepted risks log" → add to SECURITY.md accepted risks, set all CLOSED, Step 6
-3. "Cancel" → exit
+1. "Verify all open threats" 鈫?Step 5
+2. "Accept all open 鈥?document in accepted risks log" 鈫?add to SECURITY.md accepted risks, set all CLOSED, Step 6
+3. "Cancel" 鈫?exit
 
 ## 5. Spawn gsd-security-auditor
 
 ```
 Task(
-  prompt="Read ~/.claude/agents/gsd-security-auditor.md for instructions.\n\n" +
+  prompt="Read ~/.codex/get-shit-done/agents/gsd-security-auditor.md for instructions.\n\n" +
     "<files_to_read>{PLAN, SUMMARY, impl files, SECURITY.md}</files_to_read>" +
     "<threat_register>{threat register}</threat_register>" +
     "<config>asvs_level: {SECURITY_ASVS}, block_on: {SECURITY_BLOCK_ON}</config>" +
-    "<constraints>Never modify implementation files. Verify mitigations exist — do not scan for new threats. Escalate implementation gaps.</constraints>" +
+    "<constraints>Never modify implementation files. Verify mitigations exist 鈥?do not scan for new threats. Escalate implementation gaps.</constraints>" +
     "${AGENT_SKILLS_AUDITOR}",
   subagent_type="gsd-security-auditor",
   model="{AUDITOR_MODEL}",
@@ -97,14 +97,14 @@ Task(
 ```
 
 Handle return:
-- `## SECURED` → record closures → Step 6
-- `## OPEN_THREATS` → record closed + open, present user with accept/block choice → Step 6
-- `## ESCALATE` → present to user → Step 6
+- `## SECURED` 鈫?record closures 鈫?Step 6
+- `## OPEN_THREATS` 鈫?record closed + open, present user with accept/block choice 鈫?Step 6
+- `## ESCALATE` 鈫?present to user 鈫?Step 6
 
 ## 6. Write/Update SECURITY.md
 
 **State B (create):**
-1. Read template from `~/.claude/get-shit-done/templates/SECURITY.md`
+1. Read template from `~/.codex/get-shit-done/templates/SECURITY.md`
 2. Fill: frontmatter, threat register, accepted risks, audit trail
 3. Write to `${PHASE_DIR}/${PADDED_PHASE}-SECURITY.md`
 
@@ -124,9 +124,9 @@ Handle return:
 
 ```
 GSD > PHASE {N} SECURITY BLOCKED
-{K} threats open — phase advancement blocked until threats_open: 0
-▶ Fix mitigations then re-run: /gsd-secure-phase {N}
-▶ Or document accepted risks in SECURITY.md and re-run.
+{K} threats open 鈥?phase advancement blocked until threats_open: 0
+鈻?Fix mitigations then re-run: /gsd-secure-phase {N}
+鈻?Or document accepted risks in SECURITY.md and re-run.
 ```
 
 Do NOT emit next-phase routing. Stop here.
@@ -142,9 +142,9 @@ gsd-sdk query commit "docs(phase-${PHASE}): add/update security threat verificat
 **Secured (threats_open: 0):**
 ```
 GSD > PHASE {N} THREAT-SECURE
-threats_open: 0 — all threats have dispositions.
-▶ /gsd-validate-phase {N}    validate test coverage
-▶ /gsd-verify-work {N}       run UAT
+threats_open: 0 鈥?all threats have dispositions.
+鈻?/gsd-validate-phase {N}    validate test coverage
+鈻?/gsd-verify-work {N}       run UAT
 ```
 
 Display `/clear` reminder.
@@ -152,11 +152,11 @@ Display `/clear` reminder.
 </process>
 
 <success_criteria>
-- [ ] Security enforcement checked — exit if false
-- [ ] Input state detected (A/B/C) — state C exits cleanly
+- [ ] Security enforcement checked 鈥?exit if false
+- [ ] Input state detected (A/B/C) 鈥?state C exits cleanly
 - [ ] PLAN.md threat model parsed, register built
 - [ ] SUMMARY.md threat flags incorporated
-- [ ] threats_open: 0 → skip directly to Step 6
+- [ ] threats_open: 0 鈫?skip directly to Step 6
 - [ ] User gate with threat table presented
 - [ ] Auditor spawned with complete context
 - [ ] All three return formats (SECURED/OPEN_THREATS/ESCALATE) handled

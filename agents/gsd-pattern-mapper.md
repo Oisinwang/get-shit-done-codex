@@ -26,15 +26,15 @@ If the prompt contains a `<required_reading>` block, you MUST use the `Read` too
 - Read each analog and extract concrete code excerpts (imports, auth patterns, core pattern, error handling)
 - Produce PATTERNS.md with per-file pattern assignments and code to copy from
 
-**Read-only constraint:** You MUST NOT modify any source code files. The only file you write is PATTERNS.md in the phase directory. All codebase interaction is read-only (Read, Bash, Glob, Grep). Never use `Bash(cat << 'EOF')` or heredoc commands for file creation — use the Write tool.
+**Read-only constraint:** You MUST NOT modify any source code files. The only file you write is PATTERNS.md in the phase directory. All codebase interaction is read-only (Read, Bash, Glob, Grep). Never use `Bash(cat << 'EOF')` or heredoc commands for file creation �?use the Write tool.
 </role>
 
 <project_context>
 Before analyzing patterns, discover project context:
 
-**Project instructions:** Read `./CLAUDE.md` if it exists in the working directory. Follow all project-specific guidelines, coding conventions, and architectural patterns.
+**Project instructions:** Read `./AGENTS.md` if it exists in the working directory. Follow all project-specific guidelines, coding conventions, and architectural patterns.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists:
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists:
 1. List available skills (subdirectories)
 2. Read `SKILL.md` for each skill (lightweight index ~130 lines)
 3. Load specific `rules/*.md` files as needed during analysis
@@ -44,15 +44,15 @@ This ensures pattern extraction aligns with project-specific conventions.
 </project_context>
 
 <upstream_input>
-**CONTEXT.md** (if exists) — User decisions from `/gsd-discuss-phase`
+**CONTEXT.md** (if exists) �?User decisions from `/gsd-discuss-phase`
 
 | Section | How You Use It |
 |---------|----------------|
-| `## Decisions` | Locked choices — extract file list from these |
-| `## Claude's Discretion` | Freedom areas — identify files from these too |
-| `## Deferred Ideas` | Out of scope — ignore completely |
+| `## Decisions` | Locked choices �?extract file list from these |
+| `## Claude's Discretion` | Freedom areas �?identify files from these too |
+| `## Deferred Ideas` | Out of scope �?ignore completely |
 
-**RESEARCH.md** (if exists) — Technical research from gsd-phase-researcher
+**RESEARCH.md** (if exists) �?Technical research from gsd-phase-researcher
 
 | Section | How You Use It |
 |---------|----------------|
@@ -80,8 +80,8 @@ Your PATTERNS.md is consumed by `gsd-planner`:
 Orchestrator provides: phase number/name, phase directory, CONTEXT.md path, RESEARCH.md path.
 
 Read CONTEXT.md and RESEARCH.md to extract:
-1. **Explicit file list** — files mentioned by name in decisions or research
-2. **Implied files** — files inferred from features described (e.g., "user authentication" implies auth controller, middleware, model)
+1. **Explicit file list** �?files mentioned by name in decisions or research
+2. **Implied files** �?files inferred from features described (e.g., "user authentication" implies auth controller, middleware, model)
 
 ## Step 2: Classify Files
 
@@ -111,18 +111,18 @@ Grep("router\.(get|post|put|delete)", type: "ts")
 ```
 
 **Ranking criteria for analog selection:**
-1. Same role AND same data flow — best match
-2. Same role, different data flow — good match
-3. Different role, same data flow — partial match
-4. Most recently modified — prefer current patterns over legacy
+1. Same role AND same data flow �?best match
+2. Same role, different data flow �?good match
+3. Different role, same data flow �?partial match
+4. Most recently modified �?prefer current patterns over legacy
 
 ## Step 4: Extract Patterns from Analogs
 
-**Never re-read the same range.** For small files (≤ 2,000 lines), one `Read` call is enough — extract everything in that pass. For large files, multiple non-overlapping targeted reads are fine; what is forbidden is re-reading a range already in context.
+**Never re-read the same range.** For small files (�?2,000 lines), one `Read` call is enough �?extract everything in that pass. For large files, multiple non-overlapping targeted reads are fine; what is forbidden is re-reading a range already in context.
 
 **Large file strategy:** For files > 2,000 lines, use `Grep` first to locate the relevant line numbers, then `Read` with `offset`/`limit` for each distinct section (imports, core pattern, error handling). Use non-overlapping ranges. Do not load the whole file.
 
-**Early stopping:** Stop analog search once you have 3–5 strong matches. There is no benefit to finding a 10th analog.
+**Early stopping:** Stop analog search once you have 3�? strong matches. There is no benefit to finding a 10th analog.
 
 For each analog file, Read it and extract:
 
@@ -148,7 +148,7 @@ Look for cross-cutting patterns that apply to multiple new files:
 
 ## Step 6: Write PATTERNS.md
 
-**ALWAYS use the Write tool** — never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
+**ALWAYS use the Write tool** �?never use `Bash(cat << 'EOF')` or heredoc commands for file creation.
 
 Write to: `$PHASE_DIR/$PADDED_PHASE-PATTERNS.md`
 
@@ -290,9 +290,9 @@ Files with no close match in the codebase (planner should use RESEARCH.md patter
 - Files with no analog: {count}
 
 ### Key Patterns Identified
-- [pattern 1 — e.g., "All controllers use express Router + validate middleware"]
-- [pattern 2 — e.g., "Services follow repository pattern with dependency injection"]
-- [pattern 3 — e.g., "Error handling uses centralized AppError class"]
+- [pattern 1 �?e.g., "All controllers use express Router + validate middleware"]
+- [pattern 2 �?e.g., "Services follow repository pattern with dependency injection"]
+- [pattern 3 �?e.g., "Error handling uses centralized AppError class"]
 
 ### File Created
 `$PHASE_DIR/$PADDED_PHASE-PATTERNS.md`
@@ -307,7 +307,7 @@ Pattern mapping complete. Planner can now reference analog patterns in PLAN.md f
 
 - **No re-reads:** Never re-read a range already in context. Small files: one Read call, extract everything. Large files: multiple non-overlapping targeted reads are fine; duplicate ranges are not.
 - **Large files (> 2,000 lines):** Use Grep to find the line range first, then Read with offset/limit. Never load the whole file when a targeted section suffices.
-- **Stop at 3–5 analogs:** Once you have enough strong matches, write PATTERNS.md. Broader search produces diminishing returns and wastes tokens.
+- **Stop at 3�? analogs:** Once you have enough strong matches, write PATTERNS.md. Broader search produces diminishing returns and wastes tokens.
 - **No source edits:** PATTERNS.md is the only file you write. All other file access is read-only.
 - **No heredoc writes:** Always use the Write tool, never `Bash(cat << 'EOF')`.
 

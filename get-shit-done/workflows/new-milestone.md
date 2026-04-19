@@ -11,10 +11,10 @@ Read all files referenced by the invoking prompt's execution_context before star
 </required_reading>
 
 <available_agent_types>
-Valid GSD subagent types (use exact names — do not fall back to 'general-purpose'):
-- gsd-project-researcher — Researches project-level technical decisions
-- gsd-research-synthesizer — Synthesizes findings from parallel research agents
-- gsd-roadmapper — Creates phased execution roadmaps
+Valid GSD subagent types (use exact names 鈥?do not fall back to 'general-purpose'):
+- gsd-project-researcher 鈥?Researches project-level technical decisions
+- gsd-research-synthesizer 鈥?Synthesizes findings from parallel research agents
+- gsd-roadmapper 鈥?Creates phased execution roadmaps
 </available_agent_types>
 
 <process>
@@ -22,8 +22,8 @@ Valid GSD subagent types (use exact names — do not fall back to 'general-purpo
 ## 1. Load Context
 
 Parse `$ARGUMENTS` before doing anything else:
-- `--reset-phase-numbers` flag → opt into restarting roadmap phase numbering at `1`
-- remaining text → use as milestone name if present
+- `--reset-phase-numbers` flag 鈫?opt into restarting roadmap phase numbering at `1`
+- remaining text 鈫?use as milestone name if present
 
 If the flag is absent, keep the current behavior of continuing phase numbering from the previous milestone.
 
@@ -44,7 +44,7 @@ If the flag is absent, keep the current behavior of continuing phase numbering f
 **Text mode (`workflow.text_mode: true` in config or `--text` flag):** Set `TEXT_MODE=true` if `--text` is present in `$ARGUMENTS` OR `text_mode` from init JSON is `true`. When TEXT_MODE is active, replace every `AskUserQuestion` call with a plain-text numbered list and ask the user to type their choice number. This is required for non-Claude runtimes (OpenAI Codex, Gemini CLI, etc.) where `AskUserQuestion` is not available.
 - Ask inline (freeform, NOT AskUserQuestion): "What do you want to build next?"
 - Wait for their response, then use AskUserQuestion to probe specifics
-- If user selects "Other" at any point to provide freeform input, ask follow-up as plain text — not another AskUserQuestion
+- If user selects "Other" at any point to provide freeform input, ask follow-up as plain text 鈥?not another AskUserQuestion
 
 ## 2.5. Scan Planted Seeds
 
@@ -54,16 +54,16 @@ Check `.planning/seeds/` for seed files that match the milestone goals gathered 
 ls .planning/seeds/SEED-*.md 2>/dev/null
 ```
 
-**If no seed files exist:** Skip this step silently — do not print any message or prompt.
+**If no seed files exist:** Skip this step silently 鈥?do not print any message or prompt.
 
 **If seed files exist:** Read each `SEED-*.md` file and extract from its frontmatter and body:
-- **Idea** — the seed title (heading after frontmatter, e.g. `# SEED-001: <idea>`)
-- **Trigger conditions** — the `trigger_when` frontmatter field and the "When to Surface" section's bullet list
-- **Planted during** — the `planted_during` frontmatter field (for context)
+- **Idea** 鈥?the seed title (heading after frontmatter, e.g. `# SEED-001: <idea>`)
+- **Trigger conditions** 鈥?the `trigger_when` frontmatter field and the "When to Surface" section's bullet list
+- **Planted during** 鈥?the `planted_during` frontmatter field (for context)
 
 Compare each seed's trigger conditions against the milestone goals from step 2. A seed matches when its trigger conditions are relevant to any of the milestone's target features or goals.
 
-**If no seeds match:** Skip silently — do not prompt the user.
+**If no seeds match:** Skip silently 鈥?do not prompt the user.
 
 **If matching seeds found:**
 
@@ -93,12 +93,12 @@ AskUserQuestion(
 
 **After selection:**
 - Selected seeds become additional context for requirement definition in step 9. Store them in an accumulator (e.g. `$SELECTED_SEEDS`) so step 9 can reference the ideas and their "Why This Matters" sections when defining requirements.
-- Unselected seeds remain untouched in `.planning/seeds/` — never delete or modify seed files during this workflow.
+- Unselected seeds remain untouched in `.planning/seeds/` 鈥?never delete or modify seed files during this workflow.
 
 ## 3. Determine Milestone Version
 
 - Parse last version from MILESTONES.md
-- Suggest next version (v1.0 → v1.1, or v2.0 for major)
+- Suggest next version (v1.0 鈫?v1.1, or v2.0 for major)
 - Confirm with user
 
 ## 3.5. Verify Milestone Understanding
@@ -106,9 +106,9 @@ AskUserQuestion(
 Before writing any files, present a summary of what was gathered and ask for confirmation.
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► MILESTONE SUMMARY
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?MILESTONE SUMMARY
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
 **Milestone v[X.Y]: [Name]**
 
@@ -126,8 +126,8 @@ AskUserQuestion:
 - header: "Confirm?"
 - question: "Does this capture what you want to build in this milestone?"
 - options:
-  - "Looks good" — Proceed to write PROJECT.md
-  - "Adjust" — Let me correct or add details
+  - "Looks good" 鈥?Proceed to write PROJECT.md
+  - "Adjust" 鈥?Let me correct or add details
 
 **If "Adjust":** Ask what needs changing (plain text, NOT AskUserQuestion). Incorporate changes, re-present the summary. Loop until "Looks good" is selected.
 
@@ -158,16 +158,16 @@ Ensure the `## Evolution` section exists in PROJECT.md. If missing (projects cre
 This document evolves at phase transitions and milestone boundaries.
 
 **After each phase transition** (via `/gsd-transition`):
-1. Requirements invalidated? → Move to Out of Scope with reason
-2. Requirements validated? → Move to Validated with phase reference
-3. New requirements emerged? → Add to Active
-4. Decisions to log? → Add to Key Decisions
-5. "What This Is" still accurate? → Update if drifted
+1. Requirements invalidated? 鈫?Move to Out of Scope with reason
+2. Requirements validated? 鈫?Move to Validated with phase reference
+3. New requirements emerged? 鈫?Add to Active
+4. Decisions to log? 鈫?Add to Key Decisions
+5. "What This Is" still accurate? 鈫?Update if drifted
 
 **After each milestone** (via `/gsd-complete-milestone`):
 1. Full review of all sections
-2. Core Value check — still the right priority?
-3. Audit Out of Scope — reasons still valid?
+2. Core Value check 鈥?still the right priority?
+3. Audit Out of Scope 鈥?reasons still valid?
 4. Update Context with current state
 ```
 
@@ -177,9 +177,9 @@ This document evolves at phase transitions and milestone boundaries.
 ## Current Position
 
 Phase: Not started (defining requirements)
-Plan: —
+Plan: 鈥?
 Status: Defining requirements
-Last activity: [today] — Milestone v[X.Y] started
+Last activity: [today] 鈥?Milestone v[X.Y] started
 ```
 
 Keep Accumulated Context section from previous milestone.
@@ -237,26 +237,26 @@ Check `research_enabled` from init JSON (loaded from config).
 **If `research_enabled` is `true`:**
 
 AskUserQuestion: "Research the domain ecosystem for new features before defining requirements?"
-- "Research first (Recommended)" — Discover patterns, features, architecture for NEW capabilities
-- "Skip research for this milestone" — Go straight to requirements (does not change your default)
+- "Research first (Recommended)" 鈥?Discover patterns, features, architecture for NEW capabilities
+- "Skip research for this milestone" 鈥?Go straight to requirements (does not change your default)
 
 **If `research_enabled` is `false`:**
 
 AskUserQuestion: "Research the domain ecosystem for new features before defining requirements?"
-- "Skip research (current default)" — Go straight to requirements
-- "Research first" — Discover patterns, features, architecture for NEW capabilities
+- "Skip research (current default)" 鈥?Go straight to requirements
+- "Research first" 鈥?Discover patterns, features, architecture for NEW capabilities
 
 **IMPORTANT:** Do NOT persist this choice to config.json. The `workflow.research` setting is a persistent user preference that controls plan-phase behavior across the project. Changing it here would silently alter future `/gsd-plan-phase` behavior. To change the default, use `/gsd-settings`.
 
 **If user chose "Research first":**
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► RESEARCHING
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?RESEARCHING
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
-◆ Spawning 4 researchers in parallel...
-  → Stack, Features, Architecture, Pitfalls
+鈼?Spawning 4 researchers in parallel...
+  鈫?Stack, Features, Architecture, Pitfalls
 ```
 
 ```bash
@@ -268,10 +268,10 @@ Spawn 4 parallel gsd-project-researcher agents. Each uses this template with dim
 **Common structure for all 4 researchers:**
 ```
 Task(prompt="
-<research_type>Project Research — {DIMENSION} for [new features].</research_type>
+<research_type>Project Research 鈥?{DIMENSION} for [new features].</research_type>
 
 <milestone_context>
-SUBSEQUENT MILESTONE — Adding [target features] to existing app.
+SUBSEQUENT MILESTONE 鈥?Adding [target features] to existing app.
 {EXISTING_CONTEXT}
 Focus ONLY on what's needed for the NEW features.
 </milestone_context>
@@ -290,7 +290,7 @@ ${AGENT_SKILLS_RESEARCHER}
 
 <output>
 Write to: .planning/research/{FILE}
-Use template: ~/.claude/get-shit-done/templates/research-project/{FILE}
+Use template: ~/.codex/get-shit-done/templates/research-project/{FILE}
 </output>
 ", subagent_type="gsd-project-researcher", model="{researcher_model}", description="{DIMENSION} research")
 ```
@@ -321,16 +321,16 @@ Synthesize research outputs into SUMMARY.md.
 ${AGENT_SKILLS_SYNTHESIZER}
 
 Write to: .planning/research/SUMMARY.md
-Use template: ~/.claude/get-shit-done/templates/research-project/SUMMARY.md
+Use template: ~/.codex/get-shit-done/templates/research-project/SUMMARY.md
 Commit after writing.
 ", subagent_type="gsd-research-synthesizer", model="{synthesizer_model}", description="Synthesize research")
 ```
 
 Display key findings from SUMMARY.md:
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► RESEARCH COMPLETE ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?RESEARCH COMPLETE 鉁?
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
 **Stack additions:** [from SUMMARY.md]
 **Feature table stakes:** [from SUMMARY.md]
@@ -342,9 +342,9 @@ Display key findings from SUMMARY.md:
 ## 9. Define Requirements
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► DEFINING REQUIREMENTS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?DEFINING REQUIREMENTS
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 ```
 
 Read PROJECT.md: core value, current milestone goals, validated requirements (what exists).
@@ -364,15 +364,15 @@ Present features by category:
 **If no research:** Gather requirements through conversation. Ask: "What are the main things users need to do with [new features]?" Clarify, probe for related capabilities, group into categories.
 
 **Scope each category** via AskUserQuestion (multiSelect: true, header max 12 chars):
-- "[Feature 1]" — [brief description]
-- "[Feature 2]" — [brief description]
-- "None for this milestone" — Defer entire category
+- "[Feature 1]" 鈥?[brief description]
+- "[Feature 2]" 鈥?[brief description]
+- "None for this milestone" 鈥?Defer entire category
 
-Track: Selected → this milestone. Unselected table stakes → future. Unselected differentiators → out of scope.
+Track: Selected 鈫?this milestone. Unselected table stakes 鈫?future. Unselected differentiators 鈫?out of scope.
 
 **Identify gaps** via AskUserQuestion:
-- "No, research covered it" — Proceed
-- "Yes, let me add some" — Capture additions
+- "No, research covered it" 鈥?Proceed
+- "Yes, let me add some" 鈥?Capture additions
 
 **Generate REQUIREMENTS.md:**
 - v1 Requirements grouped by category (checkboxes, REQ-IDs)
@@ -415,16 +415,16 @@ gsd-sdk query commit "docs: define milestone v[X.Y] requirements" .planning/REQU
 ## 10. Create Roadmap
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► CREATING ROADMAP
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?CREATING ROADMAP
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
-◆ Spawning roadmapper...
+鈼?Spawning roadmapper...
 ```
 
 **Starting phase number:**
 - If `--reset-phase-numbers` is active, start at **Phase 1**
-- Otherwise, continue from the previous milestone's last phase number (v1.0 ended at phase 5 → v1.1 starts at phase 6)
+- Otherwise, continue from the previous milestone's last phase number (v1.0 ended at phase 5 鈫?v1.1 starts at phase 6)
 
 ```
 Task(prompt="
@@ -444,8 +444,8 @@ ${AGENT_SKILLS_ROADMAPPER}
 <instructions>
 Create roadmap for milestone v[X.Y]:
 1. Respect the selected numbering mode:
-   - `--reset-phase-numbers` → start at Phase 1
-   - default behavior → continue from the previous milestone's last phase number
+   - `--reset-phase-numbers` 鈫?start at Phase 1
+   - default behavior 鈫?continue from the previous milestone's last phase number
 2. Derive phases from THIS MILESTONE's requirements only
 3. Map every requirement to exactly one phase
 4. Derive 2-5 success criteria per phase (observable user behaviors)
@@ -467,7 +467,7 @@ Write files first, then return.
 ```
 ## Proposed Roadmap
 
-**[N] phases** | **[X] requirements mapped** | All covered ✓
+**[N] phases** | **[X] requirements mapped** | All covered 鉁?
 
 | # | Phase | Goal | Requirements | Success Criteria |
 |---|-------|------|--------------|------------------|
@@ -484,9 +484,9 @@ Success criteria:
 ```
 
 **Ask for approval** via AskUserQuestion:
-- "Approve" — Commit and continue
-- "Adjust phases" — Tell me what to change
-- "Review full file" — Show raw ROADMAP.md
+- "Approve" 鈥?Commit and continue
+- "Adjust phases" 鈥?Tell me what to change
+- "Review full file" 鈥?Show raw ROADMAP.md
 
 **If "Adjust":** Get notes, re-spawn roadmapper with revision context, loop until approved.
 **If "Review":** Display raw ROADMAP.md, re-ask.
@@ -499,9 +499,9 @@ gsd-sdk query commit "docs: create milestone v[X.Y] roadmap ([N] phases)" .plann
 ## 11. Done
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► MILESTONE INITIALIZED ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
+ GSD 鈻?MILESTONE INITIALIZED 鉁?
+鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
 **Milestone v[X.Y]: [Name]**
 
@@ -512,17 +512,17 @@ gsd-sdk query commit "docs: create milestone v[X.Y] roadmap ([N] phases)" .plann
 | Requirements   | `.planning/REQUIREMENTS.md` |
 | Roadmap        | `.planning/ROADMAP.md`      |
 
-**[N] phases** | **[X] requirements** | Ready to build ✓
+**[N] phases** | **[X] requirements** | Ready to build 鉁?
 
-## ▶ Next Up — [${PROJECT_CODE}] ${PROJECT_TITLE}
+## 鈻?Next Up 鈥?[${PROJECT_CODE}] ${PROJECT_TITLE}
 
-**Phase [N]: [Phase Name]** — [Goal]
+**Phase [N]: [Phase Name]** 鈥?[Goal]
 
 `/clear` then:
 
-`/gsd-discuss-phase [N] ${GSD_WS}` — gather context and clarify approach
+`/gsd-discuss-phase [N] ${GSD_WS}` 鈥?gather context and clarify approach
 
-Also: `/gsd-plan-phase [N] ${GSD_WS}` — skip discussion, plan directly
+Also: `/gsd-plan-phase [N] ${GSD_WS}` 鈥?skip discussion, plan directly
 ```
 
 </process>
@@ -531,7 +531,7 @@ Also: `/gsd-plan-phase [N] ${GSD_WS}` — skip discussion, plan directly
 - [ ] PROJECT.md updated with Current Milestone section
 - [ ] STATE.md reset for new milestone
 - [ ] MILESTONE-CONTEXT.md consumed and deleted (if existed)
-- [ ] Research completed (if selected) — 4 parallel agents, milestone-aware
+- [ ] Research completed (if selected) 鈥?4 parallel agents, milestone-aware
 - [ ] Requirements gathered and scoped per category
 - [ ] REQUIREMENTS.md created with REQ-IDs
 - [ ] gsd-roadmapper spawned with phase numbering context

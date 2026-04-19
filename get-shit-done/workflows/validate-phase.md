@@ -3,12 +3,12 @@ Audit Nyquist validation gaps for a completed phase. Generate missing tests. Upd
 </purpose>
 
 <required_reading>
-@~/.claude/get-shit-done/references/ui-brand.md
+@~/.codex/get-shit-done/references/ui-brand.md
 </required_reading>
 
 <available_agent_types>
-Valid GSD subagent types (use exact names — do not fall back to 'general-purpose'):
-- gsd-nyquist-auditor — Validates verification coverage
+Valid GSD subagent types (use exact names 鈥?do not fall back to 'general-purpose'):
+- gsd-nyquist-auditor 鈥?Validates verification coverage
 </available_agent_types>
 
 <process>
@@ -41,7 +41,7 @@ SUMMARY_FILES=$(ls "${PHASE_DIR}"/*-SUMMARY.md 2>/dev/null)
 
 - **State A** (`VALIDATION_FILE` non-empty): Audit existing
 - **State B** (`VALIDATION_FILE` empty, `SUMMARY_FILES` non-empty): Reconstruct from artifacts
-- **State C** (`SUMMARY_FILES` empty): Exit — "Phase {N} not executed. Run /gsd-execute-phase {N} ${GSD_WS} first."
+- **State C** (`SUMMARY_FILES` empty): Exit 鈥?"Phase {N} not executed. Run /gsd-execute-phase {N} ${GSD_WS} first."
 
 ## 2. Discovery
 
@@ -65,7 +65,7 @@ find . \( -name "*.test.*" -o -name "*.spec.*" -o -name "test_*" \) -not -path "
 
 ### 2d. Cross-Reference
 
-Match each requirement to existing tests by filename, imports, test descriptions. Record: requirement → test_file → status.
+Match each requirement to existing tests by filename, imports, test descriptions. Record: requirement 鈫?test_file 鈫?status.
 
 ## 3. Gap Analysis
 
@@ -79,22 +79,22 @@ Classify each requirement:
 
 Build: `{ task_id, requirement, gap_type, suggested_test_path, suggested_command }`
 
-No gaps → skip to Step 6, set `nyquist_compliant: true`.
+No gaps 鈫?skip to Step 6, set `nyquist_compliant: true`.
 
 ## 4. Present Gap Plan
 
 
 **Text mode (`workflow.text_mode: true` in config or `--text` flag):** Set `TEXT_MODE=true` if `--text` is present in `$ARGUMENTS` OR `text_mode` from init JSON is `true`. When TEXT_MODE is active, replace every `AskUserQuestion` call with a plain-text numbered list and ask the user to type their choice number. This is required for non-Claude runtimes (OpenAI Codex, Gemini CLI, etc.) where `AskUserQuestion` is not available.
 Call AskUserQuestion with gap table and options:
-1. "Fix all gaps" → Step 5
-2. "Skip — mark manual-only" → add to Manual-Only, Step 6
-3. "Cancel" → exit
+1. "Fix all gaps" 鈫?Step 5
+2. "Skip 鈥?mark manual-only" 鈫?add to Manual-Only, Step 6
+3. "Cancel" 鈫?exit
 
 ## 5. Spawn gsd-nyquist-auditor
 
 ```
 Task(
-  prompt="Read ~/.claude/agents/gsd-nyquist-auditor.md for instructions.\n\n" +
+  prompt="Read ~/.codex/get-shit-done/agents/gsd-nyquist-auditor.md for instructions.\n\n" +
     "<files_to_read>{PLAN, SUMMARY, impl files, VALIDATION.md}</files_to_read>" +
     "<gaps>{gap list}</gaps>" +
     "<test_infrastructure>{framework, config, commands}</test_infrastructure>" +
@@ -107,14 +107,14 @@ Task(
 ```
 
 Handle return:
-- `## GAPS FILLED` → record tests + map updates, Step 6
-- `## PARTIAL` → record resolved, move escalated to manual-only, Step 6
-- `## ESCALATE` → move all to manual-only, Step 6
+- `## GAPS FILLED` 鈫?record tests + map updates, Step 6
+- `## PARTIAL` 鈫?record resolved, move escalated to manual-only, Step 6
+- `## ESCALATE` 鈫?move all to manual-only, Step 6
 
 ## 6. Generate/Update VALIDATION.md
 
 **State B (create):**
-1. Read template from `~/.claude/get-shit-done/templates/VALIDATION.md`
+1. Read template from `~/.codex/get-shit-done/templates/VALIDATION.md`
 2. Fill: frontmatter, Test Infrastructure, Per-Task Map, Manual-Only, Sign-Off
 3. Write to `${PHASE_DIR}/${PADDED_PHASE}-VALIDATION.md`
 
@@ -146,14 +146,14 @@ gsd-sdk query commit "docs(phase-${PHASE}): add/update validation strategy"
 ```
 GSD > PHASE {N} IS NYQUIST-COMPLIANT
 All requirements have automated verification.
-▶ Next: /gsd-audit-milestone ${GSD_WS}
+鈻?Next: /gsd-audit-milestone ${GSD_WS}
 ```
 
 **Partial:**
 ```
 GSD > PHASE {N} VALIDATED (PARTIAL)
 {M} automated, {K} manual-only.
-▶ Retry: /gsd-validate-phase {N} ${GSD_WS}
+鈻?Retry: /gsd-validate-phase {N} ${GSD_WS}
 ```
 
 Display `/clear` reminder.

@@ -5,23 +5,23 @@ User tests, Claude records. One test at a time. Plain text responses.
 </purpose>
 
 <available_agent_types>
-Valid GSD subagent types (use exact names — do not fall back to 'general-purpose'):
-- gsd-planner — Creates detailed plans from phase scope
-- gsd-plan-checker — Reviews plan quality before execution
+Valid GSD subagent types (use exact names �?do not fall back to 'general-purpose'):
+- gsd-planner �?Creates detailed plans from phase scope
+- gsd-plan-checker �?Reviews plan quality before execution
 </available_agent_types>
 
 <philosophy>
 **Show expected, ask if reality matches.**
 
 Claude presents what SHOULD happen. User confirms or describes what's different.
-- "yes" / "y" / "next" / empty → pass
-- Anything else → logged as issue, severity inferred
+- "yes" / "y" / "next" / empty �?pass
+- Anything else �?logged as issue, severity inferred
 
 No Pass/Fail buttons. No severity questions. Just: "Here's what should happen. Does it?"
 </philosophy>
 
 <template>
-@~/.claude/get-shit-done/templates/UAT.md
+@~/.codex/get-shit-done/templates/UAT.md
 </template>
 
 <process>
@@ -65,8 +65,8 @@ Reply with a number to resume, or provide a phase number to start new.
 
 Wait for user response.
 
-- If user replies with number (1, 2) → Load that file, go to `resume_from_file`
-- If user replies with phase number → Treat as new session, go to `create_uat_file`
+- If user replies with number (1, 2) �?Load that file, go to `resume_from_file`
+- If user replies with phase number �?Treat as new session, go to `create_uat_file`
 
 **If active sessions exist AND $ARGUMENTS provided:**
 
@@ -107,7 +107,7 @@ For each UI checkpoint listed in the phase's UI-SPEC.md (or inferred from SUMMAR
 3. Compare the screenshot visually against the spec's stated requirements
    (dimensions, color, layout, spacing).
 4. Automatically mark checkpoints as **passed** or **needs review** based on the
-   visual comparison — no manual question required for items that clearly match.
+   visual comparison �?no manual question required for items that clearly match.
 5. Flag items that require human judgment (subjective aesthetics, content accuracy)
    and present only those as manual UAT questions.
 
@@ -149,8 +149,8 @@ For each deliverable, create a test:
 
 Examples:
 - Accomplishment: "Added comment threading with infinite nesting"
-  → Test: "Reply to a Comment"
-  → Expected: "Clicking Reply opens inline composer below comment. Submitting shows reply nested under parent with visual indentation."
+  �?Test: "Reply to a Comment"
+  �?Expected: "Clicking Reply opens inline composer below comment. Submitting shows reply nested under parent with visual indentation."
 
 Skip internal/non-observable items (refactors, type changes, etc.).
 
@@ -165,7 +165,7 @@ Then **prepend** this test to the test list:
 - name: "Cold Start Smoke Test"
 - expected: "Kill any running server/service. Clear ephemeral state (temp DBs, caches, lock files). Start the application from scratch. Server boots without errors, any seed/migration completes, and a primary query (health check, homepage load, or basic API call) returns live data."
 
-This catches bugs that only manifest on fresh start — race conditions in startup sequences, silent seed failures, missing environment setup — which pass against warm state but break in production.
+This catches bugs that only manifest on fresh start �?race conditions in startup sequences, silent seed failures, missing environment setup �?which pass against warm state but break in production.
 </step>
 
 <step name="create_uat_file">
@@ -257,7 +257,7 @@ Wait for user response (plain text, no AskUserQuestion).
 **Process user response and update file:**
 
 **If response indicates pass:**
-- Empty response, "yes", "y", "ok", "pass", "next", "approved", "✓"
+- Empty response, "yes", "y", "ok", "pass", "next", "approved", "�?
 
 Update Tests section:
 ```
@@ -282,11 +282,11 @@ reason: [user's reason if provided]
 - Or any response containing: "server", "blocked", "not running", "physical device", "release build"
 
 Infer blocked_by tag from response:
-- Contains: server, not running, gateway, API → `server`
-- Contains: physical, device, hardware, real phone → `physical-device`
-- Contains: release, preview, build, EAS → `release-build`
-- Contains: stripe, twilio, third-party, configure → `third-party`
-- Contains: depends on, prior phase, prerequisite → `prior-phase`
+- Contains: server, not running, gateway, API �?`server`
+- Contains: physical, device, hardware, real phone �?`physical-device`
+- Contains: release, preview, build, EAS �?`release-build`
+- Contains: stripe, twilio, third-party, configure �?`third-party`
+- Contains: depends on, prior phase, prerequisite �?`prior-phase`
 - Default: `other`
 
 Update Tests section:
@@ -298,16 +298,16 @@ blocked_by: {inferred tag}
 reason: "{verbatim user response}"
 ```
 
-Note: Blocked tests do NOT go into the Gaps section (they aren't code issues — they're prerequisite gates).
+Note: Blocked tests do NOT go into the Gaps section (they aren't code issues �?they're prerequisite gates).
 
 **If response is anything else:**
 - Treat as issue description
 
 Infer severity from description:
-- Contains: crash, error, exception, fails, broken, unusable → blocker
-- Contains: doesn't work, wrong, missing, can't → major
-- Contains: slow, weird, off, minor, small → minor
-- Contains: color, font, spacing, alignment, visual → cosmetic
+- Contains: crash, error, exception, fails, broken, unusable �?blocker
+- Contains: doesn't work, wrong, missing, can't �?major
+- Contains: slow, weird, off, minor, small �?minor
+- Contains: color, font, spacing, alignment, visual �?cosmetic
 - Default if unclear: major
 
 Update Tests section:
@@ -335,8 +335,8 @@ Append to Gaps section (structured YAML for plan-phase --gaps):
 Update Summary counts.
 Update frontmatter.updated timestamp.
 
-If more tests remain → Update Current Test, go to `present_test`
-If no more tests → Go to `complete_session`
+If more tests remain �?Update Current Test, go to `present_test`
+If no more tests �?Go to `complete_session`
 </step>
 
 <step name="resume_from_file">
@@ -421,40 +421,40 @@ SECURITY_FILE=$(ls "${PHASE_DIR}"/*-SECURITY.md 2>/dev/null | head -1)
 
 If `SECURITY_CFG` is `true` AND `SECURITY_FILE` is empty:
 ```
-⚠ Security enforcement enabled — /gsd-secure-phase {phase} has not run.
+�?Security enforcement enabled �?/gsd-secure-phase {phase} has not run.
 Run before advancing to the next phase.
 
 All tests passed. Ready to continue.
 
-- `/gsd-secure-phase {phase}` — security review (required before advancing)
-- `/gsd-plan-phase {next}` — Plan next phase
-- `/gsd-execute-phase {next}` — Execute next phase
-- `/gsd-ui-review {phase}` — visual quality audit (if frontend files were modified)
+- `/gsd-secure-phase {phase}` �?security review (required before advancing)
+- `/gsd-plan-phase {next}` �?Plan next phase
+- `/gsd-execute-phase {next}` �?Execute next phase
+- `/gsd-ui-review {phase}` �?visual quality audit (if frontend files were modified)
 ```
 
 If `SECURITY_CFG` is `true` AND `SECURITY_FILE` exists: check frontmatter `threats_open`. If > 0:
 ```
-⚠ Security gate: {threats_open} threats open
-  /gsd-secure-phase {phase} — resolve before advancing
+�?Security gate: {threats_open} threats open
+  /gsd-secure-phase {phase} �?resolve before advancing
 ```
 
 If `SECURITY_CFG` is `false` OR (`SECURITY_FILE` exists AND `threats_open` is `0`):
 
 **Auto-transition: mark phase complete in ROADMAP.md and STATE.md**
 
-Execute the transition workflow inline (do NOT use Task — the orchestrator context already holds the UAT results and phase data needed for accurate transition):
+Execute the transition workflow inline (do NOT use Task �?the orchestrator context already holds the UAT results and phase data needed for accurate transition):
 
-Read and follow `~/.claude/get-shit-done/workflows/transition.md`.
+Read and follow `~/.codex/get-shit-done/workflows/transition.md`.
 
 After transition completes, present next-step options to the user:
 
 ```
 All tests passed. Phase {phase} marked complete.
 
-- `/gsd-plan-phase {next}` — Plan next phase
-- `/gsd-execute-phase {next}` — Execute next phase
-- `/gsd-secure-phase {phase}` — security review
-- `/gsd-ui-review {phase}` — visual quality audit (if frontend files were modified)
+- `/gsd-plan-phase {next}` �?Plan next phase
+- `/gsd-execute-phase {next}` �?Execute next phase
+- `/gsd-secure-phase {phase}` �?security review
+- `/gsd-ui-review {phase}` �?visual quality audit (if frontend files were modified)
 ```
 </step>
 
@@ -464,7 +464,7 @@ Run phase artifact scan to surface any open items before marking phase verified:
 `audit-open` is CJS-only until registered on `gsd-sdk query`:
 
 ```bash
-node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" audit-open --json 2>/dev/null
+node "$HOME/.codex/get-shit-done/bin/gsd-tools.cjs" audit-open --json 2>/dev/null
 ```
 
 Parse the JSON output. For the CURRENT PHASE ONLY, surface:
@@ -499,7 +499,7 @@ Spawning parallel debug agents to investigate each issue.
 ```
 
 - Load diagnose-issues workflow
-- Follow @~/.claude/get-shit-done/workflows/diagnose-issues.md
+- Follow @~/.codex/get-shit-done/workflows/diagnose-issues.md
 - Spawn parallel debug agents for each issue
 - Collect root causes
 - Update UAT.md with root causes
@@ -513,11 +513,11 @@ Diagnosis runs automatically - no user prompt. Parallel agents investigate simul
 
 Display:
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► PLANNING FIXES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
+ GSD �?PLANNING FIXES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
 
-◆ Spawning planner for gap closure...
+�?Spawning planner for gap closure...
 ```
 
 Spawn gsd-planner in --gaps mode:
@@ -561,11 +561,11 @@ On return:
 
 Display:
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► VERIFYING FIX PLANS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
+ GSD �?VERIFYING FIX PLANS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
 
-◆ Spawning plan checker...
+�?Spawning plan checker...
 ```
 
 Initialize: `iteration_count = 1`
@@ -590,8 +590,8 @@ ${AGENT_SKILLS_CHECKER}
 
 <expected_output>
 Return one of:
-- ## VERIFICATION PASSED — all checks pass
-- ## ISSUES FOUND — structured issue list
+- ## VERIFICATION PASSED �?all checks pass
+- ## ISSUES FOUND �?structured issue list
 </expected_output>
 """,
   subagent_type="gsd-plan-checker",
@@ -606,7 +606,7 @@ On return:
 </step>
 
 <step name="revision_loop">
-**Iterate planner ↔ checker until plans pass (max 3):**
+**Iterate planner �?checker until plans pass (max 3):**
 
 **If iteration_count < 3:**
 
@@ -644,7 +644,7 @@ Do NOT replan from scratch unless issues are fundamental.
 )
 ```
 
-After planner returns → spawn checker again (verify_gap_plans logic)
+After planner returns �?spawn checker again (verify_gap_plans logic)
 Increment iteration_count
 
 **If iteration_count >= 3:**
@@ -663,11 +663,11 @@ Wait for user response.
 **Present completion and next steps:**
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► FIXES READY ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
+ GSD �?FIXES READY �?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━�?
 
-**Phase {X}: {Name}** — {N} gap(s) diagnosed, {M} fix plan(s) created
+**Phase {X}: {Name}** �?{N} gap(s) diagnosed, {M} fix plan(s) created
 
 | Gap | Root Cause | Fix Plan |
 |-----|------------|----------|
@@ -678,9 +678,9 @@ Plans verified and ready for execution.
 
 ───────────────────────────────────────────────────────────────
 
-## ▶ Next Up — [${PROJECT_CODE}] ${PROJECT_TITLE}
+## �?Next Up �?[${PROJECT_CODE}] ${PROJECT_TITLE}
 
-**Execute fixes** — run fix plans
+**Execute fixes** �?run fix plans
 
 `/clear` then `/gsd-execute-phase {phase} --gaps-only`
 
@@ -694,9 +694,9 @@ Plans verified and ready for execution.
 **Batched writes for efficiency:**
 
 Keep results in memory. Write to file only when:
-1. **Issue found** — Preserve the problem immediately
-2. **Session complete** — Final write before commit
-3. **Checkpoint** — Every 5 passed tests (safety net)
+1. **Issue found** �?Preserve the problem immediately
+2. **Session complete** �?Final write before commit
+3. **Checkpoint** �?Every 5 passed tests (safety net)
 
 | Section | Rule | When Written |
 |---------|------|--------------|

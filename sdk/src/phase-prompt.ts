@@ -66,7 +66,9 @@ export function extractSteps(processContent: string): Array<{ name: string; cont
 
 export class PromptFactory {
   private readonly workflowsDir: string;
+  private readonly workflowFallbackDirs: string[];
   private readonly agentsDir: string;
+  private readonly agentFallbackDirs: string[];
   private readonly projectAgentsDir?: string;
   private readonly sdkPromptsDir: string;
 
@@ -76,9 +78,15 @@ export class PromptFactory {
     projectAgentsDir?: string;
     sdkPromptsDir?: string;
   }) {
-    const gsdInstallDir = options?.gsdInstallDir ?? join(homedir(), '.claude', 'get-shit-done');
+    const gsdInstallDir = options?.gsdInstallDir ?? join(homedir(), '.codex', 'get-shit-done');
     this.workflowsDir = join(gsdInstallDir, 'workflows');
-    this.agentsDir = options?.agentsDir ?? join(homedir(), '.claude', 'agents');
+    this.workflowFallbackDirs = options?.gsdInstallDir ? [] : [
+      join(homedir(), '.claude', 'get-shit-done', 'workflows'),
+    ];
+    this.agentsDir = options?.agentsDir ?? join(homedir(), '.codex', 'agents');
+    this.agentFallbackDirs = options?.agentsDir ? [] : [
+      join(homedir(), '.claude', 'agents'),
+    ];
     this.projectAgentsDir = options?.projectAgentsDir;
     // SDK prompts dir: explicit override → package-relative default via import.meta.url
     this.sdkPromptsDir =
@@ -157,7 +165,7 @@ export class PromptFactory {
   /**
    * Load the workflow file for a phase type.
    * Tries sdk/prompts/workflows/ first (headless versions), then
-   * falls back to GSD-1 originals in workflowsDir.
+   * falls back to installed runtime copies with Codex-first precedence.
    * Returns the raw content, or undefined if not found.
    */
   async loadWorkflowFile(phaseType: PhaseType): Promise<string | undefined> {
@@ -171,19 +179,24 @@ export class PromptFactory {
       // Not in sdk/prompts/, fall through to GSD-1 originals
     }
 
-    // Fall back to GSD-1 originals
-    const filePath = join(this.workflowsDir, filename);
-    try {
-      return await readFile(filePath, 'utf-8');
-    } catch {
-      return undefined;
+    const paths = [
+      join(this.workflowsDir, filename),
+      ...this.workflowFallbackDirs.map(dir => join(dir, filename)),
+    ];
+    for (const filePath of paths) {
+      try {
+        return await readFile(filePath, 'utf-8');
+      } catch {
+        // Not found at this path, try next.
+      }
     }
+    return undefined;
   }
 
   /**
    * Load the agent definition for a phase type.
    * Tries sdk/prompts/agents/ first (headless versions), then
-   * user-level agents dir, then project-level.
+   * user-level runtime dirs (Codex first, Claude compatibility after), then project-level.
    * Returns undefined if no agent is mapped or file not found.
    */
   async loadAgentDef(phaseType: PhaseType): Promise<string | undefined> {
@@ -194,6 +207,7 @@ export class PromptFactory {
     const paths = [
       join(this.sdkPromptsDir, 'agents', agentFilename),
       join(this.agentsDir, agentFilename),
+      ...this.agentFallbackDirs.map(dir => join(dir, agentFilename)),
     ];
 
     // Then project-level if configured

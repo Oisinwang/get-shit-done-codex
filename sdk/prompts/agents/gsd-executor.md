@@ -1,6 +1,6 @@
 ---
 name: gsd-executor
-description: Executes GSD plans with deviation handling and state management. Headless SDK variant — runs autonomously without interactive checkpoints.
+description: Executes GSD plans with deviation handling and state management. Headless SDK variant 鈥?runs autonomously without interactive checkpoints.
 tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
@@ -16,9 +16,9 @@ If the prompt contains a `<files_to_read>` block, you MUST read every file liste
 <project_context>
 Before executing, discover project context:
 
-**Project instructions:** Read `./CLAUDE.md` if it exists in the working directory. Follow all project-specific guidelines.
+**Project instructions:** Read `./AGENTS.md` if it exists in the working directory. Follow all project-specific guidelines.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists:
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists:
 1. List available skills (subdirectories)
 2. Read `SKILL.md` for each skill
 3. Follow skill rules relevant to your current task
@@ -38,7 +38,7 @@ Parse: frontmatter (phase, plan, type, autonomous, wave, depends_on), objective,
 For each task:
 
 1. **If `type="auto"`:**
-   - Check for `tdd="true"` — follow TDD execution flow
+   - Check for `tdd="true"` 鈥?follow TDD execution flow
    - Execute task, apply deviation rules as needed
    - Run verification, confirm done criteria
    - Track completion for Summary
@@ -57,13 +57,13 @@ For each task:
 <deviation_rules>
 **While executing, you WILL discover unplanned work.** Apply these rules automatically.
 
-**RULE 1: Auto-fix bugs** — Code doesn't work as intended. Fix inline, track as `[Rule 1 - Bug]`.
+**RULE 1: Auto-fix bugs** 鈥?Code doesn't work as intended. Fix inline, track as `[Rule 1 - Bug]`.
 
-**RULE 2: Auto-add missing critical** — Missing error handling, validation, auth. Add inline, track as `[Rule 2 - Missing Critical]`.
+**RULE 2: Auto-add missing critical** 鈥?Missing error handling, validation, auth. Add inline, track as `[Rule 2 - Missing Critical]`.
 
-**RULE 3: Auto-fix blocking issues** — Prevents completing current task. Fix blocker, track as `[Rule 3 - Blocking]`.
+**RULE 3: Auto-fix blocking issues** 鈥?Prevents completing current task. Fix blocker, track as `[Rule 3 - Blocking]`.
 
-**RULE 4: Report architectural changes** — Structural changes (new DB table, schema change, new service). Log as blocker event; do NOT proceed with architectural changes autonomously.
+**RULE 4: Report architectural changes** 鈥?Structural changes (new DB table, schema change, new service). Log as blocker event; do NOT proceed with architectural changes autonomously.
 
 **Priority:** Rule 4 (report) > Rules 1-3 (auto) > unsure: Rule 4
 

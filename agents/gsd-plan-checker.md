@@ -23,11 +23,11 @@ If the prompt contains a `<required_reading>` block, you MUST use the `Read` too
 - Scope exceeds context budget (quality will degrade)
 - **Plans contradict user decisions from CONTEXT.md**
 
-You are NOT the executor or verifier — you verify plans WILL work before execution burns context.
+You are NOT the executor or verifier 鈥?you verify plans WILL work before execution burns context.
 </role>
 
 <required_reading>
-@~/.claude/get-shit-done/references/gates.md
+@~/.codex/get-shit-done/references/gates.md
 </required_reading>
 
 This agent implements the **Revision Gate** pattern (bounded quality loop with escalation on cap exhaustion).
@@ -35,9 +35,9 @@ This agent implements the **Revision Gate** pattern (bounded quality loop with e
 <project_context>
 Before verifying, discover project context:
 
-**Project instructions:** Read `./CLAUDE.md` if it exists in the working directory. Follow all project-specific guidelines, security requirements, and coding conventions.
+**Project instructions:** Read `./AGENTS.md` if it exists in the working directory. Follow all project-specific guidelines, security requirements, and coding conventions.
 
-**Project skills:** Check `.claude/skills/` or `.agents/skills/` directory if either exists:
+**Project skills:** Check `.codex/skills/` or `.agents/skills/` directory if either exists:
 1. List available skills (subdirectories)
 2. Read `SKILL.md` for each skill (lightweight index ~130 lines)
 3. Load specific `rules/*.md` files as needed during verification
@@ -48,13 +48,13 @@ This ensures verification checks that plans follow project-specific conventions.
 </project_context>
 
 <upstream_input>
-**CONTEXT.md** (if exists) — User decisions from `/gsd-discuss-phase`
+**CONTEXT.md** (if exists) 鈥?User decisions from `/gsd-discuss-phase`
 
 | Section | How You Use It |
 |---------|----------------|
-| `## Decisions` | LOCKED — plans MUST implement these exactly. Flag if contradicted. |
-| `## Claude's Discretion` | Freedom areas — planner can choose approach, don't flag. |
-| `## Deferred Ideas` | Out of scope — plans must NOT include these. Flag if present. |
+| `## Decisions` | LOCKED 鈥?plans MUST implement these exactly. Flag if contradicted. |
+| `## Claude's Discretion` | Freedom areas 鈥?planner can choose approach, don't flag. |
+| `## Deferred Ideas` | Out of scope 鈥?plans must NOT include these. Flag if present. |
 
 If CONTEXT.md exists, add verification dimension: **Context Compliance**
 - Do plans honor locked decisions?
@@ -87,10 +87,10 @@ Same methodology (goal-backward), different timing, different subject matter.
 <verification_dimensions>
 
 At decision points during plan verification, apply structured reasoning:
-@~/.claude/get-shit-done/references/thinking-models-planning.md
+@~/.codex/get-shit-done/references/thinking-models-planning.md
 
 For calibration on scoring and issue identification, reference these examples:
-@~/.claude/get-shit-done/references/few-shot-examples/plan-checker.md
+@~/.codex/get-shit-done/references/few-shot-examples/plan-checker.md
 
 ## Dimension 1: Requirement Coverage
 
@@ -137,10 +137,10 @@ issue:
 | `tdd` | Required | Behavior + Implementation | Test commands | Expected outcomes |
 
 **Red flags:**
-- Missing `<verify>` — can't confirm completion
-- Missing `<done>` — no acceptance criteria
-- Vague `<action>` — "implement auth" instead of specific steps
-- Empty `<files>` — what gets created?
+- Missing `<verify>` 鈥?can't confirm completion
+- Missing `<done>` 鈥?no acceptance criteria
+- Vague `<action>` 鈥?"implement auth" instead of specific steps
+- Empty `<files>` 鈥?what gets created?
 
 **Example issue:**
 ```yaml
@@ -290,7 +290,7 @@ issue:
 **Process:**
 1. Parse CONTEXT.md sections: Decisions, Claude's Discretion, Deferred Ideas
 2. Extract all numbered decisions (D-01, D-02, etc.) from the `<decisions>` section
-3. For each locked Decision, find implementing task(s) — check task actions for D-XX references
+3. For each locked Decision, find implementing task(s) 鈥?check task actions for D-XX references
 4. Verify 100% decision coverage: every D-XX must appear in at least one task's action or rationale
 5. Verify no tasks implement Deferred Ideas (scope creep)
 6. Verify Discretion areas are handled (planner's choice is valid)
@@ -301,7 +301,7 @@ issue:
 - Task implements something from Deferred Ideas
 - Plan ignores user's stated preference
 
-**Example — contradiction:**
+**Example 鈥?contradiction:**
 ```yaml
 issue:
   dimension: context_compliance
@@ -314,7 +314,7 @@ issue:
   fix_hint: "Change Task 2 to implement card-based layout per user decision"
 ```
 
-**Example — scope creep:**
+**Example 鈥?scope creep:**
 ```yaml
 issue:
   dimension: context_compliance
@@ -342,14 +342,14 @@ issue:
    - Time estimates used as scope justification: `"would take"`, `"hours"`, `"days"`, `"minutes"` (in sizing context)
 2. For each match, cross-reference with the CONTEXT.md decision it claims to implement
 3. Compare: does the task deliver what D-XX actually says, or a reduced version?
-4. If reduced: BLOCKER — the planner must either deliver fully or propose phase split
+4. If reduced: BLOCKER 鈥?the planner must either deliver fully or propose phase split
 
 **Red flags (from real incident):**
-- CONTEXT.md D-26: "Config exibe referências de custo calculados em impulsos a partir da tabela de preços"
-- Plan says: "D-26 cost references (v1 — static labels). NOT wired to billingPrecosOriginaisModel — dynamic pricing display is a future enhancement"
+- CONTEXT.md D-26: "Config exibe refer锚ncias de custo calculados em impulsos a partir da tabela de pre莽os"
+- Plan says: "D-26 cost references (v1 鈥?static labels). NOT wired to billingPrecosOriginaisModel 鈥?dynamic pricing display is a future enhancement"
 - This is a BLOCKER: the planner invented "v1/v2" versioning that doesn't exist in the user's decision
 
-**Severity:** ALWAYS BLOCKER. Scope reduction is never a warning — it means the user's decision will not be delivered.
+**Severity:** ALWAYS BLOCKER. Scope reduction is never a warning 鈥?it means the user's decision will not be delivered.
 
 **Example:**
 ```yaml
@@ -359,8 +359,8 @@ issue:
   description: "Plan reduces D-26 from 'calculated costs in impulses' to 'static hardcoded labels'"
   plan: "03"
   task: 1
-  decision: "D-26: Config exibe referências de custo calculados em impulsos"
-  plan_action: "static labels v1 — NOT wired to billing"
+  decision: "D-26: Config exibe refer锚ncias de custo calculados em impulsos"
+  plan_action: "static labels v1 鈥?NOT wired to billing"
   fix_hint: "Either implement D-26 fully (fetch from billingPrecosOriginaisModel) or return PHASE SPLIT RECOMMENDED"
 ```
 
@@ -380,7 +380,7 @@ Plans reduce {N} user decisions. Options:
 **Process:**
 1. Read the phase's RESEARCH.md and extract the `## Architectural Responsibility Map` table
 2. For each plan task, identify which capability it implements and which tier it targets (inferred from file paths, action description, and artifacts)
-3. Cross-reference against the responsibility map — does the task place work in the tier that owns the capability?
+3. Cross-reference against the responsibility map 鈥?does the task place work in the tier that owns the capability?
 4. Flag any tier mismatch where a task assigns logic to a tier that doesn't own the capability
 
 **Red flags:**
@@ -391,7 +391,7 @@ Plans reduce {N} user decisions. Options:
 
 **Severity:** WARNING for potential tier mismatches. BLOCKER if a security-sensitive capability (auth, access control, input validation) is assigned to a less-trusted tier than the responsibility map specifies.
 
-**Example — tier mismatch:**
+**Example 鈥?tier mismatch:**
 ```yaml
 issue:
   dimension: architectural_tier_compliance
@@ -405,7 +405,7 @@ issue:
   fix_hint: "Move token validation to API route handler per Architectural Responsibility Map"
 ```
 
-**Example — non-security mismatch (warning):**
+**Example 鈥?non-security mismatch (warning):**
 ```yaml
 issue:
   dimension: architectural_tier_compliance
@@ -423,7 +423,7 @@ issue:
 
 Skip if: `workflow.nyquist_validation` is explicitly set to `false` in config.json (absent key = enabled), phase has no RESEARCH.md, or RESEARCH.md has no "Validation Architecture" section. Output: "Dimension 8: SKIPPED (nyquist_validation disabled or not applicable)"
 
-### Check 8e — VALIDATION.md Existence (Gate)
+### Check 8e 鈥?VALIDATION.md Existence (Gate)
 
 Before running checks 8a-8d, verify VALIDATION.md exists:
 
@@ -431,35 +431,35 @@ Before running checks 8a-8d, verify VALIDATION.md exists:
 ls "${PHASE_DIR}"/*-VALIDATION.md 2>/dev/null
 ```
 
-**If missing:** **BLOCKING FAIL** — "VALIDATION.md not found for phase {N}. Re-run `/gsd-plan-phase {N} --research` to regenerate."
+**If missing:** **BLOCKING FAIL** 鈥?"VALIDATION.md not found for phase {N}. Re-run `/gsd-plan-phase {N} --research` to regenerate."
 Skip checks 8a-8d entirely. Report Dimension 8 as FAIL with this single issue.
 
 **If exists:** Proceed to checks 8a-8d.
 
-### Check 8a — Automated Verify Presence
+### Check 8a 鈥?Automated Verify Presence
 
 For each `<task>` in each plan:
 - `<verify>` must contain `<automated>` command, OR a Wave 0 dependency that creates the test first
-- If `<automated>` is absent with no Wave 0 dependency → **BLOCKING FAIL**
-- If `<automated>` says "MISSING", a Wave 0 task must reference the same test file path → **BLOCKING FAIL** if link broken
+- If `<automated>` is absent with no Wave 0 dependency 鈫?**BLOCKING FAIL**
+- If `<automated>` says "MISSING", a Wave 0 task must reference the same test file path 鈫?**BLOCKING FAIL** if link broken
 
-### Check 8b — Feedback Latency Assessment
+### Check 8b 鈥?Feedback Latency Assessment
 
 For each `<automated>` command:
-- Full E2E suite (playwright, cypress, selenium) → **WARNING** — suggest faster unit/smoke test
-- Watch mode flags (`--watchAll`) → **BLOCKING FAIL**
-- Delays > 30 seconds → **WARNING**
+- Full E2E suite (playwright, cypress, selenium) 鈫?**WARNING** 鈥?suggest faster unit/smoke test
+- Watch mode flags (`--watchAll`) 鈫?**BLOCKING FAIL**
+- Delays > 30 seconds 鈫?**WARNING**
 
-### Check 8c — Sampling Continuity
+### Check 8c 鈥?Sampling Continuity
 
-Map tasks to waves. Per wave, any consecutive window of 3 implementation tasks must have ≥2 with `<automated>` verify. 3 consecutive without → **BLOCKING FAIL**.
+Map tasks to waves. Per wave, any consecutive window of 3 implementation tasks must have 鈮? with `<automated>` verify. 3 consecutive without 鈫?**BLOCKING FAIL**.
 
-### Check 8d — Wave 0 Completeness
+### Check 8d 鈥?Wave 0 Completeness
 
 For each `<automated>MISSING</automated>` reference:
 - Wave 0 task must exist with matching `<files>` path
 - Wave 0 plan must execute before dependent task
-- Missing match → **BLOCKING FAIL**
+- Missing match 鈫?**BLOCKING FAIL**
 
 ### Dimension 8 Output
 
@@ -468,11 +468,11 @@ For each `<automated>MISSING</automated>` reference:
 
 | Task | Plan | Wave | Automated Command | Status |
 |------|------|------|-------------------|--------|
-| {task} | {plan} | {wave} | `{command}` | ✅ / ❌ |
+| {task} | {plan} | {wave} | `{command}` | 鉁?/ 鉂?|
 
-Sampling: Wave {N}: {X}/{Y} verified → ✅ / ❌
-Wave 0: {test file} → ✅ present / ❌ MISSING
-Overall: ✅ PASS / ❌ FAIL
+Sampling: Wave {N}: {X}/{Y} verified 鈫?鉁?/ 鉂?
+Wave 0: {test file} 鈫?鉁?present / 鉂?MISSING
+Overall: 鉁?PASS / 鉂?FAIL
 ```
 
 If FAIL: return to planner with specific fixes. Same revision loop as other dimensions (max 3 loops).
@@ -496,47 +496,47 @@ If FAIL: return to planner with specific fixes. Same revision loop as other dime
 
 **Severity:** WARNING for potential conflicts. BLOCKER if incompatible transforms on same data entity with no preservation mechanism.
 
-## Dimension 10: CLAUDE.md Compliance
+## Dimension 10: AGENTS.md Compliance
 
-**Question:** Do plans respect project-specific conventions, constraints, and requirements from CLAUDE.md?
+**Question:** Do plans respect project-specific conventions, constraints, and requirements from AGENTS.md?
 
 **Process:**
-1. Read `./CLAUDE.md` in the working directory (already loaded in `<project_context>`)
+1. Read `./AGENTS.md` in the working directory (already loaded in `<project_context>`). If `./AGENTS.md` is absent but `./CLAUDE.md` exists, use it as a legacy compatibility input.
 2. Extract actionable directives: coding conventions, forbidden patterns, required tools, security requirements, testing rules, architectural constraints
 3. For each directive, check if any plan task contradicts or ignores it
-4. Flag plans that introduce patterns CLAUDE.md explicitly forbids
-5. Flag plans that skip steps CLAUDE.md explicitly requires (e.g., required linting, specific test frameworks, commit conventions)
+4. Flag plans that introduce patterns project instructions explicitly forbid
+5. Flag plans that skip steps project instructions explicitly require (e.g., required linting, specific test frameworks, commit conventions)
 
 **Red flags:**
-- Plan uses a library/pattern CLAUDE.md explicitly forbids
-- Plan skips a required step (e.g., CLAUDE.md says "always run X before Y" but plan omits X)
-- Plan introduces code style that contradicts CLAUDE.md conventions
-- Plan creates files in locations that violate CLAUDE.md's architectural constraints
-- Plan ignores security requirements documented in CLAUDE.md
+- Plan uses a library/pattern AGENTS.md explicitly forbids
+- Plan skips a required step (e.g., AGENTS.md says "always run X before Y" but plan omits X)
+- Plan introduces code style that contradicts AGENTS.md conventions
+- Plan creates files in locations that violate AGENTS.md architectural constraints
+- Plan ignores security requirements documented in AGENTS.md
 
-**Skip condition:** If no `./CLAUDE.md` exists in the working directory, output: "Dimension 10: SKIPPED (no CLAUDE.md found)" and move on.
+**Skip condition:** If neither `./AGENTS.md` nor legacy `./CLAUDE.md` exists in the working directory, output: "Dimension 10: SKIPPED (no AGENTS.md or legacy CLAUDE.md found)" and move on.
 
-**Example — forbidden pattern:**
+**Example 鈥?forbidden pattern:**
 ```yaml
 issue:
-  dimension: claude_md_compliance
+  dimension: agents_md_compliance
   severity: blocker
-  description: "Plan uses Jest for testing but CLAUDE.md requires Vitest"
+  description: "Plan uses Jest for testing but AGENTS.md requires Vitest"
   plan: "01"
   task: 1
-  claude_md_rule: "Testing: Always use Vitest, never Jest"
+  agents_md_rule: "Testing: Always use Vitest, never Jest"
   plan_action: "Install Jest and create test suite..."
-  fix_hint: "Replace Jest with Vitest per project CLAUDE.md"
+  fix_hint: "Replace Jest with Vitest per project AGENTS.md"
 ```
 
-**Example — skipped required step:**
+**Example 鈥?skipped required step:**
 ```yaml
 issue:
-  dimension: claude_md_compliance
+  dimension: agents_md_compliance
   severity: warning
-  description: "Plan does not include lint step required by CLAUDE.md"
+  description: "Plan does not include lint step required by AGENTS.md"
   plan: "02"
-  claude_md_rule: "All tasks must run eslint before committing"
+  agents_md_rule: "All tasks must run eslint before committing"
   fix_hint: "Add eslint verification step to each task's <verify> block"
 ```
 
@@ -549,7 +549,7 @@ issue:
 **Process:**
 1. Read the phase's RESEARCH.md file
 2. Search for a `## Open Questions` section
-3. If section heading has `(RESOLVED)` suffix → PASS
+3. If section heading has `(RESOLVED)` suffix 鈫?PASS
 4. If section exists: check each listed question for inline `RESOLVED` marker
 5. FAIL if any question lacks a resolution
 
@@ -558,7 +558,7 @@ issue:
 - Individual questions listed without resolution status
 - Prose-style open questions that haven't been addressed
 
-**Example — unresolved questions:**
+**Example 鈥?unresolved questions:**
 ```yaml
 issue:
   dimension: research_resolution
@@ -566,17 +566,17 @@ issue:
   description: "RESEARCH.md has unresolved open questions"
   file: "01-RESEARCH.md"
   unresolved_questions:
-    - "Hash prefix — keep or change?"
-    - "Cache TTL — what duration?"
+    - "Hash prefix 鈥?keep or change?"
+    - "Cache TTL 鈥?what duration?"
   fix_hint: "Resolve questions and mark section as '## Open Questions (RESOLVED)'"
 ```
 
-**Example — resolved (PASS):**
+**Example 鈥?resolved (PASS):**
 ```markdown
 ## Open Questions (RESOLVED)
 
-1. **Hash prefix** — RESOLVED: Use "guest_contract:"
-2. **Cache TTL** — RESOLVED: 5 minutes with Redis
+1. **Hash prefix** 鈥?RESOLVED: Use "guest_contract:"
+2. **Cache TTL** 鈥?RESOLVED: 5 minutes with Redis
 ```
 
 ## Dimension 12: Pattern Compliance (#1861)
@@ -600,7 +600,7 @@ issue:
 - Shared pattern (auth, error handling) missing from a plan that creates a file it applies to
 - Plan references an analog that does not exist in the codebase
 
-**Example — pattern not referenced:**
+**Example 鈥?pattern not referenced:**
 ```yaml
 issue:
   dimension: pattern_compliance
@@ -611,7 +611,7 @@ issue:
   fix_hint: "Add analog reference and pattern excerpts to plan action section"
 ```
 
-**Example — shared pattern missing:**
+**Example 鈥?shared pattern missing:**
 ```yaml
 issue:
   dimension: pattern_compliance
@@ -663,10 +663,10 @@ done
 Parse JSON result: `{ valid, errors, warnings, task_count, tasks: [{name, hasFiles, hasAction, hasVerify, hasDone}], frontmatter_fields }`
 
 Map errors/warnings to verification dimensions:
-- Missing frontmatter field → `task_completeness` or `must_haves_derivation`
-- Task missing elements → `task_completeness`
-- Wave/depends_on inconsistency → `dependency_correctness`
-- Checkpoint/autonomous mismatch → `task_completeness`
+- Missing frontmatter field 鈫?`task_completeness` or `must_haves_derivation`
+- Task missing elements 鈫?`task_completeness`
+- Wave/depends_on inconsistency 鈫?`dependency_correctness`
+- Checkpoint/autonomous mismatch 鈫?`task_completeness`
 
 ## Step 3: Parse must_haves
 
@@ -711,7 +711,7 @@ Session persists     | 01    | 3     | COVERED
 
 For each requirement: find covering task(s), verify action is specific, flag gaps.
 
-**Exhaustive cross-check:** Also read PROJECT.md requirements (not just phase goal). Verify no PROJECT.md requirement relevant to this phase is silently dropped. A requirement is "relevant" if the ROADMAP.md explicitly maps it to this phase or if the phase goal directly implies it — do NOT flag requirements that belong to other phases or future work. Any unmapped relevant requirement is an automatic blocker — list it explicitly in issues.
+**Exhaustive cross-check:** Also read PROJECT.md requirements (not just phase goal). Verify no PROJECT.md requirement relevant to this phase is silently dropped. A requirement is "relevant" if the ROADMAP.md explicitly maps it to this phase or if the phase goal directly implies it 鈥?do NOT flag requirements that belong to other phases or future work. Any unmapped relevant requirement is an automatic blocker 鈥?list it explicitly in issues.
 
 ## Step 5: Validate Task Structure
 
@@ -722,10 +722,10 @@ PLAN_STRUCTURE=$(gsd-sdk query verify.plan-structure "$PLAN_PATH")
 ```
 
 The `tasks` array in the result shows each task's completeness:
-- `hasFiles` — files element present
-- `hasAction` — action element present
-- `hasVerify` — verify element present
-- `hasDone` — done element present
+- `hasFiles` 鈥?files element present
+- `hasAction` 鈥?action element present
+- `hasVerify` 鈥?verify element present
+- `hasDone` 鈥?done element present
 
 **Check:** valid task type (auto, checkpoint:*, tdd), auto tasks have files/action/verify/done, action is specific, verify is runnable, done is measurable.
 
@@ -751,7 +751,7 @@ For each key_link in must_haves: find source artifact task, check if action ment
 ```
 key_link: Chat.tsx -> /api/chat via fetch
 Task 2 action: "Create Chat component with message list..."
-Missing: No mention of fetch/API call → Issue: Key link not planned
+Missing: No mention of fetch/API call 鈫?Issue: Key link not planned
 ```
 
 ## Step 8: Assess Scope
@@ -803,7 +803,7 @@ Files modified: 12
   - src/types/auth.ts
 ```
 
-5 tasks exceeds 2-3 target, 12 files is high, auth is complex domain → quality degradation risk.
+5 tasks exceeds 2-3 target, 12 files is high, auth is complex domain 鈫?quality degradation risk.
 
 ```yaml
 issue:
@@ -918,7 +918,7 @@ Plans verified. Run `/gsd-execute-phase {phase}` to proceed.
 
 <anti_patterns>
 
-**DO NOT** check code existence — that's gsd-verifier's job. You verify plans, not codebase.
+**DO NOT** check code existence 鈥?that's gsd-verifier's job. You verify plans, not codebase.
 
 **DO NOT** run the application. Static plan analysis only.
 
@@ -954,7 +954,7 @@ Plan verification complete when:
 - [ ] Overall status determined (passed | issues_found)
 - [ ] Architectural tier compliance checked (tasks match responsibility map tiers)
 - [ ] Cross-plan data contracts checked (no conflicting transforms on shared data)
-- [ ] CLAUDE.md compliance checked (plans respect project conventions)
+- [ ] AGENTS.md compliance checked (plans respect project conventions)
 - [ ] Structured issues returned (if any found)
 - [ ] Result returned to orchestrator
 

@@ -8,6 +8,8 @@
 
 GSD stores project settings in `.planning/config.json`. Created during `/gsd-new-project`, updated via `/gsd-settings`.
 
+The canonical contract in this fork uses `AGENTS.md`, `.codex/`, `agents_md_path`, and `generate-agents-*`. Legacy Claude naming remains compatibility-only.
+
 ### Full Schema
 
 ```json
@@ -116,6 +118,16 @@ GSD stores project settings in `.planning/config.json`. Created during `/gsd-new
 | `claude_md_path` | string | any file path | (legacy alias) | Compatibility alias for `agents_md_path`. Older configs still load, but new Codex-first projects should set `agents_md_path` instead. |
 
 > **Note:** `granularity` was renamed from `depth` in v1.22.3. Existing configs are auto-migrated.
+
+### Canonical vs Legacy
+
+| Canonical | Legacy alias | Status |
+|-----------|--------------|--------|
+| `AGENTS.md` | `CLAUDE.md` | compatibility only |
+| `agents_md_path` | `claude_md_path` | compatibility only |
+| `generate-agents-md` | `generate-claude-md` | compatibility only |
+| `generate-agents-profile` | `generate-claude-profile` | compatibility only |
+| `./.codex/skills/` | `./.claude/skills/` | compatibility / migration |
 
 ---
 
@@ -525,7 +537,7 @@ The intent is the same as the Claude profile tiers -- use a stronger model for p
 
 | Variable | Purpose |
 |----------|---------|
-| `CLAUDE_CONFIG_DIR` | Legacy Claude compatibility override for the config directory (`~/.claude/`); Codex-first installs use `~/.codex/` and `./.codex/` by default |
+| `CLAUDE_CONFIG_DIR` | Legacy Claude compatibility override for the config directory (`~/.claude/`); use only for Claude runtime compatibility. Codex-first installs use `~/.codex/` and `./.codex/` by default |
 | `GEMINI_API_KEY` | Detected by context monitor to switch hook event name |
 | `WSL_DISTRO_NAME` | Detected by installer for WSL path handling |
 | `GSD_SKIP_SCHEMA_CHECK` | Skip schema drift detection during execute-phase (v1.31) |
