@@ -2,11 +2,11 @@
 
 # GET SHIT DONE CODEX
 
-**English** 路 [Portugu锚s](README.pt-BR.md) 路 [绠€浣撲腑鏂嘳(README.zh-CN.md) 路 [鏃ユ湰瑾瀅(README.ja-JP.md) 路 [頃滉淡鞏碷(README.ko-KR.md)
+**English** | [Portuguese](README.pt-BR.md) | [Chinese](README.zh-CN.md) | [Japanese](README.ja-JP.md) | [Korean](README.ko-KR.md)
 
-**A light-weight and powerful meta-prompting, context engineering and spec-driven development system for Claude Code, OpenCode, Gemini CLI, Kilo, Codex, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, Cline, and CodeBuddy.**
+**A lightweight meta-prompting, context-engineering, and spec-driven development system with a Codex-first contract and multi-runtime compatibility.**
 
-**Solves context rot 鈥?the quality degradation that happens as Claude fills its context window.**
+**Solves context rot: the quality degradation that appears as long-running AI coding sessions accumulate stale context.**
 
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
@@ -26,15 +26,15 @@ npx get-shit-done-codex@latest
 
 *"If you know clearly what you want, this WILL build it for you. No bs."*
 
-*"I've done SpecKit, OpenSpec and Taskmaster 鈥?this has produced the best results for me."*
+*"I've done SpecKit, OpenSpec, and Taskmaster - this has produced the best results for me."*
 
-*"By far the most powerful addition to my Claude Code. Nothing over-engineered. Literally just gets shit done."*
+*"By far the most powerful addition to my AI coding workflow. Nothing over-engineered. Literally just gets shit done."*
 
 <br>
 
-**Trusted by engineers at Amazon, Google, Shopify, and Webflow.**
+**Built for individual developers and small teams who want a reliable AI-assisted build workflow without heavyweight process theater.**
 
-[Why I Built This](#why-i-built-this) 路 [How It Works](#how-it-works) 路 [Commands](#commands) 路 [Why It Works](#why-it-works) 路 [User Guide](docs/USER-GUIDE.md)
+[Why I Built This](#why-i-built-this) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md)
 
 </div>
 
@@ -56,52 +56,31 @@ npx get-shit-done-codex@latest
 
 ---
 
-> [!IMPORTANT]
-> ### Welcome Back to GSD>
-> If you're returning to GSD after the recent Anthropic Terms of Service changes 鈥?welcome back. We kept building while you were gone.
->
-> **To re-import an existing project into GSD:**
-> 1. Run `/gsd-map-codebase` to scan and index your current codebase state
-> 2. Run `/gsd-new-project` to initialize a fresh GSD planning structure using the codebase map as context
-> 3. Review [docs/USER-GUIDE.md](docs/USER-GUIDE.md) and the [CHANGELOG](CHANGELOG.md) for updates 鈥?a lot has changed since you were last here
->
-> Your code is fine. GSD just needs its planning context rebuilt. The two commands above handle that.
-
----
-
 ## Why I Built This
 
-I'm a solo developer. I don't write code 鈥?Claude Code does.
+I built this because I wanted a practical system for shipping software with AI without pretending I run a 50-person organization.
 
-Other spec-driven development tools exist; BMAD, Speckit... But they all seem to make things way more complicated than they need to be (sprint ceremonies, story points, stakeholder syncs, retrospectives, Jira workflows) or lack real big picture understanding of what you're building. I'm not a 50-person software company. I don't want to play enterprise theater. I'm just a creative person trying to build great things that work.
+Most spec-driven tools either add too much ceremony or stop short of giving the coding runtime the context it actually needs. GSD pushes the complexity into the system instead of the human workflow: context engineering, structured prompts, subagent orchestration, verification loops, and state management.
 
-So I built GSD. The complexity is in the system, not in your workflow. Behind the scenes: context engineering, XML prompt formatting, subagent orchestration, state management. What you see: a few commands that just work.
+The goal is simple: describe what you want, keep requirements explicit, execute in small verifiable chunks, and retain enough context that the runtime can keep making correct decisions.
 
-The system gives Claude everything it needs to do the work *and* verify it. I trust the workflow. It just does a good job.
+That is what this fork is for. It keeps the workflow sharp, keeps the semantics Codex-first, and keeps compatibility only where migration still matters.
 
-That's what this is. No enterprise roleplay bullshit. Just an incredibly effective system for building cool stuff consistently using Claude Code.
-
-鈥?**T脗CHES**
-
----
-
-Vibecoding has a bad reputation. You describe what you want, AI generates code, and you get inconsistent garbage that falls apart at scale.
-
-GSD fixes that. It's the context engineering layer that makes Claude Code reliable. Describe your idea, let the system extract everything it needs to know, and let Claude Code get to work.
+AI coding gets a bad reputation when the system around it is loose. GSD is the structure that turns those sessions into something repeatable.
 
 ---
 
 ## Who This Is For
 
-People who want to describe what they want and have it built correctly 鈥?without pretending they're running a 50-person engineering org.
+People who want to describe what they want and have it built correctly without pretending they are running a 50-person engineering organization.
 
 Built-in quality gates catch real problems: schema drift detection flags ORM changes missing migrations, security enforcement anchors verification to threat models, and scope reduction detection prevents the planner from silently dropping your requirements.
 
-### v1.37.0 Highlights
+### Current Highlights
 
-- **Spiking & sketching** 鈥?`/gsd-spike` runs 2鈥? focused experiments with Given/When/Then verdicts; `/gsd-sketch` produces 2鈥? interactive HTML mockup variants per design question 鈥?both store artifacts in `.planning/` and pair with wrap-up commands to package findings into project-local skills
-- **Agent size-budget enforcement** 鈥?Tiered line-count limits (XL: 1 600, Large: 1 000, Default: 500) keep agent prompts lean; violations surface in CI
-- **Shared boilerplate extraction** 鈥?Mandatory-initial-read and project-skills-discovery logic extracted to reference files, reducing duplication across a dozen agents
+- **Spiking and sketching**: `/gsd-spike` runs focused experiments with Given/When/Then verdicts, and `/gsd-sketch` produces interactive HTML mockup variants that can be wrapped into project-local skills.
+- **Agent size-budget enforcement**: tiered prompt-size limits keep agent definitions lean and catch regressions in CI.
+- **Shared boilerplate extraction**: mandatory-initial-read and project-skill discovery logic are factored into reusable references to reduce drift across agent prompts.
 
 ---
 
@@ -120,14 +99,14 @@ node bin/install.js --codex --local
 ```
 
 The installer prompts you to choose:
-1. **Runtime** 鈥?Claude Code, OpenCode, Gemini, Kilo, Codex, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, CodeBuddy, Cline, or all (interactive multi-select 鈥?pick multiple runtimes in a single install session)
-2. **Location** 鈥?Global (all projects) or local (current project only)
+1. **Runtime**: Codex, Claude Code, OpenCode, Gemini, Kilo, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, CodeBuddy, Cline, or all
+2. **Location**: global (all projects) or local (current project only)
 
 Verify with:
 - Claude Code / Gemini / Copilot / Antigravity / Qwen Code: `/gsd-help`
 - OpenCode / Kilo / Augment / Trae / CodeBuddy: `/gsd-help`
 - Codex: `$gsd-help`
-- Cline: GSD installs via `.clinerules` 鈥?verify by checking `.clinerules` exists
+- Cline: GSD installs via `.clinerules`; verify by checking `.clinerules` exists
 
 > [!NOTE]
 > Codex is the primary runtime in this fork. Managed installs write skills to `./.codex/skills/` or `~/.codex/skills/` and generate `AGENTS.md` by default. Legacy Claude compatibility still understands `.claude/skills/`, `~/.claude/skills/`, and `~/.claude/commands/gsd/` when present, but those paths are no longer the primary contract.
@@ -230,7 +209,7 @@ npm run build:hooks
 node bin/install.js --codex --local
 ```
 
-The `build:hooks` step is required 鈥?it compiles hook sources into `hooks/dist/` which the installer copies from. Without it, hooks won't be installed and you'll get hook errors in Claude Code. (The npm release handles this automatically via `prepublishOnly`.)
+The `build:hooks` step is required. It compiles hook sources into `hooks/dist/`, which the installer copies from. Without it, hooks will not be installed and runtime hook behavior will be incomplete. The npm release handles this automatically via `prepublishOnly`.
 
 Installs to `./.codex/` for testing modifications before contributing.
 
@@ -245,7 +224,7 @@ claude --dangerously-skip-permissions
 ```
 
 > [!TIP]
-> This is how GSD is intended to be used 鈥?stopping to approve `date` and `git commit` 50 times defeats the purpose.
+> This is how GSD is intended to be used; stopping to approve `date` and `git commit` 50 times defeats the purpose.
 
 <details>
 <summary><strong>Alternative: Granular Permissions</strong></summary>
@@ -284,7 +263,7 @@ If you prefer not to use that flag, Claude Code compatibility/runtime users can 
 
 ## How It Works
 
-> **Already have code?** Run `/gsd-map-codebase` first. It spawns parallel agents to analyze your stack, architecture, conventions, and concerns. Then `/gsd-new-project` knows your codebase 鈥?questions focus on what you're adding, and planning automatically loads your patterns.
+> **Already have code?** Run `/gsd-map-codebase` first. It spawns parallel agents to analyze your stack, architecture, conventions, and concerns. Then `/gsd-new-project` starts from your existing codebase instead of asking generic greenfield questions.
 
 ### 1. Initialize Project
 
@@ -294,12 +273,12 @@ If you prefer not to use that flag, Claude Code compatibility/runtime users can 
 
 One command, one flow. The system:
 
-1. **Questions** 鈥?Asks until it understands your idea completely (goals, constraints, tech preferences, edge cases)
-2. **Research** 鈥?Spawns parallel agents to investigate the domain (optional but recommended)
-3. **Requirements** 鈥?Extracts what's v1, v2, and out of scope
-4. **Roadmap** 鈥?Creates phases mapped to requirements
+1. **Questions**: asks until it understands your idea completely
+2. **Research**: spawns parallel agents to investigate the domain
+3. **Requirements**: extracts what is v1, v2, and out of scope
+4. **Roadmap**: creates phases mapped to requirements
 
-You approve the roadmap. Now you're ready to build.
+You approve the roadmap. Now you are ready to build.
 
 **Creates:** `PROJECT.md`, `REQUIREMENTS.md`, `ROADMAP.md`, `STATE.md`, `.planning/research/`
 
@@ -313,25 +292,20 @@ You approve the roadmap. Now you're ready to build.
 
 **This is where you shape the implementation.**
 
-Your roadmap has a sentence or two per phase. That's not enough context to build something the way *you* imagine it. This step captures your preferences before anything gets researched or planned.
+Your roadmap has a sentence or two per phase. That is not enough context to build something the way you imagine it. This step captures your preferences before anything gets researched or planned.
 
-The system analyzes the phase and identifies gray areas based on what's being built:
+The system analyzes the phase and identifies gray areas based on what is being built:
 
-- **Visual features** 鈫?Layout, density, interactions, empty states
-- **APIs/CLIs** 鈫?Response format, flags, error handling, verbosity
-- **Content systems** 鈫?Structure, tone, depth, flow
-- **Organization tasks** 鈫?Grouping criteria, naming, duplicates, exceptions
+- **Visual features**: layout, density, interactions, empty states
+- **APIs and CLIs**: response format, flags, error handling, verbosity
+- **Content systems**: structure, tone, depth, flow
+- **Organization tasks**: grouping criteria, naming, duplicates, exceptions
 
-For each area you select, it asks until you're satisfied. The output 鈥?`CONTEXT.md` 鈥?feeds directly into the next two steps:
-
-1. **Researcher reads it** 鈥?Knows what patterns to investigate ("user wants card layout" 鈫?research card component libraries)
-2. **Planner reads it** 鈥?Knows what decisions are locked ("infinite scroll decided" 鈫?plan includes scroll handling)
-
-The deeper you go here, the more the system builds what you actually want. Skip it and you get reasonable defaults. Use it and you get *your* vision.
+For each area you select, it asks until you are satisfied. The output, `CONTEXT.md`, feeds directly into the next two steps.
 
 **Creates:** `{phase_num}-CONTEXT.md`
 
-> **Assumptions Mode:** Prefer codebase analysis over questions? Set `workflow.discuss_mode` to `assumptions` in `/gsd-settings`. The system reads your code, surfaces what it would do and why, and only asks you to correct what's wrong. See [Discuss Mode](docs/workflow-discuss-mode.md).
+> **Assumptions Mode:** Prefer codebase analysis over questions? Set `workflow.discuss_mode` to `assumptions` in `/gsd-settings`. The system reads your code, surfaces what it would do and why, and only asks you to correct what is wrong. See [Discuss Mode](docs/workflow-discuss-mode.md).
 
 ---
 
@@ -343,11 +317,11 @@ The deeper you go here, the more the system builds what you actually want. Skip 
 
 The system:
 
-1. **Researches** 鈥?Investigates how to implement this phase, guided by your CONTEXT.md decisions
-2. **Plans** 鈥?Creates 2-3 atomic task plans with XML structure
-3. **Verifies** 鈥?Checks plans against requirements, loops until they pass
+1. **Researches**: investigates how to implement this phase, guided by your `CONTEXT.md` decisions
+2. **Plans**: creates 2-3 atomic task plans with XML structure
+3. **Verifies**: checks plans against requirements and loops until they pass
 
-Each plan is small enough to execute in a fresh context window. No degradation, no "I'll be more concise now."
+Each plan is small enough to execute in a fresh context window.
 
 **Creates:** `{phase_num}-RESEARCH.md`, `{phase_num}-{N}-PLAN.md`
 
@@ -361,44 +335,29 @@ Each plan is small enough to execute in a fresh context window. No degradation, 
 
 The system:
 
-1. **Runs plans in waves** 鈥?Parallel where possible, sequential when dependent
-2. **Fresh context per plan** 鈥?200k tokens purely for implementation, zero accumulated garbage
-3. **Commits per task** 鈥?Every task gets its own atomic commit
-4. **Verifies against goals** 鈥?Checks the codebase delivers what the phase promised
+1. **Runs plans in waves**: parallel where possible, sequential when dependent
+2. **Fresh context per plan**: isolated execution context instead of one long degrading session
+3. **Commits per task**: every task gets its own atomic commit
+4. **Verifies against goals**: checks the codebase delivers what the phase promised
 
 Walk away, come back to completed work with clean git history.
 
-**How Wave Execution Works:**
+**How wave execution works:**
 
-Plans are grouped into "waves" based on dependencies. Within each wave, plans run in parallel. Waves run sequentially.
+Plans are grouped into waves based on dependencies. Plans in the same wave can run in parallel; dependent plans wait for later waves.
 
-```
-鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
-鈹? PHASE EXECUTION                                                   鈹?
-鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
-鈹?                                                                   鈹?
-鈹? WAVE 1 (parallel)          WAVE 2 (parallel)          WAVE 3      鈹?
-鈹? 鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?   鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?   鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?
-鈹? 鈹?Plan 01 鈹?鈹?Plan 02 鈹?鈫? 鈹?Plan 03 鈹?鈹?Plan 04 鈹?鈫? 鈹?Plan 05 鈹?鈹?
-鈹? 鈹?        鈹?鈹?        鈹?   鈹?        鈹?鈹?        鈹?   鈹?        鈹?鈹?
-鈹? 鈹?User    鈹?鈹?Product 鈹?   鈹?Orders  鈹?鈹?Cart    鈹?   鈹?Checkout鈹?鈹?
-鈹? 鈹?Model   鈹?鈹?Model   鈹?   鈹?API     鈹?鈹?API     鈹?   鈹?UI      鈹?鈹?
-鈹? 鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?   鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?   鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?
-鈹?      鈹?          鈹?             鈫?          鈫?             鈫?     鈹?
-鈹?      鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹粹攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹粹攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?             鈹?     鈹?
-鈹?             Dependencies: Plan 03 needs Plan 01            鈹?     鈹?
-鈹?                         Plan 04 needs Plan 02              鈹?     鈹?
-鈹?                         Plan 05 needs Plans 03 + 04        鈹?     鈹?
-鈹?                                                                   鈹?
-鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
-```
+Example:
+
+- **Wave 1**: Plan 01 (User model), Plan 02 (Product model)
+- **Wave 2**: Plan 03 (Orders API, depends on Plan 01), Plan 04 (Cart API, depends on Plan 02)
+- **Wave 3**: Plan 05 (Checkout UI, depends on Plans 03 and 04)
 
 **Why waves matter:**
-- Independent plans 鈫?Same wave 鈫?Run in parallel
-- Dependent plans 鈫?Later wave 鈫?Wait for dependencies
-- File conflicts 鈫?Sequential plans or same plan
+- Independent plans -> same wave -> run in parallel
+- Dependent plans -> later wave -> wait for dependencies
+- File conflicts -> sequential plans or merged into one plan
 
-This is why "vertical slices" (Plan 01: User feature end-to-end) parallelize better than "horizontal layers" (Plan 01: All models, Plan 02: All APIs).
+This is why vertical slices parallelize better than horizontal layers.
 
 **Creates:** `{phase_num}-{N}-SUMMARY.md`, `{phase_num}-VERIFICATION.md`
 
@@ -412,22 +371,22 @@ This is why "vertical slices" (Plan 01: User feature end-to-end) parallelize bet
 
 **This is where you confirm it actually works.**
 
-Automated verification checks that code exists and tests pass. But does the feature *work* the way you expected? This is your chance to use it.
+Automated verification checks that code exists and tests pass. But does the feature work the way you expected? This is your chance to use it.
 
 The system:
 
-1. **Extracts testable deliverables** 鈥?What you should be able to do now
-2. **Walks you through one at a time** 鈥?"Can you log in with email?" Yes/no, or describe what's wrong
-3. **Diagnoses failures automatically** 鈥?Spawns debug agents to find root causes
-4. **Creates verified fix plans** 鈥?Ready for immediate re-execution
+1. **Extracts testable deliverables**: what you should be able to do now
+2. **Walks you through them one at a time**: yes/no or describe what is wrong
+3. **Diagnoses failures automatically**: spawns debug agents to find root causes
+4. **Creates verified fix plans**: ready for immediate re-execution
 
-If everything passes, you move on. If something's broken, you don't manually debug 鈥?you just run `/gsd-execute-phase` again with the fix plans it created.
+If everything passes, you move on. If something is broken, you rerun `/gsd-execute-phase` with the fix plans it created.
 
-**Creates:** `{phase_num}-UAT.md`, fix plans if issues found
+**Creates:** `{phase_num}-UAT.md`, fix plans if issues are found
 
 ---
 
-### 6. Repeat 鈫?Ship 鈫?Complete 鈫?Next Milestone
+### 6. Repeat -> Ship -> Complete -> Next Milestone
 
 ```
 /gsd-discuss-phase 2
@@ -446,15 +405,15 @@ Or let GSD figure out the next step automatically:
 /gsd-next                    # Auto-detect and run next step
 ```
 
-Loop **discuss 鈫?plan 鈫?execute 鈫?verify 鈫?ship** until milestone complete.
+Loop **discuss -> plan -> execute -> verify -> ship** until the milestone is complete.
 
 If you want faster intake during discussion, use `/gsd-discuss-phase <n> --batch` to answer a small grouped set of questions at once instead of one-by-one. Use `--chain` to auto-chain discuss into plan+execute without stopping between steps.
 
-Each phase gets your input (discuss), proper research (plan), clean execution (execute), and human verification (verify). Context stays fresh. Quality stays high.
+Each phase gets your input, proper research, clean execution, and human verification. Context stays fresh. Quality stays high.
 
 When all phases are done, `/gsd-complete-milestone` archives the milestone and tags the release.
 
-Then `/gsd-new-milestone` starts the next version 鈥?same flow as `new-project` but for your existing codebase. You describe what you want to build next, the system researches the domain, you scope requirements, and it creates a fresh roadmap. Each milestone is a clean cycle: define 鈫?build 鈫?ship.
+Then `/gsd-new-milestone` starts the next version using the same flow as `new-project`, but for your existing codebase.
 
 ---
 
@@ -464,21 +423,21 @@ Then `/gsd-new-milestone` starts the next version 鈥?same flow as `new-project`
 /gsd-quick
 ```
 
-**For ad-hoc tasks that don't need full planning.**
+**For ad-hoc tasks that do not need full planning.**
 
 Quick mode gives you GSD guarantees (atomic commits, state tracking) with a faster path:
 
-- **Same agents** 鈥?Planner + executor, same quality
-- **Skips optional steps** 鈥?No research, no plan checker, no verifier by default
-- **Separate tracking** 鈥?Lives in `.planning/quick/`, not phases
+- **Same agents**: planner + executor, same quality bar
+- **Skips optional steps**: no research, no plan checker, no verifier by default
+- **Separate tracking**: lives in `.planning/quick/`, not phase directories
 
 **`--discuss` flag:** Lightweight discussion to surface gray areas before planning.
 
-**`--research` flag:** Spawns a focused researcher before planning. Investigates implementation approaches, library options, and pitfalls. Use when you're unsure how to approach a task.
+**`--research` flag:** Spawns a focused researcher before planning. Investigates implementation approaches, library options, and pitfalls.
 
-**`--full` flag:** Enables all phases 鈥?discussion + research + plan-checking + verification. The full GSD pipeline in quick-task form.
+**`--full` flag:** Enables all phases: discussion + research + plan-checking + verification.
 
-**`--validate` flag:** Enables plan-checking + post-execution verification only (the previous `--full` behavior).
+**`--validate` flag:** Enables plan-checking + post-execution verification only.
 
 Flags are composable: `--discuss --research --validate` gives discussion + research + plan-checking + verification.
 
@@ -505,7 +464,7 @@ GSD handles it for you:
 | `research/` | Ecosystem knowledge (stack, features, architecture, pitfalls) |
 | `REQUIREMENTS.md` | Scoped v1/v2 requirements with phase traceability |
 | `ROADMAP.md` | Where you're going, what's done |
-| `STATE.md` | Decisions, blockers, position 鈥?memory across sessions |
+| `STATE.md` | Decisions, blockers, and current position across sessions |
 | `PLAN.md` | Atomic task with XML structure, verification steps |
 | `SUMMARY.md` | What happened, what changed, committed to history |
 | `todos/` | Captured ideas and tasks for later work |
@@ -547,7 +506,7 @@ Every stage uses the same pattern: a thin orchestrator spawns specialized agents
 
 The orchestrator never does heavy lifting. It spawns agents, waits, integrates results.
 
-**The result:** You can run an entire phase 鈥?deep research, multiple plans created and verified, thousands of lines of code written across parallel executors, automated verification against goals 鈥?and your main context window stays at 30-40%. The work happens in fresh subagent contexts. Your session stays fast and responsive.
+**The result:** you can run an entire phase with deep research, verified plans, parallel execution, and automated verification while your main context window stays responsive.
 
 ### Atomic Git Commits
 
@@ -589,7 +548,7 @@ You're never locked in. The system adapts.
 | `/gsd-verify-work [N]` | Manual user acceptance testing 鹿 |
 | `/gsd-ship [N] [--draft]` | Create PR from verified phase work with auto-generated body |
 | `/gsd-next` | Automatically advance to the next logical workflow step |
-| `/gsd-fast <text>` | Inline trivial tasks 鈥?skips planning entirely, executes immediately |
+| `/gsd-fast <text>` | Inline trivial tasks that skip planning and execute immediately |
 | `/gsd-audit-milestone` | Verify milestone achieved its definition of done |
 | `/gsd-complete-milestone` | Archive milestone, tag release |
 | `/gsd-new-milestone [name]` | Start next version: questions 鈫?research 鈫?requirements 鈫?roadmap |
@@ -617,8 +576,8 @@ You're never locked in. The system adapts.
 
 | Command | What it does |
 |---------|--------------|
-| `/gsd-spike [idea] [--quick]` | Throwaway experiments to validate feasibility before planning 鈥?no project init required |
-| `/gsd-sketch [idea] [--quick]` | Throwaway HTML mockups with multi-variant exploration 鈥?no project init required |
+| `/gsd-spike [idea] [--quick]` | Throwaway experiments to validate feasibility before planning; no project init required |
+| `/gsd-sketch [idea] [--quick]` | Throwaway HTML mockups with multi-variant exploration; no project init required |
 | `/gsd-spike-wrap-up` | Package spike findings into a project-local skill for future build conversations |
 | `/gsd-sketch-wrap-up` | Package sketch design findings into a project-local skill for future builds |
 
@@ -653,7 +612,7 @@ You're never locked in. The system adapts.
 | `/gsd-add-phase` | Append phase to roadmap |
 | `/gsd-insert-phase [N]` | Insert urgent work between phases |
 | `/gsd-remove-phase [N]` | Remove future phase, renumber |
-| `/gsd-list-phase-assumptions [N]` | See Claude's intended approach before planning |
+| `/gsd-list-phase-assumptions [N]` | See the planner's intended approach before planning |
 | `/gsd-plan-milestone-gaps` | Create phases to close gaps from audit |
 
 ### Session
@@ -677,17 +636,17 @@ You're never locked in. The system adapts.
 | `/gsd-review` | Cross-AI peer review of current phase or branch |
 | `/gsd-secure-phase [N]` | Security enforcement with threat-model-anchored verification |
 | `/gsd-pr-branch` | Create clean PR branch filtering `.planning/` commits |
-| `/gsd-audit-uat` | Audit verification debt 鈥?find phases missing UAT |
+| `/gsd-audit-uat` | Audit verification debt and find phases missing UAT |
 | `/gsd-docs-update` | Verified documentation generation with doc-writer and doc-verifier agents |
 
 ### Backlog & Threads
 
 | Command | What it does |
 |---------|--------------|
-| `/gsd-plant-seed <idea>` | Capture forward-looking ideas with trigger conditions 鈥?surfaces at the right milestone |
+| `/gsd-plant-seed <idea>` | Capture forward-looking ideas with trigger conditions that surface at the right milestone |
 | `/gsd-add-backlog <desc>` | Add idea to backlog parking lot (999.x numbering, outside active sequence) |
 | `/gsd-review-backlog` | Review and promote backlog items to active milestone or remove stale entries |
-| `/gsd-thread [name]` | Persistent context threads 鈥?lightweight cross-session knowledge for work spanning multiple sessions |
+| `/gsd-thread [name]` | Persistent context threads for lightweight cross-session knowledge |
 
 ### Utilities
 
@@ -699,10 +658,10 @@ You're never locked in. The system adapts.
 | `/gsd-check-todos` | List pending todos |
 | `/gsd-debug [desc]` | Systematic debugging with persistent state |
 | `/gsd-do <text>` | Route freeform text to the right GSD command automatically |
-| `/gsd-note <text>` | Zero-friction idea capture 鈥?append, list, or promote notes to todos |
+| `/gsd-note <text>` | Zero-friction idea capture: append, list, or promote notes to todos |
 | `/gsd-quick [--full] [--validate] [--discuss] [--research]` | Execute ad-hoc task with GSD guarantees (`--full` enables all phases, `--validate` adds plan-checking and verification, `--discuss` gathers context first, `--research` investigates approaches before planning) |
 | `/gsd-health [--repair]` | Validate `.planning/` directory integrity, auto-repair with `--repair` |
-| `/gsd-stats` | Display project statistics 鈥?phases, plans, requirements, git metrics |
+| `/gsd-stats` | Display project statistics: phases, plans, requirements, and git metrics |
 | `/gsd-profile-user [--questionnaire] [--refresh]` | Generate developer behavioral profile from session analysis for personalized responses |
 
 <sup>鹿 Contributed by reddit user OracleGreyBeard</sup>
@@ -718,7 +677,7 @@ GSD stores project settings in `.planning/config.json`. Configure during `/gsd-n
 | Setting | Options | Default | What it controls |
 |---------|---------|---------|------------------|
 | `mode` | `yolo`, `interactive` | `interactive` | Auto-approve vs confirm at each step |
-| `granularity` | `coarse`, `standard`, `fine` | `standard` | Phase granularity 鈥?how finely scope is sliced (phases 脳 plans) |
+| `granularity` | `coarse`, `standard`, `fine` | `standard` | Phase granularity: how finely scope is sliced |
 | `project_code` | string | `""` | Prefix phase directories with a project code |
 
 ### Model Profiles
@@ -790,9 +749,9 @@ Control how GSD handles branches during execution.
 | `git.milestone_branch_template` | string | `gsd/{milestone}-{slug}` | Template for milestone branches |
 
 **Strategies:**
-- **`none`** 鈥?Commits to current branch (default GSD behavior)
-- **`phase`** 鈥?Creates a branch per phase, merges at phase completion
-- **`milestone`** 鈥?Creates one branch for entire milestone, merges at completion
+- **`none`**: commits to the current branch (default GSD behavior)
+- **`phase`**: creates a branch per phase and merges at phase completion
+- **`milestone`**: creates one branch for the entire milestone and merges at completion
 
 At milestone completion, GSD offers squash merge (recommended) or merge with history.
 
@@ -804,12 +763,12 @@ At milestone completion, GSD offers squash merge (recommended) or merge with his
 
 GSD includes defense-in-depth security since v1.27:
 
-- **Path traversal prevention** 鈥?All user-supplied file paths (`--text-file`, `--prd`) are validated to resolve within the project directory
-- **Prompt injection detection** 鈥?Centralized `security.cjs` module scans for injection patterns in user-supplied text before it enters planning artifacts
-- **PreToolUse prompt guard hook** 鈥?`gsd-prompt-guard` scans writes to `.planning/` for embedded injection vectors (advisory, not blocking)
-- **Safe JSON parsing** 鈥?Malformed `--fields` arguments are caught before they corrupt state
-- **Shell argument validation** 鈥?User text is sanitized before shell interpolation
-- **CI-ready injection scanner** 鈥?`prompt-injection-scan.test.cjs` scans all agent/workflow/command files for embedded injection vectors
+- **Path traversal prevention**: all user-supplied file paths (`--text-file`, `--prd`) are validated to resolve within the project directory
+- **Prompt injection detection**: centralized `security.cjs` scans user-supplied text before it enters planning artifacts
+- **PreToolUse prompt guard hook**: `gsd-prompt-guard` scans writes to `.planning/` for embedded injection vectors (advisory, not blocking)
+- **Safe JSON parsing**: malformed `--fields` arguments are caught before they corrupt state
+- **Shell argument validation**: user text is sanitized before shell interpolation
+- **CI-ready injection scanner**: `prompt-injection-scan.test.cjs` scans all agent, workflow, and command files for embedded injection vectors
 
 > [!NOTE]
 > Because GSD generates markdown files that become LLM system prompts, any user-controlled text flowing into planning artifacts is a potential indirect prompt injection vector. These protections are designed to catch such vectors at multiple layers.
@@ -939,7 +898,7 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**Claude Code is powerful. GSD makes it reliable.**
+**AI coding is powerful. GSD makes it reliable.**
 
 </div>
 
