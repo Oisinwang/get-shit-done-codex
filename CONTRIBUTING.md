@@ -14,6 +14,12 @@ npm install
 npm test
 ```
 
+## Line Endings
+
+This repository enforces line endings through `.gitattributes`. Contributors do not need project-specific `core.autocrlf` tweaks; Git will normalize tracked text files automatically.
+
+Shell scripts are pinned to LF because shebang parsing and cross-platform hook behavior are sensitive to CRLF conversion.
+
 ---
 
 ## Types of Contributions
