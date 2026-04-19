@@ -71,6 +71,41 @@ describe('scan-sessions command', () => {
     assert.strictEqual(out[0].sessionCount, 3);
     assert.ok(out[0].totalSize > 0, 'should have non-zero size');
   });
+
+  test('defaults to ~/.codex/sessions when HOME contains Codex session files', () => {
+    const homeDir = path.join(tmpDir, 'home');
+    const projectDir = path.join(homeDir, 'workspace', 'demo-project');
+    const sessionsDir = path.join(homeDir, '.codex', 'sessions', '2026', '04', '18');
+    const sessionPath = path.join(sessionsDir, 'session-001.jsonl');
+    fs.mkdirSync(projectDir, { recursive: true });
+    fs.mkdirSync(sessionsDir, { recursive: true });
+
+    const sessionData = [
+      JSON.stringify({
+        payload: {
+          cwd: projectDir,
+          timestamp: '2026-04-18T01:00:00.000Z',
+        },
+      }),
+      JSON.stringify({
+        type: 'user',
+        userType: 'external',
+        cwd: projectDir,
+        timestamp: '2026-04-18T01:00:01.000Z',
+        message: { content: 'codex default path works' },
+      }),
+    ].join('\n');
+    fs.writeFileSync(sessionPath, sessionData);
+
+    const result = runGsdTools('scan-sessions --raw', tmpDir, { HOME: homeDir, USERPROFILE: homeDir });
+    assert.ok(result.success, `Failed: ${result.error}`);
+
+    const out = JSON.parse(result.output);
+    assert.ok(Array.isArray(out), 'should return array');
+    assert.strictEqual(out.length, 1, 'should find 1 project via default Codex path');
+    assert.strictEqual(out[0].name, 'demo-project');
+    assert.strictEqual(out[0].sessionCount, 1);
+  });
 });
 
 // ─── extract-messages ─────────────────────────────────────────────────────────
@@ -132,6 +167,40 @@ describe('extract-messages command', () => {
     assert.ok(result.success, `Failed: ${result.error}`);
     const out = JSON.parse(result.output);
     assert.strictEqual(out.messages_extracted, 2, 'should only extract 2 genuine external messages');
+  });
+
+  test('defaults to ~/.codex/sessions for project matching without --path', () => {
+    const homeDir = path.join(tmpDir, 'home');
+    const projectDir = path.join(homeDir, 'workspace', 'codex-project');
+    const sessionsDir = path.join(homeDir, '.codex', 'sessions', '2026', '04', '18');
+    const sessionPath = path.join(sessionsDir, 'session-001.jsonl');
+    fs.mkdirSync(projectDir, { recursive: true });
+    fs.mkdirSync(sessionsDir, { recursive: true });
+
+    const messages = [
+      {
+        payload: {
+          cwd: projectDir,
+          timestamp: '2026-04-18T02:00:00.000Z',
+        },
+      },
+      {
+        type: 'user',
+        userType: 'external',
+        cwd: projectDir,
+        timestamp: '2026-04-18T02:00:01.000Z',
+        message: { content: 'extract from codex sessions' },
+      },
+    ];
+    fs.writeFileSync(sessionPath, messages.map(m => JSON.stringify(m)).join('\n'));
+
+    const result = runGsdTools('extract-messages codex-project --raw', tmpDir, { HOME: homeDir, USERPROFILE: homeDir });
+    assert.ok(result.success, `Failed: ${result.error}`);
+
+    const out = JSON.parse(result.output);
+    assert.strictEqual(out.project, 'codex-project');
+    assert.strictEqual(out.messages_extracted, 1, 'should extract the external Codex user message');
+    assert.ok(out.output_file, 'should have output file path');
   });
 });
 

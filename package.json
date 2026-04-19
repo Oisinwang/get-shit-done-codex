@@ -1,8 +1,9 @@
 {
-  "name": "get-shit-done-cc",
+  "name": "get-shit-done-codex",
   "version": "1.37.1",
-  "description": "A meta-prompting, context engineering and spec-driven development system for Claude Code, OpenCode, Gemini and Codex by TÂCHES.",
+  "description": "Codex-first fork of GSD with AGENTS.md, .codex, and $gsd-* as the primary workflow semantics.",
   "bin": {
+    "get-shit-done-codex": "bin/install.js",
     "get-shit-done-cc": "bin/install.js"
   },
   "files": [
@@ -30,15 +31,15 @@
     "codex",
     "codex-cli"
   ],
-  "author": "TÂCHES",
+  "author": "Codex maintainers",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gsd-build/get-shit-done.git"
+    "url": "git+https://github.com/Oisinwang/get-shit-done-codex.git"
   },
-  "homepage": "https://github.com/gsd-build/get-shit-done",
+  "homepage": "https://github.com/Oisinwang/get-shit-done-codex#readme",
   "bugs": {
-    "url": "https://github.com/gsd-build/get-shit-done/issues"
+    "url": "https://github.com/Oisinwang/get-shit-done-codex/issues"
   },
   "engines": {
     "node": ">=22.0.0"

@@ -8,19 +8,19 @@
 
 **컨텍스트 rot를 해결합니다 — Claude의 컨텍스트 창이 채워질수록 품질이 저하되는 문제.**
 
-[![npm version](https://img.shields.io/npm/v/get-shit-done-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-cc)
-[![npm downloads](https://img.shields.io/npm/dm/get-shit-done-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-cc)
-[![Tests](https://img.shields.io/github/actions/workflow/status/gsd-build/get-shit-done/test.yml?branch=main&style=for-the-badge&logo=github&label=Tests)](https://github.com/gsd-build/get-shit-done/actions/workflows/test.yml)
+[![npm version](https://img.shields.io/npm/v/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
+[![npm downloads](https://img.shields.io/npm/dm/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
+[![Tests](https://img.shields.io/github/actions/workflow/status/get-shit-done-codex/test.yml?branch=main&style=for-the-badge&logo=github&label=Tests)](https://github.com/get-shit-done-codex/actions/workflows/test.yml)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/mYgfVNfA2r)
 [![X (Twitter)](https://img.shields.io/badge/X-@gsd__foundation-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/gsd_foundation)
 [![$GSD Token](https://img.shields.io/badge/$GSD-Dexscreener-1C1C1C?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgZmlsbD0iIzAwRkYwMCIvPjwvc3ZnPg==&logoColor=00FF00)](https://dexscreener.com/solana/dwudwjvan7bzkw9zwlbyv6kspdlvhwzrqy6ebk8xzxkv)
-[![GitHub stars](https://img.shields.io/github/stars/gsd-build/get-shit-done?style=for-the-badge&logo=github&color=181717)](https://github.com/gsd-build/get-shit-done)
+[![GitHub stars](https://img.shields.io/github/stars/get-shit-done-codex?style=for-the-badge&logo=github&color=181717)](https://github.com/get-shit-done-codex)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 <br>
 
 ```bash
-npx get-shit-done-cc@latest
+npx get-shit-done-codex@latest
 ```
 
 **Mac, Windows, Linux 모두 지원.**
@@ -90,7 +90,7 @@ GSD가 그걸 고칩니다. Claude Code를 신뢰할 수 있게 만드는 컨텍
 ## 시작하기
 
 ```bash
-npx get-shit-done-cc@latest
+npx get-shit-done-codex@latest
 ```
 
 설치 중에 다음을 선택합니다:
@@ -114,7 +114,7 @@ npx get-shit-done-cc@latest
 GSD는 빠르게 발전합니다. 주기적으로 업데이트하세요:
 
 ```bash
-npx get-shit-done-cc@latest
+npx get-shit-done-codex@latest
 ```
 
 <details>
@@ -122,49 +122,49 @@ npx get-shit-done-cc@latest
 
 ```bash
 # Claude Code
-npx get-shit-done-cc --claude --global   # ~/.claude/에 설치
-npx get-shit-done-cc --claude --local    # ./.claude/에 설치
+npx get-shit-done-codex --claude --global   # ~/.claude/에 설치
+npx get-shit-done-codex --claude --local    # ./.claude/에 설치
 
 # OpenCode
-npx get-shit-done-cc --opencode --global # ~/.config/opencode/에 설치
+npx get-shit-done-codex --opencode --global # ~/.config/opencode/에 설치
 
 # Gemini CLI
-npx get-shit-done-cc --gemini --global   # ~/.gemini/에 설치
+npx get-shit-done-codex --gemini --global   # ~/.gemini/에 설치
 
 # Kilo
-npx get-shit-done-cc --kilo --global     # ~/.config/kilo/에 설치
-npx get-shit-done-cc --kilo --local      # ./.kilo/에 설치
+npx get-shit-done-codex --kilo --global     # ~/.config/kilo/에 설치
+npx get-shit-done-codex --kilo --local      # ./.kilo/에 설치
 
 # Codex
-npx get-shit-done-cc --codex --global    # ~/.codex/에 설치
-npx get-shit-done-cc --codex --local     # ./.codex/에 설치
+npx get-shit-done-codex --codex --global    # ~/.codex/에 설치
+npx get-shit-done-codex --codex --local     # ./.codex/에 설치
 
 # Copilot
-npx get-shit-done-cc --copilot --global  # ~/.github/에 설치
-npx get-shit-done-cc --copilot --local   # ./.github/에 설치
+npx get-shit-done-codex --copilot --global  # ~/.github/에 설치
+npx get-shit-done-codex --copilot --local   # ./.github/에 설치
 
 # Cursor CLI
-npx get-shit-done-cc --cursor --global      # ~/.cursor/에 설치
-npx get-shit-done-cc --cursor --local       # ./.cursor/에 설치
+npx get-shit-done-codex --cursor --global      # ~/.cursor/에 설치
+npx get-shit-done-codex --cursor --local       # ./.cursor/에 설치
 
 # Antigravity
-npx get-shit-done-cc --antigravity --global # ~/.gemini/antigravity/에 설치
-npx get-shit-done-cc --antigravity --local  # ./.agent/에 설치
+npx get-shit-done-codex --antigravity --global # ~/.gemini/antigravity/에 설치
+npx get-shit-done-codex --antigravity --local  # ./.agent/에 설치
 
 # Augment
-npx get-shit-done-cc --augment --global     # ~/.augment/에 설치
-npx get-shit-done-cc --augment --local      # ./.augment/에 설치
+npx get-shit-done-codex --augment --global     # ~/.augment/에 설치
+npx get-shit-done-codex --augment --local      # ./.augment/에 설치
 
 # Trae
-npx get-shit-done-cc --trae --global        # ~/.trae/에 설치
-npx get-shit-done-cc --trae --local         # ./.trae/에 설치
+npx get-shit-done-codex --trae --global        # ~/.trae/에 설치
+npx get-shit-done-codex --trae --local         # ./.trae/에 설치
 
 # Cline
-npx get-shit-done-cc --cline --global       # ~/.cline/에 설치
-npx get-shit-done-cc --cline --local        # ./.clinerules에 설치
+npx get-shit-done-codex --cline --global       # ~/.cline/에 설치
+npx get-shit-done-codex --cline --local        # ./.clinerules에 설치
 
 # 전체 런타임
-npx get-shit-done-cc --all --global      # 모든 디렉터리에 설치
+npx get-shit-done-codex --all --global      # 모든 디렉터리에 설치
 ```
 
 위치 프롬프트 건너뛰기: `--global` (`-g`) 또는 `--local` (`-l`).
@@ -178,9 +178,10 @@ npx get-shit-done-cc --all --global      # 모든 디렉터리에 설치
 저장소를 클론하고 설치 프로그램을 로컬에서 실행합니다:
 
 ```bash
-git clone https://github.com/gsd-build/get-shit-done.git
-cd get-shit-done
-node bin/install.js --claude --local
+git clone https://github.com/Oisinwang/get-shit-done-codex.git
+cd get-shit-done-codex
+npm run build:hooks
+node bin/install.js --codex --local
 ```
 
 기여 전 수정사항 테스트를 위해 `./.claude/`에 설치됩니다.
@@ -774,18 +775,18 @@ GSD의 코드베이스 매핑 및 분석 명령어는 프로젝트를 이해하�
 
 **명령어가 예상대로 작동하지 않나요?**
 - `/gsd-help`를 실행해 설치 확인
-- `npx get-shit-done-cc`를 다시 실행해 재설치
+- `npx get-shit-done-codex`를 다시 실행해 재설치
 
 **최신 버전으로 업데이트하나요?**
 ```bash
-npx get-shit-done-cc@latest
+npx get-shit-done-codex@latest
 ```
 
 **Docker 또는 컨테이너 환경을 사용하나요?**
 
 파일 읽기가 틸드 경로(`~/.claude/...`)로 실패하면 설치 전에 `CLAUDE_CONFIG_DIR`를 설정하세요:
 ```bash
-CLAUDE_CONFIG_DIR=/home/youruser/.claude npx get-shit-done-cc --global
+CLAUDE_CONFIG_DIR=<legacy-claude-path> npx get-shit-done-codex --global
 ```
 컨테이너에서 올바르게 확장되지 않을 수 있는 `~` 대신 절대 경로가 사용됩니다.
 
@@ -795,26 +796,26 @@ GSD를 완전히 제거하려면:
 
 ```bash
 # 전역 설치
-npx get-shit-done-cc --claude --global --uninstall
-npx get-shit-done-cc --opencode --global --uninstall
-npx get-shit-done-cc --gemini --global --uninstall
-npx get-shit-done-cc --kilo --global --uninstall
-npx get-shit-done-cc --codex --global --uninstall
-npx get-shit-done-cc --copilot --global --uninstall
-npx get-shit-done-cc --cursor --global --uninstall
-npx get-shit-done-cc --antigravity --global --uninstall
-npx get-shit-done-cc --trae --global --uninstall
+npx get-shit-done-codex --claude --global --uninstall
+npx get-shit-done-codex --opencode --global --uninstall
+npx get-shit-done-codex --gemini --global --uninstall
+npx get-shit-done-codex --kilo --global --uninstall
+npx get-shit-done-codex --codex --global --uninstall
+npx get-shit-done-codex --copilot --global --uninstall
+npx get-shit-done-codex --cursor --global --uninstall
+npx get-shit-done-codex --antigravity --global --uninstall
+npx get-shit-done-codex --trae --global --uninstall
 
 # 로컬 설치 (현재 프로젝트)
-npx get-shit-done-cc --claude --local --uninstall
-npx get-shit-done-cc --opencode --local --uninstall
-npx get-shit-done-cc --gemini --local --uninstall
-npx get-shit-done-cc --kilo --local --uninstall
-npx get-shit-done-cc --codex --local --uninstall
-npx get-shit-done-cc --copilot --local --uninstall
-npx get-shit-done-cc --cursor --local --uninstall
-npx get-shit-done-cc --antigravity --local --uninstall
-npx get-shit-done-cc --trae --local --uninstall
+npx get-shit-done-codex --claude --local --uninstall
+npx get-shit-done-codex --opencode --local --uninstall
+npx get-shit-done-codex --gemini --local --uninstall
+npx get-shit-done-codex --kilo --local --uninstall
+npx get-shit-done-codex --codex --local --uninstall
+npx get-shit-done-codex --copilot --local --uninstall
+npx get-shit-done-codex --cursor --local --uninstall
+npx get-shit-done-codex --antigravity --local --uninstall
+npx get-shit-done-codex --trae --local --uninstall
 ```
 
 다른 설정은 그대로 유지하면서 GSD의 모든 명령어, 에이전트, 훅, 설정을 제거합니다.
@@ -823,7 +824,7 @@ npx get-shit-done-cc --trae --local --uninstall
 
 ## 커뮤니티 포트
 
-OpenCode, Gemini CLI, Kilo, Codex는 이제 `npx get-shit-done-cc`를 통해 기본 지원됩니다.
+OpenCode, Gemini CLI, Kilo, Codex는 이제 `npx get-shit-done-codex`를 통해 기본 지원됩니다.
 
 이 커뮤니티 포트들이 멀티 런타임 지원의 선구자였습니다:
 
@@ -836,11 +837,11 @@ OpenCode, Gemini CLI, Kilo, Codex는 이제 `npx get-shit-done-cc`를 통해 기
 
 ## 스타 히스토리
 
-<a href="https://star-history.com/#gsd-build/get-shit-done&Date">
+<a href="https://star-history.com/#get-shit-done-codex&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=gsd-build/get-shit-done&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=gsd-build/get-shit-done&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=gsd-build/get-shit-done&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
  </picture>
 </a>
 

@@ -1,7 +1,7 @@
 {
-  "name": "@gsd-build/sdk",
+  "name": "@get-shit-done-codex/sdk",
   "version": "0.1.0",
-  "description": "GSD SDK — programmatic interface for running GSD plans via the Agent SDK",
+  "description": "GSD SDK 鈥?programmatic interface for running GSD plans via the Agent SDK",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,14 +20,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gsd-build/get-shit-done.git",
+    "url": "git+https://github.com/Oisinwang/get-shit-done-codex.git",
     "directory": "sdk"
   },
-  "homepage": "https://github.com/gsd-build/get-shit-done/tree/main/sdk",
+  "homepage": "https://github.com/Oisinwang/get-shit-done-codex/tree/main/sdk",
   "bugs": {
-    "url": "https://github.com/gsd-build/get-shit-done/issues"
+    "url": "https://github.com/Oisinwang/get-shit-done-codex/issues"
   },
-  "author": "TÂCHES",
+  "author": "Codex maintainers",
   "license": "MIT",
   "engines": {
     "node": ">=20"

@@ -30,9 +30,9 @@ describe('skill-manifest', () => {
     homeDir = fs.mkdtempSync(path.join(require('os').tmpdir(), 'gsd-skill-manifest-home-'));
 
     writeSkill(path.join(tmpDir, '.claude', 'skills'), 'project-claude', 'Project Claude skill');
-    writeSkill(path.join(tmpDir, '.claude', 'skills'), 'gsd-help', 'Installed GSD skill');
     writeSkill(path.join(tmpDir, '.agents', 'skills'), 'project-agents', 'Project agent skill');
     writeSkill(path.join(tmpDir, '.codex', 'skills'), 'project-codex', 'Project Codex skill');
+    writeSkill(path.join(tmpDir, '.codex', 'skills'), 'gsd-help', 'Installed GSD skill');
 
     writeSkill(path.join(homeDir, '.claude', 'skills'), 'global-claude', 'Global Claude skill');
     writeSkill(path.join(homeDir, '.codex', 'skills'), 'global-codex', 'Global Codex skill');
@@ -52,7 +52,7 @@ describe('skill-manifest', () => {
   });
 
   test('returns normalized inventory across canonical roots', () => {
-    const result = runGsdTools(['skill-manifest'], tmpDir, { HOME: homeDir });
+    const result = runGsdTools(['skill-manifest'], tmpDir, { HOME: homeDir, USERPROFILE: homeDir });
     assert.ok(result.success, `Command should succeed: ${result.error || result.output}`);
 
     const manifest = JSON.parse(result.output);
@@ -63,12 +63,9 @@ describe('skill-manifest', () => {
 
     const skillNames = manifest.skills.map((skill) => skill.name).sort();
     assert.deepStrictEqual(skillNames, [
-      'global-claude',
       'global-codex',
       'gsd-help',
-      'legacy-import',
       'project-agents',
-      'project-claude',
       'project-codex',
     ]);
 
@@ -88,36 +85,21 @@ describe('skill-manifest', () => {
       }
     );
 
-    const importedSkill = manifest.skills.find((skill) => skill.name === 'legacy-import');
-    assert.deepStrictEqual(
-      {
-        root: importedSkill.root,
-        scope: importedSkill.scope,
-        installed: importedSkill.installed,
-        deprecated: importedSkill.deprecated,
-      },
-      {
-        root: '.claude/get-shit-done/skills',
-        scope: 'import-only',
-        installed: false,
-        deprecated: true,
-      }
-    );
-
     const gsdSkill = manifest.skills.find((skill) => skill.name === 'gsd-help');
     assert.strictEqual(gsdSkill.installed, true);
 
-    const legacyRoot = manifest.roots.find((root) => root.scope === 'legacy-commands');
-    assert.ok(legacyRoot, 'legacy commands root should be reported');
-    assert.strictEqual(legacyRoot.present, true);
+    assert.ok(
+      !manifest.roots.some((root) => String(root.root).includes('.claude')),
+      'default roots should no longer treat .claude as a primary discovery root'
+    );
 
     assert.strictEqual(manifest.installation.gsd_skills_installed, true);
-    assert.strictEqual(manifest.installation.legacy_claude_commands_installed, true);
-    assert.strictEqual(manifest.counts.skills, 7);
+    assert.strictEqual(manifest.installation.legacy_claude_commands_installed, false);
+    assert.strictEqual(manifest.counts.skills, 4);
   });
 
   test('writes manifest to .planning/skill-manifest.json when --write flag is used', () => {
-    const result = runGsdTools(['skill-manifest', '--write'], tmpDir, { HOME: homeDir });
+    const result = runGsdTools(['skill-manifest', '--write'], tmpDir, { HOME: homeDir, USERPROFILE: homeDir });
     assert.ok(result.success, `Command should succeed: ${result.error || result.output}`);
 
     const manifestPath = path.join(tmpDir, '.planning', 'skill-manifest.json');

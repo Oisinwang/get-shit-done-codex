@@ -381,7 +381,7 @@ function cmdInitNewProject(cwd, raw) {
       '.ex', '.exs',           // Elixir
       '.clj',                  // Clojure
     ]);
-    const skipDirs = new Set(['node_modules', '.git', '.planning', '.claude', '.codex', '__pycache__', 'target', 'dist', 'build']);
+    const skipDirs = new Set(['node_modules', '.git', '.planning', '.codex', '__pycache__', 'target', 'dist', 'build']);
     function findCodeFiles(dir, depth) {
       if (depth > 3) return false;
       let entries;
@@ -1535,7 +1535,7 @@ function cmdInitRemoveWorkspace(cwd, name, raw) {
 function buildAgentSkillsBlock(config, agentType, projectRoot) {
   const { validatePath } = require('./security.cjs');
   const os = require('os');
-  const globalSkillsBase = path.join(os.homedir(), '.claude', 'skills');
+  const globalSkillsBase = path.join(os.homedir(), '.codex', 'skills');
 
   if (!config || !config.agent_skills || !agentType) return '';
 
@@ -1550,7 +1550,7 @@ function buildAgentSkillsBlock(config, agentType, projectRoot) {
   for (const skillPath of skillPaths) {
     if (typeof skillPath !== 'string') continue;
 
-    // Support global: prefix for skills installed at ~/.claude/skills/ (#1992)
+    // Support global: prefix for skills installed at ~/.codex/skills/ (#1992)
     if (skillPath.startsWith('global:')) {
       const skillName = skillPath.slice(7);
       // Explicit empty-name guard before regex for clearer error message
@@ -1566,7 +1566,7 @@ function buildAgentSkillsBlock(config, agentType, projectRoot) {
       const globalSkillDir = path.join(globalSkillsBase, skillName);
       const globalSkillMd = path.join(globalSkillDir, 'SKILL.md');
       if (!fs.existsSync(globalSkillMd)) {
-        process.stderr.write(`[agent-skills] WARNING: Global skill not found at "~/.claude/skills/${skillName}/SKILL.md" — skipping\n`);
+        process.stderr.write(`[agent-skills] WARNING: Global skill not found at "~/.codex/skills/${skillName}/SKILL.md" — skipping\n`);
         continue;
       }
       // Symlink escape guard: validatePath resolves symlinks and enforces
@@ -1577,7 +1577,7 @@ function buildAgentSkillsBlock(config, agentType, projectRoot) {
         process.stderr.write(`[agent-skills] WARNING: Global skill "${skillName}" failed path check (symlink escape?) — skipping\n`);
         continue;
       }
-      validPaths.push({ ref: `${globalSkillDir}/SKILL.md`, display: `~/.claude/skills/${skillName}` });
+      validPaths.push({ ref: `${globalSkillDir}/SKILL.md`, display: `~/.codex/skills/${skillName}` });
       continue;
     }
 
@@ -1653,12 +1653,6 @@ function buildSkillManifest(cwd, skillsDir = null) {
     kind: 'skills',
   }] : [
     {
-      root: '.claude/skills',
-      path: path.join(cwd, '.claude', 'skills'),
-      scope: 'project',
-      kind: 'skills',
-    },
-    {
       root: '.agents/skills',
       path: path.join(cwd, '.agents', 'skills'),
       scope: 'project',
@@ -1683,30 +1677,10 @@ function buildSkillManifest(cwd, skillsDir = null) {
       kind: 'skills',
     },
     {
-      root: '~/.claude/skills',
-      path: path.join(os.homedir(), '.claude', 'skills'),
-      scope: 'global',
-      kind: 'skills',
-    },
-    {
       root: '~/.codex/skills',
       path: path.join(os.homedir(), '.codex', 'skills'),
       scope: 'global',
       kind: 'skills',
-    },
-    {
-      root: '.claude/get-shit-done/skills',
-      path: path.join(os.homedir(), '.claude', 'get-shit-done', 'skills'),
-      scope: 'import-only',
-      kind: 'skills',
-      deprecated: true,
-    },
-    {
-      root: '.claude/commands/gsd',
-      path: path.join(os.homedir(), '.claude', 'commands', 'gsd'),
-      scope: 'legacy-commands',
-      kind: 'commands',
-      deprecated: true,
     },
   ];
 

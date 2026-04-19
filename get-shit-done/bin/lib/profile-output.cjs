@@ -5,8 +5,8 @@
  *   - write-profile: USER-PROFILE.md from analysis JSON
  *   - profile-questionnaire: fallback when no sessions available
  *   - generate-dev-preferences: dev-preferences.md command artifact
- *   - generate-claude-profile: Developer Profile section in CLAUDE.md
- *   - generate-claude-md: full CLAUDE.md with managed sections
+ *   - generate-agents-profile: Developer Profile section in AGENTS.md
+ *   - generate-agents-md: full AGENTS.md with managed sections
  */
 
 const fs = require('fs');
@@ -173,23 +173,23 @@ const CLAUDE_INSTRUCTIONS = {
 };
 
 const CLAUDE_MD_FALLBACKS = {
-  project: 'Project not yet initialized. Run /gsd-new-project to set up.',
+  project: 'Project not yet initialized. Run $gsd-new-project to set up.',
   stack: 'Technology stack not yet documented. Will populate after codebase mapping or first phase.',
   conventions: 'Conventions not yet established. Will populate as patterns emerge during development.',
   architecture: 'Architecture not yet mapped. Follow existing patterns found in the codebase.',
-  skills: 'No project skills found. Add skills to any of: `.claude/skills/`, `.agents/skills/`, `.cursor/skills/`, `.github/skills/`, or `.codex/skills/` with a `SKILL.md` index file.',
+  skills: 'No project skills found. Add skills to any of: `.codex/skills/`, `.agents/skills/`, `.cursor/skills/`, or `.github/skills/` with a `SKILL.md` index file.',
 };
 
 // Directories where project skills may live (checked in order)
-const SKILL_SEARCH_DIRS = ['.claude/skills', '.agents/skills', '.cursor/skills', '.github/skills', '.codex/skills'];
+const SKILL_SEARCH_DIRS = ['.codex/skills', '.agents/skills', '.cursor/skills', '.github/skills'];
 
 const CLAUDE_MD_WORKFLOW_ENFORCEMENT = [
   'Before using Edit, Write, or other file-changing tools, start work through a GSD command so planning artifacts and execution context stay in sync.',
   '',
   'Use these entry points:',
-  '- `/gsd-quick` for small fixes, doc updates, and ad-hoc tasks',
-  '- `/gsd-debug` for investigation and bug fixing',
-  '- `/gsd-execute-phase` for planned phase work',
+  '- `$gsd-quick` for small fixes, doc updates, and ad-hoc tasks',
+  '- `$gsd-debug` for investigation and bug fixing',
+  '- `$gsd-execute-phase` for planned phase work',
   '',
   'Do not make direct repo edits outside a GSD workflow unless the user explicitly asks to bypass it.',
 ].join('\n');
@@ -198,8 +198,8 @@ const CLAUDE_MD_PROFILE_PLACEHOLDER = [
   '<!-- GSD:profile-start -->',
   '## Developer Profile',
   '',
-  '> Profile not yet configured. Run `/gsd-profile-user` to generate your developer profile.',
-  '> This section is managed by `generate-claude-profile` -- do not edit manually.',
+  '> Profile not yet configured. Run `$gsd-profile-user` to generate your developer profile.',
+  '> This section is managed by `generate-agents-profile` -- do not edit manually.',
   '<!-- GSD:profile-end -->',
 ].join('\n');
 
@@ -279,7 +279,7 @@ function extractMarkdownSection(content, sectionName) {
   return result.length > 0 ? result.join('\n').trim() : null;
 }
 
-// ─── CLAUDE.md Section Generators ─────────────────────────────────────────────
+// ─── AGENTS.md Section Generators ─────────────────────────────────────────────
 
 function generateProjectSection(cwd) {
   const projectPath = path.join(cwd, '.planning', 'PROJECT.md');
@@ -381,7 +381,7 @@ function generateWorkflowSection() {
 
 /**
  * Discover project skills from standard directories and extract frontmatter
- * (name + description) for each. Returns a table summary for CLAUDE.md so
+ * (name + description) for each. Returns a table summary for AGENTS.md so
  * agents know which skills are available at session startup (Layer 1 discovery).
  */
 function generateSkillsSection(cwd) {
@@ -622,7 +622,7 @@ function cmdWriteProfile(cwd, options, raw) {
 
   let outputPath = options.output;
   if (!outputPath) {
-    outputPath = path.join(os.homedir(), '.claude', 'get-shit-done', 'USER-PROFILE.md');
+    outputPath = path.join(os.homedir(), '.codex', 'get-shit-done', 'USER-PROFILE.md');
   } else if (!path.isAbsolute(outputPath)) {
     outputPath = path.join(cwd, outputPath);
   }
@@ -765,7 +765,7 @@ function cmdGenerateDevPreferences(cwd, options, raw) {
 
   let stackBlock;
   if (analysis.data_source === 'questionnaire') {
-    stackBlock = 'Stack preferences not available (questionnaire-only profile). Run `/gsd-profile-user --refresh` with session data to populate.';
+    stackBlock = 'Stack preferences not available (questionnaire-only profile). Run `$gsd-profile-user --refresh` with session data to populate.';
   } else if (options.stack) {
     stackBlock = options.stack;
   } else {
@@ -775,7 +775,7 @@ function cmdGenerateDevPreferences(cwd, options, raw) {
 
   let outputPath = options.output;
   if (!outputPath) {
-    outputPath = path.join(os.homedir(), '.claude', 'commands', 'gsd', 'dev-preferences.md');
+    outputPath = path.join(os.homedir(), '.codex', 'commands', 'gsd', 'dev-preferences.md');
   } else if (!path.isAbsolute(outputPath)) {
     outputPath = path.join(cwd, outputPath);
   }
@@ -785,7 +785,7 @@ function cmdGenerateDevPreferences(cwd, options, raw) {
 
   const result = {
     command_path: outputPath,
-    command_name: '/gsd-dev-preferences',
+    command_name: '$gsd-dev-preferences',
     dimensions_included: dimensionsIncluded,
     source: analysis.data_source || 'session_analysis',
   };
@@ -793,7 +793,7 @@ function cmdGenerateDevPreferences(cwd, options, raw) {
   output(result, raw);
 }
 
-function cmdGenerateClaudeProfile(cwd, options, raw) {
+function cmdGenerateAgentsProfile(cwd, options, raw) {
   if (!options.analysis) error('--analysis <path> is required');
 
   let analysisPath = options.analysis;
@@ -851,7 +851,7 @@ function cmdGenerateClaudeProfile(cwd, options, raw) {
     '<!-- GSD:profile-start -->',
     '## Developer Profile',
     '',
-    `> Generated by GSD from ${dataSource}. Run \`/gsd-profile-user --refresh\` to update.`,
+    `> Generated by GSD from ${dataSource}. Run \`$gsd-profile-user --refresh\` to update.`,
     '',
     '| Dimension | Rating | Confidence |',
     '|-----------|--------|------------|',
@@ -866,17 +866,18 @@ function cmdGenerateClaudeProfile(cwd, options, raw) {
 
   let targetPath;
   if (options.global) {
-    targetPath = path.join(os.homedir(), '.claude', 'CLAUDE.md');
+    targetPath = path.join(os.homedir(), '.codex', 'AGENTS.md');
   } else if (options.output) {
     targetPath = path.isAbsolute(options.output) ? options.output : path.join(cwd, options.output);
   } else {
-    // Read claude_md_path from config, default to ./CLAUDE.md
-    let configClaudeMdPath = './CLAUDE.md';
+    // Read agents_md_path from config, fallback to legacy claude_md_path, default to ./AGENTS.md
+    let configAgentsMdPath = './AGENTS.md';
     try {
       const config = loadConfig(cwd);
-      if (config.claude_md_path) configClaudeMdPath = config.claude_md_path;
+      if (config.agents_md_path) configAgentsMdPath = config.agents_md_path;
+      else if (config.claude_md_path) configAgentsMdPath = config.claude_md_path;
     } catch { /* use default */ }
-    targetPath = path.isAbsolute(configClaudeMdPath) ? configClaudeMdPath : path.join(cwd, configClaudeMdPath);
+    targetPath = path.isAbsolute(configAgentsMdPath) ? configAgentsMdPath : path.join(cwd, configAgentsMdPath);
   }
 
   let action;
@@ -905,6 +906,7 @@ function cmdGenerateClaudeProfile(cwd, options, raw) {
   }
 
   const result = {
+    agents_md_path: targetPath,
     claude_md_path: targetPath,
     action,
     dimensions_included: dimensionsIncluded,
@@ -914,7 +916,7 @@ function cmdGenerateClaudeProfile(cwd, options, raw) {
   output(result, raw);
 }
 
-function cmdGenerateClaudeMd(cwd, options, raw) {
+function cmdGenerateAgentsMd(cwd, options, raw) {
   const MANAGED_SECTIONS = ['project', 'stack', 'conventions', 'architecture', 'skills', 'workflow'];
   const generators = {
     project: generateProjectSection,
@@ -950,13 +952,14 @@ function cmdGenerateClaudeMd(cwd, options, raw) {
 
   let outputPath = options.output;
   if (!outputPath) {
-    // Read claude_md_path from config, default to ./CLAUDE.md
-    let configClaudeMdPath = './CLAUDE.md';
+    // Read agents_md_path from config, fallback to legacy claude_md_path, default to ./AGENTS.md
+    let configAgentsMdPath = './AGENTS.md';
     try {
       const config = loadConfig(cwd);
-      if (config.claude_md_path) configClaudeMdPath = config.claude_md_path;
+      if (config.agents_md_path) configAgentsMdPath = config.agents_md_path;
+      else if (config.claude_md_path) configAgentsMdPath = config.claude_md_path;
     } catch { /* use default */ }
-    outputPath = path.isAbsolute(configClaudeMdPath) ? configClaudeMdPath : path.join(cwd, configClaudeMdPath);
+    outputPath = path.isAbsolute(configAgentsMdPath) ? configAgentsMdPath : path.join(cwd, configAgentsMdPath);
   } else if (!path.isAbsolute(outputPath)) {
     outputPath = path.join(cwd, outputPath);
   }
@@ -1033,9 +1036,10 @@ function cmdGenerateClaudeMd(cwd, options, raw) {
   let message = `Generated ${genCount}/${totalManaged} sections.`;
   if (sectionsFallback.length > 0) message += ` Fallback: ${sectionsFallback.join(', ')}.`;
   if (sectionsSkipped.length > 0) message += ` Skipped (manually edited): ${sectionsSkipped.join(', ')}.`;
-  if (profileStatus === 'placeholder_added') message += ' Run /gsd-profile-user to unlock Developer Profile.';
+  if (profileStatus === 'placeholder_added') message += ' Run $gsd-profile-user to unlock Developer Profile.';
 
   const result = {
+    agents_md_path: outputPath,
     claude_md_path: outputPath,
     action,
     sections_generated: sectionsGenerated,
@@ -1053,8 +1057,10 @@ module.exports = {
   cmdWriteProfile,
   cmdProfileQuestionnaire,
   cmdGenerateDevPreferences,
-  cmdGenerateClaudeProfile,
-  cmdGenerateClaudeMd,
+  cmdGenerateAgentsProfile,
+  cmdGenerateAgentsMd,
+  cmdGenerateClaudeProfile: cmdGenerateAgentsProfile,
+  cmdGenerateClaudeMd: cmdGenerateAgentsMd,
   PROFILING_QUESTIONS,
   CLAUDE_INSTRUCTIONS,
 };

@@ -162,13 +162,64 @@ describe('generate-claude-md command', () => {
     const result = runGsdTools('generate-claude-md', tmpDir);
     assert.ok(result.success, `Failed: ${result.error}`);
 
-    const content = fs.readFileSync(path.join(tmpDir, 'CLAUDE.md'), 'utf-8');
-    assert.ok(content.includes('.claude/skills/'));
+    const content = fs.readFileSync(path.join(tmpDir, 'AGENTS.md'), 'utf-8');
     assert.ok(content.includes('.agents/skills/'));
     assert.ok(content.includes('.cursor/skills/'));
     assert.ok(content.includes('.github/skills/'));
     assert.ok(content.includes('.codex/skills/'));
+    assert.ok(!content.includes('.claude/skills/'));
     assert.ok(!content.includes('get-shit-done/skills'));
+  });
+});
+
+describe('generate-agents commands', () => {
+  let tmpDir;
+
+  beforeEach(() => {
+    tmpDir = createTempGitProject();
+    fs.writeFileSync(
+      path.join(tmpDir, '.planning', 'PROJECT.md'),
+      '# My Project\n\nA test project.\n\n## Tech Stack\n\n- Node.js\n- TypeScript\n'
+    );
+  });
+
+  afterEach(() => {
+    cleanup(tmpDir);
+  });
+
+  test('generate-agents-md creates AGENTS.md with --auto flag', () => {
+    const outputPath = path.join(tmpDir, 'AGENTS.md');
+    const result = runGsdTools(['generate-agents-md', '--output', outputPath, '--auto', '--raw'], tmpDir);
+    assert.ok(result.success, `Failed: ${result.error}`);
+
+    const parsed = JSON.parse(result.output);
+    assert.strictEqual(parsed.agents_md_path, outputPath);
+    assert.ok(fs.existsSync(outputPath), 'should create AGENTS.md');
+  });
+
+  test('generate-agents-profile returns both agents_md_path and claude_md_path for compatibility', () => {
+    const analysisPath = path.join(tmpDir, 'analysis.json');
+    const outputPath = path.join(tmpDir, 'AGENTS.md');
+    fs.writeFileSync(
+      analysisPath,
+      JSON.stringify({
+        dimensions: {
+          communication_style: { rating: 'terse-direct', confidence: 'HIGH' },
+        },
+        data_source: 'test',
+      }),
+      'utf-8'
+    );
+
+    const result = runGsdTools(
+      ['generate-agents-profile', '--analysis', analysisPath, '--output', outputPath, '--raw'],
+      tmpDir
+    );
+    assert.ok(result.success, `Failed: ${result.error}`);
+
+    const parsed = JSON.parse(result.output);
+    assert.strictEqual(parsed.agents_md_path, outputPath);
+    assert.strictEqual(parsed.claude_md_path, outputPath);
   });
 });
 

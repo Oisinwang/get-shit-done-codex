@@ -48,6 +48,7 @@ const VALID_CONFIG_KEYS = new Set([
   'intel.enabled',
   'graphify.enabled',
   'graphify.build_timeout',
+  'agents_md_path',
   'claude_md_path',
 ]);
 
@@ -105,7 +106,7 @@ function validateKnownConfigKeyPath(keyPath) {
  * Returns a plain object — does NOT write any files.
  */
 function buildNewProjectConfig(userChoices) {
-  const choices = userChoices || {};
+  const choices = { ...(userChoices || {}) };
   const homedir = require('os').homedir();
 
   // Detect API key availability
@@ -122,6 +123,10 @@ function buildNewProjectConfig(userChoices) {
   try {
     if (fs.existsSync(globalDefaultsPath)) {
       userDefaults = JSON.parse(fs.readFileSync(globalDefaultsPath, 'utf-8'));
+      if (userDefaults.claude_md_path && !userDefaults.agents_md_path) {
+        userDefaults.agents_md_path = userDefaults.claude_md_path;
+      }
+      delete userDefaults.claude_md_path;
       // Migrate deprecated "depth" key to "granularity"
       if ('depth' in userDefaults && !('granularity' in userDefaults)) {
         const depthToGranularity = { quick: 'coarse', standard: 'standard', comprehensive: 'fine' };
@@ -135,6 +140,11 @@ function buildNewProjectConfig(userChoices) {
   } catch {
     // Ignore malformed global defaults
   }
+
+  if (choices.claude_md_path && !choices.agents_md_path) {
+    choices.agents_md_path = choices.claude_md_path;
+  }
+  delete choices.claude_md_path;
 
   const hardcoded = {
     model_profile: CONFIG_DEFAULTS.model_profile,
@@ -181,7 +191,7 @@ function buildNewProjectConfig(userChoices) {
     project_code: null,
     phase_naming: 'sequential',
     agent_skills: {},
-    claude_md_path: './CLAUDE.md',
+    agents_md_path: './AGENTS.md',
   };
 
   // Three-level deep merge: hardcoded <- userDefaults <- choices

@@ -992,22 +992,24 @@ async function runCommand(command, args, cwd, raw, defaultValue) {
       break;
     }
 
+    case 'generate-agents-profile':
     case 'generate-claude-profile': {
       const analysisIdx = args.indexOf('--analysis');
       const analysisPath = analysisIdx !== -1 ? args[analysisIdx + 1] : null;
       const outputIdx = args.indexOf('--output');
       const outputPath = outputIdx !== -1 ? args[outputIdx + 1] : null;
       const globalFlag = args.includes('--global');
-      profileOutput.cmdGenerateClaudeProfile(cwd, { analysis: analysisPath, output: outputPath, global: globalFlag }, raw);
+      profileOutput.cmdGenerateAgentsProfile(cwd, { analysis: analysisPath, output: outputPath, global: globalFlag }, raw);
       break;
     }
 
+    case 'generate-agents-md':
     case 'generate-claude-md': {
       const outputIdx = args.indexOf('--output');
       const outputPath = outputIdx !== -1 ? args[outputIdx + 1] : null;
       const autoFlag = args.includes('--auto');
       const forceFlag = args.includes('--force');
-      profileOutput.cmdGenerateClaudeMd(cwd, { output: outputPath, auto: autoFlag, force: forceFlag }, raw);
+      profileOutput.cmdGenerateAgentsMd(cwd, { output: outputPath, auto: autoFlag, force: forceFlag }, raw);
       break;
     }
 

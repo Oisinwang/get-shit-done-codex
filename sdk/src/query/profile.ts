@@ -17,9 +17,9 @@
  * ```
  */
 
-import { existsSync, readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, writeFileSync, mkdirSync, statSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
-import { join, relative, basename, resolve } from 'node:path';
+import { join, relative, basename, resolve, dirname } from 'node:path';
 import { homedir } from 'node:os';
 import { createHash, randomBytes } from 'node:crypto';
 
@@ -32,6 +32,10 @@ const STORE_DIR = join(homedir(), '.gsd', 'knowledge');
 
 function ensureStore(): void {
   if (!existsSync(STORE_DIR)) mkdirSync(STORE_DIR, { recursive: true });
+}
+
+function runtimeHomeDir(): string {
+  return process.env.USERPROFILE || process.env.HOME || homedir();
 }
 
 function learningsWrite(entry: { source_project: string; learning: string; context?: string; tags?: string[] }): { created: boolean; id: string } {
@@ -109,6 +113,113 @@ export const learningsCopy: QueryHandler = async (_args, projectDir) => {
   return { data: { copied: true, total: created + skipped, created, skipped } };
 };
 
+type SessionEntry = {
+  sessionId: string;
+  filePath: string;
+  modified: Date;
+  cwd: string | null;
+  created: string | null;
+};
+
+type ProjectEntry = {
+  name: string;
+  directory: string;
+  originalPath: string;
+  sessions: SessionEntry[];
+};
+
+function walkSessionFiles(rootDir: string): string[] {
+  if (!existsSync(rootDir)) return [];
+  const files: string[] = [];
+  const stack = [rootDir];
+
+  while (stack.length > 0) {
+    const current = stack.pop();
+    if (!current) continue;
+    try {
+      const entries = readdirSync(current, { withFileTypes: true });
+      for (const entry of entries) {
+        const fullPath = join(current, entry.name);
+        if (entry.isDirectory()) {
+          stack.push(fullPath);
+        } else if (entry.isFile() && entry.name.endsWith('.jsonl')) {
+          files.push(fullPath);
+        }
+      }
+    } catch {
+      // Ignore unreadable directories during best-effort scans.
+    }
+  }
+
+  return files;
+}
+
+function readSessionHeader(filePath: string): { cwd: string | null; timestamp: string | null } {
+  try {
+    const content = readFileSync(filePath, 'utf-8');
+    const lines = content.split('\n').filter(Boolean).slice(0, 20);
+    for (const line of lines) {
+      try {
+        const record = JSON.parse(line) as Record<string, unknown>;
+        const payload = (record.payload as Record<string, unknown> | undefined) ?? {};
+        const cwd = (payload.cwd as string | undefined) ?? (record.cwd as string | undefined) ?? null;
+        const timestamp =
+          (payload.timestamp as string | undefined)
+          ?? (record.timestamp as string | undefined)
+          ?? null;
+        if (cwd || timestamp) return { cwd, timestamp };
+      } catch {
+        // Ignore malformed lines while searching for header metadata.
+      }
+    }
+  } catch {
+    return { cwd: null, timestamp: null };
+  }
+  return { cwd: null, timestamp: null };
+}
+
+function buildProjectCatalog(rootDir: string): ProjectEntry[] {
+  const projects = new Map<string, ProjectEntry>();
+
+  for (const filePath of walkSessionFiles(rootDir)) {
+    const header = readSessionHeader(filePath);
+    const fallbackDir = dirname(filePath);
+    const originalPath = header.cwd ?? fallbackDir;
+    const name = header.cwd ? (basename(header.cwd) || header.cwd) : (basename(fallbackDir) || fallbackDir);
+    const key = originalPath.toLowerCase();
+    let modified: Date;
+    try {
+      modified = statSync(filePath).mtime;
+    } catch {
+      modified = new Date(0);
+    }
+
+    if (!projects.has(key)) {
+      projects.set(key, {
+        name,
+        directory: originalPath,
+        originalPath,
+        sessions: [],
+      });
+    }
+
+    projects.get(key)?.sessions.push({
+      sessionId: basename(filePath, '.jsonl'),
+      filePath,
+      modified,
+      cwd: header.cwd,
+      created: header.timestamp,
+    });
+  }
+
+  return Array.from(projects.values())
+    .map(project => ({
+      ...project,
+      sessions: project.sessions.sort((a, b) => b.modified.getTime() - a.modified.getTime()),
+    }))
+    .sort((a, b) => (b.sessions[0]?.modified?.getTime() ?? 0) - (a.sessions[0]?.modified?.getTime() ?? 0));
+}
+
 // ─── extractMessages — session message extraction for profiling ───────────
 
 /**
@@ -125,37 +236,37 @@ export const extractMessages: QueryHandler = async (args) => {
     return { data: { error: 'project name required', messages: [], total: 0 } };
   }
 
-  const sessionsBase = join(homedir(), '.claude', 'projects');
+  const sessionsBase = join(runtimeHomeDir(), '.codex', 'sessions');
   if (!existsSync(sessionsBase)) {
-    return { data: { error: 'No Claude Code sessions found', messages: [], total: 0 } };
+    return { data: { error: 'No Codex sessions found', messages: [], total: 0 } };
   }
 
   const limitIdx = args.indexOf('--limit');
   const limit = limitIdx !== -1 ? parseInt(args[limitIdx + 1], 10) || 300 : 300;
   const sessionIdIdx = args.indexOf('--session-id');
   const sessionIdFilter = sessionIdIdx !== -1 ? args[sessionIdIdx + 1] : null;
-
-  let projectDirs: string[];
-  try {
-    projectDirs = readdirSync(sessionsBase, { withFileTypes: true })
-      .filter((e: { isDirectory(): boolean }) => e.isDirectory())
-      .map((e: { name: string }) => e.name);
-  } catch {
-    return { data: { error: 'Cannot read sessions directory', messages: [], total: 0 } };
-  }
-
+  const projects = buildProjectCatalog(sessionsBase);
   const lowerArg = projectArg.toLowerCase();
-  const matchedDir = projectDirs.find(d => d === projectArg)
-    || projectDirs.find(d => d.toLowerCase().includes(lowerArg));
+  const matches = projects.filter(project => {
+    const candidates = [project.name, project.directory, project.originalPath].map(v => v.toLowerCase());
+    return candidates.some(value => value === lowerArg || value.includes(lowerArg));
+  });
 
-  if (!matchedDir) {
-    return { data: { error: `No project matching "${projectArg}"`, available: projectDirs.slice(0, 10), messages: [], total: 0 } };
+  if (matches.length !== 1) {
+    return {
+      data: {
+        error: matches.length === 0 ? `No project matching "${projectArg}"` : `Multiple projects matching "${projectArg}"`,
+        available: projects.slice(0, 10).map(project => project.name),
+        messages: [],
+        total: 0,
+      },
+    };
   }
 
-  const projectPath = join(sessionsBase, matchedDir);
-  let sessionFiles = readdirSync(projectPath).filter(f => f.endsWith('.jsonl'));
+  const project = matches[0];
+  let sessionFiles = project.sessions;
   if (sessionIdFilter) {
-    sessionFiles = sessionFiles.filter(f => f.includes(sessionIdFilter));
+    sessionFiles = sessionFiles.filter(session => session.sessionId.includes(sessionIdFilter));
   }
 
   const messages: Array<{ role: string; content: string; session: string }> = [];
@@ -165,7 +276,7 @@ export const extractMessages: QueryHandler = async (args) => {
   for (const sessionFile of sessionFiles) {
     if (messages.length >= limit) break;
     try {
-      const content = readFileSync(join(projectPath, sessionFile), 'utf-8');
+      const content = readFileSync(sessionFile.filePath, 'utf-8');
       for (const line of content.split('\n').filter(Boolean)) {
         if (messages.length >= limit) break;
         try {
@@ -176,7 +287,7 @@ export const extractMessages: QueryHandler = async (args) => {
               messages.push({
                 role: 'user',
                 content: text.length > 2000 ? text.slice(0, 2000) + '... [truncated]' : text,
-                session: sessionFile.replace('.jsonl', ''),
+                session: sessionFile.sessionId,
               });
             }
           }
@@ -190,7 +301,7 @@ export const extractMessages: QueryHandler = async (args) => {
 
   return {
     data: {
-      project: matchedDir,
+      project: project.name,
       sessions_processed: sessionsProcessed,
       sessions_skipped: sessionsSkipped,
       messages_extracted: messages.length,
@@ -201,44 +312,38 @@ export const extractMessages: QueryHandler = async (args) => {
 
 // ─── Profile — session scanning and profile generation ────────────────────
 
-const SESSIONS_DIR = join(homedir(), '.claude', 'projects');
-
 export const scanSessions: QueryHandler = async (_args, _projectDir) => {
-  if (!existsSync(SESSIONS_DIR)) {
+  const sessionsDir = join(runtimeHomeDir(), '.codex', 'sessions');
+  if (!existsSync(sessionsDir)) {
     return { data: { projects: [], project_count: 0, session_count: 0 } };
   }
 
-  const projects: Record<string, unknown>[] = [];
-  let sessionCount = 0;
-
-  try {
-    const projectDirs = readdirSync(SESSIONS_DIR, { withFileTypes: true });
-    for (const pDir of projectDirs.filter(e => e.isDirectory())) {
-      const pPath = join(SESSIONS_DIR, pDir.name);
-      const sessions = readdirSync(pPath).filter(f => f.endsWith('.jsonl'));
-      sessionCount += sessions.length;
-      projects.push({ name: pDir.name, path: toPosixPath(pPath), session_count: sessions.length });
-    }
-  } catch { /* skip */ }
+  const projectCatalog = buildProjectCatalog(sessionsDir);
+  const projects: Record<string, unknown>[] = projectCatalog.map(project => ({
+    name: project.name,
+    path: toPosixPath(project.originalPath),
+    session_count: project.sessions.length,
+  }));
+  const sessionCount = projectCatalog.reduce((sum, project) => sum + project.sessions.length, 0);
 
   return { data: { projects, project_count: projects.length, session_count: sessionCount } };
 };
 
 export const profileSample: QueryHandler = async (_args, _projectDir) => {
-  if (!existsSync(SESSIONS_DIR)) {
+  const sessionsDir = join(runtimeHomeDir(), '.codex', 'sessions');
+  if (!existsSync(sessionsDir)) {
     return { data: { messages: [], total: 0, projects_sampled: 0 } };
   }
   const messages: string[] = [];
   let projectsSampled = 0;
 
   try {
-    const projectDirs = readdirSync(SESSIONS_DIR, { withFileTypes: true });
-    for (const pDir of projectDirs.filter(e => e.isDirectory()).slice(0, 5)) {
-      const pPath = join(SESSIONS_DIR, pDir.name);
-      const sessions = readdirSync(pPath).filter(f => f.endsWith('.jsonl')).slice(0, 3);
+    const projectDirs = buildProjectCatalog(sessionsDir).slice(0, 5);
+    for (const project of projectDirs) {
+      const sessions = project.sessions.slice(0, 3);
       for (const session of sessions) {
         try {
-          const content = readFileSync(join(pPath, session), 'utf-8');
+          const content = readFileSync(session.filePath, 'utf-8');
           for (const line of content.split('\n').filter(Boolean)) {
             try {
               const record = JSON.parse(line);
@@ -310,7 +415,7 @@ export const writeProfile: QueryHandler = async (args, projectDir) => {
 export const generateClaudeProfile: QueryHandler = async (args, _projectDir) => {
   const analysisFlag = args.indexOf('--analysis');
   const analysisPath = analysisFlag >= 0 ? args[analysisFlag + 1] : null;
-  let profile = '> Profile not yet configured. Run `/gsd-profile-user` to generate your developer profile.\n> This section is managed by `generate-claude-profile` -- do not edit manually.';
+  let profile = '> Profile not yet configured. Run `$gsd-profile-user` to generate your developer profile.\n> This section is managed by `generate-agents-profile` -- do not edit manually.';
 
   if (analysisPath && existsSync(resolve(analysisPath))) {
     try {
@@ -325,6 +430,8 @@ export const generateClaudeProfile: QueryHandler = async (args, _projectDir) => 
 
   return { data: { profile, generated: true } };
 };
+
+export const generateAgentsProfile: QueryHandler = generateClaudeProfile;
 
 export const generateDevPreferences: QueryHandler = async (args, projectDir) => {
   const analysisFlag = args.indexOf('--analysis');
@@ -365,3 +472,5 @@ export const generateClaudeMd: QueryHandler = async (_args, projectDir) => {
 
   return { data: { sections, generated: true, section_count: sections.length } };
 };
+
+export const generateAgentsMd: QueryHandler = generateClaudeMd;

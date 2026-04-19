@@ -6,17 +6,17 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## ⚠️ Read this before you fill anything out
+        ## Read this before you fill anything out
 
-        A feature adds something new to GSD — a new command, workflow, concept, or integration. Features have the **highest bar** for acceptance because every feature adds permanent maintenance burden to a project built for solo developers.
+        A feature adds something new to GSD - a new command, workflow, concept, or integration. Features have the highest bar for acceptance because every feature adds permanent maintenance burden to a project built for solo developers.
 
         **Before opening this issue:**
-        - Check [Discussions](https://github.com/gsd-build/get-shit-done/discussions) — has this been proposed and declined before?
-        - Read [CONTRIBUTING.md](../../CONTRIBUTING.md#-feature) — understand what "approved-feature" means and why you must wait for it before writing code.
-        - Ask yourself: *does this solve a real problem for a solo developer working with an AI coding tool, or is it a feature I personally want?*
+        - Check your fork's existing issues and discussions - has this been proposed and declined before?
+        - Read [CONTRIBUTING.md](../../CONTRIBUTING.md#-feature) - understand what "approved-feature" means and why you must wait for it before writing code.
+        - Ask yourself: does this solve a real problem for a solo developer working with an AI coding tool, or is it a feature I personally want?
 
         **What happens after you submit:**
-        A maintainer will review this spec. If it is incomplete, it will be **closed**, not revised. If it conflicts with GSD's design philosophy, it will be declined. If it is approved, it will be labeled `approved-feature` and you may begin coding.
+        A maintainer will review this spec. If it is incomplete, it will be closed, not revised. If it conflicts with GSD's design philosophy, it will be declined. If it is approved, it will be labeled `approved-feature` and you may begin coding.
 
         **Do not open a PR until this issue is labeled `approved-feature`.**
 
@@ -26,7 +26,7 @@ body:
       label: Pre-submission checklist
       description: You must check every box. Unchecked boxes are an immediate close.
       options:
-        - label: I have searched existing issues and discussions — this has not been proposed and declined before
+        - label: I have searched existing issues and discussions - this has not been proposed and declined before
           required: true
         - label: I have read CONTRIBUTING.md and understand that I must wait for `approved-feature` before writing any code
           required: true
@@ -39,7 +39,7 @@ body:
     id: feature_name
     attributes:
       label: Feature name
-      description: A short, concrete name for this feature (not a sales pitch — just what it is).
+      description: A short, concrete name for this feature (not a sales pitch - just what it is).
       placeholder: "e.g., Phase rollback command, Auto-archive completed phases, Cross-project state sync"
     validations:
       required: true
@@ -105,14 +105,14 @@ body:
         If you cannot fill this out, you do not understand the codebase well enough to propose this feature yet.
       placeholder: |
         Files that would be created:
-        - `get-shit-done/commands/gsd/rollback.md` — new slash command definition
+        - `get-shit-done/commands/gsd/rollback.md` - new slash command definition
 
         Files that would be modified:
-        - `get-shit-done/bin/lib/state.cjs` — add rollback() function
-        - `get-shit-done/bin/lib/phases.cjs` — expose phase snapshot API
-        - `tests/rollback.test.cjs` — new test file
-        - `docs/COMMANDS.md` — document new command
-        - `CHANGELOG.md` — entry for this feature
+        - `get-shit-done/bin/lib/state.cjs` - add rollback() function
+        - `get-shit-done/bin/lib/phases.cjs` - expose phase snapshot API
+        - `tests/rollback.test.cjs` - new test file
+        - `docs/COMMANDS.md` - document new command
+        - `CHANGELOG.md` - entry for this feature
 
         Systems affected:
         - STATE.md schema (must remain backward compatible)
@@ -188,7 +188,7 @@ body:
         If yes, describe exactly what breaks and how existing users would migrate.
         Write "None" only if you are certain.
       placeholder: |
-        None — this adds a new command and does not modify any existing command behavior or file schemas.
+        None - this adds a new command and does not modify any existing command behavior or file schemas.
 
         OR:
 
@@ -224,9 +224,9 @@ body:
         What other approaches did you consider? Why did you reject them?
         If the answer is "I didn't consider any alternatives", this issue will be closed.
       placeholder: |
-        1. Manual STATE.md editing — rejected because it requires the developer to understand the schema
+        1. Manual STATE.md editing - rejected because it requires the developer to understand the schema
            and is error-prone. The AI agent cannot reliably guide this.
-        2. A `/gsd-reset` command that wipes all state — rejected because it is too destructive and
+        2. A `/gsd-reset` command that wipes all state - rejected because it is too destructive and
            loses all completed phase history.
     validations:
       required: true
@@ -245,6 +245,6 @@ body:
     id: additional_context
     attributes:
       label: Additional context
-      description: Anything else — screenshots, recordings, related issues, or links.
+      description: Anything else - screenshots, recordings, related issues, or links.
     validations:
       required: false

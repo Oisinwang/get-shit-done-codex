@@ -95,6 +95,7 @@ GSD stores project settings in `.planning/config.json`. Created during `/gsd-new
   "intel": {
     "enabled": false
   },
+  "agents_md_path": "./AGENTS.md",
   "claude_md_path": null
 }
 ```
@@ -111,7 +112,8 @@ GSD stores project settings in `.planning/config.json`. Created during `/gsd-new
 | `project_code` | string | any short string | (none) | Prefix for phase directory names (e.g., `"ABC"` produces `ABC-01-setup/`). Added in v1.31 |
 | `response_language` | string | language code | (none) | Language for agent responses (e.g., `"pt"`, `"ko"`, `"ja"`). Propagates to all spawned agents for cross-phase language consistency. Added in v1.32 |
 | `context_profile` | string | `dev`, `research`, `review` | (none) | Execution context preset that applies a pre-configured bundle of mode, model, and workflow settings for the current type of work. Added in v1.34 |
-| `claude_md_path` | string | any file path | (none) | Custom output path for the generated CLAUDE.md file. Useful for monorepos or projects that need CLAUDE.md in a non-root location. When set, GSD writes its CLAUDE.md content to this path instead of the project root. Added in v1.36 |
+| `agents_md_path` | string | any file path | `./AGENTS.md` | Primary output path for the generated `AGENTS.md` file in this Codex-first fork. Useful for monorepos or projects that need the agent contract in a non-root location. |
+| `claude_md_path` | string | any file path | (legacy alias) | Compatibility alias for `agents_md_path`. Older configs still load, but new Codex-first projects should set `agents_md_path` instead. |
 
 > **Note:** `granularity` was renamed from `depth` in v1.22.3. Existing configs are auto-migrated.
 
@@ -192,7 +194,7 @@ To keep planning artifacts out of git:
 
 ## Agent Skills Injection
 
-Inject custom skill files into GSD subagent prompts. Skills are read by agents at spawn time, giving them project-specific instructions beyond what CLAUDE.md provides.
+Inject custom skill files into GSD subagent prompts. Skills are read by agents at spawn time, giving them project-specific instructions beyond what `AGENTS.md` provides.
 
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
@@ -523,7 +525,7 @@ The intent is the same as the Claude profile tiers -- use a stronger model for p
 
 | Variable | Purpose |
 |----------|---------|
-| `CLAUDE_CONFIG_DIR` | Override default config directory (`~/.claude/`) |
+| `CLAUDE_CONFIG_DIR` | Legacy Claude compatibility override for the config directory (`~/.claude/`); Codex-first installs use `~/.codex/` and `./.codex/` by default |
 | `GEMINI_API_KEY` | Detected by context monitor to switch hook event name |
 | `WSL_DISTRO_NAME` | Detected by installer for WSL path handling |
 | `GSD_SKIP_SCHEMA_CHECK` | Skip schema drift detection during execute-phase (v1.31) |

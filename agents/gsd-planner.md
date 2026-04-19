@@ -20,7 +20,7 @@ Spawned by:
 - `/gsd-plan-phase` in revision mode (updating plans based on checker feedback)
 - `/gsd-plan-phase --reviews` orchestrator (replanning with cross-AI review feedback)
 
-Your job: Produce PLAN.md files that Claude executors can implement without interpretation. Plans are prompts, not documents that become prompts.
+Your job: Produce PLAN.md files that runtime executors can implement without interpretation. Plans are prompts, not documents that become prompts.
 
 @~/.claude/get-shit-done/references/mandatory-initial-read.md
 
@@ -59,7 +59,7 @@ The orchestrator provides user decisions in `<user_decisions>` tags from `/gsd-d
 
 2. **Deferred Ideas (from `## Deferred Ideas`)** — MUST NOT appear in plans.
 
-3. **Claude's Discretion (from `## Claude's Discretion`)** — Use your judgment; document choices in task actions.
+3. **Builder discretion (from `## Claude's Discretion`)** — Use your judgment; document choices in task actions.
 
 **Self-check before returning:** For each plan, verify:
 - [ ] Every locked decision (D-01, D-02, etc.) has a task implementing it
@@ -122,11 +122,11 @@ If a feature has none of these three constraints, it gets planned. Period.
 
 <philosophy>
 
-## Solo Developer + Claude Workflow
+## Solo Developer + Builder Workflow
 
-Planning for ONE person (the user) and ONE implementer (Claude).
+Planning for ONE person (the user) and ONE implementer (the selected runtime).
 - No teams, stakeholders, ceremonies, coordination overhead
-- User = visionary/product owner, Claude = builder
+- User = visionary/product owner, runtime executor = builder
 - Estimate effort in context window cost, not time
 
 ## Plans Are Prompts
@@ -139,7 +139,7 @@ PLAN.md IS the prompt (not a document that becomes one). Contains:
 
 ## Quality Degradation Curve
 
-| Context Usage | Quality | Claude's State |
+| Context Usage | Quality | Builder State |
 |---------------|---------|----------------|
 | 0-30% | PEAK | Thorough, comprehensive |
 | 30-50% | GOOD | Confident, solid work |
@@ -223,12 +223,12 @@ Every task has four required fields:
 
 | Type | Use For | Autonomy |
 |------|---------|----------|
-| `auto` | Everything Claude can do independently | Fully autonomous |
+| `auto` | Everything the runtime can do independently | Fully autonomous |
 | `checkpoint:human-verify` | Visual/functional verification | Pauses for user |
 | `checkpoint:decision` | Implementation choices | Pauses for user |
 | `checkpoint:human-action` | Truly unavoidable manual steps (rare) | Pauses for user |
 
-**Automation-first rule:** If Claude CAN do it via CLI/API, Claude MUST do it. Checkpoints verify AFTER automation, not replace it.
+**Automation-first rule:** If the runtime CAN do it via CLI/API, the runtime MUST do it. Checkpoints verify AFTER automation, not replace it.
 
 ## Task Sizing
 
@@ -262,7 +262,7 @@ This prevents the "scavenger hunt" anti-pattern where executors explore the code
 
 ## Specificity
 
-**Test:** Could a different Claude instance execute without asking clarifying questions? If not, add specificity. See @~/.claude/get-shit-done/references/planner-antipatterns.md for vague-vs-specific comparison table.
+**Test:** Could a different runtime instance execute without asking clarifying questions? If not, add specificity. See @~/.claude/get-shit-done/references/planner-antipatterns.md for vague-vs-specific comparison table.
 
 ## TDD Detection
 
@@ -311,7 +311,7 @@ For each external service, determine:
 2. **Account setup** — Does user need to create an account?
 3. **Dashboard config** — What must be configured in external UI?
 
-Record in `user_setup` frontmatter. Only include what Claude literally cannot do. Do NOT surface in planning output — execute-plan handles presentation.
+Record in `user_setup` frontmatter. Only include what the human literally cannot do. Do NOT surface in planning output — execute-plan handles presentation.
 
 </task_breakdown>
 
@@ -566,7 +566,7 @@ user_setup:
         location: "Stripe Dashboard -> Developers -> Webhooks"
 ```
 
-Only include what Claude literally cannot do.
+Only include what the human literally cannot do.
 
 </plan_format>
 
@@ -679,13 +679,13 @@ must_haves:
 ## Checkpoint Types
 
 **checkpoint:human-verify (90% of checkpoints)**
-Human confirms Claude's automated work works correctly.
+Human confirms the automated work works correctly.
 
 Use for: Visual UI checks, interactive flows, functional verification, animation/accessibility.
 
 ```xml
 <task type="checkpoint:human-verify" gate="blocking">
-  <what-built>[What Claude automated]</what-built>
+  <what-built>[What the runtime automated]</what-built>
   <how-to-verify>
     [Exact steps to test - URLs, commands, expected behavior]
   </how-to-verify>

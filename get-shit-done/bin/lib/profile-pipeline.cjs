@@ -17,9 +17,134 @@ const { output, error, safeReadFile, reapStaleTempFiles } = require('./core.cjs'
 // ─── Session I/O Helpers ──────────────────────────────────────────────────────
 
 function getSessionsDir(overridePath) {
-  const dir = overridePath || path.join(os.homedir(), '.claude', 'projects');
+  const dir = overridePath || path.join(os.homedir(), '.codex', 'sessions');
   if (!fs.existsSync(dir)) return null;
   return dir;
+}
+
+function walkSessionFiles(rootDir) {
+  const files = [];
+  const stack = [rootDir];
+  while (stack.length > 0) {
+    const current = stack.pop();
+    let entries = [];
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
+      const fullPath = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(fullPath);
+      } else if (entry.isFile() && entry.name.endsWith('.jsonl')) {
+        files.push(fullPath);
+      }
+    }
+  }
+  return files;
+}
+
+function readSessionHeader(filePath) {
+  let fd;
+  try {
+    fd = fs.openSync(filePath, 'r');
+    const buffer = Buffer.alloc(65536);
+    const bytesRead = fs.readSync(fd, buffer, 0, buffer.length, 0);
+    const snippet = buffer.toString('utf8', 0, bytesRead);
+    const lines = snippet.split(/\r?\n/).filter(Boolean).slice(0, 20);
+    for (const line of lines) {
+      try {
+        const record = JSON.parse(line);
+        const cwd = record?.payload?.cwd || record?.cwd || null;
+        const timestamp = record?.payload?.timestamp || record?.timestamp || null;
+        if (cwd || timestamp) {
+          return { cwd, timestamp };
+        }
+      } catch {
+        continue;
+      }
+    }
+  } catch {
+    return { cwd: null, timestamp: null };
+  } finally {
+    if (fd !== undefined) {
+      try {
+        fs.closeSync(fd);
+      } catch {
+        // Ignore close errors on best-effort metadata reads.
+      }
+    }
+  }
+  return { cwd: null, timestamp: null };
+}
+
+function getProjectCatalog(sessionsDir) {
+  const projects = new Map();
+  for (const filePath of walkSessionFiles(sessionsDir)) {
+    let stat;
+    try {
+      stat = fs.statSync(filePath);
+    } catch {
+      continue;
+    }
+    const sessionId = path.basename(filePath, '.jsonl');
+    const header = readSessionHeader(filePath);
+    const fallbackDir = path.dirname(filePath);
+    const originalPath = header.cwd || fallbackDir;
+    const projectName = header.cwd ? (path.basename(header.cwd) || header.cwd) : (path.basename(fallbackDir) || fallbackDir);
+    const key = originalPath.toLowerCase();
+    if (!projects.has(key)) {
+      projects.set(key, {
+        directory: originalPath,
+        originalPath,
+        name: projectName,
+        sessions: [],
+      });
+    }
+    projects.get(key).sessions.push({
+      sessionId,
+      filePath,
+      size: stat.size,
+      modified: stat.mtime,
+      created: header.timestamp || null,
+    });
+  }
+
+  const catalog = Array.from(projects.values());
+  for (const project of catalog) {
+    project.sessions.sort((a, b) => b.modified - a.modified);
+  }
+  catalog.sort((a, b) => {
+    const aTime = a.sessions[0]?.modified?.getTime?.() || 0;
+    const bTime = b.sessions[0]?.modified?.getTime?.() || 0;
+    return bTime - aTime;
+  });
+  return catalog;
+}
+
+function formatProjectRef(project) {
+  if (!project.originalPath || project.originalPath === project.name) return project.name;
+  return `${project.name} (${project.originalPath})`;
+}
+
+function findMatchingProject(projects, projectArg) {
+  const arg = projectArg.toLowerCase();
+  const exactMatches = projects.filter(project => {
+    const candidates = [project.directory, project.name, project.originalPath].filter(Boolean);
+    return candidates.some(value => value.toLowerCase() === arg);
+  });
+  if (exactMatches.length === 1) return { project: exactMatches[0] };
+  if (exactMatches.length > 1) return { matches: exactMatches };
+
+  const partialMatches = projects.filter(project => {
+    const candidates = [project.directory, project.name, project.originalPath].filter(Boolean);
+    return candidates.some(value => value.toLowerCase().includes(arg));
+  });
+  if (partialMatches.length === 1) return { project: partialMatches[0] };
+  if (partialMatches.length > 1) return { matches: partialMatches };
+
+  return { project: null };
 }
 
 function scanProjectDir(projectDirPath) {
@@ -159,39 +284,18 @@ async function streamExtractMessages(filePath, filterFn, maxMessages = 300) {
 async function cmdScanSessions(overridePath, options, raw) {
   const sessionsDir = getSessionsDir(overridePath);
   if (!sessionsDir) {
-    const searchedPath = overridePath || '~/.claude/projects';
-    error(`No Claude Code sessions found at ${searchedPath}.${overridePath ? '' : ' Is Claude Code installed?'}`);
+    const searchedPath = overridePath || '~/.codex/sessions';
+    error(`No Codex sessions found at ${searchedPath}.${overridePath ? '' : ' Is Codex installed?'}`);
   }
 
   process.stderr.write('Reading your session history (read-only, nothing is modified or sent anywhere)...\n');
 
-  let projectDirs;
-  try {
-    projectDirs = fs.readdirSync(sessionsDir).filter(entry => {
-      const fullPath = path.join(sessionsDir, entry);
-      try {
-        return fs.statSync(fullPath).isDirectory();
-      } catch {
-        return false;
-      }
-    });
-  } catch (err) {
-    error(`Cannot read sessions directory: ${err.message}`);
-  }
-
   const projects = [];
+  const catalog = getProjectCatalog(sessionsDir);
 
-  for (const dirName of projectDirs) {
-    const projectPath = path.join(sessionsDir, dirName);
-    const sessions = scanProjectDir(projectPath);
+  for (const projectMeta of catalog) {
+    const sessions = projectMeta.sessions;
     if (sessions.length === 0) continue;
-
-    const indexData = readSessionIndex(projectPath);
-    const projectName = getProjectName(dirName, indexData);
-
-    if (indexData.entries.size === 0 && !options.json) {
-      process.stderr.write(`Index not found for ${projectName}, scanning directory...\n`);
-    }
 
     const totalSize = sessions.reduce((sum, s) => sum + s.size, 0);
     const lastActive = sessions[0].modified.toISOString();
@@ -199,8 +303,8 @@ async function cmdScanSessions(overridePath, options, raw) {
     const newest = sessions[0].modified.toISOString();
 
     const project = {
-      name: projectName,
-      directory: dirName,
+      name: projectMeta.name,
+      directory: projectMeta.directory,
       sessionCount: sessions.length,
       totalSize,
       totalSizeHuman: formatBytes(totalSize),
@@ -210,17 +314,14 @@ async function cmdScanSessions(overridePath, options, raw) {
 
     if (options.verbose) {
       project.sessions = sessions.map(s => {
-        const indexed = indexData.entries.get(s.sessionId);
         const session = {
           sessionId: s.sessionId,
           size: s.size,
           sizeHuman: formatBytes(s.size),
           modified: s.modified.toISOString(),
         };
-        if (indexed) {
-          if (indexed.summary) session.summary = indexed.summary;
-          if (indexed.messageCount !== undefined) session.messageCount = indexed.messageCount;
-          if (indexed.created) session.created = indexed.created;
+        if (s.created) {
+          session.created = s.created;
         }
         return session;
       });
@@ -251,76 +352,28 @@ async function cmdScanSessions(overridePath, options, raw) {
 async function cmdExtractMessages(projectArg, options, raw, overridePath) {
   const sessionsDir = getSessionsDir(overridePath);
   if (!sessionsDir) {
-    const searchedPath = overridePath || '~/.claude/projects';
-    error(`No Claude Code sessions found at ${searchedPath}.${overridePath ? '' : ' Is Claude Code installed?'}`);
+    const searchedPath = overridePath || '~/.codex/sessions';
+    error(`No Codex sessions found at ${searchedPath}.${overridePath ? '' : ' Is Codex installed?'}`);
   }
-
-  let projectDirs;
-  try {
-    projectDirs = fs.readdirSync(sessionsDir).filter(entry => {
-      const fullPath = path.join(sessionsDir, entry);
-      try {
-        return fs.statSync(fullPath).isDirectory();
-      } catch {
-        return false;
-      }
-    });
-  } catch (err) {
-    error(`Cannot read sessions directory: ${err.message}`);
+  const projects = getProjectCatalog(sessionsDir);
+  if (projects.length === 0) {
+    error('No projects with sessions found.');
   }
-
-  let matchedDir = null;
-  let matchedName = null;
-
-  for (const dirName of projectDirs) {
-    if (dirName === projectArg) {
-      matchedDir = dirName;
-      break;
-    }
+  const match = findMatchingProject(projects, projectArg);
+  if (match.matches) {
+    const names = match.matches.map(project => `  - ${formatProjectRef(project)}`);
+    error(`Multiple projects match "${projectArg}":\n${names.join('\n')}\nBe more specific.`);
   }
-
-  if (!matchedDir) {
-    const lowerArg = projectArg.toLowerCase();
-    const matches = projectDirs.filter(d => d.toLowerCase().includes(lowerArg));
-    if (matches.length === 1) {
-      matchedDir = matches[0];
-    } else if (matches.length > 1) {
-      const exactNameMatches = [];
-      for (const dirName of matches) {
-        const indexData = readSessionIndex(path.join(sessionsDir, dirName));
-        const pName = getProjectName(dirName, indexData);
-        if (pName.toLowerCase() === lowerArg) {
-          exactNameMatches.push({ dirName, name: pName });
-        }
-      }
-      if (exactNameMatches.length === 1) {
-        matchedDir = exactNameMatches[0].dirName;
-        matchedName = exactNameMatches[0].name;
-      } else {
-        const names = matches.map(d => {
-          const idx = readSessionIndex(path.join(sessionsDir, d));
-          return `  - ${getProjectName(d, idx)} (${d})`;
-        });
-        error(`Multiple projects match "${projectArg}":\n${names.join('\n')}\nBe more specific.`);
-      }
-    }
-  }
-
-  if (!matchedDir) {
-    const available = projectDirs.map(d => {
-      const idx = readSessionIndex(path.join(sessionsDir, d));
-      return `  - ${getProjectName(d, idx)}`;
-    });
+  if (!match.project) {
+    const available = projects.map(project => `  - ${formatProjectRef(project)}`);
     error(`No project matching "${projectArg}". Available projects:\n${available.join('\n')}`);
   }
-
-  const projectPath = path.join(sessionsDir, matchedDir);
-  const indexData = readSessionIndex(projectPath);
-  const projectName = matchedName || getProjectName(matchedDir, indexData);
+  const project = match.project;
+  const projectName = project.name;
 
   process.stderr.write('Reading your session history (read-only, nothing is modified or sent anywhere)...\n');
 
-  let sessions = scanProjectDir(projectPath);
+  let sessions = project.sessions.slice();
 
   if (options.sessionId) {
     sessions = sessions.filter(s => s.sessionId === options.sessionId);
@@ -392,43 +445,21 @@ async function cmdExtractMessages(projectArg, options, raw, overridePath) {
 async function cmdProfileSample(overridePath, options, raw) {
   const sessionsDir = getSessionsDir(overridePath);
   if (!sessionsDir) {
-    const searchedPath = overridePath || '~/.claude/projects';
-    error(`No Claude Code sessions found at ${searchedPath}.${overridePath ? '' : ' Is Claude Code installed?'}`);
+    const searchedPath = overridePath || '~/.codex/sessions';
+    error(`No Codex sessions found at ${searchedPath}.${overridePath ? '' : ' Is Codex installed?'}`);
   }
 
   process.stderr.write('Reading your session history (read-only, nothing is modified or sent anywhere)...\n');
 
   const limit = options.limit || 150;
   const maxChars = options.maxChars || 500;
-
-  let projectDirs;
-  try {
-    projectDirs = fs.readdirSync(sessionsDir).filter(entry => {
-      const fullPath = path.join(sessionsDir, entry);
-      try {
-        return fs.statSync(fullPath).isDirectory();
-      } catch {
-        return false;
-      }
-    });
-  } catch (err) {
-    error(`Cannot read sessions directory: ${err.message}`);
-  }
-
-  if (projectDirs.length === 0) {
-    error('No project directories found in sessions directory.');
-  }
-
-  const projectMeta = [];
-  for (const dirName of projectDirs) {
-    const projectPath = path.join(sessionsDir, dirName);
-    const sessions = scanProjectDir(projectPath);
-    if (sessions.length === 0) continue;
-    const indexData = readSessionIndex(projectPath);
-    const projectName = getProjectName(dirName, indexData);
-    const lastActive = sessions[0].modified;
-    projectMeta.push({ dirName, projectPath, sessions, projectName, lastActive });
-  }
+  const projectMeta = getProjectCatalog(sessionsDir).map(project => ({
+    dirName: project.directory,
+    projectPath: project.originalPath,
+    sessions: project.sessions,
+    projectName: project.name,
+    lastActive: project.sessions[0]?.modified || new Date(0),
+  }));
 
   projectMeta.sort((a, b) => b.lastActive - a.lastActive);
 

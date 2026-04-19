@@ -135,6 +135,18 @@ describe('createRegistry', () => {
     expect(registry.has('summary-extract')).toBe(true);
   });
 
+  it('registers generate-agents-md and keeps generate-claude-md as alias', () => {
+    const registry = createRegistry();
+    expect(registry.has('generate-agents-md')).toBe(true);
+    expect(registry.has('generate-claude-md')).toBe(true);
+  });
+
+  it('registers generate-agents-profile and keeps generate-claude-profile as alias', () => {
+    const registry = createRegistry();
+    expect(registry.has('generate-agents-profile')).toBe(true);
+    expect(registry.has('generate-claude-profile')).toBe(true);
+  });
+
   it('can dispatch generate-slug', async () => {
     const registry = createRegistry();
     const result = await registry.dispatch('generate-slug', ['My Phase'], '/tmp');

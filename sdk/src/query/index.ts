@@ -67,7 +67,7 @@ import {
 } from './intel.js';
 import {
   learningsCopy, learningsQuery, extractMessages, scanSessions, profileSample, profileQuestionnaire,
-  writeProfile, generateClaudeProfile, generateDevPreferences, generateClaudeMd,
+  writeProfile, generateAgentsProfile, generateClaudeProfile, generateDevPreferences, generateAgentsMd, generateClaudeMd,
 } from './profile.js';
 import { GSDEventStream } from '../event-stream.js';
 import {
@@ -119,7 +119,7 @@ export const QUERY_MUTATION_COMMANDS = new Set<string>([
   'docs-init',
   'learnings.copy', 'learnings copy',
   'intel.snapshot', 'intel.patch-meta', 'intel snapshot', 'intel patch-meta',
-  'write-profile', 'generate-claude-profile', 'generate-dev-preferences', 'generate-claude-md',
+  'write-profile', 'generate-agents-profile', 'generate-claude-profile', 'generate-dev-preferences', 'generate-agents-md', 'generate-claude-md',
 ]);
 
 // ─── Event builder ────────────────────────────────────────────────────────
@@ -427,12 +427,14 @@ export function createRegistry(eventStream?: GSDEventStream): QueryRegistry {
   registry.register('intel extract-exports', intelExtractExports);
   registry.register('intel.patch-meta', intelPatchMeta);
   registry.register('intel patch-meta', intelPatchMeta);
+  registry.register('generate-agents-profile', generateAgentsProfile);
   registry.register('generate-claude-profile', generateClaudeProfile);
   registry.register('generate-dev-preferences', generateDevPreferences);
   registry.register('write-profile', writeProfile);
   registry.register('profile-questionnaire', profileQuestionnaire);
   registry.register('profile-sample', profileSample);
   registry.register('scan-sessions', scanSessions);
+  registry.register('generate-agents-md', generateAgentsMd);
   registry.register('generate-claude-md', generateClaudeMd);
 
   // Wire event emission for mutation commands

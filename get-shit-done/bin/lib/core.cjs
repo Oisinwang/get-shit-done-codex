@@ -325,7 +325,7 @@ function loadConfig(cwd) {
       // Section containers that hold nested sub-keys
       'git', 'workflow', 'planning', 'hooks', 'features',
       // Internal keys loadConfig reads but config-set doesn't expose
-      'model_overrides', 'agent_skills', 'context_window', 'resolve_model_ids', 'claude_md_path',
+      'model_overrides', 'agent_skills', 'context_window', 'resolve_model_ids', 'agents_md_path', 'claude_md_path',
       // Deprecated keys (still accepted for migration, not in config-set)
       'depth', 'multiRepo',
     ]);
@@ -350,6 +350,8 @@ function loadConfig(cwd) {
       if (typeof val === 'object' && val !== null && 'enabled' in val) return val.enabled;
       return defaults.parallelization;
     })();
+
+    const resolvedAgentsMdPath = get('agents_md_path') || get('claude_md_path') || null;
 
     return {
       model_profile: get('model_profile') ?? defaults.model_profile,
@@ -390,7 +392,8 @@ function loadConfig(cwd) {
       agent_skills: parsed.agent_skills || {},
       manager: parsed.manager || {},
       response_language: get('response_language') || null,
-      claude_md_path: get('claude_md_path') || null,
+      agents_md_path: resolvedAgentsMdPath,
+      claude_md_path: resolvedAgentsMdPath,
     };
   } catch {
     // Fall back to ~/.gsd/defaults.json only for truly pre-project contexts (#1683)

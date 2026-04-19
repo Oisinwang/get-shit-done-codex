@@ -8,19 +8,19 @@
 
 **Resolve context rot — a degradação de qualidade que acontece conforme o Claude enche a janela de contexto.**
 
-[![npm version](https://img.shields.io/npm/v/get-shit-done-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-cc)
-[![npm downloads](https://img.shields.io/npm/dm/get-shit-done-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-cc)
-[![Tests](https://img.shields.io/github/actions/workflow/status/gsd-build/get-shit-done/test.yml?branch=main&style=for-the-badge&logo=github&label=Tests)](https://github.com/gsd-build/get-shit-done/actions/workflows/test.yml)
+[![npm version](https://img.shields.io/npm/v/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
+[![npm downloads](https://img.shields.io/npm/dm/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
+[![Tests](https://img.shields.io/github/actions/workflow/status/get-shit-done-codex/test.yml?branch=main&style=for-the-badge&logo=github&label=Tests)](https://github.com/get-shit-done-codex/actions/workflows/test.yml)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/mYgfVNfA2r)
 [![X (Twitter)](https://img.shields.io/badge/X-@gsd__foundation-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/gsd_foundation)
 [![$GSD Token](https://img.shields.io/badge/$GSD-Dexscreener-1C1C1C?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgZmlsbD0iIzAwRkYwMCIvPjwvc3ZnPg==&logoColor=00FF00)](https://dexscreener.com/solana/dwudwjvan7bzkw9zwlbyv6kspdlvhwzrqy6ebk8xzxkv)
-[![GitHub stars](https://img.shields.io/github/stars/gsd-build/get-shit-done?style=for-the-badge&logo=github&color=181717)](https://github.com/gsd-build/get-shit-done)
+[![GitHub stars](https://img.shields.io/github/stars/get-shit-done-codex?style=for-the-badge&logo=github&color=181717)](https://github.com/get-shit-done-codex)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 <br>
 
 ```bash
-npx get-shit-done-cc@latest
+npx get-shit-done-codex@latest
 ```
 
 **Funciona em Mac, Windows e Linux.**
@@ -88,7 +88,7 @@ Quality gates embutidos capturam problemas reais: detecção de schema drift sin
 ## Primeiros passos
 
 ```bash
-npx get-shit-done-cc@latest
+npx get-shit-done-codex@latest
 ```
 
 O instalador pede:
@@ -110,7 +110,7 @@ Verifique com:
 ### Mantendo atualizado
 
 ```bash
-npx get-shit-done-cc@latest
+npx get-shit-done-codex@latest
 ```
 
 <details>
@@ -118,49 +118,49 @@ npx get-shit-done-cc@latest
 
 ```bash
 # Claude Code
-npx get-shit-done-cc --claude --global
-npx get-shit-done-cc --claude --local
+npx get-shit-done-codex --claude --global
+npx get-shit-done-codex --claude --local
 
 # OpenCode
-npx get-shit-done-cc --opencode --global
+npx get-shit-done-codex --opencode --global
 
 # Gemini CLI
-npx get-shit-done-cc --gemini --global
+npx get-shit-done-codex --gemini --global
 
 # Kilo
-npx get-shit-done-cc --kilo --global
-npx get-shit-done-cc --kilo --local
+npx get-shit-done-codex --kilo --global
+npx get-shit-done-codex --kilo --local
 
 # Codex
-npx get-shit-done-cc --codex --global
-npx get-shit-done-cc --codex --local
+npx get-shit-done-codex --codex --global
+npx get-shit-done-codex --codex --local
 
 # Copilot
-npx get-shit-done-cc --copilot --global
-npx get-shit-done-cc --copilot --local
+npx get-shit-done-codex --copilot --global
+npx get-shit-done-codex --copilot --local
 
 # Cursor
-npx get-shit-done-cc --cursor --global
-npx get-shit-done-cc --cursor --local
+npx get-shit-done-codex --cursor --global
+npx get-shit-done-codex --cursor --local
 
 # Antigravity
-npx get-shit-done-cc --antigravity --global
-npx get-shit-done-cc --antigravity --local
+npx get-shit-done-codex --antigravity --global
+npx get-shit-done-codex --antigravity --local
 
 # Augment
-npx get-shit-done-cc --augment --global     # Install to ~/.augment/
-npx get-shit-done-cc --augment --local      # Install to ./.augment/
+npx get-shit-done-codex --augment --global     # Install to ~/.augment/
+npx get-shit-done-codex --augment --local      # Install to ./.augment/
 
 # Trae
-npx get-shit-done-cc --trae --global        # Install to ~/.trae/
-npx get-shit-done-cc --trae --local         # Install to ./.trae/
+npx get-shit-done-codex --trae --global        # Install to ~/.trae/
+npx get-shit-done-codex --trae --local         # Install to ./.trae/
 
 # Cline
-npx get-shit-done-cc --cline --global       # Install to ~/.cline/
-npx get-shit-done-cc --cline --local        # Install to ./.clinerules
+npx get-shit-done-codex --cline --global       # Install to ~/.cline/
+npx get-shit-done-codex --cline --local        # Install to ./.clinerules
 
 # Todos
-npx get-shit-done-cc --all --global
+npx get-shit-done-codex --all --global
 ```
 
 Use `--global` (`-g`) ou `--local` (`-l`) para pular a pergunta de local.
@@ -413,50 +413,50 @@ Adicione padrões sensíveis ao deny list do Claude Code:
 
 **Comandos não funcionam como esperado?**
 - Rode `/gsd-help`
-- Reinstale com `npx get-shit-done-cc@latest`
+- Reinstale com `npx get-shit-done-codex@latest`
 
 **Em Docker/container?**
 - Defina `CLAUDE_CONFIG_DIR` antes da instalação:
 
 ```bash
-CLAUDE_CONFIG_DIR=/home/youruser/.claude npx get-shit-done-cc --global
+CLAUDE_CONFIG_DIR=<legacy-claude-path> npx get-shit-done-codex --global
 ```
 
 ### Desinstalar
 
 ```bash
 # Instalações globais
-npx get-shit-done-cc --claude --global --uninstall
-npx get-shit-done-cc --opencode --global --uninstall
-npx get-shit-done-cc --gemini --global --uninstall
-npx get-shit-done-cc --kilo --global --uninstall
-npx get-shit-done-cc --codex --global --uninstall
-npx get-shit-done-cc --copilot --global --uninstall
-npx get-shit-done-cc --cursor --global --uninstall
-npx get-shit-done-cc --antigravity --global --uninstall
-npx get-shit-done-cc --augment --global --uninstall
-npx get-shit-done-cc --trae --global --uninstall
-npx get-shit-done-cc --cline --global --uninstall
+npx get-shit-done-codex --claude --global --uninstall
+npx get-shit-done-codex --opencode --global --uninstall
+npx get-shit-done-codex --gemini --global --uninstall
+npx get-shit-done-codex --kilo --global --uninstall
+npx get-shit-done-codex --codex --global --uninstall
+npx get-shit-done-codex --copilot --global --uninstall
+npx get-shit-done-codex --cursor --global --uninstall
+npx get-shit-done-codex --antigravity --global --uninstall
+npx get-shit-done-codex --augment --global --uninstall
+npx get-shit-done-codex --trae --global --uninstall
+npx get-shit-done-codex --cline --global --uninstall
 
 # Instalações locais (projeto atual)
-npx get-shit-done-cc --claude --local --uninstall
-npx get-shit-done-cc --opencode --local --uninstall
-npx get-shit-done-cc --gemini --local --uninstall
-npx get-shit-done-cc --kilo --local --uninstall
-npx get-shit-done-cc --codex --local --uninstall
-npx get-shit-done-cc --copilot --local --uninstall
-npx get-shit-done-cc --cursor --local --uninstall
-npx get-shit-done-cc --antigravity --local --uninstall
-npx get-shit-done-cc --augment --local --uninstall
-npx get-shit-done-cc --trae --local --uninstall
-npx get-shit-done-cc --cline --local --uninstall
+npx get-shit-done-codex --claude --local --uninstall
+npx get-shit-done-codex --opencode --local --uninstall
+npx get-shit-done-codex --gemini --local --uninstall
+npx get-shit-done-codex --kilo --local --uninstall
+npx get-shit-done-codex --codex --local --uninstall
+npx get-shit-done-codex --copilot --local --uninstall
+npx get-shit-done-codex --cursor --local --uninstall
+npx get-shit-done-codex --antigravity --local --uninstall
+npx get-shit-done-codex --augment --local --uninstall
+npx get-shit-done-codex --trae --local --uninstall
+npx get-shit-done-codex --cline --local --uninstall
 ```
 
 ---
 
 ## Community Ports
 
-OpenCode, Gemini CLI, Kilo e Codex agora são suportados nativamente via `npx get-shit-done-cc`.
+OpenCode, Gemini CLI, Kilo e Codex agora são suportados nativamente via `npx get-shit-done-codex`.
 
 | Projeto | Plataforma | Descrição |
 |---------|------------|-----------|
@@ -467,11 +467,11 @@ OpenCode, Gemini CLI, Kilo e Codex agora são suportados nativamente via `npx ge
 
 ## Star History
 
-<a href="https://star-history.com/#gsd-build/get-shit-done&Date">
+<a href="https://star-history.com/#get-shit-done-codex&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=gsd-build/get-shit-done&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=gsd-build/get-shit-done&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=gsd-build/get-shit-done&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
  </picture>
 </a>
 

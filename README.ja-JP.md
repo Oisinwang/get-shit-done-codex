@@ -8,19 +8,19 @@
 
 **コンテキストロット（Claudeがコンテキストウィンドウを消費するにつれ品質が劣化する現象）を解決します。**
 
-[![npm version](https://img.shields.io/npm/v/get-shit-done-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-cc)
-[![npm downloads](https://img.shields.io/npm/dm/get-shit-done-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-cc)
-[![Tests](https://img.shields.io/github/actions/workflow/status/gsd-build/get-shit-done/test.yml?branch=main&style=for-the-badge&logo=github&label=Tests)](https://github.com/gsd-build/get-shit-done/actions/workflows/test.yml)
+[![npm version](https://img.shields.io/npm/v/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
+[![npm downloads](https://img.shields.io/npm/dm/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
+[![Tests](https://img.shields.io/github/actions/workflow/status/get-shit-done-codex/test.yml?branch=main&style=for-the-badge&logo=github&label=Tests)](https://github.com/get-shit-done-codex/actions/workflows/test.yml)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/mYgfVNfA2r)
 [![X (Twitter)](https://img.shields.io/badge/X-@gsd__foundation-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/gsd_foundation)
 [![$GSD Token](https://img.shields.io/badge/$GSD-Dexscreener-1C1C1C?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgZmlsbD0iIzAwRkYwMCIvPjwvc3ZnPg==&logoColor=00FF00)](https://dexscreener.com/solana/dwudwjvan7bzkw9zwlbyv6kspdlvhwzrqy6ebk8xzxkv)
-[![GitHub stars](https://img.shields.io/github/stars/gsd-build/get-shit-done?style=for-the-badge&logo=github&color=181717)](https://github.com/gsd-build/get-shit-done)
+[![GitHub stars](https://img.shields.io/github/stars/get-shit-done-codex?style=for-the-badge&logo=github&color=181717)](https://github.com/get-shit-done-codex)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 <br>
 
 ```bash
-npx get-shit-done-cc@latest
+npx get-shit-done-codex@latest
 ```
 
 **Mac、Windows、Linuxで動作します。**
@@ -90,7 +90,7 @@ GSDはそれを解決します。Claude Codeを信頼性の高いものにする
 ## はじめに
 
 ```bash
-npx get-shit-done-cc@latest
+npx get-shit-done-codex@latest
 ```
 
 インストーラーが以下の選択を求めます：
@@ -114,7 +114,7 @@ npx get-shit-done-cc@latest
 GSDは急速に進化しています。定期的にアップデートしてください：
 
 ```bash
-npx get-shit-done-cc@latest
+npx get-shit-done-codex@latest
 ```
 
 <details>
@@ -122,49 +122,49 @@ npx get-shit-done-cc@latest
 
 ```bash
 # Claude Code
-npx get-shit-done-cc --claude --global   # ~/.claude/ にインストール
-npx get-shit-done-cc --claude --local    # ./.claude/ にインストール
+npx get-shit-done-codex --claude --global   # ~/.claude/ にインストール
+npx get-shit-done-codex --claude --local    # ./.claude/ にインストール
 
 # OpenCode
-npx get-shit-done-cc --opencode --global # ~/.config/opencode/ にインストール
+npx get-shit-done-codex --opencode --global # ~/.config/opencode/ にインストール
 
 # Gemini CLI
-npx get-shit-done-cc --gemini --global   # ~/.gemini/ にインストール
+npx get-shit-done-codex --gemini --global   # ~/.gemini/ にインストール
 
 # Kilo
-npx get-shit-done-cc --kilo --global     # ~/.config/kilo/ にインストール
-npx get-shit-done-cc --kilo --local      # ./.kilo/ にインストール
+npx get-shit-done-codex --kilo --global     # ~/.config/kilo/ にインストール
+npx get-shit-done-codex --kilo --local      # ./.kilo/ にインストール
 
 # Codex
-npx get-shit-done-cc --codex --global    # ~/.codex/ にインストール
-npx get-shit-done-cc --codex --local     # ./.codex/ にインストール
+npx get-shit-done-codex --codex --global    # ~/.codex/ にインストール
+npx get-shit-done-codex --codex --local     # ./.codex/ にインストール
 
 # Copilot
-npx get-shit-done-cc --copilot --global  # ~/.github/ にインストール
-npx get-shit-done-cc --copilot --local   # ./.github/ にインストール
+npx get-shit-done-codex --copilot --global  # ~/.github/ にインストール
+npx get-shit-done-codex --copilot --local   # ./.github/ にインストール
 
 # Cursor CLI
-npx get-shit-done-cc --cursor --global      # ~/.cursor/ にインストール
-npx get-shit-done-cc --cursor --local       # ./.cursor/ にインストール
+npx get-shit-done-codex --cursor --global      # ~/.cursor/ にインストール
+npx get-shit-done-codex --cursor --local       # ./.cursor/ にインストール
 
 # Antigravity
-npx get-shit-done-cc --antigravity --global # ~/.gemini/antigravity/ にインストール
-npx get-shit-done-cc --antigravity --local  # ./.agent/ にインストール
+npx get-shit-done-codex --antigravity --global # ~/.gemini/antigravity/ にインストール
+npx get-shit-done-codex --antigravity --local  # ./.agent/ にインストール
 
 # Augment
-npx get-shit-done-cc --augment --global     # ~/.augment/ にインストール
-npx get-shit-done-cc --augment --local      # ./.augment/ にインストール
+npx get-shit-done-codex --augment --global     # ~/.augment/ にインストール
+npx get-shit-done-codex --augment --local      # ./.augment/ にインストール
 
 # Trae
-npx get-shit-done-cc --trae --global        # ~/.trae/ にインストール
-npx get-shit-done-cc --trae --local         # ./.trae/ にインストール
+npx get-shit-done-codex --trae --global        # ~/.trae/ にインストール
+npx get-shit-done-codex --trae --local         # ./.trae/ にインストール
 
 # Cline
-npx get-shit-done-cc --cline --global       # ~/.cline/ にインストール
-npx get-shit-done-cc --cline --local        # ./.clinerules にインストール
+npx get-shit-done-codex --cline --global       # ~/.cline/ にインストール
+npx get-shit-done-codex --cline --local        # ./.clinerules にインストール
 
 # 全ランタイム
-npx get-shit-done-cc --all --global      # すべてのディレクトリにインストール
+npx get-shit-done-codex --all --global      # すべてのディレクトリにインストール
 ```
 
 `--global`（`-g`）または `--local`（`-l`）でインストール先の質問をスキップできます。
@@ -178,9 +178,10 @@ npx get-shit-done-cc --all --global      # すべてのディレクトリにイ�
 リポジトリをクローンしてインストーラーをローカルで実行します：
 
 ```bash
-git clone https://github.com/gsd-build/get-shit-done.git
-cd get-shit-done
-node bin/install.js --claude --local
+git clone https://github.com/Oisinwang/get-shit-done-codex.git
+cd get-shit-done-codex
+npm run build:hooks
+node bin/install.js --codex --local
 ```
 
 コントリビュートする前に変更をテストするため、`./.claude/` にインストールされます。
@@ -783,18 +784,18 @@ GSDのコードベースマッピングおよび分析コマンドは、プロ�
 
 **コマンドが期待通りに動作しない？**
 - `/gsd-help` を実行してインストールを確認してください
-- `npx get-shit-done-cc` を再実行して再インストールしてください
+- `npx get-shit-done-codex` を再実行して再インストールしてください
 
 **最新バージョンへのアップデート？**
 ```bash
-npx get-shit-done-cc@latest
+npx get-shit-done-codex@latest
 ```
 
 **Dockerまたはコンテナ化環境を使用している？**
 
 チルダパス（`~/.claude/...`）でファイル読み取りが失敗する場合、インストール前に `CLAUDE_CONFIG_DIR` を設定してください：
 ```bash
-CLAUDE_CONFIG_DIR=/home/youruser/.claude npx get-shit-done-cc --global
+CLAUDE_CONFIG_DIR=<legacy-claude-path> npx get-shit-done-codex --global
 ```
 これにより、コンテナ内で正しく展開されない可能性がある `~` の代わりに絶対パスが使用されます。
 
@@ -804,26 +805,26 @@ GSDを完全に削除するには：
 
 ```bash
 # グローバルインストール
-npx get-shit-done-cc --claude --global --uninstall
-npx get-shit-done-cc --opencode --global --uninstall
-npx get-shit-done-cc --gemini --global --uninstall
-npx get-shit-done-cc --kilo --global --uninstall
-npx get-shit-done-cc --codex --global --uninstall
-npx get-shit-done-cc --copilot --global --uninstall
-npx get-shit-done-cc --cursor --global --uninstall
-npx get-shit-done-cc --antigravity --global --uninstall
-npx get-shit-done-cc --trae --global --uninstall
+npx get-shit-done-codex --claude --global --uninstall
+npx get-shit-done-codex --opencode --global --uninstall
+npx get-shit-done-codex --gemini --global --uninstall
+npx get-shit-done-codex --kilo --global --uninstall
+npx get-shit-done-codex --codex --global --uninstall
+npx get-shit-done-codex --copilot --global --uninstall
+npx get-shit-done-codex --cursor --global --uninstall
+npx get-shit-done-codex --antigravity --global --uninstall
+npx get-shit-done-codex --trae --global --uninstall
 
 # ローカルインストール（現在のプロジェクト）
-npx get-shit-done-cc --claude --local --uninstall
-npx get-shit-done-cc --opencode --local --uninstall
-npx get-shit-done-cc --gemini --local --uninstall
-npx get-shit-done-cc --kilo --local --uninstall
-npx get-shit-done-cc --codex --local --uninstall
-npx get-shit-done-cc --copilot --local --uninstall
-npx get-shit-done-cc --cursor --local --uninstall
-npx get-shit-done-cc --antigravity --local --uninstall
-npx get-shit-done-cc --trae --local --uninstall
+npx get-shit-done-codex --claude --local --uninstall
+npx get-shit-done-codex --opencode --local --uninstall
+npx get-shit-done-codex --gemini --local --uninstall
+npx get-shit-done-codex --kilo --local --uninstall
+npx get-shit-done-codex --codex --local --uninstall
+npx get-shit-done-codex --copilot --local --uninstall
+npx get-shit-done-codex --cursor --local --uninstall
+npx get-shit-done-codex --antigravity --local --uninstall
+npx get-shit-done-codex --trae --local --uninstall
 ```
 
 これにより、他の設定を保持しながら、すべてのGSDコマンド、エージェント、フック、設定が削除されます。
@@ -832,7 +833,7 @@ npx get-shit-done-cc --trae --local --uninstall
 
 ## コミュニティポート
 
-OpenCode、Gemini CLI、Kilo、Codexは `npx get-shit-done-cc` でネイティブサポートされています。
+OpenCode、Gemini CLI、Kilo、Codexは `npx get-shit-done-codex` でネイティブサポートされています。
 
 以下のコミュニティポートがマルチランタイムサポートの先駆けとなりました：
 
@@ -845,11 +846,11 @@ OpenCode、Gemini CLI、Kilo、Codexは `npx get-shit-done-cc` でネイティ�
 
 ## スター履歴
 
-<a href="https://star-history.com/#gsd-build/get-shit-done&Date">
+<a href="https://star-history.com/#get-shit-done-codex&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=gsd-build/get-shit-done&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=gsd-build/get-shit-done&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=gsd-build/get-shit-done&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
  </picture>
 </a>
 
