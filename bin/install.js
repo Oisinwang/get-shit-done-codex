@@ -5909,6 +5909,10 @@ function install(isGlobal, runtime = 'claude') {
         if (entry.isDirectory()) {
           scanForLeakedPaths(fullPath);
         } else if ((entry.name.endsWith('.md') || entry.name.endsWith('.toml')) && entry.name !== 'CHANGELOG.md') {
+          const relativePath = path.relative(targetDir, fullPath).replace(/\\/g, '/');
+          if (relativePath === 'get-shit-done/workflows/update.md') {
+            continue;
+          }
           let content;
           try {
             content = fs.readFileSync(fullPath, 'utf8');
@@ -6696,24 +6700,36 @@ function installSdkIfNeeded() {
   }
 
   console.log(`\n  ${cyan}Building GSD SDK from source (${sdkDir})…${reset}`);
-  const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+  const spawnNpm = (args, options = {}) => {
+    const baseOptions = { cwd: sdkDir, stdio: 'inherit', ...options };
+    if (process.platform !== 'win32') {
+      return spawnSync('npm', args, baseOptions);
+    }
+
+    const quoteArg = arg => /[\s"]/u.test(arg)
+      ? `"${String(arg).replace(/"/g, '\\"')}"`
+      : String(arg);
+    const comspec = process.env.ComSpec || 'cmd.exe';
+    const command = ['npm', ...args].map(quoteArg).join(' ');
+    return spawnSync(comspec, ['/d', '/s', '/c', command], baseOptions);
+  };
 
   // 1. Install sdk build-time dependencies (tsc, etc.)
-  const installResult = spawnSync(npmCmd, ['install'], { cwd: sdkDir, stdio: 'inherit' });
+  const installResult = spawnNpm(['install']);
   if (installResult.status !== 0) {
     warnManual('Failed to `npm install` in sdk/.');
     return;
   }
 
   // 2. Compile TypeScript → sdk/dist/
-  const buildResult = spawnSync(npmCmd, ['run', 'build'], { cwd: sdkDir, stdio: 'inherit' });
+  const buildResult = spawnNpm(['run', 'build']);
   if (buildResult.status !== 0) {
     warnManual('Failed to `npm run build` in sdk/.');
     return;
   }
 
   // 3. Install the built package globally so `gsd-sdk` lands on PATH.
-  const globalResult = spawnSync(npmCmd, ['install', '-g', '.'], { cwd: sdkDir, stdio: 'inherit' });
+  const globalResult = spawnNpm(['install', '-g', '.']);
   if (globalResult.status !== 0) {
     warnManual('Failed to `npm install -g .` from sdk/.');
     return;

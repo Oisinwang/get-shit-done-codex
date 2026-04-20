@@ -10,8 +10,13 @@ body:
 
         A feature adds something new to GSD - a new command, workflow, concept, or integration. Features have the highest bar for acceptance because every feature adds permanent maintenance burden to a project built for solo developers.
 
+        This fork's public branch is `codex/bootstrap`. Proposals should target the Codex-first contract:
+        `AGENTS.md`, `.codex/`, `agents_md_path`, and `generate-agents-*` are primary. Legacy
+        `.claude/`, `claude_*`, and `generate-claude-*` surfaces should only appear when your proposal
+        explicitly justifies a compatibility shim.
+
         **Before opening this issue:**
-        - Check your fork's existing issues and discussions - has this been proposed and declined before?
+        - Check this fork's existing issues and discussions - has this been proposed and declined before?
         - Read [CONTRIBUTING.md](../../CONTRIBUTING.md#-feature) - understand what "approved-feature" means and why you must wait for it before writing code.
         - Ask yourself: does this solve a real problem for a solo developer working with an AI coding tool, or is it a feature I personally want?
 
@@ -26,13 +31,17 @@ body:
       label: Pre-submission checklist
       description: You must check every box. Unchecked boxes are an immediate close.
       options:
-        - label: I have searched existing issues and discussions - this has not been proposed and declined before
+        - label: I have searched existing issues and discussions on this fork - this has not been proposed and declined before
           required: true
         - label: I have read CONTRIBUTING.md and understand that I must wait for `approved-feature` before writing any code
+          required: true
+        - label: I understand `codex/bootstrap` is the public branch and this proposal targets Codex-first behavior first
           required: true
         - label: I have read the existing GSD commands and workflows and confirmed this feature does not duplicate existing behavior
           required: true
         - label: This feature solves a problem for solo developers using AI coding tools, not a personal preference or workflow I happen to like
+          required: true
+        - label: If this proposal touches legacy `.claude` or `generate-claude-*` compatibility, I explain why that shim is still necessary
           required: true
 
   - type: input
@@ -80,7 +89,8 @@ body:
     attributes:
       label: What this feature adds
       description: |
-        Describe exactly what is being added. Be specific about commands, output, behavior, and user interaction.
+        Describe exactly what is being added. Be specific about commands, output, behavior, user interaction,
+        and whether the public surface is `AGENTS.md` / `.codex` / `generate-agents-*`.
         Include example commands or example output where possible.
       placeholder: |
         A new command `/gsd-rollback` that:
@@ -157,6 +167,7 @@ body:
         - Planning system (phases, roadmap, state)
         - Context management (context engineering, summaries)
         - Runtime integration (hooks, statusline, settings)
+        - Codex-first instruction and agent surfaces
         - Installation / setup
         - Documentation only
         - Multiple areas (describe in scope section above)

@@ -8,7 +8,19 @@
 
 GSD stores project settings in `.planning/config.json`. Created during `/gsd-new-project`, updated via `/gsd-settings`.
 
-The canonical contract in this fork uses `AGENTS.md`, `.codex/`, `agents_md_path`, and `generate-agents-*`. Legacy Claude naming remains compatibility-only.
+The canonical contract in this fork uses `AGENTS.md`, `.codex/`, `agents_md_path`, and `generate-agents-*`. Legacy Claude naming remains compatibility-only and should only appear in older configs being migrated.
+
+## Why This Matters In This Fork
+
+This fork is intentionally Codex-first at the configuration layer. New projects should expect generated config and generated docs to point at `AGENTS.md`, `.codex/`, and `agents_md_path` without requiring any Claude-specific rename step.
+
+If you see `claude_md_path`, treat it as a compatibility alias for existing projects, not as the recommended key for new setup.
+
+## Current Stability
+
+- Stable for new Codex-first config generation using `agents_md_path`
+- Stable for reading legacy `claude_md_path` during migration
+- Public configuration docs now present legacy keys as compatibility notes rather than defaults
 
 ### Full Schema
 
@@ -114,8 +126,8 @@ The canonical contract in this fork uses `AGENTS.md`, `.codex/`, `agents_md_path
 | `project_code` | string | any short string | (none) | Prefix for phase directory names (e.g., `"ABC"` produces `ABC-01-setup/`). Added in v1.31 |
 | `response_language` | string | language code | (none) | Language for agent responses (e.g., `"pt"`, `"ko"`, `"ja"`). Propagates to all spawned agents for cross-phase language consistency. Added in v1.32 |
 | `context_profile` | string | `dev`, `research`, `review` | (none) | Execution context preset that applies a pre-configured bundle of mode, model, and workflow settings for the current type of work. Added in v1.34 |
-| `agents_md_path` | string | any file path | `./AGENTS.md` | Primary output path for the generated `AGENTS.md` file in this Codex-first fork. Useful for monorepos or projects that need the agent contract in a non-root location. |
-| `claude_md_path` | string | any file path | (legacy alias) | Compatibility alias for `agents_md_path`. Older configs still load, but new Codex-first projects should set `agents_md_path` instead. |
+| `agents_md_path` | string | any file path | `./AGENTS.md` | Primary output path for the generated `AGENTS.md` file in this fork. New projects should set this key when they need a non-root location. |
+| `claude_md_path` | string | any file path | (legacy alias) | Compatibility alias for `agents_md_path`. Older configs still load, but new projects should not choose this key as their primary setting. |
 
 > **Note:** `granularity` was renamed from `depth` in v1.22.3. Existing configs are auto-migrated.
 

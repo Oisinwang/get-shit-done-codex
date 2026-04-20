@@ -4,7 +4,7 @@
 
 **English** | [Portuguese](README.pt-BR.md) | [Chinese](README.zh-CN.md) | [Japanese](README.ja-JP.md) | [Korean](README.ko-KR.md)
 
-**A lightweight meta-prompting, context-engineering, and spec-driven development system with a Codex-first contract and multi-runtime compatibility.**
+**An independent Codex-first fork of GSD for developers who want `AGENTS.md`, `.codex/`, and `$gsd-*` to be the primary contract.**
 
 **Solves context rot: the quality degradation that appears as long-running AI coding sessions accumulate stale context.**
 
@@ -13,7 +13,11 @@
 <br>
 
 ```bash
-npx get-shit-done-codex@latest
+git clone https://github.com/Oisinwang/get-shit-done-codex.git
+cd get-shit-done-codex
+npm install
+npm run build:hooks
+node bin/install.js --codex --local
 ```
 
 **Works on Mac, Windows, and Linux.**
@@ -56,6 +60,22 @@ npx get-shit-done-codex@latest
 
 ---
 
+## Why This Fork Exists
+
+Upstream now supports Codex installs, but it still presents a multi-runtime package with shared naming and shared defaults.
+
+This fork exists to make Codex the release-facing default instead of one supported runtime among many. That means `AGENTS.md`, `.codex/`, `agents_md_path`, `generate-agents-md`, and `~/.codex/sessions` are treated as the canonical interface everywhere users first land.
+
+Compatibility with older Claude-era names remains, but only to keep existing installs and older projects migratable. Compatibility is not the product story.
+
+## Current Stability
+
+- Stable for Codex-first installs, project bootstrap, profile generation, session analysis, and the primary `generate-agents-*` flows.
+- Legacy aliases such as `claude_md_path` and `generate-claude-*` still work, but they are migration shims rather than the recommended path.
+- Public docs, package metadata, and the default branch now describe this repository as an independent Codex-first fork.
+
+---
+
 ## Why I Built This
 
 I built this because I wanted a practical system for shipping software with AI without pretending I run a 50-person organization.
@@ -87,10 +107,26 @@ Built-in quality gates catch real problems: schema drift detection flags ORM cha
 ## Getting Started
 
 ```bash
-npx get-shit-done-codex@latest
+git clone https://github.com/Oisinwang/get-shit-done-codex.git
+cd get-shit-done-codex
+npm install
+npm run build:hooks
+node bin/install.js --codex --local
 ```
 
-If you are running directly from this repository before publishing the package, use:
+The currently verified install path for this fork is a source checkout on `codex/bootstrap`.
+
+The npm package name is reserved, but the registry package currently resolves to an older CLI surface and is not treated as a verified install path for this public fork release.
+
+### Verified Install Matrix
+
+| Path | Status | Notes |
+|------|--------|-------|
+| Source Codex local install | Verified | `node bin/install.js --codex --local` creates `./.codex/` |
+| Source Claude local install | Verified compatibility | `node bin/install.js --claude --local` creates `./.claude/`; migration path only |
+| `npx get-shit-done-codex@latest --codex --local` | Not release-aligned yet | Registry package is behind this fork's public branch |
+
+If you are running directly from this repository, use:
 
 ```bash
 npm install
@@ -103,14 +139,17 @@ The installer prompts you to choose:
 2. **Location**: global (all projects) or local (current project only)
 
 Verify with:
+- Codex: `$gsd-help`
 - Claude Code / Gemini / Copilot / Antigravity / Qwen Code: `/gsd-help`
 - OpenCode / Kilo / Augment / Trae / CodeBuddy: `/gsd-help`
-- Codex: `$gsd-help`
 - Cline: GSD installs via `.clinerules`; verify by checking `.clinerules` exists
 
 > [!NOTE]
-> Codex is the primary runtime in this fork. Managed installs write skills to `./.codex/skills/` or `~/.codex/skills/` and generate `AGENTS.md` by default. Legacy Claude compatibility still understands `.claude/skills/`, `~/.claude/skills/`, and `~/.claude/commands/gsd/` when present, but those paths are no longer the primary contract.
-> Read `AGENTS.md` first for project instructions. `CLAUDE.md` only remains as a migration alias.
+> Codex is the primary runtime in this fork. Verified source installs create `./.codex/` or `~/.codex/` and place managed skills under the matching `.codex/skills/` tree. `AGENTS.md` is the primary instruction contract of the fork, but install alone does not generate it; project bootstrap and profile flows generate or update it later. Legacy Claude compatibility still understands `.claude/skills/`, `~/.claude/skills/`, and `~/.claude/commands/gsd/` when present, but those paths are no longer the primary contract.
+> Read `AGENTS.md` first when a project provides it. `CLAUDE.md` only remains as a migration alias.
+
+> [!IMPORTANT]
+> Release-facing examples in this repository use Codex-first names and `$gsd-*` command syntax first. Slash-command examples remain valid for runtime-specific compatibility, but they are not the default contract of this fork.
 
 The canonical discovery contract is documented in [docs/skills/discovery-contract.md](docs/skills/discovery-contract.md).
 
@@ -119,7 +158,7 @@ The canonical discovery contract is documented in [docs/skills/discovery-contrac
 
 ### Staying Updated
 
-This fork is intended to update from source until you publish it under your own remote and package registry:
+This fork is currently intended to update from source until the package release catches up with `codex/bootstrap`:
 
 ```bash
 git pull
@@ -130,65 +169,65 @@ node bin/install.js --codex --global
 <details>
 <summary><strong>Non-interactive Install (Docker, CI, Scripts)</strong></summary>
 
-The Claude Code entries below are runtime-specific compatibility instructions. Codex remains the default target in this fork.
+The source installer below is the currently verified non-interactive path. The Claude Code entries remain runtime-specific compatibility instructions; Codex is still the default target in this fork.
 
 ```bash
 # Claude Code compatibility/runtime
-npx get-shit-done-codex --claude --global   # Install to ~/.claude/
-npx get-shit-done-codex --claude --local    # Install to ./.claude/
+node bin/install.js --claude --global   # Install to ~/.claude/
+node bin/install.js --claude --local    # Install to ./.claude/
 
 # OpenCode
-npx get-shit-done-codex --opencode --global # Install to ~/.config/opencode/
+node bin/install.js --opencode --global # Install to ~/.config/opencode/
 
 # Gemini CLI
-npx get-shit-done-codex --gemini --global   # Install to ~/.gemini/
+node bin/install.js --gemini --global   # Install to ~/.gemini/
 
 # Kilo
-npx get-shit-done-codex --kilo --global     # Install to ~/.config/kilo/
-npx get-shit-done-codex --kilo --local      # Install to ./.kilo/
+node bin/install.js --kilo --global     # Install to ~/.config/kilo/
+node bin/install.js --kilo --local      # Install to ./.kilo/
 
 # Codex
-npx get-shit-done-codex --codex --global    # Install to ~/.codex/
-npx get-shit-done-codex --codex --local     # Install to ./.codex/
+node bin/install.js --codex --global    # Install to ~/.codex/
+node bin/install.js --codex --local     # Install to ./.codex/
 
 # Copilot
-npx get-shit-done-codex --copilot --global  # Install to ~/.github/
-npx get-shit-done-codex --copilot --local   # Install to ./.github/
+node bin/install.js --copilot --global  # Install to ~/.github/
+node bin/install.js --copilot --local   # Install to ./.github/
 
 # Cursor CLI
-npx get-shit-done-codex --cursor --global      # Install to ~/.cursor/
-npx get-shit-done-codex --cursor --local       # Install to ./.cursor/
+node bin/install.js --cursor --global      # Install to ~/.cursor/
+node bin/install.js --cursor --local       # Install to ./.cursor/
 
 # Windsurf
-npx get-shit-done-codex --windsurf --global    # Install to ~/.codeium/windsurf/
-npx get-shit-done-codex --windsurf --local     # Install to ./.windsurf/
+node bin/install.js --windsurf --global    # Install to ~/.codeium/windsurf/
+node bin/install.js --windsurf --local     # Install to ./.windsurf/
 
 # Antigravity
-npx get-shit-done-codex --antigravity --global # Install to ~/.gemini/antigravity/
-npx get-shit-done-codex --antigravity --local  # Install to ./.agent/
+node bin/install.js --antigravity --global # Install to ~/.gemini/antigravity/
+node bin/install.js --antigravity --local  # Install to ./.agent/
 
 # Augment
-npx get-shit-done-codex --augment --global     # Install to ~/.augment/
-npx get-shit-done-codex --augment --local      # Install to ./.augment/
+node bin/install.js --augment --global     # Install to ~/.augment/
+node bin/install.js --augment --local      # Install to ./.augment/
 
 # Trae
-npx get-shit-done-codex --trae --global        # Install to ~/.trae/
-npx get-shit-done-codex --trae --local         # Install to ./.trae/
+node bin/install.js --trae --global        # Install to ~/.trae/
+node bin/install.js --trae --local         # Install to ./.trae/
 
 # Qwen Code
-npx get-shit-done-codex --qwen --global        # Install to ~/.qwen/
-npx get-shit-done-codex --qwen --local         # Install to ./.qwen/
+node bin/install.js --qwen --global        # Install to ~/.qwen/
+node bin/install.js --qwen --local         # Install to ./.qwen/
 
 # CodeBuddy
-npx get-shit-done-codex --codebuddy --global   # Install to ~/.codebuddy/
-npx get-shit-done-codex --codebuddy --local    # Install to ./.codebuddy/
+node bin/install.js --codebuddy --global   # Install to ~/.codebuddy/
+node bin/install.js --codebuddy --local    # Install to ./.codebuddy/
 
 # Cline
-npx get-shit-done-codex --cline --global       # Install to ~/.cline/
-npx get-shit-done-codex --cline --local        # Install to ./.clinerules
+node bin/install.js --cline --global       # Install to ~/.cline/
+node bin/install.js --cline --local        # Install to ./.clinerules
 
 # All runtimes
-npx get-shit-done-codex --all --global      # Install to all directories
+node bin/install.js --all --global      # Install to all directories
 ```
 
 Use `--global` (`-g`) or `--local` (`-l`) to skip the location prompt.
@@ -812,11 +851,14 @@ This prevents Claude from reading these files entirely, regardless of what comma
 
 **Commands not working as expected?**
 - Run `$gsd-help` to verify installation in Codex
-- Re-run `npx get-shit-done-codex` or `node bin/install.js --codex --global` to reinstall
+- Re-run `node bin/install.js --codex --global` or `node bin/install.js --codex --local` from a fresh checkout of `codex/bootstrap`
 
 **Updating to the latest version?**
 ```bash
-npx get-shit-done-codex@latest
+git pull
+npm install
+npm run build:hooks
+node bin/install.js --codex --global
 ```
 
 **Using Docker or containerized environments?**
@@ -829,36 +871,36 @@ To remove GSD completely:
 
 ```bash
 # Global installs
-npx get-shit-done-codex --claude --global --uninstall
-npx get-shit-done-codex --opencode --global --uninstall
-npx get-shit-done-codex --gemini --global --uninstall
-npx get-shit-done-codex --kilo --global --uninstall
-npx get-shit-done-codex --codex --global --uninstall
-npx get-shit-done-codex --copilot --global --uninstall
-npx get-shit-done-codex --cursor --global --uninstall
-npx get-shit-done-codex --windsurf --global --uninstall
-npx get-shit-done-codex --antigravity --global --uninstall
-npx get-shit-done-codex --augment --global --uninstall
-npx get-shit-done-codex --trae --global --uninstall
-npx get-shit-done-codex --qwen --global --uninstall
-npx get-shit-done-codex --codebuddy --global --uninstall
-npx get-shit-done-codex --cline --global --uninstall
+node bin/install.js --claude --global --uninstall
+node bin/install.js --opencode --global --uninstall
+node bin/install.js --gemini --global --uninstall
+node bin/install.js --kilo --global --uninstall
+node bin/install.js --codex --global --uninstall
+node bin/install.js --copilot --global --uninstall
+node bin/install.js --cursor --global --uninstall
+node bin/install.js --windsurf --global --uninstall
+node bin/install.js --antigravity --global --uninstall
+node bin/install.js --augment --global --uninstall
+node bin/install.js --trae --global --uninstall
+node bin/install.js --qwen --global --uninstall
+node bin/install.js --codebuddy --global --uninstall
+node bin/install.js --cline --global --uninstall
 
 # Local installs (current project)
-npx get-shit-done-codex --claude --local --uninstall
-npx get-shit-done-codex --opencode --local --uninstall
-npx get-shit-done-codex --gemini --local --uninstall
-npx get-shit-done-codex --kilo --local --uninstall
-npx get-shit-done-codex --codex --local --uninstall
-npx get-shit-done-codex --copilot --local --uninstall
-npx get-shit-done-codex --cursor --local --uninstall
-npx get-shit-done-codex --windsurf --local --uninstall
-npx get-shit-done-codex --antigravity --local --uninstall
-npx get-shit-done-codex --augment --local --uninstall
-npx get-shit-done-codex --trae --local --uninstall
-npx get-shit-done-codex --qwen --local --uninstall
-npx get-shit-done-codex --codebuddy --local --uninstall
-npx get-shit-done-codex --cline --local --uninstall
+node bin/install.js --claude --local --uninstall
+node bin/install.js --opencode --local --uninstall
+node bin/install.js --gemini --local --uninstall
+node bin/install.js --kilo --local --uninstall
+node bin/install.js --codex --local --uninstall
+node bin/install.js --copilot --local --uninstall
+node bin/install.js --cursor --local --uninstall
+node bin/install.js --windsurf --local --uninstall
+node bin/install.js --antigravity --local --uninstall
+node bin/install.js --augment --local --uninstall
+node bin/install.js --trae --local --uninstall
+node bin/install.js --qwen --local --uninstall
+node bin/install.js --codebuddy --local --uninstall
+node bin/install.js --cline --local --uninstall
 ```
 
 This removes all GSD commands, agents, hooks, and settings while preserving your other configurations.
@@ -867,7 +909,7 @@ This removes all GSD commands, agents, hooks, and settings while preserving your
 
 ## Community Ports
 
-OpenCode, Gemini CLI, Kilo, and Codex are now natively supported via `npx get-shit-done-codex`.
+OpenCode, Gemini CLI, Kilo, and Codex are now natively supported via the fork's source installer and runtime-specific install flags.
 
 These community ports pioneered multi-runtime support:
 

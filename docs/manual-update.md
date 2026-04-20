@@ -1,62 +1,91 @@
-# Manual Update (Non-npm Install)
+# Manual Update And Source Install
 
-Use this procedure when `npx get-shit-done-cc@latest` is unavailable — e.g. during a publish outage or if you are working directly from the source repo.
+Use this procedure when you want the verified install path for this fork.
+
+As of `v1.37.1-codex.1`, the public branch is `codex/bootstrap`, and the source installer is the release-aligned path. The `get-shit-done-codex` npm package name exists, but the registry package is not yet aligned with this fork's current public branch.
 
 ## Prerequisites
 
 - Node.js installed
-- This repo cloned locally (`git clone https://github.com/gsd-build/get-shit-done`)
-
-## Steps
+- This repo cloned locally:
 
 ```bash
-# 1. Pull latest code
-git pull --rebase origin main
-
-# 2. Build the hooks dist (required — hooks/dist/ is generated, not checked in as source)
-node scripts/build-hooks.js
-
-# 3. Run the installer directly
-node bin/install.js --claude --global
-
-# 4. Clear the update cache so the statusline indicator resets
-rm -f ~/.cache/gsd/gsd-update-check.json
+git clone https://github.com/Oisinwang/get-shit-done-codex.git
+cd get-shit-done-codex
+git checkout codex/bootstrap
 ```
 
-**Step 5 — Restart your runtime** to pick up the new commands and agents.
+## Verified Paths
 
-## Runtime flags
+| Path | Status | Outcome |
+|---|---|---|
+| `node bin/install.js --codex --local` | Verified | Creates `./.codex/` |
+| `node bin/install.js --claude --local` | Verified compatibility | Creates `./.claude/` |
+| `npx get-shit-done-codex@latest --codex --local` | Not release-aligned | Registry package currently resolves to an older CLI surface |
 
-Replace `--claude` with the flag for your runtime:
+Install alone does not generate `AGENTS.md`. In this fork, `AGENTS.md` is the primary instruction contract, but it is generated or updated later by project bootstrap and profile flows.
 
-| Runtime | Flag |
-|---|---|
-| Claude Code | `--claude` |
-| Gemini CLI | `--gemini` |
-| OpenCode | `--opencode` |
-| Kilo | `--kilo` |
-| Codex | `--codex` |
-| Copilot | `--copilot` |
-| Cursor | `--cursor` |
-| Windsurf | `--windsurf` |
-| Augment | `--augment` |
-| All runtimes | `--all` |
+## Fresh Source Install
 
-Use `--local` instead of `--global` for a project-scoped install.
+```bash
+npm install
+npm run build:hooks
+node bin/install.js --codex --local
+```
 
-## What the installer replaces
+Use `--global` instead of `--local` if you want the install under `~/.codex/`.
 
-The installer performs a clean wipe-and-replace of GSD-managed directories only:
+## Update An Existing Source-Based Install
 
-- `~/.claude/get-shit-done/` — workflows, references, templates
-- `~/.claude/commands/gsd/` — slash commands
-- `~/.claude/agents/gsd-*.md` — GSD agents
-- `~/.claude/hooks/dist/` — compiled hooks
+```bash
+git pull --rebase origin codex/bootstrap
+npm install
+npm run build:hooks
+node bin/install.js --codex --global
+```
 
-**What is preserved:**
+Restart your runtime after the install so commands, agents, and hooks are reloaded.
+
+## Runtime Flags
+
+Replace `--codex` with the runtime you actually want:
+
+| Runtime | Flag | Status in this fork |
+|---|---|---|
+| Codex | `--codex` | primary |
+| Claude Code | `--claude` | compatibility / migration |
+| Gemini CLI | `--gemini` | supported |
+| OpenCode | `--opencode` | supported |
+| Kilo | `--kilo` | supported |
+| Copilot | `--copilot` | supported |
+| Cursor | `--cursor` | supported |
+| Windsurf | `--windsurf` | supported |
+| Augment | `--augment` | supported |
+| Antigravity | `--antigravity` | supported |
+| Trae | `--trae` | supported |
+| Qwen Code | `--qwen` | supported |
+| CodeBuddy | `--codebuddy` | supported |
+| Cline | `--cline` | supported |
+| All runtimes | `--all` | supported |
+
+## What The Installer Replaces
+
+The installer performs a clean wipe-and-replace of GSD-managed directories for the target runtime only.
+
+For Codex, that means the managed surfaces under `~/.codex/` or `./.codex/`, including:
+
+- `get-shit-done/`
+- runtime-specific generated agents
+- managed hooks
+- managed skills
+
+For Claude compatibility installs, the same rule applies under `~/.claude/` or `./.claude/`.
+
+What is preserved:
+
 - Custom agents not prefixed with `gsd-`
-- Custom commands outside `commands/gsd/`
-- Your `CLAUDE.md` files
-- Custom hooks
+- Custom commands outside the GSD-managed command directory
+- Existing `AGENTS.md` / `CLAUDE.md` project files
+- Custom hooks outside the managed GSD set
 
-Locally modified GSD files are automatically backed up to `gsd-local-patches/` before the install. Run `/gsd-reapply-patches` after updating to merge your modifications back in.
+Locally modified GSD files are backed up to `gsd-local-patches/` before install. Reapply them after updating only if you intentionally maintain local fork-specific changes on top of the new version.
