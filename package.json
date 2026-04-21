@@ -41,6 +41,9 @@
   "bugs": {
     "url": "https://github.com/Oisinwang/get-shit-done-codex/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=22.0.0"
   },

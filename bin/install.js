@@ -136,7 +136,8 @@ Please install a Linux-native Node.js inside WSL:
   curl -fsSL https://fnm.vercel.app/install | bash
   fnm install --lts
 
-Then re-run: npx get-shit-done-codex@latest
+Then re-run the installer from a source checkout of this fork:
+  node bin/install.js --codex --global
 `);
     process.exit(1);
   }
@@ -6649,11 +6650,11 @@ function promptLocation(runtimes) {
 }
 
 /**
- * Build `@gsd-build/sdk` from the in-repo `sdk/` source tree and install the
+ * Build `@get-shit-done-codex/sdk` from the in-repo `sdk/` source tree and install the
  * resulting `gsd-sdk` binary globally so workflow commands that shell out to
  * `gsd-sdk query …` succeed.
  *
- * We build from source rather than `npm install -g @gsd-build/sdk` because the
+ * We build from source rather than `npm install -g @get-shit-done-codex/sdk` because the
  * npm-published package lags the source tree and shipping a stale SDK breaks
  * every /gsd-* command that depends on newer query handlers.
  *
@@ -6764,10 +6765,10 @@ function installAllRuntimes(runtimes, isGlobal, isInteractive) {
   const primaryStatuslineResult = results.find(r => statuslineRuntimes.includes(r.runtime));
 
   const finalize = (shouldInstallStatusline) => {
-    // Build @gsd-build/sdk from the in-repo sdk/ source and install it globally
+    // Build @get-shit-done-codex/sdk from the in-repo sdk/ source and install it globally
     // so `gsd-sdk` lands on PATH. Every /gsd-* command shells out to
     // `gsd-sdk query …`; without this, commands fail with "command not found:
-    // gsd-sdk". The npm-published @gsd-build/sdk is kept intentionally frozen
+    // gsd-sdk". The npm-published @get-shit-done-codex/sdk is kept intentionally frozen
     // at an older version; we always build from source so users get the SDK
     // that matches the installed GSD version.
     // Runs by default; skip with --no-sdk. Idempotent when already present.

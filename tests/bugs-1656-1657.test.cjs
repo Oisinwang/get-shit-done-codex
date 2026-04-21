@@ -50,7 +50,7 @@ describe('#1656: community .sh hooks must be present in hooks/dist', () => {
 // ─── #1657 ───────────────────────────────────────────────────────────────────
 //
 // Historical context: #1657 originally guarded against a broken `promptSdk()`
-// flow that shipped when `@gsd-build/sdk` did not yet exist on npm. The
+// flow that shipped before the fork's standalone SDK package existed on npm. The
 // package was published at v0.1.0 and is now a hard runtime requirement for
 // every /gsd-* command (they all shell out to `gsd-sdk query …`).
 //
@@ -83,10 +83,9 @@ describe('#1657 / #2385: SDK install must be wired into installer source', () =>
   test('install.js builds gsd-sdk from in-repo sdk/ source (#2385)', () => {
     src = src || fs.readFileSync(INSTALL_SRC, 'utf-8');
     // The installer must locate the in-repo sdk/ directory, run the build,
-    // and install it globally. We intentionally do NOT install
-    // @gsd-build/sdk from npm because that published version lags the source
-    // tree and shipping it breaks query handlers added since the last
-    // publish.
+    // and install it globally. We intentionally do NOT install the SDK from
+    // npm here because the published package can lag the source tree and
+    // shipping it breaks query handlers added since the last publish.
     assert.ok(
       src.includes("path.resolve(__dirname, '..', 'sdk')") ||
       src.includes('path.resolve(__dirname, "..", "sdk")'),
