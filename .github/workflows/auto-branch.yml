@@ -63,18 +63,18 @@ jobs:
               if (e.status !== 404) throw e;
             }
 
-            // Create branch from main HEAD
-            const mainRef = await github.rest.git.getRef({
+            // Create branch from codex/bootstrap HEAD
+            const defaultRef = await github.rest.git.getRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'heads/main',
+              ref: 'heads/codex/bootstrap',
             });
 
             await github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: `refs/heads/${branch}`,
-              sha: mainRef.data.object.sha,
+              sha: defaultRef.data.object.sha,
             });
 
             await github.rest.issues.createComment({

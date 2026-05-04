@@ -1,12 +1,12 @@
 /**
- * GSD SDK — Public API for running GSD plans programmatically.
+ * GSD SDK - Public API for running GSD plans programmatically.
  *
  * The GSD class composes plan parsing, config loading, prompt building,
  * and session running into a single `executePlan()` call.
  *
  * @example
  * ```typescript
- * import { GSD } from '@gsd-build/sdk';
+ * import { GSD } from '@oisinwang/get-shit-done-codex-sdk';
  *
  * const gsd = new GSD({ projectDir: '/path/to/project' });
  * const result = await gsd.executePlan('.planning/phases/01-auth/01-auth-01-PLAN.md');
@@ -35,7 +35,7 @@ import { PhaseRunner } from './phase-runner.js';
 import { ContextEngine } from './context-engine.js';
 import { PromptFactory } from './phase-prompt.js';
 
-// ─── GSD class ───────────────────────────────────────────────────────────────
+// GSD class
 
 export class GSD {
   private readonly projectDir: string;
@@ -124,7 +124,7 @@ export class GSD {
   }
 
   /**
-   * Run a full phase lifecycle: discuss → research → plan → execute → verify → advance.
+   * Run a full phase lifecycle: discuss -> research -> plan -> execute -> verify -> advance.
    *
    * Creates the necessary collaborators (GSDTools, PromptFactory, ContextEngine),
    * loads project config, instantiates a PhaseRunner, and delegates to `runner.run()`.
@@ -211,7 +211,7 @@ export class GSD {
         const updatedAnalysis = await tools.roadmapAnalyze();
         currentPhases = this.filterAndSortPhases(updatedAnalysis.phases);
       } catch (err) {
-        // Phase threw an unexpected error — record as failure and stop
+        // Phase threw an unexpected error - record as failure and stop
         phaseResults.push({
           phaseNumber: phase.number,
           phaseName: phase.phase_name,
@@ -259,7 +259,7 @@ export class GSD {
 
   /**
    * Load the gsd-executor agent definition if available.
-   * Falls back gracefully – returns undefined if not found.
+   * Falls back gracefully - returns undefined if not found.
    */
   private async loadAgentDefinition(): Promise<string | undefined> {
     const paths = [
@@ -293,7 +293,7 @@ export class GSD {
   }
 }
 
-// ─── Re-exports for advanced usage ──────────────────────────────────────────
+// Re-exports for advanced usage
 
 export { parsePlan, parsePlanFile } from './plan-parser.js';
 export { loadConfig } from './config.js';

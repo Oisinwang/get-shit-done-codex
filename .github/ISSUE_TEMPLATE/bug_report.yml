@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-description: Report broken behavior in the Codex-first fork
+description: Report something that is not working correctly
 labels: ["bug", "needs-triage"]
 body:
   - type: markdown
@@ -8,34 +8,16 @@ body:
       value: |
         Thanks for taking the time to report a bug. The more detail you provide, the faster we can fix it.
 
-        This repository's public branch is `codex/bootstrap`, and its primary contract is Codex-first:
-        `AGENTS.md`, `.codex/`, `agents_md_path`, and `generate-agents-*` come first. Legacy
-        `claude_*` names and `.claude/` paths are compatibility shims unless your report is specifically
-        about migration behavior.
-
         > Privacy Notice: Some fields below ask for logs or config files that may contain personally identifiable information (PII) such as file paths with your username, API keys, project names, or system details. Before pasting any output, please:
         > 1. Review it for sensitive data
         > 2. Redact usernames, paths, and API keys (e.g., replace `/Users/yourname/` with `/Users/REDACTED/`)
         > 3. Or run your logs through an anonymizer - we recommend [presidio-anonymizer](https://microsoft.github.io/presidio/) (open-source, local-only) or [scrub](https://github.com/dssg/scrub) before pasting
 
-  - type: checkboxes
-    id: before_opening
-    attributes:
-      label: Before opening this issue
-      description: Confirm the report matches the public fork and not an already-known issue.
-      options:
-        - label: I searched existing issues on this fork and did not find an open or closed duplicate
-          required: true
-        - label: I checked the latest release or current `codex/bootstrap` branch behavior before reporting
-          required: true
-        - label: I understand this fork is Codex-first and I have called out any legacy `.claude` or `generate-claude-*` compatibility path involved
-          required: true
-
   - type: input
     id: version
     attributes:
       label: GSD Version
-      description: "Run: `npm list -g get-shit-done-codex` or check `npx get-shit-done-codex --version`"
+      description: "Run: `npm list -g get-shit-done-codex` or check `npx @oisinwang/get-shit-done-codex --version`"
       placeholder: "e.g., 1.18.0"
     validations:
       required: true
@@ -96,9 +78,8 @@ body:
     attributes:
       label: Installation Method
       options:
-        - npx get-shit-done-codex@latest (fresh run)
-        - npm install -g get-shit-done-codex
-        - Source checkout on codex/bootstrap
+        - npx @oisinwang/get-shit-done-codex@latest (fresh run)
+        - npm install -g @oisinwang/get-shit-done-codex
         - Updated from a previous version
     validations:
       required: true
@@ -107,9 +88,9 @@ body:
     id: description
     attributes:
       label: What happened?
-      description: Describe what went wrong. Be specific about which GSD command, workflow, or Codex-first path you were using.
+      description: Describe what went wrong. Be specific about which GSD command you were running.
       placeholder: |
-        When I ran `generate-agents-md` and then `/gsd-plan`, the system...
+        When I ran `/gsd-plan`, the system...
     validations:
       required: true
 
@@ -128,12 +109,11 @@ body:
       description: |
         Exact steps to reproduce the issue. Include the GSD command used.
       placeholder: |
-        1. Install GSD with `npx get-shit-done-codex@latest`
-        2. Select runtime: Codex
-        3. Run `generate-agents-md`
-        4. Run `/gsd-init` with a new project
-        5. Run `/gsd-plan`
-        6. Error appears at step...
+        1. Install GSD with `npx @oisinwang/get-shit-done-codex@latest`
+        2. Select runtime: Claude Code
+        3. Run `/gsd-init` with a new project
+        4. Run `/gsd-plan`
+        5. Error appears at step...
     validations:
       required: true
 
@@ -154,8 +134,7 @@ body:
     attributes:
       label: GSD Configuration
       description: |
-        If the bug is related to planning, phases, workflow behavior, or Codex-first instruction generation,
-        paste your `.planning/config.json` and mention any `agents_md_path` override.
+        If the bug is related to planning, phases, or workflow behavior, paste your `.planning/config.json`.
 
         How to retrieve: `cat .planning/config.json`
 
@@ -186,7 +165,6 @@ body:
         If the bug involves hooks, statusline, or runtime integration, include your runtime's settings.json.
 
         How to retrieve:
-        - Codex: describe the relevant files under `~/.codex/` if you changed local runtime configuration
         - Claude Code: `cat ~/.claude/settings.json`
         - Gemini CLI: `cat ~/.gemini/settings.json`
         - OpenCode: `cat ~/.config/opencode/opencode.json` or `opencode.jsonc`
@@ -238,7 +216,6 @@ body:
 
         Useful diagnostics to include (if applicable):
         - `npm list -g get-shit-done-codex` - confirms installed version
-        - `git branch --show-current` - confirms whether you are testing `codex/bootstrap`
         - `ls -la ~/.codex/get-shit-done/` - confirms installation files
         - `cat ~/.codex/get-shit-done/gsd-file-manifest.json` - file manifest for debugging install issues
         - `ls -la .planning/` - confirms planning directory state

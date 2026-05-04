@@ -59,13 +59,14 @@ describe('codex-first canonical wording', () => {
     assert.ok(sketch.includes('## Update Project AGENTS.md'));
   });
 
-  test('release-facing docs present source install as the verified path', () => {
+  test('release-facing docs present scoped npm install as the verified path', () => {
     const readme = readRepoFile('README.md');
     const forkNotes = readRepoFile('docs/CODEX-FORK.md');
 
-    assert.match(readme, /The currently verified install path for this fork is a source checkout on `codex\/bootstrap`\./);
-    assert.match(readme, /Registry package is behind this fork's public branch/);
-    assert.doesNotMatch(readme, /generate `AGENTS\.md` by default/i);
+    assert.match(readme, /npx @oisinwang\/get-shit-done-codex@latest/);
+    assert.doesNotMatch(readme, /npx get-shit-done-codex/);
+    assert.doesNotMatch(readme, /Registry package is behind this fork's public branch/);
+    assert.match(readme, /Codex is the primary runtime in this fork/);
     assert.match(forkNotes, /Allowed Legacy-Reference Zones/);
     assert.match(forkNotes, /public-facing README, contributor instruction, or release note outside those zones should describe Codex-first semantics as the default/i);
   });

@@ -2,14 +2,6 @@
 
 This repository is the independent Codex-first fork of upstream `gsd-build/get-shit-done`.
 
-## Why This Fork Exists
-
-Upstream now supports Codex installation, but its public surface is still organized around a multi-runtime package with shared naming.
-
-This fork exists to make the public contract explicitly Codex-first: `AGENTS.md`, `.codex/`, `$gsd-*`, `agents_md_path`, `generate-agents-*`, and `~/.codex/sessions` are the names users should see first and the defaults they should receive.
-
-Compatibility remains only to keep older Claude-era installs migratable. It is not the semantic center of the fork.
-
 ## Primary Contract
 
 The fork treats the following as the canonical interface:
@@ -24,12 +16,6 @@ The fork treats the following as the canonical interface:
 
 These are the defaults used by project bootstrap, profile generation, session analysis, and generated agent guidance.
 `AGENTS.md`, `.codex/`, `agents_md_path`, and `generate-agents-*` are the release-facing contract; Claude-era names remain compatibility shims only.
-
-## Current Stability
-
-- Stable for Codex-first bootstrap, config generation, profile generation, and session profiling.
-- Stable for legacy alias loading where it is still covered by tests.
-- Not yet a compatibility-removal release; Claude-era names still exist where removing them would break migration or downstream installs.
 
 ## Compatibility Matrix
 
@@ -50,7 +36,7 @@ The fork still accepts a minimal compatibility layer so existing installs can mi
 - `generate-claude-profile` still dispatches to `generate-agents-profile`
 - Legacy Claude skill and command locations are still recognized when present during migration
 
-These shims exist to keep older projects usable while Codex-first naming remains the only release-facing contract.
+These shims exist to keep older projects usable while the Codex-first naming becomes the only public contract.
 
 ## Allowed Legacy-Reference Zones
 
@@ -62,7 +48,7 @@ Legacy Claude wording is acceptable only when it is explicitly scoped to:
 - historical changelog entries
 - upstream-reference docs that explicitly say "upstream"
 
-Any public-facing README, contributor instruction, or release note outside those zones should describe Codex-first semantics as the default and legacy Claude references as subordinate compatibility only.
+Any public-facing README, contributor instruction, or release note outside those zones should describe Codex-first semantics as the default.
 
 ## Migration From Installed Artifacts
 
@@ -103,11 +89,12 @@ The fork is close to open-source-ready when these items are true:
 - Removal of legacy Claude compatibility code and regression coverage.
 
 **Maintainer inputs still needed:**
-- Final SDK package namespace if `@get-shit-done-codex/sdk` is not the intended publish target
 - Decision on when to remove the remaining legacy aliases
 
 **Resolved fork identity:**
 - Public repository URL: `https://github.com/Oisinwang/get-shit-done-codex`
+- Root npm package: `@oisinwang/get-shit-done-codex`
+- SDK npm package: `@oisinwang/get-shit-done-codex-sdk`
 
 ## Planned Compatibility Removals
 

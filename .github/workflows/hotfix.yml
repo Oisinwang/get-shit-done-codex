@@ -152,7 +152,7 @@ jobs:
           BRANCH: ${{ needs.validate-version.outputs.branch }}
           VERSION: ${{ inputs.version }}
         run: |
-          EXISTING_PR=$(gh pr list --base main --head "$BRANCH" --state open --json number --jq '.[0].number')
+          EXISTING_PR=$(gh pr list --base codex/bootstrap --head "$BRANCH" --state open --json number --jq '.[0].number')
           if [ -n "$EXISTING_PR" ]; then
             echo "PR #$EXISTING_PR already exists; updating"
             gh pr edit "$EXISTING_PR" \
@@ -160,7 +160,7 @@ jobs:
               --body "Merge hotfix changes back to main after v${VERSION} release."
           else
             gh pr create \
-              --base main \
+              --base codex/bootstrap \
               --head "$BRANCH" \
               --title "chore: merge hotfix v${VERSION} back to main" \
               --body "Merge hotfix changes back to main after v${VERSION} release."
@@ -208,7 +208,7 @@ jobs:
         run: |
           # Point next to the stable release so @next never returns something
           # older than @latest. This prevents stale pre-release installs.
-          npm dist-tag add "get-shit-done-cc@${VERSION}" next 2>/dev/null || true
+          npm dist-tag add "@oisinwang/get-shit-done-codex@${VERSION}" next 2>/dev/null || true
           echo "✓ next dist-tag updated to v${VERSION}"
 
       - name: Verify publish
@@ -217,12 +217,12 @@ jobs:
           VERSION: ${{ inputs.version }}
         run: |
           sleep 10
-          PUBLISHED=$(npm view get-shit-done-cc@"$VERSION" version 2>/dev/null || echo "NOT_FOUND")
+          PUBLISHED=$(npm view @oisinwang/get-shit-done-codex@"$VERSION" version 2>/dev/null || echo "NOT_FOUND")
           if [ "$PUBLISHED" != "$VERSION" ]; then
             echo "::error::Published version verification failed. Expected $VERSION, got $PUBLISHED"
             exit 1
           fi
-          echo "✓ Verified: get-shit-done-cc@$VERSION is live on npm"
+          echo "✓ Verified: @oisinwang/get-shit-done-codex@$VERSION is live on npm"
 
       - name: Summary
         env:
@@ -235,5 +235,5 @@ jobs:
           else
             echo "- Published to npm as \`latest\`" >> "$GITHUB_STEP_SUMMARY"
             echo "- Tagged \`v${VERSION}\`" >> "$GITHUB_STEP_SUMMARY"
-            echo "- PR created to merge back to main" >> "$GITHUB_STEP_SUMMARY"
+            echo "- PR created to merge back to codex/bootstrap" >> "$GITHUB_STEP_SUMMARY"
           fi

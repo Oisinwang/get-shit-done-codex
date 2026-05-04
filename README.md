@@ -2,22 +2,18 @@
 
 # GET SHIT DONE CODEX
 
-**English** | [Portuguese](README.pt-BR.md) | [Chinese](README.zh-CN.md) | [Japanese](README.ja-JP.md) | [Korean](README.ko-KR.md)
+**English** | [Portuguese](README.pt-BR.md) | [Simplified Chinese](README.zh-CN.md) | [Japanese](README.ja-JP.md) | [Korean](README.ko-KR.md)
 
-**An independent Codex-first fork of GSD for developers who want `AGENTS.md`, `.codex/`, and `$gsd-*` to be the primary contract.**
+**A Codex-first workflow system for turning goals into planned, verified implementation across long-running AI coding sessions.**
 
-**Solves context rot: the quality degradation that appears as long-running AI coding sessions accumulate stale context.**
+**Keeps context, decisions, phase plans, validation checks, and recovery state explicit instead of hoping the model remembers everything.**
 
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 <br>
 
 ```bash
-git clone https://github.com/Oisinwang/get-shit-done-codex.git
-cd get-shit-done-codex
-npm install
-npm run build:hooks
-node bin/install.js --codex --local
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 **Works on Mac, Windows, and Linux.**
@@ -28,17 +24,17 @@ node bin/install.js --codex --local
 
 <br>
 
-*"If you know clearly what you want, this WILL build it for you. No bs."*
+*"If you know clearly what you want, this helps Codex keep building until the result is verifiable."*
 
-*"I've done SpecKit, OpenSpec, and Taskmaster - this has produced the best results for me."*
+*"Spec, plan, execute, review, and resume without importing a whole enterprise process."*
 
-*"By far the most powerful addition to my AI coding workflow. Nothing over-engineered. Literally just gets shit done."*
+*"Codex is the primary runtime, with compatibility shims for other agent CLIs."*
 
 <br>
 
-**Built for individual developers and small teams who want a reliable AI-assisted build workflow without heavyweight process theater.**
+**Public release status:** Codex-first release candidate; package names, CI, and docs are being stabilized.
 
-[Why I Built This](#why-i-built-this) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md)
+[Why This Fork Exists](#why-this-fork-exists) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md)
 
 </div>
 
@@ -62,71 +58,36 @@ node bin/install.js --codex --local
 
 ## Why This Fork Exists
 
-Upstream now supports Codex installs, but it still presents a multi-runtime package with shared naming and shared defaults.
+This fork turns GSD into a Codex-first workflow. The canonical project contract is `AGENTS.md`, `.codex/`, and `$gsd-*` commands. Legacy Claude-first names remain only so existing projects can migrate without losing context.
 
-This fork exists to make Codex the release-facing default instead of one supported runtime among many. That means `AGENTS.md`, `.codex/`, `agents_md_path`, `generate-agents-md`, and `~/.codex/sessions` are treated as the canonical interface everywhere users first land.
+The goal is simple: keep AI-assisted development coherent after the first prompt. GSD captures the goal, maps the codebase, plans implementation phases, executes with verification checkpoints, records decisions, and leaves enough state for Codex to resume work later.
 
-Compatibility with older Claude-era names remains, but only to keep existing installs and older projects migratable. Compatibility is not the product story.
-
-## Current Stability
-
-- Stable for Codex-first installs, project bootstrap, profile generation, session analysis, and the primary `generate-agents-*` flows.
-- Legacy aliases such as `claude_md_path` and `generate-claude-*` still work, but they are migration shims rather than the recommended path.
-- Public docs, package metadata, and the default branch now describe this repository as an independent Codex-first fork.
-
----
-
-## Why I Built This
-
-I built this because I wanted a practical system for shipping software with AI without pretending I run a 50-person organization.
-
-Most spec-driven tools either add too much ceremony or stop short of giving the coding runtime the context it actually needs. GSD pushes the complexity into the system instead of the human workflow: context engineering, structured prompts, subagent orchestration, verification loops, and state management.
-
-The goal is simple: describe what you want, keep requirements explicit, execute in small verifiable chunks, and retain enough context that the runtime can keep making correct decisions.
-
-That is what this fork is for. It keeps the workflow sharp, keeps the semantics Codex-first, and keeps compatibility only where migration still matters.
-
-AI coding gets a bad reputation when the system around it is loose. GSD is the structure that turns those sessions into something repeatable.
+It is for solo builders and small teams who want serious planning and validation without adopting enterprise process theater. You describe the outcome; the system preserves the requirements, checks the work, and makes the next action obvious.
 
 ---
 
 ## Who This Is For
 
-People who want to describe what they want and have it built correctly without pretending they are running a 50-person engineering organization.
+People who want to describe what they want and have it built correctly without pretending they are running a 50-person engineering org.
 
 Built-in quality gates catch real problems: schema drift detection flags ORM changes missing migrations, security enforcement anchors verification to threat models, and scope reduction detection prevents the planner from silently dropping your requirements.
 
 ### Current Highlights
 
-- **Spiking and sketching**: `/gsd-spike` runs focused experiments with Given/When/Then verdicts, and `/gsd-sketch` produces interactive HTML mockup variants that can be wrapped into project-local skills.
-- **Agent size-budget enforcement**: tiered prompt-size limits keep agent definitions lean and catch regressions in CI.
-- **Shared boilerplate extraction**: mandatory-initial-read and project-skill discovery logic are factored into reusable references to reduce drift across agent prompts.
+- **Codex-first project contract** - `AGENTS.md`, `.codex/`, `$gsd-*`, and Codex session paths are the primary semantics.
+- **Spiking and sketching** - `/gsd-spike` and `/gsd-sketch` capture experiments and design variants as durable planning artifacts.
+- **Agent size-budget enforcement** - tiered line-count limits keep agent prompts lean and CI-visible.
+- **Shared boilerplate extraction** - common reading and project-skill discovery logic is centralized instead of duplicated across agents.
 
 ---
 
 ## Getting Started
 
 ```bash
-git clone https://github.com/Oisinwang/get-shit-done-codex.git
-cd get-shit-done-codex
-npm install
-npm run build:hooks
-node bin/install.js --codex --local
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
-The currently verified install path for this fork is a source checkout on `codex/bootstrap`.
-
-The npm package name is reserved, but the registry package currently resolves to an older CLI surface and is not treated as a verified install path for this public fork release.
-
-### Verified Install Matrix
-
-| Path | Status | Notes |
-|------|--------|-------|
-| Source Codex local install | Verified | `node bin/install.js --codex --local` creates `./.codex/` |
-| Source Claude local install | Verified compatibility | `node bin/install.js --claude --local` creates `./.claude/`; migration path only |
-| `npx get-shit-done-codex@latest --codex --local` | Not release-aligned yet | Registry package is behind this fork's public branch |
-
-If you are running directly from this repository, use:
+If you are running directly from this repository before publishing the package, use:
 
 ```bash
 npm install
@@ -135,21 +96,18 @@ node bin/install.js --codex --local
 ```
 
 The installer prompts you to choose:
-1. **Runtime**: Codex, Claude Code, OpenCode, Gemini, Kilo, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, CodeBuddy, Cline, or all
-2. **Location**: global (all projects) or local (current project only)
+1. **Runtime** - Claude Code, OpenCode, Gemini, Kilo, Codex, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, CodeBuddy, Cline, or all (interactive multi-select - pick multiple runtimes in a single install session)
+2. **Location** - Global (all projects) or local (current project only)
 
 Verify with:
-- Codex: `$gsd-help`
 - Claude Code / Gemini / Copilot / Antigravity / Qwen Code: `/gsd-help`
 - OpenCode / Kilo / Augment / Trae / CodeBuddy: `/gsd-help`
-- Cline: GSD installs via `.clinerules`; verify by checking `.clinerules` exists
+- Codex: `$gsd-help`
+- Cline: GSD installs via `.clinerules` - verify by checking `.clinerules` exists
 
 > [!NOTE]
-> Codex is the primary runtime in this fork. Verified source installs create `./.codex/` or `~/.codex/` and place managed skills under the matching `.codex/skills/` tree. `AGENTS.md` is the primary instruction contract of the fork, but install alone does not generate it; project bootstrap and profile flows generate or update it later. Legacy Claude compatibility still understands `.claude/skills/`, `~/.claude/skills/`, and `~/.claude/commands/gsd/` when present, but those paths are no longer the primary contract.
-> Read `AGENTS.md` first when a project provides it. `CLAUDE.md` only remains as a migration alias.
-
-> [!IMPORTANT]
-> Release-facing examples in this repository use Codex-first names and `$gsd-*` command syntax first. Slash-command examples remain valid for runtime-specific compatibility, but they are not the default contract of this fork.
+> Codex is the primary runtime in this fork. Managed installs write skills to `./.codex/skills/` or `~/.codex/skills/` and generate `AGENTS.md` by default. Legacy Claude compatibility still understands `.claude/skills/`, `~/.claude/skills/`, and `~/.claude/commands/gsd/` when present, but those paths are no longer the primary contract.
+> Read `AGENTS.md` first for project instructions. `CLAUDE.md` only remains as a migration alias.
 
 The canonical discovery contract is documented in [docs/skills/discovery-contract.md](docs/skills/discovery-contract.md).
 
@@ -158,7 +116,7 @@ The canonical discovery contract is documented in [docs/skills/discovery-contrac
 
 ### Staying Updated
 
-This fork is currently intended to update from source until the package release catches up with `codex/bootstrap`:
+This fork is intended to update from source until you publish it under your own remote and package registry:
 
 ```bash
 git pull
@@ -169,65 +127,65 @@ node bin/install.js --codex --global
 <details>
 <summary><strong>Non-interactive Install (Docker, CI, Scripts)</strong></summary>
 
-The source installer below is the currently verified non-interactive path. The Claude Code entries remain runtime-specific compatibility instructions; Codex is still the default target in this fork.
+The Claude Code entries below are runtime-specific compatibility instructions. Codex remains the default target in this fork.
 
 ```bash
 # Claude Code compatibility/runtime
-node bin/install.js --claude --global   # Install to ~/.claude/
-node bin/install.js --claude --local    # Install to ./.claude/
+npx @oisinwang/get-shit-done-codex --claude --global   # Install to ~/.claude/
+npx @oisinwang/get-shit-done-codex --claude --local    # Install to ./.claude/
 
 # OpenCode
-node bin/install.js --opencode --global # Install to ~/.config/opencode/
+npx @oisinwang/get-shit-done-codex --opencode --global # Install to ~/.config/opencode/
 
 # Gemini CLI
-node bin/install.js --gemini --global   # Install to ~/.gemini/
+npx @oisinwang/get-shit-done-codex --gemini --global   # Install to ~/.gemini/
 
 # Kilo
-node bin/install.js --kilo --global     # Install to ~/.config/kilo/
-node bin/install.js --kilo --local      # Install to ./.kilo/
+npx @oisinwang/get-shit-done-codex --kilo --global     # Install to ~/.config/kilo/
+npx @oisinwang/get-shit-done-codex --kilo --local      # Install to ./.kilo/
 
 # Codex
-node bin/install.js --codex --global    # Install to ~/.codex/
-node bin/install.js --codex --local     # Install to ./.codex/
+npx @oisinwang/get-shit-done-codex --codex --global    # Install to ~/.codex/
+npx @oisinwang/get-shit-done-codex --codex --local     # Install to ./.codex/
 
 # Copilot
-node bin/install.js --copilot --global  # Install to ~/.github/
-node bin/install.js --copilot --local   # Install to ./.github/
+npx @oisinwang/get-shit-done-codex --copilot --global  # Install to ~/.github/
+npx @oisinwang/get-shit-done-codex --copilot --local   # Install to ./.github/
 
 # Cursor CLI
-node bin/install.js --cursor --global      # Install to ~/.cursor/
-node bin/install.js --cursor --local       # Install to ./.cursor/
+npx @oisinwang/get-shit-done-codex --cursor --global      # Install to ~/.cursor/
+npx @oisinwang/get-shit-done-codex --cursor --local       # Install to ./.cursor/
 
 # Windsurf
-node bin/install.js --windsurf --global    # Install to ~/.codeium/windsurf/
-node bin/install.js --windsurf --local     # Install to ./.windsurf/
+npx @oisinwang/get-shit-done-codex --windsurf --global    # Install to ~/.codeium/windsurf/
+npx @oisinwang/get-shit-done-codex --windsurf --local     # Install to ./.windsurf/
 
 # Antigravity
-node bin/install.js --antigravity --global # Install to ~/.gemini/antigravity/
-node bin/install.js --antigravity --local  # Install to ./.agent/
+npx @oisinwang/get-shit-done-codex --antigravity --global # Install to ~/.gemini/antigravity/
+npx @oisinwang/get-shit-done-codex --antigravity --local  # Install to ./.agent/
 
 # Augment
-node bin/install.js --augment --global     # Install to ~/.augment/
-node bin/install.js --augment --local      # Install to ./.augment/
+npx @oisinwang/get-shit-done-codex --augment --global     # Install to ~/.augment/
+npx @oisinwang/get-shit-done-codex --augment --local      # Install to ./.augment/
 
 # Trae
-node bin/install.js --trae --global        # Install to ~/.trae/
-node bin/install.js --trae --local         # Install to ./.trae/
+npx @oisinwang/get-shit-done-codex --trae --global        # Install to ~/.trae/
+npx @oisinwang/get-shit-done-codex --trae --local         # Install to ./.trae/
 
 # Qwen Code
-node bin/install.js --qwen --global        # Install to ~/.qwen/
-node bin/install.js --qwen --local         # Install to ./.qwen/
+npx @oisinwang/get-shit-done-codex --qwen --global        # Install to ~/.qwen/
+npx @oisinwang/get-shit-done-codex --qwen --local         # Install to ./.qwen/
 
 # CodeBuddy
-node bin/install.js --codebuddy --global   # Install to ~/.codebuddy/
-node bin/install.js --codebuddy --local    # Install to ./.codebuddy/
+npx @oisinwang/get-shit-done-codex --codebuddy --global   # Install to ~/.codebuddy/
+npx @oisinwang/get-shit-done-codex --codebuddy --local    # Install to ./.codebuddy/
 
 # Cline
-node bin/install.js --cline --global       # Install to ~/.cline/
-node bin/install.js --cline --local        # Install to ./.clinerules
+npx @oisinwang/get-shit-done-codex --cline --global       # Install to ~/.cline/
+npx @oisinwang/get-shit-done-codex --cline --local        # Install to ./.clinerules
 
 # All runtimes
-node bin/install.js --all --global      # Install to all directories
+npx @oisinwang/get-shit-done-codex --all --global      # Install to all directories
 ```
 
 Use `--global` (`-g`) or `--local` (`-l`) to skip the location prompt.
@@ -248,7 +206,7 @@ npm run build:hooks
 node bin/install.js --codex --local
 ```
 
-The `build:hooks` step is required. It compiles hook sources into `hooks/dist/`, which the installer copies from. Without it, hooks will not be installed and runtime hook behavior will be incomplete. The npm release handles this automatically via `prepublishOnly`.
+The `build:hooks` step is required - it compiles hook sources into `hooks/dist/` which the installer copies from. Without it, hooks won't be installed and you'll get hook errors in Claude Code. (The npm release handles this automatically via `prepublishOnly`.)
 
 Installs to `./.codex/` for testing modifications before contributing.
 
@@ -263,7 +221,7 @@ claude --dangerously-skip-permissions
 ```
 
 > [!TIP]
-> This is how GSD is intended to be used; stopping to approve `date` and `git commit` 50 times defeats the purpose.
+> This is how GSD is intended to be used - stopping to approve `date` and `git commit` 50 times defeats the purpose.
 
 <details>
 <summary><strong>Alternative: Granular Permissions</strong></summary>
@@ -302,7 +260,7 @@ If you prefer not to use that flag, Claude Code compatibility/runtime users can 
 
 ## How It Works
 
-> **Already have code?** Run `/gsd-map-codebase` first. It spawns parallel agents to analyze your stack, architecture, conventions, and concerns. Then `/gsd-new-project` starts from your existing codebase instead of asking generic greenfield questions.
+> **Already have code?** Run `/gsd-map-codebase` first. It spawns parallel agents to analyze your stack, architecture, conventions, and concerns. Then `/gsd-new-project` knows your codebase - questions focus on what you're adding, and planning automatically loads your patterns.
 
 ### 1. Initialize Project
 
@@ -312,12 +270,12 @@ If you prefer not to use that flag, Claude Code compatibility/runtime users can 
 
 One command, one flow. The system:
 
-1. **Questions**: asks until it understands your idea completely
-2. **Research**: spawns parallel agents to investigate the domain
-3. **Requirements**: extracts what is v1, v2, and out of scope
-4. **Roadmap**: creates phases mapped to requirements
+1. **Questions** - Asks until it understands your idea completely (goals, constraints, tech preferences, edge cases)
+2. **Research** - Spawns parallel agents to investigate the domain (optional but recommended)
+3. **Requirements** - Extracts what's v1, v2, and out of scope
+4. **Roadmap** - Creates phases mapped to requirements
 
-You approve the roadmap. Now you are ready to build.
+You approve the roadmap. Now you're ready to build.
 
 **Creates:** `PROJECT.md`, `REQUIREMENTS.md`, `ROADMAP.md`, `STATE.md`, `.planning/research/`
 
@@ -331,20 +289,25 @@ You approve the roadmap. Now you are ready to build.
 
 **This is where you shape the implementation.**
 
-Your roadmap has a sentence or two per phase. That is not enough context to build something the way you imagine it. This step captures your preferences before anything gets researched or planned.
+Your roadmap has a sentence or two per phase. That's not enough context to build something the way *you* imagine it. This step captures your preferences before anything gets researched or planned.
 
-The system analyzes the phase and identifies gray areas based on what is being built:
+The system analyzes the phase and identifies gray areas based on what's being built:
 
-- **Visual features**: layout, density, interactions, empty states
-- **APIs and CLIs**: response format, flags, error handling, verbosity
-- **Content systems**: structure, tone, depth, flow
-- **Organization tasks**: grouping criteria, naming, duplicates, exceptions
+- **Visual features** -> Layout, density, interactions, empty states
+- **APIs/CLIs** -> Response format, flags, error handling, verbosity
+- **Content systems** -> Structure, tone, depth, flow
+- **Organization tasks** -> Grouping criteria, naming, duplicates, exceptions
 
-For each area you select, it asks until you are satisfied. The output, `CONTEXT.md`, feeds directly into the next two steps.
+For each area you select, it asks until you're satisfied. The output - `CONTEXT.md` - feeds directly into the next two steps:
+
+1. **Researcher reads it** - Knows what patterns to investigate ("user wants card layout" -> research card component libraries)
+2. **Planner reads it** - Knows what decisions are locked ("infinite scroll decided" -> plan includes scroll handling)
+
+The deeper you go here, the more the system builds what you actually want. Skip it and you get reasonable defaults. Use it and you get *your* vision.
 
 **Creates:** `{phase_num}-CONTEXT.md`
 
-> **Assumptions Mode:** Prefer codebase analysis over questions? Set `workflow.discuss_mode` to `assumptions` in `/gsd-settings`. The system reads your code, surfaces what it would do and why, and only asks you to correct what is wrong. See [Discuss Mode](docs/workflow-discuss-mode.md).
+> **Assumptions Mode:** Prefer codebase analysis over questions? Set `workflow.discuss_mode` to `assumptions` in `/gsd-settings`. The system reads your code, surfaces what it would do and why, and only asks you to correct what's wrong. See [Discuss Mode](docs/workflow-discuss-mode.md).
 
 ---
 
@@ -356,11 +319,11 @@ For each area you select, it asks until you are satisfied. The output, `CONTEXT.
 
 The system:
 
-1. **Researches**: investigates how to implement this phase, guided by your `CONTEXT.md` decisions
-2. **Plans**: creates 2-3 atomic task plans with XML structure
-3. **Verifies**: checks plans against requirements and loops until they pass
+1. **Researches** - Investigates how to implement this phase, guided by your CONTEXT.md decisions
+2. **Plans** - Creates 2-3 atomic task plans with XML structure
+3. **Verifies** - Checks plans against requirements, loops until they pass
 
-Each plan is small enough to execute in a fresh context window.
+Each plan is small enough to execute in a fresh context window. No degradation, no "I'll be more concise now."
 
 **Creates:** `{phase_num}-RESEARCH.md`, `{phase_num}-{N}-PLAN.md`
 
@@ -374,29 +337,44 @@ Each plan is small enough to execute in a fresh context window.
 
 The system:
 
-1. **Runs plans in waves**: parallel where possible, sequential when dependent
-2. **Fresh context per plan**: isolated execution context instead of one long degrading session
-3. **Commits per task**: every task gets its own atomic commit
-4. **Verifies against goals**: checks the codebase delivers what the phase promised
+1. **Runs plans in waves** - Parallel where possible, sequential when dependent
+2. **Fresh context per plan** - 200k tokens purely for implementation, zero accumulated garbage
+3. **Commits per task** - Every task gets its own atomic commit
+4. **Verifies against goals** - Checks the codebase delivers what the phase promised
 
 Walk away, come back to completed work with clean git history.
 
-**How wave execution works:**
+**How Wave Execution Works:**
 
-Plans are grouped into waves based on dependencies. Plans in the same wave can run in parallel; dependent plans wait for later waves.
+Plans are grouped into "waves" based on dependencies. Within each wave, plans run in parallel. Waves run sequentially.
 
-Example:
+```
+PHASE EXECUTION
 
-- **Wave 1**: Plan 01 (User model), Plan 02 (Product model)
-- **Wave 2**: Plan 03 (Orders API, depends on Plan 01), Plan 04 (Cart API, depends on Plan 02)
-- **Wave 3**: Plan 05 (Checkout UI, depends on Plans 03 and 04)
+Wave 1 (parallel)        Wave 2 (parallel)        Wave 3
++-----------+            +-----------+            +-----------+
+| Plan 01   |            | Plan 03   |            | Plan 05   |
+| User      | ----+      | Orders    | ----+      | Checkout  |
+| Model     |     |      | API       |     |      | UI        |
++-----------+     |      +-----------+     |      +-----------+
+                  |                        |
++-----------+     |      +-----------+     |
+| Plan 02   | ----+----> | Plan 04   | ----+
+| Product   |            | Cart      |
+| Model     |            | API       |
++-----------+            +-----------+
+
+Dependencies: Plan 03 needs Plan 01
+              Plan 04 needs Plan 02
+              Plan 05 needs Plans 03 + 04
+```
 
 **Why waves matter:**
-- Independent plans -> same wave -> run in parallel
-- Dependent plans -> later wave -> wait for dependencies
-- File conflicts -> sequential plans or merged into one plan
+- Independent plans -> Same wave -> Run in parallel
+- Dependent plans -> Later wave -> Wait for dependencies
+- File conflicts -> Sequential plans or same plan
 
-This is why vertical slices parallelize better than horizontal layers.
+This is why "vertical slices" (Plan 01: User feature end-to-end) parallelize better than "horizontal layers" (Plan 01: All models, Plan 02: All APIs).
 
 **Creates:** `{phase_num}-{N}-SUMMARY.md`, `{phase_num}-VERIFICATION.md`
 
@@ -410,18 +388,18 @@ This is why vertical slices parallelize better than horizontal layers.
 
 **This is where you confirm it actually works.**
 
-Automated verification checks that code exists and tests pass. But does the feature work the way you expected? This is your chance to use it.
+Automated verification checks that code exists and tests pass. But does the feature *work* the way you expected? This is your chance to use it.
 
 The system:
 
-1. **Extracts testable deliverables**: what you should be able to do now
-2. **Walks you through them one at a time**: yes/no or describe what is wrong
-3. **Diagnoses failures automatically**: spawns debug agents to find root causes
-4. **Creates verified fix plans**: ready for immediate re-execution
+1. **Extracts testable deliverables** - What you should be able to do now
+2. **Walks you through one at a time** -"Can you log in with email?" Yes/no, or describe what's wrong
+3. **Diagnoses failures automatically** - Spawns debug agents to find root causes
+4. **Creates verified fix plans** - Ready for immediate re-execution
 
-If everything passes, you move on. If something is broken, you rerun `/gsd-execute-phase` with the fix plans it created.
+If everything passes, you move on. If something's broken, you don't manually debug - you just run `/gsd-execute-phase` again with the fix plans it created.
 
-**Creates:** `{phase_num}-UAT.md`, fix plans if issues are found
+**Creates:** `{phase_num}-UAT.md`, fix plans if issues found
 
 ---
 
@@ -444,15 +422,15 @@ Or let GSD figure out the next step automatically:
 /gsd-next                    # Auto-detect and run next step
 ```
 
-Loop **discuss -> plan -> execute -> verify -> ship** until the milestone is complete.
+Loop **discuss -> plan -> execute -> verify -> ship** until milestone complete.
 
 If you want faster intake during discussion, use `/gsd-discuss-phase <n> --batch` to answer a small grouped set of questions at once instead of one-by-one. Use `--chain` to auto-chain discuss into plan+execute without stopping between steps.
 
-Each phase gets your input, proper research, clean execution, and human verification. Context stays fresh. Quality stays high.
+Each phase gets your input (discuss), proper research (plan), clean execution (execute), and human verification (verify). Context stays fresh. Quality stays high.
 
 When all phases are done, `/gsd-complete-milestone` archives the milestone and tags the release.
 
-Then `/gsd-new-milestone` starts the next version using the same flow as `new-project`, but for your existing codebase.
+Then `/gsd-new-milestone` starts the next version - same flow as `new-project` but for your existing codebase. You describe what you want to build next, the system researches the domain, you scope requirements, and it creates a fresh roadmap. Each milestone is a clean cycle: define -> build -> ship.
 
 ---
 
@@ -462,21 +440,21 @@ Then `/gsd-new-milestone` starts the next version using the same flow as `new-pr
 /gsd-quick
 ```
 
-**For ad-hoc tasks that do not need full planning.**
+**For ad-hoc tasks that don't need full planning.**
 
 Quick mode gives you GSD guarantees (atomic commits, state tracking) with a faster path:
 
-- **Same agents**: planner + executor, same quality bar
-- **Skips optional steps**: no research, no plan checker, no verifier by default
-- **Separate tracking**: lives in `.planning/quick/`, not phase directories
+- **Same agents** - Planner + executor, same quality
+- **Skips optional steps** - No research, no plan checker, no verifier by default
+- **Separate tracking** - Lives in `.planning/quick/`, not phases
 
 **`--discuss` flag:** Lightweight discussion to surface gray areas before planning.
 
-**`--research` flag:** Spawns a focused researcher before planning. Investigates implementation approaches, library options, and pitfalls.
+**`--research` flag:** Spawns a focused researcher before planning. Investigates implementation approaches, library options, and pitfalls. Use when you're unsure how to approach a task.
 
-**`--full` flag:** Enables all phases: discussion + research + plan-checking + verification.
+**`--full` flag:** Enables all phases - discussion + research + plan-checking + verification. The full GSD pipeline in quick-task form.
 
-**`--validate` flag:** Enables plan-checking + post-execution verification only.
+**`--validate` flag:** Enables plan-checking + post-execution verification only (the previous `--full` behavior).
 
 Flags are composable: `--discuss --research --validate` gives discussion + research + plan-checking + verification.
 
@@ -503,7 +481,7 @@ GSD handles it for you:
 | `research/` | Ecosystem knowledge (stack, features, architecture, pitfalls) |
 | `REQUIREMENTS.md` | Scoped v1/v2 requirements with phase traceability |
 | `ROADMAP.md` | Where you're going, what's done |
-| `STATE.md` | Decisions, blockers, and current position across sessions |
+| `STATE.md` | Decisions, blockers, position - memory across sessions |
 | `PLAN.md` | Atomic task with XML structure, verification steps |
 | `SUMMARY.md` | What happened, what changed, committed to history |
 | `todos/` | Captured ideas and tasks for later work |
@@ -525,7 +503,7 @@ Every plan is structured XML optimized for Claude:
     Validate credentials against users table.
     Return httpOnly cookie on success.
   </action>
-  <verify>curl -X POST localhost:3000/api/auth/login returns 200 + Set-Cookie</verify>
+  <verify>curl - X POST localhost:3000/api/auth/login returns 200 + Set-Cookie</verify>
   <done>Valid credentials return cookie, invalid return 401</done>
 </task>
 ```
@@ -545,7 +523,7 @@ Every stage uses the same pattern: a thin orchestrator spawns specialized agents
 
 The orchestrator never does heavy lifting. It spawns agents, waits, integrates results.
 
-**The result:** you can run an entire phase with deep research, verified plans, parallel execution, and automated verification while your main context window stays responsive.
+**The result:** You can run an entire phase - deep research, multiple plans created and verified, thousands of lines of code written across parallel executors, automated verification against goals - and your main context window stays at 30-40%. The work happens in fresh subagent contexts. Your session stays fast and responsive.
 
 ### Atomic Git Commits
 
@@ -580,17 +558,17 @@ You're never locked in. The system adapts.
 
 | Command | What it does |
 |---------|--------------|
-| `/gsd-new-project [--auto]` | Full initialization: questions 鈫?research 鈫?requirements 鈫?roadmap |
+| `/gsd-new-project [--auto]` | Full initialization: questions -> research -> requirements -> roadmap |
 | `/gsd-discuss-phase [N] [--auto] [--analyze] [--chain]` | Capture implementation decisions before planning (`--analyze` adds trade-off analysis, `--chain` auto-chains into plan+execute) |
 | `/gsd-plan-phase [N] [--auto] [--reviews]` | Research + plan + verify for a phase (`--reviews` loads codebase review findings) |
 | `/gsd-execute-phase <N>` | Execute all plans in parallel waves, verify when complete |
-| `/gsd-verify-work [N]` | Manual user acceptance testing 鹿 |
+| `/gsd-verify-work [N]` | Manual user acceptance testing * |
 | `/gsd-ship [N] [--draft]` | Create PR from verified phase work with auto-generated body |
 | `/gsd-next` | Automatically advance to the next logical workflow step |
-| `/gsd-fast <text>` | Inline trivial tasks that skip planning and execute immediately |
+| `/gsd-fast <text>` | Inline trivial tasks - skips planning entirely, executes immediately |
 | `/gsd-audit-milestone` | Verify milestone achieved its definition of done |
 | `/gsd-complete-milestone` | Archive milestone, tag release |
-| `/gsd-new-milestone [name]` | Start next version: questions 鈫?research 鈫?requirements 鈫?roadmap |
+| `/gsd-new-milestone [name]` | Start next version: questions -> research -> requirements -> roadmap |
 | `/gsd-forensics [desc]` | Post-mortem investigation of failed workflow runs (diagnoses stuck loops, missing artifacts, git anomalies) |
 | `/gsd-milestone-summary [version]` | Generate comprehensive project summary for team onboarding and review |
 
@@ -615,8 +593,8 @@ You're never locked in. The system adapts.
 
 | Command | What it does |
 |---------|--------------|
-| `/gsd-spike [idea] [--quick]` | Throwaway experiments to validate feasibility before planning; no project init required |
-| `/gsd-sketch [idea] [--quick]` | Throwaway HTML mockups with multi-variant exploration; no project init required |
+| `/gsd-spike [idea] [--quick]` | Throwaway experiments to validate feasibility before planning - no project init required |
+| `/gsd-sketch [idea] [--quick]` | Throwaway HTML mockups with multi-variant exploration - no project init required |
 | `/gsd-spike-wrap-up` | Package spike findings into a project-local skill for future build conversations |
 | `/gsd-sketch-wrap-up` | Package sketch design findings into a project-local skill for future builds |
 
@@ -651,7 +629,7 @@ You're never locked in. The system adapts.
 | `/gsd-add-phase` | Append phase to roadmap |
 | `/gsd-insert-phase [N]` | Insert urgent work between phases |
 | `/gsd-remove-phase [N]` | Remove future phase, renumber |
-| `/gsd-list-phase-assumptions [N]` | See the planner's intended approach before planning |
+| `/gsd-list-phase-assumptions [N]` | See Claude's intended approach before planning |
 | `/gsd-plan-milestone-gaps` | Create phases to close gaps from audit |
 
 ### Session
@@ -675,17 +653,17 @@ You're never locked in. The system adapts.
 | `/gsd-review` | Cross-AI peer review of current phase or branch |
 | `/gsd-secure-phase [N]` | Security enforcement with threat-model-anchored verification |
 | `/gsd-pr-branch` | Create clean PR branch filtering `.planning/` commits |
-| `/gsd-audit-uat` | Audit verification debt and find phases missing UAT |
+| `/gsd-audit-uat` | Audit verification debt - find phases missing UAT |
 | `/gsd-docs-update` | Verified documentation generation with doc-writer and doc-verifier agents |
 
 ### Backlog & Threads
 
 | Command | What it does |
 |---------|--------------|
-| `/gsd-plant-seed <idea>` | Capture forward-looking ideas with trigger conditions that surface at the right milestone |
+| `/gsd-plant-seed <idea>` | Capture forward-looking ideas with trigger conditions - surfaces at the right milestone |
 | `/gsd-add-backlog <desc>` | Add idea to backlog parking lot (999.x numbering, outside active sequence) |
 | `/gsd-review-backlog` | Review and promote backlog items to active milestone or remove stale entries |
-| `/gsd-thread [name]` | Persistent context threads for lightweight cross-session knowledge |
+| `/gsd-thread [name]` | Persistent context threads - lightweight cross-session knowledge for work spanning multiple sessions |
 
 ### Utilities
 
@@ -697,13 +675,13 @@ You're never locked in. The system adapts.
 | `/gsd-check-todos` | List pending todos |
 | `/gsd-debug [desc]` | Systematic debugging with persistent state |
 | `/gsd-do <text>` | Route freeform text to the right GSD command automatically |
-| `/gsd-note <text>` | Zero-friction idea capture: append, list, or promote notes to todos |
+| `/gsd-note <text>` | Zero-friction idea capture - append, list, or promote notes to todos |
 | `/gsd-quick [--full] [--validate] [--discuss] [--research]` | Execute ad-hoc task with GSD guarantees (`--full` enables all phases, `--validate` adds plan-checking and verification, `--discuss` gathers context first, `--research` investigates approaches before planning) |
 | `/gsd-health [--repair]` | Validate `.planning/` directory integrity, auto-repair with `--repair` |
-| `/gsd-stats` | Display project statistics: phases, plans, requirements, and git metrics |
+| `/gsd-stats` | Display project statistics - phases, plans, requirements, git metrics |
 | `/gsd-profile-user [--questionnaire] [--refresh]` | Generate developer behavioral profile from session analysis for personalized responses |
 
-<sup>鹿 Contributed by reddit user OracleGreyBeard</sup>
+<sup>* Contributed by reddit user OracleGreyBeard</sup>
 
 ---
 
@@ -716,7 +694,7 @@ GSD stores project settings in `.planning/config.json`. Configure during `/gsd-n
 | Setting | Options | Default | What it controls |
 |---------|---------|---------|------------------|
 | `mode` | `yolo`, `interactive` | `interactive` | Auto-approve vs confirm at each step |
-| `granularity` | `coarse`, `standard`, `fine` | `standard` | Phase granularity: how finely scope is sliced |
+| `granularity` | `coarse`, `standard`, `fine` | `standard` | Phase granularity - how finely scope is sliced (phases x plans) |
 | `project_code` | string | `""` | Prefix phase directories with a project code |
 
 ### Model Profiles
@@ -748,7 +726,7 @@ These spawn additional agents during planning/execution. They improve quality bu
 | `workflow.research` | `true` | Researches domain before planning each phase |
 | `workflow.plan_check` | `true` | Verifies plans achieve phase goals before execution |
 | `workflow.verifier` | `true` | Confirms must-haves were delivered after execution |
-| `workflow.auto_advance` | `false` | Auto-chain discuss 鈫?plan 鈫?execute without stopping |
+| `workflow.auto_advance` | `false` | Auto-chain discuss -> plan -> execute without stopping |
 | `workflow.research_before_questions` | `false` | Run research before discussion questions instead of after |
 | `workflow.discuss_mode` | `'discuss'` | Discussion mode: `discuss` (interview), `assumptions` (codebase-first) |
 | `workflow.skip_discuss` | `false` | Skip discuss-phase in autonomous mode |
@@ -788,9 +766,9 @@ Control how GSD handles branches during execution.
 | `git.milestone_branch_template` | string | `gsd/{milestone}-{slug}` | Template for milestone branches |
 
 **Strategies:**
-- **`none`**: commits to the current branch (default GSD behavior)
-- **`phase`**: creates a branch per phase and merges at phase completion
-- **`milestone`**: creates one branch for the entire milestone and merges at completion
+- **`none`** - Commits to current branch (default GSD behavior)
+- **`phase`** - Creates a branch per phase, merges at phase completion
+- **`milestone`** - Creates one branch for entire milestone, merges at completion
 
 At milestone completion, GSD offers squash merge (recommended) or merge with history.
 
@@ -802,12 +780,12 @@ At milestone completion, GSD offers squash merge (recommended) or merge with his
 
 GSD includes defense-in-depth security since v1.27:
 
-- **Path traversal prevention**: all user-supplied file paths (`--text-file`, `--prd`) are validated to resolve within the project directory
-- **Prompt injection detection**: centralized `security.cjs` scans user-supplied text before it enters planning artifacts
-- **PreToolUse prompt guard hook**: `gsd-prompt-guard` scans writes to `.planning/` for embedded injection vectors (advisory, not blocking)
-- **Safe JSON parsing**: malformed `--fields` arguments are caught before they corrupt state
-- **Shell argument validation**: user text is sanitized before shell interpolation
-- **CI-ready injection scanner**: `prompt-injection-scan.test.cjs` scans all agent, workflow, and command files for embedded injection vectors
+- **Path traversal prevention** - All user-supplied file paths (`--text-file`, `--prd`) are validated to resolve within the project directory
+- **Prompt injection detection** - Centralized `security.cjs` module scans for injection patterns in user-supplied text before it enters planning artifacts
+- **PreToolUse prompt guard hook** - `gsd-prompt-guard` scans writes to `.planning/` for embedded injection vectors (advisory, not blocking)
+- **Safe JSON parsing** - Malformed `--fields` arguments are caught before they corrupt state
+- **Shell argument validation** - User text is sanitized before shell interpolation
+- **CI-ready injection scanner** - `prompt-injection-scan.test.cjs` scans all agent/workflow/command files for embedded injection vectors
 
 > [!NOTE]
 > Because GSD generates markdown files that become LLM system prompts, any user-controlled text flowing into planning artifacts is a potential indirect prompt injection vector. These protections are designed to catch such vectors at multiple layers.
@@ -851,14 +829,11 @@ This prevents Claude from reading these files entirely, regardless of what comma
 
 **Commands not working as expected?**
 - Run `$gsd-help` to verify installation in Codex
-- Re-run `node bin/install.js --codex --global` or `node bin/install.js --codex --local` from a fresh checkout of `codex/bootstrap`
+- Re-run `npx @oisinwang/get-shit-done-codex` or `node bin/install.js --codex --global` to reinstall
 
 **Updating to the latest version?**
 ```bash
-git pull
-npm install
-npm run build:hooks
-node bin/install.js --codex --global
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 **Using Docker or containerized environments?**
@@ -871,36 +846,36 @@ To remove GSD completely:
 
 ```bash
 # Global installs
-node bin/install.js --claude --global --uninstall
-node bin/install.js --opencode --global --uninstall
-node bin/install.js --gemini --global --uninstall
-node bin/install.js --kilo --global --uninstall
-node bin/install.js --codex --global --uninstall
-node bin/install.js --copilot --global --uninstall
-node bin/install.js --cursor --global --uninstall
-node bin/install.js --windsurf --global --uninstall
-node bin/install.js --antigravity --global --uninstall
-node bin/install.js --augment --global --uninstall
-node bin/install.js --trae --global --uninstall
-node bin/install.js --qwen --global --uninstall
-node bin/install.js --codebuddy --global --uninstall
-node bin/install.js --cline --global --uninstall
+npx @oisinwang/get-shit-done-codex --claude --global --uninstall
+npx @oisinwang/get-shit-done-codex --opencode --global --uninstall
+npx @oisinwang/get-shit-done-codex --gemini --global --uninstall
+npx @oisinwang/get-shit-done-codex --kilo --global --uninstall
+npx @oisinwang/get-shit-done-codex --codex --global --uninstall
+npx @oisinwang/get-shit-done-codex --copilot --global --uninstall
+npx @oisinwang/get-shit-done-codex --cursor --global --uninstall
+npx @oisinwang/get-shit-done-codex --windsurf --global --uninstall
+npx @oisinwang/get-shit-done-codex --antigravity --global --uninstall
+npx @oisinwang/get-shit-done-codex --augment --global --uninstall
+npx @oisinwang/get-shit-done-codex --trae --global --uninstall
+npx @oisinwang/get-shit-done-codex --qwen --global --uninstall
+npx @oisinwang/get-shit-done-codex --codebuddy --global --uninstall
+npx @oisinwang/get-shit-done-codex --cline --global --uninstall
 
 # Local installs (current project)
-node bin/install.js --claude --local --uninstall
-node bin/install.js --opencode --local --uninstall
-node bin/install.js --gemini --local --uninstall
-node bin/install.js --kilo --local --uninstall
-node bin/install.js --codex --local --uninstall
-node bin/install.js --copilot --local --uninstall
-node bin/install.js --cursor --local --uninstall
-node bin/install.js --windsurf --local --uninstall
-node bin/install.js --antigravity --local --uninstall
-node bin/install.js --augment --local --uninstall
-node bin/install.js --trae --local --uninstall
-node bin/install.js --qwen --local --uninstall
-node bin/install.js --codebuddy --local --uninstall
-node bin/install.js --cline --local --uninstall
+npx @oisinwang/get-shit-done-codex --claude --local --uninstall
+npx @oisinwang/get-shit-done-codex --opencode --local --uninstall
+npx @oisinwang/get-shit-done-codex --gemini --local --uninstall
+npx @oisinwang/get-shit-done-codex --kilo --local --uninstall
+npx @oisinwang/get-shit-done-codex --codex --local --uninstall
+npx @oisinwang/get-shit-done-codex --copilot --local --uninstall
+npx @oisinwang/get-shit-done-codex --cursor --local --uninstall
+npx @oisinwang/get-shit-done-codex --windsurf --local --uninstall
+npx @oisinwang/get-shit-done-codex --antigravity --local --uninstall
+npx @oisinwang/get-shit-done-codex --augment --local --uninstall
+npx @oisinwang/get-shit-done-codex --trae --local --uninstall
+npx @oisinwang/get-shit-done-codex --qwen --local --uninstall
+npx @oisinwang/get-shit-done-codex --codebuddy --local --uninstall
+npx @oisinwang/get-shit-done-codex --cline --local --uninstall
 ```
 
 This removes all GSD commands, agents, hooks, and settings while preserving your other configurations.
@@ -909,7 +884,7 @@ This removes all GSD commands, agents, hooks, and settings while preserving your
 
 ## Community Ports
 
-OpenCode, Gemini CLI, Kilo, and Codex are now natively supported via the fork's source installer and runtime-specific install flags.
+OpenCode, Gemini CLI, Kilo, and Codex are now natively supported via `npx @oisinwang/get-shit-done-codex`.
 
 These community ports pioneered multi-runtime support:
 
@@ -940,13 +915,6 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**AI coding is powerful. GSD makes it reliable.**
+**Claude Code is powerful. GSD makes it reliable.**
 
 </div>
-
-
-
-
-
-
-

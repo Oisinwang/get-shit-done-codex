@@ -26,7 +26,7 @@ jobs:
         with:
           script: |
             const branch = context.payload.pull_request.head.ref;
-            const protectedBranches = ['main', 'develop', 'release'];
+            const protectedBranches = ['codex/bootstrap', 'main', 'develop', 'release'];
             if (protectedBranches.includes(branch)) {
               core.info(`Skipping protected branch: ${branch}`);
               return;
@@ -59,7 +59,7 @@ jobs:
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
-            const protectedBranches = new Set(['main', 'develop', 'release']);
+            const protectedBranches = new Set(['codex/bootstrap', 'main', 'develop', 'release']);
             const deleted = [];
             const skipped = [];
 

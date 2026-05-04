@@ -53,13 +53,10 @@ describe('bug #2334: quick workflow gsd-sdk pre-flight check', () => {
     const firstSdkCall = content.indexOf('gsd-sdk query init.quick', step2Start);
     const step2Section = content.slice(step2Start, firstSdkCall);
 
-    const hasInstallHint =
-      step2Section.includes('node bin/install.js --codex --global') ||
-      step2Section.includes('gsd-update') ||
-      step2Section.includes('/gsd-update');
+    const hasInstallHint = step2Section.includes('@oisinwang/get-shit-done-codex-sdk') || step2Section.includes('gsd-update') || step2Section.includes('/gsd-update');
     assert.ok(
       hasInstallHint,
-      'Pre-flight error must include a hint on how to restore gsd-sdk (rerun the fork installer or /gsd-update)'
+      'Pre-flight error must include a hint on how to install gsd-sdk (npm install -g @oisinwang/get-shit-done-codex-sdk or /gsd-update)'
     );
   });
 });

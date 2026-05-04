@@ -1,7 +1,7 @@
 {
-  "name": "@get-shit-done-codex/sdk",
+  "name": "@oisinwang/get-shit-done-codex-sdk",
   "version": "0.1.0",
-  "description": "GSD SDK programmatic interface for running GSD plans via the Agent SDK",
+  "description": "GSD SDK - programmatic interface for running GSD plans via the Agent SDK",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,7 @@
     }
   },
   "bin": {
-    "gsd-sdk": "./dist/cli.js"
+    "gsd-sdk": "dist/cli.js"
   },
   "files": [
     "dist",

@@ -20,7 +20,7 @@
 <br>
 
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 **Mac, Windows, Linux 모두 지원.**
@@ -90,7 +90,7 @@ GSD가 그걸 고칩니다. Claude Code를 신뢰할 수 있게 만드는 컨텍
 ## 시작하기
 
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 설치 중에 다음을 선택합니다:
@@ -114,7 +114,7 @@ npx get-shit-done-codex@latest
 GSD는 빠르게 발전합니다. 주기적으로 업데이트하세요:
 
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 <details>
@@ -122,49 +122,49 @@ npx get-shit-done-codex@latest
 
 ```bash
 # Claude Code 호환/런타임
-npx get-shit-done-codex --claude --global   # ~/.claude/에 설치
-npx get-shit-done-codex --claude --local    # ./.claude/에 설치
+npx @oisinwang/get-shit-done-codex --claude --global   # ~/.claude/에 설치
+npx @oisinwang/get-shit-done-codex --claude --local    # ./.claude/에 설치
 
 # OpenCode
-npx get-shit-done-codex --opencode --global # ~/.config/opencode/에 설치
+npx @oisinwang/get-shit-done-codex --opencode --global # ~/.config/opencode/에 설치
 
 # Gemini CLI
-npx get-shit-done-codex --gemini --global   # ~/.gemini/에 설치
+npx @oisinwang/get-shit-done-codex --gemini --global   # ~/.gemini/에 설치
 
 # Kilo
-npx get-shit-done-codex --kilo --global     # ~/.config/kilo/에 설치
-npx get-shit-done-codex --kilo --local      # ./.kilo/에 설치
+npx @oisinwang/get-shit-done-codex --kilo --global     # ~/.config/kilo/에 설치
+npx @oisinwang/get-shit-done-codex --kilo --local      # ./.kilo/에 설치
 
 # Codex
-npx get-shit-done-codex --codex --global    # ~/.codex/에 설치
-npx get-shit-done-codex --codex --local     # ./.codex/에 설치
+npx @oisinwang/get-shit-done-codex --codex --global    # ~/.codex/에 설치
+npx @oisinwang/get-shit-done-codex --codex --local     # ./.codex/에 설치
 
 # Copilot
-npx get-shit-done-codex --copilot --global  # ~/.github/에 설치
-npx get-shit-done-codex --copilot --local   # ./.github/에 설치
+npx @oisinwang/get-shit-done-codex --copilot --global  # ~/.github/에 설치
+npx @oisinwang/get-shit-done-codex --copilot --local   # ./.github/에 설치
 
 # Cursor CLI
-npx get-shit-done-codex --cursor --global      # ~/.cursor/에 설치
-npx get-shit-done-codex --cursor --local       # ./.cursor/에 설치
+npx @oisinwang/get-shit-done-codex --cursor --global      # ~/.cursor/에 설치
+npx @oisinwang/get-shit-done-codex --cursor --local       # ./.cursor/에 설치
 
 # Antigravity
-npx get-shit-done-codex --antigravity --global # ~/.gemini/antigravity/에 설치
-npx get-shit-done-codex --antigravity --local  # ./.agent/에 설치
+npx @oisinwang/get-shit-done-codex --antigravity --global # ~/.gemini/antigravity/에 설치
+npx @oisinwang/get-shit-done-codex --antigravity --local  # ./.agent/에 설치
 
 # Augment
-npx get-shit-done-codex --augment --global     # ~/.augment/에 설치
-npx get-shit-done-codex --augment --local      # ./.augment/에 설치
+npx @oisinwang/get-shit-done-codex --augment --global     # ~/.augment/에 설치
+npx @oisinwang/get-shit-done-codex --augment --local      # ./.augment/에 설치
 
 # Trae
-npx get-shit-done-codex --trae --global        # ~/.trae/에 설치
-npx get-shit-done-codex --trae --local         # ./.trae/에 설치
+npx @oisinwang/get-shit-done-codex --trae --global        # ~/.trae/에 설치
+npx @oisinwang/get-shit-done-codex --trae --local         # ./.trae/에 설치
 
 # Cline
-npx get-shit-done-codex --cline --global       # ~/.cline/에 설치
-npx get-shit-done-codex --cline --local        # ./.clinerules에 설치
+npx @oisinwang/get-shit-done-codex --cline --global       # ~/.cline/에 설치
+npx @oisinwang/get-shit-done-codex --cline --local        # ./.clinerules에 설치
 
 # 전체 런타임
-npx get-shit-done-codex --all --global      # 모든 디렉터리에 설치
+npx @oisinwang/get-shit-done-codex --all --global      # 모든 디렉터리에 설치
 ```
 
 위치 프롬프트 건너뛰기: `--global` (`-g`) 또는 `--local` (`-l`).
@@ -775,18 +775,18 @@ GSD의 코드베이스 매핑 및 분석 명령어는 프로젝트를 이해하�
 
 **명령어가 예상대로 작동하지 않나요?**
 - `/gsd-help`를 실행해 설치 확인
-- `npx get-shit-done-codex`를 다시 실행해 재설치
+- `npx @oisinwang/get-shit-done-codex`를 다시 실행해 재설치
 
 **최신 버전으로 업데이트하나요?**
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 **Docker 또는 컨테이너 환경을 사용하나요?**
 
 파일 읽기가 틸드 경로(`~/.claude/...`)로 실패하면 설치 전에 `CLAUDE_CONFIG_DIR`를 설정하세요:
 ```bash
-CLAUDE_CONFIG_DIR=<legacy-claude-path> npx get-shit-done-codex --global
+CLAUDE_CONFIG_DIR=<legacy-claude-path> npx @oisinwang/get-shit-done-codex --global
 ```
 컨테이너에서 올바르게 확장되지 않을 수 있는 `~` 대신 절대 경로가 사용됩니다.
 
@@ -796,26 +796,26 @@ GSD를 완전히 제거하려면:
 
 ```bash
 # 전역 설치
-npx get-shit-done-codex --claude --global --uninstall
-npx get-shit-done-codex --opencode --global --uninstall
-npx get-shit-done-codex --gemini --global --uninstall
-npx get-shit-done-codex --kilo --global --uninstall
-npx get-shit-done-codex --codex --global --uninstall
-npx get-shit-done-codex --copilot --global --uninstall
-npx get-shit-done-codex --cursor --global --uninstall
-npx get-shit-done-codex --antigravity --global --uninstall
-npx get-shit-done-codex --trae --global --uninstall
+npx @oisinwang/get-shit-done-codex --claude --global --uninstall
+npx @oisinwang/get-shit-done-codex --opencode --global --uninstall
+npx @oisinwang/get-shit-done-codex --gemini --global --uninstall
+npx @oisinwang/get-shit-done-codex --kilo --global --uninstall
+npx @oisinwang/get-shit-done-codex --codex --global --uninstall
+npx @oisinwang/get-shit-done-codex --copilot --global --uninstall
+npx @oisinwang/get-shit-done-codex --cursor --global --uninstall
+npx @oisinwang/get-shit-done-codex --antigravity --global --uninstall
+npx @oisinwang/get-shit-done-codex --trae --global --uninstall
 
 # 로컬 설치 (현재 프로젝트)
-npx get-shit-done-codex --claude --local --uninstall
-npx get-shit-done-codex --opencode --local --uninstall
-npx get-shit-done-codex --gemini --local --uninstall
-npx get-shit-done-codex --kilo --local --uninstall
-npx get-shit-done-codex --codex --local --uninstall
-npx get-shit-done-codex --copilot --local --uninstall
-npx get-shit-done-codex --cursor --local --uninstall
-npx get-shit-done-codex --antigravity --local --uninstall
-npx get-shit-done-codex --trae --local --uninstall
+npx @oisinwang/get-shit-done-codex --claude --local --uninstall
+npx @oisinwang/get-shit-done-codex --opencode --local --uninstall
+npx @oisinwang/get-shit-done-codex --gemini --local --uninstall
+npx @oisinwang/get-shit-done-codex --kilo --local --uninstall
+npx @oisinwang/get-shit-done-codex --codex --local --uninstall
+npx @oisinwang/get-shit-done-codex --copilot --local --uninstall
+npx @oisinwang/get-shit-done-codex --cursor --local --uninstall
+npx @oisinwang/get-shit-done-codex --antigravity --local --uninstall
+npx @oisinwang/get-shit-done-codex --trae --local --uninstall
 ```
 
 다른 설정은 그대로 유지하면서 GSD의 모든 명령어, 에이전트, 훅, 설정을 제거합니다.
@@ -824,7 +824,7 @@ npx get-shit-done-codex --trae --local --uninstall
 
 ## 커뮤니티 포트
 
-OpenCode, Gemini CLI, Kilo, Codex는 이제 `npx get-shit-done-codex`를 통해 기본 지원됩니다.
+OpenCode, Gemini CLI, Kilo, Codex는 이제 `npx @oisinwang/get-shit-done-codex`를 통해 기본 지원됩니다.
 
 이 커뮤니티 포트들이 멀티 런타임 지원의 선구자였습니다:
 

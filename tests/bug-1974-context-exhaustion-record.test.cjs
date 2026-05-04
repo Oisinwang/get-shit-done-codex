@@ -41,11 +41,14 @@ function runHook(sessionId, remainingPct, cwd) {
     cwd,
   });
 
+  const env = { ...process.env, HOME: process.env.HOME };
+  delete env.NODE_V8_COVERAGE;
+
   const result = spawnSync(process.execPath, [HOOK_PATH], {
     input,
     encoding: 'utf-8',
     timeout: 10000,
-    env: { ...process.env, HOME: process.env.HOME },
+    env,
   });
 
   return { exitCode: result.status, stdout: result.stdout, stderr: result.stderr };
@@ -66,6 +69,25 @@ function waitForStoppedAt(statePath, ms = 2000) {
     while (Date.now() - start < 50) { /* spin */ }
   }
   return null;
+}
+
+function removeTempDir(dir) {
+  const deadline = Date.now() + 5000;
+  let lastError;
+
+  while (Date.now() < deadline) {
+    try {
+      fs.rmSync(dir, { recursive: true, force: true });
+      return;
+    } catch (error) {
+      if (!['EBUSY', 'EPERM', 'ENOTEMPTY'].includes(error.code)) throw error;
+      lastError = error;
+      const start = Date.now();
+      while (Date.now() - start < 100) { /* wait for Windows file handles */ }
+    }
+  }
+
+  throw lastError;
 }
 
 describe('#1974 context exhaustion auto-record', () => {
@@ -99,7 +121,7 @@ describe('#1974 context exhaustion auto-record', () => {
   });
 
   afterEach(() => {
-    fs.rmSync(tmpDir, { recursive: true, force: true });
+    removeTempDir(tmpDir);
     // Clean up bridge files
     try {
       const warnPath = path.join(os.tmpdir(), `claude-ctx-${sessionId}-warned.json`);

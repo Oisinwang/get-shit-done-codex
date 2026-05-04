@@ -3,6 +3,7 @@ name: Security Scan
 on:
   pull_request:
     branches:
+      - codex/bootstrap
       - main
       - 'release/**'
       - 'hotfix/**'

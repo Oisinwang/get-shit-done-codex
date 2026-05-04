@@ -20,7 +20,7 @@
 <br>
 
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 **支持 Mac、Windows 和 Linux。**
@@ -88,7 +88,7 @@ GSD 解决的就是这个问题。它是让 Claude Code 变得可靠的上下文
 ## 快速开始
 
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 安装器会提示你选择：
@@ -112,7 +112,7 @@ npx get-shit-done-codex@latest
 GSD 迭代很快，建议定期更新：
 
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 <details>
@@ -120,53 +120,53 @@ npx get-shit-done-codex@latest
 
 ```bash
 # Claude Code 兼容/运行时
-npx get-shit-done-codex --claude --global   # 安装到 ~/.claude/
-npx get-shit-done-codex --claude --local    # 安装到 ./.claude/
+npx @oisinwang/get-shit-done-codex --claude --global   # 安装到 ~/.claude/
+npx @oisinwang/get-shit-done-codex --claude --local    # 安装到 ./.claude/
 
 # OpenCode
-npx get-shit-done-codex --opencode --global # 安装到 ~/.config/opencode/
+npx @oisinwang/get-shit-done-codex --opencode --global # 安装到 ~/.config/opencode/
 
 # Gemini CLI
-npx get-shit-done-codex --gemini --global   # 安装到 ~/.gemini/
+npx @oisinwang/get-shit-done-codex --gemini --global   # 安装到 ~/.gemini/
 
 # Kilo
-npx get-shit-done-codex --kilo --global     # 安装到 ~/.config/kilo/
-npx get-shit-done-codex --kilo --local      # 安装到 ./.kilo/
+npx @oisinwang/get-shit-done-codex --kilo --global     # 安装到 ~/.config/kilo/
+npx @oisinwang/get-shit-done-codex --kilo --local      # 安装到 ./.kilo/
 
 # Codex
-npx get-shit-done-codex --codex --global    # 安装到 ~/.codex/
-npx get-shit-done-codex --codex --local     # 安装到 ./.codex/
+npx @oisinwang/get-shit-done-codex --codex --global    # 安装到 ~/.codex/
+npx @oisinwang/get-shit-done-codex --codex --local     # 安装到 ./.codex/
 
 # Copilot
-npx get-shit-done-codex --copilot --global  # 安装到 ~/.github/
-npx get-shit-done-codex --copilot --local   # 安装到 ./.github/
+npx @oisinwang/get-shit-done-codex --copilot --global  # 安装到 ~/.github/
+npx @oisinwang/get-shit-done-codex --copilot --local   # 安装到 ./.github/
 
 # Cursor CLI
-npx get-shit-done-codex --cursor --global   # 安装到 ~/.cursor/
-npx get-shit-done-codex --cursor --local    # 安装到 ./.cursor/
+npx @oisinwang/get-shit-done-codex --cursor --global   # 安装到 ~/.cursor/
+npx @oisinwang/get-shit-done-codex --cursor --local    # 安装到 ./.cursor/
 
 # Antigravity
-npx get-shit-done-codex --antigravity --global # 安装到 ~/.gemini/antigravity/
-npx get-shit-done-codex --antigravity --local  # 安装到 ./.agent/
+npx @oisinwang/get-shit-done-codex --antigravity --global # 安装到 ~/.gemini/antigravity/
+npx @oisinwang/get-shit-done-codex --antigravity --local  # 安装到 ./.agent/
 
 # Augment
-npx get-shit-done-codex --augment --global     # 安装到 ~/.augment/
-npx get-shit-done-codex --augment --local      # 安装到 ./.augment/
+npx @oisinwang/get-shit-done-codex --augment --global     # 安装到 ~/.augment/
+npx @oisinwang/get-shit-done-codex --augment --local      # 安装到 ./.augment/
 
 # Trae
-npx get-shit-done-codex --trae --global     # 安装到 ~/.trae/
-npx get-shit-done-codex --trae --local      # 安装到 ./.trae/
+npx @oisinwang/get-shit-done-codex --trae --global     # 安装到 ~/.trae/
+npx @oisinwang/get-shit-done-codex --trae --local      # 安装到 ./.trae/
 
 # CodeBuddy
-npx get-shit-done-codex --codebuddy --global # 安装到 ~/.codebuddy/
-npx get-shit-done-codex --codebuddy --local  # 安装到 ./.codebuddy/
+npx @oisinwang/get-shit-done-codex --codebuddy --global # 安装到 ~/.codebuddy/
+npx @oisinwang/get-shit-done-codex --codebuddy --local  # 安装到 ./.codebuddy/
 
 # Cline
-npx get-shit-done-codex --cline --global       # 安装到 ~/.cline/
-npx get-shit-done-codex --cline --local        # 安装到 ./.clinerules
+npx @oisinwang/get-shit-done-codex --cline --global       # 安装到 ~/.cline/
+npx @oisinwang/get-shit-done-codex --cline --local        # 安装到 ./.clinerules
 
 # 所有运行时
-npx get-shit-done-codex --all --global      # 安装到所有目录
+npx @oisinwang/get-shit-done-codex --all --global      # 安装到所有目录
 ```
 
 使用 `--global`（`-g`）或 `--local`（`-l`）可以跳过安装位置提示。
@@ -752,18 +752,18 @@ GSD 的代码库映射和分析命令会读取文件来理解你的项目。**�
 
 **命令行为不符合预期？**
 - 运行 `/gsd-help` 确认安装成功
-- 重新执行 `npx get-shit-done-codex` 进行重装
+- 重新执行 `npx @oisinwang/get-shit-done-codex` 进行重装
 
 **想更新到最新版本？**
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 **在 Docker 或容器环境中使用？**
 
 如果使用波浪线路径（`~/.claude/...`）时读取失败，请在安装前设置 `CLAUDE_CONFIG_DIR`：
 ```bash
-CLAUDE_CONFIG_DIR=<legacy-claude-path> npx get-shit-done-codex --global
+CLAUDE_CONFIG_DIR=<legacy-claude-path> npx @oisinwang/get-shit-done-codex --global
 ```
 这样可以确保使用绝对路径，而不是在容器里可能无法正确展开的 `~`。
 
@@ -773,30 +773,30 @@ CLAUDE_CONFIG_DIR=<legacy-claude-path> npx get-shit-done-codex --global
 
 ```bash
 # 全局安装
-npx get-shit-done-codex --claude --global --uninstall
-npx get-shit-done-codex --opencode --global --uninstall
-npx get-shit-done-codex --gemini --global --uninstall
-npx get-shit-done-codex --kilo --global --uninstall
-npx get-shit-done-codex --codex --global --uninstall
-npx get-shit-done-codex --copilot --global --uninstall
-npx get-shit-done-codex --cursor --global --uninstall
-npx get-shit-done-codex --antigravity --global --uninstall
-npx get-shit-done-codex --augment --global --uninstall
-npx get-shit-done-codex --trae --global --uninstall
-npx get-shit-done-codex --cline --global --uninstall
+npx @oisinwang/get-shit-done-codex --claude --global --uninstall
+npx @oisinwang/get-shit-done-codex --opencode --global --uninstall
+npx @oisinwang/get-shit-done-codex --gemini --global --uninstall
+npx @oisinwang/get-shit-done-codex --kilo --global --uninstall
+npx @oisinwang/get-shit-done-codex --codex --global --uninstall
+npx @oisinwang/get-shit-done-codex --copilot --global --uninstall
+npx @oisinwang/get-shit-done-codex --cursor --global --uninstall
+npx @oisinwang/get-shit-done-codex --antigravity --global --uninstall
+npx @oisinwang/get-shit-done-codex --augment --global --uninstall
+npx @oisinwang/get-shit-done-codex --trae --global --uninstall
+npx @oisinwang/get-shit-done-codex --cline --global --uninstall
 
 # 本地安装（当前项目）
-npx get-shit-done-codex --claude --local --uninstall
-npx get-shit-done-codex --opencode --local --uninstall
-npx get-shit-done-codex --gemini --local --uninstall
-npx get-shit-done-codex --kilo --local --uninstall
-npx get-shit-done-codex --codex --local --uninstall
-npx get-shit-done-codex --copilot --local --uninstall
-npx get-shit-done-codex --cursor --local --uninstall
-npx get-shit-done-codex --antigravity --local --uninstall
-npx get-shit-done-codex --augment --local --uninstall
-npx get-shit-done-codex --trae --local --uninstall
-npx get-shit-done-codex --cline --local --uninstall
+npx @oisinwang/get-shit-done-codex --claude --local --uninstall
+npx @oisinwang/get-shit-done-codex --opencode --local --uninstall
+npx @oisinwang/get-shit-done-codex --gemini --local --uninstall
+npx @oisinwang/get-shit-done-codex --kilo --local --uninstall
+npx @oisinwang/get-shit-done-codex --codex --local --uninstall
+npx @oisinwang/get-shit-done-codex --copilot --local --uninstall
+npx @oisinwang/get-shit-done-codex --cursor --local --uninstall
+npx @oisinwang/get-shit-done-codex --antigravity --local --uninstall
+npx @oisinwang/get-shit-done-codex --augment --local --uninstall
+npx @oisinwang/get-shit-done-codex --trae --local --uninstall
+npx @oisinwang/get-shit-done-codex --cline --local --uninstall
 ```
 
 这会移除所有 GSD 命令、代理、hooks 和设置，但会保留你其他配置。
@@ -805,7 +805,7 @@ npx get-shit-done-codex --cline --local --uninstall
 
 ## 社区移植版本
 
-OpenCode、Gemini CLI、Kilo 和 Codex 现在都已经通过 `npx get-shit-done-codex` 获得原生支持。
+OpenCode、Gemini CLI、Kilo 和 Codex 现在都已经通过 `npx @oisinwang/get-shit-done-codex` 获得原生支持。
 
 这些社区移植版本曾率先探索多运行时支持：
 

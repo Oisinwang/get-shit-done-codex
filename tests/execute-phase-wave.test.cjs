@@ -89,8 +89,8 @@ describe('execute-phase docs: user-facing wave flag', () => {
     const content = fs.readFileSync(COMMANDS_DOC_PATH, 'utf-8');
     assert.ok(content.includes('`--wave N`'), 'COMMANDS.md should mention --wave N');
     assert.ok(
-      content.includes('/gsd-execute-phase 1 --wave 2'),
-      'COMMANDS.md should include a wave-filter example'
+      content.includes('$gsd-execute-phase 1 --wave 2'),
+      'COMMANDS.md should include a Codex-first wave-filter example'
     );
   });
 

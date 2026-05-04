@@ -1,7 +1,7 @@
-﻿<purpose>
+<purpose>
 Execute small, ad-hoc tasks with GSD guarantees (atomic commits, STATE.md tracking). Quick mode spawns gsd-planner (quick mode) + gsd-executor(s), tracks tasks in `.planning/quick/`, and updates STATE.md's "Quick Tasks Completed" table.
 
-With `--full` flag: enables the complete quality pipeline 閳?discussion + research + plan-checking + verification. One flag for everything.
+With `--full` flag: enables the complete quality pipeline - discussion + research + plan-checking + verification. One flag for everything.
 
 With `--validate` flag: enables plan-checking (max 2 iterations) and post-execution verification only. Use when you want quality guarantees without discussion or research.
 
@@ -17,24 +17,24 @@ Read all files referenced by the invoking prompt's execution_context before star
 </required_reading>
 
 <available_agent_types>
-Valid GSD subagent types (use exact names 閳?do not fall back to 'general-purpose'):
-- gsd-phase-researcher 閳?Researches technical approaches for a phase
-- gsd-planner 閳?Creates detailed plans from phase scope
-- gsd-plan-checker 閳?Reviews plan quality before execution
-- gsd-executor 閳?Executes plan tasks, commits, creates SUMMARY.md
-- gsd-verifier 閳?Verifies phase completion, checks quality gates
-- gsd-code-reviewer 閳?Reviews source files for bugs, security issues, and code quality
+Valid GSD subagent types (use exact names - do not fall back to 'general-purpose'):
+- gsd-phase-researcher - Researches technical approaches for a phase
+- gsd-planner - Creates detailed plans from phase scope
+- gsd-plan-checker - Reviews plan quality before execution
+- gsd-executor - Executes plan tasks, commits, creates SUMMARY.md
+- gsd-verifier - Verifies phase completion, checks quality gates
+- gsd-code-reviewer - Reviews source files for bugs, security issues, and code quality
 </available_agent_types>
 
 <process>
 **Step 1: Parse arguments and get task description**
 
 Parse `$ARGUMENTS` for:
-- `--full` flag 閳?store `$FULL_MODE=true`, `$DISCUSS_MODE=true`, `$RESEARCH_MODE=true`, `$VALIDATE_MODE=true`
-- `--validate` flag 閳?store `$VALIDATE_MODE=true`
-- `--discuss` flag 閳?store `$DISCUSS_MODE=true`
-- `--research` flag 閳?store `$RESEARCH_MODE=true`
-- Remaining text 閳?use as `$DESCRIPTION` if non-empty
+- `--full` flag -> store `$FULL_MODE=true`, `$DISCUSS_MODE=true`, `$RESEARCH_MODE=true`, `$VALIDATE_MODE=true`
+- `--validate` flag -> store `$VALIDATE_MODE=true`
+- `--discuss` flag -> store `$DISCUSS_MODE=true`
+- `--research` flag -> store `$RESEARCH_MODE=true`
+- Remaining text -> use as `$DESCRIPTION` if non-empty
 
 After parsing, normalize: if `$DISCUSS_MODE` and `$RESEARCH_MODE` and `$VALIDATE_MODE` are all true, set `$FULL_MODE=true`. This ensures `--discuss --research --validate` is treated identically to `--full`.
 
@@ -57,67 +57,67 @@ If still empty, re-prompt: "Please provide a task description."
 
 Display banner based on active flags:
 
-If `$FULL_MODE` (all phases enabled 閳?`--full` or all granular flags):
+If `$FULL_MODE` (all phases enabled - `--full` or all granular flags):
 ```
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
- GSD 閳?QUICK TASK (FULL)
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
+---
+ GSD - QUICK TASK (FULL)
+---
 
-閳?Discussion + research + plan checking + verification enabled
+- Discussion + research + plan checking + verification enabled
 ```
 
 If `$DISCUSS_MODE` and `$VALIDATE_MODE` (no research):
 ```
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
- GSD 閳?QUICK TASK (DISCUSS + VALIDATE)
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
+---
+ GSD - QUICK TASK (DISCUSS + VALIDATE)
+---
 
-閳?Discussion + plan checking + verification enabled
+- Discussion + plan checking + verification enabled
 ```
 
 If `$DISCUSS_MODE` and `$RESEARCH_MODE` (no validate):
 ```
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
- GSD 閳?QUICK TASK (DISCUSS + RESEARCH)
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
+---
+ GSD - QUICK TASK (DISCUSS + RESEARCH)
+---
 
-閳?Discussion + research enabled
+- Discussion + research enabled
 ```
 
 If `$RESEARCH_MODE` and `$VALIDATE_MODE` (no discuss):
 ```
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
- GSD 閳?QUICK TASK (RESEARCH + VALIDATE)
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
+---
+ GSD - QUICK TASK (RESEARCH + VALIDATE)
+---
 
-閳?Research + plan checking + verification enabled
+- Research + plan checking + verification enabled
 ```
 
 If `$DISCUSS_MODE` only:
 ```
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
- GSD 閳?QUICK TASK (DISCUSS)
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
+---
+ GSD - QUICK TASK (DISCUSS)
+---
 
-閳?Discussion phase enabled 閳?surfacing gray areas before planning
+- Discussion phase enabled - surfacing gray areas before planning
 ```
 
 If `$RESEARCH_MODE` only:
 ```
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
- GSD 閳?QUICK TASK (RESEARCH)
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
+---
+ GSD - QUICK TASK (RESEARCH)
+---
 
-閳?Research phase enabled 閳?investigating approaches before planning
+- Research phase enabled - investigating approaches before planning
 ```
 
 If `$VALIDATE_MODE` only:
 ```
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
- GSD 閳?QUICK TASK (VALIDATE)
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
+---
+ GSD - QUICK TASK (VALIDATE)
+---
 
-閳?Plan checking + verification enabled
+- Plan checking + verification enabled
 ```
 
 ---
@@ -126,12 +126,12 @@ If `$VALIDATE_MODE` only:
 
 ```bash
 if ! command -v gsd-sdk &>/dev/null; then
-  echo "gsd-sdk not found in PATH - /gsd-quick requires it."
+  echo "WARNING: gsd-sdk not found in PATH - /gsd-quick requires it."
   echo ""
-  echo "Re-run the installer from this fork's source checkout:"
-  echo "  node bin/install.js --codex --global"
+  echo "Install the GSD SDK:"
+  echo "  npm install -g @oisinwang/get-shit-done-codex-sdk"
   echo ""
-  echo "Or update GSD from the installed runtime:"
+  echo "Or update GSD to get the latest packages:"
   echo "  /gsd-update"
   exit 1
 fi
@@ -156,12 +156,12 @@ If the project uses git submodules, worktree isolation is skipped:
 
 ```bash
 if [ -f .gitmodules ]; then
-  echo "[worktree] Submodule project detected (.gitmodules exists) 閳?falling back to sequential execution"
+  echo "[worktree] Submodule project detected (.gitmodules exists) - falling back to sequential execution"
   USE_WORKTREES=false
 fi
 ```
 
-**If `roadmap_exists` is false:** Error 閳?Quick mode requires an active project with ROADMAP.md. Run `/gsd-new-project` first.
+**If `roadmap_exists` is false:** Error - Quick mode requires an active project with ROADMAP.md. Run `/gsd-new-project` first.
 
 Quick tasks can run mid-phase - validation only checks ROADMAP.md exists, not phase status.
 
@@ -214,23 +214,23 @@ Skip this step entirely if NOT `$DISCUSS_MODE`.
 
 Display banner:
 ```
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
- GSD 閳?DISCUSSING QUICK TASK
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
+---
+ GSD - DISCUSSING QUICK TASK
+---
 
-閳?Surfacing gray areas for: ${DESCRIPTION}
+-Surfacing gray areas for: ${DESCRIPTION}
 ```
 
 **4.5a. Identify gray areas**
 
-Analyze `$DESCRIPTION` to identify 2-4 gray areas 閳?implementation decisions that would change the outcome and that the user should weigh in on.
+Analyze `$DESCRIPTION` to identify 2-4 gray areas - implementation decisions that would change the outcome and that the user should weigh in on.
 
 Use the domain-aware heuristic to generate phase-specific (not generic) gray areas:
-- Something users **SEE** 閳?layout, density, interactions, states
-- Something users **CALL** 閳?responses, errors, auth, versioning
-- Something users **RUN** 閳?output format, flags, modes, error handling
-- Something users **READ** 閳?structure, tone, depth, flow
-- Something being **ORGANIZED** 閳?criteria, grouping, naming, exceptions
+- Something users **SEE** -> layout, density, interactions, states
+- Something users **CALL** -> responses, errors, auth, versioning
+- Something users **RUN** -> output format, flags, modes, error handling
+- Something users **READ** -> structure, tone, depth, flow
+- Something being **ORGANIZED** -> criteria, grouping, naming, exceptions
 
 Each gray area should be a concrete decision point, not a vague category. Example: "Loading behavior" not "UX".
 
@@ -244,13 +244,13 @@ AskUserQuestion(
     { label: "${area_1}", description: "${why_it_matters_1}" },
     { label: "${area_2}", description: "${why_it_matters_2}" },
     { label: "${area_3}", description: "${why_it_matters_3}" },
-    { label: "All clear", description: "Skip discussion 閳?I know what I want" }
+    { label: "All clear", description: "Skip discussion - I know what I want" }
   ],
   multiSelect: true
 )
 ```
 
-If user selects "All clear" 閳?skip to Step 5 (no CONTEXT.md written).
+If user selects "All clear" -> skip to Step 5 (no CONTEXT.md written).
 
 **4.5c. Discuss selected areas**
 
@@ -275,7 +275,7 @@ Rules:
 - Highlight recommended choice where you have a clear opinion
 - If user selects "Other" with freeform text, switch to plain text follow-up (per questioning.md freeform rule)
 - If user selects "You decide", capture as Claude's Discretion in CONTEXT.md
-- Max 2 questions per area 閳?this is lightweight, not a deep dive
+- Max 2 questions per area - this is lightweight, not a deep dive
 
 Collect all decisions into `$DECISIONS`.
 
@@ -315,7 +315,7 @@ ${areas_where_user_said_you_decide_or_areas_not_discussed}
 
 ${any_specific_references_or_examples_from_discussion}
 
-[If none: "No specific requirements 閳?open to standard approaches"]
+[If none: "No specific requirements - open to standard approaches"]
 
 </specifics>
 
@@ -324,12 +324,12 @@ ${any_specific_references_or_examples_from_discussion}
 
 ${any_specs_adrs_or_docs_referenced_during_discussion}
 
-[If none: "No external specs 閳?requirements fully captured in decisions above"]
+[If none: "No external specs - requirements fully captured in decisions above"]
 
 </canonical_refs>
 ```
 
-Note: Quick task CONTEXT.md omits `<code_context>` and `<deferred>` sections (no codebase scouting, no phase scope to defer to). Keep it lean. The `<canonical_refs>` section is included when external docs were referenced 閳?omit it only if no external docs apply.
+Note: Quick task CONTEXT.md omits `<code_context>` and `<deferred>` sections (no codebase scouting, no phase scope to defer to). Keep it lean. The `<canonical_refs>` section is included when external docs were referenced - omit it only if no external docs apply.
 
 Report: `Context captured: ${QUICK_DIR}/${quick_id}-CONTEXT.md`
 
@@ -341,14 +341,14 @@ Skip this step entirely if NOT `$RESEARCH_MODE`.
 
 Display banner:
 ```
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
- GSD 閳?RESEARCHING QUICK TASK
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
+---
+ GSD - RESEARCHING QUICK TASK
+---
 
-閳?Investigating approaches for: ${DESCRIPTION}
+-Investigating approaches for: ${DESCRIPTION}
 ```
 
-Spawn a single focused researcher (not 4 parallel researchers like full phases 閳?quick tasks need targeted research, not broad domain surveys):
+Spawn a single focused researcher (not 4 parallel researchers like full phases - quick tasks need targeted research, not broad domain surveys):
 
 ```
 Task(
@@ -360,10 +360,10 @@ Task(
 **Output:** ${QUICK_DIR}/${quick_id}-RESEARCH.md
 
 <files_to_read>
-- .planning/STATE.md (Project state 閳?what's already built)
+- .planning/STATE.md (Project state - what's already built)
 - .planning/PROJECT.md (Project context)
-- ./AGENTS.md (if exists 閳?project-specific guidelines; treat `./CLAUDE.md` as a legacy migration alias if the project still carries it)
-${DISCUSS_MODE ? '- ' + QUICK_DIR + '/' + quick_id + '-CONTEXT.md (User decisions 閳?research should align with these)' : ''}
+- ./AGENTS.md (if exists - project-specific guidelines; treat `./CLAUDE.md` as a legacy migration alias if the project still carries it)
+${DISCUSS_MODE ? '- ' + QUICK_DIR + '/' + quick_id + '-CONTEXT.md (User decisions - research should align with these)' : ''}
 </files_to_read>
 
 ${AGENT_SKILLS_PLANNER}
@@ -382,7 +382,7 @@ Do NOT produce a full domain survey. Target 1-2 pages of actionable findings.
 
 <output>
 Write research to: ${QUICK_DIR}/${quick_id}-RESEARCH.md
-Use standard research format but keep it lean 閳?skip sections that don't apply.
+Use standard research format but keep it lean - skip sections that don't apply.
 Return: ## RESEARCH COMPLETE with file path
 </output>
 ",
@@ -396,7 +396,7 @@ After researcher returns:
 1. Verify research exists at `${QUICK_DIR}/${quick_id}-RESEARCH.md`
 2. Report: "Research complete: ${QUICK_DIR}/${quick_id}-RESEARCH.md"
 
-If research file not found, warn but continue: "Research agent did not produce output 閳?proceeding to planning without research."
+If research file not found, warn but continue: "Research agent did not produce output - proceeding to planning without research."
 
 ---
 
@@ -417,21 +417,21 @@ Task(
 
 <files_to_read>
 - .planning/STATE.md (Project State)
-- ./AGENTS.md (if exists 閳?follow project-specific guidelines; treat `./CLAUDE.md` as a legacy migration alias if the project still carries it)
-${DISCUSS_MODE ? '- ' + QUICK_DIR + '/' + quick_id + '-CONTEXT.md (User decisions 閳?locked, do not revisit)' : ''}
-${RESEARCH_MODE ? '- ' + QUICK_DIR + '/' + quick_id + '-RESEARCH.md (Research findings 閳?use to inform implementation choices)' : ''}
+- ./AGENTS.md (if exists - follow project-specific guidelines; treat `./CLAUDE.md` as a legacy migration alias if the project still carries it)
+${DISCUSS_MODE ? '- ' + QUICK_DIR + '/' + quick_id + '-CONTEXT.md (User decisions - locked, do not revisit)' : ''}
+${RESEARCH_MODE ? '- ' + QUICK_DIR + '/' + quick_id + '-RESEARCH.md (Research findings - use to inform implementation choices)' : ''}
 </files_to_read>
 
 ${AGENT_SKILLS_PLANNER}
 
-**Project skills:** Check .codex/skills/ or .agents/skills/ directory (if either exists) 閳?read SKILL.md files, plans should account for project skill rules
+**Project skills:** Check .codex/skills/ or .agents/skills/ directory (if either exists) - read SKILL.md files, plans should account for project skill rules
 
 </planning_context>
 
 <constraints>
 - Create a SINGLE plan with 1-3 focused tasks
 - Quick tasks should be atomic and self-contained
-${RESEARCH_MODE ? '- Research findings are available 閳?use them to inform library/pattern choices' : '- No research phase'}
+${RESEARCH_MODE ? '- Research findings are available - use them to inform library/pattern choices' : '- No research phase'}
 ${VALIDATE_MODE ? '- Target ~40% context usage (structured for verification)' : '- Target ~30% context usage (simple, focused)'}
 ${VALIDATE_MODE ? '- MUST generate `must_haves` in plan frontmatter (truths, artifacts, key_links)' : ''}
 ${VALIDATE_MODE ? '- Each task MUST have `files`, `action`, `verify`, `done` fields' : ''}
@@ -463,11 +463,11 @@ Skip this step entirely if NOT `$VALIDATE_MODE`.
 
 Display banner:
 ```
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
- GSD 閳?CHECKING PLAN
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
+---
+ GSD - CHECKING PLAN
+---
 
-閳?Spawning plan checker...
+-Spawning plan checker...
 ```
 
 Checker prompt:
@@ -498,8 +498,8 @@ ${DISCUSS_MODE ? '- Context compliance: Does the plan honor locked decisions fro
 </check_dimensions>
 
 <expected_output>
-- ## VERIFICATION PASSED 閳?all checks pass
-- ## ISSUES FOUND 閳?structured issue list
+- ## VERIFICATION PASSED - all checks pass
+- ## ISSUES FOUND - structured issue list
 </expected_output>
 ```
 
@@ -557,7 +557,7 @@ Task(
 )
 ```
 
-After planner returns 閳?spawn checker again, increment iteration_count.
+After planner returns -> spawn checker again, increment iteration_count.
 
 **If iteration_count >= 2:**
 
@@ -585,7 +585,7 @@ ${USE_WORKTREES !== "false" ? `
 <worktree_branch_check>
 FIRST ACTION before any other work: verify this worktree branch is based on the correct commit.
 Run: git merge-base HEAD ${EXPECTED_BASE}
-If the result differs from ${EXPECTED_BASE}, hard-reset to the correct base (safe 閳?runs before any agent work):
+If the result differs from ${EXPECTED_BASE}, hard-reset to the correct base (safe - runs before any agent work):
   git reset --hard ${EXPECTED_BASE}
 Then verify: if [ "$(git rev-parse HEAD)" != "${EXPECTED_BASE}" ]; then echo "ERROR: Could not correct worktree base"; exit 1; fi
 This corrects a known issue where EnterWorktree creates branches from main instead of the feature branch HEAD (affects all platforms).
@@ -596,7 +596,7 @@ This corrects a known issue where EnterWorktree creates branches from main inste
 - ${QUICK_DIR}/${quick_id}-PLAN.md (Plan)
 - .planning/STATE.md (Project state)
 - ./AGENTS.md (Project instructions, if exists; treat `./CLAUDE.md` as a legacy migration alias if the project still carries it)
-- .codex/skills/ or .agents/skills/ (Project skills, if either exists 閳?list skills, read SKILL.md for each, follow relevant rules during implementation)
+- .codex/skills/ or .agents/skills/ (Project skills, if either exists - list skills, read SKILL.md for each, follow relevant rules during implementation)
 </files_to_read>
 
 ${AGENT_SKILLS_EXECUTOR}
@@ -605,7 +605,7 @@ ${AGENT_SKILLS_EXECUTOR}
 - Execute all tasks in the plan
 - Commit each task atomically (code changes only)
 - Create summary at: ${QUICK_DIR}/${quick_id}-SUMMARY.md
-- Do NOT commit docs artifacts (SUMMARY.md, STATE.md, PLAN.md) 閳?the orchestrator handles the docs commit in Step 8
+- Do NOT commit docs artifacts (SUMMARY.md, STATE.md, PLAN.md) - the orchestrator handles the docs commit in Step 8
 - Do NOT update ROADMAP.md (quick tasks are separate from planned phases)
 </constraints>
 ",
@@ -644,7 +644,7 @@ After executor returns:
        fi
 
        git merge "$WT_BRANCH" --no-ff --no-edit -m "chore: merge quick task worktree ($WT_BRANCH)" 2>&1 || {
-         echo "閳?Merge conflict from worktree $WT_BRANCH 閳?resolve manually"
+         echo "WARNING: Merge conflict from worktree $WT_BRANCH - resolve manually"
          echo "  STATE.md backup:   $STATE_BACKUP"
          echo "  ROADMAP.md backup: $ROADMAP_BACKUP"
          echo "  Restore with: cp \$STATE_BACKUP .planning/STATE.md && cp \$ROADMAP_BACKUP .planning/ROADMAP.md"
@@ -676,7 +676,7 @@ After executor returns:
        # Safety net: rescue uncommitted SUMMARY.md before worktree removal (#2296, mirrors #2070)
        UNCOMMITTED_SUMMARY=$(git -C "$WT" ls-files --modified --others --exclude-standard -- "*SUMMARY.md" 2>/dev/null || true)
        if [ -n "$UNCOMMITTED_SUMMARY" ]; then
-         echo "閳?SUMMARY.md was not committed by executor 閳?committing now to prevent data loss"
+         echo "WARNING: SUMMARY.md was not committed by executor - committing now to prevent data loss"
          git -C "$WT" add -- "*SUMMARY.md" 2>/dev/null || true
          git -C "$WT" commit --no-verify -m "docs(recovery): rescue uncommitted SUMMARY.md before worktree removal (#2070)" 2>/dev/null || true
          git merge "$WT_BRANCH" --no-edit -m "chore: merge rescued SUMMARY.md from executor worktree ($WT_BRANCH)" 2>/dev/null || true
@@ -692,7 +692,7 @@ After executor returns:
 3. Extract commit hash from executor output
 4. Report completion status
 
-**Known Claude Code bug (classifyHandoffIfNeeded):** If executor reports "failed" with error `classifyHandoffIfNeeded is not defined`, this is a Claude Code runtime bug 閳?not a real failure. Check if summary file exists and git log shows commits. If so, treat as successful.
+**Known Claude Code bug (classifyHandoffIfNeeded):** If executor reports "failed" with error `classifyHandoffIfNeeded is not defined`, this is a Claude Code runtime bug - not a real failure. Check if summary file exists and git log shows commits. If so, treat as successful.
 
 If summary not found, error: "Executor failed to create ${quick_id}-SUMMARY.md"
 
@@ -720,7 +720,7 @@ if [ -n "$QUICK_COMMITS" ]; then
   # Verify parent exists (guard against first commit in repo)
   git rev-parse "${DIFF_BASE}" >/dev/null 2>&1 || DIFF_BASE=$(echo "$QUICK_COMMITS" | tail -1)
 else
-  # No commits found for this quick task 閳?skip review
+  # No commits found for this quick task - skip review
   DIFF_BASE=""
 fi
 
@@ -731,7 +731,7 @@ else
 fi
 ```
 
-If `CHANGED_FILES` is empty, skip with "No source files changed 閳?skipping code review."
+If `CHANGED_FILES` is empty, skip with "No source files changed - skipping code review."
 
 **Invoke review:**
 ```
@@ -745,7 +745,7 @@ Task(
 )
 ```
 
-If review produces findings, display advisory message. **Error handling:** Failures are non-blocking 閳?catch and proceed.
+If review produces findings, display advisory message. **Error handling:** Failures are non-blocking - catch and proceed.
 
 ---
 
@@ -755,11 +755,11 @@ Skip this step entirely if NOT `$VALIDATE_MODE`.
 
 Display banner:
 ```
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
- GSD 閳?VERIFYING RESULTS
-閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳逛讲鏀ｉ埞浣叉敚閳?
+---
+ GSD - VERIFYING RESULTS
+---
 
-閳?Spawning verifier...
+-Spawning verifier...
 ```
 
 ```
@@ -853,7 +853,7 @@ Use Edit tool to make these changes atomically
 
 **Step 8: Final commit and completion**
 
-Stage and commit quick task artifacts. This step MUST always run 閳?even if the executor already committed some files (e.g. when running without worktree isolation). The `gsd-sdk query commit` command (or legacy `gsd-tools.cjs` commit) handles already-committed files gracefully.
+Stage and commit quick task artifacts. This step MUST always run - even if the executor already committed some files (e.g. when running without worktree isolation). The `gsd-sdk query commit` command (or legacy `gsd-tools.cjs` commit) handles already-committed files gracefully.
 
 Build file list:
 - `${QUICK_DIR}/${quick_id}-PLAN.md`
@@ -864,7 +864,7 @@ Build file list:
 - If `$VALIDATE_MODE` and verification file exists: `${QUICK_DIR}/${quick_id}-VERIFICATION.md`
 
 ```bash
-# Explicitly stage all artifacts before commit 閳?PLAN.md may be untracked
+# Explicitly stage all artifacts before commit - PLAN.md may be untracked
 # if the executor ran without worktree isolation and committed docs early
 # Filter .planning/ files from staging if commit_docs is disabled (#1783)
 COMMIT_DOCS=$(gsd-sdk query config-get commit_docs 2>/dev/null || echo "true")
@@ -938,4 +938,3 @@ Ready for next task: /gsd-quick ${GSD_WS}
 - [ ] STATE.md updated with quick task row (Status column when --validate)
 - [ ] Artifacts committed
 </success_criteria>
-

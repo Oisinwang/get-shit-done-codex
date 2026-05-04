@@ -1,5 +1,5 @@
 {
-  "name": "get-shit-done-codex",
+  "name": "@oisinwang/get-shit-done-codex",
   "version": "1.37.1",
   "description": "Codex-first fork of GSD with AGENTS.md, .codex, and $gsd-* as the primary workflow semantics.",
   "bin": {
@@ -56,6 +56,6 @@
     "build:hooks": "node scripts/build-hooks.js",
     "prepublishOnly": "npm run build:hooks",
     "test": "node scripts/run-tests.cjs",
-    "test:coverage": "c8 --check-coverage --lines 70 --reporter text --include 'get-shit-done/bin/lib/*.cjs' --exclude 'tests/**' --all node scripts/run-tests.cjs"
+    "test:coverage": "node scripts/run-coverage.cjs"
   }
 }

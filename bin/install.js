@@ -136,8 +136,7 @@ Please install a Linux-native Node.js inside WSL:
   curl -fsSL https://fnm.vercel.app/install | bash
   fnm install --lts
 
-Then re-run the installer from a source checkout of this fork:
-  node bin/install.js --codex --global
+Then re-run: npx @oisinwang/get-shit-done-codex@latest
 `);
     process.exit(1);
   }
@@ -456,7 +455,7 @@ if (hasUninstall) {
 
 // Show help if requested
 if (hasHelp) {
-  console.log(`  ${yellow}Usage:${reset} npx get-shit-done-codex [options]\n\n  ${yellow}Options:${reset}\n    ${cyan}-g, --global${reset}              Install globally (to config directory)\n    ${cyan}-l, --local${reset}               Install locally (to current directory)\n    ${cyan}--codex${reset}                   Install for Codex only\n    ${cyan}--claude${reset}                  Install for Claude Code only\n    ${cyan}--opencode${reset}                Install for OpenCode only\n    ${cyan}--gemini${reset}                  Install for Gemini only\n    ${cyan}--kilo${reset}                    Install for Kilo only\n    ${cyan}--copilot${reset}                 Install for Copilot only\n    ${cyan}--antigravity${reset}             Install for Antigravity only\n    ${cyan}--cursor${reset}                  Install for Cursor only\n    ${cyan}--windsurf${reset}                Install for Windsurf only\n    ${cyan}--augment${reset}                 Install for Augment only\n    ${cyan}--trae${reset}                    Install for Trae only\n    ${cyan}--qwen${reset}                    Install for Qwen Code only\n    ${cyan}--cline${reset}                   Install for Cline only\n    ${cyan}--codebuddy${reset}              Install for CodeBuddy only\n    ${cyan}--all${reset}                     Install for all runtimes\n    ${cyan}-u, --uninstall${reset}           Uninstall GSD (remove all GSD files)\n    ${cyan}-c, --config-dir <path>${reset}   Specify custom config directory\n    ${cyan}-h, --help${reset}                Show this help message\n    ${cyan}--force-statusline${reset}        Replace existing statusline config\n    ${cyan}--portable-hooks${reset}          Emit \$HOME-relative hook paths in settings.json\n                              (for WSL/Docker bind-mount setups; also GSD_PORTABLE_HOOKS=1)\n\n  ${yellow}Examples:${reset}\n    ${dim}# Interactive install (prompts for runtime and location)${reset}\n    npx get-shit-done-codex\n\n    ${dim}# Install for Codex globally${reset}\n    npx get-shit-done-codex --codex --global\n\n    ${dim}# Install for Claude Code globally (compatibility mode)${reset}\n    npx get-shit-done-codex --claude --global\n\n    ${dim}# Install for Gemini globally${reset}\n    npx get-shit-done-codex --gemini --global\n\n    ${dim}# Install for Kilo globally${reset}\n    npx get-shit-done-codex --kilo --global\n\n    ${dim}# Install for Copilot globally${reset}\n    npx get-shit-done-codex --copilot --global\n\n    ${dim}# Install for Copilot locally${reset}\n    npx get-shit-done-codex --copilot --local\n\n    ${dim}# Install for Antigravity globally${reset}\n    npx get-shit-done-codex --antigravity --global\n\n    ${dim}# Install for Antigravity locally${reset}\n    npx get-shit-done-codex --antigravity --local\n\n    ${dim}# Install for Cursor globally${reset}\n    npx get-shit-done-codex --cursor --global\n\n    ${dim}# Install for Cursor locally${reset}\n    npx get-shit-done-codex --cursor --local\n\n    ${dim}# Install for Windsurf globally${reset}\n    npx get-shit-done-codex --windsurf --global\n\n    ${dim}# Install for Windsurf locally${reset}\n    npx get-shit-done-codex --windsurf --local\n\n    ${dim}# Install for Augment globally${reset}\n    npx get-shit-done-codex --augment --global\n\n    ${dim}# Install for Augment locally${reset}\n    npx get-shit-done-codex --augment --local\n\n    ${dim}# Install for Trae globally${reset}\n    npx get-shit-done-codex --trae --global\n\n    ${dim}# Install for Trae locally${reset}\n    npx get-shit-done-codex --trae --local\n\n    ${dim}# Install for Cline locally${reset}\n    npx get-shit-done-codex --cline --local\n\n    ${dim}# Install for CodeBuddy globally${reset}\n    npx get-shit-done-codex --codebuddy --global\n\n    ${dim}# Install for CodeBuddy locally${reset}\n    npx get-shit-done-codex --codebuddy --local\n\n    ${dim}# Install for all runtimes globally${reset}\n    npx get-shit-done-codex --all --global\n\n    ${dim}# Install to custom config directory${reset}\n    npx get-shit-done-codex --kilo --global --config-dir ~/.kilo-work\n\n    ${dim}# Install to current project only${reset}\n    npx get-shit-done-codex --codex --local\n\n    ${dim}# Uninstall GSD from Cursor globally${reset}\n    npx get-shit-done-codex --cursor --global --uninstall\n\n  ${yellow}Notes:${reset}\n    The --config-dir option is useful when you have multiple configurations.\n    It takes priority over CODEX_HOME / CLAUDE_CONFIG_DIR / OPENCODE_CONFIG_DIR / GEMINI_CONFIG_DIR / KILO_CONFIG_DIR / COPILOT_CONFIG_DIR / ANTIGRAVITY_CONFIG_DIR / CURSOR_CONFIG_DIR / WINDSURF_CONFIG_DIR / AUGMENT_CONFIG_DIR / TRAE_CONFIG_DIR / QWEN_CONFIG_DIR / CLINE_CONFIG_DIR / CODEBUDDY_CONFIG_DIR environment variables.\n    Legacy alias: npx get-shit-done-cc\n`);
+  console.log(`  ${yellow}Usage:${reset} npx @oisinwang/get-shit-done-codex [options]\n\n  ${yellow}Options:${reset}\n    ${cyan}-g, --global${reset}              Install globally (to config directory)\n    ${cyan}-l, --local${reset}               Install locally (to current directory)\n    ${cyan}--codex${reset}                   Install for Codex only\n    ${cyan}--claude${reset}                  Install for Claude Code only\n    ${cyan}--opencode${reset}                Install for OpenCode only\n    ${cyan}--gemini${reset}                  Install for Gemini only\n    ${cyan}--kilo${reset}                    Install for Kilo only\n    ${cyan}--copilot${reset}                 Install for Copilot only\n    ${cyan}--antigravity${reset}             Install for Antigravity only\n    ${cyan}--cursor${reset}                  Install for Cursor only\n    ${cyan}--windsurf${reset}                Install for Windsurf only\n    ${cyan}--augment${reset}                 Install for Augment only\n    ${cyan}--trae${reset}                    Install for Trae only\n    ${cyan}--qwen${reset}                    Install for Qwen Code only\n    ${cyan}--cline${reset}                   Install for Cline only\n    ${cyan}--codebuddy${reset}              Install for CodeBuddy only\n    ${cyan}--all${reset}                     Install for all runtimes\n    ${cyan}-u, --uninstall${reset}           Uninstall GSD (remove all GSD files)\n    ${cyan}-c, --config-dir <path>${reset}   Specify custom config directory\n    ${cyan}-h, --help${reset}                Show this help message\n    ${cyan}--force-statusline${reset}        Replace existing statusline config\n    ${cyan}--portable-hooks${reset}          Emit \$HOME-relative hook paths in settings.json\n                              (for WSL/Docker bind-mount setups; also GSD_PORTABLE_HOOKS=1)\n\n  ${yellow}Examples:${reset}\n    ${dim}# Interactive install (prompts for runtime and location)${reset}\n    npx @oisinwang/get-shit-done-codex\n\n    ${dim}# Install for Codex globally${reset}\n    npx @oisinwang/get-shit-done-codex --codex --global\n\n    ${dim}# Install for Claude Code globally (compatibility mode)${reset}\n    npx @oisinwang/get-shit-done-codex --claude --global\n\n    ${dim}# Install for Gemini globally${reset}\n    npx @oisinwang/get-shit-done-codex --gemini --global\n\n    ${dim}# Install for Kilo globally${reset}\n    npx @oisinwang/get-shit-done-codex --kilo --global\n\n    ${dim}# Install for Copilot globally${reset}\n    npx @oisinwang/get-shit-done-codex --copilot --global\n\n    ${dim}# Install for Copilot locally${reset}\n    npx @oisinwang/get-shit-done-codex --copilot --local\n\n    ${dim}# Install for Antigravity globally${reset}\n    npx @oisinwang/get-shit-done-codex --antigravity --global\n\n    ${dim}# Install for Antigravity locally${reset}\n    npx @oisinwang/get-shit-done-codex --antigravity --local\n\n    ${dim}# Install for Cursor globally${reset}\n    npx @oisinwang/get-shit-done-codex --cursor --global\n\n    ${dim}# Install for Cursor locally${reset}\n    npx @oisinwang/get-shit-done-codex --cursor --local\n\n    ${dim}# Install for Windsurf globally${reset}\n    npx @oisinwang/get-shit-done-codex --windsurf --global\n\n    ${dim}# Install for Windsurf locally${reset}\n    npx @oisinwang/get-shit-done-codex --windsurf --local\n\n    ${dim}# Install for Augment globally${reset}\n    npx @oisinwang/get-shit-done-codex --augment --global\n\n    ${dim}# Install for Augment locally${reset}\n    npx @oisinwang/get-shit-done-codex --augment --local\n\n    ${dim}# Install for Trae globally${reset}\n    npx @oisinwang/get-shit-done-codex --trae --global\n\n    ${dim}# Install for Trae locally${reset}\n    npx @oisinwang/get-shit-done-codex --trae --local\n\n    ${dim}# Install for Cline locally${reset}\n    npx @oisinwang/get-shit-done-codex --cline --local\n\n    ${dim}# Install for CodeBuddy globally${reset}\n    npx @oisinwang/get-shit-done-codex --codebuddy --global\n\n    ${dim}# Install for CodeBuddy locally${reset}\n    npx @oisinwang/get-shit-done-codex --codebuddy --local\n\n    ${dim}# Install for all runtimes globally${reset}\n    npx @oisinwang/get-shit-done-codex --all --global\n\n    ${dim}# Install to custom config directory${reset}\n    npx @oisinwang/get-shit-done-codex --kilo --global --config-dir ~/.kilo-work\n\n    ${dim}# Install to current project only${reset}\n    npx @oisinwang/get-shit-done-codex --codex --local\n\n    ${dim}# Uninstall GSD from Cursor globally${reset}\n    npx @oisinwang/get-shit-done-codex --cursor --global --uninstall\n\n  ${yellow}Notes:${reset}\n    The --config-dir option is useful when you have multiple configurations.\n    It takes priority over CODEX_HOME / CLAUDE_CONFIG_DIR / OPENCODE_CONFIG_DIR / GEMINI_CONFIG_DIR / KILO_CONFIG_DIR / COPILOT_CONFIG_DIR / ANTIGRAVITY_CONFIG_DIR / CURSOR_CONFIG_DIR / WINDSURF_CONFIG_DIR / AUGMENT_CONFIG_DIR / TRAE_CONFIG_DIR / QWEN_CONFIG_DIR / CLINE_CONFIG_DIR / CODEBUDDY_CONFIG_DIR environment variables.\n    Legacy alias: npx get-shit-done-cc\n`);
   process.exit(0);
 }
 
@@ -5837,6 +5836,7 @@ function install(isGlobal, runtime = 'claude') {
             let content = fs.readFileSync(srcFile, 'utf8');
             content = content.replace(/'\.claude'/g, configDirReplacement);
             content = content.replace(/\/\.claude\//g, `/${getDirName(runtime)}/`);
+            content = content.replace(/\.claude\//g, `${getDirName(runtime)}/`);
             if (isQwen) {
               content = content.replace(/CLAUDE\.md/g, 'QWEN.md');
               content = content.replace(/\bClaude Code\b/g, 'Qwen Code');
@@ -5910,10 +5910,6 @@ function install(isGlobal, runtime = 'claude') {
         if (entry.isDirectory()) {
           scanForLeakedPaths(fullPath);
         } else if ((entry.name.endsWith('.md') || entry.name.endsWith('.toml')) && entry.name !== 'CHANGELOG.md') {
-          const relativePath = path.relative(targetDir, fullPath).replace(/\\/g, '/');
-          if (relativePath === 'get-shit-done/workflows/update.md') {
-            continue;
-          }
           let content;
           try {
             content = fs.readFileSync(fullPath, 'utf8');
@@ -5963,11 +5959,12 @@ function install(isGlobal, runtime = 'claude') {
         if (!fs.statSync(srcFile).isFile()) continue;
         const destFile = path.join(codexHooksDest, entry);
         if (entry.endsWith('.js')) {
-          let content = fs.readFileSync(srcFile, 'utf8');
-          content = content.replace(/'\.claude'/g, configDirReplacement);
-          content = content.replace(/\/\.claude\//g, `/${getDirName(runtime)}/`);
-          content = content.replace(/\{\{GSD_VERSION\}\}/g, pkg.version);
-          fs.writeFileSync(destFile, content);
+            let content = fs.readFileSync(srcFile, 'utf8');
+            content = content.replace(/'\.claude'/g, configDirReplacement);
+            content = content.replace(/\/\.claude\//g, `/${getDirName(runtime)}/`);
+            content = content.replace(/\.claude\//g, `${getDirName(runtime)}/`);
+            content = content.replace(/\{\{GSD_VERSION\}\}/g, pkg.version);
+            fs.writeFileSync(destFile, content);
           try { fs.chmodSync(destFile, 0o755); } catch (e) { /* Windows */ }
         } else {
           if (entry.endsWith('.sh')) {
@@ -6650,11 +6647,11 @@ function promptLocation(runtimes) {
 }
 
 /**
- * Build `@get-shit-done-codex/sdk` from the in-repo `sdk/` source tree and install the
+ * Build `@oisinwang/get-shit-done-codex-sdk` from the in-repo `sdk/` source tree and install the
  * resulting `gsd-sdk` binary globally so workflow commands that shell out to
  * `gsd-sdk query …` succeed.
  *
- * We build from source rather than `npm install -g @get-shit-done-codex/sdk` because the
+ * We build from source rather than `npm install -g @oisinwang/get-shit-done-codex-sdk` because the
  * npm-published package lags the source tree and shipping a stale SDK breaks
  * every /gsd-* command that depends on newer query handlers.
  *
@@ -6701,36 +6698,24 @@ function installSdkIfNeeded() {
   }
 
   console.log(`\n  ${cyan}Building GSD SDK from source (${sdkDir})…${reset}`);
-  const spawnNpm = (args, options = {}) => {
-    const baseOptions = { cwd: sdkDir, stdio: 'inherit', ...options };
-    if (process.platform !== 'win32') {
-      return spawnSync('npm', args, baseOptions);
-    }
-
-    const quoteArg = arg => /[\s"]/u.test(arg)
-      ? `"${String(arg).replace(/"/g, '\\"')}"`
-      : String(arg);
-    const comspec = process.env.ComSpec || 'cmd.exe';
-    const command = ['npm', ...args].map(quoteArg).join(' ');
-    return spawnSync(comspec, ['/d', '/s', '/c', command], baseOptions);
-  };
+  const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 
   // 1. Install sdk build-time dependencies (tsc, etc.)
-  const installResult = spawnNpm(['install']);
+  const installResult = spawnSync(npmCmd, ['install'], { cwd: sdkDir, stdio: 'inherit' });
   if (installResult.status !== 0) {
     warnManual('Failed to `npm install` in sdk/.');
     return;
   }
 
   // 2. Compile TypeScript → sdk/dist/
-  const buildResult = spawnNpm(['run', 'build']);
+  const buildResult = spawnSync(npmCmd, ['run', 'build'], { cwd: sdkDir, stdio: 'inherit' });
   if (buildResult.status !== 0) {
     warnManual('Failed to `npm run build` in sdk/.');
     return;
   }
 
   // 3. Install the built package globally so `gsd-sdk` lands on PATH.
-  const globalResult = spawnNpm(['install', '-g', '.']);
+  const globalResult = spawnSync(npmCmd, ['install', '-g', '.'], { cwd: sdkDir, stdio: 'inherit' });
   if (globalResult.status !== 0) {
     warnManual('Failed to `npm install -g .` from sdk/.');
     return;
@@ -6765,10 +6750,10 @@ function installAllRuntimes(runtimes, isGlobal, isInteractive) {
   const primaryStatuslineResult = results.find(r => statuslineRuntimes.includes(r.runtime));
 
   const finalize = (shouldInstallStatusline) => {
-    // Build @get-shit-done-codex/sdk from the in-repo sdk/ source and install it globally
+    // Build @oisinwang/get-shit-done-codex-sdk from the in-repo sdk/ source and install it globally
     // so `gsd-sdk` lands on PATH. Every /gsd-* command shells out to
     // `gsd-sdk query …`; without this, commands fail with "command not found:
-    // gsd-sdk". The npm-published @get-shit-done-codex/sdk is kept intentionally frozen
+    // gsd-sdk". The npm-published @oisinwang/get-shit-done-codex-sdk is kept intentionally frozen
     // at an older version; we always build from source so users get the SDK
     // that matches the installed GSD version.
     // Runs by default; skip with --no-sdk. Idempotent when already present.

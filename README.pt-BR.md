@@ -20,7 +20,7 @@
 <br>
 
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 **Funciona em Mac, Windows e Linux.**
@@ -88,7 +88,7 @@ Quality gates embutidos capturam problemas reais: detecção de schema drift sin
 ## Primeiros passos
 
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 O instalador pede:
@@ -110,7 +110,7 @@ Verifique com:
 ### Mantendo atualizado
 
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 <details>
@@ -118,49 +118,49 @@ npx get-shit-done-codex@latest
 
 ```bash
 # Claude Code
-npx get-shit-done-codex --claude --global
-npx get-shit-done-codex --claude --local
+npx @oisinwang/get-shit-done-codex --claude --global
+npx @oisinwang/get-shit-done-codex --claude --local
 
 # OpenCode
-npx get-shit-done-codex --opencode --global
+npx @oisinwang/get-shit-done-codex --opencode --global
 
 # Gemini CLI
-npx get-shit-done-codex --gemini --global
+npx @oisinwang/get-shit-done-codex --gemini --global
 
 # Kilo
-npx get-shit-done-codex --kilo --global
-npx get-shit-done-codex --kilo --local
+npx @oisinwang/get-shit-done-codex --kilo --global
+npx @oisinwang/get-shit-done-codex --kilo --local
 
 # Codex
-npx get-shit-done-codex --codex --global
-npx get-shit-done-codex --codex --local
+npx @oisinwang/get-shit-done-codex --codex --global
+npx @oisinwang/get-shit-done-codex --codex --local
 
 # Copilot
-npx get-shit-done-codex --copilot --global
-npx get-shit-done-codex --copilot --local
+npx @oisinwang/get-shit-done-codex --copilot --global
+npx @oisinwang/get-shit-done-codex --copilot --local
 
 # Cursor
-npx get-shit-done-codex --cursor --global
-npx get-shit-done-codex --cursor --local
+npx @oisinwang/get-shit-done-codex --cursor --global
+npx @oisinwang/get-shit-done-codex --cursor --local
 
 # Antigravity
-npx get-shit-done-codex --antigravity --global
-npx get-shit-done-codex --antigravity --local
+npx @oisinwang/get-shit-done-codex --antigravity --global
+npx @oisinwang/get-shit-done-codex --antigravity --local
 
 # Augment
-npx get-shit-done-codex --augment --global     # Install to ~/.augment/
-npx get-shit-done-codex --augment --local      # Install to ./.augment/
+npx @oisinwang/get-shit-done-codex --augment --global     # Install to ~/.augment/
+npx @oisinwang/get-shit-done-codex --augment --local      # Install to ./.augment/
 
 # Trae
-npx get-shit-done-codex --trae --global        # Install to ~/.trae/
-npx get-shit-done-codex --trae --local         # Install to ./.trae/
+npx @oisinwang/get-shit-done-codex --trae --global        # Install to ~/.trae/
+npx @oisinwang/get-shit-done-codex --trae --local         # Install to ./.trae/
 
 # Cline
-npx get-shit-done-codex --cline --global       # Install to ~/.cline/
-npx get-shit-done-codex --cline --local        # Install to ./.clinerules
+npx @oisinwang/get-shit-done-codex --cline --global       # Install to ~/.cline/
+npx @oisinwang/get-shit-done-codex --cline --local        # Install to ./.clinerules
 
 # Todos
-npx get-shit-done-codex --all --global
+npx @oisinwang/get-shit-done-codex --all --global
 ```
 
 Use `--global` (`-g`) ou `--local` (`-l`) para pular a pergunta de local.
@@ -413,50 +413,50 @@ Adicione padrões sensíveis ao deny list do Claude Code:
 
 **Comandos não funcionam como esperado?**
 - Rode `/gsd-help`
-- Reinstale com `npx get-shit-done-codex@latest`
+- Reinstale com `npx @oisinwang/get-shit-done-codex@latest`
 
 **Em Docker/container?**
 - Defina `CLAUDE_CONFIG_DIR` antes da instalação:
 
 ```bash
-CLAUDE_CONFIG_DIR=<legacy-claude-path> npx get-shit-done-codex --global
+CLAUDE_CONFIG_DIR=<legacy-claude-path> npx @oisinwang/get-shit-done-codex --global
 ```
 
 ### Desinstalar
 
 ```bash
 # Instalações globais
-npx get-shit-done-codex --claude --global --uninstall
-npx get-shit-done-codex --opencode --global --uninstall
-npx get-shit-done-codex --gemini --global --uninstall
-npx get-shit-done-codex --kilo --global --uninstall
-npx get-shit-done-codex --codex --global --uninstall
-npx get-shit-done-codex --copilot --global --uninstall
-npx get-shit-done-codex --cursor --global --uninstall
-npx get-shit-done-codex --antigravity --global --uninstall
-npx get-shit-done-codex --augment --global --uninstall
-npx get-shit-done-codex --trae --global --uninstall
-npx get-shit-done-codex --cline --global --uninstall
+npx @oisinwang/get-shit-done-codex --claude --global --uninstall
+npx @oisinwang/get-shit-done-codex --opencode --global --uninstall
+npx @oisinwang/get-shit-done-codex --gemini --global --uninstall
+npx @oisinwang/get-shit-done-codex --kilo --global --uninstall
+npx @oisinwang/get-shit-done-codex --codex --global --uninstall
+npx @oisinwang/get-shit-done-codex --copilot --global --uninstall
+npx @oisinwang/get-shit-done-codex --cursor --global --uninstall
+npx @oisinwang/get-shit-done-codex --antigravity --global --uninstall
+npx @oisinwang/get-shit-done-codex --augment --global --uninstall
+npx @oisinwang/get-shit-done-codex --trae --global --uninstall
+npx @oisinwang/get-shit-done-codex --cline --global --uninstall
 
 # Instalações locais (projeto atual)
-npx get-shit-done-codex --claude --local --uninstall
-npx get-shit-done-codex --opencode --local --uninstall
-npx get-shit-done-codex --gemini --local --uninstall
-npx get-shit-done-codex --kilo --local --uninstall
-npx get-shit-done-codex --codex --local --uninstall
-npx get-shit-done-codex --copilot --local --uninstall
-npx get-shit-done-codex --cursor --local --uninstall
-npx get-shit-done-codex --antigravity --local --uninstall
-npx get-shit-done-codex --augment --local --uninstall
-npx get-shit-done-codex --trae --local --uninstall
-npx get-shit-done-codex --cline --local --uninstall
+npx @oisinwang/get-shit-done-codex --claude --local --uninstall
+npx @oisinwang/get-shit-done-codex --opencode --local --uninstall
+npx @oisinwang/get-shit-done-codex --gemini --local --uninstall
+npx @oisinwang/get-shit-done-codex --kilo --local --uninstall
+npx @oisinwang/get-shit-done-codex --codex --local --uninstall
+npx @oisinwang/get-shit-done-codex --copilot --local --uninstall
+npx @oisinwang/get-shit-done-codex --cursor --local --uninstall
+npx @oisinwang/get-shit-done-codex --antigravity --local --uninstall
+npx @oisinwang/get-shit-done-codex --augment --local --uninstall
+npx @oisinwang/get-shit-done-codex --trae --local --uninstall
+npx @oisinwang/get-shit-done-codex --cline --local --uninstall
 ```
 
 ---
 
 ## Community Ports
 
-OpenCode, Gemini CLI, Kilo e Codex agora são suportados nativamente via `npx get-shit-done-codex`.
+OpenCode, Gemini CLI, Kilo e Codex agora são suportados nativamente via `npx @oisinwang/get-shit-done-codex`.
 
 | Projeto | Plataforma | Descrição |
 |---------|------------|-----------|

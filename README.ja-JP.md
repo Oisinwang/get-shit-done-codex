@@ -20,7 +20,7 @@
 <br>
 
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 **Mac、Windows、Linuxで動作します。**
@@ -90,7 +90,7 @@ GSDはそれを解決します。Claude Codeを信頼性の高いものにする
 ## はじめに
 
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 インストーラーが以下の選択を求めます：
@@ -114,7 +114,7 @@ npx get-shit-done-codex@latest
 GSDは急速に進化しています。定期的にアップデートしてください：
 
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 <details>
@@ -122,49 +122,49 @@ npx get-shit-done-codex@latest
 
 ```bash
 # Claude Code 互換/ランタイム
-npx get-shit-done-codex --claude --global   # ~/.claude/ にインストール
-npx get-shit-done-codex --claude --local    # ./.claude/ にインストール
+npx @oisinwang/get-shit-done-codex --claude --global   # ~/.claude/ にインストール
+npx @oisinwang/get-shit-done-codex --claude --local    # ./.claude/ にインストール
 
 # OpenCode
-npx get-shit-done-codex --opencode --global # ~/.config/opencode/ にインストール
+npx @oisinwang/get-shit-done-codex --opencode --global # ~/.config/opencode/ にインストール
 
 # Gemini CLI
-npx get-shit-done-codex --gemini --global   # ~/.gemini/ にインストール
+npx @oisinwang/get-shit-done-codex --gemini --global   # ~/.gemini/ にインストール
 
 # Kilo
-npx get-shit-done-codex --kilo --global     # ~/.config/kilo/ にインストール
-npx get-shit-done-codex --kilo --local      # ./.kilo/ にインストール
+npx @oisinwang/get-shit-done-codex --kilo --global     # ~/.config/kilo/ にインストール
+npx @oisinwang/get-shit-done-codex --kilo --local      # ./.kilo/ にインストール
 
 # Codex
-npx get-shit-done-codex --codex --global    # ~/.codex/ にインストール
-npx get-shit-done-codex --codex --local     # ./.codex/ にインストール
+npx @oisinwang/get-shit-done-codex --codex --global    # ~/.codex/ にインストール
+npx @oisinwang/get-shit-done-codex --codex --local     # ./.codex/ にインストール
 
 # Copilot
-npx get-shit-done-codex --copilot --global  # ~/.github/ にインストール
-npx get-shit-done-codex --copilot --local   # ./.github/ にインストール
+npx @oisinwang/get-shit-done-codex --copilot --global  # ~/.github/ にインストール
+npx @oisinwang/get-shit-done-codex --copilot --local   # ./.github/ にインストール
 
 # Cursor CLI
-npx get-shit-done-codex --cursor --global      # ~/.cursor/ にインストール
-npx get-shit-done-codex --cursor --local       # ./.cursor/ にインストール
+npx @oisinwang/get-shit-done-codex --cursor --global      # ~/.cursor/ にインストール
+npx @oisinwang/get-shit-done-codex --cursor --local       # ./.cursor/ にインストール
 
 # Antigravity
-npx get-shit-done-codex --antigravity --global # ~/.gemini/antigravity/ にインストール
-npx get-shit-done-codex --antigravity --local  # ./.agent/ にインストール
+npx @oisinwang/get-shit-done-codex --antigravity --global # ~/.gemini/antigravity/ にインストール
+npx @oisinwang/get-shit-done-codex --antigravity --local  # ./.agent/ にインストール
 
 # Augment
-npx get-shit-done-codex --augment --global     # ~/.augment/ にインストール
-npx get-shit-done-codex --augment --local      # ./.augment/ にインストール
+npx @oisinwang/get-shit-done-codex --augment --global     # ~/.augment/ にインストール
+npx @oisinwang/get-shit-done-codex --augment --local      # ./.augment/ にインストール
 
 # Trae
-npx get-shit-done-codex --trae --global        # ~/.trae/ にインストール
-npx get-shit-done-codex --trae --local         # ./.trae/ にインストール
+npx @oisinwang/get-shit-done-codex --trae --global        # ~/.trae/ にインストール
+npx @oisinwang/get-shit-done-codex --trae --local         # ./.trae/ にインストール
 
 # Cline
-npx get-shit-done-codex --cline --global       # ~/.cline/ にインストール
-npx get-shit-done-codex --cline --local        # ./.clinerules にインストール
+npx @oisinwang/get-shit-done-codex --cline --global       # ~/.cline/ にインストール
+npx @oisinwang/get-shit-done-codex --cline --local        # ./.clinerules にインストール
 
 # 全ランタイム
-npx get-shit-done-codex --all --global      # すべてのディレクトリにインストール
+npx @oisinwang/get-shit-done-codex --all --global      # すべてのディレクトリにインストール
 ```
 
 `--global`（`-g`）または `--local`（`-l`）でインストール先の質問をスキップできます。
@@ -784,18 +784,18 @@ GSDのコードベースマッピングおよび分析コマンドは、プロ�
 
 **コマンドが期待通りに動作しない？**
 - `/gsd-help` を実行してインストールを確認してください
-- `npx get-shit-done-codex` を再実行して再インストールしてください
+- `npx @oisinwang/get-shit-done-codex` を再実行して再インストールしてください
 
 **最新バージョンへのアップデート？**
 ```bash
-npx get-shit-done-codex@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 **Dockerまたはコンテナ化環境を使用している？**
 
 チルダパス（`~/.claude/...`）でファイル読み取りが失敗する場合、インストール前に `CLAUDE_CONFIG_DIR` を設定してください：
 ```bash
-CLAUDE_CONFIG_DIR=<legacy-claude-path> npx get-shit-done-codex --global
+CLAUDE_CONFIG_DIR=<legacy-claude-path> npx @oisinwang/get-shit-done-codex --global
 ```
 これにより、コンテナ内で正しく展開されない可能性がある `~` の代わりに絶対パスが使用されます。
 
@@ -805,26 +805,26 @@ GSDを完全に削除するには：
 
 ```bash
 # グローバルインストール
-npx get-shit-done-codex --claude --global --uninstall
-npx get-shit-done-codex --opencode --global --uninstall
-npx get-shit-done-codex --gemini --global --uninstall
-npx get-shit-done-codex --kilo --global --uninstall
-npx get-shit-done-codex --codex --global --uninstall
-npx get-shit-done-codex --copilot --global --uninstall
-npx get-shit-done-codex --cursor --global --uninstall
-npx get-shit-done-codex --antigravity --global --uninstall
-npx get-shit-done-codex --trae --global --uninstall
+npx @oisinwang/get-shit-done-codex --claude --global --uninstall
+npx @oisinwang/get-shit-done-codex --opencode --global --uninstall
+npx @oisinwang/get-shit-done-codex --gemini --global --uninstall
+npx @oisinwang/get-shit-done-codex --kilo --global --uninstall
+npx @oisinwang/get-shit-done-codex --codex --global --uninstall
+npx @oisinwang/get-shit-done-codex --copilot --global --uninstall
+npx @oisinwang/get-shit-done-codex --cursor --global --uninstall
+npx @oisinwang/get-shit-done-codex --antigravity --global --uninstall
+npx @oisinwang/get-shit-done-codex --trae --global --uninstall
 
 # ローカルインストール（現在のプロジェクト）
-npx get-shit-done-codex --claude --local --uninstall
-npx get-shit-done-codex --opencode --local --uninstall
-npx get-shit-done-codex --gemini --local --uninstall
-npx get-shit-done-codex --kilo --local --uninstall
-npx get-shit-done-codex --codex --local --uninstall
-npx get-shit-done-codex --copilot --local --uninstall
-npx get-shit-done-codex --cursor --local --uninstall
-npx get-shit-done-codex --antigravity --local --uninstall
-npx get-shit-done-codex --trae --local --uninstall
+npx @oisinwang/get-shit-done-codex --claude --local --uninstall
+npx @oisinwang/get-shit-done-codex --opencode --local --uninstall
+npx @oisinwang/get-shit-done-codex --gemini --local --uninstall
+npx @oisinwang/get-shit-done-codex --kilo --local --uninstall
+npx @oisinwang/get-shit-done-codex --codex --local --uninstall
+npx @oisinwang/get-shit-done-codex --copilot --local --uninstall
+npx @oisinwang/get-shit-done-codex --cursor --local --uninstall
+npx @oisinwang/get-shit-done-codex --antigravity --local --uninstall
+npx @oisinwang/get-shit-done-codex --trae --local --uninstall
 ```
 
 これにより、他の設定を保持しながら、すべてのGSDコマンド、エージェント、フック、設定が削除されます。
@@ -833,7 +833,7 @@ npx get-shit-done-codex --trae --local --uninstall
 
 ## コミュニティポート
 
-OpenCode、Gemini CLI、Kilo、Codexは `npx get-shit-done-codex` でネイティブサポートされています。
+OpenCode、Gemini CLI、Kilo、Codexは `npx @oisinwang/get-shit-done-codex` でネイティブサポートされています。
 
 以下のコミュニティポートがマルチランタイムサポートの先駆けとなりました：
 

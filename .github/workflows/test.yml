@@ -3,11 +3,13 @@ name: Tests
 on:
   push:
     branches:
+      - codex/bootstrap
       - main
       - 'release/**'
       - 'hotfix/**'
   pull_request:
     branches:
+      - codex/bootstrap
       - main
   workflow_dispatch:
 
