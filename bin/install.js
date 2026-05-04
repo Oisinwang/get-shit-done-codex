@@ -1691,6 +1691,9 @@ function convertClaudeToCodexMarkdown(content) {
   converted = converted.replace(/\$HOME\/\.claude\//g, '$HOME/.codex/');
   converted = converted.replace(/~\/\.claude\//g, '~/.codex/');
   converted = converted.replace(/\.\/\.claude\//g, './.codex/');
+  converted = converted.replace(/\$HOME\/\.claude\b/g, '$HOME/.codex');
+  converted = converted.replace(/~\/\.claude\b/g, '~/.codex');
+  converted = converted.replace(/\.\/\.claude\b/g, './.codex');
   // Runtime-neutral agent name replacement (#766)
   converted = neutralizeAgentReferences(converted, 'AGENTS.md');
   return converted;

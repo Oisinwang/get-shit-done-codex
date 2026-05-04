@@ -235,6 +235,26 @@ node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" init`;
     assert.ok(!result.includes('$gsd-tools'), 'no $gsd-tools in file path');
   });
 
+  test('replaces bare .claude home paths without trailing slash for Codex', () => {
+    const input = `---
+name: gsd-test
+description: Test
+tools: Read
+---
+
+global: \`~/.claude\`
+env: \`$HOME/.claude\`
+local: \`./.claude\``;
+
+    const result = convertClaudeCommandToCodexSkill(input, 'gsd-test');
+    assert.ok(result.includes('`~/.codex`'), 'replaces bare ~/.claude');
+    assert.ok(result.includes('`$HOME/.codex`'), 'replaces bare $HOME/.claude');
+    assert.ok(result.includes('`./.codex`'), 'replaces bare ./.claude');
+    assert.ok(!result.includes('~/.claude'), 'no bare global Claude path remains');
+    assert.ok(!result.includes('$HOME/.claude'), 'no bare env Claude path remains');
+    assert.ok(!result.includes('./.claude'), 'no bare local Claude path remains');
+  });
+
   test('removes /clear then: for Codex', () => {
     const input = `---
 name: gsd-test
@@ -837,6 +857,32 @@ describe('installCodexConfig (integration)', () => {
       }
     }
     assert.deepStrictEqual(leaks, [], `No .toml files should contain .claude paths; found leaks in: ${leaks.join(', ')}`);
+  });
+
+  (hasAgents ? test : test.skip)('Codex install contains no leaked Claude home paths in installed files', () => {
+    runCodexInstall(tmpTarget);
+
+    const leakPattern = /(?:~|\$HOME)\/\.claude\b/;
+    const leaks = [];
+    function scan(dir) {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const fullPath = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          scan(fullPath);
+          continue;
+        }
+        if (entry.name === 'CHANGELOG.md') {
+          continue;
+        }
+        const content = fs.readFileSync(fullPath, 'utf8');
+        if (leakPattern.test(content)) {
+          leaks.push(path.relative(tmpTarget, fullPath));
+        }
+      }
+    }
+    scan(tmpTarget);
+
+    assert.deepStrictEqual(leaks, [], `Codex install should not leak Claude home paths; found: ${leaks.join(', ')}`);
   });
 });
 
