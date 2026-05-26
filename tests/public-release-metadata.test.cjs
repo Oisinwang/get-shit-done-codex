@@ -167,6 +167,11 @@ describe('public release metadata', () => {
     assert.match(demo, /PROJECT\.md/);
     assert.match(demo, /ROADMAP\.md/);
     assert.match(demo, /STATE\.md/);
+    assert.match(demo, /Example output/);
+    assert.match(demo, /PROJECT\.md excerpt/);
+    assert.match(demo, /ROADMAP\.md excerpt/);
+    assert.match(demo, /Goal/);
+    assert.match(demo, /Phase 1/);
     assert.match(demo, /phase artifacts/);
     assert.match(demo, /resume/);
     assert.match(demo, /verification evidence/);

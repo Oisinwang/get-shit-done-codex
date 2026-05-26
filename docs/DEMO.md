@@ -30,6 +30,37 @@ The first command installs Codex-facing commands, skills, and project instructio
 
 Exact phase names vary by project. The important point is that GSD leaves files Codex can read later, instead of relying on chat memory.
 
+## Example output
+
+A small first run might produce excerpts like these:
+
+PROJECT.md excerpt:
+
+```markdown
+# Project: Codex install recovery
+
+## Goal
+Make Codex install recovery predictable when local hooks, config, or generated files drift.
+
+## Constraints
+- Keep existing source changes separate from installation changes.
+- Record verification commands before marking work complete.
+```
+
+ROADMAP.md excerpt:
+
+```markdown
+# Roadmap
+
+## Phase 1 - Diagnose current install state
+- Check Codex config, hooks, and generated command files.
+- Identify stale or missing files before editing.
+
+## Phase 2 - Repair and verify
+- Apply the smallest config or installer fix.
+- Run focused recovery checks and full metadata tests.
+```
+
 ## Why the artifacts matter
 
 | Artifact | What it proves |
