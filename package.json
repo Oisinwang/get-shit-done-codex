@@ -1,7 +1,7 @@
 {
   "name": "@oisinwang/get-shit-done-codex",
   "version": "1.37.2",
-  "description": "Codex-first fork of GSD with AGENTS.md, .codex, and $gsd-* as the primary workflow semantics.",
+  "description": "Codex-first GSD: spec-driven development, context engineering, and verified AI coding workflows for OpenAI Codex.",
   "bin": {
     "get-shit-done-codex": "bin/install.js",
     "get-shit-done-cc": "bin/install.js"
@@ -26,6 +26,10 @@
     "ai-coding",
     "ai-agents",
     "agentic-coding",
+    "agent-workflows",
+    "ai-development",
+    "cli",
+    "coding-agents",
     "context-engineering",
     "spec-driven-development",
     "workflow-automation",

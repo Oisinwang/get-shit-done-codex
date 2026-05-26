@@ -17,6 +17,10 @@ describe('public release metadata', () => {
     const packageLock = readJson('package-lock.json');
 
     assert.equal(packageJson.name, '@oisinwang/get-shit-done-codex');
+    assert.equal(
+      packageJson.description,
+      'Codex-first GSD: spec-driven development, context engineering, and verified AI coding workflows for OpenAI Codex.',
+    );
     assert.equal(packageLock.name, '@oisinwang/get-shit-done-codex');
     assert.equal(packageLock.packages[''].name, '@oisinwang/get-shit-done-codex');
     assert.equal(packageJson.bin['get-shit-done-codex'], 'bin/install.js');
@@ -38,6 +42,11 @@ describe('public release metadata', () => {
       'ai',
       'ai-agents',
       'ai-coding',
+      'ai-development',
+      'agent-workflows',
+      'agentic-coding',
+      'cli',
+      'coding-agents',
       'codex',
       'codex-cli',
       'context-engineering',
@@ -90,12 +99,34 @@ describe('public release metadata', () => {
     const sdkPackageLock = readJson('sdk/package-lock.json');
 
     assert.equal(sdkPackageJson.name, '@oisinwang/get-shit-done-codex-sdk');
+    assert.equal(
+      sdkPackageJson.description,
+      'GSD Codex SDK for running spec-driven plans and verified AI coding workflows from agent applications.',
+    );
     assert.equal(sdkPackageLock.name, '@oisinwang/get-shit-done-codex-sdk');
     assert.equal(sdkPackageLock.packages[''].name, '@oisinwang/get-shit-done-codex-sdk');
     assert.equal(sdkPackageJson.bin['gsd-sdk'], 'dist/cli.js');
     assert.deepEqual(sdkPackageJson.files, ['dist', 'prompts']);
     assert.equal(sdkPackageJson.scripts.prepublishOnly, 'npm run build');
     assert.equal(sdkPackageJson.publishConfig.access, 'public');
+
+    const requiredSdkKeywords = [
+      'codex',
+      'openai-codex',
+      'ai-agents',
+      'agentic-coding',
+      'agent-sdk',
+      'context-engineering',
+      'developer-tools',
+      'gsd',
+      'sdk',
+      'spec-driven-development',
+      'workflow-automation',
+    ];
+
+    for (const keyword of requiredSdkKeywords) {
+      assert.ok(sdkPackageJson.keywords.includes(keyword), `sdk/package.json keywords missing ${keyword}`);
+    }
   });
 
   test('README advertises the publishable package and has no mojibake markers', () => {
