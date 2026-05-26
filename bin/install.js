@@ -2421,7 +2421,7 @@ function stripCodexHooksFeatureAssignments(content, ownership = null) {
       !record.startsInMultilineString &&
       record.keySegments &&
       record.keySegments.length === 1 &&
-      record.keySegments[0] === 'codex_hooks'
+      (record.keySegments[0] === 'hooks' || record.keySegments[0] === 'codex_hooks')
     );
 
     for (const record of codexHookRecords) {
@@ -2466,7 +2466,7 @@ function stripCodexHooksFeatureAssignments(content, ownership = null) {
       record.keySegments &&
       record.keySegments.length === 2 &&
       record.keySegments[0] === 'features' &&
-      record.keySegments[1] === 'codex_hooks'
+      (record.keySegments[1] === 'hooks' || record.keySegments[1] === 'codex_hooks')
     );
 
     for (const record of rootCodexHookRecords) {
@@ -2844,11 +2844,11 @@ function ensureCodexHooksFeature(configContent) {
         record.end + record.eol.length <= featuresSection.end &&
         record.keySegments &&
         record.keySegments.length === 1 &&
-        record.keySegments[0] === 'codex_hooks'
+        (record.keySegments[0] === 'hooks' || record.keySegments[0] === 'codex_hooks')
       );
 
     if (sectionLines.length > 0) {
-      const rewritten = rewriteTomlKeyLines(configContent, sectionLines, 'codex_hooks');
+      const rewritten = rewriteTomlKeyLines(configContent, sectionLines, 'hooks');
       return {
         content: repairTrappedFeaturesKeys(rewritten),
         ownership: null,
@@ -2858,7 +2858,7 @@ function ensureCodexHooksFeature(configContent) {
     const sectionBody = configContent.slice(featuresSection.headerEnd, featuresSection.end);
     const needsSeparator = sectionBody.length > 0 && !sectionBody.endsWith('\n') && !sectionBody.endsWith('\r\n');
     const insertPrefix = sectionBody.length === 0 && featuresSection.headerEnd === configContent.length ? eol : '';
-    const insertText = `${insertPrefix}${needsSeparator ? eol : ''}codex_hooks = true${eol}`;
+    const insertText = `${insertPrefix}${needsSeparator ? eol : ''}hooks = true${eol}`;
     const merged = configContent.slice(0, featuresSection.end) + insertText + configContent.slice(featuresSection.end);
     return {
       content: repairTrappedFeaturesKeys(merged),
@@ -2876,11 +2876,14 @@ function ensureCodexHooksFeature(configContent) {
     );
 
   const rootCodexHooksLines = rootFeatureLines
-    .filter((record) => record.keySegments.length === 2 && record.keySegments[1] === 'codex_hooks');
+    .filter((record) =>
+      record.keySegments.length === 2 &&
+      (record.keySegments[1] === 'hooks' || record.keySegments[1] === 'codex_hooks')
+    );
 
   if (rootCodexHooksLines.length > 0) {
     return {
-      content: rewriteTomlKeyLines(configContent, rootCodexHooksLines, 'features.codex_hooks'),
+      content: rewriteTomlKeyLines(configContent, rootCodexHooksLines, 'features.hooks'),
       ownership: null,
     };
   }
@@ -2898,13 +2901,13 @@ function ensureCodexHooksFeature(configContent) {
     const prefix = insertAt > 0 && configContent[insertAt - 1] === '\n' ? '' : eol;
     return {
       content: configContent.slice(0, insertAt) +
-        `${prefix}features.codex_hooks = true${eol}` +
+        `${prefix}features.hooks = true${eol}` +
         configContent.slice(insertAt),
       ownership: 'root_dotted',
     };
   }
 
-  const featuresBlock = `[features]${eol}codex_hooks = true${eol}`;
+  const featuresBlock = `[features]${eol}hooks = true${eol}`;
   if (!configContent) {
     return { content: featuresBlock, ownership: 'section' };
   }
@@ -2935,11 +2938,11 @@ function hasEnabledCodexHooksFeature(configContent) {
 
     const isSectionKey = record.tablePath === 'features' &&
       record.keySegments.length === 1 &&
-      record.keySegments[0] === 'codex_hooks';
+      (record.keySegments[0] === 'hooks' || record.keySegments[0] === 'codex_hooks');
     const isRootDottedKey = record.tablePath === null &&
       record.keySegments.length === 2 &&
       record.keySegments[0] === 'features' &&
-      record.keySegments[1] === 'codex_hooks';
+      (record.keySegments[1] === 'hooks' || record.keySegments[1] === 'codex_hooks');
 
     if (!isSectionKey && !isRootDottedKey) {
       return false;
@@ -5983,7 +5986,7 @@ function install(isGlobal, runtime = 'claude') {
       console.log(`  ${green}✓${reset} Installed hooks`);
     }
 
-    // Add Codex hooks (SessionStart for update checking) — requires codex_hooks feature flag
+    // Add Codex hooks (SessionStart for update checking) using the canonical hooks feature flag.
     const configPath = path.join(targetDir, 'config.toml');
     try {
       let configContent = fs.existsSync(configPath) ? fs.readFileSync(configPath, 'utf-8') : '';
@@ -5995,15 +5998,15 @@ function install(isGlobal, runtime = 'claude') {
       const updateCheckScript = path.resolve(targetDir, 'hooks', 'gsd-check-update.js').replace(/\\/g, '/');
       const hookBlock =
         `${eol}# GSD Hooks${eol}` +
-        `[[hooks]]${eol}` +
-        `event = "SessionStart"${eol}` +
+        `[[hooks.SessionStart]]${eol}` +
+        `[[hooks.SessionStart.hooks]]${eol}` +
+        `type = "command"${eol}` +
         `command = "node ${updateCheckScript}"${eol}`;
 
       // Migrate legacy gsd-update-check entries from prior installs (#1755 followup)
       // Remove stale hook blocks that used the inverted filename or wrong path
-      if (configContent.includes('gsd-update-check')) {
-        configContent = configContent.replace(/\n# GSD Hooks\n\[\[hooks\]\]\nevent = "SessionStart"\ncommand = "node [^\n]*gsd-update-check\.js"\n/g, '\n');
-        configContent = configContent.replace(/\r\n# GSD Hooks\r\n\[\[hooks\]\]\r\nevent = "SessionStart"\r\ncommand = "node [^\r\n]*gsd-update-check\.js"\r\n/g, '\r\n');
+      if (configContent.includes('gsd-update-check') || configContent.includes('gsd-check-update')) {
+        configContent = configContent.replace(/\r?\n# GSD Hooks\r?\n\[\[hooks\]\]\r?\nevent\s*=\s*"SessionStart"\r?\ncommand\s*=\s*"(?:node\s+)?[^\r\n]*(?:gsd-update-check|gsd-check-update)\.js"\r?\n/g, eol);
       }
 
       if (hasEnabledCodexHooksFeature(configContent) && !configContent.includes('gsd-check-update')) {
