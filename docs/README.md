@@ -51,4 +51,6 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 - **Find a command:** [Command Reference](COMMANDS.md)
 - **Configure behavior:** [Configuration Reference](CONFIGURATION.md)
 - **Get help:** [Support](../SUPPORT.md)
+- **Ask or discuss:** [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
+- **Contribute:** [Contributing Guide](../CONTRIBUTING.md) + [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
 - **Extend the system:** [CLI Tools Reference](CLI-TOOLS.md) + [Agent Reference](AGENTS.md)

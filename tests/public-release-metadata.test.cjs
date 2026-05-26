@@ -240,6 +240,20 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
+  test('public docs expose community and contribution entry points', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const goodFirstIssuesUrl =
+      'https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22';
+    const discussionsUrl = 'https://github.com/Oisinwang/get-shit-done-codex/discussions';
+
+    assert.match(readme, /\[Contributing\]\(CONTRIBUTING\.md\)/);
+    assert.match(readme, new RegExp(goodFirstIssuesUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+    assert.match(readme, new RegExp(discussionsUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+    assert.match(docsReadme, new RegExp(goodFirstIssuesUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+    assert.match(docsReadme, new RegExp(discussionsUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  });
+
   test('public troubleshooting guide covers Codex install recovery', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
