@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add one more copy-pastable example for an existing repository migration.
+- Add one more copy-pastable example for reviewing and keeping generated planning artifacts.
 - Add a troubleshooting note for one common WSL or shell path mismatch.
 - Add a short FAQ entry for teams that already use GitHub Projects or Linear.
 - Translate `docs/COMPARISON.md` into one localized docs folder.

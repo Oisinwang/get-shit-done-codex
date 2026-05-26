@@ -222,12 +222,18 @@ describe('public release metadata', () => {
     );
 
     assert.match(readme, /\[Examples\]\(docs\/EXAMPLES\.md\)/);
+    assert.match(readme, /Trial GSD on a migration branch/);
+    assert.match(readme, /`git switch -c evaluate-gsd-codex`/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
+    assert.match(examples, /## Existing Repo Migration Branch/);
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
+    assert.match(examples, /git switch -c evaluate-gsd-codex/);
+    assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
+    assert.match(examples, /commit the branch only after reviewing the generated plan/i);
     assert.match(examples, /source code, tests, and a README/);
     assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
 
@@ -244,6 +250,23 @@ describe('public release metadata', () => {
       existingRepoCommands.length >= 3 && existingRepoCommands.length <= 5,
       'existing repo example should stay within 3-5 commands',
     );
+
+    const migrationBranchStart = examples.indexOf('## Existing Repo Migration Branch');
+    const migrationBranchEnd = examples.indexOf('## Small Fix With Guardrails');
+    const migrationBranchSection = examples.slice(migrationBranchStart, migrationBranchEnd);
+    const migrationBranchCommands = migrationBranchSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(migrationBranchCommands, 'migration branch example should include a bash block');
+    assert.deepEqual(migrationBranchCommands, [
+      'git switch -c evaluate-gsd-codex',
+      'npx @oisinwang/get-shit-done-codex@latest --codex --local',
+      '$gsd-map-codebase',
+      '$gsd-new-project --auto',
+      '$gsd-next',
+    ]);
 
     for (const marker of [
       '$gsd-new-project --auto',

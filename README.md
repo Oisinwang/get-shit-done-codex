@@ -135,6 +135,7 @@ Built-in quality gates catch real problems: schema drift detection flags ORM cha
 |----------------|----------------|------------------------|
 | Start from a rough idea | `$gsd-new-project --auto` | `PROJECT.md`, `ROADMAP.md`, and next-step state |
 | Understand an existing repo before planning | `$gsd-map-codebase` | Codebase intelligence the planner can reuse |
+| Trial GSD on a migration branch | `git switch -c evaluate-gsd-codex` | Local `.codex/`, `AGENTS.md`, and reviewable `.planning/` artifacts |
 | Make a small fix with guardrails | `$gsd-fast "fix the failing install check"` | A focused change with verification notes |
 | Continue work after a break | `$gsd-resume-work` | Restored phase context and pending blockers |
 | Compare a technical approach first | `$gsd-spike "validate the risky integration"` | Time-boxed experiment findings |

@@ -29,6 +29,20 @@ $gsd-plan-phase 1
 
 You should see `PROJECT.md`, `ROADMAP.md`, `STATE.md`, and codebase intelligence under `.planning/` so later phases do not infer architecture from a few files in chat.
 
+## Existing Repo Migration Branch
+
+Use this when you want to evaluate GSD inside a real repository without mixing trial artifacts into your main branch.
+
+```bash
+git switch -c evaluate-gsd-codex
+npx @oisinwang/get-shit-done-codex@latest --codex --local
+$gsd-map-codebase
+$gsd-new-project --auto
+$gsd-next
+```
+
+Review `git status`, `.codex/`, `AGENTS.md`, and `.planning/` before deciding what to keep. Commit the branch only after reviewing the generated plan and verification notes; if it is not useful, switch back to your original branch and discard the trial branch by your normal repo policy.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.
