@@ -940,10 +940,10 @@ Cline uses a rules-based integration — GSD installs as `.clinerules` rather th
 
 ```bash
 # Global install (applies to all projects)
-npx get-shit-done-cc --cline --global
+npx @oisinwang/get-shit-done-codex --cline --global
 
 # Local install (this project only)
-npx get-shit-done-cc --cline --local
+npx @oisinwang/get-shit-done-codex --cline --local
 ```
 
 Global installs write to `~/.cline/`. Local installs write to `./.cline/`. No custom slash commands are registered — GSD rules are loaded automatically by Cline from the rules file.
@@ -953,7 +953,7 @@ Global installs write to `~/.cline/`. Local installs write to `./.cline/`. No cu
 CodeBuddy uses a skills-based integration.
 
 ```bash
-npx get-shit-done-cc --codebuddy --global
+npx @oisinwang/get-shit-done-codex --codebuddy --global
 ```
 
 Skills are installed to `~/.codebuddy/skills/gsd-*/SKILL.md`.
@@ -963,7 +963,7 @@ Skills are installed to `~/.codebuddy/skills/gsd-*/SKILL.md`.
 Qwen Code uses the same open skills standard as Claude Code 2.1.88+.
 
 ```bash
-npx get-shit-done-cc --qwen --global
+npx @oisinwang/get-shit-done-codex --qwen --global
 ```
 
 Skills are installed to `~/.qwen/skills/gsd-*/SKILL.md`. Use the `QWEN_CONFIG_DIR` environment variable to override the default install path.
@@ -982,7 +982,7 @@ Since v1.17, the installer backs up locally modified files to `gsd-local-patches
 
 ### Cannot Update via npm
 
-If `npx get-shit-done-cc` fails due to npm outages or network restrictions, see [docs/manual-update.md](manual-update.md) for a step-by-step manual update procedure that works without npm access.
+If `npx @oisinwang/get-shit-done-codex@latest` fails due to npm outages or network restrictions, see [docs/manual-update.md](manual-update.md) for a step-by-step manual update procedure that works without npm access.
 
 ### Workflow Diagnostics (`/gsd-forensics`)
 

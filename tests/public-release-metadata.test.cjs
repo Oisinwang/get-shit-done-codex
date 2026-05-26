@@ -233,6 +233,24 @@ describe('public release metadata', () => {
     }
   });
 
+  test('high-visibility docs use scoped Codex install commands', () => {
+    const highVisibilityDocs = [
+      'docs/USER-GUIDE.md',
+      'docs/FEATURES.md',
+      'docs/ja-JP/FEATURES.md',
+      'docs/ja-JP/context-monitor.md',
+      'docs/ko-KR/FEATURES.md',
+      'docs/ko-KR/context-monitor.md',
+    ];
+
+    for (const relativePath of highVisibilityDocs) {
+      const content = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+      assert.match(content, /@oisinwang\/get-shit-done-codex/, relativePath);
+      assert.doesNotMatch(content, /npx get-shit-done-cc/i, relativePath);
+      assert.doesNotMatch(content, /npx get-shit-done-codex/i, relativePath);
+    }
+  });
+
   test('localized READMEs present the Codex-first public fork', () => {
     const localizedReadmes = [
       ['README.pt-BR.md', /Pacote publicado no npm como `@oisinwang\/get-shit-done-codex`/],
