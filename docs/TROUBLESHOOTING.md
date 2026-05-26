@@ -134,6 +134,36 @@ npx.cmd @oisinwang/get-shit-done-codex@latest --codex --local
 
 Use `--global` instead of `--local` only when you want to update the user-level Codex install under `$env:USERPROFILE\.codex`. You do not need to change PowerShell execution policy just to run these diagnostics.
 
+## Corporate proxy or certificate failures
+
+Corporate networks can intercept TLS or require a proxy before npm can reach the registry. Common npm symptoms include `SELF_SIGNED_CERT_IN_CHAIN`, `UNABLE_TO_GET_ISSUER_CERT_LOCALLY`, `ECONNRESET`, `ETIMEDOUT`, or repeated registry fetch retries.
+
+Collect npm network settings before changing them:
+
+```bash
+npm config get registry
+npm config get proxy
+npm config get https-proxy
+npm config get cafile
+npm config get strict-ssl
+npm ping --registry=https://registry.npmjs.org/
+npm view @oisinwang/get-shit-done-codex version --registry=https://registry.npmjs.org/
+```
+
+If your organization provides an npm proxy or certificate authority file, configure the values your IT team gives you, then rerun:
+
+```bash
+npm ping
+npm view @oisinwang/get-shit-done-codex version
+npx @oisinwang/get-shit-done-codex@latest --codex --local
+```
+
+Do not use `npm config set strict-ssl false` as the first fix. Disabling TLS validation can hide a real network or certificate problem. If you must use it temporarily for diagnosis, reset it before installing tools you intend to keep:
+
+```bash
+npm config set strict-ssl true
+```
+
 ## Windows PowerShell first-pass diagnostics
 
 When an install fails on Windows, collect read-only evidence before repairing anything. Start with toolchain versions and the package metadata PowerShell can see:

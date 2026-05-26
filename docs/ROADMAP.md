@@ -33,7 +33,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 These are intentionally small enough to become a good first issue:
 
 - Add one more copy-pastable example for reviewing and keeping generated planning artifacts.
-- Add a troubleshooting note for one common corporate proxy or certificate failure.
+- Add a troubleshooting note for one common stale npm cache or partial install failure.
 - Add a short FAQ entry for teams that already use GitHub Projects or Linear.
 - Translate `docs/COMPARISON.md` into one localized docs folder.
 - Improve alt text and screenshot captions for public visual assets.

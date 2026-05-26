@@ -465,6 +465,14 @@ describe('public release metadata', () => {
     assert.match(troubleshooting, /echo "\$HOME"/);
     assert.match(troubleshooting, /ls -la "\$HOME\/\.codex"/);
     assert.match(troubleshooting, /Run the installer from the same shell that starts Codex/);
+    assert.match(troubleshooting, /Corporate proxy or certificate failures/);
+    assert.match(troubleshooting, /SELF_SIGNED_CERT_IN_CHAIN/);
+    assert.match(troubleshooting, /UNABLE_TO_GET_ISSUER_CERT_LOCALLY/);
+    assert.match(troubleshooting, /npm config get proxy/);
+    assert.match(troubleshooting, /npm config get https-proxy/);
+    assert.match(troubleshooting, /npm config get cafile/);
+    assert.match(troubleshooting, /npm ping --registry=https:\/\/registry\.npmjs\.org\//);
+    assert.match(troubleshooting, /Do not use `npm config set strict-ssl false` as the first fix/);
     assert.match(troubleshooting, /node --version/);
     assert.match(troubleshooting, /npm --version/);
     assert.match(troubleshooting, /npx --version/);
