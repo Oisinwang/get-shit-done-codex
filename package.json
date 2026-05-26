@@ -1,6 +1,6 @@
 {
   "name": "@oisinwang/get-shit-done-codex",
-  "version": "1.37.2",
+  "version": "1.37.3",
   "description": "Codex-first fork of GSD with AGENTS.md, .codex, and $gsd-* as the primary workflow semantics.",
   "bin": {
     "get-shit-done-codex": "bin/install.js",

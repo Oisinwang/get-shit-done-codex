@@ -12,6 +12,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Fixed
 - **Installer now installs `@gsd-build/sdk` automatically** so `gsd-sdk` lands on PATH. Resolves `command not found: gsd-sdk` errors that affected every `/gsd-*` command after a fresh install or `/gsd-update` to 1.36+. Adds `--no-sdk` to opt out and `--sdk` to force reinstall. Implements the `--sdk` flag that was previously documented in README but never wired up (#2385)
 
+## [1.37.3] - 2026-05-26
+
+### Changed
+- **Public release metadata** now has stronger npm discovery keywords, verified README badges, and corrected Star History embeds for the public `Oisinwang/get-shit-done-codex` repository.
+
+### Fixed
+- **Codex hook installation** now writes the current Codex hooks schema with `[features].hooks = true` plus nested `[[hooks.SessionStart]]` / `[[hooks.SessionStart.hooks]]` tables, and migrates the legacy GSD-owned flat `[[hooks]]` block on reinstall. This fixes fresh installs where Codex rejected `config.toml` hook entries (#1).
+
 ## [1.37.1] - 2026-04-17
 
 ### Fixed
