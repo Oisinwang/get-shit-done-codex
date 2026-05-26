@@ -224,16 +224,22 @@ describe('public release metadata', () => {
     assert.match(readme, /\[Examples\]\(docs\/EXAMPLES\.md\)/);
     assert.match(readme, /Trial GSD on a migration branch/);
     assert.match(readme, /`git switch -c evaluate-gsd-codex`/);
+    assert.match(readme, /Review generated planning artifacts/);
+    assert.match(readme, /`\$gsd-progress --forensic`/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
     assert.match(examples, /## Existing Repo Migration Branch/);
+    assert.match(examples, /## Review Generated Planning Artifacts/);
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
     assert.match(examples, /git switch -c evaluate-gsd-codex/);
     assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(examples, /commit the branch only after reviewing the generated plan/i);
+    assert.match(examples, /git diff -- \.codex AGENTS\.md PROJECT\.md ROADMAP\.md STATE\.md \.planning/);
+    assert.match(examples, /Keep `AGENTS\.md`, `.codex\/`, and `.planning\/` when the generated state helps later Codex sessions resume/);
+    assert.match(examples, /Ignore or discard the trial branch when the artifacts are only private evaluation notes/);
     assert.match(examples, /source code, tests, and a README/);
     assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
 
@@ -266,6 +272,21 @@ describe('public release metadata', () => {
       '$gsd-map-codebase',
       '$gsd-new-project --auto',
       '$gsd-next',
+    ]);
+
+    const reviewArtifactsStart = examples.indexOf('## Review Generated Planning Artifacts');
+    const reviewArtifactsEnd = examples.indexOf('## Small Fix With Guardrails');
+    const reviewArtifactsSection = examples.slice(reviewArtifactsStart, reviewArtifactsEnd);
+    const reviewArtifactsCommands = reviewArtifactsSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(reviewArtifactsCommands, 'planning artifact review example should include a bash block');
+    assert.deepEqual(reviewArtifactsCommands, [
+      'git status --short',
+      'git diff -- .codex AGENTS.md PROJECT.md ROADMAP.md STATE.md .planning',
+      '$gsd-progress --forensic',
     ]);
 
     for (const marker of [

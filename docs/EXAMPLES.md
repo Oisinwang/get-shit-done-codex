@@ -43,6 +43,18 @@ $gsd-next
 
 Review `git status`, `.codex/`, `AGENTS.md`, and `.planning/` before deciding what to keep. Commit the branch only after reviewing the generated plan and verification notes; if it is not useful, switch back to your original branch and discard the trial branch by your normal repo policy.
 
+## Review Generated Planning Artifacts
+
+Use this after a trial run when you need to decide whether the generated planning state belongs in the repository.
+
+```bash
+git status --short
+git diff -- .codex AGENTS.md PROJECT.md ROADMAP.md STATE.md .planning
+$gsd-progress --forensic
+```
+
+Keep `AGENTS.md`, `.codex/`, and `.planning/` when the generated state helps later Codex sessions resume the same project context. Ignore or discard the trial branch when the artifacts are only private evaluation notes or do not match how your team reviews project state.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.
