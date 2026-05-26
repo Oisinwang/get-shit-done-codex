@@ -36,7 +36,7 @@ npx @oisinwang/get-shit-done-codex@latest
 
 <br>
 
-**Pacote publicado no npm como `@oisinwang/get-shit-done-codex`. Branch de release testada: `codex/bootstrap`.**
+**Publicado no npm como `@oisinwang/get-shit-done-codex`. Branch de release testada: `codex/bootstrap`.**
 
 **Fork GSD independente e Codex-first.** Use este fork quando quiser `AGENTS.md`, `.codex/`, `$gsd-*` e caminhos de sessão do Codex como padrão público, não como detalhes de migração.
 
@@ -83,7 +83,7 @@ Quality gates embutidos capturam problemas reais: detecção de schema drift sin
 ### Destaques atuais
 
 - **Contrato Codex-first** - `AGENTS.md`, `.codex/`, `$gsd-*` e caminhos de sessão do Codex são a semântica principal.
-- **Spiking e sketching** - `/gsd-spike` e `/gsd-sketch` capturam experimentos e variantes de design como artefatos de planejamento duráveis.
+- **Spiking e sketching** - `$gsd-spike` e `$gsd-sketch` capturam experimentos e variantes de design como artefatos de planejamento duráveis.
 - **Orçamento de tamanho dos agentes** - limites por tier mantêm prompts enxutos e visíveis no CI.
 - **Extração de boilerplate compartilhado** - lógica comum de reading e descoberta de project skills é centralizada em vez de duplicada.
 
@@ -185,12 +185,12 @@ claude --dangerously-skip-permissions
 
 ## Como funciona
 
-> **Já tem código?** Rode `/gsd-map-codebase` primeiro para analisar stack, arquitetura, convenções e riscos.
+> **Já tem código?** Rode `$gsd-map-codebase` primeiro para analisar stack, arquitetura, convenções e riscos.
 
 ### 1. Inicializar projeto
 
 ```
-/gsd-new-project
+$gsd-new-project
 ```
 
 O sistema:
@@ -204,7 +204,7 @@ O sistema:
 ### 2. Discutir fase
 
 ```
-/gsd-discuss-phase 1
+$gsd-discuss-phase 1
 ```
 
 Captura suas preferências de implementação antes do planejamento.
@@ -214,7 +214,7 @@ Captura suas preferências de implementação antes do planejamento.
 ### 3. Planejar fase
 
 ```
-/gsd-plan-phase 1
+$gsd-plan-phase 1
 ```
 
 1. Pesquisa abordagens
@@ -226,7 +226,7 @@ Captura suas preferências de implementação antes do planejamento.
 ### 4. Executar fase
 
 ```
-/gsd-execute-phase 1
+$gsd-execute-phase 1
 ```
 
 1. Executa planos em ondas
@@ -239,7 +239,7 @@ Captura suas preferências de implementação antes do planejamento.
 ### 5. Verificar trabalho
 
 ```
-/gsd-verify-work 1
+$gsd-verify-work 1
 ```
 
 Validação manual orientada para confirmar que a feature realmente funciona como esperado.
@@ -249,25 +249,25 @@ Validação manual orientada para confirmar que a feature realmente funciona com
 ### 6. Repetir -> Entregar -> Completar
 
 ```
-/gsd-discuss-phase 2
-/gsd-plan-phase 2
-/gsd-execute-phase 2
-/gsd-verify-work 2
-/gsd-ship 2
-/gsd-complete-milestone
-/gsd-new-milestone
+$gsd-discuss-phase 2
+$gsd-plan-phase 2
+$gsd-execute-phase 2
+$gsd-verify-work 2
+$gsd-ship 2
+$gsd-complete-milestone
+$gsd-new-milestone
 ```
 
 Ou deixe o GSD decidir:
 
 ```
-/gsd-next
+$gsd-next
 ```
 
 ### Modo rápido
 
 ```
-/gsd-quick
+$gsd-quick
 ```
 
 Para tarefas ad-hoc sem ciclo completo de planejamento.
@@ -323,36 +323,36 @@ Cada tarefa gera commit próprio, facilitando `git bisect`, rollback e rastreabi
 
 | Comando | O que faz |
 |---------|-----------|
-| `/gsd-new-project [--auto]` | Inicializa projeto completo |
-| `/gsd-discuss-phase [N] [--auto] [--analyze] [--chain]` | Captura decisões antes do plano (`--chain` encadeia automaticamente em plan+execute) |
-| `/gsd-plan-phase [N] [--auto] [--reviews]` | Pesquisa + plano + validação |
-| `/gsd-execute-phase <N>` | Executa planos em ondas paralelas |
-| `/gsd-verify-work [N]` | UAT manual |
-| `/gsd-ship [N] [--draft]` | Cria PR da fase validada |
-| `/gsd-next` | Avança automaticamente para o próximo passo |
-| `/gsd-fast <text>` | Tarefas triviais sem planejamento |
-| `/gsd-complete-milestone` | Fecha o marco e marca release |
-| `/gsd-new-milestone [name]` | Inicia próximo marco |
+| `$gsd-new-project [--auto]` | Inicializa projeto completo |
+| `$gsd-discuss-phase [N] [--auto] [--analyze] [--chain]` | Captura decisões antes do plano (`--chain` encadeia automaticamente em plan+execute) |
+| `$gsd-plan-phase [N] [--auto] [--reviews]` | Pesquisa + plano + validação |
+| `$gsd-execute-phase <N>` | Executa planos em ondas paralelas |
+| `$gsd-verify-work [N]` | UAT manual |
+| `$gsd-ship [N] [--draft]` | Cria PR da fase validada |
+| `$gsd-next` | Avança automaticamente para o próximo passo |
+| `$gsd-fast <text>` | Tarefas triviais sem planejamento |
+| `$gsd-complete-milestone` | Fecha o marco e marca release |
+| `$gsd-new-milestone [name]` | Inicia próximo marco |
 
 ### Qualidade e utilidades
 
 | Comando | O que faz |
 |---------|-----------|
-| `/gsd-review` | Peer review com múltiplas IAs |
-| `/gsd-pr-branch` | Cria branch limpa para PR |
-| `/gsd-settings` | Configura perfis e agentes |
-| `/gsd-set-profile <profile>` | Troca perfil (quality/balanced/budget/inherit) |
-| `/gsd-quick [--full] [--discuss] [--research]` | Execução rápida com garantias do GSD (`--full` ativa todas as etapas, `--validate` ativa apenas verificação) |
-| `/gsd-health [--repair]` | Verifica e repara `.planning/` |
+| `$gsd-review` | Peer review com múltiplas IAs |
+| `$gsd-pr-branch` | Cria branch limpa para PR |
+| `$gsd-settings` | Configura perfis e agentes |
+| `$gsd-set-profile <profile>` | Troca perfil (quality/balanced/budget/inherit) |
+| `$gsd-quick [--full] [--discuss] [--research]` | Execução rápida com garantias do GSD (`--full` ativa todas as etapas, `--validate` ativa apenas verificação) |
+| `$gsd-health [--repair]` | Verifica e repara `.planning/` |
 
-> Para a lista completa de comandos e opções, use `/gsd-help`.
+> Para a lista completa de comandos e opções, use `$gsd-help`.
 
 ---
 
 ## Configuração
 
 As configurações do projeto ficam em `.planning/config.json`.
-Você pode configurar no `/gsd-new-project` ou ajustar depois com `/gsd-settings`.
+Você pode configurar no `$gsd-new-project` ou ajustar depois com `$gsd-settings`.
 
 ### Ajustes principais
 
@@ -372,7 +372,7 @@ Você pode configurar no `/gsd-new-project` ou ajustar depois com `/gsd-settings
 
 Troca rápida:
 ```
-/gsd-set-profile budget
+$gsd-set-profile budget
 ```
 
 ---
@@ -416,7 +416,7 @@ Adicione padrões sensíveis ao deny list do Claude Code:
 - Verifique se os arquivos foram instalados no diretório correto
 
 **Comandos não funcionam como esperado?**
-- Rode `/gsd-help`
+- Rode `$gsd-help`
 - Reinstale com `npx @oisinwang/get-shit-done-codex@latest`
 
 **Em Docker/container?**
