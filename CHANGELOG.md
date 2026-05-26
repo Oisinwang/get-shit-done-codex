@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Security-sensitive change example** - Adds a copy-pastable `$gsd-secure-phase 1` playbook for threat-model-anchored verification before merging authentication, payments, permissions, secrets, or data-handling changes.
 - **Release readiness audit example** - Adds a copy-pastable `$gsd-audit-uat` playbook for checking UAT and verification debt before a release branch.
 - **Public PR branch example** - Adds a copy-pastable `$gsd-pr-branch codex/bootstrap` playbook for preparing review branches without transient `.planning/` noise.
 - **Planning visibility FAQ** - Expands `.planning/` guidance with private-evaluation, team-review, and contributor-PR boundaries.

@@ -77,6 +77,17 @@ $gsd-audit-uat
 
 Use `$gsd-progress --forensic` first for a quick state check, then run `$gsd-audit-uat` to scan all phase UAT and verification files. When there are gaps, GSD groups what is testable now, what needs prerequisites, and what may be stale, then produces a human test plan you can work through before branching or tagging.
 
+## Verify Security-Sensitive Changes
+
+Use this before merging authentication, payments, permissions, secrets, or data-handling changes after a phase has been executed. Replace `1` with the phase number you just completed.
+
+```bash
+$gsd-progress --forensic
+$gsd-secure-phase 1
+```
+
+Use `$gsd-progress --forensic` first to confirm the phase state and surface any existing verification debt. `$gsd-secure-phase` then performs threat-model-anchored verification, works with or without an existing `SECURITY.md`, and produces `{phase}-SECURITY.md` with threat verification results before you continue toward UAT, review, or release.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.
