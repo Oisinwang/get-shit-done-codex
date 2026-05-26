@@ -59,6 +59,21 @@ describe('codex-first canonical wording', () => {
     assert.ok(sketch.includes('## Update Project AGENTS.md'));
   });
 
+  test('wrap-up command and docs advertise codex skill output paths', () => {
+    const files = [
+      'commands/gsd/spike-wrap-up.md',
+      'commands/gsd/sketch-wrap-up.md',
+      'docs/USER-GUIDE.md',
+      'docs/FEATURES.md',
+    ];
+
+    for (const relativePath of files) {
+      const content = readRepoFile(relativePath);
+      assert.match(content, /\.codex\/skills\/(?:spike|sketch)-findings-\[project\]/, relativePath);
+      assert.doesNotMatch(content, /\.claude\/skills\/(?:spike|sketch)-findings-\[project\]/, relativePath);
+    }
+  });
+
   test('release-facing docs present scoped npm install as the verified path', () => {
     const readme = readRepoFile('README.md');
     const forkNotes = readRepoFile('docs/CODEX-FORK.md');

@@ -281,7 +281,7 @@ Each spike runs 2–5 experiments. Every experiment has:
 
 Results land in `.planning/spikes/NNN-name/README.md` and are indexed in `.planning/spikes/MANIFEST.md`.
 
-Once you have signal, run `/gsd-spike-wrap-up` to package the findings into `.claude/skills/spike-findings-[project]/` — future sessions will load them automatically via project-skills discovery.
+Once you have signal, run `/gsd-spike-wrap-up` to package the findings into `.codex/skills/spike-findings-[project]/` — future sessions will load them automatically via project-skills discovery.
 
 ### When to Sketch
 
@@ -296,7 +296,7 @@ Sketch when you need to compare layout structures, interaction models, or visual
 
 Each sketch answers **one design question** with 2–3 variants in a single `index.html` you open directly in a browser — no build step. Variants use tab navigation and shared CSS variables from `themes/default.css`. All interactive elements (hover, click, transitions) are functional.
 
-After picking a winner, run `/gsd-sketch-wrap-up` to capture the visual decisions into `.claude/skills/sketch-findings-[project]/`.
+After picking a winner, run `/gsd-sketch-wrap-up` to capture the visual decisions into `.codex/skills/sketch-findings-[project]/`.
 
 ### Spike → Sketch → Phase Flow
 
