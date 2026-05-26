@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Troubleshooting guide** - Adds `docs/TROUBLESHOOTING.md` with Codex `config.toml` hook recovery, command discovery checks, Windows PowerShell inspection commands, and stale npm metadata guidance.
 - **Public roadmap** - Adds `docs/ROADMAP.md` with current status, near-term priorities, manual maintainer actions, and contributor-sized work candidates.
 - **Comparison guide** - Adds `docs/COMPARISON.md` and discovery links so evaluators can quickly compare GSD Codex with raw Codex chat, prompt packs, task managers, and CI-only workflows.
 - **GitHub social preview asset** - Adds `assets/social-preview.png` with generator script and promotion docs for the repository Social preview upload flow.

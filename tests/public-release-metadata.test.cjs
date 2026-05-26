@@ -240,6 +240,35 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
+  test('public troubleshooting guide covers Codex install recovery', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const troubleshootingPath = path.join(ROOT, 'docs', 'TROUBLESHOOTING.md');
+
+    assert.equal(
+      fs.existsSync(troubleshootingPath),
+      true,
+      'docs/TROUBLESHOOTING.md should exist',
+    );
+
+    const troubleshooting = fs.readFileSync(troubleshootingPath, 'utf8');
+
+    assert.match(readme, /\[Troubleshooting\]\(docs\/TROUBLESHOOTING\.md\)/);
+    assert.match(docsReadme, /\[Troubleshooting\]\(TROUBLESHOOTING\.md\)/);
+    assert.match(troubleshooting, /# Troubleshooting/);
+    assert.match(troubleshooting, /config\.toml/);
+    assert.match(troubleshooting, /\[\[hooks\]\]/);
+    assert.match(troubleshooting, /\[\[hooks\.SessionStart\]\]/);
+    assert.match(troubleshooting, /\[features\]\.hooks = true/);
+    assert.match(troubleshooting, /npx @oisinwang\/get-shit-done-codex@latest --codex/);
+    assert.match(troubleshooting, /PowerShell/);
+    assert.doesNotMatch(
+      troubleshooting,
+      /[^\x00-\x7F]/,
+      'docs/TROUBLESHOOTING.md should stay ASCII-clean',
+    );
+  });
+
   test('promotion assets include a GitHub social preview setup', () => {
     const previewPath = path.join(ROOT, 'assets', 'social-preview.png');
     const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
