@@ -134,6 +134,31 @@ describe('public release metadata', () => {
     assert.match(quickStart, /phase artifacts/);
   });
 
+  test('public demo guide shows what the first workflow produces', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const demoPath = path.join(ROOT, 'docs', 'DEMO.md');
+
+    assert.equal(fs.existsSync(demoPath), true, 'docs/DEMO.md should exist');
+
+    const demo = fs.readFileSync(demoPath, 'utf8');
+
+    assert.match(readme, /\[Demo\]\(docs\/DEMO\.md\)/);
+    assert.match(docsReadme, /\[Demo\]\(DEMO\.md\)/);
+    assert.match(demo, /# Demo/);
+    assert.match(demo, /60-second workflow/);
+    assert.match(demo, /npx @oisinwang\/get-shit-done-codex@latest/);
+    assert.match(demo, /\$gsd-new-project/);
+    assert.match(demo, /\$gsd-next/);
+    assert.match(demo, /PROJECT\.md/);
+    assert.match(demo, /ROADMAP\.md/);
+    assert.match(demo, /STATE\.md/);
+    assert.match(demo, /phase artifacts/);
+    assert.match(demo, /resume/);
+    assert.match(demo, /verification evidence/);
+    assert.doesNotMatch(demo, /[^\x00-\x7F]/, 'docs/DEMO.md should stay ASCII-clean');
+  });
+
   test('public examples help first-time users choose a workflow', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
