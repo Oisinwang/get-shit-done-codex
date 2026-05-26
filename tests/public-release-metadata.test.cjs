@@ -94,6 +94,25 @@ describe('public release metadata', () => {
     assert.match(atAGlance, /\$gsd-pause-work/);
   });
 
+  test('README shows a near-top copy-pastable first workflow', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const quickStartStart = readme.indexOf('## 60-Second Workflow');
+    const whyStart = readme.indexOf('## Why This Fork Exists');
+
+    assert.ok(quickStartStart > -1, 'README should include a quick first workflow');
+    assert.ok(quickStartStart < whyStart, 'quick first workflow should appear before deeper explanation');
+
+    const quickStart = readme.slice(quickStartStart, whyStart);
+
+    assert.match(quickStart, /npx @oisinwang\/get-shit-done-codex@latest/);
+    assert.match(quickStart, /\$gsd-new-project/);
+    assert.match(quickStart, /\$gsd-next/);
+    assert.match(quickStart, /PROJECT\.md/);
+    assert.match(quickStart, /ROADMAP\.md/);
+    assert.match(quickStart, /STATE\.md/);
+    assert.match(quickStart, /phase artifacts/);
+  });
+
   test('sdk package uses the same public npm scope', () => {
     const sdkPackageJson = readJson('sdk/package.json');
     const sdkPackageLock = readJson('sdk/package-lock.json');

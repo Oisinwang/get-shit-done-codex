@@ -64,6 +64,25 @@ npx @oisinwang/get-shit-done-codex@latest
 
 ---
 
+## 60-Second Workflow
+
+```bash
+npx @oisinwang/get-shit-done-codex@latest
+$gsd-new-project
+$gsd-next
+```
+
+After the first pass, GSD leaves reviewable project memory instead of a loose chat transcript:
+
+| Artifact | Why it matters |
+|----------|----------------|
+| `PROJECT.md` | Captures the goal, constraints, and project shape |
+| `ROADMAP.md` | Turns the goal into phases the agent can execute and resume |
+| `STATE.md` | Records current progress so later sessions know what happened |
+| phase artifacts | Preserve discussion, plans, verification, and UAT evidence |
+
+---
+
 ## Why This Fork Exists
 
 This fork turns GSD into a Codex-first workflow. The canonical project contract is `AGENTS.md`, `.codex/`, and `$gsd-*` commands. Legacy Claude-first names remain only so existing projects can migrate without losing context.
