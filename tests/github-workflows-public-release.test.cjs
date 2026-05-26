@@ -47,4 +47,12 @@ describe('GitHub workflows public release configuration', () => {
 
     assert.match(workflow, /node scripts\/validate-hotfix\.cjs/);
   });
+
+  test('hotfix back-merge PR creation cannot block publishing', () => {
+    const workflow = readWorkflow('hotfix.yml');
+
+    assert.match(workflow, /::warning::Unable to inspect existing hotfix back-merge PR/);
+    assert.match(workflow, /::warning::Unable to create hotfix back-merge PR/);
+    assert.match(workflow, /Create the PR manually from \$BRANCH to codex\/bootstrap/);
+  });
 });
