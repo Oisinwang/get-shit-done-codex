@@ -539,6 +539,10 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /README value hook/);
     assert.match(unreleasedSection, /Security policy exposure/);
     assert.match(unreleasedSection, /SECURITY\.md/);
+    assert.match(unreleasedSection, /Existing repo safe trial/);
+    assert.match(unreleasedSection, /docs\/EXAMPLES\.md/);
+    assert.match(unreleasedSection, /Simplified Chinese comparison guide/);
+    assert.match(unreleasedSection, /docs\/zh-CN\/COMPARISON\.md/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {
