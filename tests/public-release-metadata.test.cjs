@@ -140,6 +140,22 @@ describe('public release metadata', () => {
     assert.doesNotMatch(docsReadme, /Claude-first/);
   });
 
+  test('installer banner and terminal preview present the Codex-first fork', () => {
+    const terminalSvg = fs.readFileSync(path.join(ROOT, 'assets', 'terminal.svg'), 'utf8');
+    const installer = fs.readFileSync(path.join(ROOT, 'bin', 'install.js'), 'utf8');
+
+    assert.match(terminalSvg, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
+    assert.match(terminalSvg, /Get Shit Done Codex/);
+    assert.match(terminalSvg, /Codex-first workflow system/);
+    assert.match(terminalSvg, /\.codex\/skills/);
+    assert.match(terminalSvg, /\$gsd-help/);
+
+    assert.doesNotMatch(terminalSvg, /npx get-shit-done-cc/);
+    assert.doesNotMatch(terminalSvg, /Claude Code by/);
+    assert.doesNotMatch(terminalSvg, /T.CHES/);
+    assert.doesNotMatch(installer, /T.CHES/);
+  });
+
   test('public install hints use publishable scoped package names', () => {
     const installHintFiles = [
       'README.md',
