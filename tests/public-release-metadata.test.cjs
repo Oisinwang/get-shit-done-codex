@@ -102,6 +102,14 @@ describe('public release metadata', () => {
     assert.match(promotion, /npx @oisinwang\/get-shit-done-codex@latest/);
   });
 
+  test('README star history embeds use the public owner and repository name', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+
+    assert.match(readme, /star-history\.com\/#Oisinwang\/get-shit-done-codex&Date/);
+    assert.match(readme, /repos=Oisinwang\/get-shit-done-codex&type=Date/);
+    assert.doesNotMatch(readme, /repos=get-shit-done-codex&type=Date/);
+  });
+
   test('high-visibility English public files stay ASCII-clean', () => {
     const asciiFiles = [
       'README.md',
