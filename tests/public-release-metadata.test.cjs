@@ -196,6 +196,7 @@ describe('public release metadata', () => {
 
   test('promotion assets include a GitHub social preview setup', () => {
     const previewPath = path.join(ROOT, 'assets', 'social-preview.png');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
     const promotion = fs.readFileSync(path.join(ROOT, 'docs', 'PROMOTION.md'), 'utf8');
 
     assert.equal(fs.existsSync(previewPath), true, 'assets/social-preview.png should exist');
@@ -207,6 +208,7 @@ describe('public release metadata', () => {
     assert.ok(preview.size < 1_000_000, 'social preview image should stay under 1 MB');
 
     assert.match(promotion, /assets\/social-preview\.png/);
+    assert.match(docsReadme, /\[Promotion Assets\]\(PROMOTION\.md\)/);
     assert.match(promotion, /Settings > General > Social preview/);
     assert.match(promotion, /Upload an image/);
     assert.match(
