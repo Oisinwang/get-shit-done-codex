@@ -159,6 +159,30 @@ describe('public release metadata', () => {
     assert.doesNotMatch(demo, /[^\x00-\x7F]/, 'docs/DEMO.md should stay ASCII-clean');
   });
 
+  test('public evaluation checklist gives visitors a safe trial path', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const evaluatePath = path.join(ROOT, 'docs', 'EVALUATE.md');
+
+    assert.equal(fs.existsSync(evaluatePath), true, 'docs/EVALUATE.md should exist');
+
+    const evaluate = fs.readFileSync(evaluatePath, 'utf8');
+
+    assert.match(readme, /\[Evaluate\]\(docs\/EVALUATE\.md\)/);
+    assert.match(docsReadme, /\[Evaluate\]\(EVALUATE\.md\)/);
+    assert.match(evaluate, /# Evaluate/);
+    assert.match(evaluate, /10-minute check/);
+    assert.match(evaluate, /safe trial/);
+    assert.match(evaluate, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
+    assert.match(evaluate, /\$gsd-new-project --auto/);
+    assert.match(evaluate, /\$gsd-next/);
+    assert.match(evaluate, /Pass signals/);
+    assert.match(evaluate, /Fail signals/);
+    assert.match(evaluate, /cleanup/);
+    assert.match(evaluate, /git status/);
+    assert.doesNotMatch(evaluate, /[^\x00-\x7F]/, 'docs/EVALUATE.md should stay ASCII-clean');
+  });
+
   test('public examples help first-time users choose a workflow', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
