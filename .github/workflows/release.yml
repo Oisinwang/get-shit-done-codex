@@ -92,6 +92,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Create release branch
+        if: ${{ !inputs.dry_run }}
         env:
           BRANCH: ${{ needs.validate-version.outputs.branch }}
           VERSION: ${{ inputs.version }}
@@ -112,6 +113,17 @@ jobs:
           fi
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "Next: run this workflow with \`rc\` action to publish a pre-release to \`next\`" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Dry-run release branch summary
+        if: ${{ inputs.dry_run }}
+        env:
+          BRANCH: ${{ needs.validate-version.outputs.branch }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          echo "## Release branch dry run" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Branch: \`$BRANCH\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Version: \`$VERSION\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- No release branch was created, committed, or pushed." >> "$GITHUB_STEP_SUMMARY"
 
   rc:
     needs: validate-version
@@ -160,6 +172,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      - name: Require npm token for publish
+        if: ${{ !inputs.dry_run }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "::error::NPM_TOKEN secret is not configured in the npm-publish environment or repository."
+            exit 1
+          fi
+
       - name: Bump to pre-release version
         env:
           PRE_VERSION: ${{ steps.prerelease.outputs.pre_version }}
@@ -170,6 +192,12 @@ jobs:
         run: |
           npm ci
           npm run test:coverage
+
+      - name: Verify npm authentication
+        if: ${{ !inputs.dry_run }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm whoami
 
       - name: Commit pre-release version bump
         env:
@@ -278,6 +306,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      - name: Require npm token for publish
+        if: ${{ !inputs.dry_run }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "::error::NPM_TOKEN secret is not configured in the npm-publish environment or repository."
+            exit 1
+          fi
+
       - name: Set final version
         env:
           VERSION: ${{ inputs.version }}
@@ -290,6 +328,12 @@ jobs:
         run: |
           npm ci
           npm run test:coverage
+
+      - name: Verify npm authentication
+        if: ${{ !inputs.dry_run }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm whoami
 
       - name: Dry-run publish validation
         run: npm publish --dry-run

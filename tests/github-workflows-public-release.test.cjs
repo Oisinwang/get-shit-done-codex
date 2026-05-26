@@ -84,6 +84,26 @@ describe('GitHub workflows public release configuration', () => {
     }
   });
 
+  test('release create dry-run does not create or push a branch', () => {
+    const workflow = readWorkflow('release.yml');
+    const createJob = workflow.slice(workflow.indexOf('  create:'), workflow.indexOf('  rc:'));
+    const createBranchStep = createJob.slice(createJob.indexOf('name: Create release branch'));
+
+    assert.match(createBranchStep, /if: \$\{\{ !inputs\.dry_run \}\}/);
+    assert.match(createJob, /name: Dry-run release branch summary/);
+    assert.match(createJob, /No release branch was created/);
+  });
+
+  test('test workflow does not reference a missing Windows workflow', () => {
+    const testWorkflow = readWorkflow('test.yml');
+    const workflowNames = fs.readdirSync(path.join(ROOT, '.github', 'workflows'));
+    const hasWindowsWorkflow = workflowNames.some((name) => /windows/i.test(name));
+
+    if (!hasWindowsWorkflow) {
+      assert.doesNotMatch(testWorkflow, /dedicated windows-compat workflow/i);
+    }
+  });
+
   test('hotfix workflow delegates version validation to tested script', () => {
     const workflow = readWorkflow('hotfix.yml');
 
@@ -120,6 +140,32 @@ describe('GitHub workflows public release configuration', () => {
     assert.notStrictEqual(authStep, -1);
     assert.ok(tokenStep < installStep, 'missing npm token should fail before long release tests');
     assert.ok(authStep < tagStep, 'npm authentication must be checked before pushing tags');
+    assert.match(workflow, /NPM_TOKEN secret is not configured/);
+    assert.match(workflow, /npm whoami/);
+  });
+
+  test('minor release workflow verifies npm authentication before pushing release tags', () => {
+    const workflow = readWorkflow('release.yml');
+    const rcJob = workflow.slice(workflow.indexOf('  rc:'), workflow.indexOf('  finalize:'));
+    const finalizeJob = workflow.slice(workflow.indexOf('  finalize:'));
+
+    for (const [jobName, job] of [
+      ['rc', rcJob],
+      ['finalize', finalizeJob],
+    ]) {
+      const tokenStep = job.indexOf('name: Require npm token for publish');
+      const installStep = job.indexOf('name: Install and test');
+      const authStep = job.indexOf('name: Verify npm authentication');
+      const tagStep = job.indexOf('name: Tag and push');
+
+      assert.notStrictEqual(tokenStep, -1, `${jobName} should require npm token`);
+      assert.notStrictEqual(installStep, -1, `${jobName} should install and test`);
+      assert.notStrictEqual(authStep, -1, `${jobName} should verify npm authentication`);
+      assert.notStrictEqual(tagStep, -1, `${jobName} should tag and push`);
+      assert.ok(tokenStep < installStep, `${jobName} should fail early when npm token is missing`);
+      assert.ok(authStep < tagStep, `${jobName} should check npm auth before pushing tags`);
+    }
+
     assert.match(workflow, /NPM_TOKEN secret is not configured/);
     assert.match(workflow, /npm whoami/);
   });
