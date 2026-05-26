@@ -224,6 +224,26 @@ describe('public release metadata', () => {
     assert.match(readme, /\[Examples\]\(docs\/EXAMPLES\.md\)/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
+    assert.match(examples, /## Existing Repo Safe Trial/);
+    assert.match(examples, /\$gsd-map-codebase/);
+    assert.match(examples, /\$gsd-new-project --auto/);
+    assert.match(examples, /\$gsd-discuss-phase 1/);
+    assert.match(examples, /source code, tests, and a README/);
+    assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
+
+    const existingRepoStart = examples.indexOf('## Existing Repo Safe Trial');
+    const existingRepoEnd = examples.indexOf('## Small Fix With Guardrails');
+    const existingRepoSection = examples.slice(existingRepoStart, existingRepoEnd);
+    const existingRepoCommands = existingRepoSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(existingRepoCommands, 'existing repo example should include a bash command block');
+    assert.ok(
+      existingRepoCommands.length >= 3 && existingRepoCommands.length <= 5,
+      'existing repo example should stay within 3-5 commands',
+    );
 
     for (const marker of [
       '$gsd-new-project --auto',

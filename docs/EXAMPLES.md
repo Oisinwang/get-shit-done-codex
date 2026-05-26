@@ -14,9 +14,11 @@ $gsd-next
 
 You should see `PROJECT.md`, `ROADMAP.md`, `STATE.md`, and phase folders under `.planning/`. Continue with `$gsd-next` when you want GSD to pick the next safe action.
 
-## Existing Repo Before Planning
+## Existing Repo Safe Trial
 
-Use this when the repository already has code and you want Codex to understand patterns before proposing work.
+Use this when the repository already has source code, tests, and a README, and you want Codex to understand the project before proposing work.
+
+Run `$gsd-map-codebase` first to capture code patterns, `$gsd-new-project --auto` next to create durable project state, and `$gsd-discuss-phase 1` as the first planning command.
 
 ```bash
 $gsd-map-codebase
@@ -25,7 +27,7 @@ $gsd-discuss-phase 1
 $gsd-plan-phase 1
 ```
 
-This gives later phases codebase intelligence instead of making the planner infer architecture from a few files in chat.
+You should see `PROJECT.md`, `ROADMAP.md`, `STATE.md`, and codebase intelligence under `.planning/` so later phases do not infer architecture from a few files in chat.
 
 ## Small Fix With Guardrails
 
