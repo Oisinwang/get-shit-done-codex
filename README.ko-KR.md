@@ -1,20 +1,17 @@
 <div align="center">
 
-# GET SHIT DONE
+# GET SHIT DONE CODEX
 
 [English](README.md) · [Português](README.pt-BR.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja-JP.md) · **한국어**
 
-**Claude Code, OpenCode, Gemini CLI, Kilo, Codex, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Cline을 위한 가볍고 강력한 메타 프롬프팅, 컨텍스트 엔지니어링, 스펙 기반 개발 시스템.**
+**긴 AI 코딩 세션에서 목표를 계획되고 검증 가능하며 다시 이어갈 수 있는 구현으로 바꾸는 Codex-first 워크플로우 시스템입니다.**
 
-**컨텍스트 rot를 해결합니다 — Claude의 컨텍스트 창이 채워질수록 품질이 저하되는 문제.**
+**컨텍스트, 결정, 단계별 계획, 검증 체크, 복구 상태를 명시적으로 남기며 모델이 전부 기억하길 기대하지 않습니다.**
 
-[![npm version](https://img.shields.io/npm/v/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
-[![npm downloads](https://img.shields.io/npm/dm/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
-[![Tests](https://img.shields.io/github/actions/workflow/status/get-shit-done-codex/test.yml?branch=main&style=for-the-badge&logo=github&label=Tests)](https://github.com/get-shit-done-codex/actions/workflows/test.yml)
-[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/mYgfVNfA2r)
-[![X (Twitter)](https://img.shields.io/badge/X-@gsd__foundation-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/gsd_foundation)
-[![$GSD Token](https://img.shields.io/badge/$GSD-Dexscreener-1C1C1C?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgZmlsbD0iIzAwRkYwMCIvPjwvc3ZnPg==&logoColor=00FF00)](https://dexscreener.com/solana/dwudwjvan7bzkw9zwlbyv6kspdlvhwzrqy6ebk8xzxkv)
-[![GitHub stars](https://img.shields.io/github/stars/get-shit-done-codex?style=for-the-badge&logo=github&color=181717)](https://github.com/get-shit-done-codex)
+[![npm version](https://img.shields.io/npm/v/@oisinwang/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/@oisinwang/get-shit-done-codex)
+[![npm downloads](https://img.shields.io/npm/dm/@oisinwang/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=0B7285)](https://www.npmjs.com/package/@oisinwang/get-shit-done-codex)
+[![Tests](https://github.com/Oisinwang/get-shit-done-codex/actions/workflows/test.yml/badge.svg?branch=codex/bootstrap)](https://github.com/Oisinwang/get-shit-done-codex/actions/workflows/test.yml)
+[![GitHub stars](https://img.shields.io/github/stars/Oisinwang/get-shit-done-codex?style=for-the-badge&logo=github&color=111827)](https://github.com/Oisinwang/get-shit-done-codex/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 <br>
@@ -31,58 +28,64 @@ npx @oisinwang/get-shit-done-codex@latest
 
 <br>
 
-*"원하는 게 뭔지 명확하게 알고 있다면, 이게 진짜로 만들어줍니다. 과장 없이."*
+*"원하는 것이 명확하다면 Codex가 검증 가능한 결과까지 계속 만들 수 있게 돕습니다."*
 
-*"SpecKit, OpenSpec, Taskmaster 다 써봤는데 — 지금까지 이게 제일 결과가 좋았어요."*
+*"spec, plan, execute, review, resume을 거대한 기업 프로세스 없이 사용할 수 있습니다."*
 
-*"Claude Code에 추가한 것 중 단연 가장 강력합니다. 과하게 엔지니어링하지 않고, 말 그대로 그냥 해냅니다."*
+*"Codex가 기본 런타임이며 다른 agent CLI는 호환 레이어로 지원합니다."*
 
 <br>
 
-**Amazon, Google, Shopify, Webflow 엔지니어들이 신뢰합니다.**
+**npm에는 `@oisinwang/get-shit-done-codex` 패키지로 게시되어 있습니다. 테스트된 릴리스 브랜치는 `codex/bootstrap`입니다.**
 
-[왜 만들었나](#왜-만들었나) · [작동 방식](#작동-방식) · [명령어](#명령어) · [왜 효과적인가](#왜-효과적인가) · [사용자 가이드](docs/ko-KR/USER-GUIDE.md)
+**독립적인 Codex-first GSD fork입니다.** `AGENTS.md`, `.codex/`, `$gsd-*`, Codex session 경로를 마이그레이션 세부 사항이 아니라 공개 기본값으로 쓰고 싶을 때 사용하세요.
+
+**보안과 릴리스 위생:** scoped npm package, 저장소 메타데이터, CI, release workflow, issue template은 모두 이 fork를 가리킵니다. 이전 Claude-era 이름은 호환 shim으로만 남아 있습니다.
+
+[이 fork가 존재하는 이유](#이-fork가-존재하는-이유) · [작동 방식](#작동-방식) · [명령어](#명령어) · [왜 효과적인가](#왜-효과적인가) · [사용자 가이드](docs/ko-KR/USER-GUIDE.md)
 
 </div>
 
 ---
 
-## 왜 만들었나
-
-저는 솔로 개발자입니다. 코드는 제가 아니라 Claude Code가 씁니다.
-
-스펙 기반 개발 도구가 없는 건 아닙니다. BMAD, Speckit 같은 것들이 있죠. 근데 다들 필요 이상으로 복잡합니다 — 스프린트 세리머니, 스토리 포인트, 이해관계자 싱크, 회고, 지라 워크플로우. 저는 50인 규모 소프트웨어 회사가 아니에요. 기업 연극을 하고 싶지 않습니다. 그냥 좋은 걸 만들고 싶은 사람입니다.
-
-그래서 GSD를 만들었습니다. 복잡함은 시스템 안에 있습니다. 워크플로우에 있는 게 아니라. 뒤에서 컨텍스트 엔지니어링, XML 프롬프트 포맷팅, 서브에이전트 오케스트레이션, 상태 관리가 돌아갑니다. 겉에서 보이는 건 그냥 몇 가지 명령어뿐입니다.
-
-시스템이 Claude한테 작업하는 데 필요한 것과 검증하는 데 필요한 것을 모두 줍니다. 저는 이 워크플로우를 믿습니다. 그냥 잘 됩니다.
-
-이게 전부입니다. 기업 역할극 같은 건 없습니다. Claude Code를 일관성 있게 쓰기 위한, 진짜로 잘 되는 시스템입니다.
-
-— **TÂCHES**
+> [!IMPORTANT]
+> 이 저장소는 독립적인 Codex-first fork입니다.
+>
+> 이 fork의 기본 의미 체계:
+> - `AGENTS.md`
+> - `.codex/`
+> - `$gsd-*`
+> - `agents_md_path`
+> - `generate-agents-md`
+> - `generate-agents-profile`
+> - `~/.codex/sessions`
+>
+> 이전 Claude-first 이름은 호환 shim으로만 남아 있습니다. 마이그레이션과 릴리스 노트는 [docs/CODEX-FORK.md](docs/CODEX-FORK.md)에 있습니다.
 
 ---
 
-바이브코딩은 평판이 안 좋습니다. 원하는 걸 설명하면 AI가 코드를 생성하는데, 규모가 커지면 엉망이 되는 일관성 없는 쓰레기가 나옵니다.
+## 이 fork가 존재하는 이유
 
-GSD가 그걸 고칩니다. Claude Code를 신뢰할 수 있게 만드는 컨텍스트 엔지니어링 레이어입니다. 아이디어를 설명하면 시스템이 필요한 걸 다 뽑아내고, Claude Code가 일을 시작합니다.
+이 fork는 GSD를 Codex-first 워크플로우로 바꿉니다. 표준 프로젝트 계약은 `AGENTS.md`, `.codex/`, `$gsd-*` 명령입니다. 이전 Claude-first 이름은 마이그레이션을 위해 남아 있지만 공개 기본 의미 체계는 아닙니다.
+
+목표는 단순합니다. 첫 prompt 이후에도 AI 보조 개발이 일관되게 유지되도록 하는 것입니다. GSD는 목표를 캡처하고, 코드베이스를 매핑하고, 구현 단계를 계획하고, 검증 체크포인트와 함께 실행하고, 결정을 기록하며, Codex가 나중에 다시 이어갈 수 있는 상태를 남깁니다.
+
+혼자 만드는 사람과 작은 팀이 기업 프로세스 연극 없이 진지한 계획과 검증을 쓰기 위한 도구입니다. 당신은 결과를 설명하고, 시스템은 요구사항을 보존하고 작업을 확인하며 다음 행동을 분명하게 만듭니다.
 
 ---
 
 ## 이게 누구를 위한 건가
 
-원하는 걸 설명하면 제대로 만들어지길 바라는 사람들 — 50인 규모 엔지니어링 조직인 척하지 않아도 되는.
+원하는 결과를 설명하면 올바르게 구현되길 바라는 사람들입니다. 50인 규모 엔지니어링 조직인 척할 필요가 없습니다.
 
 내장 품질 게이트가 실제 문제를 잡아냅니다: 스키마 드리프트 감지는 마이그레이션 누락된 ORM 변경을 플래그하고, 보안 강제는 검증을 위협 모델에 고정시키고, 스코프 축소 감지는 플래너가 요구사항을 몰래 빠뜨리는 걸 방지합니다.
 
-### v1.32.0 하이라이트
+### 현재 하이라이트
 
-- **STATE.md 일관성 게이트** — `state validate`가 STATE.md와 파일시스템 간 드리프트를 감지, `state sync`가 실제 프로젝트 상태에서 재구성
-- **`--to N` 플래그** — 자율 실행을 특정 단계 완료 후 중지
-- **리서치 게이트** — RESEARCH.md에 미해결 질문이 있으면 기획을 차단
-- **검증 마일스톤 스코프 필터링** — 이후 단계에서 처리될 격차는 "격차"가 아닌 "지연됨"으로 표시
-- **읽기-후-편집 가드** — 비Claude 런타임에서 무한 재시도 루프를 방지하는 어드바이저리 훅
-- **컨텍스트 축소** — 마크다운 잘라내기 및 캐시 친화적 프롬프트 순서로 토큰 사용량 절감
+- **Codex-first 프로젝트 계약** - `AGENTS.md`, `.codex/`, `$gsd-*`, Codex session 경로가 기본 의미 체계입니다.
+- **Spiking과 sketching** - `/gsd-spike`와 `/gsd-sketch`가 실험과 디자인 변형을 지속 가능한 계획 산출물로 저장합니다.
+- **Agent 크기 예산 강제** - tier별 줄 수 제한으로 agent prompt를 작게 유지하고 CI에서 보이게 합니다.
+- **공유 boilerplate 추출** - reading과 project-skill discovery 공통 로직을 중복하지 않고 중앙화합니다.
 - **4개의 새 런타임** — Trae, Kilo, Augment, Cline (총 12개 런타임)
 
 ---

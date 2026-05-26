@@ -160,4 +160,31 @@ describe('public release metadata', () => {
       );
     }
   });
+
+  test('localized READMEs present the Codex-first public fork', () => {
+    const localizedReadmes = [
+      ['README.pt-BR.md', /Pacote publicado no npm como `@oisinwang\/get-shit-done-codex`/],
+      ['README.zh-CN.md', /发布在 npm 上的包名是 `@oisinwang\/get-shit-done-codex`/],
+      ['README.ja-JP.md', /npm では `@oisinwang\/get-shit-done-codex` として公開/],
+      ['README.ko-KR.md', /npm에는 `@oisinwang\/get-shit-done-codex` 패키지로 게시/],
+    ];
+
+    for (const [relativePath, packageSentence] of localizedReadmes) {
+      const readme = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+
+      assert.match(readme, /# GET SHIT DONE CODEX/, relativePath);
+      assert.match(readme, /Codex-first/, relativePath);
+      assert.match(readme, /npx @oisinwang\/get-shit-done-codex@latest/, relativePath);
+      assert.match(readme, /img\.shields\.io\/npm\/v\/@oisinwang\/get-shit-done-codex/, relativePath);
+      assert.match(readme, /img\.shields\.io\/npm\/dm\/@oisinwang\/get-shit-done-codex/, relativePath);
+      assert.match(readme, /actions\/workflows\/test\.yml\/badge\.svg\?branch=codex\/bootstrap/, relativePath);
+      assert.match(readme, /github\.com\/Oisinwang\/get-shit-done-codex/, relativePath);
+      assert.match(readme, packageSentence, relativePath);
+
+      assert.doesNotMatch(readme, /img\.shields\.io\/npm\/v\/get-shit-done-codex/, relativePath);
+      assert.doesNotMatch(readme, /github\.com\/get-shit-done-codex/, relativePath);
+      assert.doesNotMatch(readme, /discord\.gg/, relativePath);
+      assert.doesNotMatch(readme, /dexscreener/i, relativePath);
+    }
+  });
 });

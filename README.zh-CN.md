@@ -1,20 +1,17 @@
 <div align="center">
 
-# GET SHIT DONE
+# GET SHIT DONE CODEX
 
 [English](README.md) · [Português](README.pt-BR.md) · **简体中文** · [日本語](README.ja-JP.md) · [한국어](README.ko-KR.md)
 
-**一个轻量但强大的元提示、上下文工程与规格驱动开发系统，适用于 Claude Code、OpenCode、Gemini CLI、Kilo、Codex、Copilot、Cursor、Windsurf、Antigravity、Augment、Trae、CodeBuddy 和 Cline。**
+**一个 Codex-first 工作流系统，用来把目标拆成可规划、可验证、可长期恢复的 AI 编程流程。**
 
-**它解决的是 context rot：随着 Claude 的上下文窗口被填满，输出质量逐步劣化的问题。**
+**它把上下文、决策、阶段计划、验证检查和恢复状态显式保存下来，而不是赌模型会一直记得。**
 
-[![npm version](https://img.shields.io/npm/v/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
-[![npm downloads](https://img.shields.io/npm/dm/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
-[![Tests](https://img.shields.io/github/actions/workflow/status/get-shit-done-codex/test.yml?branch=main&style=for-the-badge&logo=github&label=Tests)](https://github.com/get-shit-done-codex/actions/workflows/test.yml)
-[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/mYgfVNfA2r)
-[![X (Twitter)](https://img.shields.io/badge/X-@gsd__foundation-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/gsd_foundation)
-[![$GSD Token](https://img.shields.io/badge/$GSD-Dexscreener-1C1C1C?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgZmlsbD0iIzAwRkYwMCIvPjwvc3ZnPg==&logoColor=00FF00)](https://dexscreener.com/solana/dwudwjvan7bzkw9zwlbyv6kspdlvhwzrqy6ebk8xzxkv)
-[![GitHub stars](https://img.shields.io/github/stars/get-shit-done-codex?style=for-the-badge&logo=github&color=181717)](https://github.com/get-shit-done-codex)
+[![npm version](https://img.shields.io/npm/v/@oisinwang/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/@oisinwang/get-shit-done-codex)
+[![npm downloads](https://img.shields.io/npm/dm/@oisinwang/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=0B7285)](https://www.npmjs.com/package/@oisinwang/get-shit-done-codex)
+[![Tests](https://github.com/Oisinwang/get-shit-done-codex/actions/workflows/test.yml/badge.svg?branch=codex/bootstrap)](https://github.com/Oisinwang/get-shit-done-codex/actions/workflows/test.yml)
+[![GitHub stars](https://img.shields.io/github/stars/Oisinwang/get-shit-done-codex?style=for-the-badge&logo=github&color=111827)](https://github.com/Oisinwang/get-shit-done-codex/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 <br>
@@ -31,57 +28,64 @@ npx @oisinwang/get-shit-done-codex@latest
 
 <br>
 
-*"只要你清楚自己想要什么，它就真的能给你做出来。不扯淡。"*
+*"只要你清楚自己想要什么，它就能帮 Codex 持续构建，直到结果可验证。"*
 
-*"我试过 SpecKit、OpenSpec 和 Taskmaster，这套东西目前给我的结果最好。"*
+*"Spec、plan、execute、review、resume，不需要引入一整套企业流程。 "*
 
-*"这是我给 Claude Code 加过最强的增强。没有过度设计，是真的把事做完。"*
+*"Codex 是主运行时，其他 agent CLI 通过兼容层支持。"*
 
 <br>
 
-**已被 Amazon、Google、Shopify 和 Webflow 的工程师采用。**
+**发布在 npm 上的包名是 `@oisinwang/get-shit-done-codex`。测试发布分支是 `codex/bootstrap`。**
 
-[我为什么做这个](#我为什么做这个) · [它是怎么工作的](#它是怎么工作的) · [命令](#命令) · [为什么它有效](#为什么它有效) · [用户指南](docs/USER-GUIDE.md)
+**独立的 Codex-first GSD fork。** 如果你希望 `AGENTS.md`、`.codex/`、`$gsd-*` 和 Codex session 路径成为默认公开语义，而不是迁移细节，就使用这个 fork。
+
+**安全与发布卫生：** scoped npm package、仓库元数据、CI、发布 workflow 和 issue 模板都指向这个 fork。旧 Claude-era 名称只作为兼容 shim 保留。
+
+[为什么存在这个 fork](#为什么存在这个-fork) · [它是怎么工作的](#它是怎么工作的) · [命令](#命令) · [为什么它有效](#为什么它有效) · [用户指南](docs/USER-GUIDE.md)
 
 </div>
 
 ---
 
-## 我为什么做这个
-
-我是独立开发者。我不写代码，Claude Code 写。
-
-市面上已经有其他规格驱动开发工具，比如 BMAD、Speckit……但它们要么把事情搞得比必要的复杂得多了些（冲刺仪式、故事点、利益相关方同步、复盘、Jira 流程），要么根本缺少对你到底在构建什么的整体理解。我不是一家 50 人的软件公司。我不想演企业流程。我只是个想把好东西真正做出来的创作者。
-
-所以我做了 GSD。复杂性在系统内部，不在你的工作流里。幕后是上下文工程、XML 提示格式、子代理编排、状态管理；你看到的是几个真能工作的命令。
-
-这套系统会把 Claude 完成工作 *以及* 验证结果所需的一切上下文都准备好。我信任这个工作流，因为它确实能把事情做好。
-
-这就是它。没有企业角色扮演式的废话，只有一套非常有效、能让你持续用 Claude Code 构建酷东西的系统。
-
-— **TÂCHES**
+> [!IMPORTANT]
+> 这个仓库是一个独立的 Codex-first fork。
+>
+> 这个 fork 的主语义是：
+> - `AGENTS.md`
+> - `.codex/`
+> - `$gsd-*`
+> - `agents_md_path`
+> - `generate-agents-md`
+> - `generate-agents-profile`
+> - `~/.codex/sessions`
+>
+> 旧 Claude-first 名称只作为兼容 shim 保留。迁移和发布说明见 [docs/CODEX-FORK.md](docs/CODEX-FORK.md)。
 
 ---
 
-Vibecoding 的名声不算好。你描述需求，AI 生成代码，结果往往是质量不稳定、规模一上来就散架的垃圾。
+## 为什么存在这个 fork
 
-GSD 解决的就是这个问题。它是让 Claude Code 变得可靠的上下文工程层。你只要描述想法，系统会自动提取它需要知道的一切，然后让 Claude Code 去干活。
+这个 fork 把 GSD 转成 Codex-first 工作流。标准项目契约是 `AGENTS.md`、`.codex/` 和 `$gsd-*` 命令。旧 Claude-first 名称仍可用于迁移，但不再是公开默认语义。
+
+目标很简单：让 AI 辅助开发在第一个 prompt 之后仍然保持连贯。GSD 会保存目标、映射代码库、规划实现阶段、带验证检查执行、记录决策，并留下足够状态让 Codex 之后继续接手。
+
+它适合独立开发者和小团队：你只描述结果，系统负责保留需求、检查工作、让下一步清晰，而不需要把自己伪装成一家 50 人工程组织。
 
 ---
 
 ## 适合谁用
 
-适合那些想把自己的需求说明白，然后让系统正确构建出来的人，而不是假装自己在运营一个 50 人工程组织的人。
+适合那些希望把需求讲清楚，然后让系统正确构建出来的人，而不是想维护一套企业流程仪式的人。
 
-### v1.32.0 亮点
+内置质量门会抓真实问题：schema drift 检查会发现 ORM 变更缺迁移，安全门会把验证绑定到威胁模型，scope reduction 检测会阻止规划器悄悄丢掉你的要求。
 
-- **STATE.md 一致性检查** — `state validate` 检测 STATE.md 与文件系统之间的偏差；`state sync` 从实际项目状态重建
-- **`--to N` 标志** — 在完成特定阶段后停止自主执行
-- **研究门控** — 当 RESEARCH.md 有未解决的开放问题时阻止规划
-- **验证里程碑范围过滤** — 后续阶段将处理的差距标记为"延迟"而非差距
-- **读取后编辑保护** — 咨询性 hook 防止非 Claude 运行时的无限重试循环
-- **上下文缩减** — Markdown 截断和缓存友好的 prompt 排序，降低 token 使用量
-- **4 个新运行时** — Trae、Kilo、Augment 和 Cline（共 12 个运行时）
+### 当前亮点
+
+- **Codex-first 项目契约** - `AGENTS.md`、`.codex/`、`$gsd-*` 和 Codex session 路径是主语义。
+- **Spike 和 sketch** - `/gsd-spike` 与 `/gsd-sketch` 把实验和设计变体保存为可持续追踪的规划产物。
+- **Agent size-budget enforcement** - 分层行数预算让 agent prompt 保持精简，并在 CI 中可见。
+- **共享样板抽取** - 通用 reading 和 project-skill discovery 逻辑集中维护，减少跨 agent 重复。
 
 ---
 
