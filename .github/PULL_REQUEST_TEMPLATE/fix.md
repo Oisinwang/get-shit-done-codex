@@ -1,8 +1,8 @@
 ## Fix PR
 
 > **Using the wrong template?**
-> — Enhancement: use [enhancement.md](?template=enhancement.md)
-> — Feature: use [feature.md](?template=feature.md)
+> - Enhancement: use [enhancement.md](?template=enhancement.md)
+> - Feature: use [feature.md](?template=feature.md)
 
 ---
 
@@ -36,8 +36,8 @@ Fixes #
 
 ### Regression test added?
 
-- [ ] Yes — added a test that would have caught this bug
-- [ ] No — explain why: <!-- e.g., environment-specific, non-deterministic -->
+- [ ] Yes - added a test that would have caught this bug
+- [ ] No - explain why: <!-- e.g., environment-specific, non-deterministic -->
 
 ### Platforms tested
 
@@ -48,6 +48,7 @@ Fixes #
 
 ### Runtimes tested
 
+- [ ] Codex
 - [ ] Claude Code
 - [ ] Gemini CLI
 - [ ] OpenCode
@@ -58,9 +59,9 @@ Fixes #
 
 ## Checklist
 
-- [ ] Issue linked above with `Fixes #NNN` — **PR will be auto-closed if missing**
+- [ ] Issue linked above with `Fixes #NNN` - **PR will be auto-closed if missing**
 - [ ] Linked issue has the `confirmed-bug` label
-- [ ] Fix is scoped to the reported bug — no unrelated changes included
+- [ ] Fix is scoped to the reported bug - no unrelated changes included
 - [ ] Regression test added (or explained why not)
 - [ ] All existing tests pass (`npm test`)
 - [ ] CHANGELOG.md updated if this is a user-facing fix

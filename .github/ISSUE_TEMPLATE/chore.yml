@@ -1,6 +1,6 @@
 ---
 name: Chore / Maintenance
-description: Internal improvements — refactoring, test quality, CI/CD, dependency updates, tech debt.
+description: Internal improvements: refactoring, test quality, CI/CD, dependency updates, tech debt.
 labels: ["type: chore", "needs-triage"]
 body:
   - type: markdown
@@ -14,7 +14,7 @@ body:
         - Dependency updates
         - Code quality or linting changes
         - Build system or tooling updates
-        - Documentation infrastructure (not content — use Docs Issue for content)
+        - Documentation infrastructure (not content; use Docs Issue for content)
         - Tech debt paydown
 
         If this changes how GSD **works** for users, use [Enhancement](./enhancement.yml) or [Feature Request](./feature_request.yml) instead.
@@ -26,7 +26,7 @@ body:
       options:
         - label: This does not change user-facing behavior (commands, output, file formats, config)
           required: true
-        - label: I have searched existing issues — this has not already been filed
+        - label: I have searched existing issues and this has not already been filed
           required: true
 
   - type: input

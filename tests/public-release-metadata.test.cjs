@@ -315,4 +315,44 @@ describe('public release metadata', () => {
     assert.match(helpWorkflow, /github\.com\/Oisinwang\/get-shit-done-codex\/discussions/);
     assert.doesNotMatch(helpWorkflow, /discord\.gg/i);
   });
+
+  test('GitHub contribution templates are Codex-first and ASCII-clean', () => {
+    const templateFiles = [
+      '.github/ISSUE_TEMPLATE/bug_report.yml',
+      '.github/ISSUE_TEMPLATE/chore.yml',
+      '.github/ISSUE_TEMPLATE/config.yml',
+      '.github/ISSUE_TEMPLATE/docs_issue.yml',
+      '.github/ISSUE_TEMPLATE/enhancement.yml',
+      '.github/ISSUE_TEMPLATE/feature_request.yml',
+      '.github/pull_request_template.md',
+      '.github/PULL_REQUEST_TEMPLATE/fix.md',
+      '.github/PULL_REQUEST_TEMPLATE/enhancement.md',
+      '.github/PULL_REQUEST_TEMPLATE/feature.md',
+    ];
+
+    for (const relativePath of templateFiles) {
+      const content = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+      assert.doesNotMatch(content, /[^\x00-\x7F]/, `${relativePath} contains non-ASCII text`);
+    }
+
+    const bugTemplate = fs.readFileSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'bug_report.yml'), 'utf8');
+    assert.match(bugTemplate, /npm list -g @oisinwang\/get-shit-done-codex/);
+    assert.match(bugTemplate, /options:\r?\n        - Codex\r?\n        - Claude Code/);
+    assert.match(bugTemplate, /Select runtime: Codex/);
+    assert.match(bugTemplate, /Codex: `cat ~\/\.codex\/config\.toml`/);
+
+    const featureTemplate = fs.readFileSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'feature_request.yml'), 'utf8');
+    assert.match(featureTemplate, /label: Codex\r?\n        - label: Claude Code/);
+
+    const prTemplateFiles = [
+      '.github/PULL_REQUEST_TEMPLATE/fix.md',
+      '.github/PULL_REQUEST_TEMPLATE/enhancement.md',
+      '.github/PULL_REQUEST_TEMPLATE/feature.md',
+    ];
+
+    for (const relativePath of prTemplateFiles) {
+      const content = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+      assert.match(content, /### Runtimes tested[\s\S]*- \[ \] Codex[\s\S]*- \[ \] Claude Code/, relativePath);
+    }
+  });
 });

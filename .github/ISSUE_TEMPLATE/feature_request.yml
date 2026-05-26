@@ -180,10 +180,10 @@ body:
       label: Applicable runtimes
       description: Which runtimes must this work with? Check all that apply.
       options:
+        - label: Codex
         - label: Claude Code
         - label: Gemini CLI
         - label: OpenCode
-        - label: Codex
         - label: Copilot
         - label: Antigravity
         - label: Cursor
