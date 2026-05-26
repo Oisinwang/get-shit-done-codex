@@ -96,8 +96,22 @@ describe('public release metadata', () => {
 
   test('README gives a quick value scan before install instructions', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const topValueStart = readme.indexOf('Use GSD Codex when you need to:');
+    const quickStartStart = readme.indexOf('## 60-Second Workflow');
     const atAGlanceStart = readme.indexOf('## At a Glance');
     const gettingStartedStart = readme.indexOf('## Getting Started');
+
+    assert.ok(topValueStart > -1, 'README should include a near-top value hook');
+    assert.ok(
+      topValueStart < quickStartStart,
+      'near-top value hook should appear before the first workflow details',
+    );
+
+    const topValue = readme.slice(topValueStart, quickStartStart);
+
+    assert.match(topValue, /fuzzy goal into a repo-local spec/);
+    assert.match(topValue, /context resets/);
+    assert.match(topValue, /verification notes/);
 
     assert.ok(atAGlanceStart > -1, 'README should include a quick value scan');
     assert.ok(

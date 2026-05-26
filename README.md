@@ -20,6 +20,14 @@
 
 <br>
 
+Use GSD Codex when you need to:
+
+- Turn a fuzzy goal into a repo-local spec, roadmap, and next action.
+- Keep Codex moving across context resets with explicit state and handoff files.
+- Review AI-built work through planned phases, verification notes, and small commits.
+
+<br>
+
 ```bash
 npx @oisinwang/get-shit-done-codex@latest
 ```
