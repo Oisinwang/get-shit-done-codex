@@ -32,9 +32,9 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a short FAQ entry about how to trial GSD in repositories with strict branch protection.
 - Add a copy-pastable example for using `$gsd-audit-uat` before a release branch.
 - Add a troubleshooting note for one common permission or PATH mismatch after install.
+- Add a short FAQ entry about keeping `.planning/` private versus committing it for team review.
 - Translate `docs/COMPARISON.md` into one localized docs folder.
 - Improve alt text and screenshot captions for public visual assets.
 

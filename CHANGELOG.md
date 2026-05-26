@@ -16,6 +16,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Comparison guide** - Adds `docs/COMPARISON.md` and discovery links so evaluators can quickly compare GSD Codex with raw Codex chat, prompt packs, task managers, and CI-only workflows.
 - **GitHub social preview asset** - Adds `assets/social-preview.png` with generator script and promotion docs for the repository Social preview upload flow.
 - **Public FAQ** - Adds `docs/FAQ.md` and links it from the README and docs index to answer common adoption questions about scope, existing repositories, Codex-first runtime support, created files, and when not to use GSD.
+- **Branch protection FAQ** - Explains how teams with protected branches can trial GSD on a local install and review the generated artifacts through a normal pull request.
 - **Public examples guide** - Adds `docs/EXAMPLES.md` and a near-top README workflow chooser so new users can pick a copy-pastable path for new projects, existing repos, quick fixes, resume, spikes, sketches, and shipping.
 - **Existing repo safe trial** - Updates `docs/EXAMPLES.md` with a 4-command path for repositories that already have source code, tests, and a README.
 - **Simplified Chinese comparison guide** - Adds `docs/zh-CN/COMPARISON.md` and links it from the localized docs index so Chinese readers can evaluate the same trade-offs as the English comparison guide.

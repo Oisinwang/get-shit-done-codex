@@ -354,12 +354,17 @@ describe('public release metadata', () => {
     assert.match(faq, /Can I uninstall it/);
     assert.match(faq, /Do I have to commit `.planning\/`/);
     assert.match(faq, /Can I use it with GitHub Projects, Linear, or Jira/);
+    assert.match(faq, /Can I try it in a repository with strict branch protection/);
     assert.match(faq, /Can I try it without touching global Codex config/);
     assert.match(faq, /When should I not use it/);
     assert.match(faq, /AGENTS\.md/);
     assert.match(faq, /\.codex\//);
     assert.match(faq, /planning context and execution evidence/);
     assert.match(faq, /team-facing coordination layer/);
+    assert.match(faq, /Use a trial branch and the local install path/);
+    assert.match(faq, /Open a pull request like any other repository change/);
+    assert.match(faq, /GSD does not need to bypass protected branch rules/);
+    assert.match(faq, /merge only the files your team wants to keep/);
     assert.match(faq, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(faq, /--local/);
     assert.match(faq, /\$gsd-map-codebase/);

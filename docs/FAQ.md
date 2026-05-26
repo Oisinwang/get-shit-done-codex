@@ -36,6 +36,17 @@ No. Commit `.planning/` when you want durable team-visible project memory. Ignor
 
 Yes. GSD complements an existing tracker instead of replacing it. Use the tracker as the team-facing coordination layer for ownership, priority, and status. Use GSD inside the repository for planning context and execution evidence: project state, phase plans, verification notes, and handoff files that Codex can resume from. See [Examples](EXAMPLES.md) for practical starting paths.
 
+## Can I try it in a repository with strict branch protection?
+
+Yes. Use a trial branch and the local install path so the first pass is reviewable before it touches the protected branch:
+
+```bash
+git switch -c evaluate-gsd-codex
+npx @oisinwang/get-shit-done-codex@latest --codex --local
+```
+
+Open a pull request like any other repository change if you decide the generated `AGENTS.md`, `.codex/`, or `.planning/` artifacts belong in the repo. GSD does not need to bypass protected branch rules; merge only the files your team wants to keep.
+
 ## Can I try it without touching global Codex config?
 
 Yes. Use `--local` for the first trial:
