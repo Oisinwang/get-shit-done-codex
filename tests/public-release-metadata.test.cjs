@@ -608,6 +608,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/TROUBLESHOOTING\.md/);
     assert.match(unreleasedSection, /Simplified Chinese prompt recipes/);
     assert.match(unreleasedSection, /docs\/zh-CN\/PROMPTS\.md/);
+    assert.match(unreleasedSection, /Japanese prompt recipes/);
+    assert.match(unreleasedSection, /docs\/ja-JP\/PROMPTS\.md/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {
@@ -914,6 +916,32 @@ describe('public release metadata', () => {
     assert.match(zhPrompts, /\$gsd-audit-fix/);
     assert.match(zhPrompts, /\.planning\//);
     assert.match(zhPrompts, /不要跳过验证/);
+  });
+
+  test('Japanese prompt recipes mirror public starter prompts', () => {
+    const jaDocsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'ja-JP', 'README.md'), 'utf8');
+    const jaPromptsPath = path.join(ROOT, 'docs', 'ja-JP', 'PROMPTS.md');
+
+    assert.equal(fs.existsSync(jaPromptsPath), true, 'docs/ja-JP/PROMPTS.md should exist');
+
+    const jaPrompts = fs.readFileSync(jaPromptsPath, 'utf8');
+
+    assert.match(jaDocsReadme, /\[プロンプトレシピ\]\(PROMPTS\.md\)/);
+    assert.match(jaPrompts, /# プロンプトレシピ/);
+    assert.match(jaPrompts, /Codex に貼り付け/);
+    assert.match(jaPrompts, /## 新しいプロジェクトを開始する/);
+    assert.match(jaPrompts, /## 既存リポジトリ/);
+    assert.match(jaPrompts, /## 小さな修正/);
+    assert.match(jaPrompts, /## 作業を再開する/);
+    assert.match(jaPrompts, /## 監査して修正する/);
+    assert.match(jaPrompts, /\$gsd-new-project --auto/);
+    assert.match(jaPrompts, /\$gsd-map-codebase/);
+    assert.match(jaPrompts, /\$gsd-fast/);
+    assert.match(jaPrompts, /\$gsd-resume-work/);
+    assert.match(jaPrompts, /\$gsd-progress --forensic/);
+    assert.match(jaPrompts, /\$gsd-audit-fix/);
+    assert.match(jaPrompts, /\.planning\//);
+    assert.match(jaPrompts, /検証を省略しない/);
   });
 
   test('community health files point at this public fork', () => {
