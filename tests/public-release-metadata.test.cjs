@@ -251,6 +251,21 @@ describe('public release metadata', () => {
     }
   });
 
+  test('User Guide is ASCII-clean and uses Codex command syntax by default', () => {
+    const userGuide = fs.readFileSync(path.join(ROOT, 'docs', 'USER-GUIDE.md'), 'utf8');
+
+    assert.doesNotMatch(userGuide, /[^\x00-\x7F]/, 'docs/USER-GUIDE.md should avoid mojibake-prone Unicode diagrams');
+    assert.match(userGuide, /\$gsd-new-project/);
+    assert.match(userGuide, /\$gsd-plan-phase/);
+    assert.doesNotMatch(userGuide, /`\/gsd-/);
+    assert.doesNotMatch(userGuide, /^\/gsd-/m);
+    assert.match(userGuide, /node "\$HOME\/\.codex\/get-shit-done\/bin\/gsd-tools\.cjs"/);
+    assert.doesNotMatch(userGuide, /bin\$gsd-tools\.cjs/);
+    assert.doesNotMatch(userGuide, /~\$gsd-workspaces/);
+    assert.doesNotMatch(userGuide, /~\/\.claude\/get-shit-done\/USER-PROFILE\.md/);
+    assert.doesNotMatch(userGuide, /node "\$HOME\/\.claude\/get-shit-done\/bin\/gsd-tools\.cjs"/);
+  });
+
   test('localized READMEs present the Codex-first public fork', () => {
     const localizedReadmes = [
       ['README.pt-BR.md', /Pacote publicado no npm como `@oisinwang\/get-shit-done-codex`/],
