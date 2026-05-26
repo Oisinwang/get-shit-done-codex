@@ -42,7 +42,7 @@ npx @oisinwang/get-shit-done-codex@latest
 
 **Security and release hygiene:** scoped npm package, repository metadata, CI, release workflows, issue templates, and [community standards](CODE_OF_CONDUCT.md) all point at this fork. Legacy Claude-era names remain only as compatibility shims.
 
-[Why This Fork Exists](#why-this-fork-exists) | [Examples](docs/EXAMPLES.md) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md) | [Support](SUPPORT.md) | [Code of Conduct](CODE_OF_CONDUCT.md)
+[Why This Fork Exists](#why-this-fork-exists) | [Examples](docs/EXAMPLES.md) | [FAQ](docs/FAQ.md) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md) | [Support](SUPPORT.md) | [Code of Conduct](CODE_OF_CONDUCT.md)
 
 </div>
 

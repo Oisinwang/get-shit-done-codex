@@ -153,6 +153,30 @@ describe('public release metadata', () => {
     assert.doesNotMatch(examples, /[^\x00-\x7F]/, 'docs/EXAMPLES.md should stay ASCII-clean');
   });
 
+  test('public FAQ answers common adoption objections', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const faqPath = path.join(ROOT, 'docs', 'FAQ.md');
+
+    assert.equal(fs.existsSync(faqPath), true, 'docs/FAQ.md should exist');
+
+    const faq = fs.readFileSync(faqPath, 'utf8');
+
+    assert.match(readme, /\[FAQ\]\(docs\/FAQ\.md\)/);
+    assert.match(docsReadme, /\[FAQ\]\(FAQ\.md\)/);
+    assert.match(faq, /# FAQ/);
+    assert.match(faq, /Is this just a prompt pack/);
+    assert.match(faq, /Does it work on an existing repository/);
+    assert.match(faq, /Does this require Claude Code/);
+    assert.match(faq, /What files does it create/);
+    assert.match(faq, /When should I not use it/);
+    assert.match(faq, /AGENTS\.md/);
+    assert.match(faq, /\.codex\//);
+    assert.match(faq, /\$gsd-map-codebase/);
+    assert.match(faq, /\$gsd-fast/);
+    assert.doesNotMatch(faq, /[^\x00-\x7F]/, 'docs/FAQ.md should stay ASCII-clean');
+  });
+
   test('sdk package uses the same public npm scope', () => {
     const sdkPackageJson = readJson('sdk/package.json');
     const sdkPackageLock = readJson('sdk/package-lock.json');
