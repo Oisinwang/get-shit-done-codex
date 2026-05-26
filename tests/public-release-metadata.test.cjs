@@ -494,6 +494,18 @@ describe('public release metadata', () => {
     assert.match(promotion, /npx @oisinwang\/get-shit-done-codex@latest/);
   });
 
+  test('CHANGELOG current compare link points at the public Codex fork', () => {
+    const packageJson = readJson('package.json');
+    const changelog = fs.readFileSync(path.join(ROOT, 'CHANGELOG.md'), 'utf8');
+    const unreleasedLink = changelog.match(/^\[Unreleased\]: .+$/m);
+
+    assert.ok(unreleasedLink, 'CHANGELOG should define an [Unreleased] compare link');
+    assert.equal(
+      unreleasedLink[0],
+      `[Unreleased]: https://github.com/Oisinwang/get-shit-done-codex/compare/v${packageJson.version}...HEAD`,
+    );
+  });
+
   test('README star history embeds use the public owner and repository name', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
 

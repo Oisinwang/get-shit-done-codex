@@ -2036,7 +2036,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - YOLO mode for autonomous execution
 - Interactive mode with checkpoints
 
-[Unreleased]: https://github.com/gsd-build/get-shit-done/compare/v1.37.1...HEAD
+[Unreleased]: https://github.com/Oisinwang/get-shit-done-codex/compare/v1.37.2...HEAD
 [1.37.1]: https://github.com/gsd-build/get-shit-done/compare/v1.37.0...v1.37.1
 [1.37.0]: https://github.com/gsd-build/get-shit-done/compare/v1.36.0...v1.37.0
 [1.36.0]: https://github.com/gsd-build/get-shit-done/releases/tag/v1.36.0
