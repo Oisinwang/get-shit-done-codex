@@ -176,6 +176,8 @@ describe('public release metadata', () => {
     assert.match(evaluate, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(evaluate, /\$gsd-new-project --auto/);
     assert.match(evaluate, /\$gsd-next/);
+    assert.match(evaluate, /Expected changed paths/);
+    assert.match(evaluate, /\.planning\//);
     assert.match(evaluate, /Pass signals/);
     assert.match(evaluate, /Fail signals/);
     assert.match(evaluate, /cleanup/);
@@ -235,9 +237,14 @@ describe('public release metadata', () => {
     assert.match(faq, /Does it work on an existing repository/);
     assert.match(faq, /Does this require Claude Code/);
     assert.match(faq, /What files does it create/);
+    assert.match(faq, /Will it edit code automatically/);
+    assert.match(faq, /Can I uninstall it/);
+    assert.match(faq, /Do I have to commit `.planning\/`/);
+    assert.match(faq, /Can I try it without touching global Codex config/);
     assert.match(faq, /When should I not use it/);
     assert.match(faq, /AGENTS\.md/);
     assert.match(faq, /\.codex\//);
+    assert.match(faq, /--local/);
     assert.match(faq, /\$gsd-map-codebase/);
     assert.match(faq, /\$gsd-fast/);
     assert.doesNotMatch(faq, /[^\x00-\x7F]/, 'docs/FAQ.md should stay ASCII-clean');

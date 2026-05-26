@@ -20,6 +20,28 @@ For a managed Codex install, GSD writes command and skill files under `.codex/` 
 
 No. GSD works through explicit commands. Planning artifacts are plain Markdown and JSON so you can review, commit, ignore, or remove them according to your repo policy. Small tasks can use `$gsd-fast` when a full project cycle would be too much.
 
+## Will it edit code automatically?
+
+Only when you run a workflow that performs implementation work, such as `$gsd-fast`, `$gsd-quick`, or `$gsd-execute-phase`. Discovery and planning commands focus on project state first. Use `git status` and the generated verification notes to review what changed before committing.
+
+## Can I uninstall it?
+
+Yes. For a local trial, remove `.codex/`, `AGENTS.md`, and `.planning/` if you do not want to keep them. For a global install, remove the GSD files from `~/.codex/` according to your normal Codex setup policy.
+
+## Do I have to commit `.planning/`?
+
+No. Commit `.planning/` when you want durable team-visible project memory. Ignore it or keep it on a trial branch when you only want a private evaluation. The files are plain text so the decision is visible in review.
+
+## Can I try it without touching global Codex config?
+
+Yes. Use `--local` for the first trial:
+
+```bash
+npx @oisinwang/get-shit-done-codex@latest --codex --local
+```
+
+That keeps Codex-facing setup files inside the current directory.
+
 ## When should I not use it?
 
 Do not use GSD for a one-line edit when you already know the exact change and do not need durable state. It is also the wrong tool if you want an agent to act without review, tests, or traceable decisions. Use it when the work benefits from preserved context, staged planning, verification, or resume support.

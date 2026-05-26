@@ -58,6 +58,18 @@ Look for these files:
 
 The files are plain text. You should be able to read them in git before committing anything.
 
+## Expected changed paths
+
+A first local trial should usually touch only:
+
+```text
+.codex/
+AGENTS.md
+.planning/
+```
+
+If you run a workflow that edits application code, those code changes should also appear in `git status`. Review that list before committing. The safe trial path is useful because it keeps setup files, planning files, and product code changes visible as separate decisions.
+
 ## Pass signals
 
 GSD Codex is a good fit when:
@@ -90,6 +102,8 @@ git diff
 ```
 
 Then either commit the planning files you want to keep, or switch away from the trial branch and delete it according to your normal Git workflow.
+
+The expected cleanup set for a local trial is `.codex/`, `AGENTS.md`, and `.planning/`, plus any code files you deliberately changed during the trial.
 
 Do not run cleanup commands blindly in a repository with unrelated work. Review the file list first.
 
