@@ -113,6 +113,7 @@ describe('public release metadata', () => {
   test('high-visibility English public files stay ASCII-clean', () => {
     const asciiFiles = [
       'README.md',
+      'docs/README.md',
       'get-shit-done/workflows/quick.md',
       'sdk/src/index.ts',
     ];
@@ -121,6 +122,22 @@ describe('public release metadata', () => {
       const content = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
       assert.doesNotMatch(content, /[^\x00-\x7F]/, `${relativePath} contains non-ASCII text`);
     }
+  });
+
+  test('documentation index presents the current Codex-first fork', () => {
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+
+    assert.match(docsReadme, /# GSD Codex Documentation/);
+    assert.match(docsReadme, /Codex-first workflow system/);
+    assert.match(docsReadme, /AGENTS\.md/);
+    assert.match(docsReadme, /\.codex\//);
+    assert.match(docsReadme, /\$gsd-\*/);
+    assert.match(docsReadme, /CODEX-FORK\.md/);
+    assert.match(docsReadme, /npx @oisinwang\/get-shit-done-codex@latest/);
+
+    assert.doesNotMatch(docsReadme, /v1\.32/);
+    assert.doesNotMatch(docsReadme, /What's new in/);
+    assert.doesNotMatch(docsReadme, /Claude-first/);
   });
 
   test('public install hints use publishable scoped package names', () => {
