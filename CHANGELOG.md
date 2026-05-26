@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Public roadmap** - Adds `docs/ROADMAP.md` with current status, near-term priorities, manual maintainer actions, and contributor-sized work candidates.
 - **Comparison guide** - Adds `docs/COMPARISON.md` and discovery links so evaluators can quickly compare GSD Codex with raw Codex chat, prompt packs, task managers, and CI-only workflows.
 - **GitHub social preview asset** - Adds `assets/social-preview.png` with generator script and promotion docs for the repository Social preview upload flow.
 - **Public FAQ** - Adds `docs/FAQ.md` and links it from the README and docs index to answer common adoption questions about scope, existing repositories, Codex-first runtime support, created files, and when not to use GSD.

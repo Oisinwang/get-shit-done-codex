@@ -217,6 +217,29 @@ describe('public release metadata', () => {
     assert.doesNotMatch(comparison, /[^\x00-\x7F]/, 'docs/COMPARISON.md should stay ASCII-clean');
   });
 
+  test('public roadmap shows active direction and contributor-sized work', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const roadmapPath = path.join(ROOT, 'docs', 'ROADMAP.md');
+
+    assert.equal(fs.existsSync(roadmapPath), true, 'docs/ROADMAP.md should exist');
+
+    const roadmap = fs.readFileSync(roadmapPath, 'utf8');
+
+    assert.match(readme, /\[Roadmap\]\(docs\/ROADMAP\.md\)/);
+    assert.match(docsReadme, /\[Roadmap\]\(ROADMAP\.md\)/);
+    assert.match(roadmap, /# Roadmap/);
+    assert.match(roadmap, /Current focus/);
+    assert.match(roadmap, /Near-term priorities/);
+    assert.match(roadmap, /Contributor-sized work/);
+    assert.match(roadmap, /Manual maintainer actions/);
+    assert.match(roadmap, /social-preview\.png/);
+    assert.match(roadmap, /NPM_TOKEN/);
+    assert.match(roadmap, /good first issue/);
+    assert.match(roadmap, /Codex-first/);
+    assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
+  });
+
   test('promotion assets include a GitHub social preview setup', () => {
     const previewPath = path.join(ROOT, 'assets', 'social-preview.png');
     const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
