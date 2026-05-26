@@ -147,6 +147,7 @@ describe('public release metadata', () => {
       'README.zh-CN.md',
       'README.ja-JP.md',
       'README.ko-KR.md',
+      'docs/manual-update.md',
       '.github/ISSUE_TEMPLATE/bug_report.yml',
       'bin/install.js',
     ];
