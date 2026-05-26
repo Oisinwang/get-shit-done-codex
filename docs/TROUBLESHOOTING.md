@@ -77,6 +77,33 @@ For local installs, inspect the current repository:
 Get-ChildItem .\.codex -Recurse | Select-Object -First 20 FullName
 ```
 
+## Windows PowerShell first-pass diagnostics
+
+When an install fails on Windows, collect read-only evidence before repairing anything. Start with toolchain versions and the package metadata PowerShell can see:
+
+```powershell
+node --version
+npm --version
+npx --version
+npm view @oisinwang/get-shit-done-codex version
+```
+
+Then inspect the Codex surfaces without changing files:
+
+```powershell
+Get-ChildItem "$env:USERPROFILE\.codex" -Force | Select-Object Name,Mode,LastWriteTime
+Test-Path ".\.codex"
+Get-ChildItem ".\.codex" -Recurse -Force -ErrorAction SilentlyContinue | Select-Object -First 30 FullName
+```
+
+Do not delete or rewrite files before reading this output. If Node, npm, npx, and the scoped package metadata are visible, rerun the installer with the intended scope:
+
+```powershell
+npx @oisinwang/get-shit-done-codex@latest --codex --local
+```
+
+Use `--global` instead of `--local` only when you want to update the user-level Codex install under `$env:USERPROFILE\.codex`.
+
 ## npm page looks stale
 
 The repository may be ahead of the npm package when a release workflow is waiting for maintainer secrets. The source checkout on `codex/bootstrap` is the authoritative development state. The npm package is refreshed by the hotfix release workflow after `NPM_TOKEN` is configured in the `npm-publish` environment.

@@ -405,6 +405,14 @@ describe('public release metadata', () => {
     assert.match(troubleshooting, /\[features\]\.hooks = true/);
     assert.match(troubleshooting, /npx @oisinwang\/get-shit-done-codex@latest --codex/);
     assert.match(troubleshooting, /PowerShell/);
+    assert.match(troubleshooting, /Windows PowerShell first-pass diagnostics/);
+    assert.match(troubleshooting, /node --version/);
+    assert.match(troubleshooting, /npm --version/);
+    assert.match(troubleshooting, /npx --version/);
+    assert.match(troubleshooting, /npm view @oisinwang\/get-shit-done-codex version/);
+    assert.match(troubleshooting, /Get-ChildItem "\$env:USERPROFILE\\\.codex" -Force/);
+    assert.match(troubleshooting, /Test-Path "\.\\\.codex"/);
+    assert.match(troubleshooting, /Do not delete or rewrite files before reading this output/);
     assert.doesNotMatch(
       troubleshooting,
       /[^\x00-\x7F]/,
@@ -596,6 +604,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /published README docs links/);
     assert.match(unreleasedSection, /Prompt recipe guide/);
     assert.match(unreleasedSection, /docs\/PROMPTS\.md/);
+    assert.match(unreleasedSection, /Windows PowerShell diagnostics/);
+    assert.match(unreleasedSection, /docs\/TROUBLESHOOTING\.md/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {
