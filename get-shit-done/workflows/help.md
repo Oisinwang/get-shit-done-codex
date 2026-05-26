@@ -5,7 +5,7 @@ Display the complete GSD command reference. Output ONLY the reference content. D
 <reference>
 # GSD Command Reference
 
-**GSD** (Get Shit Done) creates hierarchical project plans optimized for solo agentic development with Claude Code.
+**GSD** (Get Shit Done) creates hierarchical project plans optimized for solo agentic development in Codex-first workflows, with compatibility for Claude Code and other runtimes.
 
 ## Quick Start
 
@@ -18,7 +18,7 @@ Display the complete GSD command reference. Output ONLY the reference content. D
 GSD evolves fast. Update periodically:
 
 ```bash
-npx get-shit-done-cc@latest
+npx @oisinwang/get-shit-done-codex@latest
 ```
 
 ## Core Workflow
@@ -505,15 +505,16 @@ Update GSD to latest version with changelog preview.
 - Displays changelog entries for versions you've missed
 - Highlights breaking changes
 - Confirms before running install
-- Better than raw `npx get-shit-done-cc`
+- Better than raw `npx @oisinwang/get-shit-done-codex@latest`
 
 Usage: `/gsd-update`
 
 **`/gsd-join-discord`**
-Join the GSD Discord community.
+Open the GSD Codex community discussions.
 
-- Get help, share what you're building, stay updated
-- Connect with other GSD users
+- Legacy command name retained for existing users
+- Get help, share what you're building, and follow project updates in GitHub Discussions
+- Current community entrypoint: https://github.com/Oisinwang/get-shit-done-codex/discussions
 
 Usage: `/gsd-join-discord`
 

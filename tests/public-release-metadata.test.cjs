@@ -195,6 +195,26 @@ describe('public release metadata', () => {
     }
   });
 
+  test('active update and recovery surfaces use the scoped npm package', () => {
+    const activeInstallSurfaceFiles = [
+      'VERSIONING.md',
+      'docs/context-monitor.md',
+      'get-shit-done/bin/lib/verify.cjs',
+      'get-shit-done/workflows/help.md',
+      'get-shit-done/workflows/update.md',
+    ];
+
+    for (const relativePath of activeInstallSurfaceFiles) {
+      const content = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+
+      assert.match(content, /@oisinwang\/get-shit-done-codex/, relativePath);
+      assert.doesNotMatch(content, /npx(?: -y)? get-shit-done-cc/i, relativePath);
+      assert.doesNotMatch(content, /npm view get-shit-done-cc/i, relativePath);
+      assert.doesNotMatch(content, /npm install get-shit-done-cc/i, relativePath);
+      assert.doesNotMatch(content, /npm dist-tag ls get-shit-done-cc/i, relativePath);
+    }
+  });
+
   test('localized READMEs present the Codex-first public fork', () => {
     const localizedReadmes = [
       ['README.pt-BR.md', /Pacote publicado no npm como `@oisinwang\/get-shit-done-codex`/],
@@ -265,6 +285,7 @@ describe('public release metadata', () => {
     const issueConfig = fs.readFileSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'config.yml'), 'utf8');
     const installer = fs.readFileSync(path.join(ROOT, 'bin', 'install.js'), 'utf8');
     const legacyJoinCommand = fs.readFileSync(path.join(ROOT, 'commands', 'gsd', 'join-discord.md'), 'utf8');
+    const helpWorkflow = fs.readFileSync(path.join(ROOT, 'get-shit-done', 'workflows', 'help.md'), 'utf8');
 
     assert.match(codeowners, /\*\s+@Oisinwang/);
     assert.doesNotMatch(codeowners, /glittercowboy/i);
@@ -289,5 +310,9 @@ describe('public release metadata', () => {
     assert.match(legacyJoinCommand, /GitHub Discussions/);
     assert.match(legacyJoinCommand, /github\.com\/Oisinwang\/get-shit-done-codex\/discussions/);
     assert.doesNotMatch(legacyJoinCommand, /discord\.gg/i);
+
+    assert.match(helpWorkflow, /GitHub Discussions/);
+    assert.match(helpWorkflow, /github\.com\/Oisinwang\/get-shit-done-codex\/discussions/);
+    assert.doesNotMatch(helpWorkflow, /discord\.gg/i);
   });
 });
