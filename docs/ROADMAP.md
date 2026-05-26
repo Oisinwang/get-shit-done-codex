@@ -22,7 +22,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 ## Near-term priorities
 
-1. Finish npm release alignment once the `NPM_TOKEN` secret exists in the `npm-publish` environment.
+1. Finish npm release alignment once the `NPM_TOKEN` secret exists in the `npm-publish` environment. See the [Release Checklist](RELEASE.md).
 2. Upload `assets/social-preview.png` as the GitHub repository social preview.
 3. Add short demo media for the 60-second workflow after the npm metadata is refreshed.
 4. Expand public examples with real-world scenarios from user questions.
@@ -43,7 +43,7 @@ These are intentionally small enough to become a good first issue:
 Some public-surface work cannot be fully completed from a normal code commit:
 
 - Upload `assets/social-preview.png` in GitHub repository Settings > General > Social preview.
-- Set the `NPM_TOKEN` secret in the `npm-publish` environment so the hotfix release workflow can publish refreshed npm metadata.
+- Set the `NPM_TOKEN` secret in the `npm-publish` environment so the hotfix release workflow can publish refreshed npm metadata. Follow the [Release Checklist](RELEASE.md).
 - Re-run the hotfix release workflow after the npm token is configured.
 
 ## Not planned

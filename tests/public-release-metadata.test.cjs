@@ -369,6 +369,31 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
+  test('release checklist documents npm publish recovery', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const roadmap = fs.readFileSync(path.join(ROOT, 'docs', 'ROADMAP.md'), 'utf8');
+    const releasePath = path.join(ROOT, 'docs', 'RELEASE.md');
+
+    assert.equal(fs.existsSync(releasePath), true, 'docs/RELEASE.md should exist');
+
+    const release = fs.readFileSync(releasePath, 'utf8');
+
+    assert.match(readme, /\[Release Checklist\]\(docs\/RELEASE\.md\)/);
+    assert.match(docsReadme, /\[Release Checklist\]\(RELEASE\.md\)/);
+    assert.match(roadmap, /\[Release Checklist\]\(RELEASE\.md\)/);
+    assert.match(release, /# Release Checklist/);
+    assert.match(release, /NPM_TOKEN/);
+    assert.match(release, /npm-publish/);
+    assert.match(release, /Hotfix Release/);
+    assert.match(release, /gh workflow run hotfix\.yml/);
+    assert.match(release, /dry_run=false/);
+    assert.match(release, /npm\.cmd view @oisinwang\/get-shit-done-codex version/);
+    assert.match(release, /npx @oisinwang\/get-shit-done-codex@latest --codex/);
+    assert.match(release, /Issue #1/);
+    assert.doesNotMatch(release, /[^\x00-\x7F]/, 'docs/RELEASE.md should stay ASCII-clean');
+  });
+
   test('public docs expose community and contribution entry points', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
@@ -610,6 +635,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/zh-CN\/PROMPTS\.md/);
     assert.match(unreleasedSection, /Japanese prompt recipes/);
     assert.match(unreleasedSection, /docs\/ja-JP\/PROMPTS\.md/);
+    assert.match(unreleasedSection, /Release checklist/);
+    assert.match(unreleasedSection, /docs\/RELEASE\.md/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {
