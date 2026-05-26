@@ -361,6 +361,11 @@ describe('public release metadata', () => {
     assert.match(faq, /\.codex\//);
     assert.match(faq, /planning context and execution evidence/);
     assert.match(faq, /team-facing coordination layer/);
+    assert.match(faq, /Keep `.planning\/` private when/);
+    assert.match(faq, /Commit selected planning artifacts when/);
+    assert.match(faq, /Set `planning\.commit_docs` to `false`/);
+    assert.match(faq, /Run `git status --short \.planning` and `git diff -- \.planning`/);
+    assert.match(faq, /This repository does not accept runtime `.planning\/` files in contributor pull requests/);
     assert.match(faq, /Use a trial branch and the local install path/);
     assert.match(faq, /Open a pull request like any other repository change/);
     assert.match(faq, /GSD does not need to bypass protected branch rules/);

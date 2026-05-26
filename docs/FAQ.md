@@ -30,7 +30,13 @@ Yes. For a local trial, remove `.codex/`, `AGENTS.md`, and `.planning/` if you d
 
 ## Do I have to commit `.planning/`?
 
-No. Commit `.planning/` when you want durable team-visible project memory. Ignore it or keep it on a trial branch when you only want a private evaluation. The files are plain text so the decision is visible in review.
+No. Treat `.planning/` as project memory that can be either private or team-visible, depending on your repository policy.
+
+Keep `.planning/` private when you are evaluating GSD alone, recording exploratory notes, or working in a repository where planning state should not appear in pull requests. Set `planning.commit_docs` to `false`, add `.planning/` to `.gitignore`, and keep `planning.search_gitignored` enabled if you still want GSD to read the private state.
+
+Commit selected planning artifacts when the team wants durable, reviewable project memory for long-running work. Run `git status --short .planning` and `git diff -- .planning` before opening a pull request, then keep only the files that explain goals, roadmap decisions, verification evidence, or handoff state without leaking secrets or local paths.
+
+This repository does not accept runtime `.planning/` files in contributor pull requests. Use docs, examples, and tests for public contributions here.
 
 ## Can I use it with GitHub Projects, Linear, or Jira?
 

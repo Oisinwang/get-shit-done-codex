@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Planning visibility FAQ** - Expands `.planning/` guidance with private-evaluation, team-review, and contributor-PR boundaries.
 - **Public demo guide** - Adds `docs/DEMO.md` with a 60-second workflow, generated artifact tree, and concrete `PROJECT.md` / `ROADMAP.md` excerpts so evaluators can inspect expected output before installing.
 - **Evaluation checklist** - Adds `docs/EVALUATE.md` with a safe 10-minute `--local` trial path, expected changed paths, pass/fail signals, and cleanup steps for cautious first-time users.
 - **README value hook** - Adds a near-top value scan that explains when GSD Codex helps: turning fuzzy goals into repo-local specs, preserving work across context resets, and reviewing AI-built work through verification notes.

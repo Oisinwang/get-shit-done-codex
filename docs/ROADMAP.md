@@ -34,7 +34,7 @@ These are intentionally small enough to become a good first issue:
 
 - Add a copy-pastable example for using `$gsd-audit-uat` before a release branch.
 - Add a troubleshooting note for one common permission or PATH mismatch after install.
-- Add a short FAQ entry about keeping `.planning/` private versus committing it for team review.
+- Add a copy-pastable example for using `$gsd-pr-branch` before opening a public pull request.
 - Translate `docs/COMPARISON.md` into one localized docs folder.
 - Improve alt text and screenshot captions for public visual assets.
 
