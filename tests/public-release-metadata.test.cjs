@@ -257,4 +257,24 @@ describe('public release metadata', () => {
       }
     }
   });
+
+  test('community health files point at this public fork', () => {
+    const security = fs.readFileSync(path.join(ROOT, 'SECURITY.md'), 'utf8');
+    const funding = fs.readFileSync(path.join(ROOT, '.github', 'FUNDING.yml'), 'utf8');
+    const issueConfig = fs.readFileSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'config.yml'), 'utf8');
+
+    assert.match(security, /Oisinwang\/get-shit-done-codex\/security\/advisories\/new/);
+    assert.match(security, /Codex-first fork/);
+    assert.match(security, /Do not disclose vulnerability details in public issues/);
+    assert.doesNotMatch(security, /security@gsd\.build/i);
+    assert.doesNotMatch(security, /discord\.gg/i);
+    assert.doesNotMatch(security, /glittercowboy/i);
+
+    assert.match(funding, /github:\s*Oisinwang/);
+    assert.doesNotMatch(funding, /glittercowboy/i);
+
+    assert.match(issueConfig, /github\.com\/Oisinwang\/get-shit-done-codex\/discussions/);
+    assert.match(issueConfig, /github\.com\/Oisinwang\/get-shit-done-codex\/security\/advisories\/new/);
+    assert.doesNotMatch(issueConfig, /discord\.gg/i);
+  });
 });

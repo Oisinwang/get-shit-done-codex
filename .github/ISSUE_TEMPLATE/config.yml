@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Discord Community
-    url: https://discord.gg/mYgfVNfA2r
-    about: Ask questions and get help from the community
+  - name: Questions and usage help
+    url: https://github.com/Oisinwang/get-shit-done-codex/discussions
+    about: Ask questions, share usage notes, and discuss non-bug topics.
+  - name: Report a security vulnerability
+    url: https://github.com/Oisinwang/get-shit-done-codex/security/advisories/new
+    about: Report suspected vulnerabilities privately. Do not disclose vulnerability details in public issues.
