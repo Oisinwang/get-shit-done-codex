@@ -606,6 +606,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/PROMPTS\.md/);
     assert.match(unreleasedSection, /Windows PowerShell diagnostics/);
     assert.match(unreleasedSection, /docs\/TROUBLESHOOTING\.md/);
+    assert.match(unreleasedSection, /Simplified Chinese prompt recipes/);
+    assert.match(unreleasedSection, /docs\/zh-CN\/PROMPTS\.md/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {
@@ -886,6 +888,32 @@ describe('public release metadata', () => {
     assert.match(zhComparison, /\.codex\//);
     assert.match(zhComparison, /\.planning\//);
     assert.match(zhComparison, /\$gsd-\*/);
+  });
+
+  test('Simplified Chinese prompt recipes mirror public starter prompts', () => {
+    const zhDocsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'zh-CN', 'README.md'), 'utf8');
+    const zhPromptsPath = path.join(ROOT, 'docs', 'zh-CN', 'PROMPTS.md');
+
+    assert.equal(fs.existsSync(zhPromptsPath), true, 'docs/zh-CN/PROMPTS.md should exist');
+
+    const zhPrompts = fs.readFileSync(zhPromptsPath, 'utf8');
+
+    assert.match(zhDocsReadme, /\[提示词配方\]\(PROMPTS\.md\)/);
+    assert.match(zhPrompts, /# 提示词配方/);
+    assert.match(zhPrompts, /粘贴到 Codex/);
+    assert.match(zhPrompts, /## 启动新项目/);
+    assert.match(zhPrompts, /## 现有仓库/);
+    assert.match(zhPrompts, /## 小修复/);
+    assert.match(zhPrompts, /## 恢复工作/);
+    assert.match(zhPrompts, /## 审计并修复/);
+    assert.match(zhPrompts, /\$gsd-new-project --auto/);
+    assert.match(zhPrompts, /\$gsd-map-codebase/);
+    assert.match(zhPrompts, /\$gsd-fast/);
+    assert.match(zhPrompts, /\$gsd-resume-work/);
+    assert.match(zhPrompts, /\$gsd-progress --forensic/);
+    assert.match(zhPrompts, /\$gsd-audit-fix/);
+    assert.match(zhPrompts, /\.planning\//);
+    assert.match(zhPrompts, /不要跳过验证/);
   });
 
   test('community health files point at this public fork', () => {

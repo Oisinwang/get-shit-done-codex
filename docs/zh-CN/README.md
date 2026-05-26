@@ -16,6 +16,7 @@ Claude 时代的旧名称只作为迁移兼容层保留。fork 的边界、命�
 |------|------|------|
 | [Codex fork 说明](../CODEX-FORK.md) | 所有用户 | Codex-first 范围、命名边界、迁移说明和发布状态 |
 | [对比指南](COMPARISON.md) | 评估者 | 何时使用 GSD Codex，而不是原始 Codex chat、prompt pack、task manager 或 CI-only workflow |
+| [提示词配方](PROMPTS.md) | 新用户 | 可直接粘贴到 Codex 的提示词，用于启动、恢复、审计和小修复 |
 | [用户指南](USER-GUIDE.md) | 所有用户 | 工作流演练、故障排查和恢复 |
 | [功能参考](../FEATURES.md) | 所有用户 | 功能、需求和行为说明 |
 | [命令参考](../COMMANDS.md) | 所有用户 | 命令、参数、标志和示例 |
@@ -30,6 +31,7 @@ Claude 时代的旧名称只作为迁移兼容层保留。fork 的边界、命�
 
 - **从这里开始：** [根 README](../../README.zh-CN.md) -> 安装 -> `$gsd-help`
 - **理解 fork：** [Codex fork 说明](../CODEX-FORK.md)
+- **粘贴提示词：** [提示词配方](PROMPTS.md)
 - **运行工作流：** [用户指南](USER-GUIDE.md)
 - **查找命令：** [命令参考](../COMMANDS.md)
 - **配置行为：** [配置参考](../CONFIGURATION.md)
