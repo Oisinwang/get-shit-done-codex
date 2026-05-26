@@ -164,6 +164,39 @@ Do not use `npm config set strict-ssl false` as the first fix. Disabling TLS val
 npm config set strict-ssl true
 ```
 
+## Stale npm cache or partial install
+
+If `npx @oisinwang/get-shit-done-codex@latest` keeps running an older package, exits midway, or reports files missing after an interrupted install, verify the npm cache and force a fresh package execution before deleting project files.
+
+Start with read-only checks:
+
+```bash
+npm cache verify
+npm view @oisinwang/get-shit-done-codex version
+npm view @oisinwang/get-shit-done-codex dist-tags
+```
+
+Then run the package through `npm exec`, which makes the requested package version explicit:
+
+```bash
+npm exec --yes --package @oisinwang/get-shit-done-codex@latest get-shit-done-codex -- --codex --local
+```
+
+For a global Codex reinstall, use the same form with `--global`:
+
+```bash
+npm exec --yes --package @oisinwang/get-shit-done-codex@latest get-shit-done-codex -- --codex --global
+```
+
+Use cache clean only after cache verify or a fresh exec still fails:
+
+```bash
+npm cache clean --force
+npm exec --yes --package @oisinwang/get-shit-done-codex@latest get-shit-done-codex -- --codex --local
+```
+
+Do not remove `.codex/`, `AGENTS.md`, or `.planning/` as a cache fix. Those are project or runtime artifacts, not npm cache entries.
+
 ## Windows PowerShell first-pass diagnostics
 
 When an install fails on Windows, collect read-only evidence before repairing anything. Start with toolchain versions and the package metadata PowerShell can see:

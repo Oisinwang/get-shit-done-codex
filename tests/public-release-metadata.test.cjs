@@ -473,6 +473,11 @@ describe('public release metadata', () => {
     assert.match(troubleshooting, /npm config get cafile/);
     assert.match(troubleshooting, /npm ping --registry=https:\/\/registry\.npmjs\.org\//);
     assert.match(troubleshooting, /Do not use `npm config set strict-ssl false` as the first fix/);
+    assert.match(troubleshooting, /Stale npm cache or partial install/);
+    assert.match(troubleshooting, /npm cache verify/);
+    assert.match(troubleshooting, /npm exec --yes --package @oisinwang\/get-shit-done-codex@latest get-shit-done-codex -- --codex --local/);
+    assert.match(troubleshooting, /npm cache clean --force/);
+    assert.match(troubleshooting, /Use cache clean only after cache verify or a fresh exec still fails/);
     assert.match(troubleshooting, /node --version/);
     assert.match(troubleshooting, /npm --version/);
     assert.match(troubleshooting, /npx --version/);
