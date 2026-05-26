@@ -259,9 +259,15 @@ describe('public release metadata', () => {
   });
 
   test('community health files point at this public fork', () => {
+    const codeowners = fs.readFileSync(path.join(ROOT, '.github', 'CODEOWNERS'), 'utf8');
     const security = fs.readFileSync(path.join(ROOT, 'SECURITY.md'), 'utf8');
     const funding = fs.readFileSync(path.join(ROOT, '.github', 'FUNDING.yml'), 'utf8');
     const issueConfig = fs.readFileSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'config.yml'), 'utf8');
+    const installer = fs.readFileSync(path.join(ROOT, 'bin', 'install.js'), 'utf8');
+    const legacyJoinCommand = fs.readFileSync(path.join(ROOT, 'commands', 'gsd', 'join-discord.md'), 'utf8');
+
+    assert.match(codeowners, /\*\s+@Oisinwang/);
+    assert.doesNotMatch(codeowners, /glittercowboy/i);
 
     assert.match(security, /Oisinwang\/get-shit-done-codex\/security\/advisories\/new/);
     assert.match(security, /Codex-first fork/);
@@ -276,5 +282,12 @@ describe('public release metadata', () => {
     assert.match(issueConfig, /github\.com\/Oisinwang\/get-shit-done-codex\/discussions/);
     assert.match(issueConfig, /github\.com\/Oisinwang\/get-shit-done-codex\/security\/advisories\/new/);
     assert.doesNotMatch(issueConfig, /discord\.gg/i);
+
+    assert.match(installer, /github\.com\/Oisinwang\/get-shit-done-codex\/discussions/);
+    assert.doesNotMatch(installer, /discord\.gg/i);
+
+    assert.match(legacyJoinCommand, /GitHub Discussions/);
+    assert.match(legacyJoinCommand, /github\.com\/Oisinwang\/get-shit-done-codex\/discussions/);
+    assert.doesNotMatch(legacyJoinCommand, /discord\.gg/i);
   });
 });

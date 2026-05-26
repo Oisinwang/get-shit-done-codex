@@ -6472,7 +6472,7 @@ function finishInstall(settingsPath, settings, statuslineCommand, shouldInstallS
   console.log(`
   ${green}Done!${reset} Open a blank directory in ${program} and run ${cyan}${command}${reset}.
 
-  ${cyan}Join the community:${reset} https://discord.gg/mYgfVNfA2r
+  ${cyan}Join the community:${reset} https://github.com/Oisinwang/get-shit-done-codex/discussions
 `);
 }
 
