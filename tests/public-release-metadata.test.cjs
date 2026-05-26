@@ -409,6 +409,27 @@ describe('public release metadata', () => {
     assert.doesNotMatch(helpWorkflow, /discord\.gg/i);
   });
 
+  test('public community wording points users at GitHub Discussions', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const userGuide = fs.readFileSync(path.join(ROOT, 'docs', 'USER-GUIDE.md'), 'utf8');
+
+    assert.match(readme, /\| `\$gsd-join-discord` \| Open GitHub Discussions community \|/);
+    assert.match(userGuide, /\| `\$gsd-join-discord` \| Open GitHub Discussions community \|/);
+    assert.doesNotMatch(readme, /Join the GSD Discord community/);
+    assert.doesNotMatch(userGuide, /Open Discord community invite/);
+  });
+
+  test('README keeps Codex primary instead of presenting it as a community port', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const lineageStart = readme.indexOf('## Multi-Runtime Lineage');
+
+    assert.ok(lineageStart > -1, 'README should include multi-runtime lineage section');
+    const communitySection = readme.slice(lineageStart);
+    assert.match(communitySection, /Codex is the primary runtime/);
+    assert.match(communitySection, /Compatibility installs are available/);
+    assert.doesNotMatch(communitySection, /and Codex are now natively supported/);
+  });
+
   test('GitHub contribution templates are Codex-first and ASCII-clean', () => {
     const templateFiles = [
       '.github/ISSUE_TEMPLATE/bug_report.yml',

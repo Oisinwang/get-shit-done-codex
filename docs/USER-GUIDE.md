@@ -553,7 +553,7 @@ $gsd-scan --focus concerns     # Risk areas and concerns
 | `$gsd-session-report` | Generate session summary with work and outcomes | End of session, stakeholder sharing |
 | `$gsd-help` | Show all commands | Quick reference |
 | `$gsd-update` | Update GSD with changelog preview | Check for new versions |
-| `$gsd-join-discord` | Open Discord community invite | Questions or community |
+| `$gsd-join-discord` | Open GitHub Discussions community | Questions or community |
 
 ### Phase Management
 

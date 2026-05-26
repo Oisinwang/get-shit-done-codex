@@ -630,7 +630,7 @@ You're never locked in. The system adapts.
 | `$gsd-next` | Auto-detect state and run the next step |
 | `$gsd-help` | Show all commands and usage guide |
 | `$gsd-update` | Update GSD with changelog preview |
-| `$gsd-join-discord` | Join the GSD Discord community |
+| `$gsd-join-discord` | Open GitHub Discussions community |
 | `$gsd-manager` | Interactive command center for managing multiple phases |
 
 ### Brownfield
@@ -899,11 +899,11 @@ This removes all GSD commands, agents, hooks, and settings while preserving your
 
 ---
 
-## Community Ports
+## Multi-Runtime Lineage
 
-OpenCode, Gemini CLI, Kilo, and Codex are now natively supported via `npx @oisinwang/get-shit-done-codex`.
+Codex is the primary runtime in this fork. Compatibility installs are available via `npx @oisinwang/get-shit-done-codex` for Claude Code, OpenCode, Gemini CLI, Kilo, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, CodeBuddy, and Cline.
 
-These community ports pioneered multi-runtime support:
+These earlier community ports helped prove multi-runtime demand:
 
 | Project | Platform | Description |
 |---------|----------|-------------|
