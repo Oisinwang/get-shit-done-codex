@@ -194,6 +194,29 @@ describe('public release metadata', () => {
     assert.doesNotMatch(faq, /[^\x00-\x7F]/, 'docs/FAQ.md should stay ASCII-clean');
   });
 
+  test('comparison guide helps evaluators decide when to use the project', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const comparisonPath = path.join(ROOT, 'docs', 'COMPARISON.md');
+
+    assert.equal(fs.existsSync(comparisonPath), true, 'docs/COMPARISON.md should exist');
+
+    const comparison = fs.readFileSync(comparisonPath, 'utf8');
+
+    assert.match(readme, /\[Comparison\]\(docs\/COMPARISON\.md\)/);
+    assert.match(docsReadme, /\[Comparison\]\(COMPARISON\.md\)/);
+    assert.match(comparison, /# Comparison/);
+    assert.match(comparison, /Raw Codex chat/);
+    assert.match(comparison, /prompt pack/);
+    assert.match(comparison, /task manager/);
+    assert.match(comparison, /CI-only workflow/);
+    assert.match(comparison, /Choose GSD Codex when/);
+    assert.match(comparison, /Do not use GSD Codex when/);
+    assert.match(comparison, /AGENTS\.md/);
+    assert.match(comparison, /\.planning\//);
+    assert.doesNotMatch(comparison, /[^\x00-\x7F]/, 'docs/COMPARISON.md should stay ASCII-clean');
+  });
+
   test('promotion assets include a GitHub social preview setup', () => {
     const previewPath = path.join(ROOT, 'assets', 'social-preview.png');
     const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
