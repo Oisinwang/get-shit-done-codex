@@ -431,6 +431,11 @@ describe('public release metadata', () => {
     assert.match(troubleshooting, /npx @oisinwang\/get-shit-done-codex@latest --codex/);
     assert.match(troubleshooting, /PowerShell/);
     assert.match(troubleshooting, /Windows PowerShell first-pass diagnostics/);
+    assert.match(troubleshooting, /npm\.ps1 cannot be loaded/);
+    assert.match(troubleshooting, /running scripts is disabled/);
+    assert.match(troubleshooting, /npm\.cmd --version/);
+    assert.match(troubleshooting, /npx\.cmd --version/);
+    assert.match(troubleshooting, /npx\.cmd @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(troubleshooting, /node --version/);
     assert.match(troubleshooting, /npm --version/);
     assert.match(troubleshooting, /npx --version/);

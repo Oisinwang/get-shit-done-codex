@@ -77,6 +77,27 @@ For local installs, inspect the current repository:
 Get-ChildItem .\.codex -Recurse | Select-Object -First 20 FullName
 ```
 
+## Windows PowerShell blocks npm.ps1
+
+If PowerShell reports `npm.ps1 cannot be loaded because running scripts is disabled`, the Node install may still be fine. PowerShell is blocking the shim script, not necessarily npm itself.
+
+Use the `.cmd` shims from the same terminal:
+
+```powershell
+node --version
+npm.cmd --version
+npx.cmd --version
+npm.cmd view @oisinwang/get-shit-done-codex version
+```
+
+Then rerun the installer with `npx.cmd`:
+
+```powershell
+npx.cmd @oisinwang/get-shit-done-codex@latest --codex --local
+```
+
+Use `--global` instead of `--local` only when you want to update the user-level Codex install under `$env:USERPROFILE\.codex`. You do not need to change PowerShell execution policy just to run these diagnostics.
+
 ## Windows PowerShell first-pass diagnostics
 
 When an install fails on Windows, collect read-only evidence before repairing anything. Start with toolchain versions and the package metadata PowerShell can see:
@@ -87,6 +108,8 @@ npm --version
 npx --version
 npm view @oisinwang/get-shit-done-codex version
 ```
+
+If `npm` or `npx` fails with a PowerShell script policy error, use the `npm.cmd` / `npx.cmd` commands above.
 
 Then inspect the Codex surfaces without changing files:
 
