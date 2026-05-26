@@ -498,12 +498,23 @@ describe('public release metadata', () => {
     const packageJson = readJson('package.json');
     const changelog = fs.readFileSync(path.join(ROOT, 'CHANGELOG.md'), 'utf8');
     const unreleasedLink = changelog.match(/^\[Unreleased\]: .+$/m);
+    const unreleasedSection = changelog.slice(
+      changelog.indexOf('## [Unreleased]'),
+      changelog.indexOf('## [1.37.1]'),
+    );
 
     assert.ok(unreleasedLink, 'CHANGELOG should define an [Unreleased] compare link');
     assert.equal(
       unreleasedLink[0],
       `[Unreleased]: https://github.com/Oisinwang/get-shit-done-codex/compare/v${packageJson.version}...HEAD`,
     );
+    assert.match(unreleasedSection, /Public demo guide/);
+    assert.match(unreleasedSection, /docs\/DEMO\.md/);
+    assert.match(unreleasedSection, /Evaluation checklist/);
+    assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
+    assert.match(unreleasedSection, /README value hook/);
+    assert.match(unreleasedSection, /Security policy exposure/);
+    assert.match(unreleasedSection, /SECURITY\.md/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {

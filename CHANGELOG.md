@@ -7,6 +7,10 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Public demo guide** - Adds `docs/DEMO.md` with a 60-second workflow, generated artifact tree, and concrete `PROJECT.md` / `ROADMAP.md` excerpts so evaluators can inspect expected output before installing.
+- **Evaluation checklist** - Adds `docs/EVALUATE.md` with a safe 10-minute `--local` trial path, expected changed paths, pass/fail signals, and cleanup steps for cautious first-time users.
+- **README value hook** - Adds a near-top value scan that explains when GSD Codex helps: turning fuzzy goals into repo-local specs, preserving work across context resets, and reviewing AI-built work through verification notes.
+- **Security policy exposure** - Links `SECURITY.md` from the README navigation and ships it in the npm package so users can find the private vulnerability reporting path from both GitHub and the published package.
 - **Troubleshooting guide** - Adds `docs/TROUBLESHOOTING.md` with Codex `config.toml` hook recovery, command discovery checks, Windows PowerShell inspection commands, and stale npm metadata guidance.
 - **Public roadmap** - Adds `docs/ROADMAP.md` with current status, near-term priorities, manual maintainer actions, and contributor-sized work candidates.
 - **Comparison guide** - Adds `docs/COMPARISON.md` and discovery links so evaluators can quickly compare GSD Codex with raw Codex chat, prompt packs, task managers, and CI-only workflows.
