@@ -11,6 +11,23 @@ function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
 }
 
+function readPngMetadata(relativePath) {
+  const buffer = fs.readFileSync(path.join(ROOT, relativePath));
+
+  assert.deepEqual(
+    [...buffer.subarray(0, 8)],
+    [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a],
+    `${relativePath} should be a PNG file`,
+  );
+  assert.equal(buffer.toString('ascii', 12, 16), 'IHDR');
+
+  return {
+    height: buffer.readUInt32BE(20),
+    size: buffer.byteLength,
+    width: buffer.readUInt32BE(16),
+  };
+}
+
 describe('public release metadata', () => {
   test('root npm package uses the public Codex fork scope', () => {
     const packageJson = readJson('package.json');
@@ -175,6 +192,27 @@ describe('public release metadata', () => {
     assert.match(faq, /\$gsd-map-codebase/);
     assert.match(faq, /\$gsd-fast/);
     assert.doesNotMatch(faq, /[^\x00-\x7F]/, 'docs/FAQ.md should stay ASCII-clean');
+  });
+
+  test('promotion assets include a GitHub social preview setup', () => {
+    const previewPath = path.join(ROOT, 'assets', 'social-preview.png');
+    const promotion = fs.readFileSync(path.join(ROOT, 'docs', 'PROMOTION.md'), 'utf8');
+
+    assert.equal(fs.existsSync(previewPath), true, 'assets/social-preview.png should exist');
+
+    const preview = readPngMetadata('assets/social-preview.png');
+
+    assert.equal(preview.width, 1280);
+    assert.equal(preview.height, 640);
+    assert.ok(preview.size < 1_000_000, 'social preview image should stay under 1 MB');
+
+    assert.match(promotion, /assets\/social-preview\.png/);
+    assert.match(promotion, /Settings > General > Social preview/);
+    assert.match(promotion, /Upload an image/);
+    assert.match(
+      promotion,
+      /docs\.github\.com\/en\/repositories\/managing-your-repositorys-settings-and-features\/customizing-your-repository\/customizing-your-repositorys-social-media-preview/,
+    );
   });
 
   test('sdk package uses the same public npm scope', () => {

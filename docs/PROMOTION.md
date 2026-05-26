@@ -8,6 +8,23 @@ An independent Codex-first fork of GSD with a verified scoped npm package, Codex
 
 This fork takes GSD and makes Codex the release-facing default. `AGENTS.md`, `.codex/`, `agents_md_path`, `generate-agents-*`, and `~/.codex/sessions` are the primary semantics. The verified install path is `npx @oisinwang/get-shit-done-codex@latest`; legacy Claude-era names remain only as migration shims.
 
+## GitHub Social Preview
+
+Use `assets/social-preview.png` as the repository social preview image.
+
+Manual upload path:
+
+1. Open the GitHub repository.
+2. Go to Settings > General > Social preview.
+3. Click Edit, then Upload an image.
+4. Upload `assets/social-preview.png`.
+
+The image is a solid-background PNG at 1280 x 640 pixels and must stay under 1 MB. That follows GitHub's current recommendation for best display quality: <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/customizing-your-repositorys-social-media-preview>.
+
+Suggested alt/share text:
+
+> Get Shit Done Codex: Codex-first workflows for planned, resumable, verified AI coding.
+
 ## Launch Post Bullets
 
 - Codex-first semantics are now the primary public contract.
