@@ -77,6 +77,42 @@ For local installs, inspect the current repository:
 Get-ChildItem .\.codex -Recurse | Select-Object -First 20 FullName
 ```
 
+## WSL and Windows shell path mismatch
+
+Windows PowerShell and WSL use different home directories. A GSD install from PowerShell writes to `C:\Users\<you>\.codex` for global installs, while a GSD install from WSL writes to `/home/<you>/.codex`. If Codex starts in one shell but the installer ran in the other shell, commands can look missing even though installation succeeded.
+
+Check which environment owns the current session before reinstalling.
+
+In Windows PowerShell:
+
+```powershell
+$env:USERPROFILE
+where.exe node
+where.exe npm
+Test-Path "$env:USERPROFILE\.codex"
+Test-Path ".\.codex"
+```
+
+In WSL:
+
+```bash
+pwd
+echo "$HOME"
+which node || true
+which npm || true
+which npx || true
+ls -la "$HOME/.codex"
+test -d ./.codex && find ./.codex -maxdepth 2 -type f | head
+```
+
+Run the installer from the same shell that starts Codex. For a project-local trial inside WSL, run:
+
+```bash
+npx @oisinwang/get-shit-done-codex@latest --codex --local
+```
+
+Use `--global` only when the Codex runtime you actually start reads that shell's home directory. Do not copy `.codex/` between Windows and WSL unless your repository policy already treats that directory as shared project state.
+
 ## Windows PowerShell blocks npm.ps1
 
 If PowerShell reports `npm.ps1 cannot be loaded because running scripts is disabled`, the Node install may still be fine. PowerShell is blocking the shim script, not necessarily npm itself.

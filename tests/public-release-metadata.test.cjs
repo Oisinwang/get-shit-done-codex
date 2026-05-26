@@ -459,6 +459,12 @@ describe('public release metadata', () => {
     assert.match(troubleshooting, /npm\.cmd --version/);
     assert.match(troubleshooting, /npx\.cmd --version/);
     assert.match(troubleshooting, /npx\.cmd @oisinwang\/get-shit-done-codex@latest --codex --local/);
+    assert.match(troubleshooting, /WSL and Windows shell path mismatch/);
+    assert.match(troubleshooting, /Windows PowerShell and WSL use different home directories/);
+    assert.match(troubleshooting, /where\.exe node/);
+    assert.match(troubleshooting, /echo "\$HOME"/);
+    assert.match(troubleshooting, /ls -la "\$HOME\/\.codex"/);
+    assert.match(troubleshooting, /Run the installer from the same shell that starts Codex/);
     assert.match(troubleshooting, /node --version/);
     assert.match(troubleshooting, /npm --version/);
     assert.match(troubleshooting, /npx --version/);
