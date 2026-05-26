@@ -344,6 +344,7 @@ Cada tarefa gera commit próprio, facilitando `git bisect`, rollback e rastreabi
 | `$gsd-set-profile <profile>` | Troca perfil (quality/balanced/budget/inherit) |
 | `$gsd-quick [--full] [--discuss] [--research]` | Execução rápida com garantias do GSD (`--full` ativa todas as etapas, `--validate` ativa apenas verificação) |
 | `$gsd-health [--repair]` | Verifica e repara `.planning/` |
+| `$gsd-join-discord` | Abrir a comunidade no GitHub Discussions |
 
 > Para a lista completa de comandos e opções, use `$gsd-help`.
 
@@ -458,9 +459,11 @@ npx @oisinwang/get-shit-done-codex --cline --local --uninstall
 
 ---
 
-## Community Ports
+## Linhagem multi-runtime
 
-OpenCode, Gemini CLI, Kilo e Codex agora são suportados nativamente via `npx @oisinwang/get-shit-done-codex`.
+Codex é o runtime principal neste fork. Instalações de compatibilidade estão disponíveis via `npx @oisinwang/get-shit-done-codex` para Claude Code, OpenCode, Gemini CLI, Kilo, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, CodeBuddy e Cline.
+
+Esses ports anteriores ajudaram a provar a demanda por múltiplos runtimes:
 
 | Projeto | Plataforma | Descrição |
 |---------|------------|-----------|
@@ -471,11 +474,11 @@ OpenCode, Gemini CLI, Kilo e Codex agora são suportados nativamente via `npx @o
 
 ## Star History
 
-<a href="https://star-history.com/#get-shit-done-codex&Date">
+<a href="https://star-history.com/#Oisinwang/get-shit-done-codex&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date" />
  </picture>
 </a>
 

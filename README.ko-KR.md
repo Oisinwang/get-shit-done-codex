@@ -583,7 +583,7 @@ lmn012o feat(08-02): create registration endpoint
 | `$gsd-next` | 상태 자동 감지 및 다음 단계 실행 |
 | `$gsd-help` | 모든 명령어와 사용 가이드 표시 |
 | `$gsd-update` | 변경 로그 미리보기와 함께 GSD 업데이트 |
-| `$gsd-join-discord` | GSD Discord 커뮤니티 참여 |
+| `$gsd-join-discord` | GitHub Discussions 커뮤니티 열기 |
 | `$gsd-manager` | 여러 단계 관리를 위한 대화형 커맨드 센터 |
 
 ### 브라운필드
@@ -825,11 +825,11 @@ npx @oisinwang/get-shit-done-codex --trae --local --uninstall
 
 ---
 
-## 커뮤니티 포트
+## 멀티 런타임 계보
 
-OpenCode, Gemini CLI, Kilo, Codex는 이제 `npx @oisinwang/get-shit-done-codex`를 통해 기본 지원됩니다.
+Codex는 이 포크의 기본 런타임입니다. 호환 설치는 `npx @oisinwang/get-shit-done-codex`를 통해 Claude Code, OpenCode, Gemini CLI, Kilo, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, CodeBuddy, Cline에서 사용할 수 있습니다.
 
-이 커뮤니티 포트들이 멀티 런타임 지원의 선구자였습니다:
+이전 포트들은 멀티 런타임 수요를 검증하는 데 도움이 되었습니다:
 
 | 프로젝트 | 플랫폼 | 설명 |
 |---------|----------|-------------|
@@ -840,11 +840,11 @@ OpenCode, Gemini CLI, Kilo, Codex는 이제 `npx @oisinwang/get-shit-done-codex`
 
 ## 스타 히스토리
 
-<a href="https://star-history.com/#get-shit-done-codex&Date">
+<a href="https://star-history.com/#Oisinwang/get-shit-done-codex&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date" />
  </picture>
 </a>
 

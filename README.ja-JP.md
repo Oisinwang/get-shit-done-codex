@@ -586,7 +586,7 @@ lmn012o feat(08-02): create registration endpoint
 | `$gsd-next` | 状態を自動検出し次のステップを実行 |
 | `$gsd-help` | 全コマンドと使い方ガイドを表示 |
 | `$gsd-update` | チェンジログプレビュー付きでGSDをアップデート |
-| `$gsd-join-discord` | GSD Discordコミュニティに参加 |
+| `$gsd-join-discord` | GitHub Discussionsコミュニティを開く |
 | `$gsd-manager` | 複数フェーズ管理用のインタラクティブコマンドセンター |
 
 ### ブラウンフィールド
@@ -834,11 +834,11 @@ npx @oisinwang/get-shit-done-codex --trae --local --uninstall
 
 ---
 
-## コミュニティポート
+## マルチランタイムの系譜
 
-OpenCode、Gemini CLI、Kilo、Codexは `npx @oisinwang/get-shit-done-codex` でネイティブサポートされています。
+Codex はこのフォークの主ランタイムです。互換インストールは `npx @oisinwang/get-shit-done-codex` から Claude Code、OpenCode、Gemini CLI、Kilo、Copilot、Cursor、Windsurf、Antigravity、Augment、Trae、Qwen Code、CodeBuddy、Cline 向けに利用できます。
 
-以下のコミュニティポートがマルチランタイムサポートの先駆けとなりました：
+これらの初期ポートは、マルチランタイム需要の検証に役立ちました：
 
 | プロジェクト | プラットフォーム | 説明 |
 |---------|----------|-------------|
@@ -849,11 +849,11 @@ OpenCode、Gemini CLI、Kilo、Codexは `npx @oisinwang/get-shit-done-codex` で
 
 ## スター履歴
 
-<a href="https://star-history.com/#get-shit-done-codex&Date">
+<a href="https://star-history.com/#Oisinwang/get-shit-done-codex&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date" />
  </picture>
 </a>
 

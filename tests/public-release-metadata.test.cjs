@@ -149,6 +149,23 @@ describe('public release metadata', () => {
     assert.doesNotMatch(readme, /repos=get-shit-done-codex&type=Date/);
   });
 
+  test('localized README star history embeds use the public owner and repository name', () => {
+    const localizedReadmes = [
+      'README.pt-BR.md',
+      'README.zh-CN.md',
+      'README.ja-JP.md',
+      'README.ko-KR.md',
+    ];
+
+    for (const relativePath of localizedReadmes) {
+      const readme = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+
+      assert.match(readme, /star-history\.com\/#Oisinwang\/get-shit-done-codex&Date/, relativePath);
+      assert.match(readme, /repos=Oisinwang\/get-shit-done-codex&type=Date/, relativePath);
+      assert.doesNotMatch(readme, /repos=get-shit-done-codex&type=Date/, relativePath);
+    }
+  });
+
   test('high-visibility English public files stay ASCII-clean', () => {
     const asciiFiles = [
       'CODE_OF_CONDUCT.md',
@@ -319,6 +336,28 @@ describe('public release metadata', () => {
       assert.doesNotMatch(readme, /^\/gsd-/m, relativePath);
       assert.doesNotMatch(readme, /\| `\/gsd-/, relativePath);
       assert.doesNotMatch(readme, mojibakeMarkers, relativePath);
+    }
+  });
+
+  test('localized README community and lineage wording stays current', () => {
+    const localizedReadmes = [
+      'README.pt-BR.md',
+      'README.zh-CN.md',
+      'README.ja-JP.md',
+      'README.ko-KR.md',
+    ];
+
+    for (const relativePath of localizedReadmes) {
+      const readme = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+
+      assert.match(readme, /GitHub Discussions/, relativePath);
+      assert.doesNotMatch(readme, /GSD Discord/, relativePath);
+      assert.doesNotMatch(readme, /Community Ports/, relativePath);
+      assert.doesNotMatch(
+        readme,
+        /OpenCode[\s\S]{0,120}Codex[\s\S]{0,120}@oisinwang\/get-shit-done-codex/,
+        relativePath,
+      );
     }
   });
 

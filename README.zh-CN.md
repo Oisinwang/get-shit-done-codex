@@ -580,7 +580,7 @@ lmn012o feat(08-02): create registration endpoint
 | `$gsd-next` | 自动检测状态并执行下一步 |
 | `$gsd-help` | 显示全部命令和使用指南 |
 | `$gsd-update` | 更新 GSD，并预览变更日志 |
-| `$gsd-join-discord` | 加入 GSD Discord 社区 |
+| `$gsd-join-discord` | 打开 GitHub Discussions 社区 |
 
 ### Brownfield
 
@@ -807,11 +807,11 @@ npx @oisinwang/get-shit-done-codex --cline --local --uninstall
 
 ---
 
-## 社区移植版本
+## 多运行时脉络
 
-OpenCode、Gemini CLI、Kilo 和 Codex 现在都已经通过 `npx @oisinwang/get-shit-done-codex` 获得原生支持。
+Codex 是这个 fork 的主运行时。兼容安装可以通过 `npx @oisinwang/get-shit-done-codex` 用于 Claude Code、OpenCode、Gemini CLI、Kilo、Copilot、Cursor、Windsurf、Antigravity、Augment、Trae、Qwen Code、CodeBuddy 和 Cline。
 
-这些社区移植版本曾率先探索多运行时支持：
+这些早期移植项目帮助证明了多运行时需求：
 
 | Project | Platform | Description |
 |---------|----------|-------------|
@@ -822,11 +822,11 @@ OpenCode、Gemini CLI、Kilo 和 Codex 现在都已经通过 `npx @oisinwang/get
 
 ## Star History
 
-<a href="https://star-history.com/#get-shit-done-codex&Date">
+<a href="https://star-history.com/#Oisinwang/get-shit-done-codex&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date" />
  </picture>
 </a>
 
