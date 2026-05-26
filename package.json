@@ -20,16 +20,23 @@
     "sdk/tsconfig.json"
   ],
   "keywords": [
+    "ai",
+    "ai-agents",
+    "ai-coding",
+    "agentic-coding",
     "claude",
     "claude-code",
-    "ai",
-    "meta-prompting",
+    "codex",
+    "codex-cli",
     "context-engineering",
-    "spec-driven-development",
+    "developer-tools",
     "gemini",
     "gemini-cli",
-    "codex",
-    "codex-cli"
+    "gsd",
+    "meta-prompting",
+    "openai-codex",
+    "spec-driven-development",
+    "workflow-automation"
   ],
   "author": "Codex maintainers",
   "license": "MIT",

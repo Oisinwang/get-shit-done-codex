@@ -23,6 +23,29 @@ describe('public release metadata', () => {
     assert.equal(packageJson.publishConfig.access, 'public');
   });
 
+  test('root npm package keywords cover public discovery terms', () => {
+    const packageJson = readJson('package.json');
+
+    const requiredKeywords = [
+      'ai',
+      'ai-agents',
+      'ai-coding',
+      'codex',
+      'codex-cli',
+      'context-engineering',
+      'developer-tools',
+      'gsd',
+      'meta-prompting',
+      'openai-codex',
+      'spec-driven-development',
+      'workflow-automation',
+    ];
+
+    for (const keyword of requiredKeywords) {
+      assert.ok(packageJson.keywords.includes(keyword), `package.json keywords missing ${keyword}`);
+    }
+  });
+
   test('sdk package uses the same public npm scope', () => {
     const sdkPackageJson = readJson('sdk/package.json');
     const sdkPackageLock = readJson('sdk/package-lock.json');
