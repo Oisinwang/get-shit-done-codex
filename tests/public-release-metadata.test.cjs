@@ -259,10 +259,14 @@ describe('public release metadata', () => {
     assert.match(faq, /Will it edit code automatically/);
     assert.match(faq, /Can I uninstall it/);
     assert.match(faq, /Do I have to commit `.planning\/`/);
+    assert.match(faq, /Can I use it with GitHub Projects, Linear, or Jira/);
     assert.match(faq, /Can I try it without touching global Codex config/);
     assert.match(faq, /When should I not use it/);
     assert.match(faq, /AGENTS\.md/);
     assert.match(faq, /\.codex\//);
+    assert.match(faq, /planning context and execution evidence/);
+    assert.match(faq, /team-facing coordination layer/);
+    assert.match(faq, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(faq, /--local/);
     assert.match(faq, /\$gsd-map-codebase/);
     assert.match(faq, /\$gsd-fast/);

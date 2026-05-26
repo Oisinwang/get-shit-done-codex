@@ -32,6 +32,10 @@ Yes. For a local trial, remove `.codex/`, `AGENTS.md`, and `.planning/` if you d
 
 No. Commit `.planning/` when you want durable team-visible project memory. Ignore it or keep it on a trial branch when you only want a private evaluation. The files are plain text so the decision is visible in review.
 
+## Can I use it with GitHub Projects, Linear, or Jira?
+
+Yes. GSD complements an existing tracker instead of replacing it. Use the tracker as the team-facing coordination layer for ownership, priority, and status. Use GSD inside the repository for planning context and execution evidence: project state, phase plans, verification notes, and handoff files that Codex can resume from. See [Examples](EXAMPLES.md) for practical starting paths.
+
 ## Can I try it without touching global Codex config?
 
 Yes. Use `--local` for the first trial:
