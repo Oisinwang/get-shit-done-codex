@@ -54,15 +54,31 @@ describe('GitHub workflows public release configuration', () => {
     assert.match(workflow, /::warning::Unable to inspect existing hotfix back-merge PR/);
     assert.match(workflow, /::warning::Unable to create hotfix back-merge PR/);
     assert.match(workflow, /Create the PR manually from \$BRANCH to codex\/bootstrap/);
+
+    const verifyPublishStep = workflow.indexOf('name: Verify publish');
+    const prStep = workflow.indexOf('name: Create PR to merge hotfix back to main');
+
+    assert.notStrictEqual(verifyPublishStep, -1);
+    assert.notStrictEqual(prStep, -1);
+    assert.ok(
+      verifyPublishStep < prStep,
+      'hotfix back-merge PR should only be attempted after publish verification',
+    );
   });
 
   test('hotfix verifies npm authentication before pushing release tags', () => {
     const workflow = readWorkflow('hotfix.yml');
+    const tokenStep = workflow.indexOf('name: Require npm token for publish');
+    const installStep = workflow.indexOf('name: Install and test');
     const authStep = workflow.indexOf('name: Verify npm authentication');
     const tagStep = workflow.indexOf('name: Tag and push');
 
+    assert.notStrictEqual(tokenStep, -1);
+    assert.notStrictEqual(installStep, -1);
     assert.notStrictEqual(authStep, -1);
+    assert.ok(tokenStep < installStep, 'missing npm token should fail before long release tests');
     assert.ok(authStep < tagStep, 'npm authentication must be checked before pushing tags');
+    assert.match(workflow, /NPM_TOKEN secret is not configured/);
     assert.match(workflow, /npm whoami/);
   });
 });
