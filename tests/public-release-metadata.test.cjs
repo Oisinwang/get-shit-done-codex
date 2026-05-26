@@ -355,6 +355,21 @@ describe('public release metadata', () => {
     );
   });
 
+  test('README embeds the social preview before workflow details', () => {
+    const previewPath = path.join(ROOT, 'assets', 'social-preview.png');
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const previewEmbed = '![GSD Codex preview](assets/social-preview.png)';
+    const embedIndex = readme.indexOf(previewEmbed);
+    const workflowIndex = readme.indexOf('## 60-Second Workflow');
+
+    assert.equal(fs.existsSync(previewPath), true, 'assets/social-preview.png should exist');
+    assert.ok(embedIndex > -1, 'README should embed the social preview asset');
+    assert.ok(
+      embedIndex < workflowIndex,
+      'README social preview should appear before workflow details',
+    );
+  });
+
   test('sdk package uses the same public npm scope', () => {
     const sdkPackageJson = readJson('sdk/package.json');
     const sdkPackageLock = readJson('sdk/package-lock.json');

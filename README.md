@@ -16,6 +16,10 @@
 
 <br>
 
+![GSD Codex preview](assets/social-preview.png)
+
+<br>
+
 ```bash
 npx @oisinwang/get-shit-done-codex@latest
 ```
