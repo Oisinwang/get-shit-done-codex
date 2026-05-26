@@ -80,6 +80,15 @@ People who want to describe what they want and have it built correctly without p
 
 Built-in quality gates catch real problems: schema drift detection flags ORM changes missing migrations, security enforcement anchors verification to threat models, and scope reduction detection prevents the planner from silently dropping your requirements.
 
+## At a Glance
+
+| If Codex work gets stuck because... | GSD gives you... |
+|-------------------------------------|------------------|
+| The model loses the original goal during a long session | `PROJECT.md`, `ROADMAP.md`, `STATE.md`, and phase artifacts that survive context resets |
+| Plans quietly drop requirements | discussion logs, plan checks, and verification artifacts tied back to the requested outcome |
+| Parallel agents leave messy changes | small phase plans, wave-based execution, and atomic commits that are easier to review or roll back |
+| You need to stop and resume later | `$gsd-pause-work`, `$gsd-resume-work`, threads, todos, and handoff state |
+
 ### Current Highlights
 
 - **Codex-first project contract** - `AGENTS.md`, `.codex/`, `$gsd-*`, and Codex session paths are the primary semantics.

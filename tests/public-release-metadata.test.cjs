@@ -64,6 +64,27 @@ describe('public release metadata', () => {
     );
   });
 
+  test('README gives a quick value scan before install instructions', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const atAGlanceStart = readme.indexOf('## At a Glance');
+    const gettingStartedStart = readme.indexOf('## Getting Started');
+
+    assert.ok(atAGlanceStart > -1, 'README should include a quick value scan');
+    assert.ok(
+      atAGlanceStart < gettingStartedStart,
+      'quick value scan should appear before install instructions',
+    );
+
+    const atAGlance = readme.slice(atAGlanceStart, gettingStartedStart);
+
+    assert.match(atAGlance, /model loses the original goal/);
+    assert.match(atAGlance, /Plans quietly drop requirements/);
+    assert.match(atAGlance, /Parallel agents leave messy changes/);
+    assert.match(atAGlance, /You need to stop and resume later/);
+    assert.match(atAGlance, /PROJECT\.md/);
+    assert.match(atAGlance, /\$gsd-pause-work/);
+  });
+
   test('sdk package uses the same public npm scope', () => {
     const sdkPackageJson = readJson('sdk/package.json');
     const sdkPackageLock = readJson('sdk/package-lock.json');
