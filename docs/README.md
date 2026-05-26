@@ -38,4 +38,5 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 - **Run the workflow:** [User Guide](USER-GUIDE.md)
 - **Find a command:** [Command Reference](COMMANDS.md)
 - **Configure behavior:** [Configuration Reference](CONFIGURATION.md)
+- **Get help:** [Support](../SUPPORT.md)
 - **Extend the system:** [CLI Tools Reference](CLI-TOOLS.md) + [Agent Reference](AGENTS.md)

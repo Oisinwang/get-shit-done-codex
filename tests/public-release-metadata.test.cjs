@@ -505,6 +505,32 @@ describe('public release metadata', () => {
     assert.doesNotMatch(helpWorkflow, /discord\.gg/i);
   });
 
+  test('public support resources route users to the right channel', () => {
+    const packageJson = readJson('package.json');
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const supportPath = path.join(ROOT, 'SUPPORT.md');
+
+    assert.equal(fs.existsSync(supportPath), true, 'repository should have a root SUPPORT.md');
+    assert.ok(packageJson.files.includes('SUPPORT.md'), 'npm package should include SUPPORT.md');
+
+    const support = fs.readFileSync(supportPath, 'utf8');
+
+    assert.match(readme, /\[Support\]\(SUPPORT\.md\)/);
+    assert.match(docsReadme, /\[Support\]\(\.\.\/SUPPORT\.md\)/);
+
+    assert.match(support, /# Support/);
+    assert.match(support, /GitHub Discussions/);
+    assert.match(support, /https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/discussions/);
+    assert.match(support, /Bug reports/);
+    assert.match(support, /https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/issues\/new\/choose/);
+    assert.match(support, /Security vulnerabilities/);
+    assert.match(support, /https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/security\/advisories\/new/);
+    assert.doesNotMatch(support, /discord\.gg/i);
+    assert.doesNotMatch(support, /security@gsd\.build/i);
+    assert.doesNotMatch(support, /[^\x00-\x7F]/, 'SUPPORT.md should stay ASCII-clean');
+  });
+
   test('public community wording points users at GitHub Discussions', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const userGuide = fs.readFileSync(path.join(ROOT, 'docs', 'USER-GUIDE.md'), 'utf8');

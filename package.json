@@ -13,6 +13,7 @@
     "agents",
     "hooks",
     "scripts",
+    "SUPPORT.md",
     "sdk/src",
     "sdk/prompts",
     "sdk/package.json",

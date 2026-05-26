@@ -42,7 +42,7 @@ npx @oisinwang/get-shit-done-codex@latest
 
 **Security and release hygiene:** scoped npm package, repository metadata, CI, release workflows, issue templates, and [community standards](CODE_OF_CONDUCT.md) all point at this fork. Legacy Claude-era names remain only as compatibility shims.
 
-[Why This Fork Exists](#why-this-fork-exists) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md) | [Code of Conduct](CODE_OF_CONDUCT.md)
+[Why This Fork Exists](#why-this-fork-exists) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md) | [Support](SUPPORT.md) | [Code of Conduct](CODE_OF_CONDUCT.md)
 
 </div>
 
@@ -852,6 +852,17 @@ This prevents Claude from reading these files entirely, regardless of what comma
 
 > [!IMPORTANT]
 > GSD includes built-in protections against committing secrets, but defense-in-depth is best practice. Deny read access to sensitive files as a first line of defense.
+
+---
+
+## Support
+
+Use [SUPPORT.md](SUPPORT.md) to choose the right public or private channel:
+
+- Questions and usage help: GitHub Discussions
+- Reproducible bugs: the issue chooser
+- Feature and enhancement proposals: approved issue flow in `CONTRIBUTING.md`
+- Security vulnerabilities: GitHub private vulnerability reporting
 
 ---
 
