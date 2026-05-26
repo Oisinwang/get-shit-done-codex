@@ -156,6 +156,12 @@ jobs:
             fi
           fi
 
+      - name: Verify npm authentication
+        if: ${{ !inputs.dry_run }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm whoami
+
       - name: Tag and push
         if: ${{ !inputs.dry_run }}
         env:
