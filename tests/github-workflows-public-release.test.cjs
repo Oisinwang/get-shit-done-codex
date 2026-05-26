@@ -41,4 +41,10 @@ describe('GitHub workflows public release configuration', () => {
       assert.match(workflow, /@oisinwang\/get-shit-done-codex/);
     }
   });
+
+  test('hotfix workflow delegates version validation to tested script', () => {
+    const workflow = readWorkflow('hotfix.yml');
+
+    assert.match(workflow, /node scripts\/validate-hotfix\.cjs/);
+  });
 });
