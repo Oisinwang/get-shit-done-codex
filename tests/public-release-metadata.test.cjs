@@ -117,6 +117,42 @@ describe('public release metadata', () => {
     assert.match(quickStart, /phase artifacts/);
   });
 
+  test('public examples help first-time users choose a workflow', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const examplesPath = path.join(ROOT, 'docs', 'EXAMPLES.md');
+
+    assert.equal(fs.existsSync(examplesPath), true, 'docs/EXAMPLES.md should exist');
+
+    const examples = fs.readFileSync(examplesPath, 'utf8');
+    const pickWorkflowStart = readme.indexOf('## Pick a Workflow');
+    const gettingStartedStart = readme.indexOf('## Getting Started');
+
+    assert.ok(pickWorkflowStart > -1, 'README should include a workflow chooser');
+    assert.ok(
+      pickWorkflowStart < gettingStartedStart,
+      'workflow chooser should appear before install details',
+    );
+
+    assert.match(readme, /\[Examples\]\(docs\/EXAMPLES\.md\)/);
+    assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
+    assert.match(examples, /# Examples/);
+
+    for (const marker of [
+      '$gsd-new-project --auto',
+      '$gsd-map-codebase',
+      '$gsd-fast',
+      '$gsd-resume-work',
+      '$gsd-spike',
+      '$gsd-sketch',
+    ]) {
+      assert.match(readme, new RegExp(marker.replace('$', '\\$')));
+      assert.match(examples, new RegExp(marker.replace('$', '\\$')));
+    }
+
+    assert.doesNotMatch(examples, /[^\x00-\x7F]/, 'docs/EXAMPLES.md should stay ASCII-clean');
+  });
+
   test('sdk package uses the same public npm scope', () => {
     const sdkPackageJson = readJson('sdk/package.json');
     const sdkPackageLock = readJson('sdk/package-lock.json');

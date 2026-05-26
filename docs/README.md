@@ -21,6 +21,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 | Document | Audience | Description |
 |----------|----------|-------------|
 | [Codex Fork Notes](CODEX-FORK.md) | All users | Codex-first fork scope, naming boundaries, migration notes, and release alignment |
+| [Examples](EXAMPLES.md) | New users | Copy-pastable workflows for new projects, existing repos, quick fixes, resume, spikes, and sketches |
 | [User Guide](USER-GUIDE.md) | All users | Workflow walkthroughs, troubleshooting, recovery, and practical usage |
 | [Feature Reference](FEATURES.md) | All users | Complete feature and function documentation with requirements |
 | [Command Reference](COMMANDS.md) | All users | Every command with syntax, flags, options, and examples |
@@ -34,6 +35,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 ## Quick Links
 
 - **Start here:** [root README](../README.md) -> install -> `$gsd-help`
+- **Pick a workflow:** [Examples](EXAMPLES.md)
 - **Understand the fork:** [Codex Fork Notes](CODEX-FORK.md)
 - **Run the workflow:** [User Guide](USER-GUIDE.md)
 - **Find a command:** [Command Reference](COMMANDS.md)

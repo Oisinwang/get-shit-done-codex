@@ -42,7 +42,7 @@ npx @oisinwang/get-shit-done-codex@latest
 
 **Security and release hygiene:** scoped npm package, repository metadata, CI, release workflows, issue templates, and [community standards](CODE_OF_CONDUCT.md) all point at this fork. Legacy Claude-era names remain only as compatibility shims.
 
-[Why This Fork Exists](#why-this-fork-exists) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md) | [Support](SUPPORT.md) | [Code of Conduct](CODE_OF_CONDUCT.md)
+[Why This Fork Exists](#why-this-fork-exists) | [Examples](docs/EXAMPLES.md) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md) | [Support](SUPPORT.md) | [Code of Conduct](CODE_OF_CONDUCT.md)
 
 </div>
 
@@ -114,6 +114,21 @@ Built-in quality gates catch real problems: schema drift detection flags ORM cha
 - **Spiking and sketching** - `$gsd-spike` and `$gsd-sketch` capture experiments and design variants as durable planning artifacts.
 - **Agent size-budget enforcement** - tiered line-count limits keep agent prompts lean and CI-visible.
 - **Shared boilerplate extraction** - common reading and project-skill discovery logic is centralized instead of duplicated across agents.
+
+---
+
+## Pick a Workflow
+
+| You want to... | Run this first | What GSD leaves behind |
+|----------------|----------------|------------------------|
+| Start from a rough idea | `$gsd-new-project --auto` | `PROJECT.md`, `ROADMAP.md`, and next-step state |
+| Understand an existing repo before planning | `$gsd-map-codebase` | Codebase intelligence the planner can reuse |
+| Make a small fix with guardrails | `$gsd-fast "fix the failing install check"` | A focused change with verification notes |
+| Continue work after a break | `$gsd-resume-work` | Restored phase context and pending blockers |
+| Compare a technical approach first | `$gsd-spike "validate the risky integration"` | Time-boxed experiment findings |
+| Explore UI direction first | `$gsd-sketch "compare dashboard layouts"` | Throwaway mockups and selected design notes |
+
+More copy-pastable playbooks live in [Examples](docs/EXAMPLES.md).
 
 ---
 
