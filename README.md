@@ -8,6 +8,10 @@
 
 **Keeps context, decisions, phase plans, validation checks, and recovery state explicit instead of hoping the model remembers everything.**
 
+[![npm version](https://img.shields.io/npm/v/@oisinwang/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/@oisinwang/get-shit-done-codex)
+[![npm downloads](https://img.shields.io/npm/dm/@oisinwang/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=0B7285)](https://www.npmjs.com/package/@oisinwang/get-shit-done-codex)
+[![Tests](https://github.com/Oisinwang/get-shit-done-codex/actions/workflows/test.yml/badge.svg?branch=codex/bootstrap)](https://github.com/Oisinwang/get-shit-done-codex/actions/workflows/test.yml)
+[![GitHub stars](https://img.shields.io/github/stars/Oisinwang/get-shit-done-codex?style=for-the-badge&logo=github&color=111827)](https://github.com/Oisinwang/get-shit-done-codex/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 <br>
@@ -32,7 +36,11 @@ npx @oisinwang/get-shit-done-codex@latest
 
 <br>
 
-**Public release status:** Codex-first release candidate; package names, CI, and docs are being stabilized.
+**Published on npm as `@oisinwang/get-shit-done-codex`. Tested release branch: `codex/bootstrap`.**
+
+**Independent Codex-first fork of GSD.** Use this fork when you want `AGENTS.md`, `.codex/`, `$gsd-*`, and Codex session paths to be the public default instead of migration details.
+
+**Security and release hygiene:** scoped npm package, repository metadata, CI, release workflows, and issue templates all point at this fork. Legacy Claude-era names remain only as compatibility shims.
 
 [Why This Fork Exists](#why-this-fork-exists) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md)
 
@@ -87,7 +95,7 @@ Built-in quality gates catch real problems: schema drift detection flags ORM cha
 npx @oisinwang/get-shit-done-codex@latest
 ```
 
-If you are running directly from this repository before publishing the package, use:
+For source-based development installs, use:
 
 ```bash
 npm install
@@ -116,7 +124,7 @@ The canonical discovery contract is documented in [docs/skills/discovery-contrac
 
 ### Staying Updated
 
-This fork is intended to update from source until you publish it under your own remote and package registry:
+To update a source checkout after pulling this fork:
 
 ```bash
 git pull

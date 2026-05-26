@@ -2,18 +2,19 @@
 
 ## One-Line Positioning
 
-An independent Codex-first fork of GSD that treats `AGENTS.md`, `.codex/`, and `$gsd-*` as the primary workflow contract.
+An independent Codex-first fork of GSD with a verified scoped npm package, Codex-native project semantics, and release-facing docs built around `AGENTS.md`, `.codex/`, and `$gsd-*`.
 
 ## 50-Word Summary
 
-This fork takes upstream GSD and makes Codex the release-facing default. `AGENTS.md`, `.codex/`, `agents_md_path`, `generate-agents-*`, and `~/.codex/sessions` are the primary semantics. Legacy Claude-era names still work only as migration shims, so existing installs can move forward without making Claude-first naming the public story.
+This fork takes GSD and makes Codex the release-facing default. `AGENTS.md`, `.codex/`, `agents_md_path`, `generate-agents-*`, and `~/.codex/sessions` are the primary semantics. The verified install path is `npx @oisinwang/get-shit-done-codex@latest`; legacy Claude-era names remain only as migration shims.
 
 ## Launch Post Bullets
 
 - Codex-first semantics are now the primary public contract.
 - Legacy Claude naming remains only as a migration shim.
-- The default public branch and first fork release are live on GitHub.
-- Source-based Codex install is the verified path for the current public branch.
+- The default public branch and scoped npm release are live.
+- Verified install path: `npx @oisinwang/get-shit-done-codex@latest`.
+- README, package metadata, issue templates, and release workflows point at this fork.
 
 ## Why Not Upstream?
 
@@ -34,6 +35,7 @@ Upstream supports Codex, but this fork makes Codex the primary semantic contract
 
 ## Install Positioning
 
-- Verified now: source checkout on `codex/bootstrap`
+- Verified install path: `npx @oisinwang/get-shit-done-codex@latest`
+- Verified development path: source checkout on `codex/bootstrap`
 - Verified compatibility: source-based Claude local install for migration
-- Not yet release-aligned: `npx get-shit-done-codex@latest`
+- Avoid promoting unscoped npm names for this fork

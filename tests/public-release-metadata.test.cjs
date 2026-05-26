@@ -57,6 +57,28 @@ describe('public release metadata', () => {
     assert.doesNotMatch(readme, /[^\x00-\x7F]/, 'English README should stay ASCII to avoid mojibake regressions');
   });
 
+  test('public launch surface presents a verified, stable install path', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const promotion = fs.readFileSync(path.join(ROOT, 'docs', 'PROMOTION.md'), 'utf8');
+
+    assert.match(readme, /img\.shields\.io\/npm\/v\/@oisinwang\/get-shit-done-codex/);
+    assert.match(readme, /img\.shields\.io\/npm\/dm\/@oisinwang\/get-shit-done-codex/);
+    assert.match(readme, /actions\/workflows\/test\.yml\/badge\.svg\?branch=codex\/bootstrap/);
+    assert.match(readme, /Published on npm as `@oisinwang\/get-shit-done-codex`/);
+    assert.match(readme, /Tested release branch: `codex\/bootstrap`/);
+    assert.match(readme, /Independent Codex-first fork of GSD/);
+    assert.match(readme, /Security and release hygiene/);
+
+    for (const content of [readme, promotion]) {
+      assert.doesNotMatch(content, /release candidate/i);
+      assert.doesNotMatch(content, /package names, CI, and docs are being stabilized/i);
+      assert.doesNotMatch(content, /Not yet release-aligned/i);
+    }
+
+    assert.match(promotion, /Verified install path/);
+    assert.match(promotion, /npx @oisinwang\/get-shit-done-codex@latest/);
+  });
+
   test('high-visibility English public files stay ASCII-clean', () => {
     const asciiFiles = [
       'README.md',
