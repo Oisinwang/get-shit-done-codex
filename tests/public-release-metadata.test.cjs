@@ -221,4 +221,40 @@ describe('public release metadata', () => {
       assert.doesNotMatch(readme, /dexscreener/i, relativePath);
     }
   });
+
+  test('localized documentation indexes present the current Codex fork without stale launch metadata', () => {
+    const localizedDocIndexes = [
+      'docs/pt-BR/README.md',
+      'docs/zh-CN/README.md',
+      'docs/ja-JP/README.md',
+      'docs/ko-KR/README.md',
+    ];
+
+    const staleMarkers = [
+      /npx get-shit-done-cc/i,
+      /get-shit-done-cc\?style=for-the-badge/i,
+      /discord\.gg/i,
+      /dexscreener/i,
+      /x\.com\/gsd_foundation/i,
+      /v1\.32/i,
+      /Claude Code by/i,
+      /鈥|鉁|锚|绠|鏃|脗|莽|鞐|氍|銉|鞛/,
+    ];
+
+    for (const relativePath of localizedDocIndexes) {
+      const readme = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+
+      assert.match(readme, /GSD Codex/, relativePath);
+      assert.match(readme, /Codex-first/, relativePath);
+      assert.match(readme, /AGENTS\.md/, relativePath);
+      assert.match(readme, /\.codex\//, relativePath);
+      assert.match(readme, /\$gsd-\*/, relativePath);
+      assert.match(readme, /npx @oisinwang\/get-shit-done-codex@latest/, relativePath);
+      assert.match(readme, /CODEX-FORK\.md/, relativePath);
+
+      for (const marker of staleMarkers) {
+        assert.doesNotMatch(readme, marker, relativePath);
+      }
+    }
+  });
 });

@@ -1,27 +1,35 @@
-# GSD ドキュメント
+# GSD Codex ドキュメント
 
-Get Shit Done（GSD）フレームワークの包括的なドキュメントです。GSD は、AI コーディングエージェント向けのメタプロンプティング、コンテキストエンジニアリング、仕様駆動開発システムです。
+このフォルダは GSD Codex fork の日本語ドキュメント入口です。この fork は Codex-first です。公開契約の中心は `AGENTS.md`、`.codex/`、`$gsd-*`、`agents_md_path`、`generate-agents-md`、Codex のセッションパスです。
 
-## ドキュメント一覧
+公開済みパッケージは次のコマンドでインストールします。
 
-| ドキュメント | 対象読者 | 説明 |
-|------------|---------|------|
-| [アーキテクチャ](ARCHITECTURE.md) | コントリビューター、上級ユーザー | システムアーキテクチャ、エージェントモデル、データフロー、内部設計 |
-| [機能リファレンス](FEATURES.md) | 全ユーザー | 全機能の詳細ドキュメントと要件 |
-| [コマンドリファレンス](COMMANDS.md) | 全ユーザー | 全コマンドの構文、フラグ、オプション、使用例 |
-| [設定リファレンス](CONFIGURATION.md) | 全ユーザー | 設定スキーマ、ワークフロートグル、モデルプロファイル、Git ブランチ |
-| [CLI ツールリファレンス](CLI-TOOLS.md) | コントリビューター、エージェント作成者 | `gsd-tools.cjs` のプログラマティック API（ワークフローおよびエージェント向け） |
-| [エージェントリファレンス](AGENTS.md) | コントリビューター、上級ユーザー | 全18種の専門エージェント — 役割、ツール、スポーンパターン |
-| [ユーザーガイド](USER-GUIDE.md) | 全ユーザー | ワークフローのウォークスルー、トラブルシューティング、リカバリー |
-| [コンテキストモニター](context-monitor.md) | 全ユーザー | コンテキストウィンドウ監視フックのアーキテクチャ |
-| [ディスカスモード](workflow-discuss-mode.md) | 全ユーザー | discuss フェーズにおける assumptions モードと interview モード |
+```bash
+npx @oisinwang/get-shit-done-codex@latest
+```
+
+Claude 時代の名前は移行互換のためだけに残しています。fork の境界、命名規則、移行メモは [CODEX-FORK.md](../CODEX-FORK.md) を参照してください。
+
+## ドキュメント索引
+
+| ドキュメント | 読者 | 内容 |
+|--------------|------|------|
+| [Codex fork notes](../CODEX-FORK.md) | すべてのユーザー | Codex-first の範囲、命名境界、移行メモ |
+| [User Guide](USER-GUIDE.md) | すべてのユーザー | ワークフロー、トラブルシューティング、復旧 |
+| [Feature Reference](FEATURES.md) | すべてのユーザー | 機能、要件、期待される動作 |
+| [Command Reference](COMMANDS.md) | すべてのユーザー | コマンド、構文、フラグ、使用例 |
+| [Configuration Reference](CONFIGURATION.md) | すべてのユーザー | 設定 schema、ワークフロートグル、モデルプロファイル |
+| [Architecture](ARCHITECTURE.md) | コントリビューター | システム構造、agent モデル、データフロー |
+| [CLI Tools](CLI-TOOLS.md) | コントリビューター | `gsd-tools.cjs` のプログラム API |
+| [Agent Reference](AGENTS.md) | コントリビューター | 専門 agent、役割、オーケストレーション |
+| [Context Monitor](context-monitor.md) | すべてのユーザー | コンテキストウィンドウ監視 hook |
+| [Discuss Mode](workflow-discuss-mode.md) | すべてのユーザー | 前提確認モードとインタビューモード |
 
 ## クイックリンク
 
-- **v1.32 の新機能:** STATE.md 整合性ゲート、`--to N` 自律モード、リサーチゲート、ベリファイヤーマイルストーンスコープフィルタリング、read-before-edit ガード、コンテキスト削減、新規ランタイム（Trae, Cline, Augment Code）、レスポンス言語設定、`--power`/`--diagnose` フラグ、`/gsd-analyze-dependencies`
-- **はじめに:** [README](../README.md) → インストール → `/gsd-new-project`
-- **ワークフロー完全ガイド:** [ユーザーガイド](USER-GUIDE.md)
-- **コマンド一覧:** [コマンドリファレンス](COMMANDS.md)
-- **GSD の設定:** [設定リファレンス](CONFIGURATION.md)
-- **システム内部の仕組み:** [アーキテクチャ](ARCHITECTURE.md)
-- **コントリビュートや拡張:** [CLI ツールリファレンス](CLI-TOOLS.md) + [エージェントリファレンス](AGENTS.md)
+- **開始:** [root README](../../README.ja-JP.md) -> install -> `$gsd-help`
+- **fork を理解する:** [Codex fork notes](../CODEX-FORK.md)
+- **ワークフローを実行:** [User Guide](USER-GUIDE.md)
+- **コマンドを探す:** [Command Reference](COMMANDS.md)
+- **設定する:** [Configuration Reference](CONFIGURATION.md)
+- **拡張する:** [CLI Tools](CLI-TOOLS.md) + [Agent Reference](AGENTS.md)
