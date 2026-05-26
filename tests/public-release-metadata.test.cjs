@@ -797,6 +797,30 @@ describe('public release metadata', () => {
     }
   });
 
+  test('Simplified Chinese comparison guide mirrors public comparison tradeoffs', () => {
+    const zhDocsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'zh-CN', 'README.md'), 'utf8');
+    const zhComparisonPath = path.join(ROOT, 'docs', 'zh-CN', 'COMPARISON.md');
+
+    assert.equal(fs.existsSync(zhComparisonPath), true, 'docs/zh-CN/COMPARISON.md should exist');
+
+    const zhComparison = fs.readFileSync(zhComparisonPath, 'utf8');
+
+    assert.match(zhDocsReadme, /\[对比指南\]\(COMPARISON\.md\)/);
+    assert.match(zhComparison, /# 对比指南/);
+    assert.match(zhComparison, /原始 Codex chat/);
+    assert.match(zhComparison, /prompt pack/);
+    assert.match(zhComparison, /task manager/);
+    assert.match(zhComparison, /CI-only workflow/);
+    assert.match(zhComparison, /完整企业流程/);
+    assert.match(zhComparison, /选择 GSD Codex/);
+    assert.match(zhComparison, /不要使用 GSD Codex/);
+    assert.match(zhComparison, /不是 Codex 本身的替代品/);
+    assert.match(zhComparison, /AGENTS\.md/);
+    assert.match(zhComparison, /\.codex\//);
+    assert.match(zhComparison, /\.planning\//);
+    assert.match(zhComparison, /\$gsd-\*/);
+  });
+
   test('community health files point at this public fork', () => {
     const packageJson = readJson('package.json');
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
