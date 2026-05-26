@@ -1097,6 +1097,15 @@ describe('public release metadata', () => {
     assert.match(bugTemplate, /Select runtime: Codex/);
     assert.match(bugTemplate, /Codex: `cat ~\/\.codex\/config\.toml`/);
 
+    const docsTemplate = fs.readFileSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'docs_issue.yml'), 'utf8');
+    assert.match(docsTemplate, /label: Affected docs area/);
+    assert.match(docsTemplate, /Codex-first fork contract/);
+    assert.match(docsTemplate, /Install or npm release docs/);
+    assert.match(docsTemplate, /Localized docs/);
+    assert.match(docsTemplate, /Checked docs\/README\.md/);
+    assert.match(docsTemplate, /Searched existing issues/);
+    assert.match(docsTemplate, /npx @oisinwang\/get-shit-done-codex@latest/);
+
     const featureTemplate = fs.readFileSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'feature_request.yml'), 'utf8');
     assert.match(featureTemplate, /label: Codex\r?\n        - label: Claude Code/);
 

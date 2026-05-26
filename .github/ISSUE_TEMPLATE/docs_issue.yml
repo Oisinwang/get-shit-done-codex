@@ -6,7 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Help us improve the docs. Point us to what's wrong or missing.
+        Help us improve the docs. Point us to what is wrong or missing.
+
+        Before filing, please check the docs index at `docs/README.md` and search existing issues. If the report is about install behavior from `npx @latest`, include the published package version you see from `npm view @oisinwang/get-shit-done-codex version`.
 
   - type: dropdown
     id: type
@@ -18,6 +20,22 @@ body:
         - Unclear or confusing
         - Outdated (no longer matches behavior)
         - Typo or formatting
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected docs area
+      options:
+        - README or first-run docs
+        - Codex-first fork contract
+        - Install or npm release docs
+        - Command or feature reference
+        - Troubleshooting
+        - Localized docs
+        - Contributor docs
+        - Other
     validations:
       required: true
 
@@ -45,3 +63,15 @@ body:
       description: If you know what the correct information should be, include it here.
     validations:
       required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: Checked docs/README.md for the current docs index
+          required: true
+        - label: Searched existing issues
+          required: true
+        - label: Checked whether `npx @oisinwang/get-shit-done-codex@latest` documentation may be stale
+          required: false

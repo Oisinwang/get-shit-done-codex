@@ -26,6 +26,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Japanese prompt recipes** - Adds `docs/ja-JP/PROMPTS.md` and links it from the localized docs index so Japanese readers can paste the same Codex starter prompts.
 - **Release checklist** - Adds `docs/RELEASE.md` with npm `NPM_TOKEN` setup, hotfix workflow steps, and publish verification for stale `npx @latest` recovery.
 - **README link guard** - Adds coverage for repository README local links and fixes a stale localized superpowers plan link.
+- **Documentation issue template** - Adds affected-area routing and preflight checks so docs reports identify Codex-first, install, release, reference, troubleshooting, localization, or contributor surfaces up front.
 - **`/gsd-ingest-docs` command** — Scan a repo containing mixed ADRs, PRDs, SPECs, and DOCs and bootstrap or merge the full `.planning/` setup from them in a single pass. Parallel classification (`gsd-doc-classifier`), synthesis with precedence rules and cycle detection (`gsd-doc-synthesizer`), three-bucket conflicts report (`INGEST-CONFLICTS.md`: auto-resolved, competing-variants, unresolved-blockers), and hard-block on LOCKED-vs-LOCKED ADR contradictions in both new and merge modes. Supports directory-convention discovery and `--manifest <file>` YAML override with per-doc precedence. v1 caps at 50 docs per invocation; `--resolve interactive` is reserved. Extracts shared conflict-detection contract into `references/doc-conflict-engine.md` which `/gsd-import` now also consumes (#2387)
 
 ### Fixed
