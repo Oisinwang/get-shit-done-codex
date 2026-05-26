@@ -83,6 +83,17 @@ describe('codex-first canonical wording', () => {
     assert.doesNotMatch(readme, /Claude Code is powerful\. GSD makes it reliable\./);
   });
 
+  test('README workflow examples use Codex command syntax by default', () => {
+    const readme = readRepoFile('README.md');
+    const mainUsage = readme.slice(readme.indexOf('## How It Works'), readme.indexOf('## Configuration'));
+
+    assert.match(mainUsage, /\$gsd-new-project/);
+    assert.match(mainUsage, /\$gsd-quick/);
+    assert.doesNotMatch(mainUsage, /\/gsd-/);
+    assert.doesNotMatch(readme, /Every plan is structured XML optimized for Claude/);
+    assert.doesNotMatch(readme, /Control which Claude model each agent uses/);
+  });
+
   test('release-facing docs present scoped npm install as the verified path', () => {
     const readme = readRepoFile('README.md');
     const forkNotes = readRepoFile('docs/CODEX-FORK.md');
