@@ -370,6 +370,23 @@ describe('public release metadata', () => {
     );
   });
 
+  test('root npm package ships README visual assets', () => {
+    const packageJson = readJson('package.json');
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const readmeAssetPaths = [...readme.matchAll(/!\[[^\]]*\]\((assets\/[^)]+)\)/g)].map(
+      (match) => match[1],
+    );
+
+    assert.deepEqual(readmeAssetPaths, ['assets/social-preview.png', 'assets/terminal.svg']);
+
+    for (const assetPath of readmeAssetPaths) {
+      assert.ok(
+        packageJson.files.includes(assetPath),
+        `package.json files should include ${assetPath}`,
+      );
+    }
+  });
+
   test('sdk package uses the same public npm scope', () => {
     const sdkPackageJson = readJson('sdk/package.json');
     const sdkPackageLock = readJson('sdk/package-lock.json');
