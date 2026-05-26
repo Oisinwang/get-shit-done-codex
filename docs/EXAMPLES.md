@@ -66,6 +66,17 @@ $gsd-pr-branch codex/bootstrap
 
 Use `$gsd-progress --forensic` first to surface verification debt before exporting a clean branch. `$gsd-pr-branch` will filter transient `.planning/` commits before public review while preserving code changes and structural project state. The command creates a `*-pr` branch from the target branch and prints the next steps. Run the printed `git push` and `gh pr create` commands only after reviewing that generated branch.
 
+## Audit Verification Debt Before Release
+
+Use this before creating a release branch or completing a milestone. The goal is to find pending, skipped, blocked, and human_needed UAT or verification items before release review turns them into late surprises.
+
+```bash
+$gsd-progress --forensic
+$gsd-audit-uat
+```
+
+Use `$gsd-progress --forensic` first for a quick state check, then run `$gsd-audit-uat` to scan all phase UAT and verification files. When there are gaps, GSD groups what is testable now, what needs prerequisites, and what may be stale, then produces a human test plan you can work through before branching or tagging.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.

@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Release readiness audit example** - Adds a copy-pastable `$gsd-audit-uat` playbook for checking UAT and verification debt before a release branch.
 - **Public PR branch example** - Adds a copy-pastable `$gsd-pr-branch codex/bootstrap` playbook for preparing review branches without transient `.planning/` noise.
 - **Planning visibility FAQ** - Expands `.planning/` guidance with private-evaluation, team-review, and contributor-PR boundaries.
 - **Public demo guide** - Adds `docs/DEMO.md` with a 60-second workflow, generated artifact tree, and concrete `PROJECT.md` / `ROADMAP.md` excerpts so evaluators can inspect expected output before installing.

@@ -228,16 +228,20 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-progress --forensic`/);
     assert.match(readme, /Prepare a public PR without planning noise/);
     assert.match(readme, /`\$gsd-pr-branch codex\/bootstrap`/);
+    assert.match(readme, /Check release readiness before a branch/);
+    assert.match(readme, /`\$gsd-audit-uat`/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
     assert.match(examples, /## Existing Repo Migration Branch/);
     assert.match(examples, /## Review Generated Planning Artifacts/);
     assert.match(examples, /## Prepare A Public Pull Request/);
+    assert.match(examples, /## Audit Verification Debt Before Release/);
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
     assert.match(examples, /\$gsd-pr-branch codex\/bootstrap/);
+    assert.match(examples, /\$gsd-audit-uat/);
     assert.match(examples, /git switch -c evaluate-gsd-codex/);
     assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(examples, /commit the branch only after reviewing the generated plan/i);
@@ -247,6 +251,9 @@ describe('public release metadata', () => {
     assert.match(examples, /filter transient `.planning\/` commits before public review/);
     assert.match(examples, /The command creates a `\*-pr` branch from the target branch/);
     assert.match(examples, /Run the printed `git push` and `gh pr create` commands only after reviewing that generated branch/);
+    assert.match(examples, /before creating a release branch or completing a milestone/);
+    assert.match(examples, /pending, skipped, blocked, and human_needed/);
+    assert.match(examples, /human test plan/);
     assert.match(examples, /source code, tests, and a README/);
     assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
 
@@ -310,10 +317,25 @@ describe('public release metadata', () => {
       '$gsd-pr-branch codex/bootstrap',
     ]);
 
+    const releaseAuditStart = examples.indexOf('## Audit Verification Debt Before Release');
+    const releaseAuditEnd = examples.indexOf('## Small Fix With Guardrails');
+    const releaseAuditSection = examples.slice(releaseAuditStart, releaseAuditEnd);
+    const releaseAuditCommands = releaseAuditSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(releaseAuditCommands, 'release audit example should include a bash block');
+    assert.deepEqual(releaseAuditCommands, [
+      '$gsd-progress --forensic',
+      '$gsd-audit-uat',
+    ]);
+
     for (const marker of [
       '$gsd-new-project --auto',
       '$gsd-map-codebase',
       '$gsd-pr-branch',
+      '$gsd-audit-uat',
       '$gsd-fast',
       '$gsd-resume-work',
       '$gsd-spike',
