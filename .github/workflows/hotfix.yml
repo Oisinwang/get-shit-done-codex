@@ -44,26 +44,9 @@ jobs:
       - name: Validate version format
         id: validate
         env:
+          ACTION: ${{ inputs.action }}
           VERSION: ${{ inputs.version }}
-        run: |
-          # Must be X.Y.Z where Z > 0 (patch release)
-          if ! echo "$VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[1-9][0-9]*$'; then
-            echo "::error::Version must be a patch release (e.g., 1.27.1, not 1.28.0)"
-            exit 1
-          fi
-          MAJOR_MINOR=$(echo "$VERSION" | cut -d. -f1-2)
-          TARGET_TAG="v${VERSION}"
-          BRANCH="hotfix/${VERSION}"
-          BASE_TAG=$(git tag -l "v${MAJOR_MINOR}.*" \
-            | grep -E "^v[0-9]+\.[0-9]+\.[0-9]+$" \
-            | sort -V \
-            | awk -v target="$TARGET_TAG" '$1 < target { last=$1 } END { if (last != "") print last }')
-          if [ -z "$BASE_TAG" ]; then
-            echo "::error::No prior stable tag found for ${MAJOR_MINOR}.x before $TARGET_TAG"
-            exit 1
-          fi
-          echo "base_tag=$BASE_TAG" >> "$GITHUB_OUTPUT"
-          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+        run: node scripts/validate-hotfix.cjs
 
   create:
     needs: validate-version
@@ -152,19 +135,32 @@ jobs:
           BRANCH: ${{ needs.validate-version.outputs.branch }}
           VERSION: ${{ inputs.version }}
         run: |
-          EXISTING_PR=$(gh pr list --base codex/bootstrap --head "$BRANCH" --state open --json number --jq '.[0].number')
+          if ! EXISTING_PR=$(gh pr list --base codex/bootstrap --head "$BRANCH" --state open --json number --jq '.[0].number'); then
+            echo "::warning::Unable to inspect existing hotfix back-merge PR. Continuing release. Create the PR manually from $BRANCH to codex/bootstrap."
+            EXISTING_PR=""
+          fi
           if [ -n "$EXISTING_PR" ]; then
             echo "PR #$EXISTING_PR already exists; updating"
-            gh pr edit "$EXISTING_PR" \
+            if ! gh pr edit "$EXISTING_PR" \
               --title "chore: merge hotfix v${VERSION} back to main" \
-              --body "Merge hotfix changes back to main after v${VERSION} release."
+              --body "Merge hotfix changes back to main after v${VERSION} release."; then
+              echo "::warning::Unable to update hotfix back-merge PR #$EXISTING_PR. Continuing release."
+            fi
           else
-            gh pr create \
+            if ! gh pr create \
               --base codex/bootstrap \
               --head "$BRANCH" \
               --title "chore: merge hotfix v${VERSION} back to main" \
-              --body "Merge hotfix changes back to main after v${VERSION} release."
+              --body "Merge hotfix changes back to main after v${VERSION} release."; then
+              echo "::warning::Unable to create hotfix back-merge PR. Continuing release. Create the PR manually from $BRANCH to codex/bootstrap."
+            fi
           fi
+
+      - name: Verify npm authentication
+        if: ${{ !inputs.dry_run }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm whoami
 
       - name: Tag and push
         if: ${{ !inputs.dry_run }}
@@ -235,5 +231,5 @@ jobs:
           else
             echo "- Published to npm as \`latest\`" >> "$GITHUB_STEP_SUMMARY"
             echo "- Tagged \`v${VERSION}\`" >> "$GITHUB_STEP_SUMMARY"
-            echo "- PR created to merge back to codex/bootstrap" >> "$GITHUB_STEP_SUMMARY"
+            echo "- Back-merge PR attempted for codex/bootstrap" >> "$GITHUB_STEP_SUMMARY"
           fi

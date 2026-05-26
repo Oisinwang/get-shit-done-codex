@@ -16,6 +16,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 - **Public release metadata** now has stronger npm discovery keywords, verified README badges, and corrected Star History embeds for the public `Oisinwang/get-shit-done-codex` repository.
+- **README quick value scan and 60-second workflow** now appear near the top of the public README so new visitors can understand the value, install path, first commands, and durable artifacts before reading the full guide.
+- **Public support routing** now adds `SUPPORT.md`, README/docs links, GitHub Discussions guidance for usage help, issue-chooser guidance for reproducible bugs and proposals, and private advisory guidance for security reports.
 
 ### Fixed
 - **Codex hook installation** now writes the current Codex hooks schema with `[features].hooks = true` plus nested `[[hooks.SessionStart]]` / `[[hooks.SessionStart.hooks]]` tables, and migrates the legacy GSD-owned flat `[[hooks]]` block on reinstall. This fixes fresh installs where Codex rejected `config.toml` hook entries (#1).

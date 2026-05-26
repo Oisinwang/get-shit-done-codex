@@ -417,7 +417,8 @@ const banner = '\n' +
   '\n' +
   '  Get Shit Done ' + dim + 'v' + pkg.version + reset + '\n' +
   '  A meta-prompting, context engineering and spec-driven\n' +
-  '  development system for Codex, Claude Code, OpenCode, Gemini, Kilo, Copilot, Antigravity, Cursor, Windsurf, Augment, Trae, Qwen Code, Cline and CodeBuddy by TÂCHES.\n';
+  '  development system for Codex-first workflows, with compatibility\n' +
+  '  installs for Claude Code, OpenCode, Gemini, Kilo, Copilot, Cursor and more.\n';
 
 // Parse --config-dir argument
 function parseConfigDirArg() {
@@ -6471,7 +6472,7 @@ function finishInstall(settingsPath, settings, statuslineCommand, shouldInstallS
   console.log(`
   ${green}Done!${reset} Open a blank directory in ${program} and run ${cyan}${command}${reset}.
 
-  ${cyan}Join the community:${reset} https://discord.gg/mYgfVNfA2r
+  ${cyan}Join the community:${reset} https://github.com/Oisinwang/get-shit-done-codex/discussions
 `);
 }
 

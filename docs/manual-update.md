@@ -1,8 +1,14 @@
 # Manual Update And Source Install
 
-Use this procedure when you want the verified install path for this fork.
+Use this procedure when you want either the published Codex-first package or a source checkout from the current public branch.
 
-As of `v1.37.1-codex.1`, the public branch is `codex/bootstrap`, and the source installer is the release-aligned path. The `get-shit-done-codex` npm package name exists, but the registry package is not yet aligned with this fork's current public branch.
+For most users, the verified install path is the scoped npm package:
+
+```bash
+npx @oisinwang/get-shit-done-codex@latest
+```
+
+Use the source install path when you are developing the fork, testing unreleased changes from `codex/bootstrap`, or working in an environment where npm package execution is not available.
 
 ## Prerequisites
 
@@ -19,9 +25,9 @@ git checkout codex/bootstrap
 
 | Path | Status | Outcome |
 |---|---|---|
-| `node bin/install.js --codex --local` | Verified | Creates `./.codex/` |
+| `npx @oisinwang/get-shit-done-codex@latest --codex --local` | Verified package install | Creates `./.codex/` from the latest published release |
+| `node bin/install.js --codex --local` | Verified source install | Creates `./.codex/` from the current checkout |
 | `node bin/install.js --claude --local` | Verified compatibility | Creates `./.claude/` |
-| `npx get-shit-done-codex@latest --codex --local` | Not release-aligned | Registry package currently resolves to an older CLI surface |
 
 Install alone does not generate `AGENTS.md`. In this fork, `AGENTS.md` is the primary instruction contract, but it is generated or updated later by project bootstrap and profile flows.
 

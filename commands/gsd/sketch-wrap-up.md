@@ -11,9 +11,9 @@ allowed-tools:
   - AskUserQuestion
 ---
 <objective>
-Curate sketch design findings and package them into a persistent project skill that Claude
-auto-loads when building the real UI. Also writes a summary to `.planning/sketches/` for
-project history. Output skill goes to `./.claude/skills/sketch-findings-[project]/` (project-local).
+Curate sketch design findings and package them into a persistent project skill that future
+sessions auto-load when building the real UI. Also writes a summary to `.planning/sketches/` for
+project history. Output skill goes to `./.codex/skills/sketch-findings-[project]/` (project-local).
 </objective>
 
 <execution_context>
@@ -27,5 +27,5 @@ project history. Output skill goes to `./.claude/skills/sketch-findings-[project
 
 <process>
 Execute the sketch-wrap-up workflow from @~/.claude/get-shit-done/workflows/sketch-wrap-up.md end-to-end.
-Preserve all curation gates (per-sketch review, grouping approval, CLAUDE.md routing line).
+Preserve all curation gates (per-sketch review, grouping approval, AGENTS.md routing line).
 </process>

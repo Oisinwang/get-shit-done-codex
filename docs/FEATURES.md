@@ -1350,7 +1350,7 @@ Test suite that scans all agent, workflow, and command files for embedded inject
 
 ### 55. Multi-Runtime Installer Selection
 
-**Part of:** `npx get-shit-done-cc`
+**Part of:** `npx @oisinwang/get-shit-done-codex`
 
 **Purpose:** Select multiple runtimes in a single interactive install session.
 
@@ -1369,7 +1369,7 @@ Test suite that scans all agent, workflow, and command files for embedded inject
 
 ### 56. Windsurf Runtime Support
 
-**Part of:** `npx get-shit-done-cc`
+**Part of:** `npx @oisinwang/get-shit-done-codex`
 
 **Purpose:** Add Windsurf as a supported AI CLI runtime for GSD installation and execution.
 
@@ -1609,7 +1609,7 @@ Test suite that scans all agent, workflow, and command files for embedded inject
 
 ### 68. Claude Code Skills Migration
 
-**Part of:** `npx get-shit-done-cc`
+**Part of:** `npx @oisinwang/get-shit-done-codex`
 
 **Purpose:** Migrate GSD commands to Claude Code 2.1.88+ skills format with backward compatibility.
 
@@ -1872,7 +1872,7 @@ Test suite that scans all agent, workflow, and command files for embedded inject
 
 ### 85. New Runtime Support (Trae, Cline, Augment Code)
 
-**Part of:** `npx get-shit-done-cc`
+**Part of:** `npx @oisinwang/get-shit-done-codex`
 
 **Purpose:** Extend GSD installation to Trae IDE, Cline, and Augment Code runtimes.
 
@@ -2214,7 +2214,7 @@ Test suite that scans all agent, workflow, and command files for embedded inject
 
 ### 104. New Runtime Support (Cline, CodeBuddy, Qwen Code)
 
-**Part of:** `npx get-shit-done-cc`
+**Part of:** `npx @oisinwang/get-shit-done-codex`
 
 **Purpose:** Extend GSD installation to Cline, CodeBuddy, and Qwen Code runtimes.
 
@@ -2445,14 +2445,14 @@ Test suite that scans all agent, workflow, and command files for embedded inject
 - REQ-SPIKE-03: Each experiment MUST return one of: VALIDATED, INVALIDATED, or PARTIAL verdict with evidence
 - REQ-SPIKE-04: Results MUST be stored in `.planning/spikes/NNN-experiment-name/` with a README and MANIFEST.md
 - REQ-SPIKE-05: `--quick` flag skips intake conversation and uses the argument text as the experiment direction
-- REQ-SPIKE-06: `/gsd-spike-wrap-up` MUST package findings into `.claude/skills/spike-findings-[project]/`
+- REQ-SPIKE-06: `/gsd-spike-wrap-up` MUST package findings into `.codex/skills/spike-findings-[project]/`
 
 **Produces:**
 | Artifact | Description |
 |----------|-------------|
 | `.planning/spikes/NNN-name/README.md` | Hypothesis, experiment code, verdict, and evidence |
 | `.planning/spikes/MANIFEST.md` | Index of all spikes with verdicts |
-| `.claude/skills/spike-findings-[project]/` | Packaged findings (via `/gsd-spike-wrap-up`) |
+| `.codex/skills/spike-findings-[project]/` | Packaged findings (via `/gsd-spike-wrap-up`) |
 
 ---
 
@@ -2470,7 +2470,7 @@ Test suite that scans all agent, workflow, and command files for embedded inject
 - REQ-SKETCH-05: A shared `themes/default.css` MUST provide CSS variables adapted to the agreed aesthetic
 - REQ-SKETCH-06: `--quick` flag skips mood intake; `--text` flag replaces `AskUserQuestion` with numbered lists for non-Claude runtimes
 - REQ-SKETCH-07: The winning variant MUST be marked in the README frontmatter and with a ★ in the HTML tab
-- REQ-SKETCH-08: `/gsd-sketch-wrap-up` MUST package winning decisions into `.claude/skills/sketch-findings-[project]/`
+- REQ-SKETCH-08: `/gsd-sketch-wrap-up` MUST package winning decisions into `.codex/skills/sketch-findings-[project]/`
 
 **Produces:**
 | Artifact | Description |
@@ -2479,7 +2479,7 @@ Test suite that scans all agent, workflow, and command files for embedded inject
 | `.planning/sketches/NNN-name/README.md` | Design question, variants, winner, what to look for |
 | `.planning/sketches/themes/default.css` | Shared CSS theme variables |
 | `.planning/sketches/MANIFEST.md` | Index of all sketches with winners |
-| `.claude/skills/sketch-findings-[project]/` | Packaged decisions (via `/gsd-sketch-wrap-up`) |
+| `.codex/skills/sketch-findings-[project]/` | Packaged decisions (via `/gsd-sketch-wrap-up`) |
 
 ---
 

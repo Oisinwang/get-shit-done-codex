@@ -59,6 +59,41 @@ describe('codex-first canonical wording', () => {
     assert.ok(sketch.includes('## Update Project AGENTS.md'));
   });
 
+  test('wrap-up command and docs advertise codex skill output paths', () => {
+    const files = [
+      'commands/gsd/spike-wrap-up.md',
+      'commands/gsd/sketch-wrap-up.md',
+      'docs/USER-GUIDE.md',
+      'docs/FEATURES.md',
+    ];
+
+    for (const relativePath of files) {
+      const content = readRepoFile(relativePath);
+      assert.match(content, /\.codex\/skills\/(?:spike|sketch)-findings-\[project\]/, relativePath);
+      assert.doesNotMatch(content, /\.claude\/skills\/(?:spike|sketch)-findings-\[project\]/, relativePath);
+    }
+  });
+
+  test('README context engineering and closing tagline are Codex-first', () => {
+    const readme = readRepoFile('README.md');
+
+    assert.match(readme, /Codex is powerful when it has durable project context/i);
+    assert.match(readme, /Codex is powerful\. GSD makes long-running work verifiable\./);
+    assert.doesNotMatch(readme, /Claude Code is incredibly powerful/i);
+    assert.doesNotMatch(readme, /Claude Code is powerful\. GSD makes it reliable\./);
+  });
+
+  test('README workflow examples use Codex command syntax by default', () => {
+    const readme = readRepoFile('README.md');
+    const mainUsage = readme.slice(readme.indexOf('## How It Works'), readme.indexOf('## Configuration'));
+
+    assert.match(mainUsage, /\$gsd-new-project/);
+    assert.match(mainUsage, /\$gsd-quick/);
+    assert.doesNotMatch(mainUsage, /\/gsd-/);
+    assert.doesNotMatch(readme, /Every plan is structured XML optimized for Claude/);
+    assert.doesNotMatch(readme, /Control which Claude model each agent uses/);
+  });
+
   test('release-facing docs present scoped npm install as the verified path', () => {
     const readme = readRepoFile('README.md');
     const forkNotes = readRepoFile('docs/CODEX-FORK.md');

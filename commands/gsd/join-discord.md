@@ -1,19 +1,19 @@
 ---
 name: gsd:join-discord
-description: Join the GSD Discord community
+description: Open the GSD Codex community discussions
 allowed-tools: []
 ---
 
 <objective>
-Display the Discord invite link for the GSD community server.
+Display the current GSD Codex community discussion link.
 </objective>
 
 <output>
-# Join the GSD Discord
+# Join the GSD Codex Community
 
-Connect with other GSD users, get help, share what you're building, and stay updated.
+Connect with other GSD Codex users, get help, share what you're building, and follow project updates.
 
-**Invite link:** https://discord.gg/mYgfVNfA2r
+**Community link:** https://github.com/Oisinwang/get-shit-done-codex/discussions
 
-Click the link or paste it into your browser to join.
+This legacy command name is kept for existing users; GitHub Discussions is the current community entrypoint.
 </output>

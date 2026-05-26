@@ -1,34 +1,35 @@
-# Documentação do GSD
+# Documentacao GSD Codex
 
-Documentação abrangente do framework Get Shit Done (GSD) — um sistema de meta-prompting, engenharia de contexto e desenvolvimento orientado por especificações para agentes de IA.
+Esta pasta contem a documentacao em portugues do fork GSD Codex. O fork e Codex-first: `AGENTS.md`, `.codex/`, `$gsd-*`, `agents_md_path`, `generate-agents-md` e caminhos de sessao do Codex sao o contrato publico principal.
 
-## Índice da documentação
+Instale o pacote publicado com:
 
-| Documento | Público | Descrição |
-|----------|----------|-------------|
-| [Guia do Usuário](USER-GUIDE.md) | Todos os usuários | Fluxos de trabalho, troubleshooting e recuperação |
-| [Arquitetura](ARCHITECTURE.md) | Contribuidores, usuários avançados | Arquitetura do sistema, modelo de agentes e design interno |
-| [Referência de comandos](COMMANDS.md) | Todos os usuários | Comandos, sintaxe, flags, opções e exemplos |
-| [Referência de configuração](CONFIGURATION.md) | Todos os usuários | Schema completo de configuração, toggles e perfis |
-| [Referência de recursos](FEATURES.md) | Todos os usuários | Recursos e requisitos detalhados |
-| [Referência de agentes](AGENTS.md) | Contribuidores, usuários avançados | Agentes especializados, papéis e padrões de orquestração |
-| [Ferramentas CLI](CLI-TOOLS.md) | Contribuidores, autores de agentes | API programática `gsd-tools.cjs` |
-| [Monitor de contexto](context-monitor.md) | Todos os usuários | Arquitetura de monitoramento da janela de contexto |
-| [Discuss Mode](workflow-discuss-mode.md) | Todos os usuários | Modo suposições vs entrevista no `discuss-phase` |
-| [Referências](references/) | Todos os usuários | Guias complementares de decisão, verificação e padrões |
-| [Superpowers](superpowers/) | Contribuidores | Planos e specs avançadas do projeto |
+```bash
+npx @oisinwang/get-shit-done-codex@latest
+```
 
-## Novidades v1.32
+Nomes legados da era Claude continuam apenas como compatibilidade de migracao. As regras do fork estao em [CODEX-FORK.md](../CODEX-FORK.md).
 
-STATE.md consistency gates, `--to N` para execução autônoma parcial, research gate, verifier milestone scope filtering, read-before-edit guard, context reduction, novos runtimes (Trae, Cline, Augment Code), `response_language`, `--power`/`--diagnose` flags, `/gsd-analyze-dependencies`.
+## Indice da documentacao
 
-## Links rápidos
+| Documento | Publico | Descricao |
+|----------|---------|-----------|
+| [Notas do fork Codex](../CODEX-FORK.md) | Todos os usuarios | Escopo Codex-first, limites de nomenclatura e notas de migracao |
+| [Guia do usuario](USER-GUIDE.md) | Todos os usuarios | Fluxos de trabalho, troubleshooting e recuperacao |
+| [Referencia de recursos](FEATURES.md) | Todos os usuarios | Recursos, requisitos e comportamento esperado |
+| [Referencia de comandos](COMMANDS.md) | Todos os usuarios | Comandos, sintaxe, flags, opcoes e exemplos |
+| [Configuracao](CONFIGURATION.md) | Todos os usuarios | Schema de configuracao, toggles, perfis de modelo e git |
+| [Arquitetura](ARCHITECTURE.md) | Contribuidores | Arquitetura, modelo de agentes e fluxo de dados |
+| [Ferramentas CLI](CLI-TOOLS.md) | Contribuidores | API programatica `gsd-tools.cjs` |
+| [Agentes](AGENTS.md) | Contribuidores | Agentes especializados, papeis e padroes de orquestracao |
+| [Monitor de contexto](context-monitor.md) | Todos os usuarios | Hook de monitoramento da janela de contexto |
+| [Discuss Mode](workflow-discuss-mode.md) | Todos os usuarios | Modo de entrevista e captura de suposicoes |
 
-- **Começar rápido:** [README principal](../../README.pt-BR.md) -> instalação -> `/gsd-new-project`
-- **Fluxo completo:** [Guia do usuário](USER-GUIDE.md)
-- **Comandos:** [Referência de comandos](COMMANDS.md)
-- **Configuração:** [Referência de configuração](CONFIGURATION.md)
-- **Arquitetura interna:** [Arquitetura](ARCHITECTURE.md)
+## Links rapidos
 
-> [!NOTE]
-> Esta pasta `pt-BR` contém a versão em Português dos documentos de uso geral. Documentação técnica avançada ainda referencia os arquivos em inglês para manter precisão e atualização.
+- **Comece aqui:** [README principal](../../README.pt-BR.md) -> instalar -> `$gsd-help`
+- **Entenda o fork:** [Notas do fork Codex](../CODEX-FORK.md)
+- **Execute o fluxo:** [Guia do usuario](USER-GUIDE.md)
+- **Encontre um comando:** [Referencia de comandos](COMMANDS.md)
+- **Configure o comportamento:** [Configuracao](CONFIGURATION.md)
+- **Estenda o sistema:** [Ferramentas CLI](CLI-TOOLS.md) + [Agentes](AGENTS.md)

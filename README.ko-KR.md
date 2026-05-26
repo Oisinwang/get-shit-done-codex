@@ -1,20 +1,17 @@
 <div align="center">
 
-# GET SHIT DONE
+# GET SHIT DONE CODEX
 
 [English](README.md) · [Português](README.pt-BR.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja-JP.md) · **한국어**
 
-**Claude Code, OpenCode, Gemini CLI, Kilo, Codex, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Cline을 위한 가볍고 강력한 메타 프롬프팅, 컨텍스트 엔지니어링, 스펙 기반 개발 시스템.**
+**긴 AI 코딩 세션에서 목표를 계획되고 검증 가능하며 다시 이어갈 수 있는 구현으로 바꾸는 Codex-first 워크플로우 시스템입니다.**
 
-**컨텍스트 rot를 해결합니다 — Claude의 컨텍스트 창이 채워질수록 품질이 저하되는 문제.**
+**컨텍스트, 결정, 단계별 계획, 검증 체크, 복구 상태를 명시적으로 남기며 모델이 전부 기억하길 기대하지 않습니다.**
 
-[![npm version](https://img.shields.io/npm/v/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
-[![npm downloads](https://img.shields.io/npm/dm/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
-[![Tests](https://img.shields.io/github/actions/workflow/status/get-shit-done-codex/test.yml?branch=main&style=for-the-badge&logo=github&label=Tests)](https://github.com/get-shit-done-codex/actions/workflows/test.yml)
-[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/mYgfVNfA2r)
-[![X (Twitter)](https://img.shields.io/badge/X-@gsd__foundation-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/gsd_foundation)
-[![$GSD Token](https://img.shields.io/badge/$GSD-Dexscreener-1C1C1C?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgZmlsbD0iIzAwRkYwMCIvPjwvc3ZnPg==&logoColor=00FF00)](https://dexscreener.com/solana/dwudwjvan7bzkw9zwlbyv6kspdlvhwzrqy6ebk8xzxkv)
-[![GitHub stars](https://img.shields.io/github/stars/get-shit-done-codex?style=for-the-badge&logo=github&color=181717)](https://github.com/get-shit-done-codex)
+[![npm version](https://img.shields.io/npm/v/@oisinwang/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/@oisinwang/get-shit-done-codex)
+[![npm downloads](https://img.shields.io/npm/dm/@oisinwang/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=0B7285)](https://www.npmjs.com/package/@oisinwang/get-shit-done-codex)
+[![Tests](https://github.com/Oisinwang/get-shit-done-codex/actions/workflows/test.yml/badge.svg?branch=codex/bootstrap)](https://github.com/Oisinwang/get-shit-done-codex/actions/workflows/test.yml)
+[![GitHub stars](https://img.shields.io/github/stars/Oisinwang/get-shit-done-codex?style=for-the-badge&logo=github&color=111827)](https://github.com/Oisinwang/get-shit-done-codex/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 <br>
@@ -31,58 +28,64 @@ npx @oisinwang/get-shit-done-codex@latest
 
 <br>
 
-*"원하는 게 뭔지 명확하게 알고 있다면, 이게 진짜로 만들어줍니다. 과장 없이."*
+*"원하는 것이 명확하다면 Codex가 검증 가능한 결과까지 계속 만들 수 있게 돕습니다."*
 
-*"SpecKit, OpenSpec, Taskmaster 다 써봤는데 — 지금까지 이게 제일 결과가 좋았어요."*
+*"spec, plan, execute, review, resume을 거대한 기업 프로세스 없이 사용할 수 있습니다."*
 
-*"Claude Code에 추가한 것 중 단연 가장 강력합니다. 과하게 엔지니어링하지 않고, 말 그대로 그냥 해냅니다."*
+*"Codex가 기본 런타임이며 다른 agent CLI는 호환 레이어로 지원합니다."*
 
 <br>
 
-**Amazon, Google, Shopify, Webflow 엔지니어들이 신뢰합니다.**
+**npm 패키지: `@oisinwang/get-shit-done-codex`. 테스트된 릴리스 브랜치는 `codex/bootstrap`입니다.**
 
-[왜 만들었나](#왜-만들었나) · [작동 방식](#작동-방식) · [명령어](#명령어) · [왜 효과적인가](#왜-효과적인가) · [사용자 가이드](docs/ko-KR/USER-GUIDE.md)
+**독립적인 Codex-first GSD fork입니다.** `AGENTS.md`, `.codex/`, `$gsd-*`, Codex session 경로를 마이그레이션 세부 사항이 아니라 공개 기본값으로 쓰고 싶을 때 사용하세요.
+
+**보안과 릴리스 위생:** scoped npm package, 저장소 메타데이터, CI, release workflow, issue template은 모두 이 fork를 가리킵니다. 이전 Claude-era 이름은 호환 shim으로만 남아 있습니다.
+
+[이 fork가 존재하는 이유](#이-fork가-존재하는-이유) · [작동 방식](#작동-방식) · [명령어](#명령어) · [왜 효과적인가](#왜-효과적인가) · [사용자 가이드](docs/ko-KR/USER-GUIDE.md)
 
 </div>
 
 ---
 
-## 왜 만들었나
-
-저는 솔로 개발자입니다. 코드는 제가 아니라 Claude Code가 씁니다.
-
-스펙 기반 개발 도구가 없는 건 아닙니다. BMAD, Speckit 같은 것들이 있죠. 근데 다들 필요 이상으로 복잡합니다 — 스프린트 세리머니, 스토리 포인트, 이해관계자 싱크, 회고, 지라 워크플로우. 저는 50인 규모 소프트웨어 회사가 아니에요. 기업 연극을 하고 싶지 않습니다. 그냥 좋은 걸 만들고 싶은 사람입니다.
-
-그래서 GSD를 만들었습니다. 복잡함은 시스템 안에 있습니다. 워크플로우에 있는 게 아니라. 뒤에서 컨텍스트 엔지니어링, XML 프롬프트 포맷팅, 서브에이전트 오케스트레이션, 상태 관리가 돌아갑니다. 겉에서 보이는 건 그냥 몇 가지 명령어뿐입니다.
-
-시스템이 Claude한테 작업하는 데 필요한 것과 검증하는 데 필요한 것을 모두 줍니다. 저는 이 워크플로우를 믿습니다. 그냥 잘 됩니다.
-
-이게 전부입니다. 기업 역할극 같은 건 없습니다. Claude Code를 일관성 있게 쓰기 위한, 진짜로 잘 되는 시스템입니다.
-
-— **TÂCHES**
+> [!IMPORTANT]
+> 이 저장소는 독립적인 Codex-first fork입니다.
+>
+> 이 fork의 기본 의미 체계:
+> - `AGENTS.md`
+> - `.codex/`
+> - `$gsd-*`
+> - `agents_md_path`
+> - `generate-agents-md`
+> - `generate-agents-profile`
+> - `~/.codex/sessions`
+>
+> 이전 Claude-first 이름은 호환 shim으로만 남아 있습니다. 마이그레이션과 릴리스 노트는 [docs/CODEX-FORK.md](docs/CODEX-FORK.md)에 있습니다.
 
 ---
 
-바이브코딩은 평판이 안 좋습니다. 원하는 걸 설명하면 AI가 코드를 생성하는데, 규모가 커지면 엉망이 되는 일관성 없는 쓰레기가 나옵니다.
+## 이 fork가 존재하는 이유
 
-GSD가 그걸 고칩니다. Claude Code를 신뢰할 수 있게 만드는 컨텍스트 엔지니어링 레이어입니다. 아이디어를 설명하면 시스템이 필요한 걸 다 뽑아내고, Claude Code가 일을 시작합니다.
+이 fork는 GSD를 Codex-first 워크플로우로 바꿉니다. 표준 프로젝트 계약은 `AGENTS.md`, `.codex/`, `$gsd-*` 명령입니다. 이전 Claude-first 이름은 마이그레이션을 위해 남아 있지만 공개 기본 의미 체계는 아닙니다.
+
+목표는 단순합니다. 첫 prompt 이후에도 AI 보조 개발이 일관되게 유지되도록 하는 것입니다. GSD는 목표를 캡처하고, 코드베이스를 매핑하고, 구현 단계를 계획하고, 검증 체크포인트와 함께 실행하고, 결정을 기록하며, Codex가 나중에 다시 이어갈 수 있는 상태를 남깁니다.
+
+혼자 만드는 사람과 작은 팀이 기업 프로세스 연극 없이 진지한 계획과 검증을 쓰기 위한 도구입니다. 당신은 결과를 설명하고, 시스템은 요구사항을 보존하고 작업을 확인하며 다음 행동을 분명하게 만듭니다.
 
 ---
 
 ## 이게 누구를 위한 건가
 
-원하는 걸 설명하면 제대로 만들어지길 바라는 사람들 — 50인 규모 엔지니어링 조직인 척하지 않아도 되는.
+원하는 결과를 설명하면 올바르게 구현되길 바라는 사람들입니다. 50인 규모 엔지니어링 조직인 척할 필요가 없습니다.
 
 내장 품질 게이트가 실제 문제를 잡아냅니다: 스키마 드리프트 감지는 마이그레이션 누락된 ORM 변경을 플래그하고, 보안 강제는 검증을 위협 모델에 고정시키고, 스코프 축소 감지는 플래너가 요구사항을 몰래 빠뜨리는 걸 방지합니다.
 
-### v1.32.0 하이라이트
+### 현재 하이라이트
 
-- **STATE.md 일관성 게이트** — `state validate`가 STATE.md와 파일시스템 간 드리프트를 감지, `state sync`가 실제 프로젝트 상태에서 재구성
-- **`--to N` 플래그** — 자율 실행을 특정 단계 완료 후 중지
-- **리서치 게이트** — RESEARCH.md에 미해결 질문이 있으면 기획을 차단
-- **검증 마일스톤 스코프 필터링** — 이후 단계에서 처리될 격차는 "격차"가 아닌 "지연됨"으로 표시
-- **읽기-후-편집 가드** — 비Claude 런타임에서 무한 재시도 루프를 방지하는 어드바이저리 훅
-- **컨텍스트 축소** — 마크다운 잘라내기 및 캐시 친화적 프롬프트 순서로 토큰 사용량 절감
+- **Codex-first 프로젝트 계약** - `AGENTS.md`, `.codex/`, `$gsd-*`, Codex session 경로가 기본 의미 체계입니다.
+- **Spiking과 sketching** - `$gsd-spike`와 `$gsd-sketch`가 실험과 디자인 변형을 지속 가능한 계획 산출물로 저장합니다.
+- **Agent 크기 예산 강제** - tier별 줄 수 제한으로 agent prompt를 작게 유지하고 CI에서 보이게 합니다.
+- **공유 boilerplate 추출** - reading과 project-skill discovery 공통 로직을 중복하지 않고 중앙화합니다.
 - **4개의 새 런타임** — Trae, Kilo, Augment, Cline (총 12개 런타임)
 
 ---
@@ -236,12 +239,12 @@ claude --dangerously-skip-permissions
 
 ## 작동 방식
 
-> **이미 코드가 있나요?** 먼저 `/gsd-map-codebase`를 실행하세요. 병렬 에이전트를 생성해 스택, 아키텍처, 컨벤션, 고려사항을 분석합니다. 그러면 `/gsd-new-project`가 코드베이스를 파악한 상태에서 시작되고 — 질문은 추가하는 것에 집중되고, 기획 시 자동으로 기존 패턴을 불러옵니다.
+> **이미 코드가 있나요?** 먼저 `$gsd-map-codebase`를 실행하세요. 병렬 에이전트를 생성해 스택, 아키텍처, 컨벤션, 고려사항을 분석합니다. 그러면 `$gsd-new-project`가 코드베이스를 파악한 상태에서 시작되고 — 질문은 추가하는 것에 집중되고, 기획 시 자동으로 기존 패턴을 불러옵니다.
 
 ### 1. 프로젝트 초기화
 
 ```
-/gsd-new-project
+$gsd-new-project
 ```
 
 명령어 하나, 플로우 하나. 시스템이:
@@ -260,7 +263,7 @@ claude --dangerously-skip-permissions
 ### 2. 단계 논의
 
 ```
-/gsd-discuss-phase 1
+$gsd-discuss-phase 1
 ```
 
 **여기서 구현을 직접 설계합니다.**
@@ -283,14 +286,14 @@ claude --dangerously-skip-permissions
 
 **생성 파일:** `{phase_num}-CONTEXT.md`
 
-> **가정 모드:** 질문보다 코드베이스 분석을 선호하나요? `/gsd-settings`에서 `workflow.discuss_mode`를 `assumptions`로 설정하세요. 시스템이 코드를 읽고 하려는 것과 이유를 제시한 다음 틀린 부분만 수정을 요청합니다. [논의 모드](docs/ko-KR/workflow-discuss-mode.md) 참조.
+> **가정 모드:** 질문보다 코드베이스 분석을 선호하나요? `$gsd-settings`에서 `workflow.discuss_mode`를 `assumptions`로 설정하세요. 시스템이 코드를 읽고 하려는 것과 이유를 제시한 다음 틀린 부분만 수정을 요청합니다. [논의 모드](docs/ko-KR/workflow-discuss-mode.md) 참조.
 
 ---
 
 ### 3. 단계 기획
 
 ```
-/gsd-plan-phase 1
+$gsd-plan-phase 1
 ```
 
 시스템이:
@@ -308,7 +311,7 @@ claude --dangerously-skip-permissions
 ### 4. 단계 실행
 
 ```
-/gsd-execute-phase 1
+$gsd-execute-phase 1
 ```
 
 시스템이:
@@ -359,7 +362,7 @@ claude --dangerously-skip-permissions
 ### 5. 작업 검증
 
 ```
-/gsd-verify-work 1
+$gsd-verify-work 1
 ```
 
 **여기서 실제로 작동하는지 확인합니다.**
@@ -373,7 +376,7 @@ claude --dangerously-skip-permissions
 3. **실패 자동 진단** — 근본 원인을 찾기 위해 디버그 에이전트 생성
 4. **검증된 수정 계획 생성** — 즉시 재실행 준비 완료
 
-모든 게 통과하면 다음으로 넘어갑니다. 뭔가 깨졌으면 직접 디버그하지 않아도 됩니다 — 생성된 수정 계획으로 `/gsd-execute-phase`만 다시 실행하면 됩니다.
+모든 게 통과하면 다음으로 넘어갑니다. 뭔가 깨졌으면 직접 디버그하지 않아도 됩니다 — 생성된 수정 계획으로 `$gsd-execute-phase`만 다시 실행하면 됩니다.
 
 **생성 파일:** `{phase_num}-UAT.md`, 문제 발견 시 수정 계획
 
@@ -382,38 +385,38 @@ claude --dangerously-skip-permissions
 ### 6. 반복 → 출시 → 완료 → 다음 마일스톤
 
 ```
-/gsd-discuss-phase 2
-/gsd-plan-phase 2
-/gsd-execute-phase 2
-/gsd-verify-work 2
-/gsd-ship 2                  # 검증된 작업으로 PR 생성
+$gsd-discuss-phase 2
+$gsd-plan-phase 2
+$gsd-execute-phase 2
+$gsd-verify-work 2
+$gsd-ship 2                  # 검증된 작업으로 PR 생성
 ...
-/gsd-complete-milestone
-/gsd-new-milestone
+$gsd-complete-milestone
+$gsd-new-milestone
 ```
 
 또는 GSD가 다음 단계를 자동으로 파악하게 합니다:
 
 ```
-/gsd-next                    # 다음 단계 자동 감지 및 실행
+$gsd-next                    # 다음 단계 자동 감지 및 실행
 ```
 
 마일스톤이 완료될 때까지 **논의 → 기획 → 실행 → 검증 → 출시** 반복.
 
-논의 중에 더 빠르게 진행하고 싶다면 `/gsd-discuss-phase <n> --batch`를 사용해 하나씩이 아닌 소그룹으로 한 번에 답할 수 있습니다. `--chain`을 사용하면 논의에서 기획+실행까지 중간에 멈추지 않고 자동 체이닝됩니다.
+논의 중에 더 빠르게 진행하고 싶다면 `$gsd-discuss-phase <n> --batch`를 사용해 하나씩이 아닌 소그룹으로 한 번에 답할 수 있습니다. `--chain`을 사용하면 논의에서 기획+실행까지 중간에 멈추지 않고 자동 체이닝됩니다.
 
 각 단계는 사용자 입력(논의), 적절한 리서치(기획), 깔끔한 실행(실행), 사람의 검증(검증)을 거칩니다. 컨텍스트는 새롭게 유지됩니다. 품질도 높게 유지됩니다.
 
-모든 단계가 끝나면 `/gsd-complete-milestone`이 마일스톤을 아카이브하고 릴리스에 태그를 답니다.
+모든 단계가 끝나면 `$gsd-complete-milestone`이 마일스톤을 아카이브하고 릴리스에 태그를 답니다.
 
-그다음 `/gsd-new-milestone`으로 다음 버전을 시작합니다 — `new-project`와 같은 흐름이지만 기존 코드베이스를 위한 것입니다. 다음에 만들 것을 설명하면 시스템이 도메인을 리서치하고, 요구사항을 스코핑하고, 새 로드맵을 만듭니다. 각 마일스톤은 깔끔한 사이클입니다: 정의 → 구축 → 출시.
+그다음 `$gsd-new-milestone`으로 다음 버전을 시작합니다 — `new-project`와 같은 흐름이지만 기존 코드베이스를 위한 것입니다. 다음에 만들 것을 설명하면 시스템이 도메인을 리서치하고, 요구사항을 스코핑하고, 새 로드맵을 만듭니다. 각 마일스톤은 깔끔한 사이클입니다: 정의 → 구축 → 출시.
 
 ---
 
 ### 빠른 모드
 
 ```
-/gsd-quick
+$gsd-quick
 ```
 
 **전체 기획이 필요 없는 임시 작업용.**
@@ -435,7 +438,7 @@ claude --dangerously-skip-permissions
 플래그는 조합 가능합니다: `--discuss --research --validate`은 논의 + 리서치 + 계획 확인 + 검증을 제공합니다.
 
 ```
-/gsd-quick
+$gsd-quick
 > 뭘 하고 싶으신가요? "설정에 다크 모드 토글 추가"
 ```
 
@@ -534,111 +537,111 @@ lmn012o feat(08-02): create registration endpoint
 
 | 명령어 | 역할 |
 |---------|------------|
-| `/gsd-new-project [--auto]` | 전체 초기화: 질문 → 리서치 → 요구사항 → 로드맵 |
-| `/gsd-discuss-phase [N] [--auto] [--analyze] [--chain]` | 기획 전 구현 결정 캡처 (`--analyze`는 트레이드오프 분석 추가, `--chain`은 기획+실행으로 자동 체이닝) |
-| `/gsd-plan-phase [N] [--auto] [--reviews]` | 단계에 대한 리서치 + 기획 + 검증 (`--reviews`는 코드베이스 리뷰 결과 로드) |
-| `/gsd-execute-phase <N>` | 병렬 웨이브로 모든 계획 실행, 완료 시 검증 |
-| `/gsd-verify-work [N]` | 수동 사용자 인수 테스트 ¹ |
-| `/gsd-ship [N] [--draft]` | 자동 생성된 본문으로 검증된 단계 작업에서 PR 생성 |
-| `/gsd-next` | 다음 논리적 워크플로우 단계로 자동 진행 |
-| `/gsd-fast <text>` | 인라인 사소한 작업 — 기획 완전 건너뛰고 즉시 실행 |
-| `/gsd-audit-milestone` | 마일스톤이 완료 정의를 달성했는지 검증 |
-| `/gsd-complete-milestone` | 마일스톤 아카이브, 릴리스 태그 |
-| `/gsd-new-milestone [name]` | 다음 버전 시작: 질문 → 리서치 → 요구사항 → 로드맵 |
-| `/gsd-forensics [desc]` | 실패한 워크플로우 실행의 사후 조사 (막힌 루프, 누락된 아티팩트, git 이상 진단) |
-| `/gsd-milestone-summary [version]` | 팀 온보딩 및 리뷰를 위한 종합 프로젝트 요약 생성 |
+| `$gsd-new-project [--auto]` | 전체 초기화: 질문 → 리서치 → 요구사항 → 로드맵 |
+| `$gsd-discuss-phase [N] [--auto] [--analyze] [--chain]` | 기획 전 구현 결정 캡처 (`--analyze`는 트레이드오프 분석 추가, `--chain`은 기획+실행으로 자동 체이닝) |
+| `$gsd-plan-phase [N] [--auto] [--reviews]` | 단계에 대한 리서치 + 기획 + 검증 (`--reviews`는 코드베이스 리뷰 결과 로드) |
+| `$gsd-execute-phase <N>` | 병렬 웨이브로 모든 계획 실행, 완료 시 검증 |
+| `$gsd-verify-work [N]` | 수동 사용자 인수 테스트 ¹ |
+| `$gsd-ship [N] [--draft]` | 자동 생성된 본문으로 검증된 단계 작업에서 PR 생성 |
+| `$gsd-next` | 다음 논리적 워크플로우 단계로 자동 진행 |
+| `$gsd-fast <text>` | 인라인 사소한 작업 — 기획 완전 건너뛰고 즉시 실행 |
+| `$gsd-audit-milestone` | 마일스톤이 완료 정의를 달성했는지 검증 |
+| `$gsd-complete-milestone` | 마일스톤 아카이브, 릴리스 태그 |
+| `$gsd-new-milestone [name]` | 다음 버전 시작: 질문 → 리서치 → 요구사항 → 로드맵 |
+| `$gsd-forensics [desc]` | 실패한 워크플로우 실행의 사후 조사 (막힌 루프, 누락된 아티팩트, git 이상 진단) |
+| `$gsd-milestone-summary [version]` | 팀 온보딩 및 리뷰를 위한 종합 프로젝트 요약 생성 |
 
 ### 워크스트림
 
 | 명령어 | 역할 |
 |---------|------------|
-| `/gsd-workstreams list` | 모든 워크스트림과 상태 표시 |
-| `/gsd-workstreams create <name>` | 병렬 마일스톤 작업을 위한 네임스페이스 워크스트림 생성 |
-| `/gsd-workstreams switch <name>` | 활성 워크스트림 전환 |
-| `/gsd-workstreams complete <name>` | 워크스트림 완료 및 병합 |
+| `$gsd-workstreams list` | 모든 워크스트림과 상태 표시 |
+| `$gsd-workstreams create <name>` | 병렬 마일스톤 작업을 위한 네임스페이스 워크스트림 생성 |
+| `$gsd-workstreams switch <name>` | 활성 워크스트림 전환 |
+| `$gsd-workstreams complete <name>` | 워크스트림 완료 및 병합 |
 
 ### 멀티 프로젝트 워크스페이스
 
 | 명령어 | 역할 |
 |---------|------------|
-| `/gsd-new-workspace` | 저장소 복사본으로 격리된 워크스페이스 생성 (worktrees 또는 clones) |
-| `/gsd-list-workspaces` | 모든 GSD 워크스페이스와 상태 표시 |
-| `/gsd-remove-workspace` | 워크스페이스 제거 및 worktree 정리 |
+| `$gsd-new-workspace` | 저장소 복사본으로 격리된 워크스페이스 생성 (worktrees 또는 clones) |
+| `$gsd-list-workspaces` | 모든 GSD 워크스페이스와 상태 표시 |
+| `$gsd-remove-workspace` | 워크스페이스 제거 및 worktree 정리 |
 
 ### UI 디자인
 
 | 명령어 | 역할 |
 |---------|------------|
-| `/gsd-ui-phase [N]` | 프론트엔드 단계를 위한 UI 디자인 계약 (UI-SPEC.md) 생성 |
-| `/gsd-ui-review [N]` | 구현된 프론트엔드 코드의 소급적 6가지 기준 시각 감사 |
+| `$gsd-ui-phase [N]` | 프론트엔드 단계를 위한 UI 디자인 계약 (UI-SPEC.md) 생성 |
+| `$gsd-ui-review [N]` | 구현된 프론트엔드 코드의 소급적 6가지 기준 시각 감사 |
 
 ### 탐색
 
 | 명령어 | 역할 |
 |---------|------------|
-| `/gsd-progress` | 지금 어디에 있나? 다음은? |
-| `/gsd-next` | 상태 자동 감지 및 다음 단계 실행 |
-| `/gsd-help` | 모든 명령어와 사용 가이드 표시 |
-| `/gsd-update` | 변경 로그 미리보기와 함께 GSD 업데이트 |
-| `/gsd-join-discord` | GSD Discord 커뮤니티 참여 |
-| `/gsd-manager` | 여러 단계 관리를 위한 대화형 커맨드 센터 |
+| `$gsd-progress` | 지금 어디에 있나? 다음은? |
+| `$gsd-next` | 상태 자동 감지 및 다음 단계 실행 |
+| `$gsd-help` | 모든 명령어와 사용 가이드 표시 |
+| `$gsd-update` | 변경 로그 미리보기와 함께 GSD 업데이트 |
+| `$gsd-join-discord` | GitHub Discussions 커뮤니티 열기 |
+| `$gsd-manager` | 여러 단계 관리를 위한 대화형 커맨드 센터 |
 
 ### 브라운필드
 
 | 명령어 | 역할 |
 |---------|------------|
-| `/gsd-map-codebase [area]` | new-project 전 기존 코드베이스 분석 |
+| `$gsd-map-codebase [area]` | new-project 전 기존 코드베이스 분석 |
 
 ### 단계 관리
 
 | 명령어 | 역할 |
 |---------|------------|
-| `/gsd-add-phase` | 로드맵에 단계 추가 |
-| `/gsd-insert-phase [N]` | 단계 사이에 긴급 작업 삽입 |
-| `/gsd-remove-phase [N]` | 미래 단계 제거, 번호 재정렬 |
-| `/gsd-list-phase-assumptions [N]` | 기획 전 Claude의 의도된 접근 방식 확인 |
-| `/gsd-plan-milestone-gaps` | 감사에서 발견된 갭을 해소하기 위한 단계 생성 |
+| `$gsd-add-phase` | 로드맵에 단계 추가 |
+| `$gsd-insert-phase [N]` | 단계 사이에 긴급 작업 삽입 |
+| `$gsd-remove-phase [N]` | 미래 단계 제거, 번호 재정렬 |
+| `$gsd-list-phase-assumptions [N]` | 기획 전 Claude의 의도된 접근 방식 확인 |
+| `$gsd-plan-milestone-gaps` | 감사에서 발견된 갭을 해소하기 위한 단계 생성 |
 
 ### 세션
 
 | 명령어 | 역할 |
 |---------|------------|
-| `/gsd-pause-work` | 단계 중간에 멈출 때 핸드오프 생성 (HANDOFF.json 작성) |
-| `/gsd-resume-work` | 마지막 세션에서 복원 |
-| `/gsd-session-report` | 수행한 작업과 결과가 담긴 세션 요약 생성 |
+| `$gsd-pause-work` | 단계 중간에 멈출 때 핸드오프 생성 (HANDOFF.json 작성) |
+| `$gsd-resume-work` | 마지막 세션에서 복원 |
+| `$gsd-session-report` | 수행한 작업과 결과가 담긴 세션 요약 생성 |
 
 ### 코드 품질
 
 | 명령어 | 역할 |
 |---------|------------|
-| `/gsd-review` | 현재 단계 또는 브랜치의 Cross-AI 피어 리뷰 |
-| `/gsd-pr-branch` | `.planning/` 커밋을 필터링한 깔끔한 PR 브랜치 생성 |
-| `/gsd-audit-uat` | 검증 부채 감사 — UAT가 누락된 단계 찾기 |
+| `$gsd-review` | 현재 단계 또는 브랜치의 Cross-AI 피어 리뷰 |
+| `$gsd-pr-branch` | `.planning/` 커밋을 필터링한 깔끔한 PR 브랜치 생성 |
+| `$gsd-audit-uat` | 검증 부채 감사 — UAT가 누락된 단계 찾기 |
 
 ### 백로그 및 스레드
 
 | 명령어 | 역할 |
 |---------|------------|
-| `/gsd-plant-seed <idea>` | 트리거 조건이 있는 아이디어 저장 — 때가 되면 알아서 올라옴 |
-| `/gsd-add-backlog <desc>` | 백로그 파킹 롯에 아이디어 추가 (999.x 번호 지정, 활성 시퀀스 외부) |
-| `/gsd-review-backlog` | 백로그 항목 리뷰 및 활성 마일스톤으로 승격하거나 오래된 항목 제거 |
-| `/gsd-thread [name]` | 지속적 컨텍스트 스레드 — 여러 세션에 걸친 작업을 위한 가벼운 크로스 세션 지식 |
+| `$gsd-plant-seed <idea>` | 트리거 조건이 있는 아이디어 저장 — 때가 되면 알아서 올라옴 |
+| `$gsd-add-backlog <desc>` | 백로그 파킹 롯에 아이디어 추가 (999.x 번호 지정, 활성 시퀀스 외부) |
+| `$gsd-review-backlog` | 백로그 항목 리뷰 및 활성 마일스톤으로 승격하거나 오래된 항목 제거 |
+| `$gsd-thread [name]` | 지속적 컨텍스트 스레드 — 여러 세션에 걸친 작업을 위한 가벼운 크로스 세션 지식 |
 
 ### 유틸리티
 
 | 명령어 | 역할 |
 |---------|------------|
-| `/gsd-settings` | 모델 프로필 및 워크플로우 에이전트 설정 |
-| `/gsd-set-profile <profile>` | 모델 프로필 전환 (quality/balanced/budget/inherit) |
-| `/gsd-add-todo [desc]` | 나중을 위한 아이디어 캡처 |
-| `/gsd-check-todos` | 대기 중인 할 일 목록 |
-| `/gsd-debug [desc]` | 지속적 상태를 이용한 체계적 디버깅 |
-| `/gsd-do <text>` | 자유 형식 텍스트를 적절한 GSD 명령어로 자동 라우팅 |
-| `/gsd-note <text>` | 마찰 없는 아이디어 캡처 — 추가, 목록, 또는 할 일로 승격 |
-| `/gsd-quick [--full] [--discuss] [--research]` | GSD 보장과 함께 임시 작업 실행 (`--full`은 전체 단계 활성화, `--discuss`는 먼저 컨텍스트 수집, `--research`는 기획 전 접근법 조사) |
-| `/gsd-health [--repair]` | `.planning/` 디렉터리 무결성 검증, `--repair`로 자동 복구 |
-| `/gsd-stats` | 프로젝트 통계 표시 — 단계, 계획, 요구사항, git 지표 |
-| `/gsd-profile-user [--questionnaire] [--refresh]` | 개인화된 응답을 위해 세션 분석에서 개발자 행동 프로필 생성 |
+| `$gsd-settings` | 모델 프로필 및 워크플로우 에이전트 설정 |
+| `$gsd-set-profile <profile>` | 모델 프로필 전환 (quality/balanced/budget/inherit) |
+| `$gsd-add-todo [desc]` | 나중을 위한 아이디어 캡처 |
+| `$gsd-check-todos` | 대기 중인 할 일 목록 |
+| `$gsd-debug [desc]` | 지속적 상태를 이용한 체계적 디버깅 |
+| `$gsd-do <text>` | 자유 형식 텍스트를 적절한 GSD 명령어로 자동 라우팅 |
+| `$gsd-note <text>` | 마찰 없는 아이디어 캡처 — 추가, 목록, 또는 할 일로 승격 |
+| `$gsd-quick [--full] [--discuss] [--research]` | GSD 보장과 함께 임시 작업 실행 (`--full`은 전체 단계 활성화, `--discuss`는 먼저 컨텍스트 수집, `--research`는 기획 전 접근법 조사) |
+| `$gsd-health [--repair]` | `.planning/` 디렉터리 무결성 검증, `--repair`로 자동 복구 |
+| `$gsd-stats` | 프로젝트 통계 표시 — 단계, 계획, 요구사항, git 지표 |
+| `$gsd-profile-user [--questionnaire] [--refresh]` | 개인화된 응답을 위해 세션 분석에서 개발자 행동 프로필 생성 |
 
 <sup>¹ reddit 유저 OracleGreyBeard 기여</sup>
 
@@ -646,7 +649,7 @@ lmn012o feat(08-02): create registration endpoint
 
 ## 설정
 
-GSD는 프로젝트 설정을 `.planning/config.json`에 저장합니다. `/gsd-new-project` 중에 설정하거나 나중에 `/gsd-settings`로 업데이트할 수 있습니다. 전체 config 스키마, 워크플로우 토글, git 브랜칭 옵션, 에이전트별 모델 분석은 [사용자 가이드](docs/ko-KR/USER-GUIDE.md#configuration-reference)를 참조하세요.
+GSD는 프로젝트 설정을 `.planning/config.json`에 저장합니다. `$gsd-new-project` 중에 설정하거나 나중에 `$gsd-settings`로 업데이트할 수 있습니다. 전체 config 스키마, 워크플로우 토글, git 브랜칭 옵션, 에이전트별 모델 분석은 [사용자 가이드](docs/ko-KR/USER-GUIDE.md#configuration-reference)를 참조하세요.
 
 ### 핵심 설정
 
@@ -668,12 +671,12 @@ GSD는 프로젝트 설정을 `.planning/config.json`에 저장합니다. `/gsd-
 
 프로필 전환:
 ```
-/gsd-set-profile budget
+$gsd-set-profile budget
 ```
 
 비-Anthropic 제공업체 (OpenRouter, 로컬 모델) 사용 시 또는 현재 런타임 모델 선택을 따를 때 (예: OpenCode `/model`) `inherit`를 사용하세요.
 
-또는 `/gsd-settings`를 통해 설정하세요.
+또는 `$gsd-settings`를 통해 설정하세요.
 
 ### 워크플로우 에이전트
 
@@ -690,9 +693,9 @@ GSD는 프로젝트 설정을 `.planning/config.json`에 저장합니다. `/gsd-
 | `workflow.skip_discuss` | `false` | 자율 모드에서 discuss-phase 건너뛰기 |
 | `workflow.text_mode` | `false` | 원격 세션을 위한 텍스트 전용 모드 (TUI 메뉴 없음) |
 
-`/gsd-settings`로 토글하거나 호출별로 재정의하세요:
-- `/gsd-plan-phase --skip-research`
-- `/gsd-plan-phase --skip-verify`
+`$gsd-settings`로 토글하거나 호출별로 재정의하세요:
+- `$gsd-plan-phase --skip-research`
+- `$gsd-plan-phase --skip-verify`
 
 ### 실행
 
@@ -774,7 +777,7 @@ GSD의 코드베이스 매핑 및 분석 명령어는 프로젝트를 이해하�
 - Codex의 경우 `~/.codex/skills/gsd-*/SKILL.md` (전역) 또는 `./.codex/skills/gsd-*/SKILL.md` (로컬)에 스킬이 있는지 확인하세요
 
 **명령어가 예상대로 작동하지 않나요?**
-- `/gsd-help`를 실행해 설치 확인
+- `$gsd-help`를 실행해 설치 확인
 - `npx @oisinwang/get-shit-done-codex`를 다시 실행해 재설치
 
 **최신 버전으로 업데이트하나요?**
@@ -822,11 +825,11 @@ npx @oisinwang/get-shit-done-codex --trae --local --uninstall
 
 ---
 
-## 커뮤니티 포트
+## 멀티 런타임 계보
 
-OpenCode, Gemini CLI, Kilo, Codex는 이제 `npx @oisinwang/get-shit-done-codex`를 통해 기본 지원됩니다.
+Codex는 이 포크의 기본 런타임입니다. 호환 설치는 `npx @oisinwang/get-shit-done-codex`를 통해 Claude Code, OpenCode, Gemini CLI, Kilo, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, CodeBuddy, Cline에서 사용할 수 있습니다.
 
-이 커뮤니티 포트들이 멀티 런타임 지원의 선구자였습니다:
+이전 포트들은 멀티 런타임 수요를 검증하는 데 도움이 되었습니다:
 
 | 프로젝트 | 플랫폼 | 설명 |
 |---------|----------|-------------|
@@ -837,11 +840,11 @@ OpenCode, Gemini CLI, Kilo, Codex는 이제 `npx @oisinwang/get-shit-done-codex`
 
 ## 스타 히스토리
 
-<a href="https://star-history.com/#get-shit-done-codex&Date">
+<a href="https://star-history.com/#Oisinwang/get-shit-done-codex&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date" />
  </picture>
 </a>
 

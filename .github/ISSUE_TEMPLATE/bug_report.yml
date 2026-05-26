@@ -17,7 +17,7 @@ body:
     id: version
     attributes:
       label: GSD Version
-      description: "Run: `npm list -g get-shit-done-codex` or check `npx @oisinwang/get-shit-done-codex --version`"
+      description: "Run: `npm list -g @oisinwang/get-shit-done-codex` or check `npx @oisinwang/get-shit-done-codex --version`"
       placeholder: "e.g., 1.18.0"
     validations:
       required: true
@@ -28,10 +28,10 @@ body:
       label: Runtime
       description: Which AI coding tool are you using GSD with?
       options:
+        - Codex
         - Claude Code
         - Gemini CLI
         - OpenCode
-        - Codex
         - Copilot
         - Antigravity
         - Cursor
@@ -110,7 +110,7 @@ body:
         Exact steps to reproduce the issue. Include the GSD command used.
       placeholder: |
         1. Install GSD with `npx @oisinwang/get-shit-done-codex@latest`
-        2. Select runtime: Claude Code
+        2. Select runtime: Codex
         3. Run `/gsd-init` with a new project
         4. Run `/gsd-plan`
         5. Error appears at step...
@@ -160,17 +160,18 @@ body:
   - type: textarea
     id: settings_json
     attributes:
-      label: Runtime settings.json (if relevant)
+      label: Runtime settings (if relevant)
       description: |
-        If the bug involves hooks, statusline, or runtime integration, include your runtime's settings.json.
+        If the bug involves hooks, statusline, or runtime integration, include your runtime's settings file.
 
         How to retrieve:
+        - Codex: `cat ~/.codex/config.toml`
         - Claude Code: `cat ~/.claude/settings.json`
         - Gemini CLI: `cat ~/.gemini/settings.json`
         - OpenCode: `cat ~/.config/opencode/opencode.json` or `opencode.jsonc`
 
         Privacy warning: This file may contain API keys, tokens, or custom paths. Remove all API keys and tokens before pasting. We recommend running through [presidio-anonymizer](https://microsoft.github.io/presidio/) or manually redacting any line containing "key", "token", or "secret".
-      render: json
+      render: text
     validations:
       required: false
 
@@ -215,7 +216,7 @@ body:
         Anything else - screenshots, screen recordings, related issues, or links.
 
         Useful diagnostics to include (if applicable):
-        - `npm list -g get-shit-done-codex` - confirms installed version
+        - `npm list -g @oisinwang/get-shit-done-codex` - confirms installed version
         - `ls -la ~/.codex/get-shit-done/` - confirms installation files
         - `cat ~/.codex/get-shit-done/gsd-file-manifest.json` - file manifest for debugging install issues
         - `ls -la .planning/` - confirms planning directory state

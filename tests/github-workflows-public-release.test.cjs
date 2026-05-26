@@ -41,4 +41,28 @@ describe('GitHub workflows public release configuration', () => {
       assert.match(workflow, /@oisinwang\/get-shit-done-codex/);
     }
   });
+
+  test('hotfix workflow delegates version validation to tested script', () => {
+    const workflow = readWorkflow('hotfix.yml');
+
+    assert.match(workflow, /node scripts\/validate-hotfix\.cjs/);
+  });
+
+  test('hotfix back-merge PR creation cannot block publishing', () => {
+    const workflow = readWorkflow('hotfix.yml');
+
+    assert.match(workflow, /::warning::Unable to inspect existing hotfix back-merge PR/);
+    assert.match(workflow, /::warning::Unable to create hotfix back-merge PR/);
+    assert.match(workflow, /Create the PR manually from \$BRANCH to codex\/bootstrap/);
+  });
+
+  test('hotfix verifies npm authentication before pushing release tags', () => {
+    const workflow = readWorkflow('hotfix.yml');
+    const authStep = workflow.indexOf('name: Verify npm authentication');
+    const tagStep = workflow.indexOf('name: Tag and push');
+
+    assert.notStrictEqual(authStep, -1);
+    assert.ok(authStep < tagStep, 'npm authentication must be checked before pushing tags');
+    assert.match(workflow, /npm whoami/);
+  });
 });

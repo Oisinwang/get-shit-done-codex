@@ -11,9 +11,9 @@ allowed-tools:
   - AskUserQuestion
 ---
 <objective>
-Curate spike experiment findings and package them into a persistent project skill that Claude
-auto-loads in future build conversations. Also writes a summary to `.planning/spikes/` for
-project history. Output skill goes to `./.claude/skills/spike-findings-[project]/` (project-local).
+Curate spike experiment findings and package them into a persistent project skill that future
+sessions auto-load in build conversations. Also writes a summary to `.planning/spikes/` for
+project history. Output skill goes to `./.codex/skills/spike-findings-[project]/` (project-local).
 </objective>
 
 <execution_context>
@@ -27,5 +27,5 @@ project history. Output skill goes to `./.claude/skills/spike-findings-[project]
 
 <process>
 Execute the spike-wrap-up workflow from @~/.claude/get-shit-done/workflows/spike-wrap-up.md end-to-end.
-Preserve all curation gates (per-spike review, grouping approval, CLAUDE.md routing line).
+Preserve all curation gates (per-spike review, grouping approval, AGENTS.md routing line).
 </process>

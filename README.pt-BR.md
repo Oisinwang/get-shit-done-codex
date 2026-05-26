@@ -1,20 +1,17 @@
 <div align="center">
 
-# GET SHIT DONE
+# GET SHIT DONE CODEX
 
-[English](README.md) · **Português** · [简体中文](README.zh-CN.md) · [日本語](README.ja-JP.md)
+[English](README.md) · **Português** · [简体中文](README.zh-CN.md) · [日本語](README.ja-JP.md) · [한국어](README.ko-KR.md)
 
-**Um sistema leve e poderoso de meta-prompting, engenharia de contexto e desenvolvimento orientado a especificação para Claude Code, OpenCode, Gemini CLI, Kilo, Codex, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae e Cline.**
+**Um sistema de workflow Codex-first para transformar objetivos em implementação planejada, verificável e recuperável em sessões longas de programação com IA.**
 
-**Resolve context rot — a degradação de qualidade que acontece conforme o Claude enche a janela de contexto.**
+**Mantém contexto, decisões, planos de fase, verificações de validação e estado de recuperação explícitos em vez de torcer para o modelo lembrar de tudo.**
 
-[![npm version](https://img.shields.io/npm/v/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
-[![npm downloads](https://img.shields.io/npm/dm/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-codex)
-[![Tests](https://img.shields.io/github/actions/workflow/status/get-shit-done-codex/test.yml?branch=main&style=for-the-badge&logo=github&label=Tests)](https://github.com/get-shit-done-codex/actions/workflows/test.yml)
-[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/mYgfVNfA2r)
-[![X (Twitter)](https://img.shields.io/badge/X-@gsd__foundation-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/gsd_foundation)
-[![$GSD Token](https://img.shields.io/badge/$GSD-Dexscreener-1C1C1C?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgZmlsbD0iIzAwRkYwMCIvPjwvc3ZnPg==&logoColor=00FF00)](https://dexscreener.com/solana/dwudwjvan7bzkw9zwlbyv6kspdlvhwzrqy6ebk8xzxkv)
-[![GitHub stars](https://img.shields.io/github/stars/get-shit-done-codex?style=for-the-badge&logo=github&color=181717)](https://github.com/get-shit-done-codex)
+[![npm version](https://img.shields.io/npm/v/@oisinwang/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/@oisinwang/get-shit-done-codex)
+[![npm downloads](https://img.shields.io/npm/dm/@oisinwang/get-shit-done-codex?style=for-the-badge&logo=npm&logoColor=white&color=0B7285)](https://www.npmjs.com/package/@oisinwang/get-shit-done-codex)
+[![Tests](https://github.com/Oisinwang/get-shit-done-codex/actions/workflows/test.yml/badge.svg?branch=codex/bootstrap)](https://github.com/Oisinwang/get-shit-done-codex/actions/workflows/test.yml)
+[![GitHub stars](https://img.shields.io/github/stars/Oisinwang/get-shit-done-codex?style=for-the-badge&logo=github&color=111827)](https://github.com/Oisinwang/get-shit-done-codex/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 <br>
@@ -31,57 +28,64 @@ npx @oisinwang/get-shit-done-codex@latest
 
 <br>
 
-*"Se você sabe claramente o que quer, isso VAI construir para você. Sem enrolação."*
+*"Se você sabe claramente o que quer, isto ajuda o Codex a continuar construindo até o resultado ser verificável."*
 
-*"Eu já usei SpecKit, OpenSpec e Taskmaster — este me deu os melhores resultados."*
+*"Spec, plan, execute, review e resume sem importar um processo corporativo inteiro."*
 
-*"De longe a adição mais poderosa ao meu Claude Code. Nada superengenheirado. Simplesmente faz o trabalho."*
+*"Codex é o runtime principal; outros CLIs de agente continuam disponíveis por compatibilidade."*
 
 <br>
 
-**Confiado por engenheiros da Amazon, Google, Shopify e Webflow.**
+**Publicado no npm como `@oisinwang/get-shit-done-codex`. Branch de release testada: `codex/bootstrap`.**
 
-[Por que eu criei isso](#por-que-eu-criei-isso) · [Como funciona](#como-funciona) · [Comandos](#comandos) · [Por que funciona](#por-que-funciona) · [Guia do usuário](docs/pt-BR/USER-GUIDE.md)
+**Fork GSD independente e Codex-first.** Use este fork quando quiser `AGENTS.md`, `.codex/`, `$gsd-*` e caminhos de sessão do Codex como padrão público, não como detalhes de migração.
+
+**Higiene de segurança e release:** pacote npm scoped, metadados do repositório, CI, workflows de release e templates de issue apontam para este fork. Nomes antigos da era Claude permanecem apenas como shims de compatibilidade.
+
+[Por que este fork existe](#por-que-este-fork-existe) · [Como funciona](#como-funciona) · [Comandos](#comandos) · [Por que funciona](#por-que-funciona) · [Guia do usuário](docs/pt-BR/USER-GUIDE.md)
 
 </div>
 
 ---
 
-## Por que eu criei isso
-
-Sou desenvolvedor solo. Eu não escrevo código — o Claude Code escreve.
-
-Existem outras ferramentas de desenvolvimento orientado por especificação. BMAD, Speckit... Mas quase todas parecem mais complexas do que o necessário (cerimônias de sprint, story points, sync com stakeholders, retrospectivas, fluxos Jira) ou não entendem de verdade o panorama do que você está construindo. Eu não sou uma empresa de software com 50 pessoas. Não quero teatro corporativo. Só quero construir coisas boas que funcionem.
-
-Então eu criei o GSD. A complexidade fica no sistema, não no seu fluxo. Por trás: engenharia de contexto, formatação XML de prompts, orquestração de subagentes, gerenciamento de estado. O que você vê: alguns comandos que simplesmente funcionam.
-
-O sistema dá ao Claude tudo que ele precisa para fazer o trabalho *e* validar o resultado. Eu confio no fluxo. Ele entrega.
-
-— **TÂCHES**
+> [!IMPORTANT]
+> Este repositório é um fork independente e Codex-first.
+>
+> Semântica principal neste fork:
+> - `AGENTS.md`
+> - `.codex/`
+> - `$gsd-*`
+> - `agents_md_path`
+> - `generate-agents-md`
+> - `generate-agents-profile`
+> - `~/.codex/sessions`
+>
+> Nomes antigos Claude-first permanecem apenas como shims de compatibilidade. Notas de migração e release ficam em [docs/CODEX-FORK.md](docs/CODEX-FORK.md).
 
 ---
 
-Vibe coding ganhou má fama. Você descreve algo, a IA gera código, e sai um resultado inconsistente que quebra em escala.
+## Por que este fork existe
 
-O GSD corrige isso. É a camada de engenharia de contexto que torna o Claude Code confiável.
+Este fork transforma o GSD em um workflow Codex-first. O contrato canônico do projeto é `AGENTS.md`, `.codex/` e comandos `$gsd-*`. Nomes antigos Claude-first ainda existem para migração, mas não são mais a semântica pública padrão.
+
+O objetivo é simples: manter o desenvolvimento assistido por IA coerente depois do primeiro prompt. O GSD captura o objetivo, mapeia o código, planeja fases, executa com checkpoints de verificação, registra decisões e deixa estado suficiente para o Codex retomar depois.
+
+Ele é para builders solo e times pequenos que querem planejamento e validação sérios sem adotar teatro de processo corporativo. Você descreve o resultado; o sistema preserva requisitos, verifica o trabalho e deixa a próxima ação óbvia.
 
 ---
 
 ## Para quem é
 
-Para quem quer descrever o que precisa e receber isso construído do jeito certo — sem fingir que está rodando uma engenharia de 50 pessoas.
+Para quem quer descrever o resultado desejado e receber uma implementação correta sem fingir que está rodando uma organização de engenharia de 50 pessoas.
 
 Quality gates embutidos capturam problemas reais: detecção de schema drift sinaliza mudanças ORM sem migrations, segurança ancora verificação a modelos de ameaça, e detecção de redução de escopo impede o planner de descartar requisitos silenciosamente.
 
-### Destaques v1.32.0
+### Destaques atuais
 
-- **Gates de consistência STATE.md** — `state validate` detecta divergência entre STATE.md e o filesystem; `state sync` reconstrói a partir do estado real do projeto
-- **Flag `--to N`** — Para a execução autônoma após completar uma fase específica
-- **Research gate** — Bloqueia planejamento quando RESEARCH.md tem perguntas abertas não resolvidas
-- **Filtro de escopo do verificador** — Lacunas abordadas em fases posteriores são marcadas como "adiadas", não como lacunas
-- **Guard de leitura antes de edição** — Hook consultivo previne loops de retry infinitos em runtimes não-Claude
-- **Redução de contexto** — Truncamento de Markdown e ordenação de prompts cache-friendly para menor uso de tokens
-- **4 novos runtimes** — Trae, Kilo, Augment e Cline (12 runtimes no total)
+- **Contrato Codex-first** - `AGENTS.md`, `.codex/`, `$gsd-*` e caminhos de sessão do Codex são a semântica principal.
+- **Spiking e sketching** - `$gsd-spike` e `$gsd-sketch` capturam experimentos e variantes de design como artefatos de planejamento duráveis.
+- **Orçamento de tamanho dos agentes** - limites por tier mantêm prompts enxutos e visíveis no CI.
+- **Extração de boilerplate compartilhado** - lógica comum de reading e descoberta de project skills é centralizada em vez de duplicada.
 
 ---
 
@@ -181,12 +185,12 @@ claude --dangerously-skip-permissions
 
 ## Como funciona
 
-> **Já tem código?** Rode `/gsd-map-codebase` primeiro para analisar stack, arquitetura, convenções e riscos.
+> **Já tem código?** Rode `$gsd-map-codebase` primeiro para analisar stack, arquitetura, convenções e riscos.
 
 ### 1. Inicializar projeto
 
 ```
-/gsd-new-project
+$gsd-new-project
 ```
 
 O sistema:
@@ -200,7 +204,7 @@ O sistema:
 ### 2. Discutir fase
 
 ```
-/gsd-discuss-phase 1
+$gsd-discuss-phase 1
 ```
 
 Captura suas preferências de implementação antes do planejamento.
@@ -210,7 +214,7 @@ Captura suas preferências de implementação antes do planejamento.
 ### 3. Planejar fase
 
 ```
-/gsd-plan-phase 1
+$gsd-plan-phase 1
 ```
 
 1. Pesquisa abordagens
@@ -222,7 +226,7 @@ Captura suas preferências de implementação antes do planejamento.
 ### 4. Executar fase
 
 ```
-/gsd-execute-phase 1
+$gsd-execute-phase 1
 ```
 
 1. Executa planos em ondas
@@ -235,7 +239,7 @@ Captura suas preferências de implementação antes do planejamento.
 ### 5. Verificar trabalho
 
 ```
-/gsd-verify-work 1
+$gsd-verify-work 1
 ```
 
 Validação manual orientada para confirmar que a feature realmente funciona como esperado.
@@ -245,25 +249,25 @@ Validação manual orientada para confirmar que a feature realmente funciona com
 ### 6. Repetir -> Entregar -> Completar
 
 ```
-/gsd-discuss-phase 2
-/gsd-plan-phase 2
-/gsd-execute-phase 2
-/gsd-verify-work 2
-/gsd-ship 2
-/gsd-complete-milestone
-/gsd-new-milestone
+$gsd-discuss-phase 2
+$gsd-plan-phase 2
+$gsd-execute-phase 2
+$gsd-verify-work 2
+$gsd-ship 2
+$gsd-complete-milestone
+$gsd-new-milestone
 ```
 
 Ou deixe o GSD decidir:
 
 ```
-/gsd-next
+$gsd-next
 ```
 
 ### Modo rápido
 
 ```
-/gsd-quick
+$gsd-quick
 ```
 
 Para tarefas ad-hoc sem ciclo completo de planejamento.
@@ -319,36 +323,37 @@ Cada tarefa gera commit próprio, facilitando `git bisect`, rollback e rastreabi
 
 | Comando | O que faz |
 |---------|-----------|
-| `/gsd-new-project [--auto]` | Inicializa projeto completo |
-| `/gsd-discuss-phase [N] [--auto] [--analyze] [--chain]` | Captura decisões antes do plano (`--chain` encadeia automaticamente em plan+execute) |
-| `/gsd-plan-phase [N] [--auto] [--reviews]` | Pesquisa + plano + validação |
-| `/gsd-execute-phase <N>` | Executa planos em ondas paralelas |
-| `/gsd-verify-work [N]` | UAT manual |
-| `/gsd-ship [N] [--draft]` | Cria PR da fase validada |
-| `/gsd-next` | Avança automaticamente para o próximo passo |
-| `/gsd-fast <text>` | Tarefas triviais sem planejamento |
-| `/gsd-complete-milestone` | Fecha o marco e marca release |
-| `/gsd-new-milestone [name]` | Inicia próximo marco |
+| `$gsd-new-project [--auto]` | Inicializa projeto completo |
+| `$gsd-discuss-phase [N] [--auto] [--analyze] [--chain]` | Captura decisões antes do plano (`--chain` encadeia automaticamente em plan+execute) |
+| `$gsd-plan-phase [N] [--auto] [--reviews]` | Pesquisa + plano + validação |
+| `$gsd-execute-phase <N>` | Executa planos em ondas paralelas |
+| `$gsd-verify-work [N]` | UAT manual |
+| `$gsd-ship [N] [--draft]` | Cria PR da fase validada |
+| `$gsd-next` | Avança automaticamente para o próximo passo |
+| `$gsd-fast <text>` | Tarefas triviais sem planejamento |
+| `$gsd-complete-milestone` | Fecha o marco e marca release |
+| `$gsd-new-milestone [name]` | Inicia próximo marco |
 
 ### Qualidade e utilidades
 
 | Comando | O que faz |
 |---------|-----------|
-| `/gsd-review` | Peer review com múltiplas IAs |
-| `/gsd-pr-branch` | Cria branch limpa para PR |
-| `/gsd-settings` | Configura perfis e agentes |
-| `/gsd-set-profile <profile>` | Troca perfil (quality/balanced/budget/inherit) |
-| `/gsd-quick [--full] [--discuss] [--research]` | Execução rápida com garantias do GSD (`--full` ativa todas as etapas, `--validate` ativa apenas verificação) |
-| `/gsd-health [--repair]` | Verifica e repara `.planning/` |
+| `$gsd-review` | Peer review com múltiplas IAs |
+| `$gsd-pr-branch` | Cria branch limpa para PR |
+| `$gsd-settings` | Configura perfis e agentes |
+| `$gsd-set-profile <profile>` | Troca perfil (quality/balanced/budget/inherit) |
+| `$gsd-quick [--full] [--discuss] [--research]` | Execução rápida com garantias do GSD (`--full` ativa todas as etapas, `--validate` ativa apenas verificação) |
+| `$gsd-health [--repair]` | Verifica e repara `.planning/` |
+| `$gsd-join-discord` | Abrir a comunidade no GitHub Discussions |
 
-> Para a lista completa de comandos e opções, use `/gsd-help`.
+> Para a lista completa de comandos e opções, use `$gsd-help`.
 
 ---
 
 ## Configuração
 
 As configurações do projeto ficam em `.planning/config.json`.
-Você pode configurar no `/gsd-new-project` ou ajustar depois com `/gsd-settings`.
+Você pode configurar no `$gsd-new-project` ou ajustar depois com `$gsd-settings`.
 
 ### Ajustes principais
 
@@ -368,7 +373,7 @@ Você pode configurar no `/gsd-new-project` ou ajustar depois com `/gsd-settings
 
 Troca rápida:
 ```
-/gsd-set-profile budget
+$gsd-set-profile budget
 ```
 
 ---
@@ -412,7 +417,7 @@ Adicione padrões sensíveis ao deny list do Claude Code:
 - Verifique se os arquivos foram instalados no diretório correto
 
 **Comandos não funcionam como esperado?**
-- Rode `/gsd-help`
+- Rode `$gsd-help`
 - Reinstale com `npx @oisinwang/get-shit-done-codex@latest`
 
 **Em Docker/container?**
@@ -454,9 +459,11 @@ npx @oisinwang/get-shit-done-codex --cline --local --uninstall
 
 ---
 
-## Community Ports
+## Linhagem multi-runtime
 
-OpenCode, Gemini CLI, Kilo e Codex agora são suportados nativamente via `npx @oisinwang/get-shit-done-codex`.
+Codex é o runtime principal neste fork. Instalações de compatibilidade estão disponíveis via `npx @oisinwang/get-shit-done-codex` para Claude Code, OpenCode, Gemini CLI, Kilo, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, CodeBuddy e Cline.
+
+Esses ports anteriores ajudaram a provar a demanda por múltiplos runtimes:
 
 | Projeto | Plataforma | Descrição |
 |---------|------------|-----------|
@@ -467,11 +474,11 @@ OpenCode, Gemini CLI, Kilo e Codex agora são suportados nativamente via `npx @o
 
 ## Star History
 
-<a href="https://star-history.com/#get-shit-done-codex&Date">
+<a href="https://star-history.com/#Oisinwang/get-shit-done-codex&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=get-shit-done-codex&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Oisinwang/get-shit-done-codex&type=Date" />
  </picture>
 </a>
 

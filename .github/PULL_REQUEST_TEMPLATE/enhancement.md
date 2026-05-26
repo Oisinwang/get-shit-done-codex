@@ -1,8 +1,8 @@
 ## Enhancement PR
 
 > **Using the wrong template?**
-> — Bug fix: use [fix.md](?template=fix.md)
-> — New feature: use [feature.md](?template=feature.md)
+> - Bug fix: use [fix.md](?template=fix.md)
+> - New feature: use [feature.md](?template=feature.md)
 
 ---
 
@@ -13,7 +13,7 @@
 
 Closes #
 
-> ⛔ **No `approved-enhancement` label on the issue = immediate close.**
+> **No `approved-enhancement` label on the issue = immediate close.**
 > Do not open this PR if a maintainer has not yet approved the enhancement proposal.
 
 ---
@@ -49,6 +49,7 @@ Closes #
 
 ### Runtimes tested
 
+- [ ] Codex
 - [ ] Claude Code
 - [ ] Gemini CLI
 - [ ] OpenCode
@@ -61,16 +62,16 @@ Closes #
 
 <!-- Confirm the implementation matches the approved proposal. -->
 
-- [ ] The implementation matches the scope approved in the linked issue — no additions or removals
+- [ ] The implementation matches the scope approved in the linked issue - no additions or removals
 - [ ] If scope changed during implementation, I updated the issue and got re-approval before continuing
 
 ---
 
 ## Checklist
 
-- [ ] Issue linked above with `Closes #NNN` — **PR will be auto-closed if missing**
-- [ ] Linked issue has the `approved-enhancement` label — **PR will be closed if missing**
-- [ ] Changes are scoped to the approved enhancement — nothing extra included
+- [ ] Issue linked above with `Closes #NNN` - **PR will be auto-closed if missing**
+- [ ] Linked issue has the `approved-enhancement` label - **PR will be closed if missing**
+- [ ] Changes are scoped to the approved enhancement - nothing extra included
 - [ ] All existing tests pass (`npm test`)
 - [ ] New or updated tests cover the enhanced behavior
 - [ ] CHANGELOG.md updated

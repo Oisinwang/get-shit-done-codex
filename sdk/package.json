@@ -1,7 +1,7 @@
 {
   "name": "@oisinwang/get-shit-done-codex-sdk",
   "version": "0.1.0",
-  "description": "GSD SDK - programmatic interface for running GSD plans via the Agent SDK",
+  "description": "GSD Codex SDK for running spec-driven plans and verified AI coding workflows from agent applications.",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,6 +17,22 @@
   "files": [
     "dist",
     "prompts"
+  ],
+  "keywords": [
+    "codex",
+    "openai-codex",
+    "ai-agents",
+    "agentic-coding",
+    "agent-sdk",
+    "automation",
+    "context-engineering",
+    "developer-experience",
+    "developer-tools",
+    "gsd",
+    "prompt-engineering",
+    "sdk",
+    "spec-driven-development",
+    "workflow-automation"
   ],
   "repository": {
     "type": "git",

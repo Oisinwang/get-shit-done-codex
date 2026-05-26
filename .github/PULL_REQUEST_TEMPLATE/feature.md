@@ -1,19 +1,19 @@
 ## Feature PR
 
 > **Using the wrong template?**
-> — Bug fix: use [fix.md](?template=fix.md)
-> — Enhancement to existing behavior: use [enhancement.md](?template=enhancement.md)
+> - Bug fix: use [fix.md](?template=fix.md)
+> - Enhancement to existing behavior: use [enhancement.md](?template=enhancement.md)
 
 ---
 
 ## Linked Issue
 
 > **Required.** This PR will be auto-closed if no valid issue link is found.
-> The linked issue **must** have the `approved-feature` label. If it does not, this PR will be closed without review — no exceptions.
+> The linked issue **must** have the `approved-feature` label. If it does not, this PR will be closed without review, no exceptions.
 
 Closes #
 
-> ⛔ **No `approved-feature` label on the issue = immediate close.**
+> **No `approved-feature` label on the issue = immediate close.**
 > Do not open this PR if a maintainer has not yet approved the feature spec.
 > Do not open this PR if you wrote code before the issue was approved.
 
@@ -58,7 +58,7 @@ Closes #
 
 ### Test coverage
 
-<!-- Describe what is tested and where. New features require new tests — no exceptions. -->
+<!-- Describe what is tested and where. New features require new tests, no exceptions. -->
 
 ### Platforms tested
 
@@ -68,13 +68,13 @@ Closes #
 
 ### Runtimes tested
 
+- [ ] Codex
 - [ ] Claude Code
 - [ ] Gemini CLI
 - [ ] OpenCode
-- [ ] Codex
 - [ ] Copilot
 - [ ] Other: ___
-- [ ] N/A — specify which runtimes are supported and why others are excluded
+- [ ] N/A - specify which runtimes are supported and why others are excluded
 
 ---
 
@@ -88,14 +88,14 @@ Closes #
 
 ## Checklist
 
-- [ ] Issue linked above with `Closes #NNN` — **PR will be auto-closed if missing**
-- [ ] Linked issue has the `approved-feature` label — **PR will be closed if missing**
+- [ ] Issue linked above with `Closes #NNN` - **PR will be auto-closed if missing**
+- [ ] Linked issue has the `approved-feature` label - **PR will be closed if missing**
 - [ ] All acceptance criteria from the issue are met (listed above)
 - [ ] Implementation scope matches the approved spec exactly
 - [ ] All existing tests pass (`npm test`)
 - [ ] New tests cover the happy path, error cases, and edge cases
 - [ ] CHANGELOG.md updated with a user-facing description of the feature
-- [ ] Documentation updated — commands, workflows, references, README if applicable
+- [ ] Documentation updated - commands, workflows, references, README if applicable
 - [ ] No unnecessary external dependencies added
 - [ ] Works on Windows (backslash paths handled)
 
