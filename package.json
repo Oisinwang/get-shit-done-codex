@@ -11,6 +11,7 @@
     "assets/terminal.svg",
     "bin",
     "commands",
+    "docs",
     "get-shit-done",
     "agents",
     "hooks",

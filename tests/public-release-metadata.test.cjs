@@ -437,6 +437,25 @@ describe('public release metadata', () => {
     }
   });
 
+  test('root npm package ships public docs linked from README', () => {
+    const packageJson = readJson('package.json');
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const readmeDocPaths = [
+      ...new Set(
+        [...readme.matchAll(/\]\((docs\/[^)#]+\.md)(?:#[^)]+)?\)/g)].map(
+          (match) => match[1],
+        ),
+      ),
+    ];
+
+    assert.ok(readmeDocPaths.length > 0, 'README should link to public docs');
+    assert.ok(packageJson.files.includes('docs'), 'npm package should include linked public docs');
+
+    for (const docPath of readmeDocPaths) {
+      assert.equal(fs.existsSync(path.join(ROOT, docPath)), true, `${docPath} should exist`);
+    }
+  });
+
   test('sdk package uses the same public npm scope', () => {
     const sdkPackageJson = readJson('sdk/package.json');
     const sdkPackageLock = readJson('sdk/package-lock.json');
@@ -543,6 +562,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/EXAMPLES\.md/);
     assert.match(unreleasedSection, /Simplified Chinese comparison guide/);
     assert.match(unreleasedSection, /docs\/zh-CN\/COMPARISON\.md/);
+    assert.match(unreleasedSection, /NPM package docs surface/);
+    assert.match(unreleasedSection, /published README docs links/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {
