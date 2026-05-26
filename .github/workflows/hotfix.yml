@@ -123,38 +123,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      - name: Require npm token for publish
+        if: ${{ !inputs.dry_run }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "::error::NPM_TOKEN secret is not configured in the npm-publish environment or repository."
+            exit 1
+          fi
+
       - name: Install and test
         run: |
           npm ci
           npm run test:coverage
-
-      - name: Create PR to merge hotfix back to main
-        if: ${{ !inputs.dry_run }}
-        env:
-          GH_TOKEN: ${{ github.token }}
-          BRANCH: ${{ needs.validate-version.outputs.branch }}
-          VERSION: ${{ inputs.version }}
-        run: |
-          if ! EXISTING_PR=$(gh pr list --base codex/bootstrap --head "$BRANCH" --state open --json number --jq '.[0].number'); then
-            echo "::warning::Unable to inspect existing hotfix back-merge PR. Continuing release. Create the PR manually from $BRANCH to codex/bootstrap."
-            EXISTING_PR=""
-          fi
-          if [ -n "$EXISTING_PR" ]; then
-            echo "PR #$EXISTING_PR already exists; updating"
-            if ! gh pr edit "$EXISTING_PR" \
-              --title "chore: merge hotfix v${VERSION} back to main" \
-              --body "Merge hotfix changes back to main after v${VERSION} release."; then
-              echo "::warning::Unable to update hotfix back-merge PR #$EXISTING_PR. Continuing release."
-            fi
-          else
-            if ! gh pr create \
-              --base codex/bootstrap \
-              --head "$BRANCH" \
-              --title "chore: merge hotfix v${VERSION} back to main" \
-              --body "Merge hotfix changes back to main after v${VERSION} release."; then
-              echo "::warning::Unable to create hotfix back-merge PR. Continuing release. Create the PR manually from $BRANCH to codex/bootstrap."
-            fi
-          fi
 
       - name: Verify npm authentication
         if: ${{ !inputs.dry_run }}
@@ -219,6 +201,34 @@ jobs:
             exit 1
           fi
           echo "✓ Verified: @oisinwang/get-shit-done-codex@$VERSION is live on npm"
+
+      - name: Create PR to merge hotfix back to main
+        if: ${{ !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ needs.validate-version.outputs.branch }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          if ! EXISTING_PR=$(gh pr list --base codex/bootstrap --head "$BRANCH" --state open --json number --jq '.[0].number'); then
+            echo "::warning::Unable to inspect existing hotfix back-merge PR. Continuing release. Create the PR manually from $BRANCH to codex/bootstrap."
+            EXISTING_PR=""
+          fi
+          if [ -n "$EXISTING_PR" ]; then
+            echo "PR #$EXISTING_PR already exists; updating"
+            if ! gh pr edit "$EXISTING_PR" \
+              --title "chore: merge hotfix v${VERSION} back to main" \
+              --body "Merge hotfix changes back to main after v${VERSION} release."; then
+              echo "::warning::Unable to update hotfix back-merge PR #$EXISTING_PR. Continuing release."
+            fi
+          else
+            if ! gh pr create \
+              --base codex/bootstrap \
+              --head "$BRANCH" \
+              --title "chore: merge hotfix v${VERSION} back to main" \
+              --body "Merge hotfix changes back to main after v${VERSION} release."; then
+              echo "::warning::Unable to create hotfix back-merge PR. Continuing release. Create the PR manually from $BRANCH to codex/bootstrap."
+            fi
+          fi
 
       - name: Summary
         env:
