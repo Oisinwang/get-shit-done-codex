@@ -260,6 +260,36 @@ describe('public release metadata', () => {
     assert.doesNotMatch(examples, /[^\x00-\x7F]/, 'docs/EXAMPLES.md should stay ASCII-clean');
   });
 
+  test('public prompt recipes give Codex users copy-pastable starter prompts', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const promptsPath = path.join(ROOT, 'docs', 'PROMPTS.md');
+
+    assert.equal(fs.existsSync(promptsPath), true, 'docs/PROMPTS.md should exist');
+
+    const prompts = fs.readFileSync(promptsPath, 'utf8');
+
+    assert.match(readme, /\[Prompt Recipes\]\(docs\/PROMPTS\.md\)/);
+    assert.match(docsReadme, /\[Prompt Recipes\]\(PROMPTS\.md\)/);
+    assert.match(prompts, /# Prompt Recipes/);
+    assert.match(prompts, /Paste these into Codex after installing GSD Codex/);
+    assert.match(prompts, /## Start A New Project/);
+    assert.match(prompts, /## Existing Repository/);
+    assert.match(prompts, /## Small Fix/);
+    assert.match(prompts, /## Resume Work/);
+    assert.match(prompts, /## Audit And Fix/);
+    assert.match(prompts, /\$gsd-new-project --auto/);
+    assert.match(prompts, /\$gsd-map-codebase/);
+    assert.match(prompts, /\$gsd-fast/);
+    assert.match(prompts, /\$gsd-resume-work/);
+    assert.match(prompts, /\$gsd-progress --forensic/);
+    assert.match(prompts, /\$gsd-audit-fix/);
+    assert.match(prompts, /\.planning\//);
+    assert.match(prompts, /verification evidence/);
+    assert.match(prompts, /Do not skip verification/);
+    assert.doesNotMatch(prompts, /[^\x00-\x7F]/, 'docs/PROMPTS.md should stay ASCII-clean');
+  });
+
   test('public FAQ answers common adoption objections', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
@@ -564,6 +594,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/zh-CN\/COMPARISON\.md/);
     assert.match(unreleasedSection, /NPM package docs surface/);
     assert.match(unreleasedSection, /published README docs links/);
+    assert.match(unreleasedSection, /Prompt recipe guide/);
+    assert.match(unreleasedSection, /docs\/PROMPTS\.md/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {

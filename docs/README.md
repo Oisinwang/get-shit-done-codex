@@ -24,6 +24,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 | [Demo](DEMO.md) | New users, evaluators | A short transcript showing the first Codex workflow and the durable artifacts it creates |
 | [Evaluate](EVALUATE.md) | New users, evaluators | A safe 10-minute trial checklist with pass and fail signals |
 | [Examples](EXAMPLES.md) | New users | Copy-pastable workflows for new projects, existing repos, quick fixes, resume, spikes, and sketches |
+| [Prompt Recipes](PROMPTS.md) | New users | Copy-pastable Codex prompts for starting, resuming, auditing, and fixing with GSD |
 | [FAQ](FAQ.md) | New users, evaluators | Answers common adoption questions about scope, files, runtimes, and when not to use GSD |
 | [Comparison](COMPARISON.md) | Evaluators | Decision guide comparing GSD Codex with raw Codex chat, prompt packs, task managers, and CI-only workflows |
 | [Roadmap](ROADMAP.md) | Evaluators, contributors | Public status, near-term priorities, manual maintainer actions, and good first issue candidates |
@@ -45,6 +46,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 - **See the first run:** [Demo](DEMO.md)
 - **Try safely:** [Evaluate](EVALUATE.md)
 - **Pick a workflow:** [Examples](EXAMPLES.md)
+- **Paste a Codex prompt:** [Prompt Recipes](PROMPTS.md)
 - **Check fit:** [FAQ](FAQ.md)
 - **Compare options:** [Comparison](COMPARISON.md)
 - **See direction:** [Roadmap](ROADMAP.md)

@@ -20,6 +20,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Existing repo safe trial** - Updates `docs/EXAMPLES.md` with a 4-command path for repositories that already have source code, tests, and a README.
 - **Simplified Chinese comparison guide** - Adds `docs/zh-CN/COMPARISON.md` and links it from the localized docs index so Chinese readers can evaluate the same trade-offs as the English comparison guide.
 - **NPM package docs surface** - Ships the `docs/` directory in the root npm package so published README docs links resolve inside the package tarball.
+- **Prompt recipe guide** - Adds `docs/PROMPTS.md` with copy-pastable Codex prompts for starting, resuming, auditing, and fixing with GSD Codex.
 - **`/gsd-ingest-docs` command** — Scan a repo containing mixed ADRs, PRDs, SPECs, and DOCs and bootstrap or merge the full `.planning/` setup from them in a single pass. Parallel classification (`gsd-doc-classifier`), synthesis with precedence rules and cycle detection (`gsd-doc-synthesizer`), three-bucket conflicts report (`INGEST-CONFLICTS.md`: auto-resolved, competing-variants, unresolved-blockers), and hard-block on LOCKED-vs-LOCKED ADR contradictions in both new and merge modes. Supports directory-convention discovery and `--manifest <file>` YAML override with per-doc precedence. v1 caps at 50 docs per invocation; `--resolve interactive` is reserved. Extracts shared conflict-detection contract into `references/doc-conflict-engine.md` which `/gsd-import` now also consumes (#2387)
 
 ### Fixed
