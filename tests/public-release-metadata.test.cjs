@@ -151,6 +151,7 @@ describe('public release metadata', () => {
 
   test('high-visibility English public files stay ASCII-clean', () => {
     const asciiFiles = [
+      'CODE_OF_CONDUCT.md',
       'README.md',
       'docs/README.md',
       'get-shit-done/workflows/quick.md',
@@ -358,7 +359,10 @@ describe('public release metadata', () => {
   });
 
   test('community health files point at this public fork', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const contributing = fs.readFileSync(path.join(ROOT, 'CONTRIBUTING.md'), 'utf8');
     const codeowners = fs.readFileSync(path.join(ROOT, '.github', 'CODEOWNERS'), 'utf8');
+    const codeOfConduct = fs.readFileSync(path.join(ROOT, 'CODE_OF_CONDUCT.md'), 'utf8');
     const security = fs.readFileSync(path.join(ROOT, 'SECURITY.md'), 'utf8');
     const funding = fs.readFileSync(path.join(ROOT, '.github', 'FUNDING.yml'), 'utf8');
     const issueConfig = fs.readFileSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'config.yml'), 'utf8');
@@ -366,8 +370,17 @@ describe('public release metadata', () => {
     const legacyJoinCommand = fs.readFileSync(path.join(ROOT, 'commands', 'gsd', 'join-discord.md'), 'utf8');
     const helpWorkflow = fs.readFileSync(path.join(ROOT, 'get-shit-done', 'workflows', 'help.md'), 'utf8');
 
+    assert.match(readme, /CODE_OF_CONDUCT\.md/);
+    assert.match(contributing, /CODE_OF_CONDUCT\.md/);
+
     assert.match(codeowners, /\*\s+@Oisinwang/);
     assert.doesNotMatch(codeowners, /glittercowboy/i);
+
+    assert.match(codeOfConduct, /Contributor Covenant Code of Conduct/);
+    assert.match(codeOfConduct, /Codex-first fork/);
+    assert.match(codeOfConduct, /I need to report a conduct issue privately/);
+    assert.doesNotMatch(codeOfConduct, /INSERT CONTACT METHOD/);
+    assert.doesNotMatch(codeOfConduct, /discord\.gg/i);
 
     assert.match(security, /Oisinwang\/get-shit-done-codex\/security\/advisories\/new/);
     assert.match(security, /Codex-first fork/);
@@ -380,6 +393,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(funding, /glittercowboy/i);
 
     assert.match(issueConfig, /github\.com\/Oisinwang\/get-shit-done-codex\/discussions/);
+    assert.match(issueConfig, /CODE_OF_CONDUCT\.md/);
     assert.match(issueConfig, /github\.com\/Oisinwang\/get-shit-done-codex\/security\/advisories\/new/);
     assert.doesNotMatch(issueConfig, /discord\.gg/i);
 

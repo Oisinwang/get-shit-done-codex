@@ -40,9 +40,9 @@ npx @oisinwang/get-shit-done-codex@latest
 
 **Independent Codex-first fork of GSD.** Use this fork when you want `AGENTS.md`, `.codex/`, `$gsd-*`, and Codex session paths to be the public default instead of migration details.
 
-**Security and release hygiene:** scoped npm package, repository metadata, CI, release workflows, and issue templates all point at this fork. Legacy Claude-era names remain only as compatibility shims.
+**Security and release hygiene:** scoped npm package, repository metadata, CI, release workflows, issue templates, and [community standards](CODE_OF_CONDUCT.md) all point at this fork. Legacy Claude-era names remain only as compatibility shims.
 
-[Why This Fork Exists](#why-this-fork-exists) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md)
+[Why This Fork Exists](#why-this-fork-exists) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md) | [Code of Conduct](CODE_OF_CONDUCT.md)
 
 </div>
 

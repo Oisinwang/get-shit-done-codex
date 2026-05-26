@@ -32,6 +32,12 @@ This repository is also Codex-first. Contributor-facing defaults should prefer:
 Legacy `CLAUDE.md`, `.claude/`, `claude_*`, and `generate-claude-*` names remain only as compatibility
 shims. If your issue or PR changes those surfaces, explain why the compatibility path still needs to exist.
 
+## Community Standards
+
+All contributors are expected to follow [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+
+If you need to report a conduct issue privately, follow the reporting instructions in that file. Do not include sensitive personal details in public issues, pull requests, or discussions.
+
 ## Line Endings
 
 This repository enforces line endings through `.gitattributes`. Contributors do not need project-specific `core.autocrlf` tweaks; Git will normalize tracked text files automatically.

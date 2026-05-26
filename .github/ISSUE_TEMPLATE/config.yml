@@ -3,6 +3,9 @@ contact_links:
   - name: Questions and usage help
     url: https://github.com/Oisinwang/get-shit-done-codex/discussions
     about: Ask questions, share usage notes, and discuss non-bug topics.
+  - name: Code of conduct
+    url: https://github.com/Oisinwang/get-shit-done-codex/blob/codex/bootstrap/CODE_OF_CONDUCT.md
+    about: Review community standards and private conduct reporting guidance.
   - name: Report a security vulnerability
     url: https://github.com/Oisinwang/get-shit-done-codex/security/advisories/new
     about: Report suspected vulnerabilities privately. Do not disclose vulnerability details in public issues.
