@@ -6,9 +6,51 @@ const path = require('node:path');
 const { describe, test } = require('node:test');
 
 const ROOT = path.join(__dirname, '..');
+const ISSUE_TEMPLATE_DIR = path.join(ROOT, '.github', 'ISSUE_TEMPLATE');
 
 function readWorkflow(name) {
   return fs.readFileSync(path.join(ROOT, '.github', 'workflows', name), 'utf8');
+}
+
+function readIssueTemplate(name) {
+  return fs.readFileSync(path.join(ISSUE_TEMPLATE_DIR, name), 'utf8');
+}
+
+function issueTemplateFiles() {
+  return fs
+    .readdirSync(ISSUE_TEMPLATE_DIR)
+    .filter((name) => /\.ya?ml$/.test(name))
+    .filter((name) => name !== 'config.yml')
+    .sort();
+}
+
+function issueTemplateLabels(name) {
+  const template = readIssueTemplate(name);
+  const labelsLine = template.match(/^labels:\s*\[([^\]]*)\]/m);
+
+  assert.ok(labelsLine, `${name} should declare template labels`);
+
+  return labelsLine[1]
+    .split(',')
+    .map((label) => label.trim().replace(/^"|"$/g, ''))
+    .filter(Boolean);
+}
+
+function contributingWorkflowLabels() {
+  const contributing = fs.readFileSync(path.join(ROOT, 'CONTRIBUTING.md'), 'utf8');
+  const labels = new Set();
+  const patterns = [
+    /\blabel(?:ed|s|ing)?(?:\s+the issue)?\s*:?\s*`([^`]+)`/gi,
+    /`([^`]+)`\s+label\b/gi,
+  ];
+
+  for (const pattern of patterns) {
+    for (const match of contributing.matchAll(pattern)) {
+      labels.add(match[1]);
+    }
+  }
+
+  return [...labels].sort();
 }
 
 describe('GitHub workflows public release configuration', () => {
@@ -80,5 +122,36 @@ describe('GitHub workflows public release configuration', () => {
     assert.ok(authStep < tagStep, 'npm authentication must be checked before pushing tags');
     assert.match(workflow, /NPM_TOKEN secret is not configured/);
     assert.match(workflow, /npm whoami/);
+  });
+
+  test('public issue labels are declared before templates or docs reference them', () => {
+    const labelContract = JSON.parse(
+      fs.readFileSync(path.join(ROOT, '.github', 'labels.json'), 'utf8'),
+    );
+    const declaredLabels = new Set(labelContract.labels.map((label) => label.name));
+    const templateFiles = issueTemplateFiles();
+    const docLabels = contributingWorkflowLabels();
+
+    assert.ok(templateFiles.length > 0, 'public issue templates should be present');
+    assert.ok(docLabels.length > 0, 'CONTRIBUTING.md should mention workflow labels');
+
+    for (const label of labelContract.labels) {
+      assert.ok(label.name, 'contract labels should have names');
+      assert.ok(label.description.trim(), `${label.name} should document its purpose`);
+      assert.match(label.color, /^[0-9a-f]{6}$/i, `${label.name} should use a hex color`);
+    }
+
+    for (const templateName of templateFiles) {
+      for (const label of issueTemplateLabels(templateName)) {
+        assert.ok(
+          declaredLabels.has(label),
+          `${templateName} references undeclared GitHub label ${label}`,
+        );
+      }
+    }
+
+    for (const label of docLabels) {
+      assert.ok(declaredLabels.has(label), `CONTRIBUTING.md references undeclared label ${label}`);
+    }
   });
 });
