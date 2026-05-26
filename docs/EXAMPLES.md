@@ -55,6 +55,17 @@ $gsd-progress --forensic
 
 Keep `AGENTS.md`, `.codex/`, and `.planning/` when the generated state helps later Codex sessions resume the same project context. Ignore or discard the trial branch when the artifacts are only private evaluation notes or do not match how your team reviews project state.
 
+## Prepare A Public Pull Request
+
+Use this when you worked with GSD planning files locally but want reviewers to see code, docs, and structural planning changes without transient phase artifacts. In this repository, target `codex/bootstrap`; in another repository, replace that with the branch you normally merge into.
+
+```bash
+$gsd-progress --forensic
+$gsd-pr-branch codex/bootstrap
+```
+
+Use `$gsd-progress --forensic` first to surface verification debt before exporting a clean branch. `$gsd-pr-branch` will filter transient `.planning/` commits before public review while preserving code changes and structural project state. The command creates a `*-pr` branch from the target branch and prints the next steps. Run the printed `git push` and `gh pr create` commands only after reviewing that generated branch.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.

@@ -226,20 +226,27 @@ describe('public release metadata', () => {
     assert.match(readme, /`git switch -c evaluate-gsd-codex`/);
     assert.match(readme, /Review generated planning artifacts/);
     assert.match(readme, /`\$gsd-progress --forensic`/);
+    assert.match(readme, /Prepare a public PR without planning noise/);
+    assert.match(readme, /`\$gsd-pr-branch codex\/bootstrap`/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
     assert.match(examples, /## Existing Repo Migration Branch/);
     assert.match(examples, /## Review Generated Planning Artifacts/);
+    assert.match(examples, /## Prepare A Public Pull Request/);
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
+    assert.match(examples, /\$gsd-pr-branch codex\/bootstrap/);
     assert.match(examples, /git switch -c evaluate-gsd-codex/);
     assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(examples, /commit the branch only after reviewing the generated plan/i);
     assert.match(examples, /git diff -- \.codex AGENTS\.md PROJECT\.md ROADMAP\.md STATE\.md \.planning/);
     assert.match(examples, /Keep `AGENTS\.md`, `.codex\/`, and `.planning\/` when the generated state helps later Codex sessions resume/);
     assert.match(examples, /Ignore or discard the trial branch when the artifacts are only private evaluation notes/);
+    assert.match(examples, /filter transient `.planning\/` commits before public review/);
+    assert.match(examples, /The command creates a `\*-pr` branch from the target branch/);
+    assert.match(examples, /Run the printed `git push` and `gh pr create` commands only after reviewing that generated branch/);
     assert.match(examples, /source code, tests, and a README/);
     assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
 
@@ -289,9 +296,24 @@ describe('public release metadata', () => {
       '$gsd-progress --forensic',
     ]);
 
+    const publicPrStart = examples.indexOf('## Prepare A Public Pull Request');
+    const publicPrEnd = examples.indexOf('## Small Fix With Guardrails');
+    const publicPrSection = examples.slice(publicPrStart, publicPrEnd);
+    const publicPrCommands = publicPrSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(publicPrCommands, 'public PR example should include a bash block');
+    assert.deepEqual(publicPrCommands, [
+      '$gsd-progress --forensic',
+      '$gsd-pr-branch codex/bootstrap',
+    ]);
+
     for (const marker of [
       '$gsd-new-project --auto',
       '$gsd-map-codebase',
+      '$gsd-pr-branch',
       '$gsd-fast',
       '$gsd-resume-work',
       '$gsd-spike',
