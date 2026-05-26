@@ -104,13 +104,13 @@ node bin/install.js --codex --local
 ```
 
 The installer prompts you to choose:
-1. **Runtime** - Claude Code, OpenCode, Gemini, Kilo, Codex, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, CodeBuddy, Cline, or all (interactive multi-select - pick multiple runtimes in a single install session)
+1. **Runtime** - Codex, Claude Code, OpenCode, Gemini, Kilo, Copilot, Cursor, Windsurf, Antigravity, Augment, Trae, Qwen Code, CodeBuddy, Cline, or all (interactive multi-select - pick multiple runtimes in a single install session)
 2. **Location** - Global (all projects) or local (current project only)
 
 Verify with:
+- Codex: `$gsd-help`
 - Claude Code / Gemini / Copilot / Antigravity / Qwen Code: `/gsd-help`
 - OpenCode / Kilo / Augment / Trae / CodeBuddy: `/gsd-help`
-- Codex: `$gsd-help`
 - Cline: GSD installs via `.clinerules` - verify by checking `.clinerules` exists
 
 > [!NOTE]
@@ -135,9 +135,13 @@ node bin/install.js --codex --global
 <details>
 <summary><strong>Non-interactive Install (Docker, CI, Scripts)</strong></summary>
 
-The Claude Code entries below are runtime-specific compatibility instructions. Codex remains the default target in this fork.
+Codex entries below are the primary install path for this fork. Compatibility runtime examples follow.
 
 ```bash
+# Codex
+npx @oisinwang/get-shit-done-codex --codex --global    # Install to ~/.codex/
+npx @oisinwang/get-shit-done-codex --codex --local     # Install to ./.codex/
+
 # Claude Code compatibility/runtime
 npx @oisinwang/get-shit-done-codex --claude --global   # Install to ~/.claude/
 npx @oisinwang/get-shit-done-codex --claude --local    # Install to ./.claude/
@@ -151,10 +155,6 @@ npx @oisinwang/get-shit-done-codex --gemini --global   # Install to ~/.gemini/
 # Kilo
 npx @oisinwang/get-shit-done-codex --kilo --global     # Install to ~/.config/kilo/
 npx @oisinwang/get-shit-done-codex --kilo --local      # Install to ./.kilo/
-
-# Codex
-npx @oisinwang/get-shit-done-codex --codex --global    # Install to ~/.codex/
-npx @oisinwang/get-shit-done-codex --codex --local     # Install to ./.codex/
 
 # Copilot
 npx @oisinwang/get-shit-done-codex --copilot --global  # Install to ~/.github/
@@ -197,7 +197,7 @@ npx @oisinwang/get-shit-done-codex --all --global      # Install to all director
 ```
 
 Use `--global` (`-g`) or `--local` (`-l`) to skip the location prompt.
-Use `--claude`, `--opencode`, `--gemini`, `--kilo`, `--codex`, `--copilot`, `--cursor`, `--windsurf`, `--antigravity`, `--augment`, `--trae`, `--qwen`, `--codebuddy`, `--cline`, or `--all` to skip the runtime prompt.
+Use `--codex`, `--claude`, `--opencode`, `--gemini`, `--kilo`, `--copilot`, `--cursor`, `--windsurf`, `--antigravity`, `--augment`, `--trae`, `--qwen`, `--codebuddy`, `--cline`, or `--all` to skip the runtime prompt.
 The GSD SDK CLI (`gsd-sdk`) is installed automatically (required by `/gsd-*` commands). Pass `--no-sdk` to skip the SDK install, or `--sdk` to force a reinstall.
 
 </details>

@@ -26,6 +26,14 @@ describe('public release metadata', () => {
   test('root npm package keywords cover public discovery terms', () => {
     const packageJson = readJson('package.json');
 
+    assert.deepEqual(packageJson.keywords.slice(0, 5), [
+      'codex',
+      'openai-codex',
+      'codex-cli',
+      'ai-coding',
+      'ai-agents',
+    ]);
+
     const requiredKeywords = [
       'ai',
       'ai-agents',
@@ -44,6 +52,16 @@ describe('public release metadata', () => {
     for (const keyword of requiredKeywords) {
       assert.ok(packageJson.keywords.includes(keyword), `package.json keywords missing ${keyword}`);
     }
+  });
+
+  test('README install flow leads with Codex before compatibility runtimes', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+
+    assert.match(readme, /\*\*Runtime\*\* - Codex, Claude Code, OpenCode/);
+    assert.match(
+      readme,
+      /# Codex[\s\S]*npx @oisinwang\/get-shit-done-codex --codex --global[\s\S]*# Claude Code compatibility\/runtime/,
+    );
   });
 
   test('sdk package uses the same public npm scope', () => {
