@@ -763,6 +763,7 @@ describe('public release metadata', () => {
   });
 
   test('community health files point at this public fork', () => {
+    const packageJson = readJson('package.json');
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const contributing = fs.readFileSync(path.join(ROOT, 'CONTRIBUTING.md'), 'utf8');
     const codeowners = fs.readFileSync(path.join(ROOT, '.github', 'CODEOWNERS'), 'utf8');
@@ -775,7 +776,9 @@ describe('public release metadata', () => {
     const helpWorkflow = fs.readFileSync(path.join(ROOT, 'get-shit-done', 'workflows', 'help.md'), 'utf8');
 
     assert.match(readme, /CODE_OF_CONDUCT\.md/);
+    assert.match(readme, /\[Security\]\(SECURITY\.md\)/);
     assert.match(contributing, /CODE_OF_CONDUCT\.md/);
+    assert.ok(packageJson.files.includes('SECURITY.md'), 'npm package should include SECURITY.md');
 
     assert.match(codeowners, /\*\s+@Oisinwang/);
     assert.doesNotMatch(codeowners, /glittercowboy/i);

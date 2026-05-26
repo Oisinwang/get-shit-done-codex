@@ -15,6 +15,7 @@
     "agents",
     "hooks",
     "scripts",
+    "SECURITY.md",
     "SUPPORT.md",
     "sdk/src",
     "sdk/prompts",
