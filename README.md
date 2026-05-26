@@ -479,7 +479,7 @@ Flags are composable: `--discuss --research --validate` gives discussion + resea
 
 ### Context Engineering
 
-Claude Code is incredibly powerful *if* you give it the context it needs. Most people don't.
+Codex is powerful when it has durable project context. Most long-running coding sessions lose that context unless it is made explicit.
 
 GSD handles it for you:
 
@@ -496,7 +496,7 @@ GSD handles it for you:
 | `threads/` | Persistent context threads for cross-session work |
 | `seeds/` | Forward-looking ideas that surface at the right milestone |
 
-Size limits based on where Claude's quality degrades. Stay under, get consistent excellence.
+Size limits are based on where long-context coding quality starts to degrade. Stay under them and the workflow stays predictable.
 
 ### XML Prompt Formatting
 
@@ -923,6 +923,6 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**Claude Code is powerful. GSD makes it reliable.**
+**Codex is powerful. GSD makes long-running work verifiable.**
 
 </div>

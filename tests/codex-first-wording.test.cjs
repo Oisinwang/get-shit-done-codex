@@ -74,6 +74,15 @@ describe('codex-first canonical wording', () => {
     }
   });
 
+  test('README context engineering and closing tagline are Codex-first', () => {
+    const readme = readRepoFile('README.md');
+
+    assert.match(readme, /Codex is powerful when it has durable project context/i);
+    assert.match(readme, /Codex is powerful\. GSD makes long-running work verifiable\./);
+    assert.doesNotMatch(readme, /Claude Code is incredibly powerful/i);
+    assert.doesNotMatch(readme, /Claude Code is powerful\. GSD makes it reliable\./);
+  });
+
   test('release-facing docs present scoped npm install as the verified path', () => {
     const readme = readRepoFile('README.md');
     const forkNotes = readRepoFile('docs/CODEX-FORK.md');
