@@ -30,6 +30,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **PowerShell npm.ps1 troubleshooting** - Documents the Windows `npm.ps1 cannot be loaded` execution-policy symptom and the `npm.cmd` / `npx.cmd` fallback install path.
 - **Existing repo migration branch example** - Adds a copy-pastable branch-first trial path so evaluators can inspect local `.codex/`, `AGENTS.md`, and `.planning/` artifacts before keeping GSD in an existing repository.
 - **Planning artifact review example** - Adds a copy-pastable review path for deciding whether generated `AGENTS.md`, `.codex/`, and `.planning/` artifacts should be committed after a trial run.
+- **Runtime restart troubleshooting** - Documents how to confirm installed Codex skill files, fully restart the runtime, and verify command discovery when `$gsd-*` commands do not appear after install.
 - **WSL path mismatch troubleshooting** - Documents how to diagnose Windows PowerShell versus WSL home-directory installs and rerun the installer from the shell that starts Codex.
 - **Corporate proxy troubleshooting** - Documents npm proxy and certificate diagnostics for `SELF_SIGNED_CERT_IN_CHAIN`, `UNABLE_TO_GET_ISSUER_CERT_LOCALLY`, and related registry fetch failures.
 - **Stale npm cache troubleshooting** - Documents cache verification, explicit `npm exec --package @latest` installs, and cautious cache cleaning for interrupted or stale `npx` runs.

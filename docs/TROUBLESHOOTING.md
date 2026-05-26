@@ -63,6 +63,30 @@ npx @oisinwang/get-shit-done-codex@latest --codex --local
 
 Restart the runtime after reinstalling.
 
+## Runtime restart or command discovery
+
+If installation succeeds and GSD files exist but `$gsd-help` or other `$gsd-*` commands do not appear, Codex may keep an in-memory command and skill index from before the install. Confirm the files are present before reinstalling again.
+
+For a global Windows Codex install:
+
+```powershell
+Get-ChildItem "$env:USERPROFILE\.codex\skills" -Recurse -Filter SKILL.md | Select-Object -First 20 FullName
+```
+
+For a local project install:
+
+```powershell
+Get-ChildItem ".\.codex\skills" -Recurse -Filter SKILL.md | Select-Object -First 20 FullName
+```
+
+Then fully restart the runtime:
+
+1. Close every Codex window or terminal session that was open before the install.
+2. Open Codex from the same shell and repository where you installed GSD.
+3. Run `$gsd-help`.
+
+If the files exist but commands still do not appear after a full restart, rerun the installer with the intended scope and include the command-discovery checks when opening an issue.
+
 ## Windows PowerShell path confusion
 
 On Windows, PowerShell may display `~` paths differently from the expanded filesystem path. To inspect the Codex config directly:

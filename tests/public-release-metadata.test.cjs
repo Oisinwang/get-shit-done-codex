@@ -499,6 +499,13 @@ describe('public release metadata', () => {
     assert.match(troubleshooting, /npm exec --yes --package @oisinwang\/get-shit-done-codex@latest get-shit-done-codex -- --codex --local/);
     assert.match(troubleshooting, /npm cache clean --force/);
     assert.match(troubleshooting, /Use cache clean only after cache verify or a fresh exec still fails/);
+    assert.match(troubleshooting, /Runtime restart or command discovery/);
+    assert.match(troubleshooting, /Codex may keep an in-memory command and skill index/);
+    assert.match(troubleshooting, /Get-ChildItem "\$env:USERPROFILE\\\.codex\\skills" -Recurse -Filter SKILL\.md/);
+    assert.match(troubleshooting, /Get-ChildItem "\.\\\.codex\\skills" -Recurse -Filter SKILL\.md/);
+    assert.match(troubleshooting, /Close every Codex window or terminal session that was open before the install/);
+    assert.match(troubleshooting, /\$gsd-help/);
+    assert.match(troubleshooting, /If the files exist but commands still do not appear after a full restart/);
     assert.match(troubleshooting, /node --version/);
     assert.match(troubleshooting, /npm --version/);
     assert.match(troubleshooting, /npx --version/);
