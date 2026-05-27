@@ -34,6 +34,11 @@ npx @oisinwang/get-shit-done-codex@latest
 
 - **Share the project:** [Promotion Assets](../PROMOTION.md)
 
+## Demo quick links
+
+- **See the first run:** [Demo](../DEMO.md)
+- **Record a short demo:** [Demo Media Checklist](../DEMO.md#demo-media-checklist)
+
 Claude 時代の名前は移行互換のためだけに残しています。fork の境界、命名規則、移行メモは [CODEX-FORK.md](../CODEX-FORK.md) を参照してください。
 
 ## ドキュメント索引

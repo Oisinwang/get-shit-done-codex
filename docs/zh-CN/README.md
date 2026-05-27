@@ -34,6 +34,11 @@ npx @oisinwang/get-shit-done-codex@latest
 
 - **Share the project:** [Promotion Assets](../PROMOTION.md)
 
+## Demo quick links
+
+- **See the first run:** [Demo](../DEMO.md)
+- **Record a short demo:** [Demo Media Checklist](../DEMO.md#demo-media-checklist)
+
 Claude 时代的旧名称只作为迁移兼容层保留。fork 的边界、命名规则和迁移说明见 [CODEX-FORK.md](../CODEX-FORK.md)。
 
 ## 文档索引

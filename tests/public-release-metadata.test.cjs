@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index demo links/);
+    assert.match(roadmap, /localized docs index FAQ links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1268,6 +1268,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index contribution links/);
     assert.doesNotMatch(roadmap, /localized docs index maintainer checklist links/);
     assert.doesNotMatch(roadmap, /localized docs index promotion links/);
+    assert.doesNotMatch(roadmap, /localized docs index demo links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1753,6 +1754,7 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Localized docs index contribution links/);
     assert.match(unreleasedSection, /Localized docs index maintainer checklist links/);
     assert.match(unreleasedSection, /Localized docs index promotion links/);
+    assert.match(unreleasedSection, /Localized docs index demo links/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
@@ -2129,6 +2131,17 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /## Promotion quick links\r?\n\r?\n- \*\*Share the project:\*\* \[Promotion Assets\]\(\.\.\/PROMOTION\.md\)/,
+        relativePath,
+      );
+      assert.match(readme, /- \*\*See the first run:\*\* \[Demo\]\(\.\.\/DEMO\.md\)/, relativePath);
+      assert.match(
+        readme,
+        /- \*\*Record a short demo:\*\* \[Demo Media Checklist\]\(\.\.\/DEMO\.md#demo-media-checklist\)/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /## Demo quick links\r?\n\r?\n- \*\*See the first run:\*\* \[Demo\]\(\.\.\/DEMO\.md\)\r?\n- \*\*Record a short demo:\*\* \[Demo Media Checklist\]\(\.\.\/DEMO\.md#demo-media-checklist\)/,
         relativePath,
       );
       assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-TROUBLESHOOTING\.md\)/, relativePath);
