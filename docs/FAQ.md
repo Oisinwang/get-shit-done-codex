@@ -212,6 +212,14 @@ Confirm the `npm-publish` environment exists. Confirm `NPM_TOKEN` is configured 
 
 Record the workflow URL or run ID, the version argument, and the package contents or logs you reviewed. Do not switch to `dry_run=false` until package contents have been reviewed and the release issue has a clear owner for final publish verification.
 
+## How should I close an issue after npm publishing succeeds?
+
+Record the published npm version. Record the publish timestamp in the issue comment. Link the successful workflow run URL so future maintainers can trace the publish job that moved `latest`.
+
+Run a clean install check with `npx @oisinwang/get-shit-done-codex@latest --codex` from a temporary directory or disposable repository, then paste the command and result into the issue.
+
+Remove the `pending release` label only after the clean install check passes. Close the issue with the npm version, publish timestamp, workflow run URL, and install check in the final comment.
+
 ## When should I not use it?
 
 Do not use GSD for a one-line edit when you already know the exact change and do not need durable state. It is also the wrong tool if you want an agent to act without review, tests, or traceable decisions. Use it when the work benefits from preserved context, staged planning, verification, or resume support.

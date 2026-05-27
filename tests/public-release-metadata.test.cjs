@@ -890,6 +890,7 @@ describe('public release metadata', () => {
     assert.match(faq, /How should I check README badges and links before publishing docs changes/);
     assert.match(faq, /How should I hand off a pending-release issue after a source fix lands/);
     assert.match(faq, /How should I capture release checklist dry-run evidence before publishing/);
+    assert.match(faq, /How should I close an issue after npm publishing succeeds/);
     assert.match(faq, /AGENTS\.md/);
     assert.match(faq, /\.codex\//);
     assert.match(faq, /planning context and execution evidence/);
@@ -926,6 +927,11 @@ describe('public release metadata', () => {
     assert.match(faq, /Confirm `NPM_TOKEN` is configured/);
     assert.match(faq, /Record the workflow URL or run ID/);
     assert.match(faq, /Do not switch to `dry_run=false` until package contents have been reviewed/);
+    assert.match(faq, /Record the published npm version/);
+    assert.match(faq, /Record the publish timestamp/);
+    assert.match(faq, /Link the successful workflow run URL/);
+    assert.match(faq, /Run a clean install check with `npx @oisinwang\/get-shit-done-codex@latest --codex/);
+    assert.match(faq, /Remove the `pending release` label only after the clean install check passes/);
     assert.match(faq, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(faq, /npx @oisinwang\/get-shit-done-codex@latest --codex --global/);
     assert.match(faq, /Use `--local` for repository trials/);
@@ -1036,7 +1042,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /npm publish verification issue closure evidence/);
+    assert.match(roadmap, /npm dist-tag rollback evidence/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
@@ -1062,6 +1068,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /README badge and link refresh checks/);
     assert.doesNotMatch(roadmap, /release issue handoff evidence/);
     assert.doesNotMatch(roadmap, /release checklist dry-run evidence/);
+    assert.doesNotMatch(roadmap, /npm publish verification issue closure evidence/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1473,6 +1480,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Release dry-run evidence FAQ/);
     assert.match(unreleasedSection, /dry_run=true/);
     assert.match(unreleasedSection, /workflow URL or run ID/);
+    assert.match(unreleasedSection, /Npm publish closure evidence FAQ/);
+    assert.match(unreleasedSection, /publish timestamp/);
+    assert.match(unreleasedSection, /clean install check/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
