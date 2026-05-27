@@ -42,7 +42,7 @@ npx @oisinwang/get-shit-done-codex@latest
 
 **보안과 릴리스 위생:** scoped npm package, 저장소 메타데이터, CI, release workflow, issue template은 모두 이 fork를 가리킵니다. 이전 Claude-era 이름은 호환 shim으로만 남아 있습니다.
 
-[이 fork가 존재하는 이유](#이-fork가-존재하는-이유) · [작동 방식](#작동-방식) · [명령어](#명령어) · [왜 효과적인가](#왜-효과적인가) · [사용자 가이드](docs/ko-KR/USER-GUIDE.md)
+[이 fork가 존재하는 이유](#이-fork가-존재하는-이유) · [작동 방식](#작동-방식) · [명령어](#명령어) · [왜 효과적인가](#왜-효과적인가) · [비교](docs/ko-KR/COMPARISON.md) · [사용자 가이드](docs/ko-KR/USER-GUIDE.md)
 
 </div>
 

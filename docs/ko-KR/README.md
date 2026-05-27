@@ -18,6 +18,7 @@ Claude 시대의 이름은 마이그레이션 호환을 위해서만 남아 있�
 | [User Guide](USER-GUIDE.md) | 모든 사용자 | 워크플로, 문제 해결, 복구 |
 | [Feature Reference](FEATURES.md) | 모든 사용자 | 기능, 요구사항, 기대 동작 |
 | [프롬프트 레시피](PROMPTS.md) | 모든 사용자 | Codex에 붙여넣을 시작 프롬프트 |
+| [비교 가이드](COMPARISON.md) | 평가자 | 원시 Codex chat, prompt pack, task manager, CI-only workflow와 GSD Codex의 차이를 비교 |
 | [Command Reference](COMMANDS.md) | 모든 사용자 | 명령, 문법, 플래그, 예시 |
 | [Configuration Reference](CONFIGURATION.md) | 모든 사용자 | 설정 schema, 워크플로 토글, 모델 프로필 |
 | [Architecture](ARCHITECTURE.md) | 기여자 | 시스템 구조, agent 모델, 데이터 흐름 |

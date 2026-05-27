@@ -803,6 +803,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
+    assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
     assert.doesNotMatch(roadmap, /\$gsd-session-report/);
@@ -1151,6 +1152,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/zh-CN\/COMPARISON\.md/);
     assert.match(unreleasedSection, /Japanese comparison guide/);
     assert.match(unreleasedSection, /docs\/ja-JP\/COMPARISON\.md/);
+    assert.match(unreleasedSection, /Korean comparison guide/);
+    assert.match(unreleasedSection, /docs\/ko-KR\/COMPARISON\.md/);
     assert.match(unreleasedSection, /NPM package docs surface/);
     assert.match(unreleasedSection, /published README docs links/);
     assert.match(unreleasedSection, /Prompt recipe guide/);
@@ -1545,6 +1548,32 @@ describe('public release metadata', () => {
     assert.match(jaPrompts, /\$gsd-audit-fix/);
     assert.match(jaPrompts, /\.planning\//);
     assert.match(jaPrompts, /検証を省略しない/);
+  });
+
+  test('Korean comparison guide mirrors public comparison tradeoffs', () => {
+    const koRootReadme = fs.readFileSync(path.join(ROOT, 'README.ko-KR.md'), 'utf8');
+    const koDocsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'ko-KR', 'README.md'), 'utf8');
+    const koComparisonPath = path.join(ROOT, 'docs', 'ko-KR', 'COMPARISON.md');
+
+    assert.equal(fs.existsSync(koComparisonPath), true, 'docs/ko-KR/COMPARISON.md should exist');
+
+    const koComparison = fs.readFileSync(koComparisonPath, 'utf8');
+
+    assert.match(koRootReadme, /\[비교\]\(docs\/ko-KR\/COMPARISON\.md\)/);
+    assert.match(koDocsReadme, /\[비교 가이드\]\(COMPARISON\.md\)/);
+    assert.match(koComparison, /# 비교 가이드/);
+    assert.match(koComparison, /원시 Codex chat/);
+    assert.match(koComparison, /prompt pack/);
+    assert.match(koComparison, /task manager/);
+    assert.match(koComparison, /CI-only workflow/);
+    assert.match(koComparison, /완전한 엔터프라이즈 프로세스/);
+    assert.match(koComparison, /GSD Codex를 선택/);
+    assert.match(koComparison, /GSD Codex를 사용하지/);
+    assert.match(koComparison, /Codex 자체의 대체품이 아닙니다/);
+    assert.match(koComparison, /AGENTS\.md/);
+    assert.match(koComparison, /\.codex\//);
+    assert.match(koComparison, /\.planning\//);
+    assert.match(koComparison, /\$gsd-\*/);
   });
 
   test('Korean prompt recipes mirror public starter prompts', () => {

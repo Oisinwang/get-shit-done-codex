@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Korean comparison guide** - Adds `docs/ko-KR/COMPARISON.md` and discovery links so Korean readers can evaluate the same raw Codex, prompt pack, task manager, and CI-only trade-offs as the English guide.
 - **Maintainer checklist** - Adds `docs/MAINTAINER-CHECKLIST.md` so resolved good-first issues close with verification evidence, CI links, label cleanup, and roadmap or backlog updates.
 - **Cleanup example** - Adds a copy-pastable `$gsd-cleanup` playbook for archiving completed milestone phase directories into `.planning/milestones/v{version}-phases/`.
 - **Session-report example** - Adds a copy-pastable `$gsd-session-report` playbook for writing `.planning/reports/SESSION_REPORT.md` before maintainer handoffs or weekly progress summaries.
