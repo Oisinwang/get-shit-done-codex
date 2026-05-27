@@ -55,6 +55,10 @@ npx @oisinwang/get-shit-done-codex@latest
 
 - **Paste a Codex prompt:** [Prompt Recipes](PROMPTS.md)
 
+## Comparison quick links
+
+- **Compare options:** [Comparison](COMPARISON.md)
+
 Claude 時代の名前は移行互換のためだけに残しています。fork の境界、命名規則、移行メモは [CODEX-FORK.md](../CODEX-FORK.md) を参照してください。
 
 ## ドキュメント索引

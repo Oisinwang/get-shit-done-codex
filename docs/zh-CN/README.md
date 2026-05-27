@@ -55,6 +55,10 @@ npx @oisinwang/get-shit-done-codex@latest
 
 - **Paste a Codex prompt:** [Prompt Recipes](PROMPTS.md)
 
+## Comparison quick links
+
+- **Compare options:** [Comparison](COMPARISON.md)
+
 Claude 时代的旧名称只作为迁移兼容层保留。fork 的边界、命名规则和迁移说明见 [CODEX-FORK.md](../CODEX-FORK.md)。
 
 ## 文档索引
