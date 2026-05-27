@@ -244,6 +244,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-eval-review 3`/);
     assert.match(readme, /Preserve long-running context/);
     assert.match(readme, /`\$gsd-thread "Investigate flaky release"`/);
+    assert.match(readme, /Pause before a context reset/);
+    assert.match(readme, /`\$gsd-pause-work`/);
     assert.match(readme, /Fix confirmed audit findings/);
     assert.match(readme, /`\$gsd-audit-fix --dry-run`/);
     assert.match(readme, /Coordinate parallel workstreams/);
@@ -264,6 +266,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Audit Thin Validation Evidence/);
     assert.match(examples, /## Review AI Eval Coverage/);
     assert.match(examples, /## Preserve Long-Running Context/);
+    assert.match(examples, /## Pause Before A Context Reset/);
     assert.match(examples, /## Fix Confirmed Audit Findings/);
     assert.match(examples, /## Coordinate Parallel Workstreams/);
     assert.match(examples, /## Diagnose A Failed Workflow Run/);
@@ -279,6 +282,7 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-validate-phase 1/);
     assert.match(examples, /\$gsd-eval-review 3/);
     assert.match(examples, /\$gsd-thread "Investigate flaky release"/);
+    assert.match(examples, /\$gsd-pause-work/);
     assert.match(examples, /\$gsd-audit-fix --dry-run/);
     assert.match(examples, /\$gsd-audit-fix --severity high --max 3/);
     assert.match(examples, /\$gsd-workstreams create backend-api/);
@@ -334,6 +338,11 @@ describe('public release metadata', () => {
     assert.match(examples, /Goal, Context, References, and Next Steps/);
     assert.match(examples, /resume with `\$gsd-thread investigate-flaky-release`/);
     assert.match(examples, /close with `\$gsd-thread close investigate-flaky-release`/);
+    assert.match(examples, /before stopping, compacting, or handing off a Codex session/);
+    assert.match(examples, /writes `.planning\/HANDOFF\.json`/);
+    assert.match(examples, /writes `.continue-here\.md`/);
+    assert.match(examples, /machine-readable state for `\$gsd-resume-work`/);
+    assert.match(examples, /human-readable context for the next maintainer/);
     assert.match(examples, /after UAT or verification has produced concrete findings/);
     assert.match(examples, /preview classification before changing files/);
     assert.match(examples, /classifies each finding as auto-fixable, manual-only, or skip/);
@@ -537,6 +546,21 @@ describe('public release metadata', () => {
       '$gsd-thread close investigate-flaky-release',
     ]);
 
+    const pauseWorkStart = examples.indexOf('## Pause Before A Context Reset');
+    const pauseWorkEnd = examples.indexOf('## Small Fix With Guardrails');
+    const pauseWorkSection = examples.slice(pauseWorkStart, pauseWorkEnd);
+    const pauseWorkCommands = pauseWorkSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(pauseWorkCommands, 'pause-work example should include a bash block');
+    assert.deepEqual(pauseWorkCommands, [
+      '$gsd-progress --forensic',
+      '$gsd-pause-work',
+      '$gsd-resume-work',
+    ]);
+
     const auditFixStart = examples.indexOf('## Fix Confirmed Audit Findings');
     const auditFixEnd = examples.indexOf('## Small Fix With Guardrails');
     const auditFixSection = examples.slice(auditFixStart, auditFixEnd);
@@ -727,6 +751,8 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
+    assert.match(roadmap, /\$gsd-session-report/);
+    assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1071,6 +1097,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\$gsd-eval-review 3/);
     assert.match(unreleasedSection, /Thread context example/);
     assert.match(unreleasedSection, /\$gsd-thread "Investigate flaky release"/);
+    assert.match(unreleasedSection, /Pause-work example/);
+    assert.match(unreleasedSection, /\$gsd-pause-work/);
     assert.match(unreleasedSection, /Audit-fix example/);
     assert.match(unreleasedSection, /\$gsd-audit-fix --dry-run/);
   });

@@ -161,6 +161,18 @@ $gsd-thread close investigate-flaky-release
 
 The create command writes `.planning/threads/{slug}.md` with status, created, and updated frontmatter plus Goal, Context, References, and Next Steps sections. Later sessions can resume with `$gsd-thread investigate-flaky-release`; when the issue is handled, close with `$gsd-thread close investigate-flaky-release`.
 
+## Pause Before A Context Reset
+
+Use this before stopping, compacting, or handing off a Codex session when current work is tied to an active phase, spike, sketch, deliberation, or research trail.
+
+```bash
+$gsd-progress --forensic
+$gsd-pause-work
+$gsd-resume-work
+```
+
+Run `$gsd-progress --forensic` first to surface pending verification debt and stale state. `$gsd-pause-work` writes `.planning/HANDOFF.json` with machine-readable state for `$gsd-resume-work` and writes `.continue-here.md` with human-readable context for the next maintainer. The handoff should capture current position, completed work, remaining work, blockers, human actions pending, background processes, modified files, and the next concrete action.
+
 ## Fix Confirmed Audit Findings
 
 Use this after UAT or verification has produced concrete findings and you want to preview classification before changing files. `$gsd-audit-fix` is useful when you need a conservative path from audit output to verified, traceable fixes.

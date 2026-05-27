@@ -150,6 +150,7 @@ Built-in quality gates catch real problems: schema drift detection flags ORM cha
 | Audit thin validation evidence | `$gsd-validate-phase 1` | Nyquist gap audit, generated tests, and `{phase}-VALIDATION.md` |
 | Review AI eval coverage | `$gsd-eval-review 3` | Scored `{phase}-EVAL-REVIEW.md` with gaps and remediation |
 | Preserve long-running context | `$gsd-thread "Investigate flaky release"` | Thread file with goal, context, references, and next steps |
+| Pause before a context reset | `$gsd-pause-work` | `.planning/HANDOFF.json` and `.continue-here.md` resume state |
 | Fix confirmed audit findings | `$gsd-audit-fix --dry-run` | Classification table before verified atomic fixes |
 | Coordinate parallel workstreams | `$gsd-workstreams create backend-api` | Isolated planning state for concurrent milestone efforts |
 | Diagnose a failed workflow run | `$gsd-forensics "Phase 3 execution stalled"` | Evidence-backed post-mortem report before recovery |
