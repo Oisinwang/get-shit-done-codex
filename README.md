@@ -113,6 +113,8 @@ $gsd-next
 git status --short
 ```
 
+From a source checkout, `npm run demo:safe-trial` prints the same safe trial flow without installing or editing files.
+
 Expected setup files are `.codex/`, `AGENTS.md`, and `.planning/`. Review `git status --short` before committing anything; if you ran a workflow that changed product code, those files should appear separately.
 
 For a brand-new sandbox, create a throwaway directory first, then run the same install and GSD commands. Remove the throwaway directory or delete the trial branch when you are done evaluating.

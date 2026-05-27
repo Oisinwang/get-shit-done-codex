@@ -74,6 +74,7 @@
   },
   "scripts": {
     "build:hooks": "node scripts/build-hooks.js",
+    "demo:safe-trial": "node scripts/safe-trial-demo.cjs",
     "prepublishOnly": "npm run build:hooks",
     "test": "node scripts/run-tests.cjs",
     "test:coverage": "node scripts/run-coverage.cjs"

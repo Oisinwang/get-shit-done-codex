@@ -42,6 +42,7 @@ describe('public release metadata', () => {
     assert.equal(packageLock.packages[''].name, '@oisinwang/get-shit-done-codex');
     assert.equal(packageJson.bin['get-shit-done-codex'], 'bin/install.js');
     assert.equal(packageJson.publishConfig.access, 'public');
+    assert.equal(packageJson.scripts['demo:safe-trial'], 'node scripts/safe-trial-demo.cjs');
   });
 
   test('root npm package keywords cover public discovery terms', () => {
@@ -215,6 +216,8 @@ describe('public release metadata', () => {
     assert.match(readme, /\$gsd-new-project --auto/);
     assert.match(readme, /\$gsd-next/);
     assert.match(readme, /git status --short/);
+    assert.match(readme, /npm run demo:safe-trial/);
+    assert.match(readme, /prints the same safe trial flow without installing or editing files/);
     assert.match(readme, /\.codex\/`, `AGENTS\.md`, and `\.planning\//);
     assert.match(readme, /Remove the throwaway directory or delete the trial branch/);
     assert.match(readme, /full checklist in \[Evaluate\]\(docs\/EVALUATE\.md\)/);
@@ -231,6 +234,9 @@ describe('public release metadata', () => {
     assert.match(evaluate, /Fail signals/);
     assert.match(evaluate, /cleanup/);
     assert.match(evaluate, /git status/);
+    assert.match(evaluate, /npm run demo:safe-trial/);
+    assert.match(evaluate, /scripts\/safe-trial-demo\.cjs/);
+    assert.match(evaluate, /prints commands only/);
     assert.doesNotMatch(evaluate, /[^\x00-\x7F]/, 'docs/EVALUATE.md should stay ASCII-clean');
   });
 
@@ -1095,11 +1101,12 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /safe trial demo script/);
+    assert.match(roadmap, /safe trial demo transcript/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
     assert.doesNotMatch(roadmap, /before\/after README example/);
+    assert.doesNotMatch(roadmap, /safe trial demo script/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1561,6 +1568,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README before and after example/);
     assert.match(unreleasedSection, /Make onboarding less confusing/);
+    assert.match(unreleasedSection, /Safe trial demo script/);
+    assert.match(unreleasedSection, /scripts\/safe-trial-demo\.cjs/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);

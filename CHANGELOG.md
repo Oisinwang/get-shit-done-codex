@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Safe trial demo script** - Adds `scripts/safe-trial-demo.cjs` and `npm run demo:safe-trial` to print sandbox and existing-repository trial flows without installing or editing files.
 - **README before and after example** - Shows how `Make onboarding less confusing` becomes GSD commands, project state files, phase artifacts, and verification evidence.
 - **Localized README safe trial path** - Mirrors the safe local Codex trial commands, expected files, cleanup note, and `docs/EVALUATE.md` link in localized README files.
 - **README safe 10-minute trial block** - Adds a near-top disposable branch path for local Codex installs, first-run GSD commands, expected changed files, and cleanup guidance.
