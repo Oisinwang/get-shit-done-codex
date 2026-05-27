@@ -148,6 +148,19 @@ $gsd-eval-review 3
 
 The first command creates the evaluation contract before implementation; skip it only when the phase already has an `AI-SPEC.md`. After execution, `$gsd-eval-review` scores each eval dimension as COVERED, PARTIAL, or MISSING, audits eval tooling, reference dataset, CI/CD integration, online guardrails, and tracing, then writes `{phase}-EVAL-REVIEW.md` with Overall Score, Verdict, critical gaps, and remediation plan.
 
+## Preserve Long-Running Context
+
+Use this when you need to keep long-running context across sessions, but the investigation is not tied to one phase. `$gsd-thread` keeps the notes lightweight until they are ready to become a phase, backlog item, or resolved decision.
+
+```bash
+$gsd-thread "Investigate flaky release"
+$gsd-thread
+$gsd-thread status investigate-flaky-release
+$gsd-thread close investigate-flaky-release
+```
+
+The create command writes `.planning/threads/{slug}.md` with status, created, and updated frontmatter plus Goal, Context, References, and Next Steps sections. Later sessions can resume with `$gsd-thread investigate-flaky-release`; when the issue is handled, close with `$gsd-thread close investigate-flaky-release`.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.

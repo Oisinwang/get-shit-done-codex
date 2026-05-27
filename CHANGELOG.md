@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Thread context example** - Adds a copy-pastable `$gsd-thread "Investigate flaky release"` playbook for preserving cross-session context in `.planning/threads/{slug}.md` before it becomes a phase, backlog item, or resolved decision.
 - **AI eval review example** - Adds a copy-pastable `$gsd-eval-review 3` playbook for scoring AI phase evaluation coverage, surfacing critical gaps, and writing `{phase}-EVAL-REVIEW.md` before deployability claims.
 - **Validation evidence example** - Adds a copy-pastable `$gsd-validate-phase 1` playbook for auditing Nyquist validation gaps, generating missing test evidence, and updating `{phase}-VALIDATION.md` before UAT.
 - **Backlog review example** - Adds a copy-pastable `$gsd-review-backlog` playbook for promoting, keeping, or removing deferred 999.x backlog ideas before planning more milestone work.

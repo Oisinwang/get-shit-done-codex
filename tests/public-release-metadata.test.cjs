@@ -242,6 +242,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-validate-phase 1`/);
     assert.match(readme, /Review AI eval coverage/);
     assert.match(readme, /`\$gsd-eval-review 3`/);
+    assert.match(readme, /Preserve long-running context/);
+    assert.match(readme, /`\$gsd-thread "Investigate flaky release"`/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
@@ -255,6 +257,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Choose Next Backlog Item/);
     assert.match(examples, /## Audit Thin Validation Evidence/);
     assert.match(examples, /## Review AI Eval Coverage/);
+    assert.match(examples, /## Preserve Long-Running Context/);
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
@@ -266,6 +269,7 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-review-backlog/);
     assert.match(examples, /\$gsd-validate-phase 1/);
     assert.match(examples, /\$gsd-eval-review 3/);
+    assert.match(examples, /\$gsd-thread "Investigate flaky release"/);
     assert.match(examples, /git switch -c evaluate-gsd-codex/);
     assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(examples, /commit the branch only after reviewing the generated plan/i);
@@ -306,6 +310,13 @@ describe('public release metadata', () => {
     assert.match(examples, /audits eval tooling, reference dataset, CI\/CD integration, online guardrails, and tracing/);
     assert.match(examples, /writes `\{phase\}-EVAL-REVIEW\.md`/);
     assert.match(examples, /Overall Score, Verdict, critical gaps, and remediation plan/);
+    assert.match(examples, /long-running context across sessions/);
+    assert.match(examples, /not tied to one phase/);
+    assert.match(examples, /writes `.planning\/threads\/\{slug\}\.md`/);
+    assert.match(examples, /status, created, and updated frontmatter/);
+    assert.match(examples, /Goal, Context, References, and Next Steps/);
+    assert.match(examples, /resume with `\$gsd-thread investigate-flaky-release`/);
+    assert.match(examples, /close with `\$gsd-thread close investigate-flaky-release`/);
     assert.match(examples, /source code, tests, and a README/);
     assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
 
@@ -472,6 +483,22 @@ describe('public release metadata', () => {
       '$gsd-eval-review 3',
     ]);
 
+    const threadStart = examples.indexOf('## Preserve Long-Running Context');
+    const threadEnd = examples.indexOf('## Small Fix With Guardrails');
+    const threadSection = examples.slice(threadStart, threadEnd);
+    const threadCommands = threadSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(threadCommands, 'thread example should include a bash block');
+    assert.deepEqual(threadCommands, [
+      '$gsd-thread "Investigate flaky release"',
+      '$gsd-thread',
+      '$gsd-thread status investigate-flaky-release',
+      '$gsd-thread close investigate-flaky-release',
+    ]);
+
     for (const marker of [
       '$gsd-new-project --auto',
       '$gsd-map-codebase',
@@ -483,6 +510,7 @@ describe('public release metadata', () => {
       '$gsd-review-backlog',
       '$gsd-validate-phase',
       '$gsd-eval-review',
+      '$gsd-thread',
       '$gsd-fast',
       '$gsd-resume-work',
       '$gsd-spike',
@@ -931,6 +959,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\$gsd-validate-phase 1/);
     assert.match(unreleasedSection, /AI eval review example/);
     assert.match(unreleasedSection, /\$gsd-eval-review 3/);
+    assert.match(unreleasedSection, /Thread context example/);
+    assert.match(unreleasedSection, /\$gsd-thread "Investigate flaky release"/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {
