@@ -71,6 +71,24 @@ npx @oisinwang/get-shit-done-codex@latest --codex --local
 
 That keeps Codex-facing setup files inside the current directory.
 
+## How do I choose between local and global Codex installs?
+
+Use `--local` for repository trials, team-visible repository config, protected-branch evaluations, or any setup you want reviewers to inspect before it becomes your default Codex environment:
+
+```bash
+npx @oisinwang/get-shit-done-codex@latest --codex --local
+```
+
+Local installs write Codex-facing files into the current repository, such as `./.codex/`, so the trial stays scoped to that workspace.
+
+Use `--global` for user-level Codex setup when you want the same GSD commands available across your normal Codex sessions and repositories:
+
+```bash
+npx @oisinwang/get-shit-done-codex@latest --codex --global
+```
+
+Global installs write user-level config under `~/.codex/`. Use this only when that is the Codex home directory used by the runtime you actually start.
+
 ## How do I report stale npm metadata after a source fix has landed?
 
 If the npm page or `npx @latest` still shows old behavior after a source fix has landed, first compare the source checkout on `codex/bootstrap` with the published package:

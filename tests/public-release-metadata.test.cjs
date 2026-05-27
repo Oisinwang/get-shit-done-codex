@@ -873,6 +873,7 @@ describe('public release metadata', () => {
     assert.match(faq, /When should I not use it/);
     assert.match(faq, /When should I use \$gsd-fast instead of \$gsd-quick --validate/);
     assert.match(faq, /How do I report stale npm metadata after a source fix has landed/);
+    assert.match(faq, /How do I choose between local and global Codex installs/);
     assert.match(faq, /AGENTS\.md/);
     assert.match(faq, /\.codex\//);
     assert.match(faq, /planning context and execution evidence/);
@@ -899,6 +900,12 @@ describe('public release metadata', () => {
     assert.match(faq, /npm view @oisinwang\/get-shit-done-codex version/);
     assert.match(faq, /docs\/RELEASE\.md/);
     assert.match(faq, /exact install command and npm version/);
+    assert.match(faq, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
+    assert.match(faq, /npx @oisinwang\/get-shit-done-codex@latest --codex --global/);
+    assert.match(faq, /Use `--local` for repository trials/);
+    assert.match(faq, /Use `--global` for user-level Codex setup/);
+    assert.match(faq, /team-visible repository config/);
+    assert.match(faq, /user-level config under `~\/\.codex\/`/);
     assert.doesNotMatch(faq, /[^\x00-\x7F]/, 'docs/FAQ.md should stay ASCII-clean');
   });
 
@@ -955,6 +962,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /interrupted `\$gsd-pr-branch` exports/);
     assert.doesNotMatch(roadmap, /setup questions belong in GitHub Discussions/);
     assert.doesNotMatch(roadmap, /stale npm metadata after a source fix has landed/);
+    assert.doesNotMatch(roadmap, /local and global Codex installs/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1309,6 +1317,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /GitHub Discussions/);
     assert.match(unreleasedSection, /Stale npm metadata FAQ/);
     assert.match(unreleasedSection, /npm view @oisinwang\/get-shit-done-codex version/);
+    assert.match(unreleasedSection, /Local versus global install FAQ/);
+    assert.match(unreleasedSection, /--local/);
+    assert.match(unreleasedSection, /--global/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);

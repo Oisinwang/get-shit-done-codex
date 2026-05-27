@@ -12,6 +12,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **PR branch recovery troubleshooting** - Adds interrupted `$gsd-pr-branch` recovery steps to `docs/TROUBLESHOOTING.md`, including safe git inspection commands, `$gsd-progress --forensic`, and a warning not to delete `.planning/` blindly.
 - **Setup question routing note** - Clarifies in `SUPPORT.md` when setup questions belong in GitHub Discussions versus bug reports, including examples and required bug-report evidence.
 - **Stale npm metadata FAQ** - Explains how to report npm release lag after a source fix has landed, including `npm view @oisinwang/get-shit-done-codex version` evidence and release-checklist routing.
+- **Local versus global install FAQ** - Explains when to use `--local` for repository trials and team-visible config versus `--global` for user-level Codex setup.
 - **Settings example** - Adds a copy-pastable `$gsd-settings` and `$gsd-set-profile` playbook for choosing budget, balanced, quality, or inherit model profiles before long-running milestone work.
 - **Profile-user example** - Adds a copy-pastable `$gsd-profile-user --questionnaire` playbook for setting up Codex personalization, refreshing it after several sessions, and deciding which AGENTS profile artifacts belong in the repository.
 - **Health repair example** - Adds a copy-pastable `$gsd-health --repair` playbook for reviewing and repairing `.planning/` config or state drift after interrupted setup, branch switches, or manual edits.
