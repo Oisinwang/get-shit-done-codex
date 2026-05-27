@@ -88,6 +88,18 @@ $gsd-secure-phase 1
 
 Use `$gsd-progress --forensic` first to confirm the phase state and surface any existing verification debt. `$gsd-secure-phase` then performs threat-model-anchored verification, works with or without an existing `SECURITY.md`, and produces `{phase}-SECURITY.md` with threat verification results before you continue toward UAT, review, or release.
 
+## Update Docs After A Feature Ships
+
+Use this after a feature, CLI workflow, or install behavior changes and before a release, public PR, or handoff. It is most useful when the README, command reference, setup docs, or architecture notes may now be stale.
+
+```bash
+$gsd-progress --forensic
+$gsd-docs-update --verify-only
+$gsd-docs-update
+```
+
+Use `$gsd-progress --forensic` first to see whether the phase has open verification debt. `$gsd-docs-update --verify-only` will surface stale claims without writing files. If it reports drift or missing coverage, run `$gsd-docs-update` to dispatch doc-writer and doc-verifier agents, review existing hand-written docs, and produce structure-aware documentation verified against the live codebase.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.

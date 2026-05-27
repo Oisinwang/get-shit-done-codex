@@ -33,8 +33,8 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 These are intentionally small enough to become a good first issue:
 
 - Add a troubleshooting note for one common permission or PATH mismatch after install.
-- Add a copy-pastable example for using `$gsd-docs-update` after a feature ships.
 - Add a copy-pastable example for using `$gsd-code-review-fix` after review findings.
+- Add a copy-pastable example for using `$gsd-review-backlog` before choosing the next milestone item.
 - Translate `docs/COMPARISON.md` into one localized docs folder.
 - Improve alt text and screenshot captions for public visual assets.
 

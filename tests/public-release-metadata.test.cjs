@@ -232,6 +232,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-audit-uat`/);
     assert.match(readme, /Check security-sensitive changes/);
     assert.match(readme, /`\$gsd-secure-phase 1`/);
+    assert.match(readme, /Update docs after a feature ships/);
+    assert.match(readme, /`\$gsd-docs-update --verify-only`/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
@@ -240,12 +242,14 @@ describe('public release metadata', () => {
     assert.match(examples, /## Prepare A Public Pull Request/);
     assert.match(examples, /## Audit Verification Debt Before Release/);
     assert.match(examples, /## Verify Security-Sensitive Changes/);
+    assert.match(examples, /## Update Docs After A Feature Ships/);
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
     assert.match(examples, /\$gsd-pr-branch codex\/bootstrap/);
     assert.match(examples, /\$gsd-audit-uat/);
     assert.match(examples, /\$gsd-secure-phase 1/);
+    assert.match(examples, /\$gsd-docs-update --verify-only/);
     assert.match(examples, /git switch -c evaluate-gsd-codex/);
     assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(examples, /commit the branch only after reviewing the generated plan/i);
@@ -261,6 +265,10 @@ describe('public release metadata', () => {
     assert.match(examples, /before merging authentication, payments, permissions, secrets, or data-handling changes/);
     assert.match(examples, /threat-model-anchored verification/);
     assert.match(examples, /`\{phase\}-SECURITY\.md` with threat verification results/);
+    assert.match(examples, /after a feature, CLI workflow, or install behavior changes/);
+    assert.match(examples, /surface stale claims without writing files/);
+    assert.match(examples, /structure-aware documentation verified against the live codebase/);
+    assert.match(examples, /doc-writer and doc-verifier agents/);
     assert.match(examples, /source code, tests, and a README/);
     assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
 
@@ -352,12 +360,28 @@ describe('public release metadata', () => {
       '$gsd-secure-phase 1',
     ]);
 
+    const docsUpdateStart = examples.indexOf('## Update Docs After A Feature Ships');
+    const docsUpdateEnd = examples.indexOf('## Small Fix With Guardrails');
+    const docsUpdateSection = examples.slice(docsUpdateStart, docsUpdateEnd);
+    const docsUpdateCommands = docsUpdateSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(docsUpdateCommands, 'docs-update example should include a bash block');
+    assert.deepEqual(docsUpdateCommands, [
+      '$gsd-progress --forensic',
+      '$gsd-docs-update --verify-only',
+      '$gsd-docs-update',
+    ]);
+
     for (const marker of [
       '$gsd-new-project --auto',
       '$gsd-map-codebase',
       '$gsd-pr-branch',
       '$gsd-audit-uat',
       '$gsd-secure-phase',
+      '$gsd-docs-update',
       '$gsd-fast',
       '$gsd-resume-work',
       '$gsd-spike',

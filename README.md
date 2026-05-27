@@ -139,6 +139,7 @@ Built-in quality gates catch real problems: schema drift detection flags ORM cha
 | Review generated planning artifacts | `$gsd-progress --forensic` | Current state, verification debt, and files worth keeping |
 | Check release readiness before a branch | `$gsd-audit-uat` | Outstanding UAT and verification debt before release review |
 | Check security-sensitive changes | `$gsd-secure-phase 1` | Threat-model-anchored verification and `{phase}-SECURITY.md` evidence |
+| Update docs after a feature ships | `$gsd-docs-update --verify-only` | Fact-checks docs against live code before generation or release |
 | Prepare a public PR without planning noise | `$gsd-pr-branch codex/bootstrap` | A review branch that filters transient `.planning/` commits |
 | Make a small fix with guardrails | `$gsd-fast "fix the failing install check"` | A focused change with verification notes |
 | Continue work after a break | `$gsd-resume-work` | Restored phase context and pending blockers |
