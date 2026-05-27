@@ -874,6 +874,7 @@ describe('public release metadata', () => {
     assert.match(faq, /When should I use \$gsd-fast instead of \$gsd-quick --validate/);
     assert.match(faq, /How do I report stale npm metadata after a source fix has landed/);
     assert.match(faq, /How do I choose between local and global Codex installs/);
+    assert.match(faq, /What should change after a local Codex trial/);
     assert.match(faq, /AGENTS\.md/);
     assert.match(faq, /\.codex\//);
     assert.match(faq, /planning context and execution evidence/);
@@ -906,6 +907,11 @@ describe('public release metadata', () => {
     assert.match(faq, /Use `--global` for user-level Codex setup/);
     assert.match(faq, /team-visible repository config/);
     assert.match(faq, /user-level config under `~\/\.codex\/`/);
+    assert.match(faq, /Local Codex trials should create or update `\.\/\.codex\/`/);
+    assert.match(faq, /`AGENTS\.md` for repository instructions/);
+    assert.match(faq, /`\.planning\/` for project state/);
+    assert.match(faq, /Run `git status --short` before committing/);
+    assert.match(faq, /Commit only the artifacts your team wants to keep/);
     assert.doesNotMatch(faq, /[^\x00-\x7F]/, 'docs/FAQ.md should stay ASCII-clean');
   });
 
@@ -964,6 +970,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /stale npm metadata after a source fix has landed/);
     assert.doesNotMatch(roadmap, /local and global Codex installs/);
     assert.doesNotMatch(roadmap, /git status` and `git diff --stat` evidence/);
+    assert.doesNotMatch(roadmap, /changed files to expect after a `--local` Codex trial/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1330,6 +1337,10 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Documentation issue evidence troubleshooting/);
     assert.match(unreleasedSection, /git status --short/);
     assert.match(unreleasedSection, /git diff --stat/);
+    assert.match(unreleasedSection, /Expected local trial files FAQ/);
+    assert.match(unreleasedSection, /\.codex/);
+    assert.match(unreleasedSection, /AGENTS\.md/);
+    assert.match(unreleasedSection, /\.planning/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);

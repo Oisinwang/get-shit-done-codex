@@ -14,6 +14,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Stale npm metadata FAQ** - Explains how to report npm release lag after a source fix has landed, including `npm view @oisinwang/get-shit-done-codex version` evidence and release-checklist routing.
 - **Local versus global install FAQ** - Explains when to use `--local` for repository trials and team-visible config versus `--global` for user-level Codex setup.
 - **Documentation issue evidence troubleshooting** - Adds a docs issue evidence note to `docs/TROUBLESHOOTING.md` with `git status --short` and `git diff --stat` guidance before filing behavior-mismatch documentation reports.
+- **Expected local trial files FAQ** - Explains that local Codex trials can create or update `.codex/`, `AGENTS.md`, and `.planning/`, and tells users to review `git status --short` before committing.
 - **Settings example** - Adds a copy-pastable `$gsd-settings` and `$gsd-set-profile` playbook for choosing budget, balanced, quality, or inherit model profiles before long-running milestone work.
 - **Profile-user example** - Adds a copy-pastable `$gsd-profile-user --questionnaire` playbook for setting up Codex personalization, refreshing it after several sessions, and deciding which AGENTS profile artifacts belong in the repository.
 - **Health repair example** - Adds a copy-pastable `$gsd-health --repair` playbook for reviewing and repairing `.planning/` config or state drift after interrupted setup, branch switches, or manual edits.

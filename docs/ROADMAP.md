@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a short FAQ entry explaining what changed files to expect after a `--local` Codex trial.
+- Add a short troubleshooting note for comparing source docs with published npm package docs before reporting stale documentation.
 
 ## Manual maintainer actions
 

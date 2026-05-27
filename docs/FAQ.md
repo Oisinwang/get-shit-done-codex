@@ -71,6 +71,18 @@ npx @oisinwang/get-shit-done-codex@latest --codex --local
 
 That keeps Codex-facing setup files inside the current directory.
 
+## What should change after a local Codex trial?
+
+Local Codex trials should create or update `./.codex/` for Codex-facing skills and hooks, `AGENTS.md` for repository instructions, and `.planning/` for project state such as `PROJECT.md`, `ROADMAP.md`, and phase notes. They should not update user-level config under `~/.codex/`.
+
+Run `git status --short` before committing:
+
+```bash
+git status --short
+```
+
+Expect those paths to appear if you asked for a local install. Commit only the artifacts your team wants to keep. For a private solo evaluation, it is reasonable to leave `.planning/` uncommitted or ignored and keep only the docs or config files your repository policy allows.
+
 ## How do I choose between local and global Codex installs?
 
 Use `--local` for repository trials, team-visible repository config, protected-branch evaluations, or any setup you want reviewers to inspect before it becomes your default Codex environment:
