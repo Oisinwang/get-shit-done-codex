@@ -25,6 +25,11 @@ npx @oisinwang/get-shit-done-codex@latest
 - **Contribute:** [Contributing Guide](../../CONTRIBUTING.md)
 - **Find starter tasks:** [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
 
+## Maintainer quick links
+
+- **Publish a fix:** [Release Checklist](../RELEASE.md)
+- **Close contributor tasks:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
+
 Claude 시대의 이름은 마이그레이션 호환을 위해서만 남아 있습니다. fork의 범위, 이름 규칙, 마이그레이션 메모는 [CODEX-FORK.md](../CODEX-FORK.md)를 참고하세요.
 
 ## 문서 색인

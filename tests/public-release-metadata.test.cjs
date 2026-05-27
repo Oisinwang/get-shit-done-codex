@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index maintainer checklist links/);
+    assert.match(roadmap, /localized docs index promotion links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1266,6 +1266,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized safe trial quick links grouping/);
     assert.doesNotMatch(roadmap, /localized docs index support route links/);
     assert.doesNotMatch(roadmap, /localized docs index contribution links/);
+    assert.doesNotMatch(roadmap, /localized docs index maintainer checklist links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1749,6 +1750,7 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Localized safe trial quick links grouping/);
     assert.match(unreleasedSection, /Localized docs index support route links/);
     assert.match(unreleasedSection, /Localized docs index contribution links/);
+    assert.match(unreleasedSection, /Localized docs index maintainer checklist links/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
@@ -2104,6 +2106,17 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /## Contribution quick links\r?\n\r?\n- \*\*Contribute:\*\* \[Contributing Guide\]\(\.\.\/\.\.\/CONTRIBUTING\.md\)\r?\n- \*\*Find starter tasks:\*\* \[Good First Issues\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/issues\?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22\)/,
+        relativePath,
+      );
+      assert.match(readme, /- \*\*Publish a fix:\*\* \[Release Checklist\]\(\.\.\/RELEASE\.md\)/, relativePath);
+      assert.match(
+        readme,
+        /- \*\*Close contributor tasks:\*\* \[Maintainer Checklist\]\(\.\.\/MAINTAINER-CHECKLIST\.md\)/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /## Maintainer quick links\r?\n\r?\n- \*\*Publish a fix:\*\* \[Release Checklist\]\(\.\.\/RELEASE\.md\)\r?\n- \*\*Close contributor tasks:\*\* \[Maintainer Checklist\]\(\.\.\/MAINTAINER-CHECKLIST\.md\)/,
         relativePath,
       );
       assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-TROUBLESHOOTING\.md\)/, relativePath);

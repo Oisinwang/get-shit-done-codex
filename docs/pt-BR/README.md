@@ -25,6 +25,11 @@ npx @oisinwang/get-shit-done-codex@latest
 - **Contribute:** [Contributing Guide](../../CONTRIBUTING.md)
 - **Find starter tasks:** [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
 
+## Maintainer quick links
+
+- **Publish a fix:** [Release Checklist](../RELEASE.md)
+- **Close contributor tasks:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
+
 Nomes legados da era Claude continuam apenas como compatibilidade de migracao. As regras do fork estao em [CODEX-FORK.md](../CODEX-FORK.md).
 
 ## Indice da documentacao

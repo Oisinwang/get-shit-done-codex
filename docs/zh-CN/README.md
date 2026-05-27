@@ -25,6 +25,11 @@ npx @oisinwang/get-shit-done-codex@latest
 - **Contribute:** [Contributing Guide](../../CONTRIBUTING.md)
 - **Find starter tasks:** [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
 
+## Maintainer quick links
+
+- **Publish a fix:** [Release Checklist](../RELEASE.md)
+- **Close contributor tasks:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
+
 Claude 时代的旧名称只作为迁移兼容层保留。fork 的边界、命名规则和迁移说明见 [CODEX-FORK.md](../CODEX-FORK.md)。
 
 ## 文档索引
