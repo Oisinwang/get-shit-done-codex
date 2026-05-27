@@ -124,6 +124,18 @@ $gsd-review-backlog
 
 `$gsd-review-backlog` asks you to Promote, Keep, or Remove each backlog item. Promoted items move into the active milestone sequence, kept items stay deferred for a later review, and removed items should be stale or no longer aligned with the project direction.
 
+## Audit Thin Validation Evidence
+
+Use this after a completed phase has implementation summaries but validation evidence is thin. `$gsd-validate-phase` audits Nyquist validation gaps, reconstructs coverage from phase plans and summaries, and identifies whether each requirement has automated proof.
+
+```bash
+$gsd-progress --forensic
+$gsd-validate-phase 1
+$gsd-verify-work 1
+```
+
+Run `$gsd-progress --forensic` first to confirm the phase is executed and to surface existing verification debt. `$gsd-validate-phase` classifies each requirement as COVERED, PARTIAL, or MISSING, fills safe gaps through generated test files, and writes or updates `{phase}-VALIDATION.md`. Continue to `$gsd-verify-work` once the validation record is current and `nyquist_compliant: true` is justified by the evidence.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.
