@@ -8,6 +8,8 @@ Use GitHub Discussions for setup questions, workflow advice, troubleshooting hel
 
 https://github.com/Oisinwang/get-shit-done-codex/discussions
 
+Setup questions belong in GitHub Discussions when you are still deciding what to do or collecting evidence. Good Discussion topics include choosing a local versus global install, figuring out why `$gsd-help is missing` after install, asking which workflow should I run for an existing repository, or comparing Codex setup paths across Windows PowerShell and WSL.
+
 Before posting, include:
 - Your runtime: Codex, Claude Code compatibility, Gemini CLI, OpenCode, or another supported runtime
 - Your install method: `npx`, global install, local source checkout, or manual update
@@ -19,6 +21,8 @@ Before posting, include:
 Use the issue chooser for reproducible bugs:
 
 https://github.com/Oisinwang/get-shit-done-codex/issues/new/choose
+
+Bug reports need reproducible evidence. Include the exact command, exact error text, operating system and shell, Node.js version, GSD package version, install scope, and the smallest reproduction you can provide.
 
 Choose "Bug Report" and include the smallest reproduction you can. Bugs should describe behavior that is wrong in the current Codex-first fork, not questions about how to use a workflow.
 

@@ -947,6 +947,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /closing resolved good-first-issue tasks/);
     assert.doesNotMatch(roadmap, /\$gsd-fast` versus `\$gsd-quick --validate/);
     assert.doesNotMatch(roadmap, /interrupted `\$gsd-pr-branch` exports/);
+    assert.doesNotMatch(roadmap, /setup questions belong in GitHub Discussions/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1296,6 +1297,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /PR branch recovery troubleshooting/);
     assert.match(unreleasedSection, /docs\/TROUBLESHOOTING\.md/);
     assert.match(unreleasedSection, /\$gsd-pr-branch/);
+    assert.match(unreleasedSection, /Setup question routing note/);
+    assert.match(unreleasedSection, /SUPPORT\.md/);
+    assert.match(unreleasedSection, /GitHub Discussions/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
@@ -1836,6 +1840,17 @@ describe('public release metadata', () => {
     assert.match(support, /# Support/);
     assert.match(support, /GitHub Discussions/);
     assert.match(support, /https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/discussions/);
+    assert.match(support, /Setup questions belong in GitHub Discussions/);
+    assert.match(support, /local versus global install/);
+    assert.match(support, /\$gsd-help is missing/);
+    assert.match(support, /which workflow should I run/);
+    assert.match(support, /Bug reports need reproducible evidence/);
+    assert.match(support, /exact command/);
+    assert.match(support, /exact error text/);
+    assert.match(support, /operating system and shell/);
+    assert.match(support, /Node\.js version/);
+    assert.match(support, /GSD package version/);
+    assert.match(support, /install scope/);
     assert.match(support, /Bug reports/);
     assert.match(support, /https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/issues\/new\/choose/);
     assert.match(support, /Security vulnerabilities/);

@@ -10,6 +10,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Demo media checklist** - Adds a `Demo Media Checklist` to `docs/DEMO.md` so maintainers know what to record, redact, and link when publishing short workflow demo media.
 - **Fast versus quick FAQ** - Explains when to use `$gsd-fast` versus `$gsd-quick --validate` for small changes, including risk-based guidance around obvious verification and plan-checking gates.
 - **PR branch recovery troubleshooting** - Adds interrupted `$gsd-pr-branch` recovery steps to `docs/TROUBLESHOOTING.md`, including safe git inspection commands, `$gsd-progress --forensic`, and a warning not to delete `.planning/` blindly.
+- **Setup question routing note** - Clarifies in `SUPPORT.md` when setup questions belong in GitHub Discussions versus bug reports, including examples and required bug-report evidence.
 - **Settings example** - Adds a copy-pastable `$gsd-settings` and `$gsd-set-profile` playbook for choosing budget, balanced, quality, or inherit model profiles before long-running milestone work.
 - **Profile-user example** - Adds a copy-pastable `$gsd-profile-user --questionnaire` playbook for setting up Codex personalization, refreshing it after several sessions, and deciding which AGENTS profile artifacts belong in the repository.
 - **Health repair example** - Adds a copy-pastable `$gsd-health --repair` playbook for reviewing and repairing `.planning/` config or state drift after interrupted setup, branch switches, or manual edits.
