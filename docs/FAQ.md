@@ -116,6 +116,14 @@ Include `AGENTS.md` when repository instructions changed. Include selected `.pla
 
 Leave private notes, secrets, local paths, and unrelated product code out unless the evaluation deliberately changed that code. List the commands you ran and verification evidence in the pull request description, such as `git status --short`, `$gsd-progress --forensic`, and any tests you ran.
 
+## How should I verify a docs-only contribution before opening a pull request?
+
+Run `git diff --check` first so whitespace errors or conflict markers do not reach review. Run `node --test tests/public-release-metadata.test.cjs` next for public docs metadata.
+
+Use the focused metadata test for FAQ, README, docs index, changelog, roadmap, and link-surface changes. Run `npm.cmd test` before marking broad docs sweeps or cross-file release metadata changes ready, and whenever you changed tests or package metadata.
+
+In the pull request description, list the changed docs, focused test result, full test result if run, and any skipped checks. Include the linked issue and keep runtime `.planning/` output out of docs-only PRs unless the approved issue asks for it.
+
 ## Can I try it without touching global Codex config?
 
 Yes. Use `--local` for the first trial:
