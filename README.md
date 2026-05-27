@@ -113,7 +113,7 @@ $gsd-next
 git status --short
 ```
 
-From a source checkout, `npm run demo:safe-trial` prints the same safe trial flow without installing or editing files. You can also read the [Safe Trial Transcript](docs/SAFE-TRIAL-TRANSCRIPT.md) first, then use the [Safe Trial Outcome Template](docs/SAFE-TRIAL-OUTCOME.md) to decide what to keep.
+From a source checkout, `npm run demo:safe-trial` prints the same safe trial flow without installing or editing files. You can also read the [Safe Trial Transcript](docs/SAFE-TRIAL-TRANSCRIPT.md) first, then use the [Safe Trial Outcome Template](docs/SAFE-TRIAL-OUTCOME.md) to decide what to keep or the [Safe Trial Discussion Starter](docs/SAFE-TRIAL-DISCUSSION.md) to ask for workflow advice.
 
 Expected setup files are `.codex/`, `AGENTS.md`, and `.planning/`. Review `git status --short` before committing anything; if you ran a workflow that changed product code, those files should appear separately.
 

@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Safe trial discussion starter** - Adds `docs/SAFE-TRIAL-DISCUSSION.md` with a copy-pastable GitHub Discussions post, command evidence, changed-path prompts, and a privacy check for safe local trial users.
 - **Localized safe trial support links** - Adds transcript and outcome-template links to localized README files so non-English readers can preview and record safe local trials from the same launch surface.
 - **Safe trial outcome template** - Adds `docs/SAFE-TRIAL-OUTCOME.md` so users can record changed paths, keep/discard decisions, pass/fail signals, and feedback evidence after a safe local trial.
 - **Safe trial demo transcript** - Adds `docs/SAFE-TRIAL-TRANSCRIPT.md` and links it from README, Demo, Evaluate, and the docs index so visitors can preview the safe trial flow without running commands.

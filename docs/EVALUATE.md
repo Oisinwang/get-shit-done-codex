@@ -113,4 +113,4 @@ Do not run cleanup commands blindly in a repository with unrelated work. Review 
 
 If the trial makes the next step clearer and gives you useful recovery state, keep using GSD for long-running work. If it feels heavier than the task, use raw Codex for that task and keep GSD for larger or riskier changes.
 
-Use the [Safe Trial Outcome Template](SAFE-TRIAL-OUTCOME.md) when you want to record the decision, ask in GitHub Discussions, or open an Issue with enough evidence to act on.
+Use the [Safe Trial Outcome Template](SAFE-TRIAL-OUTCOME.md) when you want to record the decision. Use the [Safe Trial Discussion Starter](SAFE-TRIAL-DISCUSSION.md) when you want to ask in GitHub Discussions with enough evidence to act on.

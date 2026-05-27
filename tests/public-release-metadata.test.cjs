@@ -308,6 +308,43 @@ describe('public release metadata', () => {
     assert.doesNotMatch(outcome, /[^\x00-\x7F]/, 'safe trial outcome template should stay ASCII-clean');
   });
 
+  test('public safe trial discussion starter gives evaluators a support-ready post', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const evaluate = fs.readFileSync(path.join(ROOT, 'docs', 'EVALUATE.md'), 'utf8');
+    const outcome = fs.readFileSync(path.join(ROOT, 'docs', 'SAFE-TRIAL-OUTCOME.md'), 'utf8');
+    const faq = fs.readFileSync(path.join(ROOT, 'docs', 'FAQ.md'), 'utf8');
+    const support = fs.readFileSync(path.join(ROOT, 'SUPPORT.md'), 'utf8');
+    const starterPath = path.join(ROOT, 'docs', 'SAFE-TRIAL-DISCUSSION.md');
+
+    assert.equal(fs.existsSync(starterPath), true, 'docs/SAFE-TRIAL-DISCUSSION.md should exist');
+
+    const starter = fs.readFileSync(starterPath, 'utf8');
+
+    assert.match(readme, /\[Safe Trial Discussion Starter\]\(docs\/SAFE-TRIAL-DISCUSSION\.md\)/);
+    assert.match(docsReadme, /\[Safe Trial Discussion Starter\]\(SAFE-TRIAL-DISCUSSION\.md\)/);
+    assert.match(evaluate, /\[Safe Trial Discussion Starter\]\(SAFE-TRIAL-DISCUSSION\.md\)/);
+    assert.match(outcome, /\[Safe Trial Discussion Starter\]\(SAFE-TRIAL-DISCUSSION\.md\)/);
+    assert.match(faq, /\[Safe Trial Discussion Starter\]\(SAFE-TRIAL-DISCUSSION\.md\)/);
+    assert.match(support, /\[Safe Trial Discussion Starter\]\(docs\/SAFE-TRIAL-DISCUSSION\.md\)/);
+    assert.match(starter, /# Safe Trial Discussion Starter/);
+    assert.match(starter, /GitHub Discussions/);
+    assert.match(starter, /Discussion title/);
+    assert.match(starter, /Discussion body/);
+    assert.match(starter, /I tried the safe local trial/);
+    assert.match(starter, /What I want advice on/);
+    assert.match(starter, /Commands I ran/);
+    assert.match(starter, /Changed paths/);
+    assert.match(starter, /Decision so far/);
+    assert.match(starter, /Privacy check/);
+    assert.match(starter, /Do not paste tokens/);
+    assert.match(starter, /git status --short/);
+    assert.match(starter, /git switch -c evaluate-gsd-codex/);
+    assert.match(starter, /git diff --stat/);
+    assert.match(starter, /SAFE-TRIAL-OUTCOME\.md/);
+    assert.doesNotMatch(starter, /[^\x00-\x7F]/, 'safe trial discussion starter should stay ASCII-clean');
+  });
+
   test('README shows a real-world before and after example', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const beforeAfterStart = readme.indexOf('## Before And After');
@@ -1169,7 +1206,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /safe trial discussion starter/);
+    assert.match(roadmap, /localized safe trial discussion links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1178,6 +1215,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /safe trial demo transcript/);
     assert.doesNotMatch(roadmap, /safe trial outcome template/);
     assert.doesNotMatch(roadmap, /localized safe trial transcript links/);
+    assert.doesNotMatch(roadmap, /safe trial discussion starter/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1647,6 +1685,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /SAFE-TRIAL-OUTCOME\.md/);
     assert.match(unreleasedSection, /Localized safe trial support links/);
     assert.match(unreleasedSection, /localized README files/);
+    assert.match(unreleasedSection, /Safe trial discussion starter/);
+    assert.match(unreleasedSection, /SAFE-TRIAL-DISCUSSION\.md/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);

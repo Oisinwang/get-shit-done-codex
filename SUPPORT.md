@@ -10,6 +10,8 @@ https://github.com/Oisinwang/get-shit-done-codex/discussions
 
 Setup questions belong in GitHub Discussions when you are still deciding what to do or collecting evidence. Good Discussion topics include choosing a local versus global install, figuring out why `$gsd-help is missing` after install, asking which workflow should I run for an existing repository, or comparing Codex setup paths across Windows PowerShell and WSL.
 
+If you just ran the safe local trial, the [Safe Trial Discussion Starter](docs/SAFE-TRIAL-DISCUSSION.md) gives you a copy-pastable post with the commands, changed paths, decision, and privacy check.
+
 Before posting, include:
 - Your runtime: Codex, Claude Code compatibility, Gemini CLI, OpenCode, or another supported runtime
 - Your install method: `npx`, global install, local source checkout, or manual update
