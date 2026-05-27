@@ -132,6 +132,14 @@ Check the localized docs index and root localized README links together. A trans
 
 Keep Codex-first wording, `@oisinwang/get-shit-done-codex` package names, GitHub Discussions links, and `Oisinwang/get-shit-done-codex` repository URLs current. Run `node --test tests/public-release-metadata.test.cjs` after localized README or docs index edits so the public metadata guard checks package names, repository links, and localized discovery surfaces.
 
+## How should I check README badges and links before publishing docs changes?
+
+Check the npm version and downloads badges against `@oisinwang/get-shit-done-codex`. Confirm both badge links point to the published npm package page.
+
+Keep the GitHub Actions badge on `codex/bootstrap`. Confirm star-history links use `Oisinwang/get-shit-done-codex`. These badges are high-signal maintenance cues for visitors scanning the repository before they install.
+
+Review local docs links near the README nav after moving or adding public docs. Run `git diff --check` and `node --test tests/public-release-metadata.test.cjs` before opening the pull request so badge URLs, README nav links, docs links, and public metadata stay aligned.
+
 ## Can I try it without touching global Codex config?
 
 Yes. Use `--local` for the first trial:

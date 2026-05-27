@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a short FAQ entry explaining README badge and link refresh checks before publishing.
+- Add a short FAQ entry explaining release issue handoff evidence before publishing.
 
 ## Manual maintainer actions
 
