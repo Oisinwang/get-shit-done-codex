@@ -810,6 +810,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/zh-CN\/PROMPTS\.md/);
     assert.match(unreleasedSection, /Japanese prompt recipes/);
     assert.match(unreleasedSection, /docs\/ja-JP\/PROMPTS\.md/);
+    assert.match(unreleasedSection, /Korean prompt recipes/);
+    assert.match(unreleasedSection, /docs\/ko-KR\/PROMPTS\.md/);
     assert.match(unreleasedSection, /Release checklist/);
     assert.match(unreleasedSection, /docs\/RELEASE\.md/);
   });
@@ -1144,6 +1146,32 @@ describe('public release metadata', () => {
     assert.match(jaPrompts, /\$gsd-audit-fix/);
     assert.match(jaPrompts, /\.planning\//);
     assert.match(jaPrompts, /検証を省略しない/);
+  });
+
+  test('Korean prompt recipes mirror public starter prompts', () => {
+    const koDocsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'ko-KR', 'README.md'), 'utf8');
+    const koPromptsPath = path.join(ROOT, 'docs', 'ko-KR', 'PROMPTS.md');
+
+    assert.equal(fs.existsSync(koPromptsPath), true, 'docs/ko-KR/PROMPTS.md should exist');
+
+    const koPrompts = fs.readFileSync(koPromptsPath, 'utf8');
+
+    assert.match(koDocsReadme, /\[프롬프트 레시피\]\(PROMPTS\.md\)/);
+    assert.match(koPrompts, /# 프롬프트 레시피/);
+    assert.match(koPrompts, /Codex에 붙여넣으세요/);
+    assert.match(koPrompts, /## 새 프로젝트 시작/);
+    assert.match(koPrompts, /## 기존 저장소/);
+    assert.match(koPrompts, /## 작은 수정/);
+    assert.match(koPrompts, /## 작업 재개/);
+    assert.match(koPrompts, /## 감사 및 수정/);
+    assert.match(koPrompts, /\$gsd-new-project --auto/);
+    assert.match(koPrompts, /\$gsd-map-codebase/);
+    assert.match(koPrompts, /\$gsd-fast/);
+    assert.match(koPrompts, /\$gsd-resume-work/);
+    assert.match(koPrompts, /\$gsd-progress --forensic/);
+    assert.match(koPrompts, /\$gsd-audit-fix/);
+    assert.match(koPrompts, /\.planning\//);
+    assert.match(koPrompts, /검증을 건너뛰지 마세요/);
   });
 
   test('community health files point at this public fork', () => {

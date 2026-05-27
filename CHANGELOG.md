@@ -30,6 +30,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Windows PowerShell diagnostics** - Expands `docs/TROUBLESHOOTING.md` with read-only Windows install checks for Node, npm, npx, scoped package metadata, and Codex install paths.
 - **Simplified Chinese prompt recipes** - Adds `docs/zh-CN/PROMPTS.md` and links it from the localized docs index so Chinese readers can paste the same Codex starter prompts.
 - **Japanese prompt recipes** - Adds `docs/ja-JP/PROMPTS.md` and links it from the localized docs index so Japanese readers can paste the same Codex starter prompts.
+- **Korean prompt recipes** - Adds `docs/ko-KR/PROMPTS.md` and links it from the localized docs index so Korean readers can paste the same Codex starter prompts.
 - **Release checklist** - Adds `docs/RELEASE.md` with npm `NPM_TOKEN` setup, hotfix workflow steps, and publish verification for stale `npx @latest` recovery.
 - **README link guard** - Adds coverage for repository README local links and fixes a stale localized superpowers plan link.
 - **Documentation issue template** - Adds affected-area routing and preflight checks so docs reports identify Codex-first, install, release, reference, troubleshooting, localization, or contributor surfaces up front.
