@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Npm deprecation evidence FAQ** - Explains how to record npm deprecate commands, affected versions, deprecation messages, npm view checks, and user migration guidance.
 - **Npm provenance and package integrity FAQ** - Explains how to record `dist.integrity`, package contents, npm version and git tag alignment, and workflow run URL evidence after publishing.
 - **Npm dist-tag rollback evidence FAQ** - Explains how to capture `npm dist-tag ls` output, `latest` and `next` tag targets, affected version, and workflow or npm command evidence before closing rollback issues.
 - **Npm publish closure evidence FAQ** - Explains how to close publish-gated issues with the npm version, publish timestamp, workflow URL, clean install check, and pending release label cleanup.

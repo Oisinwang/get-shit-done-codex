@@ -236,6 +236,14 @@ Run `npm pack @oisinwang/get-shit-done-codex@<version> --dry-run` and review the
 
 Link the workflow run URL that published the package. Close the issue only after the issue comment includes the integrity output, package contents check, git tag comparison, workflow run URL, and any follow-up needed for users who already installed the release.
 
+## How should I capture npm deprecation evidence?
+
+Run `npm deprecate @oisinwang/get-shit-done-codex@<version> "<message>"` only after a maintainer has approved warning users away from that published version. Record the affected version, the reason, and the maintainer approval link before changing npm metadata.
+
+Record the deprecation message exactly as sent to npm. It should name the safer version or explain the install path users should take instead.
+
+Run `npm view @oisinwang/get-shit-done-codex@<version> deprecated` after the command and paste the result into the issue. Tell users which version or install command to use instead, then link any follow-up release, dist-tag, or rollback evidence.
+
 ## When should I not use it?
 
 Do not use GSD for a one-line edit when you already know the exact change and do not need durable state. It is also the wrong tool if you want an agent to act without review, tests, or traceable decisions. Use it when the work benefits from preserved context, staged planning, verification, or resume support.
