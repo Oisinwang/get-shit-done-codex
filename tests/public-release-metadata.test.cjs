@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index prompt recipes links/);
+    assert.match(roadmap, /localized docs index comparison links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1272,6 +1272,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index FAQ links/);
     assert.doesNotMatch(roadmap, /localized docs index troubleshooting links/);
     assert.doesNotMatch(roadmap, /localized docs index examples links/);
+    assert.doesNotMatch(roadmap, /localized docs index prompt recipes links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1709,6 +1710,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/TROUBLESHOOTING\.md/);
     assert.match(unreleasedSection, /Localized docs index examples links/);
     assert.match(unreleasedSection, /docs\/EXAMPLES\.md/);
+    assert.match(unreleasedSection, /Localized docs index prompt recipes links/);
+    assert.match(unreleasedSection, /docs\/PROMPTS\.md/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2171,6 +2174,21 @@ describe('public release metadata', () => {
         /## Examples quick links\r?\n\r?\n- \*\*Pick a workflow:\*\* \[Examples\]\(\.\.\/EXAMPLES\.md\)/,
         relativePath,
       );
+      if (relativePath === 'docs/pt-BR/README.md') {
+        assert.match(readme, /- \*\*Paste a Codex prompt:\*\* \[Prompt Recipes\]\(\.\.\/PROMPTS\.md\)/, relativePath);
+        assert.match(
+          readme,
+          /## Prompt Recipes quick links\r?\n\r?\n- \*\*Paste a Codex prompt:\*\* \[Prompt Recipes\]\(\.\.\/PROMPTS\.md\)/,
+          relativePath,
+        );
+      } else {
+        assert.match(readme, /- \*\*Paste a Codex prompt:\*\* \[Prompt Recipes\]\(PROMPTS\.md\)/, relativePath);
+        assert.match(
+          readme,
+          /## Prompt Recipes quick links\r?\n\r?\n- \*\*Paste a Codex prompt:\*\* \[Prompt Recipes\]\(PROMPTS\.md\)/,
+          relativePath,
+        );
+      }
       assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-TROUBLESHOOTING\.md\)/, relativePath);
       assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-OUTCOME\.md\)/, relativePath);
       assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-DISCUSSION\.md\)/, relativePath);

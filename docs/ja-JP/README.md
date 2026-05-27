@@ -51,6 +51,10 @@ npx @oisinwang/get-shit-done-codex@latest
 
 - **Pick a workflow:** [Examples](../EXAMPLES.md)
 
+## Prompt Recipes quick links
+
+- **Paste a Codex prompt:** [Prompt Recipes](PROMPTS.md)
+
 Claude 時代の名前は移行互換のためだけに残しています。fork の境界、命名規則、移行メモは [CODEX-FORK.md](../CODEX-FORK.md) を参照してください。
 
 ## ドキュメント索引

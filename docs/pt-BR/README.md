@@ -51,6 +51,10 @@ npx @oisinwang/get-shit-done-codex@latest
 
 - **Pick a workflow:** [Examples](../EXAMPLES.md)
 
+## Prompt Recipes quick links
+
+- **Paste a Codex prompt:** [Prompt Recipes](../PROMPTS.md)
+
 Nomes legados da era Claude continuam apenas como compatibilidade de migracao. As regras do fork estao em [CODEX-FORK.md](../CODEX-FORK.md).
 
 ## Indice da documentacao
@@ -58,6 +62,7 @@ Nomes legados da era Claude continuam apenas como compatibilidade de migracao. A
 | Documento | Publico | Descricao |
 |----------|---------|-----------|
 | [Notas do fork Codex](../CODEX-FORK.md) | Todos os usuarios | Escopo Codex-first, limites de nomenclatura e notas de migracao |
+| [Prompt Recipes](../PROMPTS.md) | Todos os usuarios | Prompts Codex copy-pastable para iniciar, retomar, auditar e corrigir com GSD |
 | [Guia do usuario](USER-GUIDE.md) | Todos os usuarios | Fluxos de trabalho, troubleshooting e recuperacao |
 | [Referencia de recursos](FEATURES.md) | Todos os usuarios | Recursos, requisitos e comportamento esperado |
 | [Referencia de comandos](COMMANDS.md) | Todos os usuarios | Comandos, sintaxe, flags, opcoes e exemplos |
@@ -72,6 +77,7 @@ Nomes legados da era Claude continuam apenas como compatibilidade de migracao. A
 
 - **Comece aqui:** [README principal](../../README.pt-BR.md) -> instalar -> `$gsd-help`
 - **Entenda o fork:** [Notas do fork Codex](../CODEX-FORK.md)
+- **Cole um prompt Codex:** [Prompt Recipes](../PROMPTS.md)
 - **Execute o fluxo:** [Guia do usuario](USER-GUIDE.md)
 - **Encontre um comando:** [Referencia de comandos](COMMANDS.md)
 - **Configure o comportamento:** [Configuracao](CONFIGURATION.md)
