@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a short FAQ entry explaining npm provenance and package integrity evidence.
+- Add a short FAQ entry explaining npm deprecation evidence.
 
 ## Manual maintainer actions
 

@@ -228,6 +228,14 @@ Record the affected version and the reason for rollback or correction. Link the 
 
 After correction, run `npm dist-tag ls @oisinwang/get-shit-done-codex` again and paste the new output. Do not close the release issue until the comment shows before and after tag targets, the affected version, and install guidance for users who already fetched the wrong version.
 
+## How should I capture npm provenance and package integrity evidence?
+
+Run `npm view @oisinwang/get-shit-done-codex@<version> version gitHead dist.integrity dist.tarball` after publishing. Record the package integrity, tarball URL, npm version, and `gitHead` value in the release issue.
+
+Run `npm pack @oisinwang/get-shit-done-codex@<version> --dry-run` and review the package contents against the release commit. Compare the npm version with the git tag so reviewers can see the package and source release are aligned.
+
+Link the workflow run URL that published the package. Close the issue only after the issue comment includes the integrity output, package contents check, git tag comparison, workflow run URL, and any follow-up needed for users who already installed the release.
+
 ## When should I not use it?
 
 Do not use GSD for a one-line edit when you already know the exact change and do not need durable state. It is also the wrong tool if you want an agent to act without review, tests, or traceable decisions. Use it when the work benefits from preserved context, staged planning, verification, or resume support.
