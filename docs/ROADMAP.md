@@ -33,7 +33,6 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 These are intentionally small enough to become a good first issue:
 
 - Translate `docs/COMPARISON.md` into one localized docs folder.
-- Add a concise maintainer checklist for closing resolved good-first-issue tasks.
 
 ## Manual maintainer actions
 

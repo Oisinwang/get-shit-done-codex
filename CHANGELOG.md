@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Maintainer checklist** - Adds `docs/MAINTAINER-CHECKLIST.md` so resolved good-first issues close with verification evidence, CI links, label cleanup, and roadmap or backlog updates.
 - **Cleanup example** - Adds a copy-pastable `$gsd-cleanup` playbook for archiving completed milestone phase directories into `.planning/milestones/v{version}-phases/`.
 - **Session-report example** - Adds a copy-pastable `$gsd-session-report` playbook for writing `.planning/reports/SESSION_REPORT.md` before maintainer handoffs or weekly progress summaries.
 - **Pause-work example** - Adds a copy-pastable `$gsd-pause-work` playbook for writing `.planning/HANDOFF.json` and `.continue-here.md` before stopping, compacting, or handing off a Codex session.

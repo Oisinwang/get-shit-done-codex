@@ -806,6 +806,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
     assert.doesNotMatch(roadmap, /\$gsd-session-report/);
+    assert.doesNotMatch(roadmap, /closing resolved good-first-issue tasks/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -837,15 +838,41 @@ describe('public release metadata', () => {
   test('public docs expose community and contribution entry points', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const maintainerChecklistPath = path.join(ROOT, 'docs', 'MAINTAINER-CHECKLIST.md');
     const goodFirstIssuesUrl =
       'https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22';
     const discussionsUrl = 'https://github.com/Oisinwang/get-shit-done-codex/discussions';
 
+    assert.equal(
+      fs.existsSync(maintainerChecklistPath),
+      true,
+      'docs/MAINTAINER-CHECKLIST.md should exist',
+    );
+
+    const maintainerChecklist = fs.readFileSync(maintainerChecklistPath, 'utf8');
+
     assert.match(readme, /\[Contributing\]\(CONTRIBUTING\.md\)/);
+    assert.match(docsReadme, /\[Maintainer Checklist\]\(MAINTAINER-CHECKLIST\.md\)/);
     assert.match(readme, new RegExp(goodFirstIssuesUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
     assert.match(readme, new RegExp(discussionsUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
     assert.match(docsReadme, new RegExp(goodFirstIssuesUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
     assert.match(docsReadme, new RegExp(discussionsUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+    assert.match(maintainerChecklist, /# Maintainer Checklist/);
+    assert.match(maintainerChecklist, /Closing Good-First Issues/);
+    assert.match(maintainerChecklist, /Verification evidence/);
+    assert.match(maintainerChecklist, /CI run URL/);
+    assert.match(maintainerChecklist, /issue comment/);
+    assert.match(maintainerChecklist, /label cleanup/);
+    assert.match(maintainerChecklist, /roadmap or backlog update/);
+    assert.match(maintainerChecklist, /CHANGELOG\.md/);
+    assert.match(maintainerChecklist, /docs\/ROADMAP\.md/);
+    assert.match(maintainerChecklist, /pending release/);
+    assert.match(maintainerChecklist, /Good First Issues/);
+    assert.doesNotMatch(
+      maintainerChecklist,
+      /[^\x00-\x7F]/,
+      'docs/MAINTAINER-CHECKLIST.md should stay ASCII-clean',
+    );
   });
 
   test('public troubleshooting guide covers Codex install recovery', () => {
@@ -1156,6 +1183,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\$gsd-session-report/);
     assert.match(unreleasedSection, /Cleanup example/);
     assert.match(unreleasedSection, /\$gsd-cleanup/);
+    assert.match(unreleasedSection, /Maintainer checklist/);
+    assert.match(unreleasedSection, /docs\/MAINTAINER-CHECKLIST\.md/);
     assert.match(unreleasedSection, /Audit-fix example/);
     assert.match(unreleasedSection, /\$gsd-audit-fix --dry-run/);
   });
