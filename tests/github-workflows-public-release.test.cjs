@@ -200,4 +200,18 @@ describe('GitHub workflows public release configuration', () => {
       assert.ok(declaredLabels.has(label), `CONTRIBUTING.md references undeclared label ${label}`);
     }
   });
+
+  test('new issue auto-label workflow retries transient GitHub API failures', () => {
+    const workflow = readWorkflow('auto-label-issues.yml');
+    const changelog = fs.readFileSync(path.join(ROOT, 'CHANGELOG.md'), 'utf8');
+
+    assert.match(workflow, /actions\/github-script@[0-9a-f]{40}\s+# v9\.0\.0/);
+    assert.match(workflow, /issues:\s*\n\s*types:\s*\[opened\]/);
+    assert.match(workflow, /permissions:\s*\n\s*issues:\s*write/);
+    assert.match(workflow, /labels:\s*\["needs-triage"\]/);
+    assert.match(workflow, /\bretries:\s*[2-9]\d*/);
+    assert.match(workflow, /\bretry-exempt-status-codes:\s*400,401,403,404,422\b/);
+    assert.doesNotMatch(workflow, /\bretry-exempt-status-codes:[^\n]*\b500\b/);
+    assert.match(changelog, /Auto-label retry hardening/);
+  });
 });
