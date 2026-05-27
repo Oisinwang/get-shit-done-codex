@@ -230,6 +230,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-health --repair`/);
     assert.match(readme, /Personalize Codex for long projects/);
     assert.match(readme, /`\$gsd-profile-user --questionnaire`/);
+    assert.match(readme, /Tune model cost and autonomy/);
+    assert.match(readme, /`\$gsd-settings`/);
     assert.match(readme, /Prepare a public PR without planning noise/);
     assert.match(readme, /`\$gsd-pr-branch codex\/bootstrap`/);
     assert.match(readme, /Check release readiness before a branch/);
@@ -269,6 +271,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Review Generated Planning Artifacts/);
     assert.match(examples, /## Repair Planning Directory Drift/);
     assert.match(examples, /## Personalize Codex For Long Projects/);
+    assert.match(examples, /## Tune Model Cost And Autonomy/);
     assert.match(examples, /## Prepare A Public Pull Request/);
     assert.match(examples, /## Audit Verification Debt Before Release/);
     assert.match(examples, /## Verify Security-Sensitive Changes/);
@@ -292,6 +295,9 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-health --repair/);
     assert.match(examples, /\$gsd-profile-user --questionnaire/);
     assert.match(examples, /\$gsd-profile-user --refresh/);
+    assert.match(examples, /\$gsd-settings/);
+    assert.match(examples, /\$gsd-set-profile budget/);
+    assert.match(examples, /\$gsd-set-profile quality/);
     assert.match(examples, /\$gsd-pr-branch codex\/bootstrap/);
     assert.match(examples, /\$gsd-audit-uat/);
     assert.match(examples, /\$gsd-secure-phase 1/);
@@ -335,6 +341,13 @@ describe('public release metadata', () => {
     assert.match(examples, /Commit the AGENTS\.md profile section only when the preference is stable project guidance/);
     assert.match(examples, /Keep `USER-PROFILE\.md` and global `AGENTS\.md` local when they describe one maintainer/);
     assert.match(examples, /PROJECT\.md and AGENTS\.md remain project requirements and operating instructions/);
+    assert.match(examples, /before a long-running milestone when token cost, latency, or autonomy needs to be explicit/);
+    assert.match(examples, /Use `budget` for cheap routine maintenance/);
+    assert.match(examples, /Use `balanced` for normal feature work/);
+    assert.match(examples, /Use `quality` for high-risk planning or review/);
+    assert.match(examples, /Use `inherit` when the active Codex runtime should control model choice/);
+    assert.match(examples, /workflow agents such as research, plan_check, verifier, and auto_advance/);
+    assert.match(examples, /Profile tuning changes time and token spend; it does not replace phase verification, UAT, or review/);
     assert.match(examples, /filter transient `.planning\/` commits before public review/);
     assert.match(examples, /The command creates a `\*-pr` branch from the target branch/);
     assert.match(examples, /Run the printed `git push` and `gh pr create` commands only after reviewing that generated branch/);
@@ -504,6 +517,22 @@ describe('public release metadata', () => {
       '$gsd-profile-user --questionnaire',
       '$gsd-profile-user --refresh',
       'git diff -- AGENTS.md',
+    ]);
+
+    const settingsStart = examples.indexOf('## Tune Model Cost And Autonomy');
+    const settingsEnd = examples.indexOf('## Prepare A Public Pull Request');
+    const settingsSection = examples.slice(settingsStart, settingsEnd);
+    const settingsCommands = settingsSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(settingsCommands, 'settings example should include a bash block');
+    assert.deepEqual(settingsCommands, [
+      '$gsd-settings',
+      '$gsd-set-profile budget',
+      '$gsd-set-profile quality',
+      '$gsd-progress --forensic',
     ]);
 
     const publicPrStart = examples.indexOf('## Prepare A Public Pull Request');
@@ -890,6 +919,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
+    assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
     assert.doesNotMatch(roadmap, /\$gsd-session-report/);
@@ -1280,6 +1310,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\$gsd-health --repair/);
     assert.match(unreleasedSection, /Profile-user example/);
     assert.match(unreleasedSection, /\$gsd-profile-user --questionnaire/);
+    assert.match(unreleasedSection, /Settings example/);
+    assert.match(unreleasedSection, /\$gsd-settings/);
     assert.match(unreleasedSection, /Audit-fix example/);
     assert.match(unreleasedSection, /\$gsd-audit-fix --dry-run/);
   });

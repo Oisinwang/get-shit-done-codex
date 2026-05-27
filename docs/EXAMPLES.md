@@ -81,6 +81,21 @@ git diff -- AGENTS.md
 
 `$gsd-profile-user --questionnaire` writes `$HOME/.codex/get-shit-done/USER-PROFILE.md` and can generate `$HOME/.codex/commands/gsd/dev-preferences.md`, an AGENTS.md profile section, or a Global AGENTS.md entry. `$gsd-profile-user --refresh` backs up the previous profile, re-analyzes recent sessions, and shows changed dimensions before writing the new profile. Commit the AGENTS.md profile section only when the preference is stable project guidance that other maintainers should share. Keep `USER-PROFILE.md` and global `AGENTS.md` local when they describe one maintainer's personal style. PROJECT.md and AGENTS.md remain project requirements and operating instructions; the generated profile is personal interaction guidance, not a replacement for project scope or repo rules.
 
+## Tune Model Cost And Autonomy
+
+Use this before a long-running milestone when token cost, latency, or autonomy needs to be explicit. It is also useful before inviting contributors into a repo that should have predictable planning and verification defaults.
+
+```bash
+$gsd-settings
+$gsd-set-profile budget
+$gsd-set-profile quality
+$gsd-progress --forensic
+```
+
+Use `budget` for cheap routine maintenance, documentation, or backlog triage. Use `balanced` for normal feature work. Use `quality` for high-risk planning or review where missing a requirement is more expensive than spending more tokens. Use `inherit` when the active Codex runtime should control model choice, such as when a local or provider-specific model is already selected outside GSD.
+
+`$gsd-settings` also exposes workflow agents such as research, plan_check, verifier, and auto_advance. Keep research, plan_check, and verifier enabled when the work affects users, releases, migrations, security, or public docs. Consider disabling or downgrading only for low-risk chores where the command output itself is easy to inspect. Profile tuning changes time and token spend; it does not replace phase verification, UAT, or review.
+
 ## Prepare A Public Pull Request
 
 Use this when you worked with GSD planning files locally but want reviewers to see code, docs, and structural planning changes without transient phase artifacts. In this repository, target `codex/bootstrap`; in another repository, replace that with the branch you normally merge into.

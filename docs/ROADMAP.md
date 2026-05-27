@@ -32,6 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
+- Add a short demo media checklist for the 60-second workflow, including what to record, how to redact local paths, and where to link the result from README and `docs/DEMO.md`.
 
 ## Manual maintainer actions
 

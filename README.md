@@ -143,6 +143,7 @@ Built-in quality gates catch real problems: schema drift detection flags ORM cha
 | Review generated planning artifacts | `$gsd-progress --forensic` | Current state, verification debt, and files worth keeping |
 | Repair planning directory drift | `$gsd-health --repair` | Integrity report and explicit repair path for `.planning/` config or state drift |
 | Personalize Codex for long projects | `$gsd-profile-user --questionnaire` | `USER-PROFILE.md`, `/gsd-dev-preferences`, and optional AGENTS profile artifacts |
+| Tune model cost and autonomy | `$gsd-settings` | Explicit model profile and workflow-agent trade-offs before long-running work |
 | Check release readiness before a branch | `$gsd-audit-uat` | Outstanding UAT and verification debt before release review |
 | Check security-sensitive changes | `$gsd-secure-phase 1` | Threat-model-anchored verification and `{phase}-SECURITY.md` evidence |
 | Update docs after a feature ships | `$gsd-docs-update --verify-only` | Fact-checks docs against live code before generation or release |

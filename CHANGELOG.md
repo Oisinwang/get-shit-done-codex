@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Settings example** - Adds a copy-pastable `$gsd-settings` and `$gsd-set-profile` playbook for choosing budget, balanced, quality, or inherit model profiles before long-running milestone work.
 - **Profile-user example** - Adds a copy-pastable `$gsd-profile-user --questionnaire` playbook for setting up Codex personalization, refreshing it after several sessions, and deciding which AGENTS profile artifacts belong in the repository.
 - **Health repair example** - Adds a copy-pastable `$gsd-health --repair` playbook for reviewing and repairing `.planning/` config or state drift after interrupted setup, branch switches, or manual edits.
 - **Stats example** - Adds a copy-pastable `$gsd-stats` playbook for capturing project health snapshots before weekly updates, milestone reviews, or contributor handoffs.
