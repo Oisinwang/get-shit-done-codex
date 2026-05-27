@@ -876,6 +876,7 @@ describe('public release metadata', () => {
     assert.match(faq, /How do I choose between local and global Codex installs/);
     assert.match(faq, /What should change after a local Codex trial/);
     assert.match(faq, /Should I run \$gsd-map-codebase or \$gsd-new-project --auto first/);
+    assert.match(faq, /What should I include in a first GSD evaluation pull request/);
     assert.match(faq, /AGENTS\.md/);
     assert.match(faq, /\.codex\//);
     assert.match(faq, /planning context and execution evidence/);
@@ -918,6 +919,12 @@ describe('public release metadata', () => {
     assert.match(faq, /Use `\$gsd-new-project --auto` first for a new repository/);
     assert.match(faq, /blank milestone/);
     assert.match(faq, /Run `\$gsd-new-project --auto` after `\$gsd-map-codebase`/);
+    assert.match(faq, /include only reviewable setup and planning artifacts/);
+    assert.match(faq, /Include `\.codex\/` when reviewers need to inspect the local command surface/);
+    assert.match(faq, /Include `AGENTS\.md` when repository instructions changed/);
+    assert.match(faq, /Include selected `\.planning\/` docs such as `PROJECT\.md`, `ROADMAP\.md`, or `STATE\.md`/);
+    assert.match(faq, /Leave private notes, secrets, local paths, and unrelated product code out/);
+    assert.match(faq, /List the commands you ran and verification evidence/);
     assert.doesNotMatch(faq, /[^\x00-\x7F]/, 'docs/FAQ.md should stay ASCII-clean');
   });
 
@@ -964,6 +971,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
+    assert.match(roadmap, /GitHub Discussions instead of opening an issue/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
@@ -979,6 +987,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /changed files to expect after a `--local` Codex trial/);
     assert.doesNotMatch(roadmap, /source docs with published npm package docs/);
     assert.doesNotMatch(roadmap, /start with `\$gsd-map-codebase` versus `\$gsd-new-project --auto`/);
+    assert.doesNotMatch(roadmap, /what to include in a first GSD evaluation pull request/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1360,6 +1369,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Map-codebase versus new-project FAQ/);
     assert.match(unreleasedSection, /\$gsd-map-codebase/);
     assert.match(unreleasedSection, /\$gsd-new-project --auto/);
+    assert.match(unreleasedSection, /Evaluation pull request FAQ/);
+    assert.match(unreleasedSection, /first GSD evaluation pull request/);
+    assert.match(unreleasedSection, /reviewable setup and planning artifacts/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);

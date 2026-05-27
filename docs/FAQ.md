@@ -69,6 +69,14 @@ npx @oisinwang/get-shit-done-codex@latest --codex --local
 
 Open a pull request like any other repository change if you decide the generated `AGENTS.md`, `.codex/`, or `.planning/` artifacts belong in the repo. GSD does not need to bypass protected branch rules; merge only the files your team wants to keep.
 
+## What should I include in a first GSD evaluation pull request?
+
+Start with a trial branch and include only reviewable setup and planning artifacts. Include `.codex/` when reviewers need to inspect the local command surface, hooks, or skill files created by the local install.
+
+Include `AGENTS.md` when repository instructions changed. Include selected `.planning/` docs such as `PROJECT.md`, `ROADMAP.md`, or `STATE.md` when they explain goals, roadmap decisions, current state, or verification evidence that the team wants to keep.
+
+Leave private notes, secrets, local paths, and unrelated product code out unless the evaluation deliberately changed that code. List the commands you ran and verification evidence in the pull request description, such as `git status --short`, `$gsd-progress --forensic`, and any tests you ran.
+
 ## Can I try it without touching global Codex config?
 
 Yes. Use `--local` for the first trial:
