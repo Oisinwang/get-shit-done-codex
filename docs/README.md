@@ -26,6 +26,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 | [Safe Trial Transcript](SAFE-TRIAL-TRANSCRIPT.md) | New users, evaluators | No-install transcript of the sandbox and existing-repository safe trial commands |
 | [Safe Trial Outcome Template](SAFE-TRIAL-OUTCOME.md) | New users, evaluators | Copy-pastable keep/discard and feedback template after a local trial |
 | [Safe Trial Discussion Starter](SAFE-TRIAL-DISCUSSION.md) | New users, evaluators | Copy-pastable GitHub Discussions post for safe-trial advice |
+| [Safe Trial Troubleshooting](SAFE-TRIAL-TROUBLESHOOTING.md) | New users, evaluators | Quick fixes for first-run safe trial install, command, and changed-file issues |
 | [Evaluate](EVALUATE.md) | New users, evaluators | A safe 10-minute trial checklist with pass and fail signals |
 | [Examples](EXAMPLES.md) | New users | Copy-pastable workflows for new projects, existing repos, quick fixes, resume, spikes, and sketches |
 | [Prompt Recipes](PROMPTS.md) | New users | Copy-pastable Codex prompts for starting, resuming, auditing, and fixing with GSD |
@@ -54,6 +55,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 - **Preview a safe trial:** [Safe Trial Transcript](SAFE-TRIAL-TRANSCRIPT.md)
 - **Capture trial outcome:** [Safe Trial Outcome Template](SAFE-TRIAL-OUTCOME.md)
 - **Ask about a trial:** [Safe Trial Discussion Starter](SAFE-TRIAL-DISCUSSION.md)
+- **Fix a trial issue:** [Safe Trial Troubleshooting](SAFE-TRIAL-TROUBLESHOOTING.md)
 - **Try safely:** [Evaluate](EVALUATE.md)
 - **Pick a workflow:** [Examples](EXAMPLES.md)
 - **Paste a Codex prompt:** [Prompt Recipes](PROMPTS.md)

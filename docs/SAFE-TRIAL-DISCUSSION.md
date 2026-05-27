@@ -73,4 +73,4 @@ I filled out `SAFE-TRIAL-OUTCOME.md` and the main pass/fail signal was:
 
 ## Before posting
 
-Review the post as if it were public. Use GitHub Discussions for workflow advice and setup questions. Open an issue only when you have a reproducible bug, stale documentation, or a concrete feature proposal.
+Review the post as if it were public. Use [Safe Trial Troubleshooting](SAFE-TRIAL-TROUBLESHOOTING.md) first when install, command discovery, or changed-file checks are blocking the trial. Use GitHub Discussions for workflow advice and setup questions. Open an issue only when you have a reproducible bug, stale documentation, or a concrete feature proposal.

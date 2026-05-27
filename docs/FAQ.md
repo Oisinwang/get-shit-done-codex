@@ -60,7 +60,7 @@ Yes. GSD complements an existing tracker instead of replacing it. Use the tracke
 
 ## Should I ask in GitHub Discussions or open an issue?
 
-Use GitHub Discussions for setup questions, workflow advice, troubleshooting help, and examples. Good Discussion topics include choosing a local versus global install, deciding which workflow to run first, comparing Windows PowerShell and WSL setup paths, or asking why `$gsd-help is missing` after install. If you just ran a safe local trial, use the [Safe Trial Discussion Starter](SAFE-TRIAL-DISCUSSION.md) to include the right evidence without turning the question into a bug report.
+Use GitHub Discussions for setup questions, workflow advice, troubleshooting help, and examples. Good Discussion topics include choosing a local versus global install, deciding which workflow to run first, comparing Windows PowerShell and WSL setup paths, or asking why `$gsd-help is missing` after install. If the safe local trial is stuck, check [Safe Trial Troubleshooting](SAFE-TRIAL-TROUBLESHOOTING.md) first. If you just ran a safe local trial, use the [Safe Trial Discussion Starter](SAFE-TRIAL-DISCUSSION.md) to include the right evidence without turning the question into a bug report.
 
 Open an issue for reproducible bugs, stale documentation, or concrete feature proposals. Include the exact command, exact error text, operating system and shell, Node.js version, and GSD package version so maintainers can reproduce the report.
 

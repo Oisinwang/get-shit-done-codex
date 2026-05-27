@@ -62,7 +62,7 @@ List any product files changed during the trial separately from setup files.
 
 ## Feedback evidence
 
-Use GitHub Discussions for setup questions, fit questions, and workflow advice. The [Safe Trial Discussion Starter](SAFE-TRIAL-DISCUSSION.md) turns this evidence into a copy-pastable post. Include:
+Use [Safe Trial Troubleshooting](SAFE-TRIAL-TROUBLESHOOTING.md) if install, command discovery, or changed-file checks block the decision. Use GitHub Discussions for setup questions, fit questions, and workflow advice. The [Safe Trial Discussion Starter](SAFE-TRIAL-DISCUSSION.md) turns this evidence into a copy-pastable post. Include:
 
 - This filled template.
 - The commands you ran.

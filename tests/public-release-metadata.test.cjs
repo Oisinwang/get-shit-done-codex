@@ -345,6 +345,45 @@ describe('public release metadata', () => {
     assert.doesNotMatch(starter, /[^\x00-\x7F]/, 'safe trial discussion starter should stay ASCII-clean');
   });
 
+  test('public safe trial troubleshooting page gives evaluators quick fixes before filing', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const evaluate = fs.readFileSync(path.join(ROOT, 'docs', 'EVALUATE.md'), 'utf8');
+    const outcome = fs.readFileSync(path.join(ROOT, 'docs', 'SAFE-TRIAL-OUTCOME.md'), 'utf8');
+    const discussion = fs.readFileSync(path.join(ROOT, 'docs', 'SAFE-TRIAL-DISCUSSION.md'), 'utf8');
+    const faq = fs.readFileSync(path.join(ROOT, 'docs', 'FAQ.md'), 'utf8');
+    const troubleshootingPath = path.join(ROOT, 'docs', 'SAFE-TRIAL-TROUBLESHOOTING.md');
+
+    assert.equal(fs.existsSync(troubleshootingPath), true, 'docs/SAFE-TRIAL-TROUBLESHOOTING.md should exist');
+
+    const troubleshooting = fs.readFileSync(troubleshootingPath, 'utf8');
+
+    assert.match(readme, /\[Safe Trial Troubleshooting\]\(docs\/SAFE-TRIAL-TROUBLESHOOTING\.md\)/);
+    assert.match(docsReadme, /\[Safe Trial Troubleshooting\]\(SAFE-TRIAL-TROUBLESHOOTING\.md\)/);
+    assert.match(evaluate, /\[Safe Trial Troubleshooting\]\(SAFE-TRIAL-TROUBLESHOOTING\.md\)/);
+    assert.match(outcome, /\[Safe Trial Troubleshooting\]\(SAFE-TRIAL-TROUBLESHOOTING\.md\)/);
+    assert.match(discussion, /\[Safe Trial Troubleshooting\]\(SAFE-TRIAL-TROUBLESHOOTING\.md\)/);
+    assert.match(faq, /\[Safe Trial Troubleshooting\]\(SAFE-TRIAL-TROUBLESHOOTING\.md\)/);
+    assert.match(troubleshooting, /# Safe Trial Troubleshooting/);
+    assert.match(troubleshooting, /Quick checks/);
+    assert.match(troubleshooting, /Commands are missing/);
+    assert.match(troubleshooting, /Unexpected files changed/);
+    assert.match(troubleshooting, /Local versus global install confusion/);
+    assert.match(troubleshooting, /npm or Node.js failure/);
+    assert.match(troubleshooting, /Stale npm cache/);
+    assert.match(troubleshooting, /When to ask in Discussions/);
+    assert.match(troubleshooting, /When to open an issue/);
+    assert.match(troubleshooting, /git status --short/);
+    assert.match(troubleshooting, /git diff --stat/);
+    assert.match(troubleshooting, /\[Commands are not found after install\]\(TROUBLESHOOTING\.md#commands-are-not-found-after-install\)/);
+    assert.match(troubleshooting, /\[Runtime restart or command discovery\]\(TROUBLESHOOTING\.md#runtime-restart-or-command-discovery\)/);
+    assert.match(troubleshooting, /\[Windows PowerShell first-pass diagnostics\]\(TROUBLESHOOTING\.md#windows-powershell-first-pass-diagnostics\)/);
+    assert.match(troubleshooting, /\[Stale npm cache or partial install\]\(TROUBLESHOOTING\.md#stale-npm-cache-or-partial-install\)/);
+    assert.doesNotMatch(troubleshooting, /docs\/TROUBLESHOOTING\.md/);
+    assert.match(troubleshooting, /Safe Trial Discussion Starter/);
+    assert.doesNotMatch(troubleshooting, /[^\x00-\x7F]/, 'safe trial troubleshooting should stay ASCII-clean');
+  });
+
   test('README shows a real-world before and after example', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const beforeAfterStart = readme.indexOf('## Before And After');
@@ -1206,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /safe trial troubleshooting quick fixes/);
+    assert.match(roadmap, /safe trial issue chooser hints/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1217,6 +1256,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized safe trial transcript links/);
     assert.doesNotMatch(roadmap, /safe trial discussion starter/);
     assert.doesNotMatch(roadmap, /localized safe trial discussion links/);
+    assert.doesNotMatch(roadmap, /safe trial troubleshooting quick fixes/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1689,6 +1729,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Safe trial discussion starter/);
     assert.match(unreleasedSection, /SAFE-TRIAL-DISCUSSION\.md/);
     assert.match(unreleasedSection, /Localized safe trial discussion links/);
+    assert.match(unreleasedSection, /Safe trial troubleshooting quick fixes/);
+    assert.match(unreleasedSection, /SAFE-TRIAL-TROUBLESHOOTING\.md/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
