@@ -189,6 +189,10 @@ describe('public release metadata', () => {
     assert.match(demo, /Do not require a specific recording tool/);
     assert.match(demo, /GIF, short MP4, or annotated screenshot sequence/);
     assert.match(demo, /`assets\/social-preview\.png` is not a substitute for workflow demo media/);
+    assert.match(readme, /Finished demo link: place a published `60-second GSD Codex demo` link near this terminal preview/);
+    assert.match(demo, /When the recording is ready, place the finished demo link under this section and mirror it near the README terminal preview/);
+    assert.match(demo, /Use link text such as `60-second GSD Codex demo`/);
+    assert.match(demo, /Caption it with the command flow, generated artifacts, and `git status --short` evidence/);
     assert.match(demo, /Link the finished demo from `README\.md` near the terminal preview/);
     assert.match(demo, /Link it from this page under `## 60-second workflow`/);
     assert.doesNotMatch(demo, /[^\x00-\x7F]/, 'docs/DEMO.md should stay ASCII-clean');
@@ -880,6 +884,7 @@ describe('public release metadata', () => {
     assert.match(faq, /Should I ask in GitHub Discussions or open an issue/);
     assert.match(faq, /How do I build a minimal install reproduction/);
     assert.match(faq, /How do I record a safe 60-second demo/);
+    assert.match(faq, /Where should I place a finished demo link/);
     assert.match(faq, /AGENTS\.md/);
     assert.match(faq, /\.codex\//);
     assert.match(faq, /planning context and execution evidence/);
@@ -948,6 +953,11 @@ describe('public release metadata', () => {
     assert.match(faq, /End on `git status --short`/);
     assert.match(faq, /Redact local paths, usernames, private repository names, tokens, email addresses, and machine hostnames/);
     assert.match(faq, /Avoid client, employer, school, or private product details/);
+    assert.match(faq, /Put the public recording in two places/);
+    assert.match(faq, /near the README terminal preview/);
+    assert.match(faq, /under `## 60-second workflow` in `docs\/DEMO\.md`/);
+    assert.match(faq, /Use link text such as `60-second GSD Codex demo`/);
+    assert.match(faq, /Caption it with the command flow, generated artifacts, and `git status --short` evidence/);
     assert.doesNotMatch(faq, /[^\x00-\x7F]/, 'docs/FAQ.md should stay ASCII-clean');
   });
 
@@ -994,7 +1004,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /finished demo link/);
+    assert.match(roadmap, /docs-only contribution verification/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
@@ -1014,6 +1024,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /GitHub Discussions instead of opening an issue/);
     assert.doesNotMatch(roadmap, /minimal install reproduction/);
     assert.doesNotMatch(roadmap, /safe 60-second demo/);
+    assert.doesNotMatch(roadmap, /finished demo link/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1407,6 +1418,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Safe demo recording FAQ/);
     assert.match(unreleasedSection, /60-second demo/);
     assert.match(unreleasedSection, /generated artifacts and redaction guidance/);
+    assert.match(unreleasedSection, /Finished demo link placement FAQ/);
+    assert.match(unreleasedSection, /README terminal preview/);
+    assert.match(unreleasedSection, /docs\/DEMO\.md 60-second workflow/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);

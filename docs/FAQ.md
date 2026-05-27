@@ -89,6 +89,14 @@ End on `git status --short` so viewers can see the expected repository changes. 
 
 Avoid client, employer, school, or private product details in the goal text. Use a synthetic project name, and keep the demo focused on the workflow rather than private source code.
 
+## Where should I place a finished demo link?
+
+Put the public recording in two places: near the README terminal preview and under `## 60-second workflow` in `docs/DEMO.md`.
+
+Use link text such as `60-second GSD Codex demo`. Caption it with the command flow, generated artifacts, and `git status --short` evidence so visitors know what the recording proves before they install.
+
+Keep the link near the demo guidance instead of only mentioning it in a release note. That makes it visible to evaluators who scan the README first and to maintainers who update `docs/DEMO.md`.
+
 ## Can I try it in a repository with strict branch protection?
 
 Yes. Use a trial branch and the local install path so the first pass is reviewable before it touches the protected branch:

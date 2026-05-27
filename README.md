@@ -42,6 +42,8 @@ npx @oisinwang/get-shit-done-codex@latest
 
 *Terminal preview: verified `npx` install plus `$gsd-help` discovery for Codex users.*
 
+*Finished demo link: place a published `60-second GSD Codex demo` link near this terminal preview once the recording is available.*
+
 <br>
 
 *"If you know clearly what you want, this helps Codex keep building until the result is verifiable."*

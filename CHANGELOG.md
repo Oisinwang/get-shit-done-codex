@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Finished demo link placement FAQ** - Explains where to place finished demo links near the README terminal preview and docs/DEMO.md 60-second workflow, including link text and evidence caption guidance.
 - **Safe demo recording FAQ** - Explains how to record a safe 60-second demo with generated artifacts and redaction guidance before publishing workflow media.
 - **Demo media checklist** - Adds a `Demo Media Checklist` to `docs/DEMO.md` so maintainers know what to record, redact, and link when publishing short workflow demo media.
 - **Fast versus quick FAQ** - Explains when to use `$gsd-fast` versus `$gsd-quick --validate` for small changes, including risk-based guidance around obvious verification and plan-checking gates.

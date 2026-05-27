@@ -14,6 +14,8 @@ Use `--local` when you want the install scoped to the current repository. Use `-
 
 Maintainers preparing short demo media should follow the [Demo Media Checklist](#demo-media-checklist) before publishing it.
 
+When the recording is ready, place the finished demo link under this section and mirror it near the README terminal preview. Use link text such as `60-second GSD Codex demo`. Caption it with the command flow, generated artifacts, and `git status --short` evidence.
+
 ## What you should see
 
 The first command installs Codex-facing commands, skills, and project instructions. The next two commands turn a rough goal into durable project state:
