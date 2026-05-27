@@ -55,6 +55,20 @@ $gsd-progress --forensic
 
 Keep `AGENTS.md`, `.codex/`, and `.planning/` when the generated state helps later Codex sessions resume the same project context. Ignore or discard the trial branch when the artifacts are only private evaluation notes or do not match how your team reviews project state.
 
+## Repair Planning Directory Drift
+
+Use this when `.planning/` integrity checks look wrong after interrupted setup, branch switches, or manual file edits. This workflow stays read-only until the explicit `--repair` step.
+
+```bash
+$gsd-progress --forensic
+$gsd-health
+# Review repairable findings before changing files.
+$gsd-health --repair
+$gsd-progress --forensic
+```
+
+Run `$gsd-progress --forensic` first so verification debt and state drift are visible before repair. `$gsd-health` reports `Status: HEALTHY | DEGRADED | BROKEN`, issue counts, and `repairable_count`; review those findings before changing files. Only run `$gsd-health --repair` when the health output identifies auto-fixable items. Repair output includes `repairs_performed`; common repairs include creating `config.json`, resetting invalid `config.json`, regenerating missing `STATE.md`, and adding `workflow.nyquist_validation`. Re-run forensic progress after repair so any remaining manual work is visible.
+
 ## Prepare A Public Pull Request
 
 Use this when you worked with GSD planning files locally but want reviewers to see code, docs, and structural planning changes without transient phase artifacts. In this repository, target `codex/bootstrap`; in another repository, replace that with the branch you normally merge into.

@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Health repair example** - Adds a copy-pastable `$gsd-health --repair` playbook for reviewing and repairing `.planning/` config or state drift after interrupted setup, branch switches, or manual edits.
 - **Stats example** - Adds a copy-pastable `$gsd-stats` playbook for capturing project health snapshots before weekly updates, milestone reviews, or contributor handoffs.
 - **Korean comparison guide** - Adds `docs/ko-KR/COMPARISON.md` and discovery links so Korean readers can evaluate the same raw Codex, prompt pack, task manager, and CI-only trade-offs as the English guide.
 - **Maintainer checklist** - Adds `docs/MAINTAINER-CHECKLIST.md` so resolved good-first issues close with verification evidence, CI links, label cleanup, and roadmap or backlog updates.

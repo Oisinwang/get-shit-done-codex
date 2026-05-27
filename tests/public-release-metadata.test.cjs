@@ -226,6 +226,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`git switch -c evaluate-gsd-codex`/);
     assert.match(readme, /Review generated planning artifacts/);
     assert.match(readme, /`\$gsd-progress --forensic`/);
+    assert.match(readme, /Repair planning directory drift/);
+    assert.match(readme, /`\$gsd-health --repair`/);
     assert.match(readme, /Prepare a public PR without planning noise/);
     assert.match(readme, /`\$gsd-pr-branch codex\/bootstrap`/);
     assert.match(readme, /Check release readiness before a branch/);
@@ -263,6 +265,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Existing Repo Safe Trial/);
     assert.match(examples, /## Existing Repo Migration Branch/);
     assert.match(examples, /## Review Generated Planning Artifacts/);
+    assert.match(examples, /## Repair Planning Directory Drift/);
     assert.match(examples, /## Prepare A Public Pull Request/);
     assert.match(examples, /## Audit Verification Debt Before Release/);
     assert.match(examples, /## Verify Security-Sensitive Changes/);
@@ -282,6 +285,8 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
+    assert.match(examples, /\$gsd-health/);
+    assert.match(examples, /\$gsd-health --repair/);
     assert.match(examples, /\$gsd-pr-branch codex\/bootstrap/);
     assert.match(examples, /\$gsd-audit-uat/);
     assert.match(examples, /\$gsd-secure-phase 1/);
@@ -309,6 +314,14 @@ describe('public release metadata', () => {
     assert.match(examples, /git diff -- \.codex AGENTS\.md PROJECT\.md ROADMAP\.md STATE\.md \.planning/);
     assert.match(examples, /Keep `AGENTS\.md`, `.codex\/`, and `.planning\/` when the generated state helps later Codex sessions resume/);
     assert.match(examples, /Ignore or discard the trial branch when the artifacts are only private evaluation notes/);
+    assert.match(examples, /after interrupted setup, branch switches, or manual file edits/);
+    assert.match(examples, /read-only until the explicit `--repair` step/);
+    assert.match(examples, /Status: HEALTHY \| DEGRADED \| BROKEN/);
+    assert.match(examples, /repairable_count/);
+    assert.match(examples, /repairs_performed/);
+    assert.match(examples, /config\.json/);
+    assert.match(examples, /STATE\.md/);
+    assert.match(examples, /Review repairable findings before changing files/);
     assert.match(examples, /filter transient `.planning\/` commits before public review/);
     assert.match(examples, /The command creates a `\*-pr` branch from the target branch/);
     assert.match(examples, /Run the printed `git push` and `gh pr create` commands only after reviewing that generated branch/);
@@ -445,6 +458,23 @@ describe('public release metadata', () => {
     assert.deepEqual(reviewArtifactsCommands, [
       'git status --short',
       'git diff -- .codex AGENTS.md PROJECT.md ROADMAP.md STATE.md .planning',
+      '$gsd-progress --forensic',
+    ]);
+
+    const healthStart = examples.indexOf('## Repair Planning Directory Drift');
+    const healthEnd = examples.indexOf('## Prepare A Public Pull Request');
+    const healthSection = examples.slice(healthStart, healthEnd);
+    const healthCommands = healthSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(healthCommands, 'health repair example should include a bash block');
+    assert.deepEqual(healthCommands, [
+      '$gsd-progress --forensic',
+      '$gsd-health',
+      '# Review repairable findings before changing files.',
+      '$gsd-health --repair',
       '$gsd-progress --forensic',
     ]);
 
@@ -1218,6 +1248,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/MAINTAINER-CHECKLIST\.md/);
     assert.match(unreleasedSection, /Stats example/);
     assert.match(unreleasedSection, /\$gsd-stats/);
+    assert.match(unreleasedSection, /Health repair example/);
+    assert.match(unreleasedSection, /\$gsd-health --repair/);
     assert.match(unreleasedSection, /Audit-fix example/);
     assert.match(unreleasedSection, /\$gsd-audit-fix --dry-run/);
   });
