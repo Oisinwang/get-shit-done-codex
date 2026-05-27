@@ -248,6 +248,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-pause-work`/);
     assert.match(readme, /Summarize a session for handoff/);
     assert.match(readme, /`\$gsd-session-report`/);
+    assert.match(readme, /Capture a project health snapshot/);
+    assert.match(readme, /`\$gsd-stats`/);
     assert.match(readme, /Archive completed milestone phases/);
     assert.match(readme, /`\$gsd-cleanup`/);
     assert.match(readme, /Fix confirmed audit findings/);
@@ -272,6 +274,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Preserve Long-Running Context/);
     assert.match(examples, /## Pause Before A Context Reset/);
     assert.match(examples, /## Summarize A Session For Handoff/);
+    assert.match(examples, /## Capture A Project Health Snapshot/);
     assert.match(examples, /## Archive Completed Milestone Phases/);
     assert.match(examples, /## Fix Confirmed Audit Findings/);
     assert.match(examples, /## Coordinate Parallel Workstreams/);
@@ -290,6 +293,7 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-thread "Investigate flaky release"/);
     assert.match(examples, /\$gsd-pause-work/);
     assert.match(examples, /\$gsd-session-report/);
+    assert.match(examples, /\$gsd-stats/);
     assert.match(examples, /\$gsd-cleanup/);
     assert.match(examples, /\$gsd-audit-fix --dry-run/);
     assert.match(examples, /\$gsd-audit-fix --severity high --max 3/);
@@ -359,6 +363,15 @@ describe('public release metadata', () => {
     assert.match(examples, /Resource Usage Estimate/);
     assert.match(examples, /Next Steps/);
     assert.match(examples, /stakeholder sharing/);
+    assert.match(examples, /before a weekly update, milestone review, or contributor handoff/);
+    assert.match(examples, /milestone version and milestone name/);
+    assert.match(examples, /phase progress/);
+    assert.match(examples, /plan completion/);
+    assert.match(examples, /requirements complete/);
+    assert.match(examples, /git commits/);
+    assert.match(examples, /started date/);
+    assert.match(examples, /last activity/);
+    assert.match(examples, /project age/);
     assert.match(examples, /after completing or archiving milestones/);
     assert.match(examples, /reads `.planning\/MILESTONES\.md`/);
     assert.match(examples, /archived ROADMAP snapshots/);
@@ -596,6 +609,21 @@ describe('public release metadata', () => {
       '$gsd-progress --forensic',
       '$gsd-session-report',
       'git diff -- .planning/reports',
+    ]);
+
+    const statsStart = examples.indexOf('## Capture A Project Health Snapshot');
+    const statsEnd = examples.indexOf('## Archive Completed Milestone Phases');
+    const statsSection = examples.slice(statsStart, statsEnd);
+    const statsCommands = statsSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(statsCommands, 'stats example should include a bash block');
+    assert.deepEqual(statsCommands, [
+      '$gsd-progress --forensic',
+      '$gsd-stats',
+      '$gsd-session-report',
     ]);
 
     const cleanupStart = examples.indexOf('## Archive Completed Milestone Phases');
@@ -1188,6 +1216,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\$gsd-cleanup/);
     assert.match(unreleasedSection, /Maintainer checklist/);
     assert.match(unreleasedSection, /docs\/MAINTAINER-CHECKLIST\.md/);
+    assert.match(unreleasedSection, /Stats example/);
+    assert.match(unreleasedSection, /\$gsd-stats/);
     assert.match(unreleasedSection, /Audit-fix example/);
     assert.match(unreleasedSection, /\$gsd-audit-fix --dry-run/);
   });

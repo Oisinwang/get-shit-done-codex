@@ -185,6 +185,18 @@ git diff -- .planning/reports
 
 Run `$gsd-progress --forensic` first so the report starts from current state rather than memory. `$gsd-session-report` writes `.planning/reports/SESSION_REPORT.md` for stakeholder sharing with Session Summary, Work Performed, Outcomes, Resource Usage Estimate, and Next Steps sections. Review the report diff before handing it off so stale status, missing verification, or unclear next actions do not become part of the project record.
 
+## Capture A Project Health Snapshot
+
+Use this before a weekly update, milestone review, or contributor handoff when you need a fast view of project state without reading every planning artifact.
+
+```bash
+$gsd-progress --forensic
+$gsd-stats
+$gsd-session-report
+```
+
+Run `$gsd-progress --forensic` first so stale state and verification debt are visible before you summarize. `$gsd-stats` displays the milestone version and milestone name, phase progress, plan completion, requirements complete count, git commits, started date, last activity, and project age. Use `$gsd-session-report` after the stats snapshot when the update needs a shareable narrative with outcomes and next steps.
+
 ## Archive Completed Milestone Phases
 
 Use this after completing or archiving milestones when old phase directories are still sitting in `.planning/phases/` and make current work harder to scan.
