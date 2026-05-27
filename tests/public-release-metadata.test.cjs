@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /safe trial issue chooser hints/);
+    assert.match(roadmap, /localized safe trial troubleshooting links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1257,6 +1257,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /safe trial discussion starter/);
     assert.doesNotMatch(roadmap, /localized safe trial discussion links/);
     assert.doesNotMatch(roadmap, /safe trial troubleshooting quick fixes/);
+    assert.doesNotMatch(roadmap, /safe trial issue chooser hints/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1731,6 +1732,7 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Localized safe trial discussion links/);
     assert.match(unreleasedSection, /Safe trial troubleshooting quick fixes/);
     assert.match(unreleasedSection, /SAFE-TRIAL-TROUBLESHOOTING\.md/);
+    assert.match(unreleasedSection, /Safe trial issue chooser hints/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
@@ -2363,10 +2365,24 @@ describe('public release metadata', () => {
     }
 
     const bugTemplate = fs.readFileSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'bug_report.yml'), 'utf8');
+    const issueChooserConfig = fs.readFileSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'config.yml'), 'utf8');
     assert.match(bugTemplate, /npm list -g @oisinwang\/get-shit-done-codex/);
     assert.match(bugTemplate, /options:\r?\n        - Codex\r?\n        - Claude Code/);
     assert.match(bugTemplate, /Select runtime: Codex/);
     assert.match(bugTemplate, /Codex: `cat ~\/\.codex\/config\.toml`/);
+    assert.match(bugTemplate, /Safe Trial Troubleshooting/);
+    assert.match(bugTemplate, /docs\/SAFE-TRIAL-TROUBLESHOOTING\.md/);
+    assert.match(bugTemplate, /Safe Trial Discussion Starter/);
+    assert.match(bugTemplate, /git status --short/);
+    assert.match(bugTemplate, /git diff --stat/);
+    assert.match(bugTemplate, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
+    assert.match(bugTemplate, /\$gsd-new-project --auto/);
+    assert.match(bugTemplate, /\$gsd-next/);
+    assert.doesNotMatch(bugTemplate, /\/gsd-init/);
+    assert.doesNotMatch(bugTemplate, /\/gsd-plan/);
+    assert.match(issueChooserConfig, /Safe trial troubleshooting/);
+    assert.match(issueChooserConfig, /docs\/SAFE-TRIAL-TROUBLESHOOTING\.md/);
+    assert.match(issueChooserConfig, /First-run local trial/);
 
     const docsTemplate = fs.readFileSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'docs_issue.yml'), 'utf8');
     assert.match(docsTemplate, /label: Affected docs area/);

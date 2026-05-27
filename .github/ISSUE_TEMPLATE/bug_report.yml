@@ -13,6 +13,8 @@ body:
         > 2. Redact usernames, paths, and API keys (e.g., replace `/Users/yourname/` with `/Users/REDACTED/`)
         > 3. Or run your logs through an anonymizer - we recommend [presidio-anonymizer](https://microsoft.github.io/presidio/) (open-source, local-only) or [scrub](https://github.com/dssg/scrub) before pasting
 
+        If you just ran a safe local trial and are not sure whether this is a bug, check [Safe Trial Troubleshooting](https://github.com/Oisinwang/get-shit-done-codex/blob/codex/bootstrap/docs/SAFE-TRIAL-TROUBLESHOOTING.md) and use the [Safe Trial Discussion Starter](https://github.com/Oisinwang/get-shit-done-codex/blob/codex/bootstrap/docs/SAFE-TRIAL-DISCUSSION.md) for setup questions or workflow advice. Open this bug report only for reproducible failures, stale docs, or concrete behavior that is wrong.
+
   - type: input
     id: version
     attributes:
@@ -90,7 +92,7 @@ body:
       label: What happened?
       description: Describe what went wrong. Be specific about which GSD command you were running.
       placeholder: |
-        When I ran `/gsd-plan`, the system...
+        When I ran `$gsd-next`, the system...
     validations:
       required: true
 
@@ -109,11 +111,13 @@ body:
       description: |
         Exact steps to reproduce the issue. Include the GSD command used.
       placeholder: |
-        1. Install GSD with `npx @oisinwang/get-shit-done-codex@latest`
-        2. Select runtime: Codex
-        3. Run `/gsd-init` with a new project
-        4. Run `/gsd-plan`
-        5. Error appears at step...
+        1. Run `git status --short`
+        2. Install GSD with `npx @oisinwang/get-shit-done-codex@latest --codex --local`
+        3. Select runtime: Codex
+        4. Run `$gsd-new-project --auto`
+        5. Run `$gsd-next`
+        6. Run `git status --short` and `git diff --stat`
+        7. Error appears at step...
     validations:
       required: true
 
@@ -125,6 +129,21 @@ body:
         Paste any error messages from the terminal. This will be rendered as code.
 
         Privacy warning: Terminal output often contains your system username in file paths. Please redact before pasting.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: safe_trial_evidence
+    attributes:
+      label: Safe trial evidence (if applicable)
+      description: |
+        If this came from the safe local trial, paste sanitized repository-state evidence.
+
+        Include:
+        - `git status --short`
+        - `git diff --stat`
+        - Whether you expected only `.codex/`, `AGENTS.md`, and `.planning/` changes
       render: shell
     validations:
       required: false
@@ -217,6 +236,9 @@ body:
 
         Useful diagnostics to include (if applicable):
         - `npm list -g @oisinwang/get-shit-done-codex` - confirms installed version
+        - `npx @oisinwang/get-shit-done-codex@latest --codex --local` - reproduces the safe local install path
+        - `git status --short` - shows changed setup, planning, and product files after a safe local trial
+        - `git diff --stat` - summarizes changed paths before you paste details
         - `ls -la ~/.codex/get-shit-done/` - confirms installation files
         - `cat ~/.codex/get-shit-done/gsd-file-manifest.json` - file manifest for debugging install issues
         - `ls -la .planning/` - confirms planning directory state

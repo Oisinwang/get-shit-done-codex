@@ -3,6 +3,9 @@ contact_links:
   - name: Questions and usage help
     url: https://github.com/Oisinwang/get-shit-done-codex/discussions
     about: Ask questions, share usage notes, and discuss non-bug topics.
+  - name: Safe trial troubleshooting
+    url: https://github.com/Oisinwang/get-shit-done-codex/blob/codex/bootstrap/docs/SAFE-TRIAL-TROUBLESHOOTING.md
+    about: First-run local trial checks for install, command discovery, and changed-file issues.
   - name: Code of conduct
     url: https://github.com/Oisinwang/get-shit-done-codex/blob/codex/bootstrap/CODE_OF_CONDUCT.md
     about: Review community standards and private conduct reporting guidance.
