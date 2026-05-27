@@ -80,7 +80,7 @@ git status --short
 
 新しいsandboxで試す場合は、先に使い捨てディレクトリを作り、同じインストールとGSDコマンドを実行します。評価が終わったら、そのディレクトリを削除するか試用ブランチを削除してください。
 
-完全なチェックリストは [Evaluate](docs/EVALUATE.md) を参照してください。
+完全なチェックリストは [Evaluate](docs/EVALUATE.md) を参照してください。実行前に [Safe Trial Transcript](docs/SAFE-TRIAL-TRANSCRIPT.md) も確認できます。試用後は [Safe Trial Outcome Template](docs/SAFE-TRIAL-OUTCOME.md) で残す内容を記録してください。
 
 ---
 

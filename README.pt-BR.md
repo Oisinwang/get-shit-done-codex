@@ -80,7 +80,7 @@ Os arquivos esperados são `.codex/`, `AGENTS.md` e `.planning/`. Revise `git st
 
 Para um sandbox novo, crie primeiro um diretório descartável e rode os mesmos comandos. Remova o diretório descartável ou exclua o branch de teste quando terminar a avaliação.
 
-Veja o checklist completo em [Evaluate](docs/EVALUATE.md).
+Veja o checklist completo em [Evaluate](docs/EVALUATE.md). Antes de rodar, consulte também [Safe Trial Transcript](docs/SAFE-TRIAL-TRANSCRIPT.md); depois, use [Safe Trial Outcome Template](docs/SAFE-TRIAL-OUTCOME.md) para registrar o que manter.
 
 ---
 

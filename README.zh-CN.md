@@ -80,7 +80,7 @@ git status --short
 
 如果是全新的 sandbox，请先创建一个临时目录，再运行同样的安装和 GSD 命令。评估结束后，删除临时目录或删除试用分支。
 
-完整清单见 [Evaluate](docs/EVALUATE.md)。
+完整清单见 [Evaluate](docs/EVALUATE.md)。运行前也可以先看 [Safe Trial Transcript](docs/SAFE-TRIAL-TRANSCRIPT.md)；试用结束后，用 [Safe Trial Outcome Template](docs/SAFE-TRIAL-OUTCOME.md) 记录要保留的内容。
 
 ---
 
