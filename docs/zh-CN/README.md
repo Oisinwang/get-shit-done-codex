@@ -10,6 +10,7 @@ npx @oisinwang/get-shit-done-codex@latest
 
 Safe trial troubleshooting: [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md).
 Safe trial outcome template: [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md).
+Safe trial discussion starter: [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md).
 
 Claude 时代的旧名称只作为迁移兼容层保留。fork 的边界、命名规则和迁移说明见 [CODEX-FORK.md](../CODEX-FORK.md)。
 

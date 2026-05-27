@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized safe trial discussion docs index links** - Adds `Safe Trial Discussion Starter` links to localized docs indexes so non-English readers can ask support-ready questions from docs entry points.
 - **Localized safe trial outcome docs index links** - Adds `Safe Trial Outcome Template` links to localized docs indexes so non-English readers can record first-run decisions from docs entry points.
 - **Localized safe trial troubleshooting docs index links** - Adds `Safe Trial Troubleshooting` links to localized docs indexes so non-English readers can find first-run quick fixes from docs entry points.
 - **Localized safe trial troubleshooting links** - Adds `Safe Trial Troubleshooting` links to localized README files so non-English evaluators can find first-run quick fixes before filing an issue.

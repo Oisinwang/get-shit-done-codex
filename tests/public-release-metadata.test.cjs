@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized safe trial discussion docs index links/);
+    assert.match(roadmap, /localized safe trial transcript docs index links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1261,6 +1261,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized safe trial troubleshooting links/);
     assert.doesNotMatch(roadmap, /localized safe trial troubleshooting docs index links/);
     assert.doesNotMatch(roadmap, /localized safe trial outcome docs index links/);
+    assert.doesNotMatch(roadmap, /localized safe trial discussion docs index links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1739,6 +1740,7 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Localized safe trial troubleshooting links/);
     assert.match(unreleasedSection, /Localized safe trial troubleshooting docs index links/);
     assert.match(unreleasedSection, /Localized safe trial outcome docs index links/);
+    assert.match(unreleasedSection, /Localized safe trial discussion docs index links/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
@@ -2081,6 +2083,7 @@ describe('public release metadata', () => {
       assert.match(readme, /CODEX-FORK\.md/, relativePath);
       assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-TROUBLESHOOTING\.md\)/, relativePath);
       assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-OUTCOME\.md\)/, relativePath);
+      assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-DISCUSSION\.md\)/, relativePath);
 
       for (const marker of staleMarkers) {
         assert.doesNotMatch(readme, marker, relativePath);
