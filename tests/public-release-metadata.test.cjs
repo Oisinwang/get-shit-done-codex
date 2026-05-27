@@ -244,6 +244,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-eval-review 3`/);
     assert.match(readme, /Preserve long-running context/);
     assert.match(readme, /`\$gsd-thread "Investigate flaky release"`/);
+    assert.match(readme, /Fix confirmed audit findings/);
+    assert.match(readme, /`\$gsd-audit-fix --dry-run`/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
@@ -258,6 +260,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Audit Thin Validation Evidence/);
     assert.match(examples, /## Review AI Eval Coverage/);
     assert.match(examples, /## Preserve Long-Running Context/);
+    assert.match(examples, /## Fix Confirmed Audit Findings/);
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
@@ -270,6 +273,8 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-validate-phase 1/);
     assert.match(examples, /\$gsd-eval-review 3/);
     assert.match(examples, /\$gsd-thread "Investigate flaky release"/);
+    assert.match(examples, /\$gsd-audit-fix --dry-run/);
+    assert.match(examples, /\$gsd-audit-fix --severity high --max 3/);
     assert.match(examples, /git switch -c evaluate-gsd-codex/);
     assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(examples, /commit the branch only after reviewing the generated plan/i);
@@ -317,6 +322,14 @@ describe('public release metadata', () => {
     assert.match(examples, /Goal, Context, References, and Next Steps/);
     assert.match(examples, /resume with `\$gsd-thread investigate-flaky-release`/);
     assert.match(examples, /close with `\$gsd-thread close investigate-flaky-release`/);
+    assert.match(examples, /after UAT or verification has produced concrete findings/);
+    assert.match(examples, /preview classification before changing files/);
+    assert.match(examples, /classifies each finding as auto-fixable, manual-only, or skip/);
+    assert.match(examples, /dry-run stops after the classification table/);
+    assert.match(examples, /fix run processes high-severity auto-fixable findings up to `--max`/);
+    assert.match(examples, /runs tests after each fix/);
+    assert.match(examples, /commits atomically with finding IDs/);
+    assert.match(examples, /stops and reverts on the first test failure/);
     assert.match(examples, /source code, tests, and a README/);
     assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
 
@@ -499,6 +512,21 @@ describe('public release metadata', () => {
       '$gsd-thread close investigate-flaky-release',
     ]);
 
+    const auditFixStart = examples.indexOf('## Fix Confirmed Audit Findings');
+    const auditFixEnd = examples.indexOf('## Small Fix With Guardrails');
+    const auditFixSection = examples.slice(auditFixStart, auditFixEnd);
+    const auditFixCommands = auditFixSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(auditFixCommands, 'audit-fix example should include a bash block');
+    assert.deepEqual(auditFixCommands, [
+      '$gsd-audit-uat',
+      '$gsd-audit-fix --dry-run',
+      '$gsd-audit-fix --severity high --max 3',
+    ]);
+
     for (const marker of [
       '$gsd-new-project --auto',
       '$gsd-map-codebase',
@@ -511,6 +539,7 @@ describe('public release metadata', () => {
       '$gsd-validate-phase',
       '$gsd-eval-review',
       '$gsd-thread',
+      '$gsd-audit-fix',
       '$gsd-fast',
       '$gsd-resume-work',
       '$gsd-spike',
@@ -961,6 +990,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\$gsd-eval-review 3/);
     assert.match(unreleasedSection, /Thread context example/);
     assert.match(unreleasedSection, /\$gsd-thread "Investigate flaky release"/);
+    assert.match(unreleasedSection, /Audit-fix example/);
+    assert.match(unreleasedSection, /\$gsd-audit-fix --dry-run/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {

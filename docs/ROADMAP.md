@@ -32,9 +32,9 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a copy-pastable example for using `$gsd-audit-fix` after audit findings are confirmed.
 - Add a copy-pastable example for using `$gsd-workstreams` on parallel feature efforts.
 - Add a copy-pastable example for using `$gsd-forensics` after a failed workflow run.
+- Add a copy-pastable example for using `$gsd-cleanup` after archiving completed milestones.
 - Translate `docs/COMPARISON.md` into one localized docs folder.
 - Improve alt text and screenshot captions for public visual assets.
 

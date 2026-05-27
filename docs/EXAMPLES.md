@@ -161,6 +161,18 @@ $gsd-thread close investigate-flaky-release
 
 The create command writes `.planning/threads/{slug}.md` with status, created, and updated frontmatter plus Goal, Context, References, and Next Steps sections. Later sessions can resume with `$gsd-thread investigate-flaky-release`; when the issue is handled, close with `$gsd-thread close investigate-flaky-release`.
 
+## Fix Confirmed Audit Findings
+
+Use this after UAT or verification has produced concrete findings and you want to preview classification before changing files. `$gsd-audit-fix` is useful when you need a conservative path from audit output to verified, traceable fixes.
+
+```bash
+$gsd-audit-uat
+$gsd-audit-fix --dry-run
+$gsd-audit-fix --severity high --max 3
+```
+
+The dry-run stops after the classification table once it classifies each finding as auto-fixable, manual-only, or skip. The fix run processes high-severity auto-fixable findings up to `--max`, runs tests after each fix, commits atomically with finding IDs, and stops and reverts on the first test failure so later fixes do not cascade from a bad state.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.

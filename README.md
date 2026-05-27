@@ -146,6 +146,7 @@ Built-in quality gates catch real problems: schema drift detection flags ORM cha
 | Audit thin validation evidence | `$gsd-validate-phase 1` | Nyquist gap audit, generated tests, and `{phase}-VALIDATION.md` |
 | Review AI eval coverage | `$gsd-eval-review 3` | Scored `{phase}-EVAL-REVIEW.md` with gaps and remediation |
 | Preserve long-running context | `$gsd-thread "Investigate flaky release"` | Thread file with goal, context, references, and next steps |
+| Fix confirmed audit findings | `$gsd-audit-fix --dry-run` | Classification table before verified atomic fixes |
 | Make a small fix with guardrails | `$gsd-fast "fix the failing install check"` | A focused change with verification notes |
 | Continue work after a break | `$gsd-resume-work` | Restored phase context and pending blockers |
 | Compare a technical approach first | `$gsd-spike "validate the risky integration"` | Time-boxed experiment findings |
