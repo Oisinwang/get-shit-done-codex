@@ -8,6 +8,14 @@ No. GSD includes prompts, but the important part is the workflow state around th
 
 Yes. Start with `$gsd-map-codebase` so GSD can inspect architecture, conventions, dependencies, and risk areas before planning new work. Then run `$gsd-new-project --auto` or `$gsd-discuss-phase` depending on whether you are starting a new milestone or refining an existing phase.
 
+## Should I run $gsd-map-codebase or $gsd-new-project --auto first?
+
+Use `$gsd-map-codebase` first when the repository already has source code, tests, a README, or established architecture. It captures architecture, conventions, dependencies, tests, and risk areas before GSD writes a project plan.
+
+Use `$gsd-new-project --auto` first for a new repository, a blank milestone, or a rough idea where there is not much code to inspect yet. That path creates durable project state first, then uses later planning commands to refine phases.
+
+Run `$gsd-new-project --auto` after `$gsd-map-codebase` when you want both: codebase intelligence plus a persistent `PROJECT.md`, `ROADMAP.md`, and `STATE.md` under `.planning/`.
+
 ## Does this require Claude Code?
 
 No. This fork is Codex-first. The primary contract is `AGENTS.md`, `.codex/`, `$gsd-*` commands, and Codex session paths. Claude Code and other agent CLIs are supported as compatibility runtimes, but they are not the public default in this fork.

@@ -875,6 +875,7 @@ describe('public release metadata', () => {
     assert.match(faq, /How do I report stale npm metadata after a source fix has landed/);
     assert.match(faq, /How do I choose between local and global Codex installs/);
     assert.match(faq, /What should change after a local Codex trial/);
+    assert.match(faq, /Should I run \$gsd-map-codebase or \$gsd-new-project --auto first/);
     assert.match(faq, /AGENTS\.md/);
     assert.match(faq, /\.codex\//);
     assert.match(faq, /planning context and execution evidence/);
@@ -912,6 +913,11 @@ describe('public release metadata', () => {
     assert.match(faq, /`\.planning\/` for project state/);
     assert.match(faq, /Run `git status --short` before committing/);
     assert.match(faq, /Commit only the artifacts your team wants to keep/);
+    assert.match(faq, /Use `\$gsd-map-codebase` first when the repository already has source code/);
+    assert.match(faq, /architecture, conventions, dependencies, tests, and risk areas/);
+    assert.match(faq, /Use `\$gsd-new-project --auto` first for a new repository/);
+    assert.match(faq, /blank milestone/);
+    assert.match(faq, /Run `\$gsd-new-project --auto` after `\$gsd-map-codebase`/);
     assert.doesNotMatch(faq, /[^\x00-\x7F]/, 'docs/FAQ.md should stay ASCII-clean');
   });
 
@@ -972,6 +978,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /git status` and `git diff --stat` evidence/);
     assert.doesNotMatch(roadmap, /changed files to expect after a `--local` Codex trial/);
     assert.doesNotMatch(roadmap, /source docs with published npm package docs/);
+    assert.doesNotMatch(roadmap, /start with `\$gsd-map-codebase` versus `\$gsd-new-project --auto`/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1350,6 +1357,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Source docs versus published package docs troubleshooting/);
     assert.match(unreleasedSection, /codex\/bootstrap/);
     assert.match(unreleasedSection, /published npm package docs/);
+    assert.match(unreleasedSection, /Map-codebase versus new-project FAQ/);
+    assert.match(unreleasedSection, /\$gsd-map-codebase/);
+    assert.match(unreleasedSection, /\$gsd-new-project --auto/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
