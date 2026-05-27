@@ -20,6 +20,11 @@ npx @oisinwang/get-shit-done-codex@latest
 - **Get help:** [Support](../../SUPPORT.md)
 - **Ask or discuss:** [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
 
+## Contribution quick links
+
+- **Contribute:** [Contributing Guide](../../CONTRIBUTING.md)
+- **Find starter tasks:** [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
+
 Claude 時代の名前は移行互換のためだけに残しています。fork の境界、命名規則、移行メモは [CODEX-FORK.md](../CODEX-FORK.md) を参照してください。
 
 ## ドキュメント索引
