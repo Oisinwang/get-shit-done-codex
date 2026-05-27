@@ -240,6 +240,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-review-backlog`/);
     assert.match(readme, /Audit thin validation evidence/);
     assert.match(readme, /`\$gsd-validate-phase 1`/);
+    assert.match(readme, /Review AI eval coverage/);
+    assert.match(readme, /`\$gsd-eval-review 3`/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
@@ -252,6 +254,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Fix Review Findings/);
     assert.match(examples, /## Choose Next Backlog Item/);
     assert.match(examples, /## Audit Thin Validation Evidence/);
+    assert.match(examples, /## Review AI Eval Coverage/);
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
@@ -262,6 +265,7 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-code-review-fix 1/);
     assert.match(examples, /\$gsd-review-backlog/);
     assert.match(examples, /\$gsd-validate-phase 1/);
+    assert.match(examples, /\$gsd-eval-review 3/);
     assert.match(examples, /git switch -c evaluate-gsd-codex/);
     assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(examples, /commit the branch only after reviewing the generated plan/i);
@@ -296,6 +300,12 @@ describe('public release metadata', () => {
     assert.match(examples, /writes or updates `\{phase\}-VALIDATION\.md`/);
     assert.match(examples, /generated test files/);
     assert.match(examples, /`nyquist_compliant: true`/);
+    assert.match(examples, /after an AI-heavy phase has implementation output and an `AI-SPEC\.md` evaluation plan/);
+    assert.match(examples, /implemented AI phase against the planned evaluation strategy/);
+    assert.match(examples, /scores each eval dimension as COVERED, PARTIAL, or MISSING/);
+    assert.match(examples, /audits eval tooling, reference dataset, CI\/CD integration, online guardrails, and tracing/);
+    assert.match(examples, /writes `\{phase\}-EVAL-REVIEW\.md`/);
+    assert.match(examples, /Overall Score, Verdict, critical gaps, and remediation plan/);
     assert.match(examples, /source code, tests, and a README/);
     assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
 
@@ -447,6 +457,21 @@ describe('public release metadata', () => {
       '$gsd-verify-work 1',
     ]);
 
+    const evalReviewStart = examples.indexOf('## Review AI Eval Coverage');
+    const evalReviewEnd = examples.indexOf('## Small Fix With Guardrails');
+    const evalReviewSection = examples.slice(evalReviewStart, evalReviewEnd);
+    const evalReviewCommands = evalReviewSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(evalReviewCommands, 'eval-review example should include a bash block');
+    assert.deepEqual(evalReviewCommands, [
+      '$gsd-ai-integration-phase 3',
+      '$gsd-execute-phase 3',
+      '$gsd-eval-review 3',
+    ]);
+
     for (const marker of [
       '$gsd-new-project --auto',
       '$gsd-map-codebase',
@@ -457,6 +482,7 @@ describe('public release metadata', () => {
       '$gsd-code-review-fix',
       '$gsd-review-backlog',
       '$gsd-validate-phase',
+      '$gsd-eval-review',
       '$gsd-fast',
       '$gsd-resume-work',
       '$gsd-spike',
@@ -903,6 +929,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\$gsd-review-backlog/);
     assert.match(unreleasedSection, /Validation evidence example/);
     assert.match(unreleasedSection, /\$gsd-validate-phase 1/);
+    assert.match(unreleasedSection, /AI eval review example/);
+    assert.match(unreleasedSection, /\$gsd-eval-review 3/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {
