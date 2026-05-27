@@ -81,6 +81,14 @@ npm view @oisinwang/get-shit-done-codex version
 
 Copy the exact install command and full output into the issue. For local installs, include `git status --short` after the install so maintainers can see which repository files changed.
 
+## How do I record a safe 60-second demo?
+
+Use a disposable branch or throwaway repository. Show the command flow and generated artifacts: run the local install, `$gsd-new-project --auto`, and `$gsd-next`, then show `PROJECT.md`, `ROADMAP.md`, `STATE.md`, and `.planning/phases/`.
+
+End on `git status --short` so viewers can see the expected repository changes. Redact local paths, usernames, private repository names, tokens, email addresses, and machine hostnames before publishing.
+
+Avoid client, employer, school, or private product details in the goal text. Use a synthetic project name, and keep the demo focused on the workflow rather than private source code.
+
 ## Can I try it in a repository with strict branch protection?
 
 Yes. Use a trial branch and the local install path so the first pass is reviewable before it touches the protected branch:
