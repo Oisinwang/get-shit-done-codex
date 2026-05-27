@@ -299,9 +299,19 @@ npx @oisinwang/get-shit-done-codex@latest --codex --local
 
 Use `--global` instead of `--local` only when you want to update the user-level Codex install under `$env:USERPROFILE\.codex`.
 
-## npm page looks stale
+## Source docs versus published package docs
 
-The repository may be ahead of the npm package when a release workflow is waiting for maintainer secrets. The source checkout on `codex/bootstrap` is the authoritative development state. The npm package is refreshed by the hotfix release workflow after `NPM_TOKEN` is configured in the `npm-publish` environment.
+The repository may be ahead of the npm package when a release workflow is waiting for maintainer secrets. Use the source docs on `codex/bootstrap` when evaluating current repository behavior. Use published package docs from npm when checking what a released `npx @latest` install can know about.
+
+Check the published package version before filing a stale documentation report:
+
+```bash
+npm view @oisinwang/get-shit-done-codex version
+```
+
+Report stale documentation when the published package version is behind the source docs and the mismatch appears only in npm package contents or `npx @latest` behavior. If both the source docs and published package docs are wrong, file a normal documentation issue instead.
+
+Include the source docs link, published package version, and stale published doc path. That keeps release lag separate from a docs bug in the current source branch.
 
 ## Documentation issue evidence before filing
 

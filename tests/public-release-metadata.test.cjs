@@ -971,6 +971,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /local and global Codex installs/);
     assert.doesNotMatch(roadmap, /git status` and `git diff --stat` evidence/);
     assert.doesNotMatch(roadmap, /changed files to expect after a `--local` Codex trial/);
+    assert.doesNotMatch(roadmap, /source docs with published npm package docs/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1106,6 +1107,11 @@ describe('public release metadata', () => {
     assert.match(troubleshooting, /git diff --stat/);
     assert.match(troubleshooting, /Attach this output when a docs report says behavior differs from the docs/);
     assert.match(troubleshooting, /do not attach it for typo-only reports/);
+    assert.match(troubleshooting, /Source docs versus published package docs/);
+    assert.match(troubleshooting, /source docs on `codex\/bootstrap`/);
+    assert.match(troubleshooting, /published package docs from npm/);
+    assert.match(troubleshooting, /Report stale documentation when the published package version is behind the source docs/);
+    assert.match(troubleshooting, /Include the source docs link, published package version, and stale published doc path/);
     assert.match(troubleshooting, /Runtime restart or command discovery/);
     assert.match(troubleshooting, /Codex may keep an in-memory command and skill index/);
     assert.match(troubleshooting, /Get-ChildItem "\$env:USERPROFILE\\\.codex\\skills" -Recurse -Filter SKILL\.md/);
@@ -1341,6 +1347,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\.codex/);
     assert.match(unreleasedSection, /AGENTS\.md/);
     assert.match(unreleasedSection, /\.planning/);
+    assert.match(unreleasedSection, /Source docs versus published package docs troubleshooting/);
+    assert.match(unreleasedSection, /codex\/bootstrap/);
+    assert.match(unreleasedSection, /published npm package docs/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
