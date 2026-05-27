@@ -611,6 +611,12 @@ describe('public release metadata', () => {
     assert.match(troubleshooting, /echo "\$HOME"/);
     assert.match(troubleshooting, /ls -la "\$HOME\/\.codex"/);
     assert.match(troubleshooting, /Run the installer from the same shell that starts Codex/);
+    assert.match(troubleshooting, /Node or npx is not on PATH/);
+    assert.match(troubleshooting, /Get-Command node,npm,npx -ErrorAction SilentlyContinue/);
+    assert.match(troubleshooting, /where\.exe npx\.cmd/);
+    assert.match(troubleshooting, /command -v node npm npx/);
+    assert.match(troubleshooting, /Close and reopen the terminal after installing Node\.js/);
+    assert.match(troubleshooting, /Do not copy npm shims between directories/);
     assert.match(troubleshooting, /Corporate proxy or certificate failures/);
     assert.match(troubleshooting, /SELF_SIGNED_CERT_IN_CHAIN/);
     assert.match(troubleshooting, /UNABLE_TO_GET_ISSUER_CERT_LOCALLY/);
@@ -841,6 +847,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/RELEASE\.md/);
     assert.match(unreleasedSection, /Review findings fix example/);
     assert.match(unreleasedSection, /\$gsd-code-review-fix 1/);
+    assert.match(unreleasedSection, /PATH diagnostics troubleshooting/);
+    assert.match(unreleasedSection, /docs\/TROUBLESHOOTING\.md/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {

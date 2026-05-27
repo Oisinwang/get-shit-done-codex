@@ -137,6 +137,36 @@ npx @oisinwang/get-shit-done-codex@latest --codex --local
 
 Use `--global` only when the Codex runtime you actually start reads that shell's home directory. Do not copy `.codex/` between Windows and WSL unless your repository policy already treats that directory as shared project state.
 
+## Node or npx is not on PATH
+
+If the install command fails before GSD starts with `npx: command not found`, `node is not recognized`, or a similar shell error, verify the shell can see the Node.js toolchain before reinstalling GSD.
+
+In Windows PowerShell:
+
+```powershell
+Get-Command node,npm,npx -ErrorAction SilentlyContinue
+where.exe node
+where.exe npm.cmd
+where.exe npx.cmd
+```
+
+In macOS, Linux, or WSL:
+
+```bash
+command -v node npm npx
+node --version
+npm --version
+npx --version
+```
+
+Close and reopen the terminal after installing Node.js, then rerun the same diagnostics in the exact shell that starts Codex. If you use `nvm`, `fnm`, `asdf`, or a corporate-managed Node install, make sure that version manager initializes in this shell before running `npx @oisinwang/get-shit-done-codex@latest`.
+
+Do not copy npm shims between directories or run the installer with administrator rights as the first fix. If the tools are still missing after a terminal restart, repair the Node.js install or shell profile first, then run the GSD installer again:
+
+```bash
+npx @oisinwang/get-shit-done-codex@latest --codex --local
+```
+
 ## Windows PowerShell blocks npm.ps1
 
 If PowerShell reports `npm.ps1 cannot be loaded because running scripts is disabled`, the Node install may still be fine. PowerShell is blocking the shim script, not necessarily npm itself.

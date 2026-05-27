@@ -29,7 +29,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 | [Comparison](COMPARISON.md) | Evaluators | Decision guide comparing GSD Codex with raw Codex chat, prompt packs, task managers, and CI-only workflows |
 | [Roadmap](ROADMAP.md) | Evaluators, contributors | Public status, near-term priorities, manual maintainer actions, and good first issue candidates |
 | [Release Checklist](RELEASE.md) | Maintainers | npm publish setup, hotfix workflow steps, and verification for `npx @latest` recovery |
-| [Troubleshooting](TROUBLESHOOTING.md) | Users | Fast recovery paths for Codex config, install, Windows PowerShell, and stale npm metadata issues |
+| [Troubleshooting](TROUBLESHOOTING.md) | Users | Fast recovery paths for Codex config, install, PATH, Windows PowerShell, and stale npm metadata issues |
 | [Promotion Assets](PROMOTION.md) | Maintainers | Launch copy, social preview setup, and public positioning snippets |
 | [User Guide](USER-GUIDE.md) | All users | Workflow walkthroughs, troubleshooting, recovery, and practical usage |
 | [Feature Reference](FEATURES.md) | All users | Complete feature and function documentation with requirements |
