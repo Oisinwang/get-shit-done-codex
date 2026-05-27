@@ -192,6 +192,14 @@ The source branch can be ahead of npm while the release workflow is waiting for 
 
 When you report stale metadata, include the exact install command and npm version, the source fix commit or issue link, what `npm view @oisinwang/get-shit-done-codex version` returned, and the behavior you still see from `npx @latest`. That keeps release lag separate from a new runtime bug.
 
+## How should I hand off a pending-release issue after a source fix lands?
+
+Link the source fix commit in the issue comment. Link the successful GitHub Actions run that verified that commit, and summarize any local test evidence that matters for the fix.
+
+Record `npm view @oisinwang/get-shit-done-codex version` so maintainers and users can see whether npm is still behind the source branch. Keep the `pending release` label when source is fixed but `npx @latest` still installs an older package.
+
+Do not close the issue until the published package proves the fix is live. Use `docs/RELEASE.md` for the publish path, then close with the npm version, publish timestamp, workflow run URL, and install check.
+
 ## When should I not use it?
 
 Do not use GSD for a one-line edit when you already know the exact change and do not need durable state. It is also the wrong tool if you want an agent to act without review, tests, or traceable decisions. Use it when the work benefits from preserved context, staged planning, verification, or resume support.

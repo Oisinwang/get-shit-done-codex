@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Release issue handoff FAQ** - Explains how to leave the source fix commit, CI run, npm version check, and pending release label status on issues that still need a published package.
 - **README badge and link refresh FAQ** - Explains how to check npm badges, package links, README nav links, and GitHub Actions and star-history links before publishing public docs changes.
 - **Localized docs sync FAQ** - Explains how to compare translations against English source docs, keep localized indexes and README links aligned, and preserve Codex-first package and repository naming.
 - **Docs-only contribution verification FAQ** - Explains docs-only PR checks, including git diff --check, public-release-metadata focused tests, full npm.cmd test guidance, and evidence to include in PR descriptions.
