@@ -39,6 +39,10 @@ npx @oisinwang/get-shit-done-codex@latest
 - **See the first run:** [Demo](../DEMO.md)
 - **Record a short demo:** [Demo Media Checklist](../DEMO.md#demo-media-checklist)
 
+## FAQ quick links
+
+- **Answer common questions:** [FAQ](../FAQ.md)
+
 Claude 시대의 이름은 마이그레이션 호환을 위해서만 남아 있습니다. fork의 범위, 이름 규칙, 마이그레이션 메모는 [CODEX-FORK.md](../CODEX-FORK.md)를 참고하세요.
 
 ## 문서 색인

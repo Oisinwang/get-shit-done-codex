@@ -39,6 +39,10 @@ npx @oisinwang/get-shit-done-codex@latest
 - **See the first run:** [Demo](../DEMO.md)
 - **Record a short demo:** [Demo Media Checklist](../DEMO.md#demo-media-checklist)
 
+## FAQ quick links
+
+- **Answer common questions:** [FAQ](../FAQ.md)
+
 Nomes legados da era Claude continuam apenas como compatibilidade de migracao. As regras do fork estao em [CODEX-FORK.md](../CODEX-FORK.md).
 
 ## Indice da documentacao
