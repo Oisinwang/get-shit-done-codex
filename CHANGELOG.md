@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Review findings fix example** - Adds a copy-pastable `$gsd-code-review-fix 1` playbook for turning actionable `REVIEW.md` findings into atomic fixes and a `REVIEW-FIX.md` summary.
 - **Post-feature docs update example** - Adds a copy-pastable `$gsd-docs-update --verify-only` playbook for fact-checking docs against the live codebase after feature, CLI workflow, or install behavior changes.
 - **Security-sensitive change example** - Adds a copy-pastable `$gsd-secure-phase 1` playbook for threat-model-anchored verification before merging authentication, payments, permissions, secrets, or data-handling changes.
 - **Release readiness audit example** - Adds a copy-pastable `$gsd-audit-uat` playbook for checking UAT and verification debt before a release branch.

@@ -100,6 +100,18 @@ $gsd-docs-update
 
 Use `$gsd-progress --forensic` first to see whether the phase has open verification debt. `$gsd-docs-update --verify-only` will surface stale claims without writing files. If it reports drift or missing coverage, run `$gsd-docs-update` to dispatch doc-writer and doc-verifier agents, review existing hand-written docs, and produce structure-aware documentation verified against the live codebase.
 
+## Fix Review Findings
+
+Use this after code review writes a `REVIEW.md` with actionable findings and you want GSD to apply the safe fixes without losing review traceability. Replace `1` with the phase number you just reviewed.
+
+```bash
+$gsd-code-review 1
+$gsd-code-review-fix 1
+$gsd-code-review 1 --depth=deep
+```
+
+Run `$gsd-code-review` first so the fixer has a scoped `REVIEW.md` to read. By default, `$gsd-code-review-fix` targets Critical and Warning findings, commits each fix atomically, and writes `REVIEW-FIX.md` with what changed and what remains. Use the deep follow-up review to check the result, and leave risky or ambiguous findings unresolved until a human can decide the right trade-off.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.
