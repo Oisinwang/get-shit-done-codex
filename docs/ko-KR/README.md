@@ -59,12 +59,17 @@ npx @oisinwang/get-shit-done-codex@latest
 
 - **Compare options:** [Comparison](COMPARISON.md)
 
+## Roadmap quick links
+
+- **See direction:** [Roadmap](../ROADMAP.md)
+
 Claude 시대의 이름은 마이그레이션 호환을 위해서만 남아 있습니다. fork의 범위, 이름 규칙, 마이그레이션 메모는 [CODEX-FORK.md](../CODEX-FORK.md)를 참고하세요.
 
 ## 문서 색인
 
 | 문서 | 대상 | 내용 |
 |------|------|------|
+| [Roadmap](../ROADMAP.md) | Evaluators, contributors | Public direction, near-term priorities, manual maintainer actions, and good first issue candidates |
 | [Codex fork notes](../CODEX-FORK.md) | 모든 사용자 | Codex-first 범위, 이름 경계, 마이그레이션 메모 |
 | [User Guide](USER-GUIDE.md) | 모든 사용자 | 워크플로, 문제 해결, 복구 |
 | [Feature Reference](FEATURES.md) | 모든 사용자 | 기능, 요구사항, 기대 동작 |

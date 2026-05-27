@@ -59,12 +59,17 @@ npx @oisinwang/get-shit-done-codex@latest
 
 - **Compare options:** [Comparison](COMPARISON.md)
 
+## Roadmap quick links
+
+- **See direction:** [Roadmap](../ROADMAP.md)
+
 Claude 时代的旧名称只作为迁移兼容层保留。fork 的边界、命名规则和迁移说明见 [CODEX-FORK.md](../CODEX-FORK.md)。
 
 ## 文档索引
 
 | 文档 | 读者 | 内容 |
 |------|------|------|
+| [Roadmap](../ROADMAP.md) | Evaluators, contributors | Public direction, near-term priorities, manual maintainer actions, and good first issue candidates |
 | [Codex fork 说明](../CODEX-FORK.md) | 所有用户 | Codex-first 范围、命名边界、迁移说明和发布状态 |
 | [对比指南](COMPARISON.md) | 评估者 | 何时使用 GSD Codex，而不是原始 Codex chat、prompt pack、task manager 或 CI-only workflow |
 | [提示词配方](PROMPTS.md) | 新用户 | 可直接粘贴到 Codex 的提示词，用于启动、恢复、审计和小修复 |

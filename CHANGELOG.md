@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized docs index roadmap links** - Adds `docs/ROADMAP.md` links to localized docs indexes so non-English evaluators and contributors can find public direction, contributor-sized work, manual maintainer actions, and good first issue candidates from localized entry points.
 - **Localized docs index comparison links** - Adds `docs/COMPARISON.md` and localized comparison links to localized docs indexes so non-English evaluators can find fit and alternative guidance from localized entry points.
 - **Localized docs index prompt recipes links** - Adds `docs/PROMPTS.md` and localized prompt recipe links to localized docs indexes so non-English readers can find copy-pastable Codex prompts from localized entry points.
 - **Localized docs index examples links** - Adds `docs/EXAMPLES.md` links to localized docs indexes so non-English readers can find copy-pastable workflow playbooks from localized entry points.

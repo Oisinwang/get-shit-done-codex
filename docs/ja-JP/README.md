@@ -59,12 +59,17 @@ npx @oisinwang/get-shit-done-codex@latest
 
 - **Compare options:** [Comparison](COMPARISON.md)
 
+## Roadmap quick links
+
+- **See direction:** [Roadmap](../ROADMAP.md)
+
 Claude 時代の名前は移行互換のためだけに残しています。fork の境界、命名規則、移行メモは [CODEX-FORK.md](../CODEX-FORK.md) を参照してください。
 
 ## ドキュメント索引
 
 | ドキュメント | 読者 | 内容 |
 |--------------|------|------|
+| [Roadmap](../ROADMAP.md) | Evaluators, contributors | Public direction, near-term priorities, manual maintainer actions, and good first issue candidates |
 | [Codex fork notes](../CODEX-FORK.md) | すべてのユーザー | Codex-first の範囲、命名境界、移行メモ |
 | [比較ガイド](COMPARISON.md) | 新規ユーザー | 生の Codex、prompt pack、task manager、CI-only workflow との適合度比較 |
 | [プロンプトレシピ](PROMPTS.md) | 新規ユーザー | Codex に貼り付けられる開始、再開、監査、小修正用プロンプト |
