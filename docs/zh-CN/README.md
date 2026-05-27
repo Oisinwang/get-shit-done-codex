@@ -43,6 +43,10 @@ npx @oisinwang/get-shit-done-codex@latest
 
 - **Answer common questions:** [FAQ](../FAQ.md)
 
+## Troubleshooting quick links
+
+- **Recover install issues:** [Troubleshooting](../TROUBLESHOOTING.md)
+
 Claude 时代的旧名称只作为迁移兼容层保留。fork 的边界、命名规则和迁移说明见 [CODEX-FORK.md](../CODEX-FORK.md)。
 
 ## 文档索引
