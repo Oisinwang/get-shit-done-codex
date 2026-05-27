@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a short troubleshooting note for recovering from interrupted `$gsd-pr-branch` exports before opening a public pull request.
+- Add a short support note explaining when setup questions belong in GitHub Discussions instead of bug reports.
 
 ## Manual maintainer actions
 

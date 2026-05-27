@@ -946,6 +946,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /\$gsd-session-report/);
     assert.doesNotMatch(roadmap, /closing resolved good-first-issue tasks/);
     assert.doesNotMatch(roadmap, /\$gsd-fast` versus `\$gsd-quick --validate/);
+    assert.doesNotMatch(roadmap, /interrupted `\$gsd-pr-branch` exports/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1067,6 +1068,14 @@ describe('public release metadata', () => {
     assert.match(troubleshooting, /npm exec --yes --package @oisinwang\/get-shit-done-codex@latest get-shit-done-codex -- --codex --local/);
     assert.match(troubleshooting, /npm cache clean --force/);
     assert.match(troubleshooting, /Use cache clean only after cache verify or a fresh exec still fails/);
+    assert.match(troubleshooting, /Interrupted \$gsd-pr-branch export/);
+    assert.match(troubleshooting, /\$gsd-pr-branch/);
+    assert.match(troubleshooting, /before opening a public pull request/);
+    assert.match(troubleshooting, /git branch --show-current/);
+    assert.match(troubleshooting, /git status --short/);
+    assert.match(troubleshooting, /git log --oneline -5/);
+    assert.match(troubleshooting, /\$gsd-progress --forensic/);
+    assert.match(troubleshooting, /Do not delete `.planning\/` blindly/);
     assert.match(troubleshooting, /Runtime restart or command discovery/);
     assert.match(troubleshooting, /Codex may keep an in-memory command and skill index/);
     assert.match(troubleshooting, /Get-ChildItem "\$env:USERPROFILE\\\.codex\\skills" -Recurse -Filter SKILL\.md/);
@@ -1284,6 +1293,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Fast versus quick FAQ/);
     assert.match(unreleasedSection, /\$gsd-fast/);
     assert.match(unreleasedSection, /\$gsd-quick --validate/);
+    assert.match(unreleasedSection, /PR branch recovery troubleshooting/);
+    assert.match(unreleasedSection, /docs\/TROUBLESHOOTING\.md/);
+    assert.match(unreleasedSection, /\$gsd-pr-branch/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);

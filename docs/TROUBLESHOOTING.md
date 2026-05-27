@@ -251,6 +251,25 @@ npm exec --yes --package @oisinwang/get-shit-done-codex@latest get-shit-done-cod
 
 Do not remove `.codex/`, `AGENTS.md`, or `.planning/` as a cache fix. Those are project or runtime artifacts, not npm cache entries.
 
+## Interrupted $gsd-pr-branch export
+
+If `$gsd-pr-branch` stops before opening a public pull request, inspect the repository before rerunning cleanup or removing files. The command is intended to produce a reviewable branch without transient `.planning/` noise, so first confirm which branch you are on and what changed:
+
+```bash
+git branch --show-current
+git status --short
+git log --oneline -5
+git diff --stat
+```
+
+If the generated branch exists but you are not sure whether planning state is consistent, run the read-only progress audit before opening a public pull request:
+
+```bash
+$gsd-progress --forensic
+```
+
+Then either rerun `$gsd-pr-branch <source-branch>` from the source branch, or keep the generated branch and open the pull request only after `git status --short` shows the intended public files. Do not delete `.planning/` blindly; it may contain the evidence needed to resume the source workspace or explain why the export stopped. Move private planning files out of the public branch through normal git review instead of removing project memory from the source branch.
+
 ## Windows PowerShell first-pass diagnostics
 
 When an install fails on Windows, collect read-only evidence before repairing anything. Start with toolchain versions and the package metadata PowerShell can see:
