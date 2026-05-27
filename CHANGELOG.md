@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **README before and after example** - Shows how `Make onboarding less confusing` becomes GSD commands, project state files, phase artifacts, and verification evidence.
 - **Localized README safe trial path** - Mirrors the safe local Codex trial commands, expected files, cleanup note, and `docs/EVALUATE.md` link in localized README files.
 - **README safe 10-minute trial block** - Adds a near-top disposable branch path for local Codex installs, first-run GSD commands, expected changed files, and cleanup guidance.
 - **Auto-label retry hardening** - Retries transient GitHub API failures when adding the `needs-triage` label to new issues.

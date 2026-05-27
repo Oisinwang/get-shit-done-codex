@@ -155,6 +155,25 @@ Built-in quality gates catch real problems: schema drift detection flags ORM cha
 
 ---
 
+## Before And After
+
+Before: "Make onboarding less confusing."
+
+```bash
+$gsd-new-project --auto "Make onboarding less confusing"
+$gsd-next
+```
+
+After GSD Codex:
+
+- `PROJECT.md` captures the actual onboarding problem, constraints, and audience.
+- `ROADMAP.md` turns that vague request into reviewable phases instead of one large prompt.
+- `STATE.md` records what happened so the next Codex session can resume without archaeology.
+- `.planning/phases/` keeps the discussion, plan, and verification evidence beside the work.
+- The result is a reviewable next action, not a loose chat summary or an unverified code dump.
+
+---
+
 ## Pick a Workflow
 
 | You want to... | Run this first | What GSD leaves behind |

@@ -234,6 +234,27 @@ describe('public release metadata', () => {
     assert.doesNotMatch(evaluate, /[^\x00-\x7F]/, 'docs/EVALUATE.md should stay ASCII-clean');
   });
 
+  test('README shows a real-world before and after example', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const beforeAfterStart = readme.indexOf('## Before And After');
+    const pickWorkflowStart = readme.indexOf('## Pick a Workflow');
+
+    assert.ok(beforeAfterStart > -1, 'README should include a before/after example');
+    assert.ok(
+      beforeAfterStart < pickWorkflowStart,
+      'before/after example should appear before the workflow chooser',
+    );
+    assert.match(readme, /Before: "Make onboarding less confusing\."/);
+    assert.match(readme, /\$gsd-new-project --auto "Make onboarding less confusing"/);
+    assert.match(readme, /After GSD Codex:/);
+    assert.match(readme, /PROJECT\.md/);
+    assert.match(readme, /ROADMAP\.md/);
+    assert.match(readme, /STATE\.md/);
+    assert.match(readme, /\.planning\/phases\//);
+    assert.match(readme, /verification evidence/);
+    assert.match(readme, /reviewable next action/);
+  });
+
   test('public examples help first-time users choose a workflow', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
@@ -1074,10 +1095,11 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /before\/after README example/);
+    assert.match(roadmap, /safe trial demo script/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
+    assert.doesNotMatch(roadmap, /before\/after README example/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1537,6 +1559,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /disposable branch/);
     assert.match(unreleasedSection, /Localized README safe trial path/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
+    assert.match(unreleasedSection, /README before and after example/);
+    assert.match(unreleasedSection, /Make onboarding less confusing/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
