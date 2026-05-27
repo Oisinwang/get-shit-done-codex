@@ -36,7 +36,7 @@ These are intentionally small enough to become a good first issue:
 - Add a copy-pastable example for using `$gsd-pause-work` before a context reset.
 - Add a copy-pastable example for using `$gsd-session-report` before a handoff.
 - Translate `docs/COMPARISON.md` into one localized docs folder.
-- Improve alt text and screenshot captions for public visual assets.
+- Add a concise maintainer checklist for closing resolved good-first-issue tasks.
 
 ## Manual maintainer actions
 

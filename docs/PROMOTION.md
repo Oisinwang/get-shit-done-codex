@@ -21,7 +21,11 @@ Manual upload path:
 
 The image is a solid-background PNG at 1280 x 640 pixels and must stay under 1 MB. That follows GitHub's current recommendation for best display quality: <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/customizing-your-repositorys-social-media-preview>.
 
-Suggested alt/share text:
+Suggested caption and alt text:
+
+Social preview caption: Get Shit Done Codex, a Codex-first workflow system for planned, resumable, verified AI coding.
+
+Terminal preview caption: verified `npx` install plus `$gsd-help` discovery for Codex users.
 
 > Get Shit Done Codex: Codex-first workflows for planned, resumable, verified AI coding.
 

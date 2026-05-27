@@ -862,6 +862,14 @@ describe('public release metadata', () => {
     assert.match(promotion, /Upload an image/);
     assert.match(
       promotion,
+      /Social preview caption: Get Shit Done Codex, a Codex-first workflow system for planned, resumable, verified AI coding\./,
+    );
+    assert.match(
+      promotion,
+      /Terminal preview caption: verified `npx` install plus `\$gsd-help` discovery for Codex users\./,
+    );
+    assert.match(
+      promotion,
       /docs\.github\.com\/en\/repositories\/managing-your-repositorys-settings-and-features\/customizing-your-repository\/customizing-your-repositorys-social-media-preview/,
     );
   });
@@ -869,7 +877,10 @@ describe('public release metadata', () => {
   test('README embeds the social preview before workflow details', () => {
     const previewPath = path.join(ROOT, 'assets', 'social-preview.png');
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
-    const previewEmbed = '![GSD Codex preview](assets/social-preview.png)';
+    const previewEmbed =
+      '![Social preview showing the Get Shit Done Codex name and Codex-first workflow positioning](assets/social-preview.png)';
+    const terminalEmbed =
+      '![Terminal preview of installing GSD Codex with npx and opening $gsd-help](assets/terminal.svg)';
     const embedIndex = readme.indexOf(previewEmbed);
     const workflowIndex = readme.indexOf('## 60-Second Workflow');
 
@@ -878,6 +889,15 @@ describe('public release metadata', () => {
     assert.ok(
       embedIndex < workflowIndex,
       'README social preview should appear before workflow details',
+    );
+    assert.match(
+      readme,
+      /Social preview: Get Shit Done Codex, a Codex-first workflow system for planned, resumable, verified AI coding\./,
+    );
+    assert.ok(readme.includes(terminalEmbed), 'README should embed terminal preview with descriptive alt text');
+    assert.match(
+      readme,
+      /Terminal preview: verified `npx` install plus `\$gsd-help` discovery for Codex users\./,
     );
   });
 

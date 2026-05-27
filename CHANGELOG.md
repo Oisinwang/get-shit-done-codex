@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Visual asset captions** - Adds descriptive README alt text and reusable promotion captions for the social preview and terminal install preview assets.
 - **Forensics example** - Adds a copy-pastable `$gsd-forensics "Phase 3 execution stalled"` playbook for read-only post-mortem diagnosis before resuming or opening a bug.
 - **Workstreams example** - Adds a copy-pastable `$gsd-workstreams create backend-api` playbook for coordinating concurrent milestone efforts with isolated planning state and explicit `--ws` routing.
 - **Audit-fix example** - Adds a copy-pastable `$gsd-audit-fix --dry-run` playbook for previewing audit finding classification before running verified, finding-ID-traceable fixes.

@@ -16,7 +16,9 @@
 
 <br>
 
-![GSD Codex preview](assets/social-preview.png)
+![Social preview showing the Get Shit Done Codex name and Codex-first workflow positioning](assets/social-preview.png)
+
+*Social preview: Get Shit Done Codex, a Codex-first workflow system for planned, resumable, verified AI coding.*
 
 <br>
 
@@ -36,7 +38,9 @@ npx @oisinwang/get-shit-done-codex@latest
 
 <br>
 
-![GSD Install](assets/terminal.svg)
+![Terminal preview of installing GSD Codex with npx and opening $gsd-help](assets/terminal.svg)
+
+*Terminal preview: verified `npx` install plus `$gsd-help` discovery for Codex users.*
 
 <br>
 
