@@ -158,7 +158,9 @@ describe('public release metadata', () => {
     const demo = fs.readFileSync(demoPath, 'utf8');
 
     assert.match(readme, /\[Demo\]\(docs\/DEMO\.md\)/);
+    assert.match(readme, /\[Demo Media Checklist\]\(docs\/DEMO\.md#demo-media-checklist\)/);
     assert.match(docsReadme, /\[Demo\]\(DEMO\.md\)/);
+    assert.match(docsReadme, /\[Demo Media Checklist\]\(DEMO\.md#demo-media-checklist\)/);
     assert.match(demo, /# Demo/);
     assert.match(demo, /60-second workflow/);
     assert.match(demo, /npx @oisinwang\/get-shit-done-codex@latest/);
@@ -175,6 +177,20 @@ describe('public release metadata', () => {
     assert.match(demo, /phase artifacts/);
     assert.match(demo, /resume/);
     assert.match(demo, /verification evidence/);
+    assert.match(demo, /## Demo Media Checklist/);
+    assert.match(demo, /Record these steps in order/);
+    assert.match(demo, /1\. Open a disposable branch or throwaway repository/);
+    assert.match(demo, /2\. Run `npx @oisinwang\/get-shit-done-codex@latest --codex --local`/);
+    assert.match(demo, /3\. Run `\$gsd-new-project --auto` with a small visible goal/);
+    assert.match(demo, /4\. Run `\$gsd-next`/);
+    assert.match(demo, /5\. Show `PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and `.planning\/phases\/`/);
+    assert.match(demo, /6\. End on `git status --short`/);
+    assert.match(demo, /Redact local paths, usernames, private repository names, tokens, email addresses, and machine hostnames/);
+    assert.match(demo, /Do not require a specific recording tool/);
+    assert.match(demo, /GIF, short MP4, or annotated screenshot sequence/);
+    assert.match(demo, /`assets\/social-preview\.png` is not a substitute for workflow demo media/);
+    assert.match(demo, /Link the finished demo from `README\.md` near the terminal preview/);
+    assert.match(demo, /Link it from this page under `## 60-second workflow`/);
     assert.doesNotMatch(demo, /[^\x00-\x7F]/, 'docs/DEMO.md should stay ASCII-clean');
   });
 
@@ -1257,6 +1273,8 @@ describe('public release metadata', () => {
     );
     assert.match(unreleasedSection, /Public demo guide/);
     assert.match(unreleasedSection, /docs\/DEMO\.md/);
+    assert.match(unreleasedSection, /Demo media checklist/);
+    assert.match(unreleasedSection, /Demo Media Checklist/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);

@@ -22,6 +22,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 |----------|----------|-------------|
 | [Codex Fork Notes](CODEX-FORK.md) | All users | Codex-first fork scope, naming boundaries, migration notes, and release alignment |
 | [Demo](DEMO.md) | New users, evaluators | A short transcript showing the first Codex workflow and the durable artifacts it creates |
+| [Demo Media Checklist](DEMO.md#demo-media-checklist) | Maintainers | What to record, redact, and link when publishing short workflow demo media |
 | [Evaluate](EVALUATE.md) | New users, evaluators | A safe 10-minute trial checklist with pass and fail signals |
 | [Examples](EXAMPLES.md) | New users | Copy-pastable workflows for new projects, existing repos, quick fixes, resume, spikes, and sketches |
 | [Prompt Recipes](PROMPTS.md) | New users | Copy-pastable Codex prompts for starting, resuming, auditing, and fixing with GSD |
@@ -46,6 +47,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 
 - **Start here:** [root README](../README.md) -> install -> `$gsd-help`
 - **See the first run:** [Demo](DEMO.md)
+- **Record a short demo:** [Demo Media Checklist](DEMO.md#demo-media-checklist)
 - **Try safely:** [Evaluate](EVALUATE.md)
 - **Pick a workflow:** [Examples](EXAMPLES.md)
 - **Paste a Codex prompt:** [Prompt Recipes](PROMPTS.md)

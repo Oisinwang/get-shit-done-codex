@@ -12,6 +12,8 @@ $gsd-next
 
 Use `--local` when you want the install scoped to the current repository. Use `--global` when you want the commands available across projects.
 
+Maintainers preparing short demo media should follow the [Demo Media Checklist](#demo-media-checklist) before publishing it.
+
 ## What you should see
 
 The first command installs Codex-facing commands, skills, and project instructions. The next two commands turn a rough goal into durable project state:
@@ -106,3 +108,26 @@ $gsd-next
 ```
 
 This reloads the stored project state, checks for obvious drift, and points Codex at the next useful action.
+
+## Demo Media Checklist
+
+Use this checklist when publishing a short recording of the 60-second workflow. It keeps the demo inspectable without leaking local project details or implying that the static social image shows runtime behavior.
+
+Record these steps in order:
+
+1. Open a disposable branch or throwaway repository.
+2. Run `npx @oisinwang/get-shit-done-codex@latest --codex --local`.
+3. Run `$gsd-new-project --auto` with a small visible goal.
+4. Run `$gsd-next`.
+5. Show `PROJECT.md`, `ROADMAP.md`, `STATE.md`, and `.planning/phases/`.
+6. End on `git status --short`.
+
+Redact local paths, usernames, private repository names, tokens, email addresses, and machine hostnames. Use a synthetic project name when the original goal reveals client, employer, school, or private product information.
+
+Do not require a specific recording tool. A GIF, short MP4, or annotated screenshot sequence is acceptable when it shows the command flow and the generated artifacts clearly.
+
+`assets/social-preview.png` is not a substitute for workflow demo media. The social preview explains the project at a glance; demo media should show the actual install, planning commands, and resulting files.
+
+When demo media exists, use both public entry points.
+
+Link the finished demo from `README.md` near the terminal preview. Link it from this page under `## 60-second workflow`.
