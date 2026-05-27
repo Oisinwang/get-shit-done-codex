@@ -47,6 +47,10 @@ npx @oisinwang/get-shit-done-codex@latest
 
 - **Recover install issues:** [Troubleshooting](../TROUBLESHOOTING.md)
 
+## Examples quick links
+
+- **Pick a workflow:** [Examples](../EXAMPLES.md)
+
 Nomes legados da era Claude continuam apenas como compatibilidade de migracao. As regras do fork estao em [CODEX-FORK.md](../CODEX-FORK.md).
 
 ## Indice da documentacao

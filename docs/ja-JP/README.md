@@ -47,6 +47,10 @@ npx @oisinwang/get-shit-done-codex@latest
 
 - **Recover install issues:** [Troubleshooting](../TROUBLESHOOTING.md)
 
+## Examples quick links
+
+- **Pick a workflow:** [Examples](../EXAMPLES.md)
+
 Claude 時代の名前は移行互換のためだけに残しています。fork の境界、命名規則、移行メモは [CODEX-FORK.md](../CODEX-FORK.md) を参照してください。
 
 ## ドキュメント索引

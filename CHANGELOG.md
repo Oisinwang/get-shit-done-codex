@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized docs index examples links** - Adds `docs/EXAMPLES.md` links to localized docs indexes so non-English readers can find copy-pastable workflow playbooks from localized entry points.
 - **Localized docs index troubleshooting links** - Adds `docs/TROUBLESHOOTING.md` links to localized docs indexes so non-English readers can recover from install, config, PATH, and npm metadata issues from localized entry points.
 - **Localized docs index FAQ links** - Adds `docs/FAQ.md` links to localized docs indexes so non-English readers can find adoption objections, safe-trial guidance, and contribution verification answers from localized entry points.
 - **Localized docs index demo links** - Adds `Demo` and `Demo Media Checklist` links to localized docs indexes so non-English readers can preview the first workflow and maintainers can find recording guidance from localized entry points.
