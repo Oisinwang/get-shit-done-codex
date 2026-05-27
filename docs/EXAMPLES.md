@@ -173,6 +173,18 @@ $gsd-resume-work
 
 Run `$gsd-progress --forensic` first to surface pending verification debt and stale state. `$gsd-pause-work` writes `.planning/HANDOFF.json` with machine-readable state for `$gsd-resume-work` and writes `.continue-here.md` with human-readable context for the next maintainer. The handoff should capture current position, completed work, remaining work, blockers, human actions pending, background processes, modified files, and the next concrete action.
 
+## Summarize A Session For Handoff
+
+Use this before a maintainer handoff or weekly progress summary when you need a shareable record of what changed, what was verified, and what remains.
+
+```bash
+$gsd-progress --forensic
+$gsd-session-report
+git diff -- .planning/reports
+```
+
+Run `$gsd-progress --forensic` first so the report starts from current state rather than memory. `$gsd-session-report` writes `.planning/reports/SESSION_REPORT.md` for stakeholder sharing with Session Summary, Work Performed, Outcomes, Resource Usage Estimate, and Next Steps sections. Review the report diff before handing it off so stale status, missing verification, or unclear next actions do not become part of the project record.
+
 ## Fix Confirmed Audit Findings
 
 Use this after UAT or verification has produced concrete findings and you want to preview classification before changing files. `$gsd-audit-fix` is useful when you need a conservative path from audit output to verified, traceable fixes.
