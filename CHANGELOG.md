@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized safe trial troubleshooting links** - Adds `Safe Trial Troubleshooting` links to localized README files so non-English evaluators can find first-run quick fixes before filing an issue.
 - **Safe trial issue chooser hints** - Routes safe local trial questions toward Discussions and troubleshooting, refreshes bug examples to Codex `$gsd-*` commands, and asks reporters for `git status --short` plus `git diff --stat` evidence.
 - **Safe trial troubleshooting quick fixes** - Adds `docs/SAFE-TRIAL-TROUBLESHOOTING.md` with first-run checks for missing commands, unexpected changed files, local/global install confusion, npm failures, stale cache, and discussion versus issue routing.
 - **Localized safe trial discussion links** - Adds `Safe Trial Discussion Starter` links to localized README files so non-English evaluators can ask for workflow advice after a safe local trial.

@@ -80,7 +80,7 @@ git status --short
 
 새 sandbox에서 시험하려면 먼저 임시 디렉터리를 만들고 같은 설치 및 GSD 명령을 실행하세요. 평가가 끝나면 임시 디렉터리를 제거하거나 시험 브랜치를 삭제하세요.
 
-전체 체크리스트는 [Evaluate](docs/EVALUATE.md)를 참고하세요. 실행하기 전에 [Safe Trial Transcript](docs/SAFE-TRIAL-TRANSCRIPT.md)를 확인할 수 있고, 체험 후에는 [Safe Trial Outcome Template](docs/SAFE-TRIAL-OUTCOME.md)으로 유지할 내용을 기록하세요. 워크플로 조언을 묻고 싶다면 [Safe Trial Discussion Starter](docs/SAFE-TRIAL-DISCUSSION.md)를 사용하세요.
+전체 체크리스트는 [Evaluate](docs/EVALUATE.md)를 참고하세요. 실행하기 전에 [Safe Trial Transcript](docs/SAFE-TRIAL-TRANSCRIPT.md)를 확인할 수 있고, 설치, 명령어 누락, 예상치 못한 파일 변경에서 막히면 먼저 [Safe Trial Troubleshooting](docs/SAFE-TRIAL-TROUBLESHOOTING.md)를 확인하세요. 체험 후에는 [Safe Trial Outcome Template](docs/SAFE-TRIAL-OUTCOME.md)으로 유지할 내용을 기록하세요. 워크플로 조언을 묻고 싶다면 [Safe Trial Discussion Starter](docs/SAFE-TRIAL-DISCUSSION.md)를 사용하세요.
 
 ---
 
