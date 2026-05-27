@@ -250,6 +250,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-workstreams create backend-api`/);
     assert.match(readme, /Diagnose a failed workflow run/);
     assert.match(readme, /`\$gsd-forensics "Phase 3 execution stalled"`/);
+    assert.match(readme, /Pause before a context reset/);
+    assert.match(readme, /`\$gsd-pause-work`/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
@@ -267,6 +269,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Fix Confirmed Audit Findings/);
     assert.match(examples, /## Coordinate Parallel Workstreams/);
     assert.match(examples, /## Diagnose A Failed Workflow Run/);
+    assert.match(examples, /## Pause Before Context Reset/);
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
@@ -287,6 +290,7 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-new-milestone --ws backend-api/);
     assert.match(examples, /\$gsd-workstreams progress/);
     assert.match(examples, /\$gsd-forensics "Phase 3 execution stalled"/);
+    assert.match(examples, /\$gsd-pause-work/);
     assert.match(examples, /git switch -c evaluate-gsd-codex/);
     assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(examples, /commit the branch only after reviewing the generated plan/i);
@@ -355,6 +359,10 @@ describe('public release metadata', () => {
     assert.match(examples, /writes `.planning\/forensics\/report-\{timestamp\}\.md`/);
     assert.match(examples, /redacts absolute paths and credentials/);
     assert.match(examples, /offers GitHub issue creation when actionable findings exist/);
+    assert.match(examples, /before stopping mid-phase, compacting context, switching machines, or handing a Codex session to another maintainer/);
+    assert.match(examples, /records the current phase, open blockers, modified files, and the next action/);
+    assert.match(examples, /update `.planning\/STATE\.md` and write a handoff artifact such as `HANDOFF\.json`/);
+    assert.match(examples, /Start the next session with `\$gsd-resume-work`/);
     assert.match(examples, /source code, tests, and a README/);
     assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
 

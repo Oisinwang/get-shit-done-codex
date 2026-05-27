@@ -154,6 +154,7 @@ Built-in quality gates catch real problems: schema drift detection flags ORM cha
 | Coordinate parallel workstreams | `$gsd-workstreams create backend-api` | Isolated planning state for concurrent milestone efforts |
 | Diagnose a failed workflow run | `$gsd-forensics "Phase 3 execution stalled"` | Evidence-backed post-mortem report before recovery |
 | Make a small fix with guardrails | `$gsd-fast "fix the failing install check"` | A focused change with verification notes |
+| Pause before a context reset | `$gsd-pause-work` | Handoff state, blockers, and next action for the next session |
 | Continue work after a break | `$gsd-resume-work` | Restored phase context and pending blockers |
 | Compare a technical approach first | `$gsd-spike "validate the risky integration"` | Time-boxed experiment findings |
 | Explore UI direction first | `$gsd-sketch "compare dashboard layouts"` | Throwaway mockups and selected design notes |

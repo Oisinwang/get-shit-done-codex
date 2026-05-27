@@ -199,6 +199,18 @@ $gsd-resume-work
 
 The investigation gathers recent git history, uncommitted work, `.planning/STATE.md`, roadmap state, phase artifacts, session reports, and worktrees. It checks stuck loops, missing artifacts, abandoned work, crash or interruption signals, scope drift, and test regression clues, then writes `.planning/forensics/report-{timestamp}.md`. It redacts absolute paths and credentials, and the workflow offers GitHub issue creation when actionable findings exist.
 
+## Pause Before Context Reset
+
+Use this before stopping mid-phase, compacting context, switching machines, or handing a Codex session to another maintainer. `$gsd-pause-work` records the current phase, open blockers, modified files, and the next action so the next session can resume from durable state instead of chat memory.
+
+```bash
+git status --short
+$gsd-progress --forensic
+$gsd-pause-work
+```
+
+Expect the pause command to update `.planning/STATE.md` and write a handoff artifact such as `HANDOFF.json` with current goal, active phase, blockers, files changed, checks already run, and the recommended resume command. Start the next session with `$gsd-resume-work`, then re-run `$gsd-progress --forensic` before editing so stale handoff notes do not become accidental truth.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.
