@@ -11,6 +11,7 @@ npx @oisinwang/get-shit-done-codex@latest
 Safe trial troubleshooting: [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md).
 Safe trial outcome template: [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md).
 Safe trial discussion starter: [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md).
+Safe trial transcript: [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md).
 
 Claude 時代の名前は移行互換のためだけに残しています。fork の境界、命名規則、移行メモは [CODEX-FORK.md](../CODEX-FORK.md) を参照してください。
 
