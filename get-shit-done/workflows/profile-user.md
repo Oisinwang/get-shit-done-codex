@@ -31,7 +31,7 @@ PROFILE_PATH="$HOME/.codex/get-shit-done/USER-PROFILE.md"
 **If profile exists AND --refresh NOT set AND --questionnaire NOT set:**
 
 
-**Text mode (`workflow.text_mode: true` in config or `--text` flag):** Set `TEXT_MODE=true` if `--text` is present in `$ARGUMENTS` OR `text_mode` from init JSON is `true`. When TEXT_MODE is active, replace every `AskUserQuestion` call with a plain-text numbered list and ask the user to type their choice number. This is required for non-Claude runtimes (OpenAI Codex, Gemini CLI, etc.) where `AskUserQuestion` is not available.
+**Text mode (`workflow.text_mode: true` in config or `--text` flag):** Set `TEXT_MODE=true` if `--text` is present in `$ARGUMENTS` OR `text_mode` from init JSON is `true`. When TEXT_MODE is active, replace every `AskUserQuestion` call with a plain-text numbered list and ask the user to type their choice number. This is required for runtimes without `AskUserQuestion` UI, including OpenAI Codex and Gemini CLI.
 Use AskUserQuestion:
 - header: "Existing Profile"
 - question: "You already have a profile. What would you like to do?"
@@ -69,12 +69,12 @@ Display consent screen:
  GSD > PROFILE YOUR CODING STYLE
 鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹?
 
-Claude starts every conversation generic. A profile teaches Claude
+Codex starts every conversation generic. A profile teaches Codex
 how YOU actually work -- not how you think you work.
 
 ## What We'll Analyze
 
-Your recent Claude Code sessions, looking for patterns in these
+Your recent Codex sessions, looking for patterns in these
 8 behavioral dimensions:
 
 | Dimension            | What It Measures                            |
@@ -85,7 +85,7 @@ Your recent Claude Code sessions, looking for patterns in these
 | Debugging Approach   | How you tackle errors and bugs               |
 | UX Philosophy        | How much you care about design vs. function  |
 | Vendor Philosophy    | How you evaluate libraries and tools         |
-| Frustration Triggers | What makes you correct Claude                |
+| Frustration Triggers | What makes you correct Codex                 |
 | Learning Style       | How you prefer to learn new things           |
 
 ## Data Handling
@@ -312,7 +312,7 @@ Pick 3-4 dimensions with the highest confidence and most evidence signals. Forma
   headers and problem statements before making requests
 - **Vendor Choices (HIGH):** You research alternatives thoroughly -- comparing
   docs, GitHub activity, and bundle sizes before committing
-- **Frustrations (MEDIUM):** You correct Claude most often for doing things
+- **Frustrations (MEDIUM):** You correct Codex most often for doing things
   you didn't ask for -- scope creep is your primary trigger
 ```
 

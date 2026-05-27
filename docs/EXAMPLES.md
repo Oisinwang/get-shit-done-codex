@@ -69,6 +69,18 @@ $gsd-progress --forensic
 
 Run `$gsd-progress --forensic` first so verification debt and state drift are visible before repair. `$gsd-health` reports `Status: HEALTHY | DEGRADED | BROKEN`, issue counts, and `repairable_count`; review those findings before changing files. Only run `$gsd-health --repair` when the health output identifies auto-fixable items. Repair output includes `repairs_performed`; common repairs include creating `config.json`, resetting invalid `config.json`, regenerating missing `STATE.md`, and adding `workflow.nyquist_validation`. Re-run forensic progress after repair so any remaining manual work is visible.
 
+## Personalize Codex For Long Projects
+
+Use this before a long-running project when you want Codex to learn stable coding, review, and communication preferences. Use the questionnaire for first-time setup when there is not enough session history yet, then refresh after several sessions.
+
+```bash
+$gsd-profile-user --questionnaire
+$gsd-profile-user --refresh
+git diff -- AGENTS.md
+```
+
+`$gsd-profile-user --questionnaire` writes `$HOME/.codex/get-shit-done/USER-PROFILE.md` and can generate `$HOME/.codex/commands/gsd/dev-preferences.md`, an AGENTS.md profile section, or a Global AGENTS.md entry. `$gsd-profile-user --refresh` backs up the previous profile, re-analyzes recent sessions, and shows changed dimensions before writing the new profile. Commit the AGENTS.md profile section only when the preference is stable project guidance that other maintainers should share. Keep `USER-PROFILE.md` and global `AGENTS.md` local when they describe one maintainer's personal style. PROJECT.md and AGENTS.md remain project requirements and operating instructions; the generated profile is personal interaction guidance, not a replacement for project scope or repo rules.
+
 ## Prepare A Public Pull Request
 
 Use this when you worked with GSD planning files locally but want reviewers to see code, docs, and structural planning changes without transient phase artifacts. In this repository, target `codex/bootstrap`; in another repository, replace that with the branch you normally merge into.

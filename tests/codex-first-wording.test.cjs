@@ -26,7 +26,21 @@ describe('codex-first canonical wording', () => {
     assert.ok(content.includes('generate-agents-profile'));
     assert.ok(content.includes('$HOME/.codex/commands/gsd/dev-preferences.md'));
     assert.ok(content.includes('$HOME/.codex/AGENTS.md'));
+    assert.doesNotMatch(content, /Claude starts every conversation generic/);
+    assert.doesNotMatch(content, /Your recent Claude Code sessions/);
+    assert.doesNotMatch(content, /What makes you correct Claude/);
     assert.ok(!content.includes('generate-claude-profile --analysis "$ANALYSIS_PATH"'));
+  });
+
+  test('profile-user command advertises Codex and AGENTS.md artifacts', () => {
+    const content = readRepoFile('commands/gsd/profile-user.md');
+
+    assert.match(content, /Codex-discoverable artifacts/);
+    assert.match(content, /AGENTS\.md section/);
+    assert.match(content, /@~\/\.codex\/get-shit-done\/workflows\/profile-user\.md/);
+    assert.doesNotMatch(content, /Claude-discoverable/);
+    assert.doesNotMatch(content, /CLAUDE\.md section/);
+    assert.doesNotMatch(content, /@~\/\.claude\/get-shit-done\/workflows\/profile-user\.md/);
   });
 
   test('discussion and planning probe .codex skills before legacy .claude fallback', () => {

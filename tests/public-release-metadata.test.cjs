@@ -228,6 +228,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-progress --forensic`/);
     assert.match(readme, /Repair planning directory drift/);
     assert.match(readme, /`\$gsd-health --repair`/);
+    assert.match(readme, /Personalize Codex for long projects/);
+    assert.match(readme, /`\$gsd-profile-user --questionnaire`/);
     assert.match(readme, /Prepare a public PR without planning noise/);
     assert.match(readme, /`\$gsd-pr-branch codex\/bootstrap`/);
     assert.match(readme, /Check release readiness before a branch/);
@@ -266,6 +268,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Existing Repo Migration Branch/);
     assert.match(examples, /## Review Generated Planning Artifacts/);
     assert.match(examples, /## Repair Planning Directory Drift/);
+    assert.match(examples, /## Personalize Codex For Long Projects/);
     assert.match(examples, /## Prepare A Public Pull Request/);
     assert.match(examples, /## Audit Verification Debt Before Release/);
     assert.match(examples, /## Verify Security-Sensitive Changes/);
@@ -287,6 +290,8 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-discuss-phase 1/);
     assert.match(examples, /\$gsd-health/);
     assert.match(examples, /\$gsd-health --repair/);
+    assert.match(examples, /\$gsd-profile-user --questionnaire/);
+    assert.match(examples, /\$gsd-profile-user --refresh/);
     assert.match(examples, /\$gsd-pr-branch codex\/bootstrap/);
     assert.match(examples, /\$gsd-audit-uat/);
     assert.match(examples, /\$gsd-secure-phase 1/);
@@ -322,6 +327,14 @@ describe('public release metadata', () => {
     assert.match(examples, /config\.json/);
     assert.match(examples, /STATE\.md/);
     assert.match(examples, /Review repairable findings before changing files/);
+    assert.match(examples, /stable coding, review, and communication preferences/);
+    assert.match(examples, /\$HOME\/\.codex\/get-shit-done\/USER-PROFILE\.md/);
+    assert.match(examples, /\$HOME\/\.codex\/commands\/gsd\/dev-preferences\.md/);
+    assert.match(examples, /AGENTS\.md profile section/);
+    assert.match(examples, /Global AGENTS\.md/);
+    assert.match(examples, /Commit the AGENTS\.md profile section only when the preference is stable project guidance/);
+    assert.match(examples, /Keep `USER-PROFILE\.md` and global `AGENTS\.md` local when they describe one maintainer/);
+    assert.match(examples, /PROJECT\.md and AGENTS\.md remain project requirements and operating instructions/);
     assert.match(examples, /filter transient `.planning\/` commits before public review/);
     assert.match(examples, /The command creates a `\*-pr` branch from the target branch/);
     assert.match(examples, /Run the printed `git push` and `gh pr create` commands only after reviewing that generated branch/);
@@ -476,6 +489,21 @@ describe('public release metadata', () => {
       '# Review repairable findings before changing files.',
       '$gsd-health --repair',
       '$gsd-progress --forensic',
+    ]);
+
+    const profileStart = examples.indexOf('## Personalize Codex For Long Projects');
+    const profileEnd = examples.indexOf('## Prepare A Public Pull Request');
+    const profileSection = examples.slice(profileStart, profileEnd);
+    const profileCommands = profileSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(profileCommands, 'profile-user example should include a bash block');
+    assert.deepEqual(profileCommands, [
+      '$gsd-profile-user --questionnaire',
+      '$gsd-profile-user --refresh',
+      'git diff -- AGENTS.md',
     ]);
 
     const publicPrStart = examples.indexOf('## Prepare A Public Pull Request');
@@ -1250,6 +1278,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\$gsd-stats/);
     assert.match(unreleasedSection, /Health repair example/);
     assert.match(unreleasedSection, /\$gsd-health --repair/);
+    assert.match(unreleasedSection, /Profile-user example/);
+    assert.match(unreleasedSection, /\$gsd-profile-user --questionnaire/);
     assert.match(unreleasedSection, /Audit-fix example/);
     assert.match(unreleasedSection, /\$gsd-audit-fix --dry-run/);
   });
