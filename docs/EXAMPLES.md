@@ -187,6 +187,18 @@ $gsd-workstreams progress
 
 Switching sets a session-scoped active workstream so concurrent Codex sessions do not overwrite each other. Use `--ws` on milestone and phase commands when you want explicit routing, check `$gsd-workstreams progress` before coordinating across streams, and archive finished work with `$gsd-workstreams complete backend-api` once its milestone state is closed.
 
+## Diagnose A Failed Workflow Run
+
+Use this after a failed or stuck GSD workflow when you need evidence before deciding whether to resume, rerun, or open a bug. `$gsd-forensics` performs a read-only investigation and writes a portable report before you make recovery changes.
+
+```bash
+git status --short
+$gsd-forensics "Phase 3 execution stalled"
+$gsd-resume-work
+```
+
+The investigation gathers recent git history, uncommitted work, `.planning/STATE.md`, roadmap state, phase artifacts, session reports, and worktrees. It checks stuck loops, missing artifacts, abandoned work, crash or interruption signals, scope drift, and test regression clues, then writes `.planning/forensics/report-{timestamp}.md`. It redacts absolute paths and credentials, and the workflow offers GitHub issue creation when actionable findings exist.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.

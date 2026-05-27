@@ -248,6 +248,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-audit-fix --dry-run`/);
     assert.match(readme, /Coordinate parallel workstreams/);
     assert.match(readme, /`\$gsd-workstreams create backend-api`/);
+    assert.match(readme, /Diagnose a failed workflow run/);
+    assert.match(readme, /`\$gsd-forensics "Phase 3 execution stalled"`/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
@@ -264,6 +266,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Preserve Long-Running Context/);
     assert.match(examples, /## Fix Confirmed Audit Findings/);
     assert.match(examples, /## Coordinate Parallel Workstreams/);
+    assert.match(examples, /## Diagnose A Failed Workflow Run/);
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
@@ -283,6 +286,7 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-workstreams switch backend-api/);
     assert.match(examples, /\$gsd-new-milestone --ws backend-api/);
     assert.match(examples, /\$gsd-workstreams progress/);
+    assert.match(examples, /\$gsd-forensics "Phase 3 execution stalled"/);
     assert.match(examples, /git switch -c evaluate-gsd-codex/);
     assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(examples, /commit the branch only after reviewing the generated plan/i);
@@ -344,6 +348,13 @@ describe('public release metadata', () => {
     assert.match(examples, /so concurrent Codex sessions do not overwrite each other/);
     assert.match(examples, /Use `--ws` on milestone and phase commands when you want explicit routing/);
     assert.match(examples, /archive finished work with `\$gsd-workstreams complete backend-api`/);
+    assert.match(examples, /failed or stuck GSD workflow/);
+    assert.match(examples, /read-only investigation/);
+    assert.match(examples, /gathers recent git history, uncommitted work, `.planning\/STATE\.md`, roadmap state, phase artifacts, session reports, and worktrees/);
+    assert.match(examples, /checks stuck loops, missing artifacts, abandoned work, crash or interruption signals, scope drift, and test regression clues/);
+    assert.match(examples, /writes `.planning\/forensics\/report-\{timestamp\}\.md`/);
+    assert.match(examples, /redacts absolute paths and credentials/);
+    assert.match(examples, /offers GitHub issue creation when actionable findings exist/);
     assert.match(examples, /source code, tests, and a README/);
     assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
 
@@ -558,6 +569,21 @@ describe('public release metadata', () => {
       '$gsd-workstreams progress',
     ]);
 
+    const forensicsStart = examples.indexOf('## Diagnose A Failed Workflow Run');
+    const forensicsEnd = examples.indexOf('## Small Fix With Guardrails');
+    const forensicsSection = examples.slice(forensicsStart, forensicsEnd);
+    const forensicsCommands = forensicsSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(forensicsCommands, 'forensics example should include a bash block');
+    assert.deepEqual(forensicsCommands, [
+      'git status --short',
+      '$gsd-forensics "Phase 3 execution stalled"',
+      '$gsd-resume-work',
+    ]);
+
     for (const marker of [
       '$gsd-new-project --auto',
       '$gsd-map-codebase',
@@ -572,6 +598,7 @@ describe('public release metadata', () => {
       '$gsd-thread',
       '$gsd-audit-fix',
       '$gsd-workstreams',
+      '$gsd-forensics',
       '$gsd-fast',
       '$gsd-resume-work',
       '$gsd-spike',
