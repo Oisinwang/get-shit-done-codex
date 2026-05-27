@@ -101,6 +101,26 @@ After the first pass, GSD leaves reviewable project memory instead of a loose ch
 
 ---
 
+## Safe 10-Minute Trial
+
+Use this path when you want to try GSD without changing global Codex config.
+
+```bash
+git switch -c evaluate-gsd-codex
+npx @oisinwang/get-shit-done-codex@latest --codex --local
+$gsd-new-project --auto
+$gsd-next
+git status --short
+```
+
+Expected setup files are `.codex/`, `AGENTS.md`, and `.planning/`. Review `git status --short` before committing anything; if you ran a workflow that changed product code, those files should appear separately.
+
+For a brand-new sandbox, create a throwaway directory first, then run the same install and GSD commands. Remove the throwaway directory or delete the trial branch when you are done evaluating.
+
+See the full checklist in [Evaluate](docs/EVALUATE.md) for pass signals, fail signals, and cleanup notes.
+
+---
+
 ## Why This Fork Exists
 
 This fork turns GSD into a Codex-first workflow. The canonical project contract is `AGENTS.md`, `.codex/`, and `$gsd-*` commands. Legacy Claude-first names remain only so existing projects can migrate without losing context.

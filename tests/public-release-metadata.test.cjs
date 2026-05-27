@@ -208,6 +208,16 @@ describe('public release metadata', () => {
     const evaluate = fs.readFileSync(evaluatePath, 'utf8');
 
     assert.match(readme, /\[Evaluate\]\(docs\/EVALUATE\.md\)/);
+    assert.match(readme, /## Safe 10-Minute Trial/);
+    assert.match(readme, /Use this path when you want to try GSD without changing global Codex config/);
+    assert.match(readme, /git switch -c evaluate-gsd-codex/);
+    assert.match(readme, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
+    assert.match(readme, /\$gsd-new-project --auto/);
+    assert.match(readme, /\$gsd-next/);
+    assert.match(readme, /git status --short/);
+    assert.match(readme, /\.codex\/`, `AGENTS\.md`, and `\.planning\//);
+    assert.match(readme, /Remove the throwaway directory or delete the trial branch/);
+    assert.match(readme, /full checklist in \[Evaluate\]\(docs\/EVALUATE\.md\)/);
     assert.match(docsReadme, /\[Evaluate\]\(EVALUATE\.md\)/);
     assert.match(evaluate, /# Evaluate/);
     assert.match(evaluate, /10-minute check/);
@@ -1064,8 +1074,9 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /README safe 10-minute trial block/);
+    assert.match(roadmap, /localized README files/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
+    assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1521,6 +1532,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Real-world install troubleshooting example/);
     assert.match(unreleasedSection, /npx @latest install check/);
     assert.match(unreleasedSection, /pending release label guidance/);
+    assert.match(unreleasedSection, /README safe 10-minute trial block/);
+    assert.match(unreleasedSection, /disposable branch/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);

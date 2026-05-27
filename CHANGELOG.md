@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **README safe 10-minute trial block** - Adds a near-top disposable branch path for local Codex installs, first-run GSD commands, expected changed files, and cleanup guidance.
 - **Auto-label retry hardening** - Retries transient GitHub API failures when adding the `needs-triage` label to new issues.
 - **Real-world install troubleshooting example** - Adds an npm install check playbook with clean temporary directory setup, `npm view`, `npx @latest install check`, source fix links, and pending release label guidance.
 - **Npm deprecation evidence FAQ** - Explains how to record npm deprecate commands, affected versions, deprecation messages, npm view checks, and user migration guidance.
