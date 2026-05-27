@@ -246,6 +246,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-thread "Investigate flaky release"`/);
     assert.match(readme, /Fix confirmed audit findings/);
     assert.match(readme, /`\$gsd-audit-fix --dry-run`/);
+    assert.match(readme, /Coordinate parallel workstreams/);
+    assert.match(readme, /`\$gsd-workstreams create backend-api`/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
@@ -261,6 +263,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Review AI Eval Coverage/);
     assert.match(examples, /## Preserve Long-Running Context/);
     assert.match(examples, /## Fix Confirmed Audit Findings/);
+    assert.match(examples, /## Coordinate Parallel Workstreams/);
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
@@ -275,6 +278,11 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-thread "Investigate flaky release"/);
     assert.match(examples, /\$gsd-audit-fix --dry-run/);
     assert.match(examples, /\$gsd-audit-fix --severity high --max 3/);
+    assert.match(examples, /\$gsd-workstreams create backend-api/);
+    assert.match(examples, /\$gsd-workstreams create frontend-polish/);
+    assert.match(examples, /\$gsd-workstreams switch backend-api/);
+    assert.match(examples, /\$gsd-new-milestone --ws backend-api/);
+    assert.match(examples, /\$gsd-workstreams progress/);
     assert.match(examples, /git switch -c evaluate-gsd-codex/);
     assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(examples, /commit the branch only after reviewing the generated plan/i);
@@ -330,6 +338,12 @@ describe('public release metadata', () => {
     assert.match(examples, /runs tests after each fix/);
     assert.match(examples, /commits atomically with finding IDs/);
     assert.match(examples, /stops and reverts on the first test failure/);
+    assert.match(examples, /when one repository has two independent milestone areas moving at the same time/);
+    assert.match(examples, /keeps `.planning\/workstreams\/\{name\}` isolated per effort/);
+    assert.match(examples, /session-scoped active workstream/);
+    assert.match(examples, /so concurrent Codex sessions do not overwrite each other/);
+    assert.match(examples, /Use `--ws` on milestone and phase commands when you want explicit routing/);
+    assert.match(examples, /archive finished work with `\$gsd-workstreams complete backend-api`/);
     assert.match(examples, /source code, tests, and a README/);
     assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
 
@@ -527,6 +541,23 @@ describe('public release metadata', () => {
       '$gsd-audit-fix --severity high --max 3',
     ]);
 
+    const workstreamsStart = examples.indexOf('## Coordinate Parallel Workstreams');
+    const workstreamsEnd = examples.indexOf('## Small Fix With Guardrails');
+    const workstreamsSection = examples.slice(workstreamsStart, workstreamsEnd);
+    const workstreamsCommands = workstreamsSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(workstreamsCommands, 'workstreams example should include a bash block');
+    assert.deepEqual(workstreamsCommands, [
+      '$gsd-workstreams create backend-api',
+      '$gsd-workstreams create frontend-polish',
+      '$gsd-workstreams switch backend-api',
+      '$gsd-new-milestone --ws backend-api',
+      '$gsd-workstreams progress',
+    ]);
+
     for (const marker of [
       '$gsd-new-project --auto',
       '$gsd-map-codebase',
@@ -540,6 +571,7 @@ describe('public release metadata', () => {
       '$gsd-eval-review',
       '$gsd-thread',
       '$gsd-audit-fix',
+      '$gsd-workstreams',
       '$gsd-fast',
       '$gsd-resume-work',
       '$gsd-spike',

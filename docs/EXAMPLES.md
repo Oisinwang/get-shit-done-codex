@@ -173,6 +173,20 @@ $gsd-audit-fix --severity high --max 3
 
 The dry-run stops after the classification table once it classifies each finding as auto-fixable, manual-only, or skip. The fix run processes high-severity auto-fixable findings up to `--max`, runs tests after each fix, commits atomically with finding IDs, and stops and reverts on the first test failure so later fixes do not cascade from a bad state.
 
+## Coordinate Parallel Workstreams
+
+Use this when one repository has two independent milestone areas moving at the same time. It keeps `.planning/workstreams/{name}` isolated per effort while preserving normal GSD commands and reviewable state.
+
+```bash
+$gsd-workstreams create backend-api
+$gsd-workstreams create frontend-polish
+$gsd-workstreams switch backend-api
+$gsd-new-milestone --ws backend-api
+$gsd-workstreams progress
+```
+
+Switching sets a session-scoped active workstream so concurrent Codex sessions do not overwrite each other. Use `--ws` on milestone and phase commands when you want explicit routing, check `$gsd-workstreams progress` before coordinating across streams, and archive finished work with `$gsd-workstreams complete backend-api` once its milestone state is closed.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.
