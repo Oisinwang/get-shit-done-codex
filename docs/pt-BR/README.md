@@ -9,6 +9,7 @@ npx @oisinwang/get-shit-done-codex@latest
 ```
 
 Se o teste local inicial falhar por instalacao, comandos ausentes ou arquivos inesperados, veja [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md).
+Para registrar o resultado do teste local, use [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md).
 
 Nomes legados da era Claude continuam apenas como compatibilidade de migracao. As regras do fork estao em [CODEX-FORK.md](../CODEX-FORK.md).
 
