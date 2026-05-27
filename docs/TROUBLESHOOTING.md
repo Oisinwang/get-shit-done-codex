@@ -303,6 +303,19 @@ Use `--global` instead of `--local` only when you want to update the user-level 
 
 The repository may be ahead of the npm package when a release workflow is waiting for maintainer secrets. The source checkout on `codex/bootstrap` is the authoritative development state. The npm package is refreshed by the hotfix release workflow after `NPM_TOKEN` is configured in the `npm-publish` environment.
 
+## Documentation issue evidence before filing
+
+Collect clean repository-state evidence before opening a documentation issue when the docs appear to disagree with current source or installer behavior:
+
+```bash
+git status --short
+git diff --stat
+```
+
+Attach this output when a docs report says behavior differs from the docs, the branch includes generated files unexpectedly, or a local trial changed more files than the guide described. It helps maintainers separate outdated docs from local uncommitted edits.
+
+For copy edits, broken links, or wording problems, do not attach it for typo-only reports. Point to the file, section, and exact sentence instead.
+
 ## Still blocked
 
 Open an issue with:

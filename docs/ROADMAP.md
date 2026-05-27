@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a short troubleshooting note for collecting clean `git status` and `git diff --stat` evidence before opening documentation issues.
+- Add a short FAQ entry explaining what changed files to expect after a `--local` Codex trial.
 
 ## Manual maintainer actions
 

@@ -963,6 +963,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /setup questions belong in GitHub Discussions/);
     assert.doesNotMatch(roadmap, /stale npm metadata after a source fix has landed/);
     assert.doesNotMatch(roadmap, /local and global Codex installs/);
+    assert.doesNotMatch(roadmap, /git status` and `git diff --stat` evidence/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1092,6 +1093,12 @@ describe('public release metadata', () => {
     assert.match(troubleshooting, /git log --oneline -5/);
     assert.match(troubleshooting, /\$gsd-progress --forensic/);
     assert.match(troubleshooting, /Do not delete `.planning\/` blindly/);
+    assert.match(troubleshooting, /Documentation issue evidence before filing/);
+    assert.match(troubleshooting, /Collect clean repository-state evidence before opening a documentation issue/);
+    assert.match(troubleshooting, /git status --short/);
+    assert.match(troubleshooting, /git diff --stat/);
+    assert.match(troubleshooting, /Attach this output when a docs report says behavior differs from the docs/);
+    assert.match(troubleshooting, /do not attach it for typo-only reports/);
     assert.match(troubleshooting, /Runtime restart or command discovery/);
     assert.match(troubleshooting, /Codex may keep an in-memory command and skill index/);
     assert.match(troubleshooting, /Get-ChildItem "\$env:USERPROFILE\\\.codex\\skills" -Recurse -Filter SKILL\.md/);
@@ -1320,6 +1327,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Local versus global install FAQ/);
     assert.match(unreleasedSection, /--local/);
     assert.match(unreleasedSection, /--global/);
+    assert.match(unreleasedSection, /Documentation issue evidence troubleshooting/);
+    assert.match(unreleasedSection, /git status --short/);
+    assert.match(unreleasedSection, /git diff --stat/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
