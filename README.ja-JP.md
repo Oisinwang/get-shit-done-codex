@@ -64,6 +64,26 @@ npx @oisinwang/get-shit-done-codex@latest
 
 ---
 
+## 10分の安全な試用
+
+グローバルなCodex設定を変えずにGSDを試したい場合は、この手順を使ってください。
+
+```bash
+git switch -c evaluate-gsd-codex
+npx @oisinwang/get-shit-done-codex@latest --codex --local
+$gsd-new-project --auto
+$gsd-next
+git status --short
+```
+
+想定される設定ファイルは `.codex/`、`AGENTS.md`、`.planning/` です。何かをcommitする前に `git status --short` を確認してください。workflowが製品コードを変更した場合、そのファイルは別に表示されるはずです。
+
+新しいsandboxで試す場合は、先に使い捨てディレクトリを作り、同じインストールとGSDコマンドを実行します。評価が終わったら、そのディレクトリを削除するか試用ブランチを削除してください。
+
+完全なチェックリストは [Evaluate](docs/EVALUATE.md) を参照してください。
+
+---
+
 ## このforkが存在する理由
 
 このforkはGSDをCodex-firstワークフローにします。標準のプロジェクト契約は `AGENTS.md`、`.codex/`、`$gsd-*` コマンドです。古いClaude-first名は移行のために残っていますが、公開デフォルトではありません。

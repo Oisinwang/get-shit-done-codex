@@ -64,6 +64,26 @@ npx @oisinwang/get-shit-done-codex@latest
 
 ---
 
+## Teste seguro em 10 minutos
+
+Use este caminho quando quiser testar o GSD sem alterar a configuração global do Codex.
+
+```bash
+git switch -c evaluate-gsd-codex
+npx @oisinwang/get-shit-done-codex@latest --codex --local
+$gsd-new-project --auto
+$gsd-next
+git status --short
+```
+
+Os arquivos esperados são `.codex/`, `AGENTS.md` e `.planning/`. Revise `git status --short` antes de commitar qualquer coisa; se um workflow alterou código do produto, esses arquivos devem aparecer separadamente.
+
+Para um sandbox novo, crie primeiro um diretório descartável e rode os mesmos comandos. Remova o diretório descartável ou exclua o branch de teste quando terminar a avaliação.
+
+Veja o checklist completo em [Evaluate](docs/EVALUATE.md).
+
+---
+
 ## Por que este fork existe
 
 Este fork transforma o GSD em um workflow Codex-first. O contrato canônico do projeto é `AGENTS.md`, `.codex/` e comandos `$gsd-*`. Nomes antigos Claude-first ainda existem para migração, mas não são mais a semântica pública padrão.

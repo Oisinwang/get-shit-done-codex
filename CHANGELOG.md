@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized README safe trial path** - Mirrors the safe local Codex trial commands, expected files, cleanup note, and `docs/EVALUATE.md` link in localized README files.
 - **README safe 10-minute trial block** - Adds a near-top disposable branch path for local Codex installs, first-run GSD commands, expected changed files, and cleanup guidance.
 - **Auto-label retry hardening** - Retries transient GitHub API failures when adding the `needs-triage` label to new issues.
 - **Real-world install troubleshooting example** - Adds an npm install check playbook with clean temporary directory setup, `npm view`, `npx @latest install check`, source fix links, and pending release label guidance.

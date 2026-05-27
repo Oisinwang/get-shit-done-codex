@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Mirror the safe local trial path in localized README files.
+- Add a real-world before/after README example.
 
 ## Manual maintainer actions
 

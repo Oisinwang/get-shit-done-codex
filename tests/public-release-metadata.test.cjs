@@ -1074,9 +1074,10 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized README files/);
+    assert.match(roadmap, /before\/after README example/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
+    assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1534,6 +1535,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /pending release label guidance/);
     assert.match(unreleasedSection, /README safe 10-minute trial block/);
     assert.match(unreleasedSection, /disposable branch/);
+    assert.match(unreleasedSection, /Localized README safe trial path/);
+    assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
@@ -1615,6 +1618,34 @@ describe('public release metadata', () => {
       assert.match(readme, /star-history\.com\/#Oisinwang\/get-shit-done-codex&Date/, relativePath);
       assert.match(readme, /repos=Oisinwang\/get-shit-done-codex&type=Date/, relativePath);
       assert.doesNotMatch(readme, /repos=get-shit-done-codex&type=Date/, relativePath);
+    }
+  });
+
+  test('localized READMEs mirror the safe local trial path', () => {
+    const localizedReadmes = [
+      'README.pt-BR.md',
+      'README.zh-CN.md',
+      'README.ja-JP.md',
+      'README.ko-KR.md',
+    ];
+
+    for (const relativePath of localizedReadmes) {
+      const readme = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+
+      assert.match(readme, /10/, relativePath);
+      assert.match(readme, /git switch -c evaluate-gsd-codex/, relativePath);
+      assert.match(
+        readme,
+        /npx @oisinwang\/get-shit-done-codex@latest --codex --local/,
+        relativePath,
+      );
+      assert.match(readme, /\$gsd-new-project --auto/, relativePath);
+      assert.match(readme, /\$gsd-next/, relativePath);
+      assert.match(readme, /git status --short/, relativePath);
+      assert.match(readme, /`\.codex\/`/, relativePath);
+      assert.match(readme, /`AGENTS\.md`/, relativePath);
+      assert.match(readme, /`\.planning\/`/, relativePath);
+      assert.match(readme, /docs\/EVALUATE\.md/, relativePath);
     }
   });
 

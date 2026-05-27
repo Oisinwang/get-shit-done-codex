@@ -64,6 +64,26 @@ npx @oisinwang/get-shit-done-codex@latest
 
 ---
 
+## 10 分钟安全试用
+
+如果你想试用 GSD，但不想改动全局 Codex 配置，请使用这条路径。
+
+```bash
+git switch -c evaluate-gsd-codex
+npx @oisinwang/get-shit-done-codex@latest --codex --local
+$gsd-new-project --auto
+$gsd-next
+git status --short
+```
+
+预期的设置文件是 `.codex/`、`AGENTS.md` 和 `.planning/`。提交任何内容前先检查 `git status --short`；如果你运行的 workflow 修改了产品代码，那些代码文件应该单独出现。
+
+如果是全新的 sandbox，请先创建一个临时目录，再运行同样的安装和 GSD 命令。评估结束后，删除临时目录或删除试用分支。
+
+完整清单见 [Evaluate](docs/EVALUATE.md)。
+
+---
+
 ## 为什么存在这个 fork
 
 这个 fork 把 GSD 转成 Codex-first 工作流。标准项目契约是 `AGENTS.md`、`.codex/` 和 `$gsd-*` 命令。旧 Claude-first 名称仍可用于迁移，但不再是公开默认语义。
