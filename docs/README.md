@@ -24,6 +24,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 | [Demo](DEMO.md) | New users, evaluators | A short transcript showing the first Codex workflow and the durable artifacts it creates |
 | [Demo Media Checklist](DEMO.md#demo-media-checklist) | Maintainers | What to record, redact, and link when publishing short workflow demo media |
 | [Safe Trial Transcript](SAFE-TRIAL-TRANSCRIPT.md) | New users, evaluators | No-install transcript of the sandbox and existing-repository safe trial commands |
+| [Safe Trial Outcome Template](SAFE-TRIAL-OUTCOME.md) | New users, evaluators | Copy-pastable keep/discard and feedback template after a local trial |
 | [Evaluate](EVALUATE.md) | New users, evaluators | A safe 10-minute trial checklist with pass and fail signals |
 | [Examples](EXAMPLES.md) | New users | Copy-pastable workflows for new projects, existing repos, quick fixes, resume, spikes, and sketches |
 | [Prompt Recipes](PROMPTS.md) | New users | Copy-pastable Codex prompts for starting, resuming, auditing, and fixing with GSD |
@@ -50,6 +51,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 - **See the first run:** [Demo](DEMO.md)
 - **Record a short demo:** [Demo Media Checklist](DEMO.md#demo-media-checklist)
 - **Preview a safe trial:** [Safe Trial Transcript](SAFE-TRIAL-TRANSCRIPT.md)
+- **Capture trial outcome:** [Safe Trial Outcome Template](SAFE-TRIAL-OUTCOME.md)
 - **Try safely:** [Evaluate](EVALUATE.md)
 - **Pick a workflow:** [Examples](EXAMPLES.md)
 - **Paste a Codex prompt:** [Prompt Recipes](PROMPTS.md)

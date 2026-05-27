@@ -273,6 +273,41 @@ describe('public release metadata', () => {
     assert.doesNotMatch(transcript, /[^\x00-\x7F]/, 'safe trial transcript should stay ASCII-clean');
   });
 
+  test('public safe trial outcome template helps users decide what to keep', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const evaluate = fs.readFileSync(path.join(ROOT, 'docs', 'EVALUATE.md'), 'utf8');
+    const transcript = fs.readFileSync(path.join(ROOT, 'docs', 'SAFE-TRIAL-TRANSCRIPT.md'), 'utf8');
+    const outcomePath = path.join(ROOT, 'docs', 'SAFE-TRIAL-OUTCOME.md');
+
+    assert.equal(fs.existsSync(outcomePath), true, 'docs/SAFE-TRIAL-OUTCOME.md should exist');
+
+    const outcome = fs.readFileSync(outcomePath, 'utf8');
+
+    assert.match(readme, /\[Safe Trial Outcome Template\]\(docs\/SAFE-TRIAL-OUTCOME\.md\)/);
+    assert.match(docsReadme, /\[Safe Trial Outcome Template\]\(SAFE-TRIAL-OUTCOME\.md\)/);
+    assert.match(evaluate, /\[Safe Trial Outcome Template\]\(SAFE-TRIAL-OUTCOME\.md\)/);
+    assert.match(transcript, /\[Safe Trial Outcome Template\]\(SAFE-TRIAL-OUTCOME\.md\)/);
+    assert.match(outcome, /# Safe Trial Outcome Template/);
+    assert.match(outcome, /## Trial Context/);
+    assert.match(outcome, /## Commands Run/);
+    assert.match(outcome, /## Changed Paths/);
+    assert.match(outcome, /## Decision/);
+    assert.match(outcome, /Keep/);
+    assert.match(outcome, /Discard/);
+    assert.match(outcome, /Pass signals/);
+    assert.match(outcome, /Fail signals/);
+    assert.match(outcome, /Feedback evidence/);
+    assert.match(outcome, /GitHub Discussions/);
+    assert.match(outcome, /Issue/);
+    assert.match(outcome, /git status --short/);
+    assert.match(outcome, /git diff --stat/);
+    assert.match(outcome, /\.codex\//);
+    assert.match(outcome, /AGENTS\.md/);
+    assert.match(outcome, /\.planning\//);
+    assert.doesNotMatch(outcome, /[^\x00-\x7F]/, 'safe trial outcome template should stay ASCII-clean');
+  });
+
   test('README shows a real-world before and after example', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const beforeAfterStart = readme.indexOf('## Before And After');
@@ -1134,13 +1169,14 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /safe trial outcome template/);
+    assert.match(roadmap, /localized safe trial transcript links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
     assert.doesNotMatch(roadmap, /before\/after README example/);
     assert.doesNotMatch(roadmap, /safe trial demo script/);
     assert.doesNotMatch(roadmap, /safe trial demo transcript/);
+    assert.doesNotMatch(roadmap, /safe trial outcome template/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1606,6 +1642,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /scripts\/safe-trial-demo\.cjs/);
     assert.match(unreleasedSection, /Safe trial demo transcript/);
     assert.match(unreleasedSection, /SAFE-TRIAL-TRANSCRIPT\.md/);
+    assert.match(unreleasedSection, /Safe trial outcome template/);
+    assert.match(unreleasedSection, /SAFE-TRIAL-OUTCOME\.md/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);

@@ -31,4 +31,4 @@ Expected changed paths: .codex/, AGENTS.md, .planning/
 Remove the throwaway directory or delete the trial branch when you are done evaluating.
 ```
 
-Use this transcript when you want to inspect the command sequence before evaluating GSD Codex locally. For pass signals, fail signals, and cleanup guidance, continue with [Evaluate](EVALUATE.md).
+Use this transcript when you want to inspect the command sequence before evaluating GSD Codex locally. For pass signals, fail signals, and cleanup guidance, continue with [Evaluate](EVALUATE.md). After the trial, capture the result with the [Safe Trial Outcome Template](SAFE-TRIAL-OUTCOME.md).

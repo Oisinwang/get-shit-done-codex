@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Safe trial outcome template** - Adds `docs/SAFE-TRIAL-OUTCOME.md` so users can record changed paths, keep/discard decisions, pass/fail signals, and feedback evidence after a safe local trial.
 - **Safe trial demo transcript** - Adds `docs/SAFE-TRIAL-TRANSCRIPT.md` and links it from README, Demo, Evaluate, and the docs index so visitors can preview the safe trial flow without running commands.
 - **Safe trial demo script** - Adds `scripts/safe-trial-demo.cjs` and `npm run demo:safe-trial` to print sandbox and existing-repository trial flows without installing or editing files.
 - **README before and after example** - Shows how `Make onboarding less confusing` becomes GSD commands, project state files, phase artifacts, and verification evidence.
