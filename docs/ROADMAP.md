@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a short FAQ entry explaining release checklist dry-run evidence before publishing.
+- Add a short FAQ entry explaining npm publish verification issue closure evidence.
 
 ## Manual maintainer actions
 

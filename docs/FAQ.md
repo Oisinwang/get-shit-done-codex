@@ -200,6 +200,18 @@ Record `npm view @oisinwang/get-shit-done-codex version` so maintainers and user
 
 Do not close the issue until the published package proves the fix is live. Use `docs/RELEASE.md` for the publish path, then close with the npm version, publish timestamp, workflow run URL, and install check.
 
+## How should I capture release checklist dry-run evidence before publishing?
+
+Run the Hotfix Release workflow in dry-run mode before publishing from a release branch:
+
+```bash
+gh workflow run hotfix.yml --repo Oisinwang/get-shit-done-codex --ref codex/bootstrap -f action=finalize -f version=<next-patch> -f dry_run=true
+```
+
+Confirm the `npm-publish` environment exists. Confirm `NPM_TOKEN` is configured before any real publish attempt, because dry runs validate packaging but do not update `latest`.
+
+Record the workflow URL or run ID, the version argument, and the package contents or logs you reviewed. Do not switch to `dry_run=false` until package contents have been reviewed and the release issue has a clear owner for final publish verification.
+
 ## When should I not use it?
 
 Do not use GSD for a one-line edit when you already know the exact change and do not need durable state. It is also the wrong tool if you want an agent to act without review, tests, or traceable decisions. Use it when the work benefits from preserved context, staged planning, verification, or resume support.
