@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized docs index support route links** - Adds root `Support` and `GitHub Discussions` links to localized docs indexes so non-English readers can find help from localized entry points.
 - **Localized safe trial quick links grouping** - Groups safe trial troubleshooting, outcome, discussion, and transcript links in localized docs indexes so first-run support paths are easier to scan.
 - **Localized safe trial transcript docs index links** - Adds `Safe Trial Transcript` links to localized docs indexes so non-English readers can preview the first-run flow from docs entry points.
 - **Localized safe trial discussion docs index links** - Adds `Safe Trial Discussion Starter` links to localized docs indexes so non-English readers can ask support-ready questions from docs entry points.

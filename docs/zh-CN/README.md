@@ -15,6 +15,11 @@ npx @oisinwang/get-shit-done-codex@latest
 - [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md)
 - [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md)
 
+## Support quick links
+
+- **Get help:** [Support](../../SUPPORT.md)
+- **Ask or discuss:** [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
+
 Claude 时代的旧名称只作为迁移兼容层保留。fork 的边界、命名规则和迁移说明见 [CODEX-FORK.md](../CODEX-FORK.md)。
 
 ## 文档索引
