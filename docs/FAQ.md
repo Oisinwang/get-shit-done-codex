@@ -71,6 +71,18 @@ npx @oisinwang/get-shit-done-codex@latest --codex --local
 
 That keeps Codex-facing setup files inside the current directory.
 
+## How do I report stale npm metadata after a source fix has landed?
+
+If the npm page or `npx @latest` still shows old behavior after a source fix has landed, first compare the source checkout on `codex/bootstrap` with the published package:
+
+```bash
+npm view @oisinwang/get-shit-done-codex version
+```
+
+The source branch can be ahead of npm while the release workflow is waiting for maintainer setup. Check `docs/RELEASE.md` for the current publish path before opening a new install bug.
+
+When you report stale metadata, include the exact install command and npm version, the source fix commit or issue link, what `npm view @oisinwang/get-shit-done-codex version` returned, and the behavior you still see from `npx @latest`. That keeps release lag separate from a new runtime bug.
+
 ## When should I not use it?
 
 Do not use GSD for a one-line edit when you already know the exact change and do not need durable state. It is also the wrong tool if you want an agent to act without review, tests, or traceable decisions. Use it when the work benefits from preserved context, staged planning, verification, or resume support.

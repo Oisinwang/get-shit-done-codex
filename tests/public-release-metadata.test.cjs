@@ -872,6 +872,7 @@ describe('public release metadata', () => {
     assert.match(faq, /Can I try it without touching global Codex config/);
     assert.match(faq, /When should I not use it/);
     assert.match(faq, /When should I use \$gsd-fast instead of \$gsd-quick --validate/);
+    assert.match(faq, /How do I report stale npm metadata after a source fix has landed/);
     assert.match(faq, /AGENTS\.md/);
     assert.match(faq, /\.codex\//);
     assert.match(faq, /planning context and execution evidence/);
@@ -893,6 +894,11 @@ describe('public release metadata', () => {
     assert.match(faq, /trivial single-step edits/);
     assert.match(faq, /obvious verification/);
     assert.match(faq, /small work that still benefits from plan checking and verification gates/);
+    assert.match(faq, /npm page or `npx @latest` still shows old behavior/);
+    assert.match(faq, /source checkout on `codex\/bootstrap`/);
+    assert.match(faq, /npm view @oisinwang\/get-shit-done-codex version/);
+    assert.match(faq, /docs\/RELEASE\.md/);
+    assert.match(faq, /exact install command and npm version/);
     assert.doesNotMatch(faq, /[^\x00-\x7F]/, 'docs/FAQ.md should stay ASCII-clean');
   });
 
@@ -948,6 +954,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /\$gsd-fast` versus `\$gsd-quick --validate/);
     assert.doesNotMatch(roadmap, /interrupted `\$gsd-pr-branch` exports/);
     assert.doesNotMatch(roadmap, /setup questions belong in GitHub Discussions/);
+    assert.doesNotMatch(roadmap, /stale npm metadata after a source fix has landed/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1300,6 +1307,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Setup question routing note/);
     assert.match(unreleasedSection, /SUPPORT\.md/);
     assert.match(unreleasedSection, /GitHub Discussions/);
+    assert.match(unreleasedSection, /Stale npm metadata FAQ/);
+    assert.match(unreleasedSection, /npm view @oisinwang\/get-shit-done-codex version/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);

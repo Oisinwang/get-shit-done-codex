@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a short FAQ entry explaining how to report stale npm metadata after a source fix has landed.
+- Add a short FAQ entry explaining how to choose between local and global Codex installs.
 
 ## Manual maintainer actions
 
