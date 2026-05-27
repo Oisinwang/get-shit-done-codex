@@ -124,6 +124,14 @@ Use the focused metadata test for FAQ, README, docs index, changelog, roadmap, a
 
 In the pull request description, list the changed docs, focused test result, full test result if run, and any skipped checks. Include the linked issue and keep runtime `.planning/` output out of docs-only PRs unless the approved issue asks for it.
 
+## How should I check localized docs before publishing translations?
+
+Compare the translated page with the English source first: root `README.md`, `docs/README.md`, `docs/COMPARISON.md`, `docs/PROMPTS.md`, and `docs/USER-GUIDE.md` are the source files most localized docs mirror.
+
+Check the localized docs index and root localized README links together. A translation update is incomplete if the page exists but the matching `docs/{locale}/README.md` or root `README.{locale}.md` discovery link still points somewhere stale.
+
+Keep Codex-first wording, `@oisinwang/get-shit-done-codex` package names, GitHub Discussions links, and `Oisinwang/get-shit-done-codex` repository URLs current. Run `node --test tests/public-release-metadata.test.cjs` after localized README or docs index edits so the public metadata guard checks package names, repository links, and localized discovery surfaces.
+
 ## Can I try it without touching global Codex config?
 
 Yes. Use `--local` for the first trial:

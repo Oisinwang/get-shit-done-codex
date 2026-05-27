@@ -886,6 +886,7 @@ describe('public release metadata', () => {
     assert.match(faq, /How do I record a safe 60-second demo/);
     assert.match(faq, /Where should I place a finished demo link/);
     assert.match(faq, /How should I verify a docs-only contribution before opening a pull request/);
+    assert.match(faq, /How should I check localized docs before publishing translations/);
     assert.match(faq, /AGENTS\.md/);
     assert.match(faq, /\.codex\//);
     assert.match(faq, /planning context and execution evidence/);
@@ -964,6 +965,11 @@ describe('public release metadata', () => {
     assert.match(faq, /Use the focused metadata test for FAQ, README, docs index, changelog, roadmap, and link-surface changes/);
     assert.match(faq, /Run `npm\.cmd test` before marking broad docs sweeps or cross-file release metadata changes ready/);
     assert.match(faq, /In the pull request description, list the changed docs, focused test result, full test result if run, and any skipped checks/);
+    assert.match(faq, /Compare the translated page with the English source first/);
+    assert.match(faq, /root `README\.md`, `docs\/README\.md`, `docs\/COMPARISON\.md`, `docs\/PROMPTS\.md`, and `docs\/USER-GUIDE\.md`/);
+    assert.match(faq, /Check the localized docs index and root localized README links together/);
+    assert.match(faq, /Keep Codex-first wording, `@oisinwang\/get-shit-done-codex` package names, GitHub Discussions links, and `Oisinwang\/get-shit-done-codex` repository URLs current/);
+    assert.match(faq, /Run `node --test tests\/public-release-metadata\.test\.cjs` after localized README or docs index edits/);
     assert.doesNotMatch(faq, /[^\x00-\x7F]/, 'docs/FAQ.md should stay ASCII-clean');
   });
 
@@ -1010,7 +1016,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs sync checks/);
+    assert.match(roadmap, /README badge and link refresh checks/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
@@ -1032,6 +1038,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /safe 60-second demo/);
     assert.doesNotMatch(roadmap, /finished demo link/);
     assert.doesNotMatch(roadmap, /docs-only contribution verification/);
+    assert.doesNotMatch(roadmap, /localized docs sync checks/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1431,6 +1438,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Docs-only contribution verification FAQ/);
     assert.match(unreleasedSection, /git diff --check/);
     assert.match(unreleasedSection, /public-release-metadata/);
+    assert.match(unreleasedSection, /Localized docs sync FAQ/);
+    assert.match(unreleasedSection, /English source docs/);
+    assert.match(unreleasedSection, /Codex-first package and repository naming/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
