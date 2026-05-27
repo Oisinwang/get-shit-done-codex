@@ -288,6 +288,7 @@ describe('public release metadata', () => {
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
     assert.match(examples, /## Existing Repo Migration Branch/);
+    assert.match(examples, /## Troubleshoot Stale Or Failing Npm Install/);
     assert.match(examples, /## Review Generated Planning Artifacts/);
     assert.match(examples, /## Repair Planning Directory Drift/);
     assert.match(examples, /## Personalize Codex For Long Projects/);
@@ -341,6 +342,12 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-forensics "Phase 3 execution stalled"/);
     assert.match(examples, /git switch -c evaluate-gsd-codex/);
     assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
+    assert.match(examples, /clean temporary directory/);
+    assert.match(examples, /npm view @oisinwang\/get-shit-done-codex version/);
+    assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex/);
+    assert.match(examples, /source fix commit or issue link/);
+    assert.match(examples, /Keep the `pending release` label/);
+    assert.match(examples, /tell users whether to wait for npm publishing or use the source branch/);
     assert.match(examples, /commit the branch only after reviewing the generated plan/i);
     assert.match(examples, /git diff -- \.codex AGENTS\.md PROJECT\.md ROADMAP\.md STATE\.md \.planning/);
     assert.match(examples, /Keep `AGENTS\.md`, `.codex\/`, and `.planning\/` when the generated state helps later Codex sessions resume/);
@@ -1057,7 +1064,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /real-world install troubleshooting example/);
+    assert.match(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
@@ -1087,6 +1094,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /npm dist-tag rollback evidence/);
     assert.doesNotMatch(roadmap, /npm provenance and package integrity evidence/);
     assert.doesNotMatch(roadmap, /npm deprecation evidence/);
+    assert.doesNotMatch(roadmap, /real-world install troubleshooting example/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1510,6 +1518,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Npm deprecation evidence FAQ/);
     assert.match(unreleasedSection, /npm deprecate/);
     assert.match(unreleasedSection, /deprecation message/);
+    assert.match(unreleasedSection, /Real-world install troubleshooting example/);
+    assert.match(unreleasedSection, /npx @latest install check/);
+    assert.match(unreleasedSection, /pending release label guidance/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);

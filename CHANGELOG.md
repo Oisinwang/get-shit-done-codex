@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Real-world install troubleshooting example** - Adds an npm install check playbook with clean temporary directory setup, `npm view`, `npx @latest install check`, source fix links, and pending release label guidance.
 - **Npm deprecation evidence FAQ** - Explains how to record npm deprecate commands, affected versions, deprecation messages, npm view checks, and user migration guidance.
 - **Npm provenance and package integrity FAQ** - Explains how to record `dist.integrity`, package contents, npm version and git tag alignment, and workflow run URL evidence after publishing.
 - **Npm dist-tag rollback evidence FAQ** - Explains how to capture `npm dist-tag ls` output, `latest` and `next` tag targets, affected version, and workflow or npm command evidence before closing rollback issues.

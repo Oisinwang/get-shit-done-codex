@@ -43,6 +43,19 @@ $gsd-next
 
 Review `git status`, `.codex/`, `AGENTS.md`, and `.planning/` before deciding what to keep. Commit the branch only after reviewing the generated plan and verification notes; if it is not useful, switch back to your original branch and discard the trial branch by your normal repo policy.
 
+## Troubleshoot Stale Or Failing Npm Install
+
+Use this when a source fix has landed but `npx @latest` still fails, installs old behavior, or does not match the README. Start from a clean temporary directory so existing `.codex/`, `AGENTS.md`, or `.planning/` files do not hide the package behavior.
+
+```bash
+mkdir gsd-install-check
+cd gsd-install-check
+npm view @oisinwang/get-shit-done-codex version
+npx @oisinwang/get-shit-done-codex@latest --codex
+```
+
+Paste the command output into the issue with the source fix commit or issue link. Keep the `pending release` label when the source branch is fixed but npm still publishes an older package. In the issue comment, tell users whether to wait for npm publishing or use the source branch until the published package catches up.
+
 ## Review Generated Planning Artifacts
 
 Use this after a trial run when you need to decide whether the generated planning state belongs in the repository.

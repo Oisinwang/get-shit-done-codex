@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a real-world install troubleshooting example.
+- Add a README safe 10-minute trial block.
 
 ## Manual maintainer actions
 
