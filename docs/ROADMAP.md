@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add localized safe trial discussion links.
+- Add safe trial troubleshooting quick fixes.
 
 ## Manual maintainer actions
 

@@ -1206,7 +1206,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized safe trial discussion links/);
+    assert.match(roadmap, /safe trial troubleshooting quick fixes/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1216,6 +1216,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /safe trial outcome template/);
     assert.doesNotMatch(roadmap, /localized safe trial transcript links/);
     assert.doesNotMatch(roadmap, /safe trial discussion starter/);
+    assert.doesNotMatch(roadmap, /localized safe trial discussion links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1687,6 +1688,7 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /localized README files/);
     assert.match(unreleasedSection, /Safe trial discussion starter/);
     assert.match(unreleasedSection, /SAFE-TRIAL-DISCUSSION\.md/);
+    assert.match(unreleasedSection, /Localized safe trial discussion links/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
@@ -1798,6 +1800,7 @@ describe('public release metadata', () => {
       assert.match(readme, /docs\/EVALUATE\.md/, relativePath);
       assert.match(readme, /docs\/SAFE-TRIAL-TRANSCRIPT\.md/, relativePath);
       assert.match(readme, /docs\/SAFE-TRIAL-OUTCOME\.md/, relativePath);
+      assert.match(readme, /docs\/SAFE-TRIAL-DISCUSSION\.md/, relativePath);
     }
   });
 
