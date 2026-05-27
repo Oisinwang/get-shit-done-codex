@@ -24,6 +24,14 @@ No. GSD works through explicit commands. Planning artifacts are plain Markdown a
 
 Only when you run a workflow that performs implementation work, such as `$gsd-fast`, `$gsd-quick`, or `$gsd-execute-phase`. Discovery and planning commands focus on project state first. Use `git status` and the generated verification notes to review what changed before committing.
 
+## When should I use $gsd-fast instead of $gsd-quick --validate?
+
+Use `$gsd-fast` for trivial single-step edits when the change is obvious, the files are known, and obvious verification is available to run directly after the edit. Examples include fixing a typo, updating one link, or adjusting a small docs sentence.
+
+Use `$gsd-quick --validate` for small work that still benefits from plan checking and verification gates: user-visible behavior, install docs, test changes, cross-file edits, or anything where the risk is not obvious from one file. It keeps the task lightweight while still asking GSD to check the plan and evidence before moving on.
+
+Neither command replaces final review. Check `git diff`, run the relevant tests, and keep the change small enough to explain in one commit.
+
 ## Can I uninstall it?
 
 Yes. For a local trial, remove `.codex/`, `AGENTS.md`, and `.planning/` if you do not want to keep them. For a global install, remove the GSD files from `~/.codex/` according to your normal Codex setup policy.

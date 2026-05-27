@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a compact FAQ entry explaining when to use `$gsd-fast` versus `$gsd-quick --validate` for small changes.
+- Add a short troubleshooting note for recovering from interrupted `$gsd-pr-branch` exports before opening a public pull request.
 
 ## Manual maintainer actions
 

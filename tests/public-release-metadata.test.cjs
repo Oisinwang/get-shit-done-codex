@@ -871,6 +871,7 @@ describe('public release metadata', () => {
     assert.match(faq, /Can I try it in a repository with strict branch protection/);
     assert.match(faq, /Can I try it without touching global Codex config/);
     assert.match(faq, /When should I not use it/);
+    assert.match(faq, /When should I use \$gsd-fast instead of \$gsd-quick --validate/);
     assert.match(faq, /AGENTS\.md/);
     assert.match(faq, /\.codex\//);
     assert.match(faq, /planning context and execution evidence/);
@@ -888,6 +889,10 @@ describe('public release metadata', () => {
     assert.match(faq, /--local/);
     assert.match(faq, /\$gsd-map-codebase/);
     assert.match(faq, /\$gsd-fast/);
+    assert.match(faq, /\$gsd-quick --validate/);
+    assert.match(faq, /trivial single-step edits/);
+    assert.match(faq, /obvious verification/);
+    assert.match(faq, /small work that still benefits from plan checking and verification gates/);
     assert.doesNotMatch(faq, /[^\x00-\x7F]/, 'docs/FAQ.md should stay ASCII-clean');
   });
 
@@ -940,6 +945,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
     assert.doesNotMatch(roadmap, /\$gsd-session-report/);
     assert.doesNotMatch(roadmap, /closing resolved good-first-issue tasks/);
+    assert.doesNotMatch(roadmap, /\$gsd-fast` versus `\$gsd-quick --validate/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
   });
 
@@ -1275,6 +1281,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/DEMO\.md/);
     assert.match(unreleasedSection, /Demo media checklist/);
     assert.match(unreleasedSection, /Demo Media Checklist/);
+    assert.match(unreleasedSection, /Fast versus quick FAQ/);
+    assert.match(unreleasedSection, /\$gsd-fast/);
+    assert.match(unreleasedSection, /\$gsd-quick --validate/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
