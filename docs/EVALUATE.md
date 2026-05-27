@@ -17,7 +17,7 @@ $gsd-next
 
 Use `--local` for the first evaluation. It keeps Codex-facing files inside the trial directory instead of changing your global Codex setup.
 
-From a source checkout, `npm run demo:safe-trial` runs `scripts/safe-trial-demo.cjs`, which prints commands only. It does not install packages, change Codex config, or edit repository files.
+From a source checkout, `npm run demo:safe-trial` runs `scripts/safe-trial-demo.cjs`, which prints commands only. It does not install packages, change Codex config, or edit repository files. You can inspect the same flow in the [Safe Trial Transcript](SAFE-TRIAL-TRANSCRIPT.md).
 
 ## Safe trial setup
 

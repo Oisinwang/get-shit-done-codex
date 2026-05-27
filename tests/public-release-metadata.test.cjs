@@ -1,6 +1,7 @@
 'use strict';
 
 const assert = require('node:assert/strict');
+const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 const { describe, test } = require('node:test');
@@ -238,6 +239,38 @@ describe('public release metadata', () => {
     assert.match(evaluate, /scripts\/safe-trial-demo\.cjs/);
     assert.match(evaluate, /prints commands only/);
     assert.doesNotMatch(evaluate, /[^\x00-\x7F]/, 'docs/EVALUATE.md should stay ASCII-clean');
+  });
+
+  test('public safe trial transcript mirrors the demo script output', () => {
+    const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+    const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
+    const demo = fs.readFileSync(path.join(ROOT, 'docs', 'DEMO.md'), 'utf8');
+    const evaluate = fs.readFileSync(path.join(ROOT, 'docs', 'EVALUATE.md'), 'utf8');
+    const transcriptPath = path.join(ROOT, 'docs', 'SAFE-TRIAL-TRANSCRIPT.md');
+
+    assert.equal(fs.existsSync(transcriptPath), true, 'docs/SAFE-TRIAL-TRANSCRIPT.md should exist');
+
+    const transcript = fs.readFileSync(transcriptPath, 'utf8');
+    const demoOutput = execFileSync(process.execPath, [
+      path.join(ROOT, 'scripts', 'safe-trial-demo.cjs'),
+    ], {
+      cwd: ROOT,
+      encoding: 'utf8',
+    }).trim();
+
+    assert.match(readme, /\[Safe Trial Transcript\]\(docs\/SAFE-TRIAL-TRANSCRIPT\.md\)/);
+    assert.match(docsReadme, /\[Safe Trial Transcript\]\(SAFE-TRIAL-TRANSCRIPT\.md\)/);
+    assert.match(demo, /\[Safe Trial Transcript\]\(SAFE-TRIAL-TRANSCRIPT\.md\)/);
+    assert.match(evaluate, /\[Safe Trial Transcript\]\(SAFE-TRIAL-TRANSCRIPT\.md\)/);
+    assert.match(transcript, /# Safe Trial Demo Transcript/);
+    assert.match(transcript, /Generated from `npm run demo:safe-trial`/);
+    assert.match(transcript, /no-install, no-edit transcript/);
+
+    for (const line of demoOutput.split(/\r?\n/).filter(Boolean)) {
+      assert.ok(transcript.includes(line), `transcript should include demo line: ${line}`);
+    }
+
+    assert.doesNotMatch(transcript, /[^\x00-\x7F]/, 'safe trial transcript should stay ASCII-clean');
   });
 
   test('README shows a real-world before and after example', () => {
@@ -1101,12 +1134,13 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /safe trial demo transcript/);
+    assert.match(roadmap, /safe trial outcome template/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
     assert.doesNotMatch(roadmap, /before\/after README example/);
     assert.doesNotMatch(roadmap, /safe trial demo script/);
+    assert.doesNotMatch(roadmap, /safe trial demo transcript/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1570,6 +1604,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Make onboarding less confusing/);
     assert.match(unreleasedSection, /Safe trial demo script/);
     assert.match(unreleasedSection, /scripts\/safe-trial-demo\.cjs/);
+    assert.match(unreleasedSection, /Safe trial demo transcript/);
+    assert.match(unreleasedSection, /SAFE-TRIAL-TRANSCRIPT\.md/);
     assert.match(unreleasedSection, /Evaluation checklist/);
     assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README value hook/);
