@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Npm dist-tag rollback evidence FAQ** - Explains how to capture `npm dist-tag ls` output, `latest` and `next` tag targets, affected version, and workflow or npm command evidence before closing rollback issues.
 - **Npm publish closure evidence FAQ** - Explains how to close publish-gated issues with the npm version, publish timestamp, workflow URL, clean install check, and pending release label cleanup.
 - **Release dry-run evidence FAQ** - Explains how to capture dry_run=true hotfix workflow evidence, npm-publish environment setup, NPM_TOKEN readiness, and the workflow URL or run ID before publishing.
 - **Release issue handoff FAQ** - Explains how to leave the source fix commit, CI run, npm version check, and pending release label status on issues that still need a published package.

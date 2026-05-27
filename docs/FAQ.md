@@ -220,6 +220,14 @@ Run a clean install check with `npx @oisinwang/get-shit-done-codex@latest --code
 
 Remove the `pending release` label only after the clean install check passes. Close the issue with the npm version, publish timestamp, workflow run URL, and install check in the final comment.
 
+## How should I capture npm dist-tag rollback evidence?
+
+Run `npm dist-tag ls @oisinwang/get-shit-done-codex` before changing tags, then paste the output in the issue. Record the `latest` and `next` tag targets so maintainers can see which published versions users would install.
+
+Record the affected version and the reason for rollback or correction. Link the workflow run or npm command that changed the tag, and include the maintainer who approved the action.
+
+After correction, run `npm dist-tag ls @oisinwang/get-shit-done-codex` again and paste the new output. Do not close the release issue until the comment shows before and after tag targets, the affected version, and install guidance for users who already fetched the wrong version.
+
 ## When should I not use it?
 
 Do not use GSD for a one-line edit when you already know the exact change and do not need durable state. It is also the wrong tool if you want an agent to act without review, tests, or traceable decisions. Use it when the work benefits from preserved context, staged planning, verification, or resume support.
