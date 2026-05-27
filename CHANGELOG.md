@@ -19,6 +19,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Map-codebase versus new-project FAQ** - Explains when to start with `$gsd-map-codebase` for existing repositories versus `$gsd-new-project --auto` for new repositories or blank milestones.
 - **Evaluation pull request FAQ** - Explains what to include in a first GSD evaluation pull request, including reviewable setup and planning artifacts from `.codex/`, `AGENTS.md`, and selected `.planning/` docs.
 - **Discussions versus issues FAQ** - Explains when setup questions, workflow advice, and troubleshooting belong in GitHub Discussions versus reproducible bugs and stale documentation reports in issues.
+- **Minimal install reproduction FAQ** - Explains how to build an install or command-discovery reproduction from a clean temporary directory or fresh trial branch, including version checks and `git status --short` evidence.
 - **Settings example** - Adds a copy-pastable `$gsd-settings` and `$gsd-set-profile` playbook for choosing budget, balanced, quality, or inherit model profiles before long-running milestone work.
 - **Profile-user example** - Adds a copy-pastable `$gsd-profile-user --questionnaire` playbook for setting up Codex personalization, refreshing it after several sessions, and deciding which AGENTS profile artifacts belong in the repository.
 - **Health repair example** - Adds a copy-pastable `$gsd-health --repair` playbook for reviewing and repairing `.planning/` config or state drift after interrupted setup, branch switches, or manual edits.

@@ -66,6 +66,21 @@ Open an issue for reproducible bugs, stale documentation, or concrete feature pr
 
 Do not report security vulnerabilities in public issues. Use the private vulnerability reporting path in `SECURITY.md`.
 
+## How do I build a minimal install reproduction?
+
+Start from a clean temporary directory or a fresh trial branch. Do not reuse a directory that already has `.codex/`, `AGENTS.md`, or `.planning/` artifacts unless the bug is specifically about upgrading those files.
+
+Capture the tool and package versions first:
+
+```bash
+node --version
+npm --version
+npx --version
+npm view @oisinwang/get-shit-done-codex version
+```
+
+Copy the exact install command and full output into the issue. For local installs, include `git status --short` after the install so maintainers can see which repository files changed.
+
 ## Can I try it in a repository with strict branch protection?
 
 Yes. Use a trial branch and the local install path so the first pass is reviewable before it touches the protected branch:

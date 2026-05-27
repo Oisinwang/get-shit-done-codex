@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a short FAQ entry explaining how to build a minimal install reproduction.
+- Add a short FAQ entry explaining how to record a safe 60-second demo without leaking local paths.
 
 ## Manual maintainer actions
 
