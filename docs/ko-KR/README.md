@@ -8,10 +8,12 @@
 npx @oisinwang/get-shit-done-codex@latest
 ```
 
-Safe trial troubleshooting: [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md).
-Safe trial outcome template: [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md).
-Safe trial discussion starter: [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md).
-Safe trial transcript: [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md).
+## Safe trial quick links
+
+- [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md)
+- [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md)
+- [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md)
+- [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md)
 
 Claude 시대의 이름은 마이그레이션 호환을 위해서만 남아 있습니다. fork의 범위, 이름 규칙, 마이그레이션 메모는 [CODEX-FORK.md](../CODEX-FORK.md)를 참고하세요.
 
