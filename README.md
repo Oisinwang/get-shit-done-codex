@@ -142,6 +142,7 @@ Built-in quality gates catch real problems: schema drift detection flags ORM cha
 | Update docs after a feature ships | `$gsd-docs-update --verify-only` | Fact-checks docs against live code before generation or release |
 | Prepare a public PR without planning noise | `$gsd-pr-branch codex/bootstrap` | A review branch that filters transient `.planning/` commits |
 | Fix review findings safely | `$gsd-code-review-fix 1` | Atomic fixes from `REVIEW.md` plus a `REVIEW-FIX.md` summary |
+| Choose the next backlog item | `$gsd-review-backlog` | Promote, keep, or remove deferred ideas before planning more work |
 | Make a small fix with guardrails | `$gsd-fast "fix the failing install check"` | A focused change with verification notes |
 | Continue work after a break | `$gsd-resume-work` | Restored phase context and pending blockers |
 | Compare a technical approach first | `$gsd-spike "validate the risky integration"` | Time-boxed experiment findings |

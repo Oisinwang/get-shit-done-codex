@@ -236,6 +236,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-docs-update --verify-only`/);
     assert.match(readme, /Fix review findings safely/);
     assert.match(readme, /`\$gsd-code-review-fix 1`/);
+    assert.match(readme, /Choose the next backlog item/);
+    assert.match(readme, /`\$gsd-review-backlog`/);
     assert.match(docsReadme, /\[Examples\]\(EXAMPLES\.md\)/);
     assert.match(examples, /# Examples/);
     assert.match(examples, /## Existing Repo Safe Trial/);
@@ -246,6 +248,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Verify Security-Sensitive Changes/);
     assert.match(examples, /## Update Docs After A Feature Ships/);
     assert.match(examples, /## Fix Review Findings/);
+    assert.match(examples, /## Choose Next Backlog Item/);
     assert.match(examples, /\$gsd-map-codebase/);
     assert.match(examples, /\$gsd-new-project --auto/);
     assert.match(examples, /\$gsd-discuss-phase 1/);
@@ -254,6 +257,7 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-secure-phase 1/);
     assert.match(examples, /\$gsd-docs-update --verify-only/);
     assert.match(examples, /\$gsd-code-review-fix 1/);
+    assert.match(examples, /\$gsd-review-backlog/);
     assert.match(examples, /git switch -c evaluate-gsd-codex/);
     assert.match(examples, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
     assert.match(examples, /commit the branch only after reviewing the generated plan/i);
@@ -278,6 +282,10 @@ describe('public release metadata', () => {
     assert.match(examples, /commits each fix atomically/);
     assert.match(examples, /writes `REVIEW-FIX\.md`/);
     assert.match(examples, /leave risky or ambiguous findings unresolved/);
+    assert.match(examples, /when the current milestone has more ideas than capacity/);
+    assert.match(examples, /parking lot with 999\.x numbering/);
+    assert.match(examples, /Promote, Keep, or Remove each backlog item/);
+    assert.match(examples, /Promoted items move into the active milestone sequence/);
     assert.match(examples, /source code, tests, and a README/);
     assert.match(examples, /`PROJECT\.md`, `ROADMAP\.md`, `STATE\.md`, and codebase intelligence/);
 
@@ -399,6 +407,21 @@ describe('public release metadata', () => {
       '$gsd-code-review 1 --depth=deep',
     ]);
 
+    const reviewBacklogStart = examples.indexOf('## Choose Next Backlog Item');
+    const reviewBacklogEnd = examples.indexOf('## Small Fix With Guardrails');
+    const reviewBacklogSection = examples.slice(reviewBacklogStart, reviewBacklogEnd);
+    const reviewBacklogCommands = reviewBacklogSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(reviewBacklogCommands, 'review-backlog example should include a bash block');
+    assert.deepEqual(reviewBacklogCommands, [
+      '$gsd-add-backlog "Improve onboarding screenshots"',
+      '$gsd-add-backlog "Add provider comparison table"',
+      '$gsd-review-backlog',
+    ]);
+
     for (const marker of [
       '$gsd-new-project --auto',
       '$gsd-map-codebase',
@@ -407,6 +430,7 @@ describe('public release metadata', () => {
       '$gsd-secure-phase',
       '$gsd-docs-update',
       '$gsd-code-review-fix',
+      '$gsd-review-backlog',
       '$gsd-fast',
       '$gsd-resume-work',
       '$gsd-spike',
@@ -849,6 +873,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\$gsd-code-review-fix 1/);
     assert.match(unreleasedSection, /PATH diagnostics troubleshooting/);
     assert.match(unreleasedSection, /docs\/TROUBLESHOOTING\.md/);
+    assert.match(unreleasedSection, /Backlog review example/);
+    assert.match(unreleasedSection, /\$gsd-review-backlog/);
   });
 
   test('README star history embeds use the public owner and repository name', () => {

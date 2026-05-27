@@ -32,9 +32,9 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add a copy-pastable example for using `$gsd-review-backlog` before choosing the next milestone item.
 - Add a copy-pastable example for using `$gsd-validate-phase` after a completed phase has thin validation evidence.
 - Add a copy-pastable example for using `$gsd-eval-review` after an AI-heavy phase.
+- Add a copy-pastable example for using `$gsd-thread` to preserve long-running context.
 - Translate `docs/COMPARISON.md` into one localized docs folder.
 - Improve alt text and screenshot captions for public visual assets.
 

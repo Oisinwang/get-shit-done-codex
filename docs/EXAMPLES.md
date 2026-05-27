@@ -112,6 +112,18 @@ $gsd-code-review 1 --depth=deep
 
 Run `$gsd-code-review` first so the fixer has a scoped `REVIEW.md` to read. By default, `$gsd-code-review-fix` targets Critical and Warning findings, commits each fix atomically, and writes `REVIEW-FIX.md` with what changed and what remains. Use the deep follow-up review to check the result, and leave risky or ambiguous findings unresolved until a human can decide the right trade-off.
 
+## Choose Next Backlog Item
+
+Use this when the current milestone has more ideas than capacity and you need to decide what belongs in the active sequence. Backlog items are a parking lot with 999.x numbering, so they stay visible without interrupting the planned phase order.
+
+```bash
+$gsd-add-backlog "Improve onboarding screenshots"
+$gsd-add-backlog "Add provider comparison table"
+$gsd-review-backlog
+```
+
+`$gsd-review-backlog` asks you to Promote, Keep, or Remove each backlog item. Promoted items move into the active milestone sequence, kept items stay deferred for a later review, and removed items should be stale or no longer aligned with the project direction.
+
 ## Small Fix With Guardrails
 
 Use this when the task is narrow enough that a full milestone is overhead, but you still want verification and state.
