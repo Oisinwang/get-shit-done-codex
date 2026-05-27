@@ -248,6 +248,8 @@ describe('public release metadata', () => {
     assert.match(readme, /`\$gsd-pause-work`/);
     assert.match(readme, /Summarize a session for handoff/);
     assert.match(readme, /`\$gsd-session-report`/);
+    assert.match(readme, /Archive completed milestone phases/);
+    assert.match(readme, /`\$gsd-cleanup`/);
     assert.match(readme, /Fix confirmed audit findings/);
     assert.match(readme, /`\$gsd-audit-fix --dry-run`/);
     assert.match(readme, /Coordinate parallel workstreams/);
@@ -270,6 +272,7 @@ describe('public release metadata', () => {
     assert.match(examples, /## Preserve Long-Running Context/);
     assert.match(examples, /## Pause Before A Context Reset/);
     assert.match(examples, /## Summarize A Session For Handoff/);
+    assert.match(examples, /## Archive Completed Milestone Phases/);
     assert.match(examples, /## Fix Confirmed Audit Findings/);
     assert.match(examples, /## Coordinate Parallel Workstreams/);
     assert.match(examples, /## Diagnose A Failed Workflow Run/);
@@ -287,6 +290,7 @@ describe('public release metadata', () => {
     assert.match(examples, /\$gsd-thread "Investigate flaky release"/);
     assert.match(examples, /\$gsd-pause-work/);
     assert.match(examples, /\$gsd-session-report/);
+    assert.match(examples, /\$gsd-cleanup/);
     assert.match(examples, /\$gsd-audit-fix --dry-run/);
     assert.match(examples, /\$gsd-audit-fix --severity high --max 3/);
     assert.match(examples, /\$gsd-workstreams create backend-api/);
@@ -355,6 +359,12 @@ describe('public release metadata', () => {
     assert.match(examples, /Resource Usage Estimate/);
     assert.match(examples, /Next Steps/);
     assert.match(examples, /stakeholder sharing/);
+    assert.match(examples, /after completing or archiving milestones/);
+    assert.match(examples, /reads `.planning\/MILESTONES\.md`/);
+    assert.match(examples, /archived ROADMAP snapshots/);
+    assert.match(examples, /dry-run summary/);
+    assert.match(examples, /moves `.planning\/phases\/\{dir\}` into `.planning\/milestones\/v\{version\}-phases\/`/);
+    assert.match(examples, /commits the moved planning state/);
     assert.match(examples, /after UAT or verification has produced concrete findings/);
     assert.match(examples, /preview classification before changing files/);
     assert.match(examples, /classifies each finding as auto-fixable, manual-only, or skip/);
@@ -588,6 +598,21 @@ describe('public release metadata', () => {
       'git diff -- .planning/reports',
     ]);
 
+    const cleanupStart = examples.indexOf('## Archive Completed Milestone Phases');
+    const cleanupEnd = examples.indexOf('## Fix Confirmed Audit Findings');
+    const cleanupSection = examples.slice(cleanupStart, cleanupEnd);
+    const cleanupCommands = cleanupSection
+      .match(/```bash\r?\n([\s\S]*?)\r?\n```/)?.[1]
+      .split(/\r?\n/)
+      .filter(Boolean);
+
+    assert.ok(cleanupCommands, 'cleanup example should include a bash block');
+    assert.deepEqual(cleanupCommands, [
+      '$gsd-progress --forensic',
+      '$gsd-cleanup',
+      'git status --short',
+    ]);
+
     const auditFixStart = examples.indexOf('## Fix Confirmed Audit Findings');
     const auditFixEnd = examples.indexOf('## Small Fix With Guardrails');
     const auditFixSection = examples.slice(auditFixStart, auditFixEnd);
@@ -778,7 +803,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /\$gsd-cleanup/);
+    assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
     assert.doesNotMatch(roadmap, /\$gsd-session-report/);
     assert.doesNotMatch(roadmap, /[^\x00-\x7F]/, 'docs/ROADMAP.md should stay ASCII-clean');
@@ -1129,6 +1154,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\$gsd-pause-work/);
     assert.match(unreleasedSection, /Session-report example/);
     assert.match(unreleasedSection, /\$gsd-session-report/);
+    assert.match(unreleasedSection, /Cleanup example/);
+    assert.match(unreleasedSection, /\$gsd-cleanup/);
     assert.match(unreleasedSection, /Audit-fix example/);
     assert.match(unreleasedSection, /\$gsd-audit-fix --dry-run/);
   });

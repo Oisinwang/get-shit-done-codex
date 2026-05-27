@@ -185,6 +185,18 @@ git diff -- .planning/reports
 
 Run `$gsd-progress --forensic` first so the report starts from current state rather than memory. `$gsd-session-report` writes `.planning/reports/SESSION_REPORT.md` for stakeholder sharing with Session Summary, Work Performed, Outcomes, Resource Usage Estimate, and Next Steps sections. Review the report diff before handing it off so stale status, missing verification, or unclear next actions do not become part of the project record.
 
+## Archive Completed Milestone Phases
+
+Use this after completing or archiving milestones when old phase directories are still sitting in `.planning/phases/` and make current work harder to scan.
+
+```bash
+$gsd-progress --forensic
+$gsd-cleanup
+git status --short
+```
+
+Run `$gsd-progress --forensic` first so you know whether milestone state is actually closed. `$gsd-cleanup` reads `.planning/MILESTONES.md`, checks archived ROADMAP snapshots, and shows a dry-run summary before asking for confirmation. When confirmed, it moves `.planning/phases/{dir}` into `.planning/milestones/v{version}-phases/` and commits the moved planning state so the active phases directory only contains current work.
+
 ## Fix Confirmed Audit Findings
 
 Use this after UAT or verification has produced concrete findings and you want to preview classification before changing files. `$gsd-audit-fix` is useful when you need a conservative path from audit output to verified, traceable fixes.

@@ -152,6 +152,7 @@ Built-in quality gates catch real problems: schema drift detection flags ORM cha
 | Preserve long-running context | `$gsd-thread "Investigate flaky release"` | Thread file with goal, context, references, and next steps |
 | Pause before a context reset | `$gsd-pause-work` | `.planning/HANDOFF.json` and `.continue-here.md` resume state |
 | Summarize a session for handoff | `$gsd-session-report` | `.planning/reports/SESSION_REPORT.md` for review or sharing |
+| Archive completed milestone phases | `$gsd-cleanup` | `.planning/milestones/v{version}-phases/` archives after confirmation |
 | Fix confirmed audit findings | `$gsd-audit-fix --dry-run` | Classification table before verified atomic fixes |
 | Coordinate parallel workstreams | `$gsd-workstreams create backend-api` | Isolated planning state for concurrent milestone efforts |
 | Diagnose a failed workflow run | `$gsd-forensics "Phase 3 execution stalled"` | Evidence-backed post-mortem report before recovery |
