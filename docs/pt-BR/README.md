@@ -30,6 +30,10 @@ npx @oisinwang/get-shit-done-codex@latest
 - **Publish a fix:** [Release Checklist](../RELEASE.md)
 - **Close contributor tasks:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
 
+## Promotion quick links
+
+- **Share the project:** [Promotion Assets](../PROMOTION.md)
+
 Nomes legados da era Claude continuam apenas como compatibilidade de migracao. As regras do fork estao em [CODEX-FORK.md](../CODEX-FORK.md).
 
 ## Indice da documentacao

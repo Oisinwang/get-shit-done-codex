@@ -30,6 +30,10 @@ npx @oisinwang/get-shit-done-codex@latest
 - **Publish a fix:** [Release Checklist](../RELEASE.md)
 - **Close contributor tasks:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
 
+## Promotion quick links
+
+- **Share the project:** [Promotion Assets](../PROMOTION.md)
+
 Claude 時代の名前は移行互換のためだけに残しています。fork の境界、命名規則、移行メモは [CODEX-FORK.md](../CODEX-FORK.md) を参照してください。
 
 ## ドキュメント索引

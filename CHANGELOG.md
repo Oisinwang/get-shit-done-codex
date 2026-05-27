@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized docs index promotion links** - Adds `Promotion Assets` links to localized docs indexes so non-English readers can find launch copy, social preview setup, and public positioning snippets from localized entry points.
 - **Localized docs index maintainer checklist links** - Adds `Release Checklist` and `Maintainer Checklist` links to localized docs indexes so non-English maintainers can find release and issue-closing routes from localized entry points.
 - **Localized docs index contribution links** - Adds root `Contributing Guide` and `Good First Issues` links to localized docs indexes so non-English readers can find contribution routes from localized entry points.
 - **Localized docs index support route links** - Adds root `Support` and `GitHub Discussions` links to localized docs indexes so non-English readers can find help from localized entry points.

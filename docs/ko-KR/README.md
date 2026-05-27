@@ -30,6 +30,10 @@ npx @oisinwang/get-shit-done-codex@latest
 - **Publish a fix:** [Release Checklist](../RELEASE.md)
 - **Close contributor tasks:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
 
+## Promotion quick links
+
+- **Share the project:** [Promotion Assets](../PROMOTION.md)
+
 Claude 시대의 이름은 마이그레이션 호환을 위해서만 남아 있습니다. fork의 범위, 이름 규칙, 마이그레이션 메모는 [CODEX-FORK.md](../CODEX-FORK.md)를 참고하세요.
 
 ## 문서 색인
