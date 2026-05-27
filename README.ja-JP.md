@@ -42,7 +42,7 @@ npx @oisinwang/get-shit-done-codex@latest
 
 **セキュリティとリリース衛生:** scoped npm package、リポジトリメタデータ、CI、リリースworkflow、issue templateはすべてこのforkを指します。古いClaude-era名は互換shimとしてのみ残しています。
 
-[このforkが存在する理由](#このforkが存在する理由) · [仕組み](#仕組み) · [コマンド](#コマンド) · [なぜ効果的なのか](#なぜ効果的なのか) · [ユーザーガイド](docs/ja-JP/USER-GUIDE.md)
+[このforkが存在する理由](#このforkが存在する理由) · [比較](docs/ja-JP/COMPARISON.md) · [仕組み](#仕組み) · [コマンド](#コマンド) · [なぜ効果的なのか](#なぜ効果的なのか) · [ユーザーガイド](docs/ja-JP/USER-GUIDE.md)
 
 </div>
 

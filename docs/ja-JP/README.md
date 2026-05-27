@@ -15,6 +15,7 @@ Claude 時代の名前は移行互換のためだけに残しています。fork
 | ドキュメント | 読者 | 内容 |
 |--------------|------|------|
 | [Codex fork notes](../CODEX-FORK.md) | すべてのユーザー | Codex-first の範囲、命名境界、移行メモ |
+| [比較ガイド](COMPARISON.md) | 新規ユーザー | 生の Codex、prompt pack、task manager、CI-only workflow との適合度比較 |
 | [プロンプトレシピ](PROMPTS.md) | 新規ユーザー | Codex に貼り付けられる開始、再開、監査、小修正用プロンプト |
 | [User Guide](USER-GUIDE.md) | すべてのユーザー | ワークフロー、トラブルシューティング、復旧 |
 | [Feature Reference](FEATURES.md) | すべてのユーザー | 機能、要件、期待される動作 |
@@ -30,6 +31,7 @@ Claude 時代の名前は移行互換のためだけに残しています。fork
 
 - **開始:** [root README](../../README.ja-JP.md) -> install -> `$gsd-help`
 - **fork を理解する:** [Codex fork notes](../CODEX-FORK.md)
+- **使うべきか判断する:** [比較ガイド](COMPARISON.md)
 - **プロンプトを貼り付ける:** [プロンプトレシピ](PROMPTS.md)
 - **ワークフローを実行:** [User Guide](USER-GUIDE.md)
 - **コマンドを探す:** [Command Reference](COMMANDS.md)

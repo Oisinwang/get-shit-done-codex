@@ -1043,6 +1043,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/EXAMPLES\.md/);
     assert.match(unreleasedSection, /Simplified Chinese comparison guide/);
     assert.match(unreleasedSection, /docs\/zh-CN\/COMPARISON\.md/);
+    assert.match(unreleasedSection, /Japanese comparison guide/);
+    assert.match(unreleasedSection, /docs\/ja-JP\/COMPARISON\.md/);
     assert.match(unreleasedSection, /NPM package docs surface/);
     assert.match(unreleasedSection, /published README docs links/);
     assert.match(unreleasedSection, /Prompt recipe guide/);
@@ -1377,6 +1379,32 @@ describe('public release metadata', () => {
     assert.match(zhPrompts, /\$gsd-audit-fix/);
     assert.match(zhPrompts, /\.planning\//);
     assert.match(zhPrompts, /不要跳过验证/);
+  });
+
+  test('Japanese comparison guide mirrors public comparison tradeoffs', () => {
+    const jaRootReadme = fs.readFileSync(path.join(ROOT, 'README.ja-JP.md'), 'utf8');
+    const jaDocsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'ja-JP', 'README.md'), 'utf8');
+    const jaComparisonPath = path.join(ROOT, 'docs', 'ja-JP', 'COMPARISON.md');
+
+    assert.equal(fs.existsSync(jaComparisonPath), true, 'docs/ja-JP/COMPARISON.md should exist');
+
+    const jaComparison = fs.readFileSync(jaComparisonPath, 'utf8');
+
+    assert.match(jaRootReadme, /\[比較\]\(docs\/ja-JP\/COMPARISON\.md\)/);
+    assert.match(jaDocsReadme, /\[比較ガイド\]\(COMPARISON\.md\)/);
+    assert.match(jaComparison, /# 比較ガイド/);
+    assert.match(jaComparison, /生の Codex chat/);
+    assert.match(jaComparison, /prompt pack/);
+    assert.match(jaComparison, /task manager/);
+    assert.match(jaComparison, /CI-only workflow/);
+    assert.match(jaComparison, /完全なエンタープライズプロセス/);
+    assert.match(jaComparison, /GSD Codex を選ぶ/);
+    assert.match(jaComparison, /GSD Codex を使わない/);
+    assert.match(jaComparison, /Codex そのものの代替ではありません/);
+    assert.match(jaComparison, /AGENTS\.md/);
+    assert.match(jaComparison, /\.codex\//);
+    assert.match(jaComparison, /\.planning\//);
+    assert.match(jaComparison, /\$gsd-\*/);
   });
 
   test('Japanese prompt recipes mirror public starter prompts', () => {
