@@ -58,6 +58,14 @@ This repository does not accept runtime `.planning/` files in contributor pull r
 
 Yes. GSD complements an existing tracker instead of replacing it. Use the tracker as the team-facing coordination layer for ownership, priority, and status. Use GSD inside the repository for planning context and execution evidence: project state, phase plans, verification notes, and handoff files that Codex can resume from. See [Examples](EXAMPLES.md) for practical starting paths.
 
+## Should I ask in GitHub Discussions or open an issue?
+
+Use GitHub Discussions for setup questions, workflow advice, troubleshooting help, and examples. Good Discussion topics include choosing a local versus global install, deciding which workflow to run first, comparing Windows PowerShell and WSL setup paths, or asking why `$gsd-help is missing` after install.
+
+Open an issue for reproducible bugs, stale documentation, or concrete feature proposals. Include the exact command, exact error text, operating system and shell, Node.js version, and GSD package version so maintainers can reproduce the report.
+
+Do not report security vulnerabilities in public issues. Use the private vulnerability reporting path in `SECURITY.md`.
+
 ## Can I try it in a repository with strict branch protection?
 
 Yes. Use a trial branch and the local install path so the first pass is reviewable before it touches the protected branch:
