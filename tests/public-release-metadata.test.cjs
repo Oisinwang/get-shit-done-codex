@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index security table links/);
+    assert.match(roadmap, /localized docs index code of conduct table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1286,6 +1286,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index safe trial table links/);
     assert.doesNotMatch(roadmap, /localized docs index support table links/);
     assert.doesNotMatch(roadmap, /localized docs index contribution table links/);
+    assert.doesNotMatch(roadmap, /localized docs index security table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1746,6 +1747,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Localized docs index contribution table links/);
     assert.match(unreleasedSection, /CONTRIBUTING\.md/);
     assert.match(unreleasedSection, /Good First Issues/);
+    assert.match(unreleasedSection, /Localized docs index security table links/);
+    assert.match(unreleasedSection, /SECURITY\.md/);
+    assert.match(unreleasedSection, /Private Vulnerability Report/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2242,6 +2246,16 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[Good First Issues\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/issues\?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22\) \| [^\r\n]*Starter tasks[^\r\n]*current roadmap gaps[^\r\n]*docs updates[^\r\n]*public launch polish[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Security Policy\]\(\.\.\/\.\.\/SECURITY\.md\) \| [^\r\n]*Private vulnerability reporting[^\r\n]*disclosure guidance[^\r\n]*response timeline[^\r\n]*scope[^\r\n]*security boundaries[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Private Vulnerability Report\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/security\/advisories\/new\) \| [^\r\n]*GitHub private advisory intake[^\r\n]*vulnerabilities[^\r\n]*public issues[^\r\n]* \|/,
         relativePath,
       );
       assert.match(

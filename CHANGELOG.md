@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized docs index security table links** - Adds `SECURITY.md` and Private Vulnerability Report table links to localized docs indexes so non-English readers can find private vulnerability reporting, disclosure guidance, response timelines, security scope, security boundaries, and private advisory intake from localized entry points.
 - **Localized docs index contribution table links** - Adds `CONTRIBUTING.md` and Good First Issues table links to localized docs indexes so non-English readers can find contribution types, development setup, test requirements, review expectations, pull request flow, starter tasks, current roadmap gaps, docs updates, and public launch polish from localized entry points.
 - **Localized docs index support table links** - Adds Support and GitHub Discussions table links to localized docs indexes so non-English readers can find setup questions, workflow advice, troubleshooting help, local/global install guidance, bug report routing, community questions, examples, and safe trial feedback from localized entry points.
 - **Localized docs index safe trial table links** - Adds safe trial support doc table links to localized docs indexes so non-English readers can find first-run troubleshooting, outcome capture, discussion starter, and transcript guidance from localized entry points.
