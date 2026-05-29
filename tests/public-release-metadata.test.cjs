@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index workflow metadata table links/);
+    assert.match(roadmap, /localized docs index issue template table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1290,6 +1290,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index code of conduct table links/);
     assert.doesNotMatch(roadmap, /localized docs index license table links/);
     assert.doesNotMatch(roadmap, /localized docs index package metadata table links/);
+    assert.doesNotMatch(roadmap, /localized docs index workflow metadata table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1762,6 +1763,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Localized docs index package metadata table links/);
     assert.match(unreleasedSection, /package\.json/);
     assert.match(unreleasedSection, /sdk\/package\.json/);
+    assert.match(unreleasedSection, /Localized docs index workflow metadata table links/);
+    assert.match(unreleasedSection, /\.github\/workflows\/test\.yml/);
+    assert.match(unreleasedSection, /\.github\/workflows\/hotfix\.yml/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2298,6 +2302,16 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[SDK Package Metadata\]\(\.\.\/\.\.\/sdk\/package\.json\) \| [^\r\n]*SDK npm package name[^\r\n]*CLI bin[^\r\n]*shipped dist and prompts files[^\r\n]*prepublish build[^\r\n]*public publish settings[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Test Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/test\.yml\) \| [^\r\n]*GitHub Actions CI matrix[^\r\n]*Node\.js versions[^\r\n]*install dependencies[^\r\n]*tests with coverage[^\r\n]*branch validation[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Hotfix Release Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/hotfix\.yml\) \| [^\r\n]*manual hotfix dispatch[^\r\n]*dry-run mode[^\r\n]*version input[^\r\n]*npm-publish environment[^\r\n]*NPM_TOKEN[^\r\n]*publish verification[^\r\n]* \|/,
         relativePath,
       );
       assert.match(
