@@ -8,64 +8,64 @@
 npx @oisinwang/get-shit-done-codex@latest
 ```
 
-## Safe trial quick links
+## セーフトライアルのクイックリンク
 
-- [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md)
-- [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md)
-- [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md)
-- [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md)
+- [セーフトライアルのトラブルシューティング](../SAFE-TRIAL-TROUBLESHOOTING.md)
+- [セーフトライアル結果テンプレート](../SAFE-TRIAL-OUTCOME.md)
+- [セーフトライアル相談テンプレート](../SAFE-TRIAL-DISCUSSION.md)
+- [セーフトライアル記録](../SAFE-TRIAL-TRANSCRIPT.md)
 
-## Evaluation quick links
+## 評価のクイックリンク
 
-- **Try safely:** [Evaluate](../EVALUATE.md)
+- **安全に試す:** [Evaluate](../EVALUATE.md)
 
-## Support quick links
+## サポートのクイックリンク
 
-- **Get help:** [Support](../../SUPPORT.md)
-- **Ask or discuss:** [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
+- **助けを得る:** [Support](../../SUPPORT.md)
+- **質問や相談をする:** [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
 
-## Contribution quick links
+## コントリビューションのクイックリンク
 
-- **Contribute:** [Contributing Guide](../../CONTRIBUTING.md)
-- **Find starter tasks:** [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
+- **貢献する:** [Contributing Guide](../../CONTRIBUTING.md)
+- **最初のタスクを探す:** [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
 
-## Maintainer quick links
+## メンテナーのクイックリンク
 
-- **Publish a fix:** [Release Checklist](../RELEASE.md)
-- **Close contributor tasks:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
+- **修正を公開する:** [Release Checklist](../RELEASE.md)
+- **貢献者タスクを閉じる:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
 
-## Promotion quick links
+## プロモーションのクイックリンク
 
-- **Share the project:** [Promotion Assets](../PROMOTION.md)
+- **プロジェクトを共有する:** [Promotion Assets](../PROMOTION.md)
 
-## Demo quick links
+## デモのクイックリンク
 
-- **See the first run:** [Demo](../DEMO.md)
-- **Record a short demo:** [Demo Media Checklist](../DEMO.md#demo-media-checklist)
+- **初回実行を見る:** [Demo](../DEMO.md)
+- **短いデモを録画する:** [Demo Media Checklist](../DEMO.md#demo-media-checklist)
 
-## FAQ quick links
+## FAQ のクイックリンク
 
-- **Answer common questions:** [FAQ](../FAQ.md)
+- **よくある質問に答える:** [FAQ](../FAQ.md)
 
-## Troubleshooting quick links
+## トラブルシューティングのクイックリンク
 
-- **Recover install issues:** [Troubleshooting](../TROUBLESHOOTING.md)
+- **インストール問題から復旧する:** [Troubleshooting](../TROUBLESHOOTING.md)
 
-## Examples quick links
+## 例のクイックリンク
 
-- **Pick a workflow:** [Examples](../EXAMPLES.md)
+- **ワークフローを選ぶ:** [Examples](../EXAMPLES.md)
 
-## Prompt Recipes quick links
+## プロンプトレシピのクイックリンク
 
-- **Paste a Codex prompt:** [Prompt Recipes](PROMPTS.md)
+- **Codex プロンプトを貼り付ける:** [Prompt Recipes](PROMPTS.md)
 
-## Comparison quick links
+## 比較のクイックリンク
 
-- **Compare options:** [Comparison](COMPARISON.md)
+- **選択肢を比較する:** [Comparison](COMPARISON.md)
 
-## Roadmap quick links
+## ロードマップのクイックリンク
 
-- **See direction:** [Roadmap](../ROADMAP.md)
+- **方向性を見る:** [Roadmap](../ROADMAP.md)
 
 Claude 時代の名前は移行互換のためだけに残しています。fork の境界、命名規則、移行メモは [CODEX-FORK.md](../CODEX-FORK.md) を参照してください。
 
@@ -73,19 +73,19 @@ Claude 時代の名前は移行互換のためだけに残しています。fork
 
 | ドキュメント | 読者 | 内容 |
 |--------------|------|------|
-| [Roadmap](../ROADMAP.md) | Evaluators, contributors | Public direction, near-term priorities, manual maintainer actions, and good first issue candidates |
-| [Evaluate](../EVALUATE.md) | New users, evaluators | Safe 10-minute trial checklist with pass and fail signals |
-| [FAQ](../FAQ.md) | New users, evaluators | Answers common adoption questions about scope, files, runtimes, and when not to use GSD |
-| [Examples](../EXAMPLES.md) | New users | Copy-pastable workflows for new projects, existing repos, quick fixes, resume, spikes, and sketches |
-| [Demo](../DEMO.md) | New users, maintainers | 60-second workflow preview, first-run output, demo media checklist, generated artifacts, and git status evidence |
-| [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md) | New users, evaluators | First-run quick fixes for missing commands, changed files, local/global installs, npm failures, stale cache, and support routing |
-| [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md) | New users, evaluators | Record commands, changed paths, pass/fail signals, keep/discard decisions, and feedback evidence |
-| [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md) | New users, evaluators | Copy-pastable GitHub Discussions post with command evidence, changed paths, privacy checks, and workflow advice |
-| [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md) | New users, evaluators | No-install, no-edit transcript generated from npm run demo:safe-trial for previewing the first-run flow |
-| [Support](../../SUPPORT.md) | Users, evaluators | Setup questions, workflow advice, troubleshooting help, local versus global installs, and bug report routing |
-| [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions) | Users, evaluators | Community support for questions, examples, and safe trial feedback |
-| [Contributing Guide](../../CONTRIBUTING.md) | Contributors, evaluators | Contribution types, development setup, test requirements, review expectations, and pull request flow |
-| [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) | Contributors, new users | Starter tasks aligned with current roadmap gaps, docs updates, and public launch polish |
+| [Roadmap](../ROADMAP.md) | 評価者、コントリビューター | 公開ロードマップ、直近の優先事項、メンテナーの手動作業、good first issue 候補 |
+| [Evaluate](../EVALUATE.md) | 新規ユーザー、評価者 | 安全な10分トライアルのチェックリストと、成功・失敗の判断材料 |
+| [FAQ](../FAQ.md) | 新規ユーザー、評価者 | スコープ、ファイル、ランタイム、GSD を使わない場面に関するよくある採用前の質問 |
+| [Examples](../EXAMPLES.md) | 新規ユーザー | コピー可能なワークフロー。新規プロジェクト、既存リポジトリ、短い修正、再開、spike、sketch を扱います |
+| [Demo](../DEMO.md) | 新規ユーザー、メンテナー | 60秒ワークフローのプレビュー、初回実行出力、デモ媒体チェックリスト、生成物、git status 証拠 |
+| [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md) | 新規ユーザー、評価者 | コマンド不足、変更ファイル、ローカル/グローバルインストール、npm 失敗、古いキャッシュ、サポート導線の初回復旧 |
+| [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md) | 新規ユーザー、評価者 | コマンド、変更パス、成功/失敗シグナル、保持/破棄の判断、フィードバック証拠を記録します |
+| [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md) | 新規ユーザー、評価者 | コマンド証拠、変更パス、プライバシーチェック、ワークフロー相談を含む GitHub Discussions 投稿テンプレート |
+| [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md) | 新規ユーザー、評価者 | npm run demo:safe-trial で生成される、初回実行を確認するためのインストール不要・編集不要の記録 |
+| [Support](../../SUPPORT.md) | ユーザー、評価者 | セットアップ質問、ワークフロー相談、トラブルシューティング、ローカルとグローバルインストール、bug report 導線 |
+| [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions) | ユーザー、評価者 | 質問、例、安全なトライアルのフィードバック向けコミュニティサポート |
+| [Contributing Guide](../../CONTRIBUTING.md) | コントリビューター、評価者 | 貢献タイプ、開発セットアップ、テスト要件、review 期待値、pull request フロー |
+| [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) | コントリビューター、新規ユーザー | 現在のロードマップの穴、docs 更新、公開ローンチの磨き込みに沿った最初のタスク |
 | [Security Policy](../../SECURITY.md) | Users, contributors | Private vulnerability reporting, disclosure guidance, response timeline, scope, and security boundaries |
 | [Private Vulnerability Report](https://github.com/Oisinwang/get-shit-done-codex/security/advisories/new) | Security reporters | GitHub private advisory intake for vulnerabilities that should not be posted in public issues |
 | [Code of Conduct](../../CODE_OF_CONDUCT.md) | Users, contributors | Community standards, acceptable behavior, enforcement responsibilities, scope, and reporting guidance |

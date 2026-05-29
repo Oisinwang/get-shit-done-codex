@@ -8,64 +8,64 @@
 npx @oisinwang/get-shit-done-codex@latest
 ```
 
-## Safe trial quick links
+## 安全试用快速链接
 
-- [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md)
-- [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md)
-- [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md)
-- [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md)
+- [安全试用故障排查](../SAFE-TRIAL-TROUBLESHOOTING.md)
+- [安全试用结果模板](../SAFE-TRIAL-OUTCOME.md)
+- [安全试用讨论开场白](../SAFE-TRIAL-DISCUSSION.md)
+- [安全试用记录](../SAFE-TRIAL-TRANSCRIPT.md)
 
-## Evaluation quick links
+## 评估快速链接
 
-- **Try safely:** [Evaluate](../EVALUATE.md)
+- **安全试用：** [Evaluate](../EVALUATE.md)
 
-## Support quick links
+## 支持快速链接
 
-- **Get help:** [Support](../../SUPPORT.md)
-- **Ask or discuss:** [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
+- **获取帮助：** [Support](../../SUPPORT.md)
+- **提问或讨论：** [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
 
-## Contribution quick links
+## 贡献快速链接
 
-- **Contribute:** [Contributing Guide](../../CONTRIBUTING.md)
-- **Find starter tasks:** [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
+- **参与贡献：** [Contributing Guide](../../CONTRIBUTING.md)
+- **查找入门任务：** [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
 
-## Maintainer quick links
+## 维护者快速链接
 
-- **Publish a fix:** [Release Checklist](../RELEASE.md)
-- **Close contributor tasks:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
+- **发布修复：** [Release Checklist](../RELEASE.md)
+- **关闭贡献者任务：** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
 
-## Promotion quick links
+## 推广快速链接
 
-- **Share the project:** [Promotion Assets](../PROMOTION.md)
+- **分享项目：** [Promotion Assets](../PROMOTION.md)
 
-## Demo quick links
+## 演示快速链接
 
-- **See the first run:** [Demo](../DEMO.md)
-- **Record a short demo:** [Demo Media Checklist](../DEMO.md#demo-media-checklist)
+- **查看首次运行：** [Demo](../DEMO.md)
+- **录制短演示：** [Demo Media Checklist](../DEMO.md#demo-media-checklist)
 
-## FAQ quick links
+## FAQ 快速链接
 
-- **Answer common questions:** [FAQ](../FAQ.md)
+- **回答常见问题：** [FAQ](../FAQ.md)
 
-## Troubleshooting quick links
+## 故障排查快速链接
 
-- **Recover install issues:** [Troubleshooting](../TROUBLESHOOTING.md)
+- **恢复安装问题：** [Troubleshooting](../TROUBLESHOOTING.md)
 
-## Examples quick links
+## 示例快速链接
 
-- **Pick a workflow:** [Examples](../EXAMPLES.md)
+- **选择工作流：** [Examples](../EXAMPLES.md)
 
-## Prompt Recipes quick links
+## Prompt 配方快速链接
 
-- **Paste a Codex prompt:** [Prompt Recipes](PROMPTS.md)
+- **粘贴 Codex prompt：** [Prompt Recipes](PROMPTS.md)
 
-## Comparison quick links
+## 对比快速链接
 
-- **Compare options:** [Comparison](COMPARISON.md)
+- **比较选项：** [Comparison](COMPARISON.md)
 
-## Roadmap quick links
+## 路线图快速链接
 
-- **See direction:** [Roadmap](../ROADMAP.md)
+- **查看方向：** [Roadmap](../ROADMAP.md)
 
 Claude 时代的旧名称只作为迁移兼容层保留。fork 的边界、命名规则和迁移说明见 [CODEX-FORK.md](../CODEX-FORK.md)。
 
@@ -73,19 +73,19 @@ Claude 时代的旧名称只作为迁移兼容层保留。fork 的边界、命�
 
 | 文档 | 读者 | 内容 |
 |------|------|------|
-| [Roadmap](../ROADMAP.md) | Evaluators, contributors | Public direction, near-term priorities, manual maintainer actions, and good first issue candidates |
-| [Evaluate](../EVALUATE.md) | New users, evaluators | Safe 10-minute trial checklist with pass and fail signals |
-| [FAQ](../FAQ.md) | New users, evaluators | Answers common adoption questions about scope, files, runtimes, and when not to use GSD |
-| [Examples](../EXAMPLES.md) | New users | Copy-pastable workflows for new projects, existing repos, quick fixes, resume, spikes, and sketches |
-| [Demo](../DEMO.md) | New users, maintainers | 60-second workflow preview, first-run output, demo media checklist, generated artifacts, and git status evidence |
-| [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md) | New users, evaluators | First-run quick fixes for missing commands, changed files, local/global installs, npm failures, stale cache, and support routing |
-| [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md) | New users, evaluators | Record commands, changed paths, pass/fail signals, keep/discard decisions, and feedback evidence |
-| [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md) | New users, evaluators | Copy-pastable GitHub Discussions post with command evidence, changed paths, privacy checks, and workflow advice |
-| [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md) | New users, evaluators | No-install, no-edit transcript generated from npm run demo:safe-trial for previewing the first-run flow |
-| [Support](../../SUPPORT.md) | Users, evaluators | Setup questions, workflow advice, troubleshooting help, local versus global installs, and bug report routing |
-| [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions) | Users, evaluators | Community support for questions, examples, and safe trial feedback |
-| [Contributing Guide](../../CONTRIBUTING.md) | Contributors, evaluators | Contribution types, development setup, test requirements, review expectations, and pull request flow |
-| [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) | Contributors, new users | Starter tasks aligned with current roadmap gaps, docs updates, and public launch polish |
+| [Roadmap](../ROADMAP.md) | 评估者、贡献者 | 公开方向、近期优先级、维护者手动动作和 good first issue 候选 |
+| [Evaluate](../EVALUATE.md) | 新用户、评估者 | 安全 10 分钟试用清单，包含通过和失败信号 |
+| [FAQ](../FAQ.md) | 新用户、评估者 | 回答关于范围、文件、运行时以及何时不该使用 GSD 的常见采用问题 |
+| [Examples](../EXAMPLES.md) | 新用户 | 可复制的工作流，覆盖新项目、现有仓库、快速修复、恢复、spike 和 sketch |
+| [Demo](../DEMO.md) | 新用户、维护者 | 60 秒工作流预览、首次运行输出、演示媒体清单、生成的工件和 git status 证据 |
+| [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md) | 新用户、评估者 | 处理缺失命令、文件变更、本地/全局安装、npm 失败、过期缓存和支持路由的首次运行快速修复 |
+| [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md) | 新用户、评估者 | 记录命令、变更路径、通过/失败信号、保留/丢弃决策和反馈证据 |
+| [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md) | 新用户、评估者 | 可复制的 GitHub Discussions 帖子，包含命令证据、变更路径、隐私检查和工作流建议 |
+| [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md) | 新用户、评估者 | 由 npm run demo:safe-trial 生成的免安装、免编辑记录，用于预览首次运行流程 |
+| [Support](../../SUPPORT.md) | 用户、评估者 | 设置问题、工作流建议、故障排查帮助、本地与全局安装选择以及 bug report 路由 |
+| [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions) | 用户、评估者 | 面向问题、示例和安全试用反馈的社区支持 |
+| [Contributing Guide](../../CONTRIBUTING.md) | 贡献者、评估者 | 贡献类型、开发设置、测试要求、review 期望和 pull request 流程 |
+| [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) | 贡献者、新用户 | 与当前路线图缺口、文档更新和公开发布打磨相关的入门任务 |
 | [Security Policy](../../SECURITY.md) | Users, contributors | Private vulnerability reporting, disclosure guidance, response timeline, scope, and security boundaries |
 | [Private Vulnerability Report](https://github.com/Oisinwang/get-shit-done-codex/security/advisories/new) | Security reporters | GitHub private advisory intake for vulnerabilities that should not be posted in public issues |
 | [Code of Conduct](../../CODE_OF_CONDUCT.md) | Users, contributors | Community standards, acceptable behavior, enforcement responsibilities, scope, and reporting guidance |

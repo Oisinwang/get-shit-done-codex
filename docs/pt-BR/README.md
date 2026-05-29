@@ -8,64 +8,64 @@ Instale o pacote publicado com:
 npx @oisinwang/get-shit-done-codex@latest
 ```
 
-## Safe trial quick links
+## Links rápidos para teste seguro
 
-- [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md)
-- [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md)
-- [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md)
-- [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md)
+- [Troubleshooting de teste seguro](../SAFE-TRIAL-TROUBLESHOOTING.md)
+- [Modelo de resultado do teste seguro](../SAFE-TRIAL-OUTCOME.md)
+- [Início de discussão do teste seguro](../SAFE-TRIAL-DISCUSSION.md)
+- [Transcrição do teste seguro](../SAFE-TRIAL-TRANSCRIPT.md)
 
-## Evaluation quick links
+## Links rápidos de avaliação
 
-- **Try safely:** [Evaluate](../EVALUATE.md)
+- **Experimente com segurança:** [Evaluate](../EVALUATE.md)
 
-## Support quick links
+## Links rápidos de suporte
 
-- **Get help:** [Support](../../SUPPORT.md)
-- **Ask or discuss:** [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
+- **Peça ajuda:** [Support](../../SUPPORT.md)
+- **Pergunte ou discuta:** [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
 
-## Contribution quick links
+## Links rápidos de contribuição
 
-- **Contribute:** [Contributing Guide](../../CONTRIBUTING.md)
-- **Find starter tasks:** [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
+- **Contribua:** [Contributing Guide](../../CONTRIBUTING.md)
+- **Encontre tarefas iniciais:** [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
 
-## Maintainer quick links
+## Links rápidos de manutenção
 
-- **Publish a fix:** [Release Checklist](../RELEASE.md)
-- **Close contributor tasks:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
+- **Publique uma correção:** [Release Checklist](../RELEASE.md)
+- **Feche tarefas de contribuidores:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
 
-## Promotion quick links
+## Links rápidos de promoção
 
-- **Share the project:** [Promotion Assets](../PROMOTION.md)
+- **Compartilhe o projeto:** [Promotion Assets](../PROMOTION.md)
 
-## Demo quick links
+## Links rápidos de demo
 
-- **See the first run:** [Demo](../DEMO.md)
-- **Record a short demo:** [Demo Media Checklist](../DEMO.md#demo-media-checklist)
+- **Veja a primeira execução:** [Demo](../DEMO.md)
+- **Grave uma demo curta:** [Demo Media Checklist](../DEMO.md#demo-media-checklist)
 
-## FAQ quick links
+## Links rápidos de FAQ
 
-- **Answer common questions:** [FAQ](../FAQ.md)
+- **Responda dúvidas comuns:** [FAQ](../FAQ.md)
 
-## Troubleshooting quick links
+## Links rápidos de troubleshooting
 
-- **Recover install issues:** [Troubleshooting](../TROUBLESHOOTING.md)
+- **Recupere problemas de instalação:** [Troubleshooting](../TROUBLESHOOTING.md)
 
-## Examples quick links
+## Links rápidos para exemplos
 
-- **Pick a workflow:** [Examples](../EXAMPLES.md)
+- **Escolha um fluxo:** [Examples](../EXAMPLES.md)
 
-## Prompt Recipes quick links
+## Links rápidos de receitas de prompt
 
-- **Paste a Codex prompt:** [Prompt Recipes](../PROMPTS.md)
+- **Cole um prompt Codex:** [Prompt Recipes](../PROMPTS.md)
 
-## Comparison quick links
+## Links rápidos de comparação
 
-- **Compare options:** [Comparison](../COMPARISON.md)
+- **Compare opções:** [Comparison](../COMPARISON.md)
 
-## Roadmap quick links
+## Links rápidos do roadmap
 
-- **See direction:** [Roadmap](../ROADMAP.md)
+- **Veja a direção:** [Roadmap](../ROADMAP.md)
 
 Nomes legados da era Claude continuam apenas como compatibilidade de migracao. As regras do fork estao em [CODEX-FORK.md](../CODEX-FORK.md).
 
@@ -73,19 +73,19 @@ Nomes legados da era Claude continuam apenas como compatibilidade de migracao. A
 
 | Documento | Publico | Descricao |
 |----------|---------|-----------|
-| [Roadmap](../ROADMAP.md) | Evaluators, contributors | Public direction, near-term priorities, manual maintainer actions, and good first issue candidates |
-| [Evaluate](../EVALUATE.md) | New users, evaluators | Safe 10-minute trial checklist with pass and fail signals |
-| [FAQ](../FAQ.md) | New users, evaluators | Answers common adoption questions about scope, files, runtimes, and when not to use GSD |
-| [Examples](../EXAMPLES.md) | New users | Copy-pastable workflows for new projects, existing repos, quick fixes, resume, spikes, and sketches |
-| [Demo](../DEMO.md) | New users, maintainers | 60-second workflow preview, first-run output, demo media checklist, generated artifacts, and git status evidence |
-| [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md) | New users, evaluators | First-run quick fixes for missing commands, changed files, local/global installs, npm failures, stale cache, and support routing |
-| [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md) | New users, evaluators | Record commands, changed paths, pass/fail signals, keep/discard decisions, and feedback evidence |
-| [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md) | New users, evaluators | Copy-pastable GitHub Discussions post with command evidence, changed paths, privacy checks, and workflow advice |
-| [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md) | New users, evaluators | No-install, no-edit transcript generated from npm run demo:safe-trial for previewing the first-run flow |
-| [Support](../../SUPPORT.md) | Users, evaluators | Setup questions, workflow advice, troubleshooting help, local versus global installs, and bug report routing |
-| [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions) | Users, evaluators | Community support for questions, examples, and safe trial feedback |
-| [Contributing Guide](../../CONTRIBUTING.md) | Contributors, evaluators | Contribution types, development setup, test requirements, review expectations, and pull request flow |
-| [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) | Contributors, new users | Starter tasks aligned with current roadmap gaps, docs updates, and public launch polish |
+| [Roadmap](../ROADMAP.md) | Avaliadores, contribuidores | Direção pública, prioridades próximas, ações manuais de mantenedor e candidatos a good first issue |
+| [Evaluate](../EVALUATE.md) | Novos usuários, avaliadores | Checklist seguro de 10 minutos com sinais de aprovação e falha |
+| [FAQ](../FAQ.md) | Novos usuários, avaliadores | Respostas para dúvidas comuns sobre escopo, arquivos, runtimes e quando não usar GSD |
+| [Examples](../EXAMPLES.md) | Novos usuários | Fluxos copiáveis para projetos novos, repositórios existentes, correções rápidas, retomada, spikes e sketches |
+| [Demo](../DEMO.md) | Novos usuários, mantenedores | Prévia de workflow de 60 segundos, saída da primeira execução, checklist de mídia, artefatos gerados e evidência de git status |
+| [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md) | Novos usuários, avaliadores | Correções rápidas para comandos ausentes, arquivos alterados, instalações local/global, falhas npm, cache antigo e rotas de suporte |
+| [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md) | Novos usuários, avaliadores | Registre comandos, caminhos alterados, sinais de aprovação/falha, decisões de manter/descartar e evidência de feedback |
+| [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md) | Novos usuários, avaliadores | Post copiável para GitHub Discussions com evidência de comandos, caminhos alterados, checagens de privacidade e orientação de workflow |
+| [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md) | Novos usuários, avaliadores | Transcrição sem instalação e sem edição gerada por npm run demo:safe-trial para pré-visualizar a primeira execução |
+| [Support](../../SUPPORT.md) | Usuários, avaliadores | Perguntas de setup, orientação de workflow, ajuda de troubleshooting, instalação local versus global e rota de bug report |
+| [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions) | Usuários, avaliadores | Suporte da comunidade para perguntas, exemplos e feedback de teste seguro |
+| [Contributing Guide](../../CONTRIBUTING.md) | Contribuidores, avaliadores | Tipos de contribuição, setup de desenvolvimento, requisitos de teste, expectativas de review e fluxo de pull request |
+| [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) | Contribuidores, novos usuários | Tarefas iniciais alinhadas a lacunas atuais do roadmap, atualizações de docs e polimento do lançamento público |
 | [Security Policy](../../SECURITY.md) | Users, contributors | Private vulnerability reporting, disclosure guidance, response timeline, scope, and security boundaries |
 | [Private Vulnerability Report](https://github.com/Oisinwang/get-shit-done-codex/security/advisories/new) | Security reporters | GitHub private advisory intake for vulnerabilities that should not be posted in public issues |
 | [Code of Conduct](../../CODE_OF_CONDUCT.md) | Users, contributors | Community standards, acceptable behavior, enforcement responsibilities, scope, and reporting guidance |

@@ -1820,6 +1820,12 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /starting problem/);
     assert.match(unreleasedSection, /GSD flow/);
     assert.match(unreleasedSection, /artifact or verification/);
+    assert.match(unreleasedSection, /Localized docs index public quick-link localization/);
+    assert.match(unreleasedSection, /docs\/pt-BR\/README\.md/);
+    assert.match(unreleasedSection, /docs\/zh-CN\/README\.md/);
+    assert.match(unreleasedSection, /docs\/ja-JP\/README\.md/);
+    assert.match(unreleasedSection, /docs\/ko-KR\/README\.md/);
+    assert.match(unreleasedSection, /Examples quick links/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2203,6 +2209,86 @@ describe('public release metadata', () => {
     }
   });
 
+  test('localized documentation indexes localize public quick-link text', () => {
+    const localizedDocIndexes = [
+      [
+        'docs/pt-BR/README.md',
+        [
+          /## Links rápidos para exemplos/,
+          /- \*\*Escolha um fluxo:\*\* \[Examples\]\(\.\.\/EXAMPLES\.md\)/,
+          /## Links rápidos de receitas de prompt/,
+          /- \*\*Cole um prompt Codex:\*\* \[Prompt Recipes\]\(\.\.\/PROMPTS\.md\)/,
+          /## Links rápidos de comparação/,
+          /- \*\*Compare opções:\*\* \[Comparison\]\(\.\.\/COMPARISON\.md\)/,
+          /\| \[Examples\]\(\.\.\/EXAMPLES\.md\) \| Novos usuários \| Fluxos copiáveis/,
+          /\| \[Good First Issues\][^\r\n]* \| Contribuidores, novos usuários \| Tarefas iniciais/,
+        ],
+      ],
+      [
+        'docs/zh-CN/README.md',
+        [
+          /## 示例快速链接/,
+          /- \*\*选择工作流：\*\* \[Examples\]\(\.\.\/EXAMPLES\.md\)/,
+          /## Prompt 配方快速链接/,
+          /- \*\*粘贴 Codex prompt：\*\* \[Prompt Recipes\]\(PROMPTS\.md\)/,
+          /## 对比快速链接/,
+          /- \*\*比较选项：\*\* \[Comparison\]\(COMPARISON\.md\)/,
+          /\| \[Examples\]\(\.\.\/EXAMPLES\.md\) \| 新用户 \| 可复制的工作流/,
+          /\| \[Good First Issues\][^\r\n]* \| 贡献者、新用户 \| 与当前路线图缺口/,
+        ],
+      ],
+      [
+        'docs/ja-JP/README.md',
+        [
+          /## 例のクイックリンク/,
+          /- \*\*ワークフローを選ぶ:\*\* \[Examples\]\(\.\.\/EXAMPLES\.md\)/,
+          /## プロンプトレシピのクイックリンク/,
+          /- \*\*Codex プロンプトを貼り付ける:\*\* \[Prompt Recipes\]\(PROMPTS\.md\)/,
+          /## 比較のクイックリンク/,
+          /- \*\*選択肢を比較する:\*\* \[Comparison\]\(COMPARISON\.md\)/,
+          /\| \[Examples\]\(\.\.\/EXAMPLES\.md\) \| 新規ユーザー \| コピー可能なワークフロー/,
+          /\| \[Good First Issues\][^\r\n]* \| コントリビューター、新規ユーザー \| 現在のロードマップ/,
+        ],
+      ],
+      [
+        'docs/ko-KR/README.md',
+        [
+          /## 예제 빠른 링크/,
+          /- \*\*워크플로우 선택:\*\* \[Examples\]\(\.\.\/EXAMPLES\.md\)/,
+          /## 프롬프트 레시피 빠른 링크/,
+          /- \*\*Codex 프롬프트 붙여넣기:\*\* \[Prompt Recipes\]\(PROMPTS\.md\)/,
+          /## 비교 빠른 링크/,
+          /- \*\*옵션 비교:\*\* \[Comparison\]\(COMPARISON\.md\)/,
+          /\| \[Examples\]\(\.\.\/EXAMPLES\.md\) \| 신규 사용자 \| 복사해서 쓸 수 있는 워크플로우/,
+          /\| \[Good First Issues\][^\r\n]* \| 기여자, 신규 사용자 \| 현재 로드맵/,
+        ],
+      ],
+    ];
+
+    const staleEnglishQuickLinkText = [
+      /## Examples quick links/,
+      /## Prompt Recipes quick links/,
+      /## Comparison quick links/,
+      /- \*\*Pick a workflow:\*\*/,
+      /- \*\*Paste a Codex prompt:\*\*/,
+      /- \*\*Compare options:\*\*/,
+      /\| \[Examples\]\(\.\.\/EXAMPLES\.md\) \| New users \|/,
+      /\| \[Good First Issues\][^\r\n]* \| Contributors, new users \|/,
+    ];
+
+    for (const [relativePath, expectedPatterns] of localizedDocIndexes) {
+      const readme = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+
+      for (const pattern of expectedPatterns) {
+        assert.match(readme, pattern, relativePath);
+      }
+
+      for (const pattern of staleEnglishQuickLinkText) {
+        assert.doesNotMatch(readme, pattern, relativePath);
+      }
+    }
+  });
+
   test('localized documentation indexes present the current Codex fork without stale launch metadata', () => {
     const localizedDocIndexes = [
       'docs/pt-BR/README.md',
@@ -2232,34 +2318,30 @@ describe('public release metadata', () => {
       assert.match(readme, /\$gsd-\*/, relativePath);
       assert.match(readme, /npx @oisinwang\/get-shit-done-codex@latest/, relativePath);
       assert.match(readme, /CODEX-FORK\.md/, relativePath);
-      assert.match(readme, /- \*\*Get help:\*\* \[Support\]\(\.\.\/\.\.\/SUPPORT\.md\)/, relativePath);
-      assert.match(
-        readme,
-        /- \*\*Ask or discuss:\*\* \[GitHub Discussions\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/discussions\)/,
-        relativePath,
-      );
-      assert.match(readme, /- \*\*Contribute:\*\* \[Contributing Guide\]\(\.\.\/\.\.\/CONTRIBUTING\.md\)/, relativePath);
-      assert.match(
-        readme,
-        /- \*\*Find starter tasks:\*\* \[Good First Issues\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/issues\?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22\)/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /## Contribution quick links\r?\n\r?\n- \*\*Contribute:\*\* \[Contributing Guide\]\(\.\.\/\.\.\/CONTRIBUTING\.md\)\r?\n- \*\*Find starter tasks:\*\* \[Good First Issues\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/issues\?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22\)/,
-        relativePath,
-      );
-      assert.match(readme, /- \*\*Publish a fix:\*\* \[Release Checklist\]\(\.\.\/RELEASE\.md\)/, relativePath);
-      assert.match(
-        readme,
-        /- \*\*Close contributor tasks:\*\* \[Maintainer Checklist\]\(\.\.\/MAINTAINER-CHECKLIST\.md\)/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /## Maintainer quick links\r?\n\r?\n- \*\*Publish a fix:\*\* \[Release Checklist\]\(\.\.\/RELEASE\.md\)\r?\n- \*\*Close contributor tasks:\*\* \[Maintainer Checklist\]\(\.\.\/MAINTAINER-CHECKLIST\.md\)/,
-        relativePath,
-      );
+      const requiredPublicLinkTargets = [
+        /\[Support\]\(\.\.\/\.\.\/SUPPORT\.md\)/,
+        /\[GitHub Discussions\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/discussions\)/,
+        /\[Contributing Guide\]\(\.\.\/\.\.\/CONTRIBUTING\.md\)/,
+        /\[Good First Issues\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/issues\?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22\)/,
+        /\[Release Checklist\]\(\.\.\/RELEASE\.md\)/,
+        /\[Maintainer Checklist\]\(\.\.\/MAINTAINER-CHECKLIST\.md\)/,
+        /\[Promotion Assets\]\(\.\.\/PROMOTION\.md\)/,
+        /\[Demo\]\(\.\.\/DEMO\.md\)/,
+        /\[Demo Media Checklist\]\(\.\.\/DEMO\.md#demo-media-checklist\)/,
+        /\[FAQ\]\(\.\.\/FAQ\.md\)/,
+        /\[Troubleshooting\]\(\.\.\/TROUBLESHOOTING\.md\)/,
+        /\[Examples\]\(\.\.\/EXAMPLES\.md\)/,
+        /\[Roadmap\]\(\.\.\/ROADMAP\.md\)/,
+        /\[Evaluate\]\(\.\.\/EVALUATE\.md\)/,
+        /\]\(\.\.\/SAFE-TRIAL-TROUBLESHOOTING\.md\)/,
+        /\]\(\.\.\/SAFE-TRIAL-OUTCOME\.md\)/,
+        /\]\(\.\.\/SAFE-TRIAL-DISCUSSION\.md\)/,
+        /\]\(\.\.\/SAFE-TRIAL-TRANSCRIPT\.md\)/,
+      ];
+
+      for (const pattern of requiredPublicLinkTargets) {
+        assert.match(readme, pattern, relativePath);
+      }
       assert.match(
         readme,
         /\| \[Release Checklist\]\(\.\.\/RELEASE\.md\) \| [^\r\n]*npm publish setup[^\r\n]*npx @latest[^\r\n]* \|/,
@@ -2280,61 +2362,23 @@ describe('public release metadata', () => {
         /\| \[Troubleshooting\]\(\.\.\/TROUBLESHOOTING\.md\) \| [^\r\n]*Fast recovery paths[^\r\n]*Codex config[^\r\n]*install[^\r\n]*PATH[^\r\n]*stale npm metadata[^\r\n]* \|/,
         relativePath,
       );
-      assert.match(
-        readme,
-        /\| \[FAQ\]\(\.\.\/FAQ\.md\) \| [^\r\n]*Answers common adoption questions[^\r\n]*scope[^\r\n]*files[^\r\n]*runtimes[^\r\n]*when not to use GSD[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Examples\]\(\.\.\/EXAMPLES\.md\) \| [^\r\n]*Copy-pastable workflows[^\r\n]*new projects[^\r\n]*existing repos[^\r\n]*quick fixes[^\r\n]*resume[^\r\n]*spikes[^\r\n]*sketches[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Demo\]\(\.\.\/DEMO\.md\) \| [^\r\n]*60-second workflow[^\r\n]*first-run output[^\r\n]*demo media checklist[^\r\n]*generated artifacts[^\r\n]*git status evidence[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Safe Trial Troubleshooting\]\(\.\.\/SAFE-TRIAL-TROUBLESHOOTING\.md\) \| [^\r\n]*First-run quick fixes[^\r\n]*missing commands[^\r\n]*changed files[^\r\n]*local\/global installs[^\r\n]*npm failures[^\r\n]*stale cache[^\r\n]*support routing[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Safe Trial Outcome Template\]\(\.\.\/SAFE-TRIAL-OUTCOME\.md\) \| [^\r\n]*Record commands[^\r\n]*changed paths[^\r\n]*pass\/fail signals[^\r\n]*keep\/discard decisions[^\r\n]*feedback evidence[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Safe Trial Discussion Starter\]\(\.\.\/SAFE-TRIAL-DISCUSSION\.md\) \| [^\r\n]*Copy-pastable GitHub Discussions post[^\r\n]*command evidence[^\r\n]*changed paths[^\r\n]*privacy checks[^\r\n]*workflow advice[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Safe Trial Transcript\]\(\.\.\/SAFE-TRIAL-TRANSCRIPT\.md\) \| [^\r\n]*No-install, no-edit transcript[^\r\n]*npm run demo:safe-trial[^\r\n]*previewing the first-run flow[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Support\]\(\.\.\/\.\.\/SUPPORT\.md\) \| [^\r\n]*Setup questions[^\r\n]*workflow advice[^\r\n]*troubleshooting help[^\r\n]*local versus global installs[^\r\n]*bug report routing[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[GitHub Discussions\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/discussions\) \| [^\r\n]*Community support[^\r\n]*questions[^\r\n]*examples[^\r\n]*safe trial feedback[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Contributing Guide\]\(\.\.\/\.\.\/CONTRIBUTING\.md\) \| [^\r\n]*Contribution types[^\r\n]*development setup[^\r\n]*test requirements[^\r\n]*review expectations[^\r\n]*pull request flow[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Good First Issues\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/issues\?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22\) \| [^\r\n]*Starter tasks[^\r\n]*current roadmap gaps[^\r\n]*docs updates[^\r\n]*public launch polish[^\r\n]* \|/,
-        relativePath,
-      );
+      const localizedPublicRows = [
+        /\| \[FAQ\]\(\.\.\/FAQ\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+        /\| \[Examples\]\(\.\.\/EXAMPLES\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+        /\| \[Demo\]\(\.\.\/DEMO\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+        /\| \[Safe Trial Troubleshooting\]\(\.\.\/SAFE-TRIAL-TROUBLESHOOTING\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+        /\| \[Safe Trial Outcome Template\]\(\.\.\/SAFE-TRIAL-OUTCOME\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+        /\| \[Safe Trial Discussion Starter\]\(\.\.\/SAFE-TRIAL-DISCUSSION\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+        /\| \[Safe Trial Transcript\]\(\.\.\/SAFE-TRIAL-TRANSCRIPT\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+        /\| \[Support\]\(\.\.\/\.\.\/SUPPORT\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+        /\| \[GitHub Discussions\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/discussions\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+        /\| \[Contributing Guide\]\(\.\.\/\.\.\/CONTRIBUTING\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+        /\| \[Good First Issues\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/issues\?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      ];
+
+      for (const pattern of localizedPublicRows) {
+        assert.match(readme, pattern, relativePath);
+      }
       assert.match(
         readme,
         /\| \[Security Policy\]\(\.\.\/\.\.\/SECURITY\.md\) \| [^\r\n]*Private vulnerability reporting[^\r\n]*disclosure guidance[^\r\n]*response timeline[^\r\n]*scope[^\r\n]*security boundaries[^\r\n]* \|/,
@@ -2555,73 +2599,13 @@ describe('public release metadata', () => {
         /\| \[Funding Metadata\]\(\.\.\/\.\.\/\.github\/FUNDING\.yml\) \| [^\r\n]*Users[^\r\n]*sponsors[^\r\n]*GitHub Sponsors metadata[^\r\n]*Oisinwang[^\r\n]* \|/,
         relativePath,
       );
-      assert.match(
-        readme,
-        /- \*\*Share the project:\*\* \[Promotion Assets\]\(\.\.\/PROMOTION\.md\)/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /## Promotion quick links\r?\n\r?\n- \*\*Share the project:\*\* \[Promotion Assets\]\(\.\.\/PROMOTION\.md\)/,
-        relativePath,
-      );
-      assert.match(readme, /- \*\*See the first run:\*\* \[Demo\]\(\.\.\/DEMO\.md\)/, relativePath);
-      assert.match(
-        readme,
-        /- \*\*Record a short demo:\*\* \[Demo Media Checklist\]\(\.\.\/DEMO\.md#demo-media-checklist\)/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /## Demo quick links\r?\n\r?\n- \*\*See the first run:\*\* \[Demo\]\(\.\.\/DEMO\.md\)\r?\n- \*\*Record a short demo:\*\* \[Demo Media Checklist\]\(\.\.\/DEMO\.md#demo-media-checklist\)/,
-        relativePath,
-      );
-      assert.match(readme, /- \*\*Answer common questions:\*\* \[FAQ\]\(\.\.\/FAQ\.md\)/, relativePath);
-      assert.match(
-        readme,
-        /## FAQ quick links\r?\n\r?\n- \*\*Answer common questions:\*\* \[FAQ\]\(\.\.\/FAQ\.md\)/,
-        relativePath,
-      );
-      assert.match(readme, /- \*\*Recover install issues:\*\* \[Troubleshooting\]\(\.\.\/TROUBLESHOOTING\.md\)/, relativePath);
-      assert.match(
-        readme,
-        /## Troubleshooting quick links\r?\n\r?\n- \*\*Recover install issues:\*\* \[Troubleshooting\]\(\.\.\/TROUBLESHOOTING\.md\)/,
-        relativePath,
-      );
-      assert.match(readme, /- \*\*Pick a workflow:\*\* \[Examples\]\(\.\.\/EXAMPLES\.md\)/, relativePath);
-      assert.match(
-        readme,
-        /## Examples quick links\r?\n\r?\n- \*\*Pick a workflow:\*\* \[Examples\]\(\.\.\/EXAMPLES\.md\)/,
-        relativePath,
-      );
       if (relativePath === 'docs/pt-BR/README.md') {
-        assert.match(readme, /- \*\*Paste a Codex prompt:\*\* \[Prompt Recipes\]\(\.\.\/PROMPTS\.md\)/, relativePath);
-        assert.match(
-          readme,
-          /## Prompt Recipes quick links\r?\n\r?\n- \*\*Paste a Codex prompt:\*\* \[Prompt Recipes\]\(\.\.\/PROMPTS\.md\)/,
-          relativePath,
-        );
-        assert.match(readme, /- \*\*Compare options:\*\* \[Comparison\]\(\.\.\/COMPARISON\.md\)/, relativePath);
-        assert.match(
-          readme,
-          /## Comparison quick links\r?\n\r?\n- \*\*Compare options:\*\* \[Comparison\]\(\.\.\/COMPARISON\.md\)/,
-          relativePath,
-        );
+        assert.match(readme, /\[Prompt Recipes\]\(\.\.\/PROMPTS\.md\)/, relativePath);
+        assert.match(readme, /\[Comparison\]\(\.\.\/COMPARISON\.md\)/, relativePath);
       } else {
-        assert.match(readme, /- \*\*Paste a Codex prompt:\*\* \[Prompt Recipes\]\(PROMPTS\.md\)/, relativePath);
-        assert.match(
-          readme,
-          /## Prompt Recipes quick links\r?\n\r?\n- \*\*Paste a Codex prompt:\*\* \[Prompt Recipes\]\(PROMPTS\.md\)/,
-          relativePath,
-        );
-        assert.match(readme, /- \*\*Compare options:\*\* \[Comparison\]\(COMPARISON\.md\)/, relativePath);
-        assert.match(
-          readme,
-          /## Comparison quick links\r?\n\r?\n- \*\*Compare options:\*\* \[Comparison\]\(COMPARISON\.md\)/,
-          relativePath,
-        );
+        assert.match(readme, /\[Prompt Recipes\]\(PROMPTS\.md\)/, relativePath);
+        assert.match(readme, /\[Comparison\]\(COMPARISON\.md\)/, relativePath);
       }
-      assert.match(readme, /- \*\*See direction:\*\* \[Roadmap\]\(\.\.\/ROADMAP\.md\)/, relativePath);
       assert.match(
         readme,
         /\| \[Roadmap\]\(\.\.\/ROADMAP\.md\) \| [^\r\n]*good first issue[^\r\n]* \|/,
@@ -2629,27 +2613,7 @@ describe('public release metadata', () => {
       );
       assert.match(
         readme,
-        /## Roadmap quick links\r?\n\r?\n- \*\*See direction:\*\* \[Roadmap\]\(\.\.\/ROADMAP\.md\)/,
-        relativePath,
-      );
-      assert.match(readme, /- \*\*Try safely:\*\* \[Evaluate\]\(\.\.\/EVALUATE\.md\)/, relativePath);
-      assert.match(
-        readme,
-        /\| \[Evaluate\]\(\.\.\/EVALUATE\.md\) \| [^\r\n]*10-minute[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /## Evaluation quick links\r?\n\r?\n- \*\*Try safely:\*\* \[Evaluate\]\(\.\.\/EVALUATE\.md\)/,
-        relativePath,
-      );
-      assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-TROUBLESHOOTING\.md\)/, relativePath);
-      assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-OUTCOME\.md\)/, relativePath);
-      assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-DISCUSSION\.md\)/, relativePath);
-      assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-TRANSCRIPT\.md\)/, relativePath);
-      assert.match(
-        readme,
-        /## Safe trial quick links\r?\n\r?\n- \[Safe Trial Troubleshooting\]\(\.\.\/SAFE-TRIAL-TROUBLESHOOTING\.md\)\r?\n- \[Safe Trial Outcome Template\]\(\.\.\/SAFE-TRIAL-OUTCOME\.md\)\r?\n- \[Safe Trial Discussion Starter\]\(\.\.\/SAFE-TRIAL-DISCUSSION\.md\)\r?\n- \[Safe Trial Transcript\]\(\.\.\/SAFE-TRIAL-TRANSCRIPT\.md\)/,
+        /\| \[Evaluate\]\(\.\.\/EVALUATE\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
         relativePath,
       );
 

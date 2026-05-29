@@ -8,64 +8,64 @@
 npx @oisinwang/get-shit-done-codex@latest
 ```
 
-## Safe trial quick links
+## 안전 시험 빠른 링크
 
-- [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md)
-- [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md)
-- [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md)
-- [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md)
+- [안전 시험 문제 해결](../SAFE-TRIAL-TROUBLESHOOTING.md)
+- [안전 시험 결과 템플릿](../SAFE-TRIAL-OUTCOME.md)
+- [안전 시험 토론 시작글](../SAFE-TRIAL-DISCUSSION.md)
+- [안전 시험 기록](../SAFE-TRIAL-TRANSCRIPT.md)
 
-## Evaluation quick links
+## 평가 빠른 링크
 
-- **Try safely:** [Evaluate](../EVALUATE.md)
+- **안전하게 시험:** [Evaluate](../EVALUATE.md)
 
-## Support quick links
+## 지원 빠른 링크
 
-- **Get help:** [Support](../../SUPPORT.md)
-- **Ask or discuss:** [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
+- **도움 받기:** [Support](../../SUPPORT.md)
+- **질문 또는 토론:** [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
 
-## Contribution quick links
+## 기여 빠른 링크
 
-- **Contribute:** [Contributing Guide](../../CONTRIBUTING.md)
-- **Find starter tasks:** [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
+- **기여하기:** [Contributing Guide](../../CONTRIBUTING.md)
+- **입문 작업 찾기:** [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)
 
-## Maintainer quick links
+## 메인테이너 빠른 링크
 
-- **Publish a fix:** [Release Checklist](../RELEASE.md)
-- **Close contributor tasks:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
+- **수정 배포:** [Release Checklist](../RELEASE.md)
+- **기여자 작업 닫기:** [Maintainer Checklist](../MAINTAINER-CHECKLIST.md)
 
-## Promotion quick links
+## 홍보 빠른 링크
 
-- **Share the project:** [Promotion Assets](../PROMOTION.md)
+- **프로젝트 공유:** [Promotion Assets](../PROMOTION.md)
 
-## Demo quick links
+## 데모 빠른 링크
 
-- **See the first run:** [Demo](../DEMO.md)
-- **Record a short demo:** [Demo Media Checklist](../DEMO.md#demo-media-checklist)
+- **첫 실행 보기:** [Demo](../DEMO.md)
+- **짧은 데모 녹화:** [Demo Media Checklist](../DEMO.md#demo-media-checklist)
 
-## FAQ quick links
+## FAQ 빠른 링크
 
-- **Answer common questions:** [FAQ](../FAQ.md)
+- **자주 묻는 질문 답변:** [FAQ](../FAQ.md)
 
-## Troubleshooting quick links
+## 문제 해결 빠른 링크
 
-- **Recover install issues:** [Troubleshooting](../TROUBLESHOOTING.md)
+- **설치 문제 복구:** [Troubleshooting](../TROUBLESHOOTING.md)
 
-## Examples quick links
+## 예제 빠른 링크
 
-- **Pick a workflow:** [Examples](../EXAMPLES.md)
+- **워크플로우 선택:** [Examples](../EXAMPLES.md)
 
-## Prompt Recipes quick links
+## 프롬프트 레시피 빠른 링크
 
-- **Paste a Codex prompt:** [Prompt Recipes](PROMPTS.md)
+- **Codex 프롬프트 붙여넣기:** [Prompt Recipes](PROMPTS.md)
 
-## Comparison quick links
+## 비교 빠른 링크
 
-- **Compare options:** [Comparison](COMPARISON.md)
+- **옵션 비교:** [Comparison](COMPARISON.md)
 
-## Roadmap quick links
+## 로드맵 빠른 링크
 
-- **See direction:** [Roadmap](../ROADMAP.md)
+- **방향 보기:** [Roadmap](../ROADMAP.md)
 
 Claude 시대의 이름은 마이그레이션 호환을 위해서만 남아 있습니다. fork의 범위, 이름 규칙, 마이그레이션 메모는 [CODEX-FORK.md](../CODEX-FORK.md)를 참고하세요.
 
@@ -73,19 +73,19 @@ Claude 시대의 이름은 마이그레이션 호환을 위해서만 남아 있�
 
 | 문서 | 대상 | 내용 |
 |------|------|------|
-| [Roadmap](../ROADMAP.md) | Evaluators, contributors | Public direction, near-term priorities, manual maintainer actions, and good first issue candidates |
-| [Evaluate](../EVALUATE.md) | New users, evaluators | Safe 10-minute trial checklist with pass and fail signals |
-| [FAQ](../FAQ.md) | New users, evaluators | Answers common adoption questions about scope, files, runtimes, and when not to use GSD |
-| [Examples](../EXAMPLES.md) | New users | Copy-pastable workflows for new projects, existing repos, quick fixes, resume, spikes, and sketches |
-| [Demo](../DEMO.md) | New users, maintainers | 60-second workflow preview, first-run output, demo media checklist, generated artifacts, and git status evidence |
-| [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md) | New users, evaluators | First-run quick fixes for missing commands, changed files, local/global installs, npm failures, stale cache, and support routing |
-| [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md) | New users, evaluators | Record commands, changed paths, pass/fail signals, keep/discard decisions, and feedback evidence |
-| [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md) | New users, evaluators | Copy-pastable GitHub Discussions post with command evidence, changed paths, privacy checks, and workflow advice |
-| [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md) | New users, evaluators | No-install, no-edit transcript generated from npm run demo:safe-trial for previewing the first-run flow |
-| [Support](../../SUPPORT.md) | Users, evaluators | Setup questions, workflow advice, troubleshooting help, local versus global installs, and bug report routing |
-| [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions) | Users, evaluators | Community support for questions, examples, and safe trial feedback |
-| [Contributing Guide](../../CONTRIBUTING.md) | Contributors, evaluators | Contribution types, development setup, test requirements, review expectations, and pull request flow |
-| [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) | Contributors, new users | Starter tasks aligned with current roadmap gaps, docs updates, and public launch polish |
+| [Roadmap](../ROADMAP.md) | 평가자, 기여자 | 공개 방향, 가까운 우선순위, 메인테이너 수동 작업, good first issue 후보 |
+| [Evaluate](../EVALUATE.md) | 신규 사용자, 평가자 | 안전한 10분 시험 체크리스트와 통과/실패 신호 |
+| [FAQ](../FAQ.md) | 신규 사용자, 평가자 | 범위, 파일, 런타임, GSD를 쓰지 말아야 할 때에 대한 일반적인 도입 질문 답변 |
+| [Examples](../EXAMPLES.md) | 신규 사용자 | 복사해서 쓸 수 있는 워크플로우. 새 프로젝트, 기존 저장소, 빠른 수정, 재개, spike, sketch를 다룹니다 |
+| [Demo](../DEMO.md) | 신규 사용자, 메인테이너 | 60초 워크플로우 미리보기, 첫 실행 출력, 데모 미디어 체크리스트, 생성된 산출물, git status 증거 |
+| [Safe Trial Troubleshooting](../SAFE-TRIAL-TROUBLESHOOTING.md) | 신규 사용자, 평가자 | 누락된 명령, 변경된 파일, 로컬/글로벌 설치, npm 실패, 오래된 캐시, 지원 경로에 대한 첫 실행 빠른 수정 |
+| [Safe Trial Outcome Template](../SAFE-TRIAL-OUTCOME.md) | 신규 사용자, 평가자 | 명령, 변경 경로, 통과/실패 신호, 유지/폐기 결정, 피드백 증거를 기록합니다 |
+| [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md) | 신규 사용자, 평가자 | 명령 증거, 변경 경로, 개인정보 확인, 워크플로우 조언을 담은 GitHub Discussions 게시글 템플릿 |
+| [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md) | 신규 사용자, 평가자 | npm run demo:safe-trial로 생성되는, 첫 실행 흐름을 미리 보는 설치 불필요/편집 불필요 기록 |
+| [Support](../../SUPPORT.md) | 사용자, 평가자 | 설정 질문, 워크플로우 조언, 문제 해결 도움, 로컬과 글로벌 설치 선택, bug report 경로 |
+| [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions) | 사용자, 평가자 | 질문, 예제, 안전 시험 피드백을 위한 커뮤니티 지원 |
+| [Contributing Guide](../../CONTRIBUTING.md) | 기여자, 평가자 | 기여 유형, 개발 설정, 테스트 요구사항, review 기대치, pull request 흐름 |
+| [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) | 기여자, 신규 사용자 | 현재 로드맵 공백, docs 업데이트, 공개 출시 다듬기에 맞춘 입문 작업 |
 | [Security Policy](../../SECURITY.md) | Users, contributors | Private vulnerability reporting, disclosure guidance, response timeline, scope, and security boundaries |
 | [Private Vulnerability Report](https://github.com/Oisinwang/get-shit-done-codex/security/advisories/new) | Security reporters | GitHub private advisory intake for vulnerabilities that should not be posted in public issues |
 | [Code of Conduct](../../CODE_OF_CONDUCT.md) | Users, contributors | Community standards, acceptable behavior, enforcement responsibilities, scope, and reporting guidance |
