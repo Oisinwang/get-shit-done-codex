@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index issue template table links/);
+    assert.match(roadmap, /localized docs index pull request template table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1291,6 +1291,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index license table links/);
     assert.doesNotMatch(roadmap, /localized docs index package metadata table links/);
     assert.doesNotMatch(roadmap, /localized docs index workflow metadata table links/);
+    assert.doesNotMatch(roadmap, /localized docs index issue template table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1766,6 +1767,10 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Localized docs index workflow metadata table links/);
     assert.match(unreleasedSection, /\.github\/workflows\/test\.yml/);
     assert.match(unreleasedSection, /\.github\/workflows\/hotfix\.yml/);
+    assert.match(unreleasedSection, /Localized docs index issue template table links/);
+    assert.match(unreleasedSection, /\.github\/ISSUE_TEMPLATE\/config\.yml/);
+    assert.match(unreleasedSection, /bug_report\.yml/);
+    assert.match(unreleasedSection, /feature_request\.yml/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2312,6 +2317,36 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[Hotfix Release Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/hotfix\.yml\) \| [^\r\n]*manual hotfix dispatch[^\r\n]*dry-run mode[^\r\n]*version input[^\r\n]*npm-publish environment[^\r\n]*NPM_TOKEN[^\r\n]*publish verification[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Issue Chooser\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/config\.yml\) \| [^\r\n]*Questions[^\r\n]*safe trial troubleshooting[^\r\n]*code of conduct[^\r\n]*private security reporting[^\r\n]*issue routing[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Bug Report Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/bug_report\.yml\) \| [^\r\n]*Package version[^\r\n]*runtime[^\r\n]*Node\.js version[^\r\n]*shell[^\r\n]*reproduction steps[^\r\n]*error text[^\r\n]*safe trial evidence[^\r\n]*privacy check[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Documentation Issue Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/docs_issue\.yml\) \| [^\r\n]*Incorrect[^\r\n]*missing[^\r\n]*unclear docs[^\r\n]*affected path[^\r\n]*current problem[^\r\n]*expected correction[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Feature Request Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/feature_request\.yml\) \| [^\r\n]*New feature proposals[^\r\n]*problem statement[^\r\n]*scope[^\r\n]*user stories[^\r\n]*acceptance criteria[^\r\n]*runtime compatibility[^\r\n]*maintenance cost[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Enhancement Proposal Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/enhancement\.yml\) \| [^\r\n]*Existing-feature improvements[^\r\n]*current behavior[^\r\n]*desired behavior[^\r\n]*affected files[^\r\n]*compatibility impact[^\r\n]*alternatives[^\r\n]*review context[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Chore Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/chore\.yml\) \| [^\r\n]*Maintenance work[^\r\n]*refactoring[^\r\n]*test quality[^\r\n]*CI\/CD[^\r\n]*dependencies[^\r\n]*tech debt[^\r\n]*completion criteria[^\r\n]*related issues[^\r\n]* \|/,
         relativePath,
       );
       assert.match(

@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized docs index issue template table links** - Adds `.github/ISSUE_TEMPLATE/config.yml`, `bug_report.yml`, `docs_issue.yml`, `feature_request.yml`, `enhancement.yml`, and `chore.yml` table links to localized docs indexes so non-English readers can find questions, safe trial troubleshooting, private security reporting, bug evidence, documentation fixes, feature proposals, enhancement reviews, and maintenance work routing from localized entry points.
 - **Localized docs index workflow metadata table links** - Adds `.github/workflows/test.yml` and `.github/workflows/hotfix.yml` table links to localized docs indexes so non-English readers can find CI matrix, Node.js versions, coverage tests, manual hotfix dispatch, dry-run mode, `NPM_TOKEN`, and publish verification workflow metadata from localized entry points.
 - **Localized docs index package metadata table links** - Adds `package.json` and `sdk/package.json` table links to localized docs indexes so non-English readers can find package names, descriptions, keywords, CLI bins, shipped files, build hooks, and public publish settings from localized entry points.
 - **Localized docs index license table links** - Adds `LICENSE` and MIT License Terms table links to localized docs indexes so non-English readers can find reuse, copy, modify, distribution, sublicense, permission notice, copyright notice, no-warranty, and liability-limit terms from localized entry points.
