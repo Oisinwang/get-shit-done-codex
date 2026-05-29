@@ -32,7 +32,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 
 These are intentionally small enough to become a good first issue:
 
-- Add localized docs index support table links.
+- Add localized docs index contribution table links.
 
 ## Manual maintainer actions
 
