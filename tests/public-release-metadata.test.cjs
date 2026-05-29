@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index pull request template table links/);
+    assert.match(roadmap, /localized docs index repository automation table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1292,6 +1292,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index package metadata table links/);
     assert.doesNotMatch(roadmap, /localized docs index workflow metadata table links/);
     assert.doesNotMatch(roadmap, /localized docs index issue template table links/);
+    assert.doesNotMatch(roadmap, /localized docs index pull request template table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1771,6 +1772,10 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\.github\/ISSUE_TEMPLATE\/config\.yml/);
     assert.match(unreleasedSection, /bug_report\.yml/);
     assert.match(unreleasedSection, /feature_request\.yml/);
+    assert.match(unreleasedSection, /Localized docs index pull request template table links/);
+    assert.match(unreleasedSection, /\.github\/pull_request_template\.md/);
+    assert.match(unreleasedSection, /PULL_REQUEST_TEMPLATE\/fix\.md/);
+    assert.match(unreleasedSection, /PULL_REQUEST_TEMPLATE\/feature\.md/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2347,6 +2352,26 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[Chore Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/chore\.yml\) \| [^\r\n]*Maintenance work[^\r\n]*refactoring[^\r\n]*test quality[^\r\n]*CI\/CD[^\r\n]*dependencies[^\r\n]*tech debt[^\r\n]*completion criteria[^\r\n]*related issues[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Pull Request Template Chooser\]\(\.\.\/\.\.\/\.github\/pull_request_template\.md\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*typed template chooser[^\r\n]*codex\/bootstrap[^\r\n]*Codex-first contract[^\r\n]*approved issue requirement[^\r\n]*no-draft rule[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Fix PR Template\]\(\.\.\/\.\.\/\.github\/PULL_REQUEST_TEMPLATE\/fix\.md\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*confirmed-bug issue link[^\r\n]*broken behavior[^\r\n]*root cause[^\r\n]*regression test[^\r\n]*platform[^\r\n]*runtime checks[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Enhancement PR Template\]\(\.\.\/\.\.\/\.github\/PULL_REQUEST_TEMPLATE\/enhancement\.md\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*approved-enhancement issue[^\r\n]*before\/after[^\r\n]*implementation notes[^\r\n]*scope confirmation[^\r\n]*tests[^\r\n]*docs[^\r\n]*changelog[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Feature PR Template\]\(\.\.\/\.\.\/\.github\/PULL_REQUEST_TEMPLATE\/feature\.md\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*approved-feature issue[^\r\n]*feature summary[^\r\n]*changed files[^\r\n]*acceptance criteria[^\r\n]*platform\/runtime tests[^\r\n]*scope confirmation[^\r\n]*screenshots or recordings[^\r\n]* \|/,
         relativePath,
       );
       assert.match(
