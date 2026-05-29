@@ -86,54 +86,54 @@ Claude 時代の名前は移行互換のためだけに残しています。fork
 | [GitHub Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions) | ユーザー、評価者 | 質問、例、安全なトライアルのフィードバック向けコミュニティサポート |
 | [Contributing Guide](../../CONTRIBUTING.md) | コントリビューター、評価者 | 貢献タイプ、開発セットアップ、テスト要件、review 期待値、pull request フロー |
 | [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) | コントリビューター、新規ユーザー | 現在のロードマップの穴、docs 更新、公開ローンチの磨き込みに沿った最初のタスク |
-| [Security Policy](../../SECURITY.md) | Users, contributors | Private vulnerability reporting, disclosure guidance, response timeline, scope, and security boundaries |
-| [Private Vulnerability Report](https://github.com/Oisinwang/get-shit-done-codex/security/advisories/new) | Security reporters | GitHub private advisory intake for vulnerabilities that should not be posted in public issues |
-| [Code of Conduct](../../CODE_OF_CONDUCT.md) | Users, contributors | Community standards, acceptable behavior, enforcement responsibilities, scope, and reporting guidance |
-| [Private Conduct Report](https://github.com/Oisinwang/get-shit-done-codex/security/advisories/new) | Users, contributors | Sensitive conduct reports, reporter safety, names, screenshots, and other details that should not be posted in public issues |
-| [License](../../LICENSE) | Users, contributors | MIT License terms for reuse, copy, modify, distribute, and sublicense rights |
-| [MIT License Terms](../../LICENSE) | Users, contributors | Permission notice, copyright notice, no warranty statement, and liability limits |
-| [Package Metadata](../../package.json) | Users, evaluators, maintainers | Published npm package name, description, keywords, CLI bin, shipped files, and public publish settings |
-| [SDK Package Metadata](../../sdk/package.json) | SDK users, integrators | SDK npm package name, CLI bin, shipped dist and prompts files, prepublish build, and public publish settings |
-| [Installer CLI](../../bin/install.js) | Users, evaluators, maintainers | Codex-first installer entrypoint, local and global targets, runtime flags, SDK install controls, uninstall mode, and WSL path guard |
-| [Hook Build Script](../../scripts/build-hooks.js) | Contributors, maintainers | Builds installer hook payloads for prepublish builds, local source installs, and test runs |
-| [Safe Trial Demo Script](../../scripts/safe-trial-demo.cjs) | New users, evaluators | No-install command preview for sandbox trial and existing-repository trial flows |
-| [Test Runner Script](../../scripts/run-tests.cjs) | Contributors, maintainers | Node test orchestration for public release metadata, link checks, install regressions, and coverage |
-| [Hotfix Validation Script](../../scripts/validate-hotfix.cjs) | Maintainers | Hotfix release guard for version input, dry-run state, package metadata, and publish workflow checks |
-| [Runtime Support Matrix](../FEATURES.md#36-multi-runtime-support) | Users, evaluators | Supported runtime list, command formats, agent formats, hook events, config shapes, and installer requirements |
-| [Runtime Abstraction](../ARCHITECTURE.md#runtime-abstraction) | Contributors, integrators | Runtime command format, agent system, config location, tool mapping, hook event names, frontmatter differences, and model inheritance |
-| [Compatibility Runtime Guide](../USER-GUIDE.md#using-compatibility-runtimes-opencode-gemini-cli-kilo) | Users, evaluators | How compatibility runtimes inherit model selection, use resolve_model_ids omit, and set runtime-specific model overrides |
-| [Non-Claude Runtime Configuration](../CONFIGURATION.md#non-claude-runtimes-codex-opencode-gemini-cli-kilo) | Users, maintainers | Configuration behavior for Codex, OpenCode, Gemini CLI, Kilo, inherit model profiles, and runtime-selected model IDs |
-| [Manual Update Runtime Flags](../manual-update.md#runtime-flags) | Users, maintainers | Runtime flag table for Codex, Claude Code, Gemini CLI, OpenCode, Kilo, Copilot, Cursor, Windsurf, Augment, Antigravity, Trae, Qwen Code, CodeBuddy, Cline, and all runtimes |
-| [Test Workflow](../../.github/workflows/test.yml) | Contributors, maintainers | GitHub Actions CI matrix, Node.js versions, install dependencies, tests with coverage, and branch validation |
-| [Hotfix Release Workflow](../../.github/workflows/hotfix.yml) | Maintainers | manual hotfix dispatch, dry-run mode, version input, npm-publish environment, NPM_TOKEN, and publish verification |
-| [Issue Chooser](../../.github/ISSUE_TEMPLATE/config.yml) | Users, contributors | Questions, safe trial troubleshooting, code of conduct, private security reporting, and issue routing |
-| [Bug Report Template](../../.github/ISSUE_TEMPLATE/bug_report.yml) | Users, contributors | Package version, runtime, Node.js version, shell, reproduction steps, error text, safe trial evidence, and privacy check |
-| [Documentation Issue Template](../../.github/ISSUE_TEMPLATE/docs_issue.yml) | Readers, contributors | Incorrect, missing, or unclear docs with affected path, current problem, and expected correction |
-| [Feature Request Template](../../.github/ISSUE_TEMPLATE/feature_request.yml) | Users, contributors | New feature proposals with problem statement, scope, user stories, acceptance criteria, runtime compatibility, and maintenance cost |
-| [Enhancement Proposal Template](../../.github/ISSUE_TEMPLATE/enhancement.yml) | Users, contributors | Existing-feature improvements with current behavior, desired behavior, affected files, compatibility impact, alternatives, and review context |
-| [Chore Template](../../.github/ISSUE_TEMPLATE/chore.yml) | Maintainers, contributors | Maintenance work for refactoring, test quality, CI/CD, dependencies, tech debt, completion criteria, and related issues |
-| [Pull Request Template Chooser](../../.github/pull_request_template.md) | Contributors, maintainers | Default typed template chooser for codex/bootstrap, Codex-first contract, approved issue requirement, and no-draft rule |
-| [Fix PR Template](../../.github/PULL_REQUEST_TEMPLATE/fix.md) | Contributors, maintainers | Fix PR route with confirmed-bug issue link, broken behavior, root cause, regression test, platform checks, and runtime checks |
-| [Enhancement PR Template](../../.github/PULL_REQUEST_TEMPLATE/enhancement.md) | Contributors, maintainers | Enhancement PR route with approved-enhancement issue, before/after, implementation notes, scope confirmation, tests, docs, and changelog |
-| [Feature PR Template](../../.github/PULL_REQUEST_TEMPLATE/feature.md) | Contributors, maintainers | Feature PR route with approved-feature issue, feature summary, changed files, acceptance criteria, platform/runtime tests, scope confirmation, and screenshots or recordings |
-| [Release Workflow](../../.github/workflows/release.yml) | Maintainers | create, rc, finalize actions, version input, dry-run mode, npm-publish environment, NPM_TOKEN, npm test coverage, and dist-tag publication |
-| [PR Gate Workflow](../../.github/workflows/pr-gate.yml) | Contributors, maintainers | Pull request size labels for size/S, size/M, size/L, size/XL, large PR warning, and split guidance |
-| [Require Issue Link Workflow](../../.github/workflows/require-issue-link.yml) | Contributors, maintainers | Blocks PRs without Closes, Fixes, or Resolves #NNN, comments with issue chooser link, and keeps issue-first review policy visible |
-| [Branch Naming Workflow](../../.github/workflows/branch-naming.yml) | Contributors, maintainers | Validates feat/, fix/, hotfix/, docs/, chore/, dependabot/, and renovate/ branch prefixes with GSD branch compatibility |
-| [Branch Cleanup Workflow](../../.github/workflows/branch-cleanup.yml) | Maintainers | Deletes merged PR branches, preserves protected branches including codex/bootstrap, and runs weekly orphan branch sweeps with workflow_dispatch |
-| [Close Draft PRs Workflow](../../.github/workflows/close-draft-prs.yml) | Contributors, maintainers | Rejects draft PRs, comments with test expectations, correct template, linked approved issue, and ready-for-review policy |
-| [Auto-label Issues Workflow](../../.github/workflows/auto-label-issues.yml) | Maintainers | Adds needs-triage to new issues with GitHub Script retries so the triage queue stays visible |
-| [Auto-branch Workflow](../../.github/workflows/auto-branch.yml) | Maintainers, contributors | Creates branches from labeled issues as fix, feat, chore, and docs branches on codex/bootstrap and comments checkout commands |
-| [Security Scan Workflow](../../.github/workflows/security-scan.yml) | Contributors, maintainers | Runs prompt injection, base64 obfuscation, secret scans, and .planning runtime-data check on PRs |
-| [Stale Cleanup Workflow](../../.github/workflows/stale.yml) | Maintainers | Marks inactive issues and inactive PRs after 28 days, closes after 14 days, and preserves critical, pinned, and confirmed exemptions |
-| [Dependabot Config](../../.github/dependabot.yml) | Maintainers | Weekly npm and GitHub Actions dependency updates with open pull request limits, dependencies labels, and chore commit prefixes |
-| [Repository Labels Contract](../../.github/labels.json) | Maintainers, contributors | Public label names, descriptions, colors, needs-triage, approved-feature, approved-enhancement, pending release, and type: chore |
-| [CODEOWNERS](../../.github/CODEOWNERS) | Maintainers, contributors | Requires public fork maintainer review on all changes |
-| [Funding Metadata](../../.github/FUNDING.yml) | Users, sponsors | GitHub Sponsors metadata for Oisinwang |
-| [Release Checklist](../RELEASE.md) | Maintainers | npm publish setup, hotfix workflow steps, and verification for `npx @latest` recovery |
-| [Maintainer Checklist](../MAINTAINER-CHECKLIST.md) | Maintainers | Close resolved good-first issues with verification, CI, labels, and public notes aligned |
-| [Troubleshooting](../TROUBLESHOOTING.md) | Users | Fast recovery paths for Codex config, install, PATH, Windows PowerShell, and stale npm metadata issues |
-| [Promotion Assets](../PROMOTION.md) | Maintainers | Launch copy, social preview setup, and public positioning snippets |
+| [Security Policy](../../SECURITY.md) | ユーザー、コントリビューター | 非公開の脆弱性報告、開示ガイド、応答タイムライン、スコープ、安全境界 |
+| [Private Vulnerability Report](https://github.com/Oisinwang/get-shit-done-codex/security/advisories/new) | セキュリティ報告者 | 公開 issue に載せるべきではない脆弱性向けの GitHub 非公開 advisory 入口 |
+| [Code of Conduct](../../CODE_OF_CONDUCT.md) | ユーザー、コントリビューター | コミュニティ基準、許容される行動、執行責任、スコープ、報告ガイド |
+| [Private Conduct Report](https://github.com/Oisinwang/get-shit-done-codex/security/advisories/new) | ユーザー、コントリビューター | センシティブな行動報告、報告者の安全、名前、スクリーンショット、公開 issue に載せない詳細 |
+| [License](../../LICENSE) | ユーザー、コントリビューター | MIT License 条項、再利用、コピー、変更、配布、サブライセンス権 |
+| [MIT License Terms](../../LICENSE) | ユーザー、コントリビューター | 許諾表示、著作権表示、無保証声明、責任制限 |
+| [Package Metadata](../../package.json) | ユーザー、評価者、メンテナー | 公開 npm パッケージ名、説明、keywords、CLI bin、同梱ファイル、公開 publish 設定 |
+| [SDK Package Metadata](../../sdk/package.json) | SDK ユーザー、インテグレーター | SDK npm パッケージ名、CLI bin、同梱 dist と prompts、prepublish build、公開 publish 設定 |
+| [Installer CLI](../../bin/install.js) | ユーザー、評価者、メンテナー | Codex-first インストーラー入口、local/global 対象、runtime flags、SDK インストール制御、uninstall モード、WSL パス保護 |
+| [Hook Build Script](../../scripts/build-hooks.js) | コントリビューター、メンテナー | prepublish build、ローカルソースインストール、テスト実行向けのインストーラー hook payload を生成 |
+| [Safe Trial Demo Script](../../scripts/safe-trial-demo.cjs) | 新規ユーザー、評価者 | インストールなしのコマンドプレビュー、sandbox trial と既存リポジトリ trial フロー |
+| [Test Runner Script](../../scripts/run-tests.cjs) | コントリビューター、メンテナー | 公開 release metadata、リンクチェック、インストール回帰、coverage を対象にした Node テスト編成 |
+| [Hotfix Validation Script](../../scripts/validate-hotfix.cjs) | メンテナー | hotfix release の保護、バージョン入力、dry-run 状態、package metadata、publish workflow チェック |
+| [Runtime Support Matrix](../FEATURES.md#36-multi-runtime-support) | ユーザー、評価者 | サポート対象 runtime 一覧、コマンド形式、agent 形式、hook イベント、config 形状、インストーラー要件 |
+| [Runtime Abstraction](../ARCHITECTURE.md#runtime-abstraction) | コントリビューター、インテグレーター | runtime ごとのコマンド形式、agent システム、config 位置、ツール対応、hook イベント名、frontmatter 差分、モデル継承 |
+| [Compatibility Runtime Guide](../USER-GUIDE.md#using-compatibility-runtimes-opencode-gemini-cli-kilo) | ユーザー、評価者 | 互換 runtime がモデル選択を継承し、resolve_model_ids omit を使い、runtime 別モデル override を設定する方法 |
+| [Non-Claude Runtime Configuration](../CONFIGURATION.md#non-claude-runtimes-codex-opencode-gemini-cli-kilo) | ユーザー、メンテナー | Codex、OpenCode、Gemini CLI、Kilo の config 挙動、継承モデル profile、runtime が選ぶモデル ID |
+| [Manual Update Runtime Flags](../manual-update.md#runtime-flags) | ユーザー、メンテナー | Codex、Claude Code、Gemini CLI、OpenCode、Kilo、Copilot、Cursor、Windsurf、Augment、Antigravity、Trae、Qwen Code、CodeBuddy、Cline、all runtimes の runtime flag 表 |
+| [Test Workflow](../../.github/workflows/test.yml) | コントリビューター、メンテナー | GitHub Actions CI マトリクス、Node.js バージョン、依存関係インストール、coverage テスト、ブランチ検証 |
+| [Hotfix Release Workflow](../../.github/workflows/hotfix.yml) | メンテナー | 手動 hotfix dispatch、dry-run モード、バージョン、npm-publish environment、NPM_TOKEN、publish 検証 |
+| [Issue Chooser](../../.github/ISSUE_TEMPLATE/config.yml) | ユーザー、コントリビューター | 質問、安全 trial troubleshooting、行動規範、非公開セキュリティ報告、issue ルーティング |
+| [Bug Report Template](../../.github/ISSUE_TEMPLATE/bug_report.yml) | ユーザー、コントリビューター | パッケージバージョン、runtime、Node.js バージョン、shell、再現手順、エラーテキスト、安全 trial 証拠、プライバシーチェック |
+| [Documentation Issue Template](../../.github/ISSUE_TEMPLATE/docs_issue.yml) | 読者、コントリビューター | 誤り、欠落、不明瞭な docs について、影響パス、現在の問題、期待する修正を記録 |
+| [Feature Request Template](../../.github/ISSUE_TEMPLATE/feature_request.yml) | ユーザー、コントリビューター | 新 feature 提案、問題文、スコープ、ユーザーストーリー、受け入れ基準、runtime 互換性、保守コスト |
+| [Enhancement Proposal Template](../../.github/ISSUE_TEMPLATE/enhancement.yml) | ユーザー、コントリビューター | 既存 feature 改善、現在の挙動、望ましい挙動、影響ファイル、互換性影響、代替案、review 文脈 |
+| [Chore Template](../../.github/ISSUE_TEMPLATE/chore.yml) | メンテナー、コントリビューター | リファクタリング、テスト品質、CI/CD、依存関係、技術的負債、完了基準、関連 issue 向けの保守作業 |
+| [Pull Request Template Chooser](../../.github/pull_request_template.md) | コントリビューター、メンテナー | codex/bootstrap 向けの標準 typed template chooser、Codex-first 契約、承認済み issue 要件、draft 禁止ルール |
+| [Fix PR Template](../../.github/PULL_REQUEST_TEMPLATE/fix.md) | コントリビューター、メンテナー | fix PR ルート、確認済み bug issue リンク、壊れた挙動、根本原因、回帰テスト、platform/runtime チェック |
+| [Enhancement PR Template](../../.github/PULL_REQUEST_TEMPLATE/enhancement.md) | コントリビューター、メンテナー | enhancement PR ルート、承認済み enhancement issue、before/after、実装メモ、スコープ確認、tests、docs、changelog |
+| [Feature PR Template](../../.github/PULL_REQUEST_TEMPLATE/feature.md) | コントリビューター、メンテナー | feature PR ルート、承認済み feature issue、機能概要、変更ファイル、受け入れ基準、platform/runtime テスト、スコープ確認、スクリーンショットまたは録画 |
+| [Release Workflow](../../.github/workflows/release.yml) | メンテナー | create、rc、finalize アクション、バージョン入力、dry-run モード、npm-publish environment、NPM_TOKEN、npm test coverage、dist-tag publish |
+| [PR Gate Workflow](../../.github/workflows/pr-gate.yml) | コントリビューター、メンテナー | pull request サイズ label、size/S、size/M、size/L、size/XL、大きい PR の警告、分割ガイド |
+| [Require Issue Link Workflow](../../.github/workflows/require-issue-link.yml) | コントリビューター、メンテナー | Closes、Fixes、Resolves #NNN がない PR をブロックし、issue chooser リンクをコメントし、issue-first review 方針を表示 |
+| [Branch Naming Workflow](../../.github/workflows/branch-naming.yml) | コントリビューター、メンテナー | feat/、fix/、hotfix/、docs/、chore/、dependabot/、renovate/ の branch prefix を検証し GSD branch と互換 |
+| [Branch Cleanup Workflow](../../.github/workflows/branch-cleanup.yml) | メンテナー | merge 済み PR branch を削除し、codex/bootstrap を含む protected branches を保持し、workflow_dispatch で週次 orphan branch sweep を実行 |
+| [Close Draft PRs Workflow](../../.github/workflows/close-draft-prs.yml) | コントリビューター、メンテナー | draft PR を拒否し、テスト期待値、正しい template、リンク済み承認 issue、ready-for-review 方針をコメント |
+| [Auto-label Issues Workflow](../../.github/workflows/auto-label-issues.yml) | メンテナー | GitHub Script retries で新規 issue に needs-triage を付与し、triage queue を見える状態に保つ |
+| [Auto-branch Workflow](../../.github/workflows/auto-branch.yml) | メンテナー、コントリビューター | label 付き issue から fix、feat、chore、docs branch を codex/bootstrap に作成し、checkout commands をコメント |
+| [Security Scan Workflow](../../.github/workflows/security-scan.yml) | コントリビューター、メンテナー | PR で prompt injection、base64 obfuscation、secret scan、.planning runtime-data check を実行 |
+| [Stale Cleanup Workflow](../../.github/workflows/stale.yml) | メンテナー | 28 日後に inactive issue と PR をマークし、14 日後に閉じ、critical、pinned、confirmed exemptions を保持 |
+| [Dependabot Config](../../.github/dependabot.yml) | メンテナー | npm と GitHub Actions の週次依存関係更新、open PR 制限、dependencies labels、chore commit prefix |
+| [Repository Labels Contract](../../.github/labels.json) | メンテナー、コントリビューター | 公開 label 名、説明、色、needs-triage、approved-feature、approved-enhancement、pending release、type: chore |
+| [CODEOWNERS](../../.github/CODEOWNERS) | メンテナー、コントリビューター | すべての変更に公開 fork のメンテナー review を要求 |
+| [Funding Metadata](../../.github/FUNDING.yml) | ユーザー、スポンサー | Oisinwang 向け GitHub Sponsors メタデータ |
+| [Release Checklist](../RELEASE.md) | メンテナー | npm publish 設定、hotfix workflow 手順、`npx @latest` 復旧の検証 |
+| [Maintainer Checklist](../MAINTAINER-CHECKLIST.md) | メンテナー | 解決済み good-first issue を verification、CI、labels、公開メモとともに閉じる |
+| [Troubleshooting](../TROUBLESHOOTING.md) | ユーザー | Codex config、install、PATH、Windows PowerShell、古い npm metadata の高速復旧パス |
+| [Promotion Assets](../PROMOTION.md) | メンテナー | ローンチコピー、social preview 設定、公開 positioning snippets |
 | [Codex fork notes](../CODEX-FORK.md) | すべてのユーザー | Codex-first の範囲、命名境界、移行メモ |
 | [比較ガイド](COMPARISON.md) | 新規ユーザー | 生の Codex、prompt pack、task manager、CI-only workflow との適合度比較 |
 | [プロンプトレシピ](PROMPTS.md) | 新規ユーザー | Codex に貼り付けられる開始、再開、監査、小修正用プロンプト |

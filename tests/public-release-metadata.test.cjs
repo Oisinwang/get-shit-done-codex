@@ -1826,6 +1826,10 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/ja-JP\/README\.md/);
     assert.match(unreleasedSection, /docs\/ko-KR\/README\.md/);
     assert.match(unreleasedSection, /Examples quick links/);
+    assert.match(unreleasedSection, /Localized docs index infrastructure row localization/);
+    assert.match(unreleasedSection, /security, package, installer, runtime, workflow/);
+    assert.match(unreleasedSection, /CODEOWNERS/);
+    assert.match(unreleasedSection, /Funding Metadata/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2308,6 +2312,142 @@ describe('public release metadata', () => {
       /鈥|鉁|锚|绠|鏃|脗|莽|鞐|氍|銉|鞛/,
     ];
 
+    const requiredInfrastructureRows = [
+      /\| \[Release Checklist\]\(\.\.\/RELEASE\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Maintainer Checklist\]\(\.\.\/MAINTAINER-CHECKLIST\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Promotion Assets\]\(\.\.\/PROMOTION\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Troubleshooting\]\(\.\.\/TROUBLESHOOTING\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Security Policy\]\(\.\.\/\.\.\/SECURITY\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Private Vulnerability Report\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/security\/advisories\/new\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Code of Conduct\]\(\.\.\/\.\.\/CODE_OF_CONDUCT\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Private Conduct Report\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/security\/advisories\/new\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[License\]\(\.\.\/\.\.\/LICENSE\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[MIT License Terms\]\(\.\.\/\.\.\/LICENSE\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Package Metadata\]\(\.\.\/\.\.\/package\.json\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[SDK Package Metadata\]\(\.\.\/\.\.\/sdk\/package\.json\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Installer CLI\]\(\.\.\/\.\.\/bin\/install\.js\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Hook Build Script\]\(\.\.\/\.\.\/scripts\/build-hooks\.js\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Safe Trial Demo Script\]\(\.\.\/\.\.\/scripts\/safe-trial-demo\.cjs\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Test Runner Script\]\(\.\.\/\.\.\/scripts\/run-tests\.cjs\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Hotfix Validation Script\]\(\.\.\/\.\.\/scripts\/validate-hotfix\.cjs\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Runtime Support Matrix\]\(\.\.\/FEATURES\.md#36-multi-runtime-support\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Runtime Abstraction\]\(\.\.\/ARCHITECTURE\.md#runtime-abstraction\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Compatibility Runtime Guide\]\(\.\.\/USER-GUIDE\.md#using-compatibility-runtimes-opencode-gemini-cli-kilo\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Non-Claude Runtime Configuration\]\(\.\.\/CONFIGURATION\.md#non-claude-runtimes-codex-opencode-gemini-cli-kilo\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Manual Update Runtime Flags\]\(\.\.\/manual-update\.md#runtime-flags\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Test Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/test\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Hotfix Release Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/hotfix\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Issue Chooser\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/config\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Bug Report Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/bug_report\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Documentation Issue Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/docs_issue\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Feature Request Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/feature_request\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Enhancement Proposal Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/enhancement\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Chore Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/chore\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Pull Request Template Chooser\]\(\.\.\/\.\.\/\.github\/pull_request_template\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Fix PR Template\]\(\.\.\/\.\.\/\.github\/PULL_REQUEST_TEMPLATE\/fix\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Enhancement PR Template\]\(\.\.\/\.\.\/\.github\/PULL_REQUEST_TEMPLATE\/enhancement\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Feature PR Template\]\(\.\.\/\.\.\/\.github\/PULL_REQUEST_TEMPLATE\/feature\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Release Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/release\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[PR Gate Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/pr-gate\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Require Issue Link Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/require-issue-link\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Branch Naming Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/branch-naming\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Branch Cleanup Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/branch-cleanup\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Close Draft PRs Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/close-draft-prs\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Auto-label Issues Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/auto-label-issues\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Auto-branch Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/auto-branch\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Security Scan Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/security-scan\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Stale Cleanup Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/stale\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Dependabot Config\]\(\.\.\/\.\.\/\.github\/dependabot\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Repository Labels Contract\]\(\.\.\/\.\.\/\.github\/labels\.json\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[CODEOWNERS\]\(\.\.\/\.\.\/\.github\/CODEOWNERS\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+      /\| \[Funding Metadata\]\(\.\.\/\.\.\/\.github\/FUNDING\.yml\) \| [^\r\n]+ \| [^\r\n]+ \|/,
+    ];
+
+    const localizedInfrastructureTextByPath = new Map([
+      [
+        'docs/pt-BR/README.md',
+        [
+          /\| \[Security Policy\][^\r\n]*Relatorios privados de vulnerabilidades/,
+          /\| \[Package Metadata\][^\r\n]*Nome do pacote npm publicado/,
+          /\| \[Runtime Support Matrix\][^\r\n]*Lista de runtimes suportados/,
+          /\| \[Release Workflow\][^\r\n]*acoes create, rc e finalize/,
+          /\| \[CODEOWNERS\][^\r\n]*review do mantenedor/,
+          /\| \[Promotion Assets\][^\r\n]*Copy de lancamento/,
+        ],
+      ],
+      [
+        'docs/zh-CN/README.md',
+        [
+          /\| \[Security Policy\][^\r\n]*私有漏洞报告/,
+          /\| \[Package Metadata\][^\r\n]*已发布 npm 包名/,
+          /\| \[Runtime Support Matrix\][^\r\n]*支持的 runtime 列表/,
+          /\| \[Release Workflow\][^\r\n]*create、rc、finalize/,
+          /\| \[CODEOWNERS\][^\r\n]*维护者 review/,
+          /\| \[Promotion Assets\][^\r\n]*发布文案/,
+        ],
+      ],
+      [
+        'docs/ja-JP/README.md',
+        [
+          /\| \[Security Policy\][^\r\n]*非公開の脆弱性報告/,
+          /\| \[Package Metadata\][^\r\n]*公開 npm パッケージ名/,
+          /\| \[Runtime Support Matrix\][^\r\n]*サポート対象 runtime/,
+          /\| \[Release Workflow\][^\r\n]*create、rc、finalize/,
+          /\| \[CODEOWNERS\][^\r\n]*メンテナー review/,
+          /\| \[Promotion Assets\][^\r\n]*ローンチコピー/,
+        ],
+      ],
+      [
+        'docs/ko-KR/README.md',
+        [
+          /\| \[Security Policy\][^\r\n]*비공개 취약점 보고/,
+          /\| \[Package Metadata\][^\r\n]*게시된 npm 패키지 이름/,
+          /\| \[Runtime Support Matrix\][^\r\n]*지원되는 runtime 목록/,
+          /\| \[Release Workflow\][^\r\n]*create, rc, finalize/,
+          /\| \[CODEOWNERS\][^\r\n]*메인테이너 review/,
+          /\| \[Promotion Assets\][^\r\n]*런칭 카피/,
+        ],
+      ],
+    ]);
+
+    const staleInfrastructureEnglishText = [
+      /\| [^\r\n]* \| Users, contributors \|/,
+      /\| [^\r\n]* \| Users, evaluators, maintainers \|/,
+      /\| [^\r\n]* \| Users, evaluators \|/,
+      /\| [^\r\n]* \| Users, maintainers \|/,
+      /\| [^\r\n]* \| Contributors, maintainers \|/,
+      /\| [^\r\n]* \| Maintainers \|/,
+      /\| [^\r\n]* \| Security reporters \|/,
+      /\| [^\r\n]* \| New users, evaluators \|/,
+      /\| [^\r\n]* \| Readers, contributors \|/,
+      /\| [^\r\n]* \| Users, sponsors \|/,
+      /Private vulnerability reporting/,
+      /GitHub private advisory intake/,
+      /Community standards/,
+      /Sensitive conduct reports/,
+      /MIT License terms/,
+      /Published npm package name/,
+      /Codex-first installer entrypoint/,
+      /Builds installer hook payloads/,
+      /No-install command preview/,
+      /Node test orchestration/,
+      /Hotfix release guard/,
+      /Supported runtime list/,
+      /Runtime command format/,
+      /How compatibility runtimes inherit/,
+      /Configuration behavior/,
+      /Runtime flag table/,
+      /GitHub Actions CI matrix/,
+      /manual hotfix dispatch/,
+      /Default typed template chooser/,
+      /Pull request size labels/,
+      /Blocks PRs without/,
+      /Creates branches from labeled issues/,
+      /GitHub Sponsors metadata/,
+      /Fast recovery paths/,
+      /Launch copy/,
+    ];
+
     for (const relativePath of localizedDocIndexes) {
       const readme = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 
@@ -2342,26 +2482,6 @@ describe('public release metadata', () => {
       for (const pattern of requiredPublicLinkTargets) {
         assert.match(readme, pattern, relativePath);
       }
-      assert.match(
-        readme,
-        /\| \[Release Checklist\]\(\.\.\/RELEASE\.md\) \| [^\r\n]*npm publish setup[^\r\n]*npx @latest[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Maintainer Checklist\]\(\.\.\/MAINTAINER-CHECKLIST\.md\) \| [^\r\n]*resolved good-first issues[^\r\n]*verification[^\r\n]*CI[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Promotion Assets\]\(\.\.\/PROMOTION\.md\) \| [^\r\n]*Launch copy[^\r\n]*social preview setup[^\r\n]*public positioning snippets[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Troubleshooting\]\(\.\.\/TROUBLESHOOTING\.md\) \| [^\r\n]*Fast recovery paths[^\r\n]*Codex config[^\r\n]*install[^\r\n]*PATH[^\r\n]*stale npm metadata[^\r\n]* \|/,
-        relativePath,
-      );
       const localizedPublicRows = [
         /\| \[FAQ\]\(\.\.\/FAQ\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
         /\| \[Examples\]\(\.\.\/EXAMPLES\.md\) \| [^\r\n]+ \| [^\r\n]+ \|/,
@@ -2379,226 +2499,19 @@ describe('public release metadata', () => {
       for (const pattern of localizedPublicRows) {
         assert.match(readme, pattern, relativePath);
       }
-      assert.match(
-        readme,
-        /\| \[Security Policy\]\(\.\.\/\.\.\/SECURITY\.md\) \| [^\r\n]*Private vulnerability reporting[^\r\n]*disclosure guidance[^\r\n]*response timeline[^\r\n]*scope[^\r\n]*security boundaries[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Private Vulnerability Report\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/security\/advisories\/new\) \| [^\r\n]*GitHub private advisory intake[^\r\n]*vulnerabilities[^\r\n]*public issues[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Code of Conduct\]\(\.\.\/\.\.\/CODE_OF_CONDUCT\.md\) \| [^\r\n]*Community standards[^\r\n]*acceptable behavior[^\r\n]*enforcement responsibilities[^\r\n]*scope[^\r\n]*reporting guidance[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Private Conduct Report\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/security\/advisories\/new\) \| [^\r\n]*Sensitive conduct reports[^\r\n]*reporter safety[^\r\n]*names[^\r\n]*screenshots[^\r\n]*public issues[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[License\]\(\.\.\/\.\.\/LICENSE\) \| [^\r\n]*MIT License[^\r\n]*reuse[^\r\n]*copy[^\r\n]*modify[^\r\n]*distribute[^\r\n]*sublicense[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[MIT License Terms\]\(\.\.\/\.\.\/LICENSE\) \| [^\r\n]*Permission notice[^\r\n]*copyright notice[^\r\n]*no warranty[^\r\n]*liability limits[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Package Metadata\]\(\.\.\/\.\.\/package\.json\) \| [^\r\n]*Published npm package name[^\r\n]*description[^\r\n]*keywords[^\r\n]*CLI bin[^\r\n]*shipped files[^\r\n]*public publish settings[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[SDK Package Metadata\]\(\.\.\/\.\.\/sdk\/package\.json\) \| [^\r\n]*SDK npm package name[^\r\n]*CLI bin[^\r\n]*shipped dist and prompts files[^\r\n]*prepublish build[^\r\n]*public publish settings[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Installer CLI\]\(\.\.\/\.\.\/bin\/install\.js\) \| [^\r\n]*Users[^\r\n]*evaluators[^\r\n]*maintainers[^\r\n]*Codex-first installer entrypoint[^\r\n]*local and global targets[^\r\n]*runtime flags[^\r\n]*SDK install controls[^\r\n]*uninstall mode[^\r\n]*WSL path guard[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Hook Build Script\]\(\.\.\/\.\.\/scripts\/build-hooks\.js\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*installer hook payloads[^\r\n]*prepublish builds[^\r\n]*local source installs[^\r\n]*test runs[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Safe Trial Demo Script\]\(\.\.\/\.\.\/scripts\/safe-trial-demo\.cjs\) \| [^\r\n]*New users[^\r\n]*evaluators[^\r\n]*No-install command preview[^\r\n]*sandbox trial[^\r\n]*existing-repository trial flows[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Test Runner Script\]\(\.\.\/\.\.\/scripts\/run-tests\.cjs\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*Node test orchestration[^\r\n]*public release metadata[^\r\n]*link checks[^\r\n]*install regressions[^\r\n]*coverage[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Hotfix Validation Script\]\(\.\.\/\.\.\/scripts\/validate-hotfix\.cjs\) \| [^\r\n]*Maintainers[^\r\n]*Hotfix release guard[^\r\n]*version input[^\r\n]*dry-run state[^\r\n]*package metadata[^\r\n]*publish workflow checks[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Runtime Support Matrix\]\(\.\.\/FEATURES\.md#36-multi-runtime-support\) \| [^\r\n]*Users[^\r\n]*evaluators[^\r\n]*Supported runtime list[^\r\n]*command formats[^\r\n]*agent formats[^\r\n]*hook events[^\r\n]*config shapes[^\r\n]*installer requirements[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Runtime Abstraction\]\(\.\.\/ARCHITECTURE\.md#runtime-abstraction\) \| [^\r\n]*Contributors[^\r\n]*integrators[^\r\n]*Runtime command format[^\r\n]*agent system[^\r\n]*config location[^\r\n]*tool mapping[^\r\n]*hook event names[^\r\n]*frontmatter differences[^\r\n]*model inheritance[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Compatibility Runtime Guide\]\(\.\.\/USER-GUIDE\.md#using-compatibility-runtimes-opencode-gemini-cli-kilo\) \| [^\r\n]*Users[^\r\n]*evaluators[^\r\n]*compatibility runtimes[^\r\n]*model selection[^\r\n]*resolve_model_ids[^\r\n]*omit[^\r\n]*runtime-specific model overrides[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Non-Claude Runtime Configuration\]\(\.\.\/CONFIGURATION\.md#non-claude-runtimes-codex-opencode-gemini-cli-kilo\) \| [^\r\n]*Users[^\r\n]*maintainers[^\r\n]*Configuration behavior[^\r\n]*Codex[^\r\n]*OpenCode[^\r\n]*Gemini CLI[^\r\n]*Kilo[^\r\n]*inherit model profiles[^\r\n]*runtime-selected model IDs[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Manual Update Runtime Flags\]\(\.\.\/manual-update\.md#runtime-flags\) \| [^\r\n]*Users[^\r\n]*maintainers[^\r\n]*Runtime flag table[^\r\n]*Codex[^\r\n]*Claude Code[^\r\n]*Gemini CLI[^\r\n]*OpenCode[^\r\n]*Kilo[^\r\n]*Copilot[^\r\n]*Cursor[^\r\n]*Windsurf[^\r\n]*Augment[^\r\n]*Antigravity[^\r\n]*Trae[^\r\n]*Qwen Code[^\r\n]*CodeBuddy[^\r\n]*Cline[^\r\n]*all runtimes[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Test Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/test\.yml\) \| [^\r\n]*GitHub Actions CI matrix[^\r\n]*Node\.js versions[^\r\n]*install dependencies[^\r\n]*tests with coverage[^\r\n]*branch validation[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Hotfix Release Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/hotfix\.yml\) \| [^\r\n]*manual hotfix dispatch[^\r\n]*dry-run mode[^\r\n]*version input[^\r\n]*npm-publish environment[^\r\n]*NPM_TOKEN[^\r\n]*publish verification[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Issue Chooser\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/config\.yml\) \| [^\r\n]*Questions[^\r\n]*safe trial troubleshooting[^\r\n]*code of conduct[^\r\n]*private security reporting[^\r\n]*issue routing[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Bug Report Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/bug_report\.yml\) \| [^\r\n]*Package version[^\r\n]*runtime[^\r\n]*Node\.js version[^\r\n]*shell[^\r\n]*reproduction steps[^\r\n]*error text[^\r\n]*safe trial evidence[^\r\n]*privacy check[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Documentation Issue Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/docs_issue\.yml\) \| [^\r\n]*Incorrect[^\r\n]*missing[^\r\n]*unclear docs[^\r\n]*affected path[^\r\n]*current problem[^\r\n]*expected correction[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Feature Request Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/feature_request\.yml\) \| [^\r\n]*New feature proposals[^\r\n]*problem statement[^\r\n]*scope[^\r\n]*user stories[^\r\n]*acceptance criteria[^\r\n]*runtime compatibility[^\r\n]*maintenance cost[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Enhancement Proposal Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/enhancement\.yml\) \| [^\r\n]*Existing-feature improvements[^\r\n]*current behavior[^\r\n]*desired behavior[^\r\n]*affected files[^\r\n]*compatibility impact[^\r\n]*alternatives[^\r\n]*review context[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Chore Template\]\(\.\.\/\.\.\/\.github\/ISSUE_TEMPLATE\/chore\.yml\) \| [^\r\n]*Maintenance work[^\r\n]*refactoring[^\r\n]*test quality[^\r\n]*CI\/CD[^\r\n]*dependencies[^\r\n]*tech debt[^\r\n]*completion criteria[^\r\n]*related issues[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Pull Request Template Chooser\]\(\.\.\/\.\.\/\.github\/pull_request_template\.md\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*typed template chooser[^\r\n]*codex\/bootstrap[^\r\n]*Codex-first contract[^\r\n]*approved issue requirement[^\r\n]*no-draft rule[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Fix PR Template\]\(\.\.\/\.\.\/\.github\/PULL_REQUEST_TEMPLATE\/fix\.md\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*confirmed-bug issue link[^\r\n]*broken behavior[^\r\n]*root cause[^\r\n]*regression test[^\r\n]*platform[^\r\n]*runtime checks[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Enhancement PR Template\]\(\.\.\/\.\.\/\.github\/PULL_REQUEST_TEMPLATE\/enhancement\.md\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*approved-enhancement issue[^\r\n]*before\/after[^\r\n]*implementation notes[^\r\n]*scope confirmation[^\r\n]*tests[^\r\n]*docs[^\r\n]*changelog[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Feature PR Template\]\(\.\.\/\.\.\/\.github\/PULL_REQUEST_TEMPLATE\/feature\.md\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*approved-feature issue[^\r\n]*feature summary[^\r\n]*changed files[^\r\n]*acceptance criteria[^\r\n]*platform\/runtime tests[^\r\n]*scope confirmation[^\r\n]*screenshots or recordings[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Release Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/release\.yml\) \| [^\r\n]*Maintainers[^\r\n]*create[^\r\n]*rc[^\r\n]*finalize[^\r\n]*version input[^\r\n]*dry-run mode[^\r\n]*npm-publish environment[^\r\n]*NPM_TOKEN[^\r\n]*npm test coverage[^\r\n]*dist-tag publication[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[PR Gate Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/pr-gate\.yml\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*Pull request size labels[^\r\n]*size\/S[^\r\n]*size\/M[^\r\n]*size\/L[^\r\n]*size\/XL[^\r\n]*large PR warning[^\r\n]*split guidance[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Require Issue Link Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/require-issue-link\.yml\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*Closes[^\r\n]*Fixes[^\r\n]*Resolves[^\r\n]*#NNN[^\r\n]*issue chooser link[^\r\n]*issue-first review policy[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Branch Naming Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/branch-naming\.yml\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*feat\/[^\r\n]*fix\/[^\r\n]*hotfix\/[^\r\n]*docs\/[^\r\n]*chore\/[^\r\n]*dependabot\/[^\r\n]*renovate\/[^\r\n]*GSD branch compatibility[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Branch Cleanup Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/branch-cleanup\.yml\) \| [^\r\n]*Maintainers[^\r\n]*merged PR branches[^\r\n]*protected branches[^\r\n]*codex\/bootstrap[^\r\n]*weekly orphan branch sweeps[^\r\n]*workflow_dispatch[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Close Draft PRs Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/close-draft-prs\.yml\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*draft PRs[^\r\n]*test expectations[^\r\n]*correct template[^\r\n]*linked approved issue[^\r\n]*ready-for-review policy[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Auto-label Issues Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/auto-label-issues\.yml\) \| [^\r\n]*Maintainers[^\r\n]*needs-triage[^\r\n]*new issues[^\r\n]*GitHub Script retries[^\r\n]*triage queue[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Auto-branch Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/auto-branch\.yml\) \| [^\r\n]*Maintainers[^\r\n]*contributors[^\r\n]*labeled issues[^\r\n]*fix[^\r\n]*feat[^\r\n]*chore[^\r\n]*docs branches[^\r\n]*codex\/bootstrap[^\r\n]*checkout commands[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Security Scan Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/security-scan\.yml\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*prompt injection[^\r\n]*base64 obfuscation[^\r\n]*secret scans[^\r\n]*\.planning runtime-data check[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Stale Cleanup Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/stale\.yml\) \| [^\r\n]*Maintainers[^\r\n]*inactive issues[^\r\n]*inactive PRs[^\r\n]*28 days[^\r\n]*14 days[^\r\n]*critical[^\r\n]*pinned[^\r\n]*confirmed exemptions[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Dependabot Config\]\(\.\.\/\.\.\/\.github\/dependabot\.yml\) \| [^\r\n]*Maintainers[^\r\n]*Weekly npm[^\r\n]*GitHub Actions dependency updates[^\r\n]*open pull request limits[^\r\n]*dependencies labels[^\r\n]*chore commit prefixes[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Repository Labels Contract\]\(\.\.\/\.\.\/\.github\/labels\.json\) \| [^\r\n]*Maintainers[^\r\n]*contributors[^\r\n]*Public label names[^\r\n]*descriptions[^\r\n]*colors[^\r\n]*needs-triage[^\r\n]*approved-feature[^\r\n]*approved-enhancement[^\r\n]*pending release[^\r\n]*type: chore[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[CODEOWNERS\]\(\.\.\/\.\.\/\.github\/CODEOWNERS\) \| [^\r\n]*Maintainers[^\r\n]*contributors[^\r\n]*public fork maintainer review[^\r\n]*all changes[^\r\n]* \|/,
-        relativePath,
-      );
-      assert.match(
-        readme,
-        /\| \[Funding Metadata\]\(\.\.\/\.\.\/\.github\/FUNDING\.yml\) \| [^\r\n]*Users[^\r\n]*sponsors[^\r\n]*GitHub Sponsors metadata[^\r\n]*Oisinwang[^\r\n]* \|/,
-        relativePath,
-      );
+
+      for (const pattern of requiredInfrastructureRows) {
+        assert.match(readme, pattern, relativePath);
+      }
+
+      for (const pattern of localizedInfrastructureTextByPath.get(relativePath)) {
+        assert.match(readme, pattern, relativePath);
+      }
+
+      for (const pattern of staleInfrastructureEnglishText) {
+        assert.doesNotMatch(readme, pattern, relativePath);
+      }
+
       if (relativePath === 'docs/pt-BR/README.md') {
         assert.match(readme, /\[Prompt Recipes\]\(\.\.\/PROMPTS\.md\)/, relativePath);
         assert.match(readme, /\[Comparison\]\(\.\.\/COMPARISON\.md\)/, relativePath);

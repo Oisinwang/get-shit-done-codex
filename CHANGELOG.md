@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized docs index infrastructure row localization** - Localizes the remaining security, package, installer, runtime, workflow, issue template, pull request template, automation, label, CODEOWNERS, Funding Metadata, release, maintainer, troubleshooting, and promotion table rows in `docs/pt-BR/README.md`, `docs/zh-CN/README.md`, `docs/ja-JP/README.md`, and `docs/ko-KR/README.md` while preserving link targets for public maintenance discovery.
 - **Localized docs index public quick-link localization** - Localizes the public quick-link headings, action labels, and key discovery rows in `docs/pt-BR/README.md`, `docs/zh-CN/README.md`, `docs/ja-JP/README.md`, and `docs/ko-KR/README.md` so non-English readers do not hit English `Examples quick links` copy on the localized docs index surface.
 - **Localized README real-world examples links** - Adds localized root README links to `docs/EXAMPLES.md` so Portuguese, Simplified Chinese, Japanese, and Korean visitors can find copy-pastable playbooks and real-world scenarios from the public launch surface.
 - **Public real-world examples** - Adds `docs/EXAMPLES.md` scenarios that show each starting problem, GSD flow, and artifact or verification outcome for bugfix, existing-repository evaluation, and context-reset recovery workflows.
