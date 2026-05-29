@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index demo table links/);
+    assert.match(roadmap, /localized docs index safe trial table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1282,6 +1282,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index troubleshooting table links/);
     assert.doesNotMatch(roadmap, /localized docs index FAQ table links/);
     assert.doesNotMatch(roadmap, /localized docs index examples table links/);
+    assert.doesNotMatch(roadmap, /localized docs index demo table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1736,6 +1737,7 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Localized docs index troubleshooting table links/);
     assert.match(unreleasedSection, /Localized docs index FAQ table links/);
     assert.match(unreleasedSection, /Localized docs index examples table links/);
+    assert.match(unreleasedSection, /Localized docs index demo table links/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2187,6 +2189,11 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[Examples\]\(\.\.\/EXAMPLES\.md\) \| [^\r\n]*Copy-pastable workflows[^\r\n]*new projects[^\r\n]*existing repos[^\r\n]*quick fixes[^\r\n]*resume[^\r\n]*spikes[^\r\n]*sketches[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Demo\]\(\.\.\/DEMO\.md\) \| [^\r\n]*60-second workflow[^\r\n]*first-run output[^\r\n]*demo media checklist[^\r\n]*generated artifacts[^\r\n]*git status evidence[^\r\n]* \|/,
         relativePath,
       );
       assert.match(

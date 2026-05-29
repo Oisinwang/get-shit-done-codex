@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized docs index demo table links** - Adds `docs/DEMO.md` table links to localized docs indexes so non-English readers can find the 60-second workflow, first-run output, demo media checklist, generated artifacts, and git status evidence from localized entry points.
 - **Localized docs index examples table links** - Adds `docs/EXAMPLES.md` table links to localized docs indexes so non-English readers can find copy-pastable workflows for new projects, existing repos, quick fixes, resume, spikes, and sketches from localized entry points.
 - **Localized docs index FAQ table links** - Adds `docs/FAQ.md` table links to localized docs indexes so non-English readers can find scope, created files, runtime support, and when-not-to-use guidance from localized entry points.
 - **Localized docs index troubleshooting table links** - Adds `docs/TROUBLESHOOTING.md` table links to localized docs indexes so non-English readers can find Codex config, install, PATH, Windows PowerShell, and stale npm metadata recovery paths from localized entry points.
