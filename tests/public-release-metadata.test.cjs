@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index evaluation links/);
+    assert.match(roadmap, /localized docs index release checklist table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1275,6 +1275,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index prompt recipes links/);
     assert.doesNotMatch(roadmap, /localized docs index comparison links/);
     assert.doesNotMatch(roadmap, /localized docs index roadmap links/);
+    assert.doesNotMatch(roadmap, /localized docs index evaluation links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1718,6 +1719,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/COMPARISON\.md/);
     assert.match(unreleasedSection, /Localized docs index roadmap links/);
     assert.match(unreleasedSection, /docs\/ROADMAP\.md/);
+    assert.match(unreleasedSection, /Localized docs index evaluation links/);
+    assert.match(unreleasedSection, /docs\/EVALUATE\.md/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2216,6 +2219,17 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /## Roadmap quick links\r?\n\r?\n- \*\*See direction:\*\* \[Roadmap\]\(\.\.\/ROADMAP\.md\)/,
+        relativePath,
+      );
+      assert.match(readme, /- \*\*Try safely:\*\* \[Evaluate\]\(\.\.\/EVALUATE\.md\)/, relativePath);
+      assert.match(
+        readme,
+        /\| \[Evaluate\]\(\.\.\/EVALUATE\.md\) \| [^\r\n]*10-minute[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /## Evaluation quick links\r?\n\r?\n- \*\*Try safely:\*\* \[Evaluate\]\(\.\.\/EVALUATE\.md\)/,
         relativePath,
       );
       assert.match(readme, /\]\(\.\.\/SAFE-TRIAL-TROUBLESHOOTING\.md\)/, relativePath);

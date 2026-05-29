@@ -15,6 +15,10 @@ npx @oisinwang/get-shit-done-codex@latest
 - [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md)
 - [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md)
 
+## Evaluation quick links
+
+- **Try safely:** [Evaluate](../EVALUATE.md)
+
 ## Support quick links
 
 - **Get help:** [Support](../../SUPPORT.md)
@@ -70,6 +74,7 @@ Claude 时代的旧名称只作为迁移兼容层保留。fork 的边界、命�
 | 文档 | 读者 | 内容 |
 |------|------|------|
 | [Roadmap](../ROADMAP.md) | Evaluators, contributors | Public direction, near-term priorities, manual maintainer actions, and good first issue candidates |
+| [Evaluate](../EVALUATE.md) | New users, evaluators | Safe 10-minute trial checklist with pass and fail signals |
 | [Codex fork 说明](../CODEX-FORK.md) | 所有用户 | Codex-first 范围、命名边界、迁移说明和发布状态 |
 | [对比指南](COMPARISON.md) | 评估者 | 何时使用 GSD Codex，而不是原始 Codex chat、prompt pack、task manager 或 CI-only workflow |
 | [提示词配方](PROMPTS.md) | 新用户 | 可直接粘贴到 Codex 的提示词，用于启动、恢复、审计和小修复 |

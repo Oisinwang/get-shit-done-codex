@@ -15,6 +15,10 @@ npx @oisinwang/get-shit-done-codex@latest
 - [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md)
 - [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md)
 
+## Evaluation quick links
+
+- **Try safely:** [Evaluate](../EVALUATE.md)
+
 ## Support quick links
 
 - **Get help:** [Support](../../SUPPORT.md)
@@ -70,6 +74,7 @@ Nomes legados da era Claude continuam apenas como compatibilidade de migracao. A
 | Documento | Publico | Descricao |
 |----------|---------|-----------|
 | [Roadmap](../ROADMAP.md) | Evaluators, contributors | Public direction, near-term priorities, manual maintainer actions, and good first issue candidates |
+| [Evaluate](../EVALUATE.md) | New users, evaluators | Safe 10-minute trial checklist with pass and fail signals |
 | [Notas do fork Codex](../CODEX-FORK.md) | Todos os usuarios | Escopo Codex-first, limites de nomenclatura e notas de migracao |
 | [Prompt Recipes](../PROMPTS.md) | Todos os usuarios | Prompts Codex copy-pastable para iniciar, retomar, auditar e corrigir com GSD |
 | [Comparison](../COMPARISON.md) | Avaliadores | Guia de decisao para comparar GSD Codex com Codex cru, prompt packs, task managers e CI-only workflows |

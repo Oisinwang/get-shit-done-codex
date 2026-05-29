@@ -15,6 +15,10 @@ npx @oisinwang/get-shit-done-codex@latest
 - [Safe Trial Discussion Starter](../SAFE-TRIAL-DISCUSSION.md)
 - [Safe Trial Transcript](../SAFE-TRIAL-TRANSCRIPT.md)
 
+## Evaluation quick links
+
+- **Try safely:** [Evaluate](../EVALUATE.md)
+
 ## Support quick links
 
 - **Get help:** [Support](../../SUPPORT.md)
@@ -70,6 +74,7 @@ Claude 시대의 이름은 마이그레이션 호환을 위해서만 남아 있�
 | 문서 | 대상 | 내용 |
 |------|------|------|
 | [Roadmap](../ROADMAP.md) | Evaluators, contributors | Public direction, near-term priorities, manual maintainer actions, and good first issue candidates |
+| [Evaluate](../EVALUATE.md) | New users, evaluators | Safe 10-minute trial checklist with pass and fail signals |
 | [Codex fork notes](../CODEX-FORK.md) | 모든 사용자 | Codex-first 범위, 이름 경계, 마이그레이션 메모 |
 | [User Guide](USER-GUIDE.md) | 모든 사용자 | 워크플로, 문제 해결, 복구 |
 | [Feature Reference](FEATURES.md) | 모든 사용자 | 기능, 요구사항, 기대 동작 |
