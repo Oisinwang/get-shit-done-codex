@@ -25,8 +25,7 @@ The current focus is making GSD Codex easy to evaluate, install, trust, and shar
 1. Finish npm release alignment once the `NPM_TOKEN` secret exists in the `npm-publish` environment. See the [Release Checklist](RELEASE.md).
 2. Upload `assets/social-preview.png` as the GitHub repository social preview.
 3. Add short demo media for the 60-second workflow after the npm metadata is refreshed.
-4. Expand public examples with real-world scenarios from user questions.
-5. Keep localized README files aligned with the English public launch surface.
+4. Keep localized README files aligned with the English public launch surface.
 
 ## Contributor-sized work
 

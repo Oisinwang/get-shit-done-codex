@@ -208,7 +208,7 @@ After GSD Codex:
 | Compare a technical approach first | `$gsd-spike "validate the risky integration"` | Time-boxed experiment findings |
 | Explore UI direction first | `$gsd-sketch "compare dashboard layouts"` | Throwaway mockups and selected design notes |
 
-More copy-pastable playbooks live in [Examples](docs/EXAMPLES.md).
+More copy-pastable playbooks and real-world scenarios live in [Examples](docs/EXAMPLES.md).
 
 ---
 

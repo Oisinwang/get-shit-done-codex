@@ -2,6 +2,34 @@
 
 Use these playbooks when you know the situation but do not want to learn every command first. Each path starts with the smallest command that gives Codex durable project state.
 
+## Real-World Scenarios
+
+Use these when you recognize the problem but are not sure which workflow to start with.
+
+### Ship A Small Bugfix Without Losing Review Evidence
+
+**Starting problem:** A user reports a focused bug, you can reproduce it, and you want the fix to stay small instead of turning into a broad refactor.
+
+**GSD flow:** Start with `$gsd-fast "fix the failing install check and verify with the focused test"` when the scope is narrow. Use `$gsd-quick --validate` instead when you need a short plan before editing.
+
+**Artifact or verification:** Expect a regression test, focused verification command, and commit-sized review trail that can be pasted into the issue or PR.
+
+### Evaluate GSD On An Existing Repository
+
+**Starting problem:** You have a real repo with source code, tests, and a README, but you do not yet know whether GSD's planning state belongs in that repo.
+
+**GSD flow:** Create a temporary evaluation branch, install locally, run `$gsd-map-codebase`, then run `$gsd-new-project --auto` and `$gsd-discuss-phase 1`.
+
+**Artifact or verification:** Expect a codebase map, project state, and a first phase discussion before deciding whether `.codex/`, `AGENTS.md`, and `.planning/` should be committed.
+
+### Recover A Long-Running Session After Context Reset
+
+**Starting problem:** A long Codex session was paused, compacted, or interrupted, and the next maintainer needs to know what happened without reading the whole chat.
+
+**GSD flow:** Run `$gsd-resume-work` first, then `$gsd-progress --forensic`; if the session is still active, create a fresh handoff with `$gsd-pause-work`.
+
+**Artifact or verification:** Expect a handoff file, progress audit, and resumed next action that identifies completed work, blockers, modified files, and the next safe command.
+
 ## New Project From A Rough Idea
 
 Use this when you have a product idea, feature request, or homework-style build goal and want GSD to create the project plan.
