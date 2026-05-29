@@ -42,7 +42,7 @@ npx @oisinwang/get-shit-done-codex@latest
 
 *Terminal preview: verified `npx` install plus `$gsd-help` discovery for Codex users.*
 
-*Finished demo link: place a published `60-second GSD Codex demo` link near this terminal preview once the recording is available.*
+*Watch the repo-hosted [60-second GSD Codex demo](https://github.com/Oisinwang/get-shit-done-codex/blob/codex/bootstrap/docs/DEMO-60-SECOND.md) to see the install, first planning commands, generated artifacts, and clean `git status --short` evidence.*
 
 <br>
 
@@ -60,7 +60,7 @@ npx @oisinwang/get-shit-done-codex@latest
 
 **Security and release hygiene:** scoped npm package, repository metadata, CI, release workflows, issue templates, and [community standards](CODE_OF_CONDUCT.md) all point at this fork. Legacy Claude-era names remain only as compatibility shims.
 
-[Why This Fork Exists](#why-this-fork-exists) | [Demo](docs/DEMO.md) | [Demo Media Checklist](docs/DEMO.md#demo-media-checklist) | [Evaluate](docs/EVALUATE.md) | [Examples](docs/EXAMPLES.md) | [Prompt Recipes](docs/PROMPTS.md) | [FAQ](docs/FAQ.md) | [Comparison](docs/COMPARISON.md) | [Roadmap](docs/ROADMAP.md) | [Release Checklist](docs/RELEASE.md) | [Troubleshooting](docs/TROUBLESHOOTING.md) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md) | [Support](SUPPORT.md) | [Security](SECURITY.md) | [Contributing](CONTRIBUTING.md) | [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) | [Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
+[Why This Fork Exists](#why-this-fork-exists) | [Demo](docs/DEMO.md) | [Demo Transcript](docs/DEMO-60-SECOND.md) | [Demo Media Checklist](docs/DEMO.md#demo-media-checklist) | [Evaluate](docs/EVALUATE.md) | [Examples](docs/EXAMPLES.md) | [Prompt Recipes](docs/PROMPTS.md) | [FAQ](docs/FAQ.md) | [Comparison](docs/COMPARISON.md) | [Roadmap](docs/ROADMAP.md) | [Release Checklist](docs/RELEASE.md) | [Troubleshooting](docs/TROUBLESHOOTING.md) | [How It Works](#how-it-works) | [Commands](#commands) | [Why It Works](#why-it-works) | [User Guide](docs/USER-GUIDE.md) | [Support](SUPPORT.md) | [Security](SECURITY.md) | [Contributing](CONTRIBUTING.md) | [Good First Issues](https://github.com/Oisinwang/get-shit-done-codex/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) | [Discussions](https://github.com/Oisinwang/get-shit-done-codex/discussions)
 
 </div>
 

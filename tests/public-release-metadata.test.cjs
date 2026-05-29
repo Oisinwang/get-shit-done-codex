@@ -154,15 +154,29 @@ describe('public release metadata', () => {
     const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
     const docsReadme = fs.readFileSync(path.join(ROOT, 'docs', 'README.md'), 'utf8');
     const demoPath = path.join(ROOT, 'docs', 'DEMO.md');
+    const demoTranscriptPath = path.join(ROOT, 'docs', 'DEMO-60-SECOND.md');
+    const publishedDemoUrl =
+      'https://github.com/Oisinwang/get-shit-done-codex/blob/codex/bootstrap/docs/DEMO-60-SECOND.md';
+    const publishedDemoLink = `[60-second GSD Codex demo](${publishedDemoUrl})`;
 
     assert.equal(fs.existsSync(demoPath), true, 'docs/DEMO.md should exist');
+    assert.equal(
+      fs.existsSync(demoTranscriptPath),
+      true,
+      'docs/DEMO-60-SECOND.md should exist',
+    );
 
     const demo = fs.readFileSync(demoPath, 'utf8');
+    const demoTranscript = fs.readFileSync(demoTranscriptPath, 'utf8');
 
     assert.match(readme, /\[Demo\]\(docs\/DEMO\.md\)/);
+    assert.match(readme, /\[Demo Transcript\]\(docs\/DEMO-60-SECOND\.md\)/);
     assert.match(readme, /\[Demo Media Checklist\]\(docs\/DEMO\.md#demo-media-checklist\)/);
     assert.match(docsReadme, /\[Demo\]\(DEMO\.md\)/);
+    assert.match(docsReadme, /\[Demo Transcript\]\(DEMO-60-SECOND\.md\)/);
     assert.match(docsReadme, /\[Demo Media Checklist\]\(DEMO\.md#demo-media-checklist\)/);
+    assert.match(readme, new RegExp(publishedDemoLink.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+    assert.match(demo, new RegExp(publishedDemoLink.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
     assert.match(demo, /# Demo/);
     assert.match(demo, /60-second workflow/);
     assert.match(demo, /npx @oisinwang\/get-shit-done-codex@latest/);
@@ -191,15 +205,43 @@ describe('public release metadata', () => {
     assert.match(demo, /Do not require a specific recording tool/);
     assert.match(demo, /GIF, short MP4, or annotated screenshot sequence/);
     assert.match(demo, /`assets\/social-preview\.png` is not a substitute for workflow demo media/);
-    assert.match(readme, /Finished demo link: place a published `60-second GSD Codex demo` link near this terminal preview/);
-    assert.match(demo, /When the recording is ready, place the finished demo link under this section and mirror it near the README terminal preview/);
-    assert.match(demo, /Use link text such as `60-second GSD Codex demo`/);
+    assert.doesNotMatch(
+      readme,
+      /Finished demo link: place a published `60-second GSD Codex demo` link near this terminal preview/,
+    );
+    assert.doesNotMatch(
+      demo,
+      /When the recording is ready, place the finished demo link under this section and mirror it near the README terminal preview/,
+    );
     assert.match(demo, /Caption it with the command flow, generated artifacts, and `git status --short` evidence/);
     assert.match(demo, /Link the finished demo from `README\.md` near the terminal preview/);
     assert.match(demo, /Link it from this page under `## 60-second workflow`/);
-    assert.match(demo, /Run `npm run check:showcase` after adding the published demo link/);
-    assert.match(demo, /fails while placeholder text remains/);
+    assert.match(demo, /Run `npm run check:showcase` before closing showcase work/);
+    assert.doesNotMatch(demo, /placeholder text remains/);
+    assert.match(demoTranscript, /# 60-Second GSD Codex Demo/);
+    assert.match(demoTranscript, /npx @oisinwang\/get-shit-done-codex@latest --codex --local/);
+    assert.match(demoTranscript, /\$gsd-new-project --auto/);
+    assert.match(demoTranscript, /\$gsd-next/);
+    assert.match(demoTranscript, /PROJECT\.md/);
+    assert.match(demoTranscript, /ROADMAP\.md/);
+    assert.match(demoTranscript, /STATE\.md/);
+    assert.match(demoTranscript, /\.planning\/phases\//);
+    assert.match(demoTranscript, /git status --short/);
+    assert.match(demoTranscript, /No local usernames, hostnames, private repository names, tokens, emails, or absolute paths/);
     assert.doesNotMatch(demo, /[^\x00-\x7F]/, 'docs/DEMO.md should stay ASCII-clean');
+    assert.doesNotMatch(
+      demoTranscript,
+      /[^\x00-\x7F]/,
+      'docs/DEMO-60-SECOND.md should stay ASCII-clean',
+    );
+
+    const showcaseOutput = execFileSync(process.execPath, [
+      path.join(ROOT, 'scripts', 'check-showcase-readiness.cjs'),
+    ], {
+      cwd: ROOT,
+      encoding: 'utf8',
+    });
+    assert.match(showcaseOutput, /Showcase readiness check passed/);
   });
 
   test('public evaluation checklist gives visitors a safe trial path', () => {
@@ -1815,6 +1857,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /scripts\/check-showcase-readiness\.cjs/);
     assert.match(unreleasedSection, /check:showcase/);
     assert.match(unreleasedSection, /docs\/DEMO\.md/);
+    assert.match(unreleasedSection, /Repo-hosted 60-second demo/);
+    assert.match(unreleasedSection, /docs\/DEMO-60-SECOND\.md/);
+    assert.match(unreleasedSection, /60-second GSD Codex demo/);
     assert.match(unreleasedSection, /Public real-world examples/);
     assert.match(unreleasedSection, /docs\/EXAMPLES\.md/);
     assert.match(unreleasedSection, /starting problem/);

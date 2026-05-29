@@ -22,6 +22,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 |----------|----------|-------------|
 | [Codex Fork Notes](CODEX-FORK.md) | All users | Codex-first fork scope, naming boundaries, migration notes, and release alignment |
 | [Demo](DEMO.md) | New users, evaluators | A short transcript showing the first Codex workflow and the durable artifacts it creates |
+| [Demo Transcript](DEMO-60-SECOND.md) | New users, evaluators | Public 60-second transcript with install commands, generated artifacts, and git status evidence |
 | [Demo Media Checklist](DEMO.md#demo-media-checklist) | Maintainers | What to record, redact, and link when publishing short workflow demo media |
 | [Safe Trial Transcript](SAFE-TRIAL-TRANSCRIPT.md) | New users, evaluators | No-install transcript of the sandbox and existing-repository safe trial commands |
 | [Safe Trial Outcome Template](SAFE-TRIAL-OUTCOME.md) | New users, evaluators | Copy-pastable keep/discard and feedback template after a local trial |
@@ -51,6 +52,7 @@ Legacy Claude-era names remain only as compatibility shims for migration. The fo
 
 - **Start here:** [root README](../README.md) -> install -> `$gsd-help`
 - **See the first run:** [Demo](DEMO.md)
+- **Inspect the public transcript:** [Demo Transcript](DEMO-60-SECOND.md)
 - **Record a short demo:** [Demo Media Checklist](DEMO.md#demo-media-checklist)
 - **Preview a safe trial:** [Safe Trial Transcript](SAFE-TRIAL-TRANSCRIPT.md)
 - **Capture trial outcome:** [Safe Trial Outcome Template](SAFE-TRIAL-OUTCOME.md)
