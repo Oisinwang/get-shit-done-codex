@@ -94,6 +94,11 @@ Nomes legados da era Claude continuam apenas como compatibilidade de migracao. A
 | [MIT License Terms](../../LICENSE) | Users, contributors | Permission notice, copyright notice, no warranty statement, and liability limits |
 | [Package Metadata](../../package.json) | Users, evaluators, maintainers | Published npm package name, description, keywords, CLI bin, shipped files, and public publish settings |
 | [SDK Package Metadata](../../sdk/package.json) | SDK users, integrators | SDK npm package name, CLI bin, shipped dist and prompts files, prepublish build, and public publish settings |
+| [Installer CLI](../../bin/install.js) | Users, evaluators, maintainers | Codex-first installer entrypoint, local and global targets, runtime flags, SDK install controls, uninstall mode, and WSL path guard |
+| [Hook Build Script](../../scripts/build-hooks.js) | Contributors, maintainers | Builds installer hook payloads for prepublish builds, local source installs, and test runs |
+| [Safe Trial Demo Script](../../scripts/safe-trial-demo.cjs) | New users, evaluators | No-install command preview for sandbox trial and existing-repository trial flows |
+| [Test Runner Script](../../scripts/run-tests.cjs) | Contributors, maintainers | Node test orchestration for public release metadata, link checks, install regressions, and coverage |
+| [Hotfix Validation Script](../../scripts/validate-hotfix.cjs) | Maintainers | Hotfix release guard for version input, dry-run state, package metadata, and publish workflow checks |
 | [Test Workflow](../../.github/workflows/test.yml) | Contributors, maintainers | GitHub Actions CI matrix, Node.js versions, install dependencies, tests with coverage, and branch validation |
 | [Hotfix Release Workflow](../../.github/workflows/hotfix.yml) | Maintainers | manual hotfix dispatch, dry-run mode, version input, npm-publish environment, NPM_TOKEN, and publish verification |
 | [Issue Chooser](../../.github/ISSUE_TEMPLATE/config.yml) | Users, contributors | Questions, safe trial troubleshooting, code of conduct, private security reporting, and issue routing |

@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index installer script table links/);
+    assert.match(roadmap, /localized docs index runtime compatibility table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1294,6 +1294,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index issue template table links/);
     assert.doesNotMatch(roadmap, /localized docs index pull request template table links/);
     assert.doesNotMatch(roadmap, /localized docs index repository automation table links/);
+    assert.doesNotMatch(roadmap, /localized docs index installer script table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1782,6 +1783,12 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\.github\/workflows\/pr-gate\.yml/);
     assert.match(unreleasedSection, /\.github\/dependabot\.yml/);
     assert.match(unreleasedSection, /\.github\/labels\.json/);
+    assert.match(unreleasedSection, /Localized docs index installer script table links/);
+    assert.match(unreleasedSection, /bin\/install\.js/);
+    assert.match(unreleasedSection, /scripts\/build-hooks\.js/);
+    assert.match(unreleasedSection, /scripts\/safe-trial-demo\.cjs/);
+    assert.match(unreleasedSection, /scripts\/run-tests\.cjs/);
+    assert.match(unreleasedSection, /scripts\/validate-hotfix\.cjs/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2318,6 +2325,31 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[SDK Package Metadata\]\(\.\.\/\.\.\/sdk\/package\.json\) \| [^\r\n]*SDK npm package name[^\r\n]*CLI bin[^\r\n]*shipped dist and prompts files[^\r\n]*prepublish build[^\r\n]*public publish settings[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Installer CLI\]\(\.\.\/\.\.\/bin\/install\.js\) \| [^\r\n]*Users[^\r\n]*evaluators[^\r\n]*maintainers[^\r\n]*Codex-first installer entrypoint[^\r\n]*local and global targets[^\r\n]*runtime flags[^\r\n]*SDK install controls[^\r\n]*uninstall mode[^\r\n]*WSL path guard[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Hook Build Script\]\(\.\.\/\.\.\/scripts\/build-hooks\.js\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*installer hook payloads[^\r\n]*prepublish builds[^\r\n]*local source installs[^\r\n]*test runs[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Safe Trial Demo Script\]\(\.\.\/\.\.\/scripts\/safe-trial-demo\.cjs\) \| [^\r\n]*New users[^\r\n]*evaluators[^\r\n]*No-install command preview[^\r\n]*sandbox trial[^\r\n]*existing-repository trial flows[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Test Runner Script\]\(\.\.\/\.\.\/scripts\/run-tests\.cjs\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*Node test orchestration[^\r\n]*public release metadata[^\r\n]*link checks[^\r\n]*install regressions[^\r\n]*coverage[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Hotfix Validation Script\]\(\.\.\/\.\.\/scripts\/validate-hotfix\.cjs\) \| [^\r\n]*Maintainers[^\r\n]*Hotfix release guard[^\r\n]*version input[^\r\n]*dry-run state[^\r\n]*package metadata[^\r\n]*publish workflow checks[^\r\n]* \|/,
         relativePath,
       );
       assert.match(
