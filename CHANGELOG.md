@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized docs index maintainer checklist table links** - Adds `docs/MAINTAINER-CHECKLIST.md` table links to localized docs indexes so non-English maintainers can find resolved good-first issue closure guidance with verification, CI, label cleanup, and public notes from localized entry points.
 - **Localized docs index release checklist table links** - Adds `docs/RELEASE.md` table links to localized docs indexes so non-English maintainers can find npm publish setup, hotfix workflow steps, and verification for `npx @latest` recovery from localized entry points.
 - **Localized docs index evaluation links** - Adds `docs/EVALUATE.md` links to localized docs indexes so non-English evaluators can find the safe 10-minute trial checklist, pass signals, and fail signals from localized entry points.
 - **Localized docs index roadmap links** - Adds `docs/ROADMAP.md` links to localized docs indexes so non-English evaluators and contributors can find public direction, contributor-sized work, manual maintainer actions, and good first issue candidates from localized entry points.
