@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index safe trial table links/);
+    assert.match(roadmap, /localized docs index support table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1283,6 +1283,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index FAQ table links/);
     assert.doesNotMatch(roadmap, /localized docs index examples table links/);
     assert.doesNotMatch(roadmap, /localized docs index demo table links/);
+    assert.doesNotMatch(roadmap, /localized docs index safe trial table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1738,6 +1739,7 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Localized docs index FAQ table links/);
     assert.match(unreleasedSection, /Localized docs index examples table links/);
     assert.match(unreleasedSection, /Localized docs index demo table links/);
+    assert.match(unreleasedSection, /Localized docs index safe trial table links/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2194,6 +2196,26 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[Demo\]\(\.\.\/DEMO\.md\) \| [^\r\n]*60-second workflow[^\r\n]*first-run output[^\r\n]*demo media checklist[^\r\n]*generated artifacts[^\r\n]*git status evidence[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Safe Trial Troubleshooting\]\(\.\.\/SAFE-TRIAL-TROUBLESHOOTING\.md\) \| [^\r\n]*First-run quick fixes[^\r\n]*missing commands[^\r\n]*changed files[^\r\n]*local\/global installs[^\r\n]*npm failures[^\r\n]*stale cache[^\r\n]*support routing[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Safe Trial Outcome Template\]\(\.\.\/SAFE-TRIAL-OUTCOME\.md\) \| [^\r\n]*Record commands[^\r\n]*changed paths[^\r\n]*pass\/fail signals[^\r\n]*keep\/discard decisions[^\r\n]*feedback evidence[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Safe Trial Discussion Starter\]\(\.\.\/SAFE-TRIAL-DISCUSSION\.md\) \| [^\r\n]*Copy-pastable GitHub Discussions post[^\r\n]*command evidence[^\r\n]*changed paths[^\r\n]*privacy checks[^\r\n]*workflow advice[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Safe Trial Transcript\]\(\.\.\/SAFE-TRIAL-TRANSCRIPT\.md\) \| [^\r\n]*No-install, no-edit transcript[^\r\n]*npm run demo:safe-trial[^\r\n]*previewing the first-run flow[^\r\n]* \|/,
         relativePath,
       );
       assert.match(
