@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index promotion table links/);
+    assert.match(roadmap, /localized docs index troubleshooting table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1278,6 +1278,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index evaluation links/);
     assert.doesNotMatch(roadmap, /localized docs index release checklist table links/);
     assert.doesNotMatch(roadmap, /localized docs index maintainer checklist table links/);
+    assert.doesNotMatch(roadmap, /localized docs index promotion table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1727,6 +1728,8 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/RELEASE\.md/);
     assert.match(unreleasedSection, /Localized docs index maintainer checklist table links/);
     assert.match(unreleasedSection, /docs\/MAINTAINER-CHECKLIST\.md/);
+    assert.match(unreleasedSection, /Localized docs index promotion table links/);
+    assert.match(unreleasedSection, /docs\/PROMOTION\.md/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2158,6 +2161,11 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[Maintainer Checklist\]\(\.\.\/MAINTAINER-CHECKLIST\.md\) \| [^\r\n]*resolved good-first issues[^\r\n]*verification[^\r\n]*CI[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Promotion Assets\]\(\.\.\/PROMOTION\.md\) \| [^\r\n]*Launch copy[^\r\n]*social preview setup[^\r\n]*public positioning snippets[^\r\n]* \|/,
         relativePath,
       );
       assert.match(

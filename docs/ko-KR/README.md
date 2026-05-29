@@ -77,6 +77,7 @@ Claude 시대의 이름은 마이그레이션 호환을 위해서만 남아 있�
 | [Evaluate](../EVALUATE.md) | New users, evaluators | Safe 10-minute trial checklist with pass and fail signals |
 | [Release Checklist](../RELEASE.md) | Maintainers | npm publish setup, hotfix workflow steps, and verification for `npx @latest` recovery |
 | [Maintainer Checklist](../MAINTAINER-CHECKLIST.md) | Maintainers | Close resolved good-first issues with verification, CI, labels, and public notes aligned |
+| [Promotion Assets](../PROMOTION.md) | Maintainers | Launch copy, social preview setup, and public positioning snippets |
 | [Codex fork notes](../CODEX-FORK.md) | 모든 사용자 | Codex-first 범위, 이름 경계, 마이그레이션 메모 |
 | [User Guide](USER-GUIDE.md) | 모든 사용자 | 워크플로, 문제 해결, 복구 |
 | [Feature Reference](FEATURES.md) | 모든 사용자 | 기능, 요구사항, 기대 동작 |

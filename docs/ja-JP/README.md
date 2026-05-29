@@ -77,6 +77,7 @@ Claude 時代の名前は移行互換のためだけに残しています。fork
 | [Evaluate](../EVALUATE.md) | New users, evaluators | Safe 10-minute trial checklist with pass and fail signals |
 | [Release Checklist](../RELEASE.md) | Maintainers | npm publish setup, hotfix workflow steps, and verification for `npx @latest` recovery |
 | [Maintainer Checklist](../MAINTAINER-CHECKLIST.md) | Maintainers | Close resolved good-first issues with verification, CI, labels, and public notes aligned |
+| [Promotion Assets](../PROMOTION.md) | Maintainers | Launch copy, social preview setup, and public positioning snippets |
 | [Codex fork notes](../CODEX-FORK.md) | すべてのユーザー | Codex-first の範囲、命名境界、移行メモ |
 | [比較ガイド](COMPARISON.md) | 新規ユーザー | 生の Codex、prompt pack、task manager、CI-only workflow との適合度比較 |
 | [プロンプトレシピ](PROMPTS.md) | 新規ユーザー | Codex に貼り付けられる開始、再開、監査、小修正用プロンプト |
