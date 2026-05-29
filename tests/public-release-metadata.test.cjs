@@ -197,6 +197,8 @@ describe('public release metadata', () => {
     assert.match(demo, /Caption it with the command flow, generated artifacts, and `git status --short` evidence/);
     assert.match(demo, /Link the finished demo from `README\.md` near the terminal preview/);
     assert.match(demo, /Link it from this page under `## 60-second workflow`/);
+    assert.match(demo, /Run `npm run check:showcase` after adding the published demo link/);
+    assert.match(demo, /fails while placeholder text remains/);
     assert.doesNotMatch(demo, /[^\x00-\x7F]/, 'docs/DEMO.md should stay ASCII-clean');
   });
 
@@ -1245,7 +1247,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /public showcase readiness metadata gate/);
+    assert.match(roadmap, /public showcase published demo link/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1296,6 +1298,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index repository automation table links/);
     assert.doesNotMatch(roadmap, /localized docs index installer script table links/);
     assert.doesNotMatch(roadmap, /localized docs index runtime compatibility table links/);
+    assert.doesNotMatch(roadmap, /public showcase readiness metadata gate/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1796,6 +1799,10 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /docs\/USER-GUIDE\.md#using-compatibility-runtimes-opencode-gemini-cli-kilo/);
     assert.match(unreleasedSection, /docs\/CONFIGURATION\.md#non-claude-runtimes-codex-opencode-gemini-cli-kilo/);
     assert.match(unreleasedSection, /docs\/manual-update\.md#runtime-flags/);
+    assert.match(unreleasedSection, /Public showcase readiness check/);
+    assert.match(unreleasedSection, /scripts\/check-showcase-readiness\.cjs/);
+    assert.match(unreleasedSection, /check:showcase/);
+    assert.match(unreleasedSection, /docs\/DEMO\.md/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);

@@ -18,6 +18,8 @@ If you want to inspect the safe trial command flow without running anything, rea
 
 When the recording is ready, place the finished demo link under this section and mirror it near the README terminal preview. Use link text such as `60-second GSD Codex demo`. Caption it with the command flow, generated artifacts, and `git status --short` evidence.
 
+Run `npm run check:showcase` after adding the published demo link. The check fails while placeholder text remains or either public entry point is missing the `60-second GSD Codex demo` link.
+
 ## What you should see
 
 The first command installs Codex-facing commands, skills, and project instructions. The next two commands turn a rough goal into durable project state:
