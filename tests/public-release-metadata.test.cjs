@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index repository automation table links/);
+    assert.match(roadmap, /localized docs index installer script table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1293,6 +1293,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index workflow metadata table links/);
     assert.doesNotMatch(roadmap, /localized docs index issue template table links/);
     assert.doesNotMatch(roadmap, /localized docs index pull request template table links/);
+    assert.doesNotMatch(roadmap, /localized docs index repository automation table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1776,6 +1777,11 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /\.github\/pull_request_template\.md/);
     assert.match(unreleasedSection, /PULL_REQUEST_TEMPLATE\/fix\.md/);
     assert.match(unreleasedSection, /PULL_REQUEST_TEMPLATE\/feature\.md/);
+    assert.match(unreleasedSection, /Localized docs index repository automation table links/);
+    assert.match(unreleasedSection, /\.github\/workflows\/release\.yml/);
+    assert.match(unreleasedSection, /\.github\/workflows\/pr-gate\.yml/);
+    assert.match(unreleasedSection, /\.github\/dependabot\.yml/);
+    assert.match(unreleasedSection, /\.github\/labels\.json/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2372,6 +2378,76 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[Feature PR Template\]\(\.\.\/\.\.\/\.github\/PULL_REQUEST_TEMPLATE\/feature\.md\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*approved-feature issue[^\r\n]*feature summary[^\r\n]*changed files[^\r\n]*acceptance criteria[^\r\n]*platform\/runtime tests[^\r\n]*scope confirmation[^\r\n]*screenshots or recordings[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Release Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/release\.yml\) \| [^\r\n]*Maintainers[^\r\n]*create[^\r\n]*rc[^\r\n]*finalize[^\r\n]*version input[^\r\n]*dry-run mode[^\r\n]*npm-publish environment[^\r\n]*NPM_TOKEN[^\r\n]*npm test coverage[^\r\n]*dist-tag publication[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[PR Gate Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/pr-gate\.yml\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*Pull request size labels[^\r\n]*size\/S[^\r\n]*size\/M[^\r\n]*size\/L[^\r\n]*size\/XL[^\r\n]*large PR warning[^\r\n]*split guidance[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Require Issue Link Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/require-issue-link\.yml\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*Closes[^\r\n]*Fixes[^\r\n]*Resolves[^\r\n]*#NNN[^\r\n]*issue chooser link[^\r\n]*issue-first review policy[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Branch Naming Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/branch-naming\.yml\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*feat\/[^\r\n]*fix\/[^\r\n]*hotfix\/[^\r\n]*docs\/[^\r\n]*chore\/[^\r\n]*dependabot\/[^\r\n]*renovate\/[^\r\n]*GSD branch compatibility[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Branch Cleanup Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/branch-cleanup\.yml\) \| [^\r\n]*Maintainers[^\r\n]*merged PR branches[^\r\n]*protected branches[^\r\n]*codex\/bootstrap[^\r\n]*weekly orphan branch sweeps[^\r\n]*workflow_dispatch[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Close Draft PRs Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/close-draft-prs\.yml\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*draft PRs[^\r\n]*test expectations[^\r\n]*correct template[^\r\n]*linked approved issue[^\r\n]*ready-for-review policy[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Auto-label Issues Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/auto-label-issues\.yml\) \| [^\r\n]*Maintainers[^\r\n]*needs-triage[^\r\n]*new issues[^\r\n]*GitHub Script retries[^\r\n]*triage queue[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Auto-branch Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/auto-branch\.yml\) \| [^\r\n]*Maintainers[^\r\n]*contributors[^\r\n]*labeled issues[^\r\n]*fix[^\r\n]*feat[^\r\n]*chore[^\r\n]*docs branches[^\r\n]*codex\/bootstrap[^\r\n]*checkout commands[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Security Scan Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/security-scan\.yml\) \| [^\r\n]*Contributors[^\r\n]*maintainers[^\r\n]*prompt injection[^\r\n]*base64 obfuscation[^\r\n]*secret scans[^\r\n]*\.planning runtime-data check[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Stale Cleanup Workflow\]\(\.\.\/\.\.\/\.github\/workflows\/stale\.yml\) \| [^\r\n]*Maintainers[^\r\n]*inactive issues[^\r\n]*inactive PRs[^\r\n]*28 days[^\r\n]*14 days[^\r\n]*critical[^\r\n]*pinned[^\r\n]*confirmed exemptions[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Dependabot Config\]\(\.\.\/\.\.\/\.github\/dependabot\.yml\) \| [^\r\n]*Maintainers[^\r\n]*Weekly npm[^\r\n]*GitHub Actions dependency updates[^\r\n]*open pull request limits[^\r\n]*dependencies labels[^\r\n]*chore commit prefixes[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Repository Labels Contract\]\(\.\.\/\.\.\/\.github\/labels\.json\) \| [^\r\n]*Maintainers[^\r\n]*contributors[^\r\n]*Public label names[^\r\n]*descriptions[^\r\n]*colors[^\r\n]*needs-triage[^\r\n]*approved-feature[^\r\n]*approved-enhancement[^\r\n]*pending release[^\r\n]*type: chore[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[CODEOWNERS\]\(\.\.\/\.\.\/\.github\/CODEOWNERS\) \| [^\r\n]*Maintainers[^\r\n]*contributors[^\r\n]*public fork maintainer review[^\r\n]*all changes[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Funding Metadata\]\(\.\.\/\.\.\/\.github\/FUNDING\.yml\) \| [^\r\n]*Users[^\r\n]*sponsors[^\r\n]*GitHub Sponsors metadata[^\r\n]*Oisinwang[^\r\n]* \|/,
         relativePath,
       );
       assert.match(
