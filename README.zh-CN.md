@@ -42,6 +42,8 @@ npx @oisinwang/get-shit-done-codex@latest
 
 **安全与发布卫生：** scoped npm package、仓库元数据、CI、发布 workflow 和 issue 模板都指向这个 fork。旧 Claude-era 名称只作为兼容 shim 保留。
 
+**示例：** 查看 [示例](docs/EXAMPLES.md)，获取可复制的 playbook 和真实场景，了解何时使用每条流程。
+
 [为什么存在这个 fork](#为什么存在这个-fork) · [它是怎么工作的](#它是怎么工作的) · [命令](#命令) · [为什么它有效](#为什么它有效) · [用户指南](docs/USER-GUIDE.md)
 
 </div>

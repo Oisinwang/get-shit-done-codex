@@ -42,6 +42,8 @@ npx @oisinwang/get-shit-done-codex@latest
 
 **Higiene de segurança e release:** pacote npm scoped, metadados do repositório, CI, workflows de release e templates de issue apontam para este fork. Nomes antigos da era Claude permanecem apenas como shims de compatibilidade.
 
+**Exemplos:** veja [Exemplos](docs/EXAMPLES.md) para playbooks copiáveis e cenários reais que mostram quando usar cada fluxo.
+
 [Por que este fork existe](#por-que-este-fork-existe) · [Como funciona](#como-funciona) · [Comandos](#comandos) · [Por que funciona](#por-que-funciona) · [Guia do usuário](docs/pt-BR/USER-GUIDE.md)
 
 </div>

@@ -2186,6 +2186,23 @@ describe('public release metadata', () => {
     }
   });
 
+  test('localized READMEs expose real-world examples', () => {
+    const localizedReadmes = [
+      ['README.pt-BR.md', /\[Exemplos\]\(docs\/EXAMPLES\.md\)/, /playbooks copiáveis/, /cenários reais/],
+      ['README.zh-CN.md', /\[示例\]\(docs\/EXAMPLES\.md\)/, /可复制的 playbook/, /真实场景/],
+      ['README.ja-JP.md', /\[例\]\(docs\/EXAMPLES\.md\)/, /コピー可能なプレイブック/, /実際のシナリオ/],
+      ['README.ko-KR.md', /\[예제\]\(docs\/EXAMPLES\.md\)/, /복사해서 쓸 수 있는 플레이북/, /실제 시나리오/],
+    ];
+
+    for (const [relativePath, examplesLink, playbooksText, scenariosText] of localizedReadmes) {
+      const readme = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+
+      assert.match(readme, examplesLink, relativePath);
+      assert.match(readme, playbooksText, relativePath);
+      assert.match(readme, scenariosText, relativePath);
+    }
+  });
+
   test('localized documentation indexes present the current Codex fork without stale launch metadata', () => {
     const localizedDocIndexes = [
       'docs/pt-BR/README.md',
