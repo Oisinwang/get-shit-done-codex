@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index package metadata table links/);
+    assert.match(roadmap, /localized docs index workflow metadata table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1289,6 +1289,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index security table links/);
     assert.doesNotMatch(roadmap, /localized docs index code of conduct table links/);
     assert.doesNotMatch(roadmap, /localized docs index license table links/);
+    assert.doesNotMatch(roadmap, /localized docs index package metadata table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1758,6 +1759,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Localized docs index license table links/);
     assert.match(unreleasedSection, /LICENSE/);
     assert.match(unreleasedSection, /MIT License/);
+    assert.match(unreleasedSection, /Localized docs index package metadata table links/);
+    assert.match(unreleasedSection, /package\.json/);
+    assert.match(unreleasedSection, /sdk\/package\.json/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2284,6 +2288,16 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[MIT License Terms\]\(\.\.\/\.\.\/LICENSE\) \| [^\r\n]*Permission notice[^\r\n]*copyright notice[^\r\n]*no warranty[^\r\n]*liability limits[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Package Metadata\]\(\.\.\/\.\.\/package\.json\) \| [^\r\n]*Published npm package name[^\r\n]*description[^\r\n]*keywords[^\r\n]*CLI bin[^\r\n]*shipped files[^\r\n]*public publish settings[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[SDK Package Metadata\]\(\.\.\/\.\.\/sdk\/package\.json\) \| [^\r\n]*SDK npm package name[^\r\n]*CLI bin[^\r\n]*shipped dist and prompts files[^\r\n]*prepublish build[^\r\n]*public publish settings[^\r\n]* \|/,
         relativePath,
       );
       assert.match(
