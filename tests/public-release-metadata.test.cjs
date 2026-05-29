@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index code of conduct table links/);
+    assert.match(roadmap, /localized docs index license table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1287,6 +1287,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index support table links/);
     assert.doesNotMatch(roadmap, /localized docs index contribution table links/);
     assert.doesNotMatch(roadmap, /localized docs index security table links/);
+    assert.doesNotMatch(roadmap, /localized docs index code of conduct table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1750,6 +1751,9 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Localized docs index security table links/);
     assert.match(unreleasedSection, /SECURITY\.md/);
     assert.match(unreleasedSection, /Private Vulnerability Report/);
+    assert.match(unreleasedSection, /Localized docs index code of conduct table links/);
+    assert.match(unreleasedSection, /CODE_OF_CONDUCT\.md/);
+    assert.match(unreleasedSection, /Private Conduct Report/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2256,6 +2260,16 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[Private Vulnerability Report\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/security\/advisories\/new\) \| [^\r\n]*GitHub private advisory intake[^\r\n]*vulnerabilities[^\r\n]*public issues[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Code of Conduct\]\(\.\.\/\.\.\/CODE_OF_CONDUCT\.md\) \| [^\r\n]*Community standards[^\r\n]*acceptable behavior[^\r\n]*enforcement responsibilities[^\r\n]*scope[^\r\n]*reporting guidance[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Private Conduct Report\]\(https:\/\/github\.com\/Oisinwang\/get-shit-done-codex\/security\/advisories\/new\) \| [^\r\n]*Sensitive conduct reports[^\r\n]*reporter safety[^\r\n]*names[^\r\n]*screenshots[^\r\n]*public issues[^\r\n]* \|/,
         relativePath,
       );
       assert.match(
