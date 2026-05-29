@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized docs index FAQ table links** - Adds `docs/FAQ.md` table links to localized docs indexes so non-English readers can find scope, created files, runtime support, and when-not-to-use guidance from localized entry points.
 - **Localized docs index troubleshooting table links** - Adds `docs/TROUBLESHOOTING.md` table links to localized docs indexes so non-English readers can find Codex config, install, PATH, Windows PowerShell, and stale npm metadata recovery paths from localized entry points.
 - **Localized docs index promotion table links** - Adds `docs/PROMOTION.md` table links to localized docs indexes so non-English maintainers can find launch copy, social preview setup, and public positioning snippets from localized entry points.
 - **Localized docs index maintainer checklist table links** - Adds `docs/MAINTAINER-CHECKLIST.md` table links to localized docs indexes so non-English maintainers can find resolved good-first issue closure guidance with verification, CI, label cleanup, and public notes from localized entry points.

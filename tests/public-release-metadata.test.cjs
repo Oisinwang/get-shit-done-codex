@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index FAQ table links/);
+    assert.match(roadmap, /localized docs index examples table links/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1280,6 +1280,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index maintainer checklist table links/);
     assert.doesNotMatch(roadmap, /localized docs index promotion table links/);
     assert.doesNotMatch(roadmap, /localized docs index troubleshooting table links/);
+    assert.doesNotMatch(roadmap, /localized docs index FAQ table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1732,6 +1733,7 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /Localized docs index promotion table links/);
     assert.match(unreleasedSection, /docs\/PROMOTION\.md/);
     assert.match(unreleasedSection, /Localized docs index troubleshooting table links/);
+    assert.match(unreleasedSection, /Localized docs index FAQ table links/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2173,6 +2175,11 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[Troubleshooting\]\(\.\.\/TROUBLESHOOTING\.md\) \| [^\r\n]*Fast recovery paths[^\r\n]*Codex config[^\r\n]*install[^\r\n]*PATH[^\r\n]*stale npm metadata[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[FAQ\]\(\.\.\/FAQ\.md\) \| [^\r\n]*Answers common adoption questions[^\r\n]*scope[^\r\n]*files[^\r\n]*runtimes[^\r\n]*when not to use GSD[^\r\n]* \|/,
         relativePath,
       );
       assert.match(
