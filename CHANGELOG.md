@@ -7,6 +7,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Localized docs index license table links** - Adds `LICENSE` and MIT License Terms table links to localized docs indexes so non-English readers can find reuse, copy, modify, distribution, sublicense, permission notice, copyright notice, no-warranty, and liability-limit terms from localized entry points.
 - **Localized docs index code of conduct table links** - Adds `CODE_OF_CONDUCT.md` and Private Conduct Report table links to localized docs indexes so non-English readers can find community standards, acceptable behavior, enforcement responsibilities, scope, reporting guidance, reporter safety, and private handling for sensitive conduct details from localized entry points.
 - **Localized docs index security table links** - Adds `SECURITY.md` and Private Vulnerability Report table links to localized docs indexes so non-English readers can find private vulnerability reporting, disclosure guidance, response timelines, security scope, security boundaries, and private advisory intake from localized entry points.
 - **Localized docs index contribution table links** - Adds `CONTRIBUTING.md` and Good First Issues table links to localized docs indexes so non-English readers can find contribution types, development setup, test requirements, review expectations, pull request flow, starter tasks, current roadmap gaps, docs updates, and public launch polish from localized entry points.
