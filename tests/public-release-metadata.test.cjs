@@ -1245,7 +1245,7 @@ describe('public release metadata', () => {
     assert.match(roadmap, /NPM_TOKEN/);
     assert.match(roadmap, /good first issue/);
     assert.match(roadmap, /Codex-first/);
-    assert.match(roadmap, /localized docs index runtime compatibility table links/);
+    assert.match(roadmap, /public showcase readiness metadata gate/);
     assert.doesNotMatch(roadmap, /Translate `docs\/COMPARISON\.md` into one localized docs folder/);
     assert.doesNotMatch(roadmap, /README safe 10-minute trial block/);
     assert.doesNotMatch(roadmap, /safe local trial path in localized README files/);
@@ -1295,6 +1295,7 @@ describe('public release metadata', () => {
     assert.doesNotMatch(roadmap, /localized docs index pull request template table links/);
     assert.doesNotMatch(roadmap, /localized docs index repository automation table links/);
     assert.doesNotMatch(roadmap, /localized docs index installer script table links/);
+    assert.doesNotMatch(roadmap, /localized docs index runtime compatibility table links/);
     assert.doesNotMatch(roadmap, /\$gsd-settings/);
     assert.doesNotMatch(roadmap, /\$gsd-cleanup/);
     assert.doesNotMatch(roadmap, /\$gsd-pause-work/);
@@ -1789,6 +1790,12 @@ describe('public release metadata', () => {
     assert.match(unreleasedSection, /scripts\/safe-trial-demo\.cjs/);
     assert.match(unreleasedSection, /scripts\/run-tests\.cjs/);
     assert.match(unreleasedSection, /scripts\/validate-hotfix\.cjs/);
+    assert.match(unreleasedSection, /Localized docs index runtime compatibility table links/);
+    assert.match(unreleasedSection, /docs\/FEATURES\.md#36-multi-runtime-support/);
+    assert.match(unreleasedSection, /docs\/ARCHITECTURE\.md#runtime-abstraction/);
+    assert.match(unreleasedSection, /docs\/USER-GUIDE\.md#using-compatibility-runtimes-opencode-gemini-cli-kilo/);
+    assert.match(unreleasedSection, /docs\/CONFIGURATION\.md#non-claude-runtimes-codex-opencode-gemini-cli-kilo/);
+    assert.match(unreleasedSection, /docs\/manual-update\.md#runtime-flags/);
     assert.match(unreleasedSection, /README badge and link refresh FAQ/);
     assert.match(unreleasedSection, /npm badges/);
     assert.match(unreleasedSection, /GitHub Actions and star-history links/);
@@ -2350,6 +2357,31 @@ describe('public release metadata', () => {
       assert.match(
         readme,
         /\| \[Hotfix Validation Script\]\(\.\.\/\.\.\/scripts\/validate-hotfix\.cjs\) \| [^\r\n]*Maintainers[^\r\n]*Hotfix release guard[^\r\n]*version input[^\r\n]*dry-run state[^\r\n]*package metadata[^\r\n]*publish workflow checks[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Runtime Support Matrix\]\(\.\.\/FEATURES\.md#36-multi-runtime-support\) \| [^\r\n]*Users[^\r\n]*evaluators[^\r\n]*Supported runtime list[^\r\n]*command formats[^\r\n]*agent formats[^\r\n]*hook events[^\r\n]*config shapes[^\r\n]*installer requirements[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Runtime Abstraction\]\(\.\.\/ARCHITECTURE\.md#runtime-abstraction\) \| [^\r\n]*Contributors[^\r\n]*integrators[^\r\n]*Runtime command format[^\r\n]*agent system[^\r\n]*config location[^\r\n]*tool mapping[^\r\n]*hook event names[^\r\n]*frontmatter differences[^\r\n]*model inheritance[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Compatibility Runtime Guide\]\(\.\.\/USER-GUIDE\.md#using-compatibility-runtimes-opencode-gemini-cli-kilo\) \| [^\r\n]*Users[^\r\n]*evaluators[^\r\n]*compatibility runtimes[^\r\n]*model selection[^\r\n]*resolve_model_ids[^\r\n]*omit[^\r\n]*runtime-specific model overrides[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Non-Claude Runtime Configuration\]\(\.\.\/CONFIGURATION\.md#non-claude-runtimes-codex-opencode-gemini-cli-kilo\) \| [^\r\n]*Users[^\r\n]*maintainers[^\r\n]*Configuration behavior[^\r\n]*Codex[^\r\n]*OpenCode[^\r\n]*Gemini CLI[^\r\n]*Kilo[^\r\n]*inherit model profiles[^\r\n]*runtime-selected model IDs[^\r\n]* \|/,
+        relativePath,
+      );
+      assert.match(
+        readme,
+        /\| \[Manual Update Runtime Flags\]\(\.\.\/manual-update\.md#runtime-flags\) \| [^\r\n]*Users[^\r\n]*maintainers[^\r\n]*Runtime flag table[^\r\n]*Codex[^\r\n]*Claude Code[^\r\n]*Gemini CLI[^\r\n]*OpenCode[^\r\n]*Kilo[^\r\n]*Copilot[^\r\n]*Cursor[^\r\n]*Windsurf[^\r\n]*Augment[^\r\n]*Antigravity[^\r\n]*Trae[^\r\n]*Qwen Code[^\r\n]*CodeBuddy[^\r\n]*Cline[^\r\n]*all runtimes[^\r\n]* \|/,
         relativePath,
       );
       assert.match(
