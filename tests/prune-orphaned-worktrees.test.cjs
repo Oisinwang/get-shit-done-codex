@@ -14,8 +14,12 @@ const path = require('path');
 const { execSync } = require('child_process');
 const { createTempDir, cleanup } = require('./helpers.cjs');
 
-function toGitPath(p) {
-  return p.split(path.sep).join('/');
+function hasWorktreePath(porcelain, expectedPath) {
+  const normalizedExpected = path.normalize(expectedPath);
+  return porcelain
+    .split(/\r?\n/)
+    .some((line) => line.startsWith('worktree ')
+      && path.normalize(line.slice('worktree '.length).trim()) === normalizedExpected);
 }
 
 // Lazy-loaded so tests can fail clearly when the export doesn't exist yet.
@@ -163,7 +167,7 @@ describe('pruneOrphanedWorktrees', () => {
     // Verify it appears in git worktree list
     const beforeList = execSync('git worktree list --porcelain', { cwd: repoDir, encoding: 'utf8' });
     assert.ok(
-      beforeList.includes(toGitPath(worktreeDir)),
+      hasWorktreePath(beforeList, worktreeDir),
       'worktree should appear in list before deletion'
     );
 
@@ -177,7 +181,7 @@ describe('pruneOrphanedWorktrees', () => {
     // Assert: git worktree list no longer shows the stale entry
     const afterList = execSync('git worktree list --porcelain', { cwd: repoDir, encoding: 'utf8' });
     assert.ok(
-      !afterList.includes(toGitPath(worktreeDir)),
+      !hasWorktreePath(afterList, worktreeDir),
       'git worktree list still shows stale entry after prune:\n' + afterList
     );
   });
