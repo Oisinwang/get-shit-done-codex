@@ -15,11 +15,24 @@ const { execSync } = require('child_process');
 const { createTempDir, cleanup } = require('./helpers.cjs');
 
 function hasWorktreePath(porcelain, expectedPath) {
-  const normalizedExpected = path.normalize(expectedPath);
+  const expectedPaths = new Set([path.normalize(expectedPath)]);
+
+  try {
+    expectedPaths.add(path.normalize(fs.realpathSync.native(expectedPath)));
+  } catch { /* path may already be manually deleted */ }
+
+  for (const candidate of [...expectedPaths]) {
+    if (candidate.startsWith('/var/')) {
+      expectedPaths.add(`/private${candidate}`);
+    } else if (candidate.startsWith('/private/var/')) {
+      expectedPaths.add(candidate.slice('/private'.length));
+    }
+  }
+
   return porcelain
     .split(/\r?\n/)
     .some((line) => line.startsWith('worktree ')
-      && path.normalize(line.slice('worktree '.length).trim()) === normalizedExpected);
+      && expectedPaths.has(path.normalize(line.slice('worktree '.length).trim())));
 }
 
 // Lazy-loaded so tests can fail clearly when the export doesn't exist yet.
@@ -168,7 +181,7 @@ describe('pruneOrphanedWorktrees', () => {
     const beforeList = execSync('git worktree list --porcelain', { cwd: repoDir, encoding: 'utf8' });
     assert.ok(
       hasWorktreePath(beforeList, worktreeDir),
-      'worktree should appear in list before deletion'
+      `worktree should appear in list before deletion: ${worktreeDir}\n${beforeList}`
     );
 
     // Manually delete the worktree directory (simulate orphan)
