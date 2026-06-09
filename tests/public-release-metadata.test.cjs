@@ -1719,7 +1719,6 @@ describe('public release metadata', () => {
   });
 
   test('CHANGELOG current compare link points at the public Codex fork', () => {
-    const packageJson = readJson('package.json');
     const changelog = fs.readFileSync(path.join(ROOT, 'CHANGELOG.md'), 'utf8');
     const unreleasedLink = changelog.match(/^\[Unreleased\]: .+$/m);
     const unreleasedSection = changelog.slice(
@@ -1730,8 +1729,11 @@ describe('public release metadata', () => {
     assert.ok(unreleasedLink, 'CHANGELOG should define an [Unreleased] compare link');
     assert.equal(
       unreleasedLink[0],
-      `[Unreleased]: https://github.com/Oisinwang/get-shit-done-codex/compare/v${packageJson.version}...HEAD`,
+      '[Unreleased]: https://github.com/Oisinwang/get-shit-done-codex/compare/v1.37.2-codex.1...HEAD',
     );
+    assert.match(unreleasedSection, /Release state readiness check/);
+    assert.match(unreleasedSection, /check:release-state/);
+    assert.match(unreleasedSection, /Showcase link hardening/);
     assert.match(unreleasedSection, /Public demo guide/);
     assert.match(unreleasedSection, /docs\/DEMO\.md/);
     assert.match(unreleasedSection, /Demo media checklist/);

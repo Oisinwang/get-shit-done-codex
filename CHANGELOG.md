@@ -7,6 +7,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **Release state readiness check** - Adds `scripts/check-release-state.cjs` and `npm run check:release-state`, wires it into publish workflows before tag or npm publish steps, and lets maintainers detect when the local package version already exists on npm while `CHANGELOG.md` still has package-facing `[Unreleased]` entries that require a new hotfix or release version.
+- **Showcase link hardening** - Extends `scripts/check-showcase-readiness.cjs` to verify the root README, docs index, and demo guide all point at the repo-hosted `docs/DEMO-60-SECOND.md` transcript instead of accepting any HTTPS URL with the right link text.
 - **Repo-hosted 60-second demo** - Adds `docs/DEMO-60-SECOND.md` and links it from `README.md`, `docs/DEMO.md`, and `docs/README.md` as a public `60-second GSD Codex demo` so showcase visitors can inspect the install commands, generated artifacts, and `git status --short` evidence before recording richer media.
 - **Localized docs index infrastructure row localization** - Localizes the remaining security, package, installer, runtime, workflow, issue template, pull request template, automation, label, CODEOWNERS, Funding Metadata, release, maintainer, troubleshooting, and promotion table rows in `docs/pt-BR/README.md`, `docs/zh-CN/README.md`, `docs/ja-JP/README.md`, and `docs/ko-KR/README.md` while preserving link targets for public maintenance discovery.
 - **Localized docs index public quick-link localization** - Localizes the public quick-link headings, action labels, and key discovery rows in `docs/pt-BR/README.md`, `docs/zh-CN/README.md`, `docs/ja-JP/README.md`, and `docs/ko-KR/README.md` so non-English readers do not hit English `Examples quick links` copy on the localized docs index surface.
@@ -2165,7 +2167,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - YOLO mode for autonomous execution
 - Interactive mode with checkpoints
 
-[Unreleased]: https://github.com/Oisinwang/get-shit-done-codex/compare/v1.37.2...HEAD
+[Unreleased]: https://github.com/Oisinwang/get-shit-done-codex/compare/v1.37.2-codex.1...HEAD
 [1.37.1]: https://github.com/gsd-build/get-shit-done/compare/v1.37.0...v1.37.1
 [1.37.0]: https://github.com/gsd-build/get-shit-done/compare/v1.36.0...v1.37.0
 [1.36.0]: https://github.com/gsd-build/get-shit-done/releases/tag/v1.36.0

@@ -42,7 +42,7 @@ npx @oisinwang/get-shit-done-codex@latest
 
 *Terminal preview: verified `npx` install plus `$gsd-help` discovery for Codex users.*
 
-*Watch the repo-hosted [60-second GSD Codex demo](https://github.com/Oisinwang/get-shit-done-codex/blob/codex/bootstrap/docs/DEMO-60-SECOND.md) to see the install, first planning commands, generated artifacts, and clean `git status --short` evidence.*
+*Read the repo-hosted [60-second GSD Codex demo](https://github.com/Oisinwang/get-shit-done-codex/blob/codex/bootstrap/docs/DEMO-60-SECOND.md) to inspect the install, first planning commands, generated artifacts, and clean `git status --short` evidence.*
 
 <br>
 
@@ -337,7 +337,7 @@ npm run build:hooks
 node bin/install.js --codex --local
 ```
 
-The `build:hooks` step is required - it compiles hook sources into `hooks/dist/` which the installer copies from. Without it, hooks won't be installed and you'll get hook errors in Claude Code. (The npm release handles this automatically via `prepublishOnly`.)
+The `build:hooks` step is required - it compiles hook sources into `hooks/dist/` which the installer copies from. Without it, hooks won't be installed and you'll get hook errors in Codex or the selected compatibility runtime. (The npm release handles this automatically via `prepublishOnly`.)
 
 Installs to `./.codex/` for testing modifications before contributing.
 

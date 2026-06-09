@@ -20,10 +20,13 @@ Run these before starting a release or hotfix:
 
 ```powershell
 git status --short
+npm.cmd run check:release-state
 npm.cmd view @oisinwang/get-shit-done-codex version dist-tags time --json
 npm.cmd test
 npm.cmd pack --dry-run
 ```
+
+`check:release-state` fails when the current package version is already published but `CHANGELOG.md` still has package-facing `[Unreleased]` entries. That means the source tree needs a new hotfix or release version before it can update `@latest`.
 
 Use the npm metadata output to confirm whether `latest` is stale. Do not close a `pending release` issue until the published timestamp and version prove the fix is live.
 

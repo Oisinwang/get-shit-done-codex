@@ -136,6 +136,7 @@ jobs:
       - name: Install and test
         run: |
           npm ci
+          npm run check:release-state
           npm run test:coverage
 
       - name: Verify npm authentication

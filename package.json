@@ -1,6 +1,6 @@
 {
   "name": "@oisinwang/get-shit-done-codex",
-  "version": "1.37.2",
+  "version": "1.37.3",
   "description": "Codex-first GSD: spec-driven development, context engineering, and verified AI coding workflows for OpenAI Codex.",
   "bin": {
     "get-shit-done-codex": "bin/install.js",
@@ -74,6 +74,7 @@
   },
   "scripts": {
     "build:hooks": "node scripts/build-hooks.js",
+    "check:release-state": "node scripts/check-release-state.cjs",
     "check:showcase": "node scripts/check-showcase-readiness.cjs",
     "demo:safe-trial": "node scripts/safe-trial-demo.cjs",
     "prepublishOnly": "npm run build:hooks",

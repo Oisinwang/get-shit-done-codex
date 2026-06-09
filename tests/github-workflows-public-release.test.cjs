@@ -104,6 +104,12 @@ describe('GitHub workflows public release configuration', () => {
     }
   });
 
+  test('test workflow runs a real Windows Node 24 leg', () => {
+    const testWorkflow = readWorkflow('test.yml');
+
+    assert.match(testWorkflow, /-\s+os: windows-latest\r?\n\s+node-version: 24/);
+  });
+
   test('hotfix workflow delegates version validation to tested script', () => {
     const workflow = readWorkflow('hotfix.yml');
 
@@ -168,6 +174,30 @@ describe('GitHub workflows public release configuration', () => {
 
     assert.match(workflow, /NPM_TOKEN secret is not configured/);
     assert.match(workflow, /npm whoami/);
+  });
+
+  test('publish workflows check release state before tagging or publishing', () => {
+    const releaseWorkflow = readWorkflow('release.yml');
+    const jobs = [
+      ['hotfix finalize', readWorkflow('hotfix.yml').slice(readWorkflow('hotfix.yml').indexOf('  finalize:'))],
+      ['release rc', releaseWorkflow.slice(releaseWorkflow.indexOf('  rc:'), releaseWorkflow.indexOf('  finalize:'))],
+      ['release finalize', releaseWorkflow.slice(releaseWorkflow.indexOf('  finalize:'))],
+    ];
+
+    for (const [jobName, job] of jobs) {
+      const installStep = job.indexOf('name: Install and test');
+      const releaseStateCheck = job.indexOf('npm run check:release-state');
+      const tagStep = job.indexOf('name: Tag and push');
+      const publishStep = job.indexOf('name: Publish to npm');
+
+      assert.notStrictEqual(installStep, -1, `${jobName} should install dependencies`);
+      assert.notStrictEqual(releaseStateCheck, -1, `${jobName} should check release state`);
+      assert.notStrictEqual(tagStep, -1, `${jobName} should tag releases`);
+      assert.notStrictEqual(publishStep, -1, `${jobName} should publish to npm`);
+      assert.ok(installStep < releaseStateCheck, `${jobName} should check after npm ci`);
+      assert.ok(releaseStateCheck < tagStep, `${jobName} should check before pushing tags`);
+      assert.ok(releaseStateCheck < publishStep, `${jobName} should check before publishing`);
+    }
   });
 
   test('public issue labels are declared before templates or docs reference them', () => {

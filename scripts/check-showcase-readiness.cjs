@@ -7,7 +7,13 @@ const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
 const DEFAULT_README = path.join(ROOT, 'README.md');
 const DEFAULT_DEMO = path.join(ROOT, 'docs', 'DEMO.md');
-const DEMO_LINK_PATTERN = /\[60-second GSD Codex demo\]\(https?:\/\/[^)\s]+[^)]*\)/;
+const DEFAULT_DOCS_README = path.join(ROOT, 'docs', 'README.md');
+const DEMO_TRANSCRIPT_URL = 'https://github.com/Oisinwang/get-shit-done-codex/blob/codex/bootstrap/docs/DEMO-60-SECOND.md';
+const DEMO_LINK = `[60-second GSD Codex demo](${DEMO_TRANSCRIPT_URL})`;
+const LOCAL_TRANSCRIPT_LINKS = [
+  '[Demo Transcript](DEMO-60-SECOND.md)',
+  '[60-second GSD Codex demo](DEMO-60-SECOND.md)',
+];
 const PLACEHOLDERS = [
   {
     label: 'README.md',
@@ -22,6 +28,7 @@ const PLACEHOLDERS = [
 function parseArgs(argv) {
   const options = {
     demoPath: DEFAULT_DEMO,
+    docsReadmePath: DEFAULT_DOCS_README,
     readmePath: DEFAULT_README,
   };
 
@@ -41,6 +48,12 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (arg === '--docs-readme' && next) {
+      options.docsReadmePath = path.resolve(next);
+      index += 1;
+      continue;
+    }
+
     throw new Error(`Unknown or incomplete argument: ${arg}`);
   }
 
@@ -55,23 +68,27 @@ function readFile(label, filePath) {
   }
 }
 
-function checkDocument({ content, label, placeholderPattern }) {
+function checkDocument({ allowLocalTranscriptLink = false, content, label, placeholderPattern }) {
   const problems = [];
 
-  if (placeholderPattern.test(content)) {
+  if (placeholderPattern?.test(content)) {
     problems.push(`${label} still contains placeholder text`);
   }
 
-  if (!DEMO_LINK_PATTERN.test(content)) {
-    problems.push(`${label} is missing a public 60-second GSD Codex demo link`);
+  const hasDemoLink = content.includes(DEMO_LINK)
+    || (allowLocalTranscriptLink && LOCAL_TRANSCRIPT_LINKS.some(link => content.includes(link)));
+
+  if (!hasDemoLink) {
+    problems.push(`${label} is missing the repo-hosted 60-second GSD Codex demo transcript link`);
   }
 
   return problems;
 }
 
 function main() {
-  const { demoPath, readmePath } = parseArgs(process.argv.slice(2));
+  const { demoPath, docsReadmePath, readmePath } = parseArgs(process.argv.slice(2));
   const readme = readFile('README.md', readmePath);
+  const docsReadme = readFile('docs/README.md', docsReadmePath);
   const demo = readFile('docs/DEMO.md', demoPath);
 
   const problems = [
@@ -84,6 +101,12 @@ function main() {
       content: demo,
       label: 'docs/DEMO.md',
       placeholderPattern: PLACEHOLDERS[1].pattern,
+    }),
+    ...checkDocument({
+      allowLocalTranscriptLink: true,
+      content: docsReadme,
+      label: 'docs/README.md',
+      placeholderPattern: null,
     }),
   ];
 

@@ -16,11 +16,11 @@ Maintainers preparing short demo media should follow the [Demo Media Checklist](
 
 If you want to inspect the safe trial command flow without running anything, read the [Safe Trial Transcript](SAFE-TRIAL-TRANSCRIPT.md).
 
-Public demo: [60-second GSD Codex demo](https://github.com/Oisinwang/get-shit-done-codex/blob/codex/bootstrap/docs/DEMO-60-SECOND.md).
+Public transcript: [60-second GSD Codex demo](https://github.com/Oisinwang/get-shit-done-codex/blob/codex/bootstrap/docs/DEMO-60-SECOND.md).
 
 The demo is a repo-hosted transcript that shows the command flow, generated artifacts, and `git status --short` evidence. Caption it with the command flow, generated artifacts, and `git status --short` evidence when you publish GIF, MP4, or annotated screenshot variants.
 
-Run `npm run check:showcase` before closing showcase work. Link the finished demo from `README.md` near the terminal preview. Link it from this page under `## 60-second workflow`.
+Run `npm run check:showcase` before closing showcase work. Keep the repo-hosted transcript linked from `README.md`, `docs/README.md`, and this page; add richer GIF, MP4, or screenshot media only after it follows the checklist below.
 
 ## What you should see
 
